@@ -156,7 +156,8 @@
             "$ref": "AdBlockingRecoveryTag"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/adsense"
+            "https://www.googleapis.com/auth/adsense",
+            "https://www.googleapis.com/auth/adsense.readonly"
           ]
         },
         "list": {
@@ -321,6 +322,34 @@
           "resources": {
             "adunits": {
               "methods": {
+                "create": {
+                  "description": "Creates an ad unit. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product. Note that ad units can only be created for ad clients with an \"AFC\" product code. For more info see the [AdClient resource](/adsense/management/reference/rest/v2/accounts.adclients). For now, this method can only be used to create `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566",
+                  "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/adunits",
+                  "httpMethod": "POST",
+                  "id": "adsense.accounts.adclients.adunits.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Ad client to create an ad unit under. Format: accounts/{account}/adclients/{adclient}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adclients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/adunits",
+                  "request": {
+                    "$ref": "AdUnit"
+                  },
+                  "response": {
+                    "$ref": "AdUnit"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense"
+                  ]
+                },
                 "get": {
                   "description": "Gets an ad unit from a specified account and ad client.",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/adunits/{adunitsId}",
@@ -446,11 +475,98 @@
                     "https://www.googleapis.com/auth/adsense",
                     "https://www.googleapis.com/auth/adsense.readonly"
                   ]
+                },
+                "patch": {
+                  "description": "Updates an ad unit. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product. For now, this method can only be used to update `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566",
+                  "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/adunits/{adunitsId}",
+                  "httpMethod": "PATCH",
+                  "id": "adsense.accounts.adclients.adunits.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adclients/[^/]+/adunits/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update. If empty, a full update is performed.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "AdUnit"
+                  },
+                  "response": {
+                    "$ref": "AdUnit"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense"
+                  ]
                 }
               }
             },
             "customchannels": {
               "methods": {
+                "create": {
+                  "description": "Creates a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.",
+                  "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/customchannels",
+                  "httpMethod": "POST",
+                  "id": "adsense.accounts.adclients.customchannels.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The ad client to create a custom channel under. Format: accounts/{account}/adclients/{adclient}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adclients/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/customchannels",
+                  "request": {
+                    "$ref": "CustomChannel"
+                  },
+                  "response": {
+                    "$ref": "CustomChannel"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.",
+                  "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/customchannels/{customchannelsId}",
+                  "httpMethod": "DELETE",
+                  "id": "adsense.accounts.adclients.customchannels.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom channel to delete. Format: accounts/{account}/adclients/{adclient}/customchannels/{customchannel}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adclients/[^/]+/customchannels/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense"
+                  ]
+                },
                 "get": {
                   "description": "Gets information about the selected custom channel.",
                   "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/customchannels/{customchannelsId}",
@@ -549,6 +665,40 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/adsense",
                     "https://www.googleapis.com/auth/adsense.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a custom channel. This method can only be used by projects enabled for the [AdSense for Platforms](https://developers.google.com/adsense/platforms/) product.",
+                  "flatPath": "v2/accounts/{accountsId}/adclients/{adclientsId}/customchannels/{customchannelsId}",
+                  "httpMethod": "PATCH",
+                  "id": "adsense.accounts.adclients.customchannels.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the custom channel. Format: accounts/{account}/adclients/{adclient}/customchannels/{customchannel}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adclients/[^/]+/customchannels/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update. If empty, a full update is performed.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "CustomChannel"
+                  },
+                  "response": {
+                    "$ref": "CustomChannel"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense"
                   ]
                 }
               }
@@ -744,6 +894,7 @@
                     "MONTH",
                     "ACCOUNT_NAME",
                     "AD_CLIENT_ID",
+                    "HOSTED_AD_CLIENT_ID",
                     "PRODUCT_NAME",
                     "PRODUCT_CODE",
                     "AD_UNIT_NAME",
@@ -792,6 +943,7 @@
                     "Month dimension in YYYY-MM format (e.g. \"2010-02\").",
                     "Account name. The members of this dimension match the values from Account.display_name.",
                     "Unique ID of an ad client. The members of this dimension match the values from AdClient.reporting_dimension_id.",
+                    "Unique ID of a sub-account's ad client. The members of this dimension match the values from AdClient.reporting_dimension_id (for the sub-account).",
                     "Localized product name (e.g. \"AdSense for Content\", \"AdSense for Search\").",
                     "Product code (e.g. \"AFC\", \"AFS\"). The members of this dimension match the values from AdClient.product_code.",
                     "Ad unit name (within which an ad was served). The members of this dimension match the values from AdUnit.display_name.",
@@ -856,7 +1008,7 @@
                   "type": "integer"
                 },
                 "filters": {
-                  "description": "Filters to be run on the report.",
+                  "description": "A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1052,6 +1204,7 @@
                     "MONTH",
                     "ACCOUNT_NAME",
                     "AD_CLIENT_ID",
+                    "HOSTED_AD_CLIENT_ID",
                     "PRODUCT_NAME",
                     "PRODUCT_CODE",
                     "AD_UNIT_NAME",
@@ -1100,6 +1253,7 @@
                     "Month dimension in YYYY-MM format (e.g. \"2010-02\").",
                     "Account name. The members of this dimension match the values from Account.display_name.",
                     "Unique ID of an ad client. The members of this dimension match the values from AdClient.reporting_dimension_id.",
+                    "Unique ID of a sub-account's ad client. The members of this dimension match the values from AdClient.reporting_dimension_id (for the sub-account).",
                     "Localized product name (e.g. \"AdSense for Content\", \"AdSense for Search\").",
                     "Product code (e.g. \"AFC\", \"AFS\"). The members of this dimension match the values from AdClient.product_code.",
                     "Ad unit name (within which an ad was served). The members of this dimension match the values from AdUnit.display_name.",
@@ -1164,7 +1318,7 @@
                   "type": "integer"
                 },
                 "filters": {
-                  "description": "Filters to be run on the report.",
+                  "description": "A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1670,7 +1824,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20221208",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1942,6 +2096,10 @@
       "description": "Representation of a custom channel.",
       "id": "CustomChannel",
       "properties": {
+        "active": {
+          "description": "Whether the custom channel is active and collecting data. See https://support.google.com/adsense/answer/10077192.",
+          "type": "boolean"
+        },
         "displayName": {
           "description": "Required. Display name of the custom channel.",
           "type": "string"
@@ -1979,6 +2137,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
       "type": "object"
     },
     "Header": {
@@ -2387,10 +2551,10 @@
           ],
           "enumDescriptions": [
             "State unspecified.",
-            "The site hasn't been checked yet.",
-            "Running some checks on the site. This usually takes a few days, but in some cases can take up to 2 weeks.",
-            "The site is ready to show ads.",
-            "Publisher needs to fix some issues before the site is ready to show ads."
+            "Either: * The site hasn't been checked yet. * The site is inactive and needs another review before it can show ads again. Learn how to [request a review for an inactive site](https://support.google.com/adsense/answer/9393996).",
+            "Google is running some checks on the site. This usually takes a few days, but in some cases it can take two to four weeks.",
+            "The site is ready to show ads. Learn how to [set up ads on the site](https://support.google.com/adsense/answer/7037624).",
+            "Publisher needs to fix some issues before the site is ready to show ads. Learn what to do [if a new site isn't ready](https://support.google.com/adsense/answer/9061852)."
           ],
           "readOnly": true,
           "type": "string"

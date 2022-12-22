@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/people-v2.0.2...people-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/people-v2.0.1...people-v2.0.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **people:** update the API ([712168d](https://github.com/googleapis/google-api-nodejs-client/commit/712168d9428a1b01f211a0f9e06ca4d923b5ceed))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/people-v2.0.0...people-v2.0.1) (2022-06-21)
 
 

@@ -178,7 +178,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.",
+                  "description": "Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -189,7 +189,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.",
+                  "description": "Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, for example, for all creatives pertaining to bidder (`123`), use `bidders/123`.",
                   "location": "path",
                   "pattern": "^bidders/[^/]+$",
                   "required": true,
@@ -822,12 +822,12 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Order specification by which results should be sorted. If no sort order is specified, the results will be returned in an arbitrary order. Currently results can be sorted by `createTime`. Example: 'createTime DESC'.",
+                  "description": "Order specification by which results should be sorted. If no sort order is specified, the results will be returned in alphabetic order based on the publisher's publisher code. Results can be sorted by `createTime`. Example: 'createTime DESC'.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. The server may return fewer results than requested (due to timeout constraint) even if more are available via another call. If unspecified, the server will pick an appropriate default. Acceptable values are 1 to 5000, inclusive.",
+                  "description": "Requested page size. The server may return fewer results than requested (due to timeout constraint) even if more are available through another call. If unspecified, the server will pick an appropriate default. Acceptable values are 1 to 5000, inclusive.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1023,7 +1023,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.",
+                  "description": "Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1034,7 +1034,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.",
+                  "description": "Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, for example, for all creatives pertaining to bidder (`123`), use `bidders/123`.",
                   "location": "path",
                   "pattern": "^buyers/[^/]+$",
                   "required": true,
@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20221221",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -1529,7 +1529,7 @@
       "id": "Bidder",
       "properties": {
         "bypassNonguaranteedDealsPretargeting": {
-          "description": "Output only. A flag to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this flag. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.",
+          "description": "Output only. An option to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this flag. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1561,7 +1561,7 @@
       "id": "Buyer",
       "properties": {
         "activeCreativeCount": {
-          "description": "Output only. The number of creatives that this buyer submitted via the API or bid with in the last 30 days. This is counted against the maximum number of active creatives.",
+          "description": "Output only. The number of creatives that this buyer submitted through the API or bid with in the last 30 days. This is counted against the maximum number of active creatives.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -1628,7 +1628,7 @@
           "type": "string"
         },
         "apiUpdateTime": {
-          "description": "Output only. The last update timestamp of the creative via API.",
+          "description": "Output only. The last update timestamp of the creative through the API.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1803,6 +1803,10 @@
         "native": {
           "$ref": "NativeContent",
           "description": "A native creative."
+        },
+        "renderUrl": {
+          "description": "Experimental field that can be used during the [FLEDGE Origin Trial](/authorized-buyers/rtb/fledge-origin-trial). The URL to fetch an interest group ad used in [TURTLEDOVE on-device auction](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#1-browsers-record-interest-groups\"). This should be unique among all creatives for a given `accountId`.",
+          "type": "string"
         },
         "restrictedCategories": {
           "description": "All restricted categories for the ads that may be shown from this creative.",
@@ -2070,9 +2074,9 @@
           ],
           "enumDescriptions": [
             "Default value that should never be used.",
-            "Site's robots exclusion file (e.g., robots.txt) was unreachable.",
-            "Timed out reading site's robots exclusion file (e.g., robots.txt).",
-            "Crawler was disallowed by the site's robots exclusion file (e.g., robots.txt).",
+            "Site's robots exclusion file (for example, robots.txt) was unreachable.",
+            "Timed out reading site's robots exclusion file (for example, robots.txt).",
+            "Crawler was disallowed by the site's robots exclusion file (for example, robots.txt).",
             "Unknown reason."
           ],
           "type": "string"
@@ -2103,7 +2107,7 @@
           "type": "string"
         },
         "httpError": {
-          "description": "HTTP error code (e.g. 404 or 5xx)",
+          "description": "HTTP error code (for example, 404 or 5xx)",
           "format": "int32",
           "type": "integer"
         },
@@ -2193,7 +2197,7 @@
       "id": "DomainCallEvidence",
       "properties": {
         "topHttpCallDomains": {
-          "description": "Breakdown of the most frequent domains called via HTTP by the creative.",
+          "description": "Breakdown of the most frequent domains called through HTTP by the creative.",
           "items": {
             "$ref": "DomainCalls"
           },
@@ -2257,6 +2261,8 @@
           "enum": [
             "BID_PROTOCOL_UNSPECIFIED",
             "GOOGLE_RTB",
+            "OPENRTB_JSON",
+            "OPENRTB_PROTOBUF",
             "OPENRTB_2_2",
             "OPENRTB_2_3",
             "OPENRTB_PROTOBUF_2_3",
@@ -2268,13 +2274,15 @@
           "enumDescriptions": [
             "Placeholder for undefined bid protocol. This value should not be used.",
             "Google RTB protocol / Protobuf encoding.",
-            "OpenRTB / JSON encoding, specification version 2.2.",
-            "OpenRTB / JSON encoding, specification version 2.3.",
-            "OpenRTB / Protobuf encoding, specification version 2.3.",
-            "OpenRTB / JSON encoding, specification version 2.4.",
-            "OpenRTB / Protobuf encoding, specification version 2.4.",
-            "OpenRTB / JSON encoding, specification version 2.5.",
-            "OpenRTB / Protobuf encoding, specification version 2.5."
+            "OpenRTB / JSON encoding (unversioned/latest).",
+            "OpenRTB / Protobuf encoding (unversioned/latest).",
+            "Deprecated: Use OPENRTB_JSON.",
+            "Deprecated: Use OPENRTB_JSON.",
+            "Deprecated: Use OPENRTB_PROTOBUF.",
+            "Deprecated: Use OPENRTB_JSON.",
+            "Deprecated: Use OPENRTB_PROTOBUF.",
+            "Deprecated: Use OPENRTB_JSON.",
+            "Deprecated: Use OPENRTB_PROTOBUF."
           ],
           "type": "string"
         },
@@ -2676,23 +2684,25 @@
       "id": "PolicyCompliance",
       "properties": {
         "status": {
-          "description": "Serving status for the given transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Can be used to filter the response of the creatives.list method.",
+          "description": "Serving status for the given transaction type (for example, open auction, deals) or region (for example, China, Russia). Can be used to filter the response of the creatives.list method.",
           "enum": [
             "STATUS_UNSPECIFIED",
             "PENDING_REVIEW",
             "DISAPPROVED",
-            "APPROVED"
+            "APPROVED",
+            "CERTIFICATE_REQUIRED"
           ],
           "enumDescriptions": [
             "Default value that should never be used.",
             "Creative is pending review.",
             "Creative cannot serve.",
-            "Creative is approved."
+            "Creative is approved.",
+            "Certificates are required for the creative to be served in some regions. For more information about creative certification, refer to: https://support.google.com/authorizedbuyers/answer/7450776"
           ],
           "type": "string"
         },
         "topics": {
-          "description": "Topics related to the policy compliance for this transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Topics may be present only if status is DISAPPROVED.",
+          "description": "Topics related to the policy compliance for this transaction type (for example, open auction, deals) or region (for example, China, Russia). Topics may be present only if status is DISAPPROVED.",
           "items": {
             "$ref": "PolicyTopicEntry"
           },
@@ -2943,7 +2953,7 @@
         },
         "publisherTargeting": {
           "$ref": "StringTargetingDimension",
-          "description": "Targeting on a subset of publisher inventory. Publishers can either be targeted positively (bid requests will be sent only if the publisher is listed in the targeting dimension) or negatively (bid requests will be sent only if the publisher is not listed in the targeting dimension). A maximum of 10,000 publisher IDs can be targeted. Publisher IDs are found in [ads.txt](https://iabtechlab.com/ads-txt/) / [app-ads.txt](https://iabtechlab.com/app-ads-txt/) and in bid requests in the `BidRequest.publisher_id` field on the [Google RTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) or the `BidRequest.site.publisher.id` / `BidRequest.app.publisher.id` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto)."
+          "description": "Targeting on a subset of publisher inventory. Publishers can either be targeted positively (bid requests will be sent only if the publisher is listed in the targeting dimension) or negatively (bid requests will be sent only if the publisher is not listed in the targeting dimension). A maximum of 10,000 publisher IDs can be targeted. Publisher IDs are found in [ads.txt](https://iabtechlab.com/ads-txt/) / [app-ads.txt](https://iabtechlab.com/app-ads-txt/) and in bid requests in the `BidRequest.publisher_id` field on the [Google RTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) or the `BidRequest.site.publisher.id` / `BidRequest.app.publisher.id` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto). Publisher IDs will be returned in the order that they were entered."
         },
         "state": {
           "description": "Output only. The state of this pretargeting configuration.",
@@ -3291,7 +3301,7 @@
       "id": "WatchCreativesResponse",
       "properties": {
         "subscription": {
-          "description": "The Pub/Sub subscription that can be used to pull creative status notifications. This would be of the format `projects/{project_id}/subscriptions/{subscription_id}`. Subscription is created with pull delivery. All service accounts belonging to the bidder will have read access to this subscription. Subscriptions that are inactive for more than 90 days will be disabled. Please use watchCreatives to re-enable the subscription.",
+          "description": "The Pub/Sub subscription that can be used to pull creative status notifications. This would be of the format `projects/{project_id}/subscriptions/{subscription_id}`. Subscription is created with pull delivery. All service accounts belonging to the bidder will have read access to this subscription. Subscriptions that are inactive for more than 90 days will be disabled. Use watchCreatives to re-enable the subscription.",
           "type": "string"
         },
         "topic": {

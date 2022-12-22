@@ -181,7 +181,7 @@ export namespace manufacturers_v1 {
      */
     gender?: string | null;
     /**
-     * Grocery Attributes. For more information, see go/mfc-nutrition-attributes.
+     * Grocery Attributes. See more at https://support.google.com/manufacturers/answer/12098458#grocery.
      */
     grocery?: Schema$Grocery;
     /**
@@ -209,7 +209,7 @@ export namespace manufacturers_v1 {
      */
     mpn?: string | null;
     /**
-     * Nutrition Attributes. For more information, see go/mfc-nutrition-attributes.
+     * Nutrition Attributes. See more at https://support.google.com/manufacturers/answer/12098458#food-servings.
      */
     nutrition?: Schema$Nutrition;
     /**
@@ -346,7 +346,7 @@ export namespace manufacturers_v1 {
     text?: string | null;
   }
   /**
-   * Combination of float amout and unit.
+   * Combination of float amount and unit.
    */
   export interface Schema$FloatUnit {
     /**

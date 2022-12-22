@@ -604,7 +604,7 @@ export namespace drive_v3 {
     folderColorRgb?: string | null;
     /**
      * The full file extension extracted from the name field. May contain multiple concatenated extensions, such as "tar.gz". This is only available for files with binary content in Google Drive.
-     * This is automatically updated when the name field changes, however it is not cleared if the new name does not contain a valid extension.
+     * This is automatically updated when the name field changes, however it isn't cleared if the new name does not contain a valid extension.
      */
     fullFileExtension?: string | null;
     /**
@@ -742,11 +742,11 @@ export namespace drive_v3 {
      */
     resourceKey?: string | null;
     /**
-     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     sha1Checksum?: string | null;
     /**
-     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     sha256Checksum?: string | null;
     /**
@@ -1074,6 +1074,7 @@ export namespace drive_v3 {
     emailAddress?: string | null;
     /**
      * The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:
+     * - They cannot be set on shared drive items
      * - They can only be set on user and group permissions
      * - The time must be in the future
      * - The time cannot be more than a year in the future
@@ -1787,7 +1788,7 @@ export namespace drive_v3 {
      *     pageToken: 'placeholder-value',
      *     // Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
      *     restrictToMyDrive: 'placeholder-value',
-     *     // A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     // A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
      *     spaces: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
@@ -1949,7 +1950,7 @@ export namespace drive_v3 {
      *     pageToken: 'placeholder-value',
      *     // Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
      *     restrictToMyDrive: 'placeholder-value',
-     *     // A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     // A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
      *     spaces: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
@@ -2144,7 +2145,7 @@ export namespace drive_v3 {
      */
     restrictToMyDrive?: boolean;
     /**
-     * A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
      */
     spaces?: string;
     /**
@@ -2202,7 +2203,7 @@ export namespace drive_v3 {
      */
     restrictToMyDrive?: boolean;
     /**
-     * A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
      */
     spaces?: string;
     /**
@@ -2388,7 +2389,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a new comment on a file.
+     * Creates a comment on a file.
      * @example
      * ```js
      * // Before running the sample:
@@ -3204,7 +3205,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a new shared drive.
+     * Creates a shared drive.
      * @example
      * ```js
      * // Before running the sample:
@@ -4569,7 +4570,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a new file.
+     * Creates a file.
      * @example
      * ```js
      * // Before running the sample:
@@ -5633,7 +5634,7 @@ export namespace drive_v3 {
      *     pageToken: 'placeholder-value',
      *     // A query for filtering the file results. See the "Search for Files" guide for supported syntax.
      *     q: 'placeholder-value',
-     *     // A comma-separated list of spaces to query within the corpus. Supported values are 'drive' and 'appDataFolder'.
+     *     // A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
      *     spaces: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
@@ -6717,7 +6718,7 @@ export namespace drive_v3 {
      */
     q?: string;
     /**
-     * A comma-separated list of spaces to query within the corpus. Supported values are 'drive' and 'appDataFolder'.
+     * A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.
      */
     spaces?: string;
     /**
@@ -7827,7 +7828,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a new reply to a comment.
+     * Creates a reply to a comment.
      * @example
      * ```js
      * // Before running the sample:

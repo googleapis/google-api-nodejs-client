@@ -396,13 +396,43 @@
           "response": {
             "$ref": "GoogleAppsDriveLabelsV2betaLabel"
           }
+        },
+        "updatePermissions": {
+          "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+          "flatPath": "v2beta/labels/{labelsId}/permissions",
+          "httpMethod": "PATCH",
+          "id": "drivelabels.labels.updatePermissions",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The parent Label resource name.",
+              "location": "path",
+              "pattern": "^labels/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "useAdminAccess": {
+              "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v2beta/{+parent}/permissions",
+          "request": {
+            "$ref": "GoogleAppsDriveLabelsV2betaLabelPermission"
+          },
+          "response": {
+            "$ref": "GoogleAppsDriveLabelsV2betaLabelPermission"
+          }
         }
       },
       "resources": {
         "locks": {
           "methods": {
             "list": {
-              "description": "Lists the Locks on a Label.",
+              "description": "Lists the LabelLocks on a Label.",
               "flatPath": "v2beta/labels/{labelsId}/locks",
               "httpMethod": "GET",
               "id": "drivelabels.labels.locks.list",
@@ -444,16 +474,18 @@
               "httpMethod": "POST",
               "id": "drivelabels.labels.permissions.batchDelete",
               "parameterOrder": [
-                "labelsId"
+                "parent"
               ],
               "parameters": {
-                "labelsId": {
+                "parent": {
+                  "description": "Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.",
                   "location": "path",
+                  "pattern": "^labels/[^/]+$",
                   "required": true,
                   "type": "string"
                 }
               },
-              "path": "v2beta/labels/{labelsId}/permissions:batchDelete",
+              "path": "v2beta/{+parent}/permissions:batchDelete",
               "request": {
                 "$ref": "GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest"
               },
@@ -580,12 +612,16 @@
               "response": {
                 "$ref": "GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse"
               }
-            },
-            "patch": {
+            }
+          }
+        },
+        "revisions": {
+          "methods": {
+            "updatePermissions": {
               "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
-              "flatPath": "v2beta/labels/{labelsId}/permissions/{permissionsId}",
+              "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions",
               "httpMethod": "PATCH",
-              "id": "drivelabels.labels.permissions.patch",
+              "id": "drivelabels.labels.revisions.updatePermissions",
               "parameterOrder": [
                 "parent"
               ],
@@ -593,7 +629,7 @@
                 "parent": {
                   "description": "Required. The parent Label resource name.",
                   "location": "path",
-                  "pattern": "^labels/[^/]+/permissions/[^/]+$",
+                  "pattern": "^labels/[^/]+/revisions/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
@@ -603,7 +639,7 @@
                   "type": "boolean"
                 }
               },
-              "path": "v2beta/{+parent}",
+              "path": "v2beta/{+parent}/permissions",
               "request": {
                 "$ref": "GoogleAppsDriveLabelsV2betaLabelPermission"
               },
@@ -611,14 +647,12 @@
                 "$ref": "GoogleAppsDriveLabelsV2betaLabelPermission"
               }
             }
-          }
-        },
-        "revisions": {
+          },
           "resources": {
             "locks": {
               "methods": {
                 "list": {
-                  "description": "Lists the Locks on a Label.",
+                  "description": "Lists the LabelLocks on a Label.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/locks",
                   "httpMethod": "GET",
                   "id": "drivelabels.labels.revisions.locks.list",
@@ -660,22 +694,18 @@
                   "httpMethod": "POST",
                   "id": "drivelabels.labels.revisions.permissions.batchDelete",
                   "parameterOrder": [
-                    "labelsId",
-                    "revisionsId"
+                    "parent"
                   ],
                   "parameters": {
-                    "labelsId": {
+                    "parent": {
+                      "description": "Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.",
                       "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "revisionsId": {
-                      "location": "path",
+                      "pattern": "^labels/[^/]+/revisions/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions:batchDelete",
+                  "path": "v2beta/{+parent}/permissions:batchDelete",
                   "request": {
                     "$ref": "GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest"
                   },
@@ -802,36 +832,6 @@
                   "response": {
                     "$ref": "GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse"
                   }
-                },
-                "patch": {
-                  "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
-                  "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions/{permissionsId}",
-                  "httpMethod": "PATCH",
-                  "id": "drivelabels.labels.revisions.permissions.patch",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent Label resource name.",
-                      "location": "path",
-                      "pattern": "^labels/[^/]+/revisions/[^/]+/permissions/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "useAdminAccess": {
-                      "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
-                      "location": "query",
-                      "type": "boolean"
-                    }
-                  },
-                  "path": "v2beta/{+parent}",
-                  "request": {
-                    "$ref": "GoogleAppsDriveLabelsV2betaLabelPermission"
-                  },
-                  "response": {
-                    "$ref": "GoogleAppsDriveLabelsV2betaLabelPermission"
-                  }
                 }
               }
             }
@@ -888,7 +888,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20221214",
   "rootUrl": "https://drivelabels.googleapis.com/",
   "schemas": {
     "GoogleAppsDriveLabelsV2betaBadgeColors": {
@@ -2380,11 +2380,6 @@
         },
         "name": {
           "description": "Output only. Resource name of this LabelLock.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "policyUri": {
-          "description": "Output only. A URI referring to the policy that created this Lock.",
           "readOnly": true,
           "type": "string"
         },

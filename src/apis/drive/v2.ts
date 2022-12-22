@@ -959,7 +959,7 @@ export namespace drive_v2 {
      */
     description?: string | null;
     /**
-     * Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     downloadUrl?: string | null;
     /**
@@ -987,11 +987,11 @@ export namespace drive_v2 {
      */
     exportLinks?: {[key: string]: string} | null;
     /**
-     * The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     fileExtension?: string | null;
     /**
-     * The size of the file in bytes. This field is populated for files with content stored in Google Drive and for files in Docs Editors; it is not populated for shortcut files.
+     * The size of the file in bytes. This field is populated for files with content stored in Google Drive and for files in Docs Editors; it isn't populated for shortcut files.
      */
     fileSize?: string | null;
     /**
@@ -999,7 +999,7 @@ export namespace drive_v2 {
      */
     folderColorRgb?: string | null;
     /**
-     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as "tar.gz". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as "tar.gz". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     fullFileExtension?: string | null;
     /**
@@ -1011,7 +1011,7 @@ export namespace drive_v2 {
      */
     hasThumbnail?: boolean | null;
     /**
-     * The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     headRevisionId?: string | null;
     /**
@@ -1049,7 +1049,7 @@ export namespace drive_v2 {
       width?: number;
     } | null;
     /**
-     * Indexable text attributes for the file (can only be written)
+     * Indexable text attributes for the file (can only be written). For more information, see Manage file metadata.
      */
     indexableText?: {text?: string} | null;
     /**
@@ -1099,7 +1099,7 @@ export namespace drive_v2 {
      */
     markedViewedByMeDate?: string | null;
     /**
-     * An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     md5Checksum?: string | null;
     /**
@@ -1164,11 +1164,11 @@ export namespace drive_v2 {
      */
     selfLink?: string | null;
     /**
-     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     sha1Checksum?: string | null;
     /**
-     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
      */
     sha256Checksum?: string | null;
     /**
@@ -1550,7 +1550,6 @@ export namespace drive_v2 {
      * - They can only be set on user and group permissions
      * - The date must be in the future
      * - The date cannot be more than a year in the future
-     * - The date can only be set on drive.permissions.update or drive.permissions.patch requests
      */
     expirationDate?: string | null;
     /**

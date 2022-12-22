@@ -209,6 +209,10 @@ export namespace firebase_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.
+     */
+    etag?: string | null;
+    /**
      * The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)).
      */
     name?: string | null;
@@ -220,6 +224,14 @@ export namespace firebase_v1beta1 {
      * Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `AndroidApp`.
      */
     projectId?: string | null;
+    /**
+     * The SHA1 certificate hashes for the AndroidApp.
+     */
+    sha1Hashes?: string[] | null;
+    /**
+     * The SHA256 certificate hashes for the AndroidApp.
+     */
+    sha256Hashes?: string[] | null;
     /**
      * Output only. The lifecycle state of the App.
      */
@@ -307,7 +319,7 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$FirebaseProject {
     /**
-     * Set of user-defined annotations for the FirebaseProject as per [AIP-128](https://google.aip.dev/128#annotations). These annotations are intended solely for developers and client-side tools Firebase services will not mutate this annotation set.
+     * A set of user-defined annotations for the FirebaseProject. Learn more about annotations in Google's [AIP-128 standard](https://google.aip.dev/128#annotations). These annotations are intended solely for developers and client-side tools. Firebase services will not mutate this annotations set.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -315,7 +327,7 @@ export namespace firebase_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding. [AIP-154](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.
+     * This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.
      */
     etag?: string | null;
     /**
@@ -323,11 +335,11 @@ export namespace firebase_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. A user-assigned unique identifier for the Project. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project.
+     * Output only. Immutable. A user-assigned unique identifier for the Project. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project.
      */
     projectId?: string | null;
     /**
-     * Output only. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Firebase or third-party services.
+     * Output only. Immutable. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Firebase or third-party services.
      */
     projectNumber?: string | null;
     /**
@@ -335,7 +347,7 @@ export namespace firebase_v1beta1 {
      */
     resources?: Schema$DefaultResources;
     /**
-     * Output only. The lifecycle state of the Project. Updates to the state must be performed via com.google.cloudresourcemanager.v1.Projects.DeleteProject and com.google.cloudresourcemanager.v1.Projects.UndeleteProject
+     * Output only. The lifecycle state of the Project.
      */
     state?: string | null;
   }
@@ -363,6 +375,10 @@ export namespace firebase_v1beta1 {
      * The user-assigned display name for the `IosApp`.
      */
     displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.
+     */
+    etag?: string | null;
     /**
      * The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id)).
      */
@@ -534,11 +550,15 @@ export namespace firebase_v1beta1 {
      */
     allowMissing?: boolean | null;
     /**
-     * Checksum provided in the AndroidApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     * Checksum provided in the AndroidApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * If set to true, only validate the request and do not delete the app.
+     * Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteAndroidApp.
+     */
+    immediate?: boolean | null;
+    /**
+     * If set to true, the request is only validated. The App will _not_ be removed.
      */
     validateOnly?: boolean | null;
   }
@@ -548,11 +568,15 @@ export namespace firebase_v1beta1 {
      */
     allowMissing?: boolean | null;
     /**
-     * Checksum provided in the IosApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     * Checksum provided in the IosApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * If set to true, only validate the request and do not delete the app.
+     * Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteIosApp
+     */
+    immediate?: boolean | null;
+    /**
+     * If set to true, the request is only validated. The App will _not_ be removed.
      */
     validateOnly?: boolean | null;
   }
@@ -562,11 +586,15 @@ export namespace firebase_v1beta1 {
      */
     allowMissing?: boolean | null;
     /**
-     * Checksum provided in the WebApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     * Checksum provided in the WebApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * If set to true, only validate the request and do not delete the app.
+     * Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteWebApp
+     */
+    immediate?: boolean | null;
+    /**
+     * If set to true, the request is only validated. The App will _not_ be removed.
      */
     validateOnly?: boolean | null;
   }
@@ -658,31 +686,31 @@ export namespace firebase_v1beta1 {
   }
   export interface Schema$UndeleteAndroidAppRequest {
     /**
-     * Checksum provided in the AndroidApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     * Checksum provided in the AndroidApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * If set to true, only validate the request and do not undelete the app.
+     * If set to true, the request is only validated. The App will _not_ be undeleted.
      */
     validateOnly?: boolean | null;
   }
   export interface Schema$UndeleteIosAppRequest {
     /**
-     * Checksum provided in the IosApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     * Checksum provided in the IosApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * If set to true, only validate the request and do not undelete the app.
+     * If set to true, the request is only validated. The App will _not_ be undeleted.
      */
     validateOnly?: boolean | null;
   }
   export interface Schema$UndeleteWebAppRequest {
     /**
-     * Checksum provided in the WebApp entity, which if provided ensures the client has an up-to-date value before proceeding.
+     * Checksum provided in the WebApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * If set to true, only validate the request and do not undelete the app.
+     * If set to true, the request is only validated. The App will _not_ be undeleted.
      */
     validateOnly?: boolean | null;
   }
@@ -706,6 +734,10 @@ export namespace firebase_v1beta1 {
      * The user-assigned display name for the `WebApp`.
      */
     displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.
+     */
+    etag?: string | null;
     /**
      * The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).
      */
@@ -1830,7 +1862,7 @@ export namespace firebase_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // Token returned from a previous call to `ListFirebaseProjects` indicating where in the set of Projects to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Optional. Controls whether Projects in the DELETING state should be returned. Defaults to false.
+     *     // Optional. Controls whether Projects in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Projects will be returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1970,7 +2002,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.patch({
      *     // The resource name of the Project, in the format: projects/PROJECT_IDENTIFIER PROJECT_IDENTIFIER: the Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`.
      *     name: 'projects/my-project',
-     *     // Specifies which fields to update. If this list is empty, then no state will be updated. Note that the fields `name`, `projectId`, and `projectNumber` are all immutable.
+     *     // Specifies which fields of the FirebaseProject to update. Note that the following fields are immutable: `name`, `project_id`, and `project_number`. To update `state`, use any of the following Google Cloud endpoints: [`projects.delete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/delete) or [`projects.undelete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/undelete)
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2260,7 +2292,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebase.projects.searchApps({
-     *     // A query string compatible with Google's [AIP-160](https://google.aip.dev/160) standard. Use any of the following fields in a query: * [`app_id`](../projects.apps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects.apps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects.apps#FirebaseAppInfo.FIELDS.platform) We also support the following "virtual" fields (fields which are not actually part of the returned resource object, but can be queried as if they are pre-populated with specific values): * `sha1_hash` or `sha1_hashes`: This field is considered to be a repeated `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the app. This list is empty if the app is not an Android app. * `sha256_hash` or `sha256_hashes`: This field is considered to be a repeated `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the app. This list is empty if the app is not an Android app. * `app_store_id`: This field is considered to be a singular `string` field, populated with the Apple App Store ID registered with the app. This field is empty if the app is not an iOS app. * `team_id`: This field is considered to be a singular `string` field, populated with the Apple team ID registered with the app. This field is empty if the app is not an iOS app.
+     *     // A query string compatible with Google's [AIP-160 standard](https://google.aip.dev/160). Use any of the following fields in a query: * [`app_id`](../projects/searchApps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects/searchApps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects/searchApps#FirebaseAppInfo.FIELDS.platform) This query also supports the following "virtual" fields. These are fields which are not actually part of the returned resource object, but they can be queried as if they are pre-populated with specific values. * `sha1_hash` or `sha1_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `sha256_hash` or `sha256_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `app_store_id`: This field is considered to be a _singular_ `string` field, populated with the Apple App Store ID registered with the IosApp. This field is empty if the App is not an `IosApp`. * `team_id`: This field is considered to be a _singular_ `string` field, populated with the Apple team ID registered with the IosApp. This field is empty if the App is not an `IosApp`.
      *     filter: 'placeholder-value',
      *     // The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.
      *     pageSize: 'placeholder-value',
@@ -2268,7 +2300,7 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The parent FirebaseProject for which to list Apps, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
-     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     // Controls whether Apps in the DELETED state should be returned. If not specified, only `ACTIVE` Apps will be returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2433,7 +2465,7 @@ export namespace firebase_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Optional. Controls whether Projects in the DELETING state should be returned. Defaults to false.
+     * Optional. Controls whether Projects in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Projects will be returned.
      */
     showDeleted?: boolean;
   }
@@ -2443,7 +2475,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. If this list is empty, then no state will be updated. Note that the fields `name`, `projectId`, and `projectNumber` are all immutable.
+     * Specifies which fields of the FirebaseProject to update. Note that the following fields are immutable: `name`, `project_id`, and `project_number`. To update `state`, use any of the following Google Cloud endpoints: [`projects.delete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/delete) or [`projects.undelete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/undelete)
      */
     updateMask?: string;
 
@@ -2467,7 +2499,7 @@ export namespace firebase_v1beta1 {
   export interface Params$Resource$Projects$Searchapps
     extends StandardParameters {
     /**
-     * A query string compatible with Google's [AIP-160](https://google.aip.dev/160) standard. Use any of the following fields in a query: * [`app_id`](../projects.apps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects.apps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects.apps#FirebaseAppInfo.FIELDS.platform) We also support the following "virtual" fields (fields which are not actually part of the returned resource object, but can be queried as if they are pre-populated with specific values): * `sha1_hash` or `sha1_hashes`: This field is considered to be a repeated `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the app. This list is empty if the app is not an Android app. * `sha256_hash` or `sha256_hashes`: This field is considered to be a repeated `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the app. This list is empty if the app is not an Android app. * `app_store_id`: This field is considered to be a singular `string` field, populated with the Apple App Store ID registered with the app. This field is empty if the app is not an iOS app. * `team_id`: This field is considered to be a singular `string` field, populated with the Apple team ID registered with the app. This field is empty if the app is not an iOS app.
+     * A query string compatible with Google's [AIP-160 standard](https://google.aip.dev/160). Use any of the following fields in a query: * [`app_id`](../projects/searchApps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects/searchApps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects/searchApps#FirebaseAppInfo.FIELDS.platform) This query also supports the following "virtual" fields. These are fields which are not actually part of the returned resource object, but they can be queried as if they are pre-populated with specific values. * `sha1_hash` or `sha1_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `sha256_hash` or `sha256_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `app_store_id`: This field is considered to be a _singular_ `string` field, populated with the Apple App Store ID registered with the IosApp. This field is empty if the App is not an `IosApp`. * `team_id`: This field is considered to be a _singular_ `string` field, populated with the Apple team ID registered with the IosApp. This field is empty if the App is not an `IosApp`.
      */
     filter?: string;
     /**
@@ -2483,7 +2515,7 @@ export namespace firebase_v1beta1 {
      */
     parent?: string;
     /**
-     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     * Controls whether Apps in the DELETED state should be returned. If not specified, only `ACTIVE` Apps will be returned.
      */
     showDeleted?: boolean;
   }
@@ -2536,9 +2568,12 @@ export namespace firebase_v1beta1 {
      *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "packageName": "my_packageName",
      *       //   "projectId": "my_projectId",
+     *       //   "sha1Hashes": [],
+     *       //   "sha256Hashes": [],
      *       //   "state": "my_state"
      *       // }
      *     },
@@ -2688,9 +2723,12 @@ export namespace firebase_v1beta1 {
      *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "packageName": "my_packageName",
      *   //   "projectId": "my_projectId",
+     *   //   "sha1Hashes": [],
+     *   //   "sha256Hashes": [],
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2953,7 +2991,7 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The resource name of the parent FirebaseProject for which to list each associated AndroidApp, in the format: projects/PROJECT_IDENTIFIER /androidApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
-     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     // Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3093,7 +3131,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.androidApps.patch({
      *     // The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)).
      *     name: 'projects/my-project/androidApps/my-androidApp',
-     *     // Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, `package_name`, and `state` are all immutable.
+     *     // Specifies which fields of the AndroidApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `package_name`. To update `state`, use any of the following endpoints: RemoveAndroidApp or UndeleteAndroidApp.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3103,9 +3141,12 @@ export namespace firebase_v1beta1 {
      *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "packageName": "my_packageName",
      *       //   "projectId": "my_projectId",
+     *       //   "sha1Hashes": [],
+     *       //   "sha256Hashes": [],
      *       //   "state": "my_state"
      *       // }
      *     },
@@ -3117,9 +3158,12 @@ export namespace firebase_v1beta1 {
      *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "packageName": "my_packageName",
      *   //   "projectId": "my_projectId",
+     *   //   "sha1Hashes": [],
+     *   //   "sha256Hashes": [],
      *   //   "state": "my_state"
      *   // }
      * }
@@ -3213,7 +3257,7 @@ export namespace firebase_v1beta1 {
     }
 
     /**
-     * Removes the specified AndroidApp from the project.
+     * Removes the specified AndroidApp from the FirebaseProject.
      * @example
      * ```js
      * // Before running the sample:
@@ -3230,7 +3274,10 @@ export namespace firebase_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3248,6 +3295,7 @@ export namespace firebase_v1beta1 {
      *       // {
      *       //   "allowMissing": false,
      *       //   "etag": "my_etag",
+     *       //   "immediate": false,
      *       //   "validateOnly": false
      *       // }
      *     },
@@ -3356,7 +3404,7 @@ export namespace firebase_v1beta1 {
     }
 
     /**
-     * Restores the specified AndroidApp to the project.
+     * Restores the specified AndroidApp to the FirebaseProject.
      * @example
      * ```js
      * // Before running the sample:
@@ -3373,7 +3421,10 @@ export namespace firebase_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3539,7 +3590,7 @@ export namespace firebase_v1beta1 {
      */
     parent?: string;
     /**
-     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     * Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.
      */
     showDeleted?: boolean;
   }
@@ -3550,7 +3601,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, `package_name`, and `state` are all immutable.
+     * Specifies which fields of the AndroidApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `package_name`. To update `state`, use any of the following endpoints: RemoveAndroidApp or UndeleteAndroidApp.
      */
     updateMask?: string;
 
@@ -4412,6 +4463,7 @@ export namespace firebase_v1beta1 {
      *       //   "appStoreId": "my_appStoreId",
      *       //   "bundleId": "my_bundleId",
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -4566,6 +4618,7 @@ export namespace firebase_v1beta1 {
      *   //   "appStoreId": "my_appStoreId",
      *   //   "bundleId": "my_bundleId",
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -4831,7 +4884,7 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The resource name of the parent FirebaseProject for which to list each associated IosApp, in the format: projects/PROJECT_IDENTIFIER/iosApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
-     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     // Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4969,7 +5022,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.iosApps.patch({
      *     // The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id)).
      *     name: 'projects/my-project/iosApps/my-iosApp',
-     *     // Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, `bundleId`, and `state` are all immutable
+     *     // Specifies which fields of the IosApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `bundle_id`. To update `state`, use any of the following endpoints: RemoveIosApp or UndeleteIosApp.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4981,6 +5034,7 @@ export namespace firebase_v1beta1 {
      *       //   "appStoreId": "my_appStoreId",
      *       //   "bundleId": "my_bundleId",
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -4997,6 +5051,7 @@ export namespace firebase_v1beta1 {
      *   //   "appStoreId": "my_appStoreId",
      *   //   "bundleId": "my_bundleId",
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -5093,7 +5148,7 @@ export namespace firebase_v1beta1 {
     }
 
     /**
-     * Removes the specified IosApp from the project.
+     * Removes the specified IosApp from the FirebaseProject.
      * @example
      * ```js
      * // Before running the sample:
@@ -5110,7 +5165,10 @@ export namespace firebase_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5128,6 +5186,7 @@ export namespace firebase_v1beta1 {
      *       // {
      *       //   "allowMissing": false,
      *       //   "etag": "my_etag",
+     *       //   "immediate": false,
      *       //   "validateOnly": false
      *       // }
      *     },
@@ -5236,7 +5295,7 @@ export namespace firebase_v1beta1 {
     }
 
     /**
-     * Restores the specified IosApp to the project.
+     * Restores the specified IosApp to the FirebaseProject.
      * @example
      * ```js
      * // Before running the sample:
@@ -5253,7 +5312,10 @@ export namespace firebase_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5419,7 +5481,7 @@ export namespace firebase_v1beta1 {
      */
     parent?: string;
     /**
-     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     * Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.
      */
     showDeleted?: boolean;
   }
@@ -5430,7 +5492,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, `bundleId`, and `state` are all immutable
+     * Specifies which fields of the IosApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `bundle_id`. To update `state`, use any of the following endpoints: RemoveIosApp or UndeleteIosApp.
      */
     updateMask?: string;
 
@@ -5511,6 +5573,7 @@ export namespace firebase_v1beta1 {
      *       //   "appId": "my_appId",
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -5664,6 +5727,7 @@ export namespace firebase_v1beta1 {
      *   //   "appId": "my_appId",
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -5936,7 +6000,7 @@ export namespace firebase_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // The resource name of the parent FirebaseProject for which to list each associated WebApp, in the format: projects/PROJECT_IDENTIFIER/webApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
      *     parent: 'projects/my-project',
-     *     // Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     *     // Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6074,7 +6138,7 @@ export namespace firebase_v1beta1 {
      *   const res = await firebase.projects.webApps.patch({
      *     // The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).
      *     name: 'projects/my-project/webApps/my-webApp',
-     *     // Specifies which fields to update. Note that the fields `name`, `appId`, `projectId` and `state` are all immutable
+     *     // Specifies which fields of the WebApp to update. Note that the following fields are immutable: `name`, `app_id`, and `project_id`. To update `state`, use any of the following endpoints: RemoveWebApp or UndeleteWebApp.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6085,6 +6149,7 @@ export namespace firebase_v1beta1 {
      *       //   "appId": "my_appId",
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -6100,6 +6165,7 @@ export namespace firebase_v1beta1 {
      *   //   "appId": "my_appId",
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -6196,7 +6262,7 @@ export namespace firebase_v1beta1 {
     }
 
     /**
-     * Removes the specified WebApp from the project.
+     * Removes the specified WebApp from the FirebaseProject.
      * @example
      * ```js
      * // Before running the sample:
@@ -6213,7 +6279,10 @@ export namespace firebase_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6231,6 +6300,7 @@ export namespace firebase_v1beta1 {
      *       // {
      *       //   "allowMissing": false,
      *       //   "etag": "my_etag",
+     *       //   "immediate": false,
      *       //   "validateOnly": false
      *       // }
      *     },
@@ -6339,7 +6409,7 @@ export namespace firebase_v1beta1 {
     }
 
     /**
-     * Restores the specified WebApp to the project.
+     * Restores the specified WebApp to the FirebaseProject.
      * @example
      * ```js
      * // Before running the sample:
@@ -6356,7 +6426,10 @@ export namespace firebase_v1beta1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6522,7 +6595,7 @@ export namespace firebase_v1beta1 {
      */
     parent?: string;
     /**
-     * Controls whether Apps in the DELETED state should be returned. Defaults to false.
+     * Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.
      */
     showDeleted?: boolean;
   }
@@ -6533,7 +6606,7 @@ export namespace firebase_v1beta1 {
      */
     name?: string;
     /**
-     * Specifies which fields to update. Note that the fields `name`, `appId`, `projectId` and `state` are all immutable
+     * Specifies which fields of the WebApp to update. Note that the following fields are immutable: `name`, `app_id`, and `project_id`. To update `state`, use any of the following endpoints: RemoveWebApp or UndeleteWebApp.
      */
     updateMask?: string;
 

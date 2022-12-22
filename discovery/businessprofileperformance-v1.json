@@ -3,7 +3,7 @@
   "baseUrl": "https://businessprofileperformance.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Business Profile Performance",
-  "description": "The Business Profile Performance API allows merchants to fetch performance reports about their business profile on Google.",
+  "description": "The Business Profile Performance API allows merchants to fetch performance reports about their business profile on Google. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/my-business/",
   "fullyEncodeReservedExpansion": true,
@@ -323,7 +323,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20221213",
   "rootUrl": "https://businessprofileperformance.googleapis.com/",
   "schemas": {
     "Date": {

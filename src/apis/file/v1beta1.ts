@@ -652,7 +652,7 @@ export namespace file_v1beta1 {
     name?: string | null;
   }
   /**
-   * Defines policies to service maintenance events.
+   * LINT.IfChange Defines policies to service maintenance events.
    */
   export interface Schema$MaintenancePolicy {
     /**
@@ -806,11 +806,11 @@ export namespace file_v1beta1 {
     verb?: string | null;
   }
   /**
-   * RestoreInstanceRequest restores an existing instance's file share from a snapshot or backup.
+   * RestoreInstanceRequest restores an existing instance's file share from a backup.
    */
   export interface Schema$RestoreInstanceRequest {
     /**
-     * Required. Name of the file share in the Filestore instance that the snapshot is being restored to.
+     * Required. Name of the file share in the Filestore instance that the backup is being restored to.
      */
     fileShare?: string | null;
     /**
@@ -1342,7 +1342,7 @@ export namespace file_v1beta1 {
      *   const res = await file.projects.locations.backups.create({
      *     // Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     backupId: 'placeholder-value',
-     *     // Required. The backup's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**.
+     *     // Required. The backup's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to Google Cloud regions, for example **us-west1**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1771,7 +1771,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve backup information, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
+     *     // Required. The project and location for which to retrieve backup information, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to Google Cloud regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2038,7 +2038,7 @@ export namespace file_v1beta1 {
      */
     backupId?: string;
     /**
-     * Required. The backup's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**.
+     * Required. The backup's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to Google Cloud regions, for example **us-west1**.
      */
     parent?: string;
 
@@ -2080,7 +2080,7 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve backup information, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
+     * Required. The project and location for which to retrieve backup information, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, backup locations map to Google Cloud regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
   }
@@ -2144,7 +2144,7 @@ export namespace file_v1beta1 {
      *   const res = await file.projects.locations.instances.create({
      *     // Required. The ID of the instance to create. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     instanceId: 'placeholder-value',
-     *     // Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, locations map to GCP zones, for example **us-west1-b**.
+     *     // Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, locations map to Google Cloud zones, for example **us-west1-b**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -2585,7 +2585,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve instance information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the `{location\}` value.
+     *     // Required. The project and location for which to retrieve instance information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to Google Cloud zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the `{location\}` value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3143,7 +3143,7 @@ export namespace file_v1beta1 {
      */
     instanceId?: string;
     /**
-     * Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, locations map to GCP zones, for example **us-west1-b**.
+     * Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Filestore, locations map to Google Cloud zones, for example **us-west1-b**.
      */
     parent?: string;
 
@@ -3189,7 +3189,7 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve instance information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the `{location\}` value.
+     * Required. The project and location for which to retrieve instance information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to Google Cloud zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
   }

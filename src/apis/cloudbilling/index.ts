@@ -15,18 +15,32 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {cloudbilling_v1} from './v1';
+import {cloudbilling_v1beta} from './v1beta';
 
 export const VERSIONS = {
   v1: cloudbilling_v1.Cloudbilling,
+  v1beta: cloudbilling_v1beta.Cloudbilling,
 };
 
 export function cloudbilling(version: 'v1'): cloudbilling_v1.Cloudbilling;
 export function cloudbilling(
   options: cloudbilling_v1.Options
 ): cloudbilling_v1.Cloudbilling;
-export function cloudbilling<T = cloudbilling_v1.Cloudbilling>(
+export function cloudbilling(
+  version: 'v1beta'
+): cloudbilling_v1beta.Cloudbilling;
+export function cloudbilling(
+  options: cloudbilling_v1beta.Options
+): cloudbilling_v1beta.Cloudbilling;
+export function cloudbilling<
+  T = cloudbilling_v1.Cloudbilling | cloudbilling_v1beta.Cloudbilling
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | cloudbilling_v1.Options
+  versionOrOptions:
+    | 'v1'
+    | cloudbilling_v1.Options
+    | 'v1beta'
+    | cloudbilling_v1beta.Options
 ) {
   return getAPI<T>('cloudbilling', versionOrOptions, VERSIONS, this);
 }
@@ -34,6 +48,7 @@ export function cloudbilling<T = cloudbilling_v1.Cloudbilling>(
 const auth = new AuthPlus();
 export {auth};
 export {cloudbilling_v1};
+export {cloudbilling_v1beta};
 export {
   AuthPlus,
   GlobalOptions,

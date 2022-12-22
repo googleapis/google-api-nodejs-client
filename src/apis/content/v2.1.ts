@@ -135,6 +135,7 @@ export namespace content_v2_1 {
     productstatuses: Resource$Productstatuses;
     promotions: Resource$Promotions;
     pubsubnotificationsettings: Resource$Pubsubnotificationsettings;
+    quotas: Resource$Quotas;
     regionalinventory: Resource$Regionalinventory;
     regions: Resource$Regions;
     reports: Resource$Reports;
@@ -180,6 +181,7 @@ export namespace content_v2_1 {
       this.pubsubnotificationsettings = new Resource$Pubsubnotificationsettings(
         this.context
       );
+      this.quotas = new Resource$Quotas(this.context);
       this.regionalinventory = new Resource$Regionalinventory(this.context);
       this.regions = new Resource$Regions(this.context);
       this.reports = new Resource$Reports(this.context);
@@ -233,7 +235,7 @@ export namespace content_v2_1 {
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
     /**
-     * Required for update. Merchant Center account ID.
+     * Required. 64-bit Merchant Center account ID.
      */
     id?: string | null;
     /**
@@ -1088,6 +1090,56 @@ export namespace content_v2_1 {
      */
     taxAmount?: Schema$Price;
   }
+  /**
+   * Fields related to the [Best Sellers reports](https://support.google.com/merchants/answer/9488679).
+   */
+  export interface Schema$BestSellers {
+    /**
+     * Google product category ID to calculate the ranking for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). If a `WHERE` condition on `best_sellers.category_id` is not specified in the query, rankings for all top-level categories are returned.
+     */
+    categoryId?: string | null;
+    /**
+     * Country where the ranking is calculated. A `WHERE` condition on `best_sellers.country_code` is required in the query.
+     */
+    countryCode?: string | null;
+    /**
+     * Popularity rank in the previous week or month.
+     */
+    previousRank?: string | null;
+    /**
+     * Estimated demand in relation to the item with the highest popularity rank in the same category and country in the previous week or month.
+     */
+    previousRelativeDemand?: string | null;
+    /**
+     * Popularity on Shopping ads and free listings, in the selected category and country, based on the estimated number of units sold.
+     */
+    rank?: string | null;
+    /**
+     * Estimated demand in relation to the item with the highest popularity rank in the same category and country.
+     */
+    relativeDemand?: string | null;
+    /**
+     * Change in the estimated demand. Whether it rose, sank or remained flat.
+     */
+    relativeDemandChange?: string | null;
+    /**
+     * Report date. The value of this field can only be one of the following: * The first day of the week (Monday) for weekly reports. * The first day of the month for monthly reports. If a `WHERE` condition on `best_sellers.report_date` is not specified in the query, the latest available weekly or monthly report is returned.
+     */
+    reportDate?: Schema$Date;
+    /**
+     * Granularity of the report. The ranking can be done over a week or a month timeframe. A `WHERE` condition on `best_sellers.report_granularity` is required in the query.
+     */
+    reportGranularity?: string | null;
+  }
+  /**
+   * Brand fields. Values are only set for fields requested explicitly in the request's search query.
+   */
+  export interface Schema$Brand {
+    /**
+     * Name of the brand.
+     */
+    name?: string | null;
+  }
   export interface Schema$BusinessDayConfig {
     /**
      * Regular business days, such as '"monday"'. May not be empty.
@@ -1296,9 +1348,21 @@ export namespace content_v2_1 {
    */
   export interface Schema$CollectionStatusDestinationStatus {
     /**
+     * Country codes (ISO 3166-1 alpha-2) where the collection is approved.
+     */
+    approvedCountries?: string[] | null;
+    /**
      * The name of the destination
      */
     destination?: string | null;
+    /**
+     * Country codes (ISO 3166-1 alpha-2) where the collection is disapproved.
+     */
+    disapprovedCountries?: string[] | null;
+    /**
+     * Country codes (ISO 3166-1 alpha-2) where the collection is pending approval.
+     */
+    pendingCountries?: string[] | null;
     /**
      * The status for the specified destination in the collections target country.
      */
@@ -1308,6 +1372,10 @@ export namespace content_v2_1 {
    * Issue associated with the collection.
    */
   export interface Schema$CollectionStatusItemLevelIssue {
+    /**
+     * Country codes (ISO 3166-1 alpha-2) where issue applies to the offer.
+     */
+    applicableCountries?: string[] | null;
     /**
      * The attribute's name, if the issue is caused by a single attribute.
      */
@@ -1596,6 +1664,10 @@ export namespace content_v2_1 {
      */
     errors?: Schema$DatafeedStatusError[];
     /**
+     * The feed label status is reported for.
+     */
+    feedLabel?: string | null;
+    /**
      * The number of items in the feed that were processed.
      */
     itemsTotal?: string | null;
@@ -1660,7 +1732,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that for multi-target datafeeds this parameter is required.
+     * Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided, then `language` must also be provided. Note that for multi-target datafeeds this parameter is required.
      */
     country?: string | null;
     /**
@@ -1668,7 +1740,11 @@ export namespace content_v2_1 {
      */
     datafeedId?: string | null;
     /**
-     * The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that for multi-target datafeeds this parameter is required.
+     * The feed label to get the datafeed status for. If this parameter is provided, then `language` must also be provided. Note that for multi-target datafeeds this parameter is required.
+     */
+    feedLabel?: string | null;
+    /**
+     * The language to get the datafeed status for. If this parameter is provided then `country` must also be provided. Note that for multi-target datafeeds this parameter is required.
      */
     language?: string | null;
     /**
@@ -1737,13 +1813,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedTarget {
     /**
-     * The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
+     * Deprecated. Use `feedLabel` instead. The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
      */
     country?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.
      */
     excludedDestinations?: string[] | null;
+    /**
+     * Feed label for the DatafeedTarget. Either `country` or `feedLabel` is required. If both `feedLabel` and `country` is specified, the values must match.
+     */
+    feedLabel?: string | null;
     /**
      * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
      */
@@ -1752,6 +1832,10 @@ export namespace content_v2_1 {
      * The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for `targets[].country`.
      */
     language?: string | null;
+    /**
+     * The countries where the items may be displayed. Represented as a CLDR territory code. Will be ignored for "product inventory" feeds.
+     */
+    targetCountries?: string[] | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -2466,6 +2550,19 @@ export namespace content_v2_1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for the ListMethodQuotas method.
+   */
+  export interface Schema$ListMethodQuotasResponse {
+    /**
+     * The current quota usage and limits per each method.
+     */
+    methodQuotas?: Schema$MethodQuota[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for the `ListRegions` method.
    */
   export interface Schema$ListRegionsResponse {
@@ -2534,6 +2631,10 @@ export namespace content_v2_1 {
      * Availability of the product. For accepted attribute values, see the local product inventory feed specification.
      */
     availability?: string | null;
+    /**
+     * A list of custom (merchant-provided) attributes. Can also be used to submit any attribute of the feed specification in its generic form, for example, `{ "name": "size type", "value": "regular" \}`.
+     */
+    customAttributes?: Schema$CustomAttribute[];
     /**
      * In-store product location.
      */
@@ -2739,6 +2840,23 @@ export namespace content_v2_1 {
     reasonCode?: string | null;
   }
   /**
+   * The quota information per method in the Content API. Includes only methods with current usage greater than zero for your account.
+   */
+  export interface Schema$MethodQuota {
+    /**
+     * The method name, for example `products.list`. Method name does not contain version because quota can be shared between different API versions of the same method.
+     */
+    method?: string | null;
+    /**
+     * The current quota limit per day, meaning the maximum number of calls for the method.
+     */
+    quotaLimit?: string | null;
+    /**
+     * The current quota usage, meaning the number of calls already made to the method.
+     */
+    quotaUsage?: string | null;
+  }
+  /**
    * Performance metrics. Values are only set for metrics requested explicitly in the request's search query.
    */
   export interface Schema$Metrics {
@@ -2747,7 +2865,7 @@ export namespace content_v2_1 {
      */
     aos?: number | null;
     /**
-     * Average order value - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**
+     * Average order value in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**
      */
     aovMicros?: number | null;
     /**
@@ -2763,7 +2881,7 @@ export namespace content_v2_1 {
      */
     conversions?: number | null;
     /**
-     * Value of conversions in micros attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
+     * Value of conversions in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
      */
     conversionValueMicros?: string | null;
     /**
@@ -2791,7 +2909,7 @@ export namespace content_v2_1 {
      */
     orderedItems?: string | null;
     /**
-     * Total price of ordered items. Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
+     * Total price of ordered items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros). Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
      */
     orderedItemSalesMicros?: string | null;
     /**
@@ -2811,7 +2929,7 @@ export namespace content_v2_1 {
      */
     returnRate?: number | null;
     /**
-     * Total price of ordered items sent back for return, reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
+     * Total price of ordered items sent back for return in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
      */
     returnsMicros?: string | null;
     /**
@@ -2819,7 +2937,7 @@ export namespace content_v2_1 {
      */
     shippedItems?: string | null;
     /**
-     * Total price of shipped items, reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
+     * Total price of shipped items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**
      */
     shippedItemSalesMicros?: string | null;
     /**
@@ -5052,6 +5170,60 @@ export namespace content_v2_1 {
     value?: string | null;
   }
   /**
+   * Price Competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`. https://support.google.com/merchants/answer/9626903
+   */
+  export interface Schema$PriceCompetitiveness {
+    /**
+     * The price benchmark currency (ISO 4217 code).
+     */
+    benchmarkPriceCurrencyCode?: string | null;
+    /**
+     * The latest available price benchmark in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) for the product's catalog in the benchmark country.
+     */
+    benchmarkPriceMicros?: string | null;
+    /**
+     * The country of the price benchmark (ISO 3166 code).
+     */
+    countryCode?: string | null;
+  }
+  /**
+   * Price Insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926
+   */
+  export interface Schema$PriceInsights {
+    /**
+     * The predicted change in clicks as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in clicks.
+     */
+    predictedClicksChangeFraction?: number | null;
+    /**
+     * The predicted change in conversions as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in conversions).
+     */
+    predictedConversionsChangeFraction?: number | null;
+    /**
+     * The predicted change in gross profit as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in gross profit.
+     */
+    predictedGrossProfitChangeFraction?: number | null;
+    /**
+     * The predicted change in impressions as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in impressions.
+     */
+    predictedImpressionsChangeFraction?: number | null;
+    /**
+     * The predicted monthly gross profit change currency (ISO 4217 code).
+     */
+    predictedMonthlyGrossProfitChangeCurrencyCode?: string | null;
+    /**
+     * The predicted change in gross profit in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) after introducing the suggested price for a month compared to current active price.
+     */
+    predictedMonthlyGrossProfitChangeMicros?: string | null;
+    /**
+     * The suggested price currency (ISO 4217 code).
+     */
+    suggestedPriceCurrencyCode?: string | null;
+    /**
+     * The latest suggested price in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) for the product.
+     */
+    suggestedPriceMicros?: string | null;
+  }
+  /**
    *  Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
    */
   export interface Schema$Product {
@@ -5172,7 +5344,7 @@ export namespace content_v2_1 {
      */
     energyEfficiencyClass?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.
      */
     excludedDestinations?: string[] | null;
     /**
@@ -5396,7 +5568,7 @@ export namespace content_v2_1 {
      */
     subscriptionCost?: Schema$ProductSubscriptionCost;
     /**
-     * Required. The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item's country of sale.
      */
     targetCountry?: string | null;
     /**
@@ -5437,6 +5609,51 @@ export namespace content_v2_1 {
      * Tax value.
      */
     taxAmount?: Schema$Price;
+  }
+  /**
+   * Product cluster fields. A product cluster is a grouping for different offers that represent the same product. Values are only set for fields requested explicitly in the request's search query.
+   */
+  export interface Schema$ProductCluster {
+    /**
+     * Brand of the product cluster.
+     */
+    brand?: string | null;
+    /**
+     * Tells if there is at least one product of the brand currently `IN_STOCK` in your product feed across multiple countries, all products are `OUT_OF_STOCK` in your product feed, or `NOT_IN_INVENTORY`. The field doesn't take the Best Sellers report country filter into account.
+     */
+    brandInventoryStatus?: string | null;
+    /**
+     * Product category (1st level) of the product cluster, represented in Google's product taxonomy.
+     */
+    categoryL1?: string | null;
+    /**
+     * Product category (2nd level) of the product cluster, represented in Google's product taxonomy.
+     */
+    categoryL2?: string | null;
+    /**
+     * Product category (3rd level) of the product cluster, represented in Google's product taxonomy.
+     */
+    categoryL3?: string | null;
+    /**
+     * Product category (4th level) of the product cluster, represented in Google's product taxonomy.
+     */
+    categoryL4?: string | null;
+    /**
+     * Product category (5th level) of the product cluster, represented in Google's product taxonomy.
+     */
+    categoryL5?: string | null;
+    /**
+     * Tells whether the product cluster is `IN_STOCK` in your product feed across multiple countries, `OUT_OF_STOCK` in your product feed, or `NOT_IN_INVENTORY` at all. The field doesn't take the Best Sellers report country filter into account.
+     */
+    inventoryStatus?: string | null;
+    /**
+     * Title of the product cluster.
+     */
+    title?: string | null;
+    /**
+     * GTINs of example variants of the product cluster.
+     */
+    variantGtins?: string[] | null;
   }
   /**
    * The estimated days to deliver a product after an order is placed. Only authorized shipping signals partners working with a merchant can use this resource. Merchants should use the [`products`](https://developers.google.com/shopping-content/reference/rest/v2.1/products#productshipping) resource instead.
@@ -5553,7 +5770,7 @@ export namespace content_v2_1 {
      */
     productId?: string | null;
     /**
-     * The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.
+     * The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. *You must specify the update mask to delete attributes.* Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.
      */
     updateMask?: string | null;
   }
@@ -5904,7 +6121,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   * Product fields. Values are only set for fields requested explicitly in the request's search query.
+   * Product fields. Values are only set for fields requested explicitly in the request's search query. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access.
    */
   export interface Schema$ProductView {
     /**
@@ -5919,6 +6136,26 @@ export namespace content_v2_1 {
      * Brand of the product.
      */
     brand?: string | null;
+    /**
+     * First level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    categoryL1?: string | null;
+    /**
+     * Second level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    categoryL2?: string | null;
+    /**
+     * Third level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    categoryL3?: string | null;
+    /**
+     * Fourth level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    categoryL4?: string | null;
+    /**
+     * Fifth level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    categoryL5?: string | null;
     /**
      * Channel of the product (online versus local).
      */
@@ -5964,9 +6201,29 @@ export namespace content_v2_1 {
      */
     offerId?: string | null;
     /**
-     * Product price specified as micros in the product currency. Absent in case the information about the price of the product is not available.
+     * Product price specified as micros (1 millionth of a standard unit, 1 USD = 1000000 micros) in the product currency. Absent in case the information about the price of the product is not available.
      */
     priceMicros?: string | null;
+    /**
+     * First level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    productTypeL1?: string | null;
+    /**
+     * Second level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    productTypeL2?: string | null;
+    /**
+     * Third level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    productTypeL3?: string | null;
+    /**
+     * Fourth level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    productTypeL4?: string | null;
+    /**
+     * Fifth level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).
+     */
+    productTypeL5?: string | null;
     /**
      * The normalized shipping label specified in the feed
      */
@@ -6179,6 +6436,10 @@ export namespace content_v2_1 {
      */
     promotionId?: string | null;
     /**
+     * URL to the page on the merchant's site where the promotion shows. Local Inventory ads promotions throw an error if no promo url is included. URL is used to confirm that the promotion is valid and can be redeemed.
+     */
+    promotionUrl?: string | null;
+    /**
      * Required. Redemption channel for the promotion. At least one channel is required.
      */
     redemptionChannel?: string[] | null;
@@ -6186,6 +6447,18 @@ export namespace content_v2_1 {
      * Shipping service names for the promotion.
      */
     shippingServiceNames?: string[] | null;
+    /**
+     * Whether the promotion applies to all stores, or only specified stores. Local Inventory ads promotions throw an error if no store applicability is included. An INVALID_ARGUMENT error is thrown if store_applicability is set to ALL_STORES and store_code or score_code_exclusion is set to a value.
+     */
+    storeApplicability?: string | null;
+    /**
+     * Store codes to include for the promotion.
+     */
+    storeCode?: string[] | null;
+    /**
+     * Store codes to exclude for the promotion.
+     */
+    storeCodeExclusion?: string[] | null;
     /**
      * Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN` or `US`.
      */
@@ -6412,11 +6685,31 @@ export namespace content_v2_1 {
    */
   export interface Schema$ReportRow {
     /**
+     * Best Sellers fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView` or `BestSellersBrandView`.
+     */
+    bestSellers?: Schema$BestSellers;
+    /**
+     * Brand fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersBrandView`.
+     */
+    brand?: Schema$Brand;
+    /**
      * Metrics requested by the merchant in the query. Metric values are only set for metrics requested explicitly in the query.
      */
     metrics?: Schema$Metrics;
     /**
-     * Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. `product_view` field is available only to allowlisted users who can query the `ProductView` table.
+     * Price Competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`.
+     */
+    priceCompetitiveness?: Schema$PriceCompetitiveness;
+    /**
+     * Price Insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`.
+     */
+    priceInsights?: Schema$PriceInsights;
+    /**
+     * Product cluster fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView`.
+     */
+    productCluster?: Schema$ProductCluster;
+    /**
+     * Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access.
      */
     productView?: Schema$ProductView;
     /**
@@ -16362,11 +16655,13 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.datafeedstatuses.get({
-     *     // The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     // Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      *     country: 'placeholder-value',
      *     // The ID of the datafeed.
      *     datafeedId: 'placeholder-value',
-     *     // The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     // The feed label to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     *     feedLabel: 'placeholder-value',
+     *     // The language to get the datafeed status for. If this parameter is provided then `country` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      *     language: 'placeholder-value',
      *     // The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      *     merchantId: 'placeholder-value',
@@ -16378,6 +16673,7 @@ export namespace content_v2_1 {
      *   //   "country": "my_country",
      *   //   "datafeedId": "my_datafeedId",
      *   //   "errors": [],
+     *   //   "feedLabel": "my_feedLabel",
      *   //   "itemsTotal": "my_itemsTotal",
      *   //   "itemsValid": "my_itemsValid",
      *   //   "kind": "my_kind",
@@ -16635,7 +16931,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Datafeedstatuses$Get
     extends StandardParameters {
     /**
-     * The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     * Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      */
     country?: string;
     /**
@@ -16643,7 +16939,11 @@ export namespace content_v2_1 {
      */
     datafeedId?: string;
     /**
-     * The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     * The feed label to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
+     */
+    feedLabel?: string;
+    /**
+     * The language to get the datafeed status for. If this parameter is provided then `country` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
      */
     language?: string;
     /**
@@ -16674,7 +16974,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Retrieves the status and review eligibility for the free listing program.
+     * Retrieves the status and review eligibility for the free listing program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.
      * @example
      * ```js
      * // Before running the sample:
@@ -18725,6 +19025,7 @@ export namespace content_v2_1 {
      *       // request body parameters
      *       // {
      *       //   "availability": "my_availability",
+     *       //   "customAttributes": [],
      *       //   "instoreProductLocation": "my_instoreProductLocation",
      *       //   "kind": "my_kind",
      *       //   "pickupMethod": "my_pickupMethod",
@@ -18742,6 +19043,7 @@ export namespace content_v2_1 {
      *   // Example response
      *   // {
      *   //   "availability": "my_availability",
+     *   //   "customAttributes": [],
      *   //   "instoreProductLocation": "my_instoreProductLocation",
      *   //   "kind": "my_kind",
      *   //   "pickupMethod": "my_pickupMethod",
@@ -26993,7 +27295,7 @@ export namespace content_v2_1 {
      *     merchantId: 'placeholder-value',
      *     // The REST ID of the product for which to update.
      *     productId: 'placeholder-value',
-     *     // The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
+     *     // The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. *You must specify the update mask to delete attributes.* Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -27355,7 +27657,7 @@ export namespace content_v2_1 {
      */
     productId?: string;
     /**
-     * The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
+     * The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. *You must specify the update mask to delete attributes.* Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
      */
     updateMask?: string;
 
@@ -28046,7 +28348,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead.
+     * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead. To [end or delete] (https://developers.google.com/shopping-content/guides/promotions#end_a_promotion) a promotion update the time period of the promotion to a time that has already passed.
      * @example
      * ```js
      * // Before running the sample:
@@ -28112,8 +28414,12 @@ export namespace content_v2_1 {
      *       //   "promotionEffectiveDates": "my_promotionEffectiveDates",
      *       //   "promotionEffectiveTimePeriod": {},
      *       //   "promotionId": "my_promotionId",
+     *       //   "promotionUrl": "my_promotionUrl",
      *       //   "redemptionChannel": [],
      *       //   "shippingServiceNames": [],
+     *       //   "storeApplicability": "my_storeApplicability",
+     *       //   "storeCode": [],
+     *       //   "storeCodeExclusion": [],
      *       //   "targetCountry": "my_targetCountry"
      *       // }
      *     },
@@ -28155,8 +28461,12 @@ export namespace content_v2_1 {
      *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
      *   //   "promotionEffectiveTimePeriod": {},
      *   //   "promotionId": "my_promotionId",
+     *   //   "promotionUrl": "my_promotionUrl",
      *   //   "redemptionChannel": [],
      *   //   "shippingServiceNames": [],
+     *   //   "storeApplicability": "my_storeApplicability",
+     *   //   "storeCode": [],
+     *   //   "storeCodeExclusion": [],
      *   //   "targetCountry": "my_targetCountry"
      *   // }
      * }
@@ -28322,8 +28632,12 @@ export namespace content_v2_1 {
      *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
      *   //   "promotionEffectiveTimePeriod": {},
      *   //   "promotionId": "my_promotionId",
+     *   //   "promotionUrl": "my_promotionUrl",
      *   //   "redemptionChannel": [],
      *   //   "shippingServiceNames": [],
+     *   //   "storeApplicability": "my_storeApplicability",
+     *   //   "storeCode": [],
+     *   //   "storeCodeExclusion": [],
      *   //   "targetCountry": "my_targetCountry"
      *   // }
      * }
@@ -28753,6 +29067,167 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$PubsubNotificationSettings;
+  }
+
+  export class Resource$Quotas {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the daily call quota and usage per method for your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.quotas.list({
+     *     // Required. The ID of the account that has quota. This account must be an admin.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "methodQuotas": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Quotas$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Quotas$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMethodQuotasResponse>;
+    list(
+      params: Params$Resource$Quotas$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Quotas$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>,
+      callback: BodyResponseCallback<Schema$ListMethodQuotasResponse>
+    ): void;
+    list(
+      params: Params$Resource$Quotas$List,
+      callback: BodyResponseCallback<Schema$ListMethodQuotasResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMethodQuotasResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Quotas$List
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMethodQuotasResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMethodQuotasResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Quotas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Quotas$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/quotas').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMethodQuotasResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMethodQuotasResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Quotas$List extends StandardParameters {
+    /**
+     * Required. The ID of the account that has quota. This account must be an admin.
+     */
+    merchantId?: string;
+    /**
+     * The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Regionalinventory {
@@ -34921,7 +35396,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Retrieves the status and review eligibility for the Shopping Ads program.
+     * Retrieves the status and review eligibility for the Shopping Ads program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.
      * @example
      * ```js
      * // Before running the sample:

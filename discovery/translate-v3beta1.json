@@ -744,7 +744,7 @@
       }
     }
   },
-  "revision": "20220805",
+  "revision": "20221021",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -1315,6 +1315,10 @@
       "description": "A document translation request.",
       "id": "TranslateDocumentRequest",
       "properties": {
+        "customizedAttribution": {
+          "description": "Optional. This flag is to support user customized attribution. If not provided, the default is `Machine Translated by Google`. Customized attribution should follow rules in https://cloud.google.com/translate/attribution#attribution_and_logos",
+          "type": "string"
+        },
         "documentInputConfig": {
           "$ref": "DocumentInputConfig",
           "description": "Required. Input configurations."
@@ -1326,6 +1330,10 @@
         "glossaryConfig": {
           "$ref": "TranslateTextGlossaryConfig",
           "description": "Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned."
+        },
+        "isTranslateNativePdfOnly": {
+          "description": "Optional. is_translate_native_pdf_only field for external customers. If true, the page limit of online native pdf translation is 300 and only native pdf pages will be translated.",
+          "type": "boolean"
         },
         "labels": {
           "additionalProperties": {

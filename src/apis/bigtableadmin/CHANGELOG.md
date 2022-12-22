@@ -1,5 +1,29 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v4.1.0...bigtableadmin-v5.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v4.0.0...bigtableadmin-v4.1.0) (2022-09-21)
+
+
+### Features
+
+* regenerate index files ([f841e13](https://github.com/googleapis/google-api-nodejs-client/commit/f841e1353cb8868a4503662a5fb2136b1b2b06b0))
+
+
+### Bug Fixes
+
+* **bigtableadmin:** update the API ([a4b691d](https://github.com/googleapis/google-api-nodejs-client/commit/a4b691d98fabfd2411010005b30e26511dd4484a))
+* **bigtableadmin:** update the API ([2e3f103](https://github.com/googleapis/google-api-nodejs-client/commit/2e3f103e64fae7eaf5c2f466be5e2c37016bda3e))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigtableadmin-v3.2.0...bigtableadmin-v4.0.0) (2022-08-20)
 
 

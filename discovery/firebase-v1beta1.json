@@ -343,7 +343,7 @@
               "type": "string"
             },
             "showDeleted": {
-              "description": "Optional. Controls whether Projects in the DELETING state should be returned. Defaults to false.",
+              "description": "Optional. Controls whether Projects in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Projects will be returned.",
               "location": "query",
               "type": "boolean"
             }
@@ -376,7 +376,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Specifies which fields to update. If this list is empty, then no state will be updated. Note that the fields `name`, `projectId`, and `projectNumber` are all immutable.",
+              "description": "Specifies which fields of the FirebaseProject to update. Note that the following fields are immutable: `name`, `project_id`, and `project_number`. To update `state`, use any of the following Google Cloud endpoints: [`projects.delete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/delete) or [`projects.undelete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/undelete)",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -433,7 +433,7 @@
           ],
           "parameters": {
             "filter": {
-              "description": "A query string compatible with Google's [AIP-160](https://google.aip.dev/160) standard. Use any of the following fields in a query: * [`app_id`](../projects.apps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects.apps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects.apps#FirebaseAppInfo.FIELDS.platform) We also support the following \"virtual\" fields (fields which are not actually part of the returned resource object, but can be queried as if they are pre-populated with specific values): * `sha1_hash` or `sha1_hashes`: This field is considered to be a repeated `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the app. This list is empty if the app is not an Android app. * `sha256_hash` or `sha256_hashes`: This field is considered to be a repeated `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the app. This list is empty if the app is not an Android app. * `app_store_id`: This field is considered to be a singular `string` field, populated with the Apple App Store ID registered with the app. This field is empty if the app is not an iOS app. * `team_id`: This field is considered to be a singular `string` field, populated with the Apple team ID registered with the app. This field is empty if the app is not an iOS app.",
+              "description": "A query string compatible with Google's [AIP-160 standard](https://google.aip.dev/160). Use any of the following fields in a query: * [`app_id`](../projects/searchApps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects/searchApps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects/searchApps#FirebaseAppInfo.FIELDS.platform) This query also supports the following \"virtual\" fields. These are fields which are not actually part of the returned resource object, but they can be queried as if they are pre-populated with specific values. * `sha1_hash` or `sha1_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `sha256_hash` or `sha256_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `app_store_id`: This field is considered to be a _singular_ `string` field, populated with the Apple App Store ID registered with the IosApp. This field is empty if the App is not an `IosApp`. * `team_id`: This field is considered to be a _singular_ `string` field, populated with the Apple team ID registered with the IosApp. This field is empty if the App is not an `IosApp`.",
               "location": "query",
               "type": "string"
             },
@@ -456,7 +456,7 @@
               "type": "string"
             },
             "showDeleted": {
-              "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+              "description": "Controls whether Apps in the DELETED state should be returned. If not specified, only `ACTIVE` Apps will be returned.",
               "location": "query",
               "type": "boolean"
             }
@@ -589,7 +589,7 @@
                   "type": "string"
                 },
                 "showDeleted": {
-                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "description": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -622,7 +622,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `app_id`, `project_id`, `package_name`, and `state` are all immutable.",
+                  "description": "Specifies which fields of the AndroidApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `package_name`. To update `state`, use any of the following endpoints: RemoveAndroidApp or UndeleteAndroidApp.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -641,7 +641,7 @@
               ]
             },
             "remove": {
-              "description": "Removes the specified AndroidApp from the project.",
+              "description": "Removes the specified AndroidApp from the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/androidApps/{androidAppsId}:remove",
               "httpMethod": "POST",
               "id": "firebase.projects.androidApps.remove",
@@ -665,11 +665,12 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             },
             "undelete": {
-              "description": "Restores the specified AndroidApp to the project.",
+              "description": "Restores the specified AndroidApp to the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/androidApps/{androidAppsId}:undelete",
               "httpMethod": "POST",
               "id": "firebase.projects.androidApps.undelete",
@@ -693,7 +694,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             }
           },
@@ -978,7 +980,7 @@
                   "type": "string"
                 },
                 "showDeleted": {
-                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "description": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1011,7 +1013,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, `projectId`, `bundleId`, and `state` are all immutable",
+                  "description": "Specifies which fields of the IosApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `bundle_id`. To update `state`, use any of the following endpoints: RemoveIosApp or UndeleteIosApp.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1030,7 +1032,7 @@
               ]
             },
             "remove": {
-              "description": "Removes the specified IosApp from the project.",
+              "description": "Removes the specified IosApp from the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/iosApps/{iosAppsId}:remove",
               "httpMethod": "POST",
               "id": "firebase.projects.iosApps.remove",
@@ -1054,11 +1056,12 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             },
             "undelete": {
-              "description": "Restores the specified IosApp to the project.",
+              "description": "Restores the specified IosApp to the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/iosApps/{iosAppsId}:undelete",
               "httpMethod": "POST",
               "id": "firebase.projects.iosApps.undelete",
@@ -1082,7 +1085,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             }
           }
@@ -1202,7 +1206,7 @@
                   "type": "string"
                 },
                 "showDeleted": {
-                  "description": "Controls whether Apps in the DELETED state should be returned. Defaults to false.",
+                  "description": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1235,7 +1239,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Specifies which fields to update. Note that the fields `name`, `appId`, `projectId` and `state` are all immutable",
+                  "description": "Specifies which fields of the WebApp to update. Note that the following fields are immutable: `name`, `app_id`, and `project_id`. To update `state`, use any of the following endpoints: RemoveWebApp or UndeleteWebApp.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1254,7 +1258,7 @@
               ]
             },
             "remove": {
-              "description": "Removes the specified WebApp from the project.",
+              "description": "Removes the specified WebApp from the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/webApps/{webAppsId}:remove",
               "httpMethod": "POST",
               "id": "firebase.projects.webApps.remove",
@@ -1278,11 +1282,12 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             },
             "undelete": {
-              "description": "Restores the specified WebApp to the project.",
+              "description": "Restores the specified WebApp to the FirebaseProject.",
               "flatPath": "v1beta1/projects/{projectsId}/webApps/{webAppsId}:undelete",
               "httpMethod": "POST",
               "id": "firebase.projects.webApps.undelete",
@@ -1306,7 +1311,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             }
           }
@@ -1314,7 +1320,7 @@
       }
     }
   },
-  "revision": "20220819",
+  "revision": "20221220",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1418,6 +1424,10 @@
           "description": "The user-assigned display name for the `AndroidApp`.",
           "type": "string"
         },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
+          "type": "string"
+        },
         "name": {
           "description": "The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)).",
           "type": "string"
@@ -1431,6 +1441,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "sha1Hashes": {
+          "description": "The SHA1 certificate hashes for the AndroidApp.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sha256Hashes": {
+          "description": "The SHA256 certificate hashes for the AndroidApp.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "state": {
           "description": "Output only. The lifecycle state of the App.",
           "enum": [
@@ -1440,8 +1464,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1559,8 +1583,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1576,7 +1600,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Set of user-defined annotations for the FirebaseProject as per [AIP-128](https://google.aip.dev/128#annotations). These annotations are intended solely for developers and client-side tools Firebase services will not mutate this annotation set.",
+          "description": "A set of user-defined annotations for the FirebaseProject. Learn more about annotations in Google's [AIP-128 standard](https://google.aip.dev/128#annotations). These annotations are intended solely for developers and client-side tools. Firebase services will not mutate this annotations set.",
           "type": "object"
         },
         "displayName": {
@@ -1584,7 +1608,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding. [AIP-154](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
+          "description": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
           "type": "string"
         },
         "name": {
@@ -1592,12 +1616,12 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Output only. A user-assigned unique identifier for the Project. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project.",
+          "description": "Output only. Immutable. A user-assigned unique identifier for the Project. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project.",
           "readOnly": true,
           "type": "string"
         },
         "projectNumber": {
-          "description": "Output only. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Firebase or third-party services.",
+          "description": "Output only. Immutable. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Firebase or third-party services.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -1608,7 +1632,7 @@
           "readOnly": true
         },
         "state": {
-          "description": "Output only. The lifecycle state of the Project. Updates to the state must be performed via com.google.cloudresourcemanager.v1.Projects.DeleteProject and com.google.cloudresourcemanager.v1.Projects.UndeleteProject",
+          "description": "Output only. The lifecycle state of the Project.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -1616,8 +1640,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The Project has been marked for deletion by the user."
+            "The Project is active.",
+            "The Project has been soft-deleted."
           ],
           "readOnly": true,
           "type": "string"
@@ -1650,6 +1674,10 @@
           "description": "The user-assigned display name for the `IosApp`.",
           "type": "string"
         },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
+          "type": "string"
+        },
         "name": {
           "description": "The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id)).",
           "type": "string"
@@ -1668,8 +1696,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1934,11 +1962,15 @@
           "type": "boolean"
         },
         "etag": {
-          "description": "Checksum provided in the AndroidApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "description": "Checksum provided in the AndroidApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
+        "immediate": {
+          "description": "Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteAndroidApp.",
+          "type": "boolean"
+        },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not delete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be removed.",
           "type": "boolean"
         }
       },
@@ -1952,11 +1984,15 @@
           "type": "boolean"
         },
         "etag": {
-          "description": "Checksum provided in the IosApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "description": "Checksum provided in the IosApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
+        "immediate": {
+          "description": "Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteIosApp",
+          "type": "boolean"
+        },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not delete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be removed.",
           "type": "boolean"
         }
       },
@@ -1970,11 +2006,15 @@
           "type": "boolean"
         },
         "etag": {
-          "description": "Checksum provided in the WebApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "description": "Checksum provided in the WebApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
+        "immediate": {
+          "description": "Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteWebApp",
+          "type": "boolean"
+        },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not delete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be removed.",
           "type": "boolean"
         }
       },
@@ -2106,11 +2146,11 @@
       "id": "UndeleteAndroidAppRequest",
       "properties": {
         "etag": {
-          "description": "Checksum provided in the AndroidApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "description": "Checksum provided in the AndroidApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not undelete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be undeleted.",
           "type": "boolean"
         }
       },
@@ -2120,11 +2160,11 @@
       "id": "UndeleteIosAppRequest",
       "properties": {
         "etag": {
-          "description": "Checksum provided in the IosApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "description": "Checksum provided in the IosApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not undelete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be undeleted.",
           "type": "boolean"
         }
       },
@@ -2134,11 +2174,11 @@
       "id": "UndeleteWebAppRequest",
       "properties": {
         "etag": {
-          "description": "Checksum provided in the WebApp entity, which if provided ensures the client has an up-to-date value before proceeding.",
+          "description": "Checksum provided in the WebApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "validateOnly": {
-          "description": "If set to true, only validate the request and do not undelete the app.",
+          "description": "If set to true, the request is only validated. The App will _not_ be undeleted.",
           "type": "boolean"
         }
       },
@@ -2168,6 +2208,10 @@
           "description": "The user-assigned display name for the `WebApp`.",
           "type": "string"
         },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
+          "type": "string"
+        },
         "name": {
           "description": "The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).",
           "type": "string"
@@ -2186,8 +2230,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The normal and active state.",
-            "The app has been soft deleted."
+            "The App is active.",
+            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"

@@ -224,7 +224,7 @@
                           ],
                           "enumDescriptions": [
                             "The default / unset value.",
-                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, state and workflow_revision_id.",
+                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, duration, state and workflow_revision_id.",
                             "Includes all data."
                           ],
                           "location": "query",
@@ -249,7 +249,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 10000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.",
+                          "description": "Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -275,7 +275,7 @@
                           ],
                           "enumDescriptions": [
                             "The default / unset value.",
-                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, state and workflow_revision_id.",
+                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, duration, state and workflow_revision_id.",
                             "Includes all data."
                           ],
                           "location": "query",
@@ -299,7 +299,7 @@
       }
     }
   },
-  "revision": "20220426",
+  "revision": "20221206",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -343,10 +343,16 @@
             "LOG_ERRORS_ONLY"
           ],
           "enumDescriptions": [
-            "No call logging specified.",
+            "No call logging level specified.",
             "Log all call steps within workflows, all call returns, and all exceptions raised.",
             "Log only exceptions that are raised from call steps within workflows."
           ],
+          "type": "string"
+        },
+        "duration": {
+          "description": "Output only. Measures the duration of the execution.",
+          "format": "google-duration",
+          "readOnly": true,
           "type": "string"
         },
         "endTime": {
@@ -394,6 +400,11 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "status": {
+          "$ref": "Status",
+          "description": "Output only. Status tracks the current steps and progress data of this execution.",
+          "readOnly": true
         },
         "workflowRevisionId": {
           "description": "Output only. Revision of the workflow this execution is using.",
@@ -503,6 +514,35 @@
         },
         "step": {
           "description": "The step the error occurred at.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "Represents the current status of this execution.",
+      "id": "Status",
+      "properties": {
+        "currentSteps": {
+          "description": "A list of currently executing or last executed step names for the workflow execution currently running. If the workflow has succeeded or failed, this is the last attempted or executed step. Presently, if the current step is inside a subworkflow, the list only includes that step. In the future, the list will contain items for each step in the call stack, starting with the outermost step in the `main` subworkflow, and ending with the most deeply nested step.",
+          "items": {
+            "$ref": "Step"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Step": {
+      "description": "Represents a step of the workflow this execution is running.",
+      "id": "Step",
+      "properties": {
+        "routine": {
+          "description": "Name of a routine within the workflow.",
+          "type": "string"
+        },
+        "step": {
+          "description": "Name of a step within the routine.",
           "type": "string"
         }
       },

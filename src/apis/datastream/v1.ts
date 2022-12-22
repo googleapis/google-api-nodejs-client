@@ -140,6 +140,10 @@ export namespace datastream_v1 {
      * Oracle data source objects to avoid backfilling.
      */
     oracleExcludedObjects?: Schema$OracleRdbms;
+    /**
+     * PostgreSQL data source objects to avoid backfilling.
+     */
+    postgresqlExcludedObjects?: Schema$PostgresqlRdbms;
   }
   /**
    * Represents a backfill job on a specific stream object.
@@ -170,6 +174,24 @@ export namespace datastream_v1 {
    * Backfill strategy to disable automatic backfill for the Stream's objects.
    */
   export interface Schema$BackfillNoneStrategy {}
+  export interface Schema$BigQueryDestinationConfig {
+    /**
+     * The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost.
+     */
+    dataFreshness?: string | null;
+    /**
+     * Single destination dataset.
+     */
+    singleTargetDataset?: Schema$SingleTargetDataset;
+    /**
+     * Source hierarchy datasets.
+     */
+    sourceHierarchyDatasets?: Schema$SourceHierarchyDatasets;
+  }
+  /**
+   * BigQuery warehouse profile.
+   */
+  export interface Schema$BigQueryProfile {}
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -178,6 +200,10 @@ export namespace datastream_v1 {
    * A set of reusable connection configurations to be used as a source or destination for a stream.
    */
   export interface Schema$ConnectionProfile {
+    /**
+     * BigQuery Connection Profile configuration.
+     */
+    bigqueryProfile?: Schema$BigQueryProfile;
     /**
      * Output only. The create time of the resource.
      */
@@ -211,6 +237,10 @@ export namespace datastream_v1 {
      */
     oracleProfile?: Schema$OracleProfile;
     /**
+     * PostgreSQL Connection Profile configuration.
+     */
+    postgresqlProfile?: Schema$PostgresqlProfile;
+    /**
      * Private connectivity.
      */
     privateConnectivity?: Schema$PrivateConnectivity;
@@ -224,9 +254,30 @@ export namespace datastream_v1 {
     updateTime?: string | null;
   }
   /**
+   * Dataset template used for dynamic dataset creation.
+   */
+  export interface Schema$DatasetTemplate {
+    /**
+     * If supplied, every created dataset will have its name prefixed by the provided value. The prefix and name will be separated by an underscore. i.e. _.
+     */
+    datasetIdPrefix?: string | null;
+    /**
+     * Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key. i.e. projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{cryptoKey\}. See https://cloud.google.com/bigquery/docs/customer-managed-encryption for more information.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     */
+    location?: string | null;
+  }
+  /**
    * The configuration of the stream destination.
    */
   export interface Schema$DestinationConfig {
+    /**
+     * BigQuery destination configuration.
+     */
+    bigqueryDestinationConfig?: Schema$BigQueryDestinationConfig;
     /**
      * Required. Destination connection profile resource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
@@ -264,6 +315,10 @@ export namespace datastream_v1 {
      * Oracle RDBMS to enrich with child data objects and metadata.
      */
     oracleRdbms?: Schema$OracleRdbms;
+    /**
+     * PostgreSQL RDBMS to enrich with child data objects and metadata.
+     */
+    postgresqlRdbms?: Schema$PostgresqlRdbms;
   }
   /**
    * Response from a discover request.
@@ -277,6 +332,10 @@ export namespace datastream_v1 {
      * Enriched Oracle RDBMS object.
      */
     oracleRdbms?: Schema$OracleRdbms;
+    /**
+     * Enriched PostgreSQL RDBMS object.
+     */
+    postgresqlRdbms?: Schema$PostgresqlRdbms;
   }
   /**
    * Configuration to drop large object values.
@@ -881,7 +940,7 @@ export namespace datastream_v1 {
      */
     maxConcurrentCdcTasks?: number | null;
     /**
-     * Stream large object values.
+     * Stream large object values. NOTE: This feature is currently experimental.
      */
     streamLargeObjects?: Schema$StreamLargeObjects;
   }
@@ -893,6 +952,137 @@ export namespace datastream_v1 {
      * Oracle columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
      */
     oracleColumns?: Schema$OracleColumn[];
+    /**
+     * Table name.
+     */
+    table?: string | null;
+  }
+  /**
+   * PostgreSQL Column.
+   */
+  export interface Schema$PostgresqlColumn {
+    /**
+     * Column name.
+     */
+    column?: string | null;
+    /**
+     * The PostgreSQL data type.
+     */
+    dataType?: string | null;
+    /**
+     * Column length.
+     */
+    length?: number | null;
+    /**
+     * Whether or not the column can accept a null value.
+     */
+    nullable?: boolean | null;
+    /**
+     * The ordinal position of the column in the table.
+     */
+    ordinalPosition?: number | null;
+    /**
+     * Column precision.
+     */
+    precision?: number | null;
+    /**
+     * Whether or not the column represents a primary key.
+     */
+    primaryKey?: boolean | null;
+    /**
+     * Column scale.
+     */
+    scale?: number | null;
+  }
+  /**
+   * PostgreSQL data source object identifier.
+   */
+  export interface Schema$PostgresqlObjectIdentifier {
+    /**
+     * Required. The schema name.
+     */
+    schema?: string | null;
+    /**
+     * Required. The table name.
+     */
+    table?: string | null;
+  }
+  /**
+   * PostgreSQL database profile.
+   */
+  export interface Schema$PostgresqlProfile {
+    /**
+     * Required. Database for the PostgreSQL connection.
+     */
+    database?: string | null;
+    /**
+     * Required. Hostname for the PostgreSQL connection.
+     */
+    hostname?: string | null;
+    /**
+     * Required. Password for the PostgreSQL connection.
+     */
+    password?: string | null;
+    /**
+     * Port for the PostgreSQL connection, default value is 5432.
+     */
+    port?: number | null;
+    /**
+     * Required. Username for the PostgreSQL connection.
+     */
+    username?: string | null;
+  }
+  /**
+   * PostgreSQL database structure.
+   */
+  export interface Schema$PostgresqlRdbms {
+    /**
+     * PostgreSQL schemas in the database server.
+     */
+    postgresqlSchemas?: Schema$PostgresqlSchema[];
+  }
+  /**
+   * PostgreSQL schema.
+   */
+  export interface Schema$PostgresqlSchema {
+    /**
+     * Tables in the schema.
+     */
+    postgresqlTables?: Schema$PostgresqlTable[];
+    /**
+     * Schema name.
+     */
+    schema?: string | null;
+  }
+  /**
+   * PostgreSQL data source configuration
+   */
+  export interface Schema$PostgresqlSourceConfig {
+    /**
+     * PostgreSQL objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$PostgresqlRdbms;
+    /**
+     * PostgreSQL objects to include in the stream.
+     */
+    includeObjects?: Schema$PostgresqlRdbms;
+    /**
+     * Required. The name of the publication that includes the set of all tables that are defined in the stream's include_objects.
+     */
+    publication?: string | null;
+    /**
+     * Required. Immutable. The name of the logical replication slot that's configured with the pgoutput plugin.
+     */
+    replicationSlot?: string | null;
+  }
+  /**
+   * PostgreSQL table.
+   */
+  export interface Schema$PostgresqlTable {
+    /**
+     * PostgreSQL columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+     */
+    postgresqlColumns?: Schema$PostgresqlColumn[];
     /**
      * Table name.
      */
@@ -978,6 +1168,15 @@ export namespace datastream_v1 {
     updateTime?: string | null;
   }
   /**
+   * A single target dataset to which all data will be streamed.
+   */
+  export interface Schema$SingleTargetDataset {
+    /**
+     * The dataset ID of the target dataset.
+     */
+    datasetId?: string | null;
+  }
+  /**
    * The configuration of the stream source.
    */
   export interface Schema$SourceConfig {
@@ -990,9 +1189,19 @@ export namespace datastream_v1 {
      */
     oracleSourceConfig?: Schema$OracleSourceConfig;
     /**
+     * PostgreSQL data source configuration.
+     */
+    postgresqlSourceConfig?: Schema$PostgresqlSourceConfig;
+    /**
      * Required. Source connection profile resoource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
     sourceConnectionProfile?: string | null;
+  }
+  /**
+   * Destination datasets are created so that hierarchy of the destination data objects matches the source hierarchy.
+   */
+  export interface Schema$SourceHierarchyDatasets {
+    datasetTemplate?: Schema$DatasetTemplate;
   }
   /**
    * Represents an identifier of an object in the data source.
@@ -1006,6 +1215,10 @@ export namespace datastream_v1 {
      * Oracle data source object identifier.
      */
     oracleIdentifier?: Schema$OracleObjectIdentifier;
+    /**
+     * PostgreSQL data source object identifier.
+     */
+    postgresqlIdentifier?: Schema$PostgresqlObjectIdentifier;
   }
   /**
    * Request for manually initiating a backfill job for a specific stream object.
@@ -1739,6 +1952,7 @@ export namespace datastream_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "bigqueryProfile": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "forwardSshConnectivity": {},
@@ -1747,6 +1961,7 @@ export namespace datastream_v1 {
      *       //   "mysqlProfile": {},
      *       //   "name": "my_name",
      *       //   "oracleProfile": {},
+     *       //   "postgresqlProfile": {},
      *       //   "privateConnectivity": {},
      *       //   "staticServiceIpConnectivity": {},
      *       //   "updateTime": "my_updateTime"
@@ -2029,7 +2244,8 @@ export namespace datastream_v1 {
      *       //   "fullHierarchy": false,
      *       //   "hierarchyDepth": 0,
      *       //   "mysqlRdbms": {},
-     *       //   "oracleRdbms": {}
+     *       //   "oracleRdbms": {},
+     *       //   "postgresqlRdbms": {}
      *       // }
      *     },
      *   });
@@ -2038,7 +2254,8 @@ export namespace datastream_v1 {
      *   // Example response
      *   // {
      *   //   "mysqlRdbms": {},
-     *   //   "oracleRdbms": {}
+     *   //   "oracleRdbms": {},
+     *   //   "postgresqlRdbms": {}
      *   // }
      * }
      *
@@ -2176,6 +2393,7 @@ export namespace datastream_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "bigqueryProfile": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "forwardSshConnectivity": {},
@@ -2184,6 +2402,7 @@ export namespace datastream_v1 {
      *   //   "mysqlProfile": {},
      *   //   "name": "my_name",
      *   //   "oracleProfile": {},
+     *   //   "postgresqlProfile": {},
      *   //   "privateConnectivity": {},
      *   //   "staticServiceIpConnectivity": {},
      *   //   "updateTime": "my_updateTime"
@@ -2473,6 +2692,7 @@ export namespace datastream_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "bigqueryProfile": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "forwardSshConnectivity": {},
@@ -2481,6 +2701,7 @@ export namespace datastream_v1 {
      *       //   "mysqlProfile": {},
      *       //   "name": "my_name",
      *       //   "oracleProfile": {},
+     *       //   "postgresqlProfile": {},
      *       //   "privateConnectivity": {},
      *       //   "staticServiceIpConnectivity": {},
      *       //   "updateTime": "my_updateTime"
@@ -3314,6 +3535,8 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.privateConnections.create({
+     *     // Optional. If set to true, will skip validations.
+     *     force: 'placeholder-value',
      *     // Required. The parent that owns the collection of PrivateConnections.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The private connectivity identifier.
@@ -3864,6 +4087,10 @@ export namespace datastream_v1 {
 
   export interface Params$Resource$Projects$Locations$Privateconnections$Create
     extends StandardParameters {
+    /**
+     * Optional. If set to true, will skip validations.
+     */
+    force?: boolean;
     /**
      * Required. The parent that owns the collection of PrivateConnections.
      */

@@ -131,6 +131,24 @@ export namespace identitytoolkit_v2 {
   }
 
   /**
+   * Defines a policy of allowing every region by default and adding disallowed regions to a disallow list.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2AllowByDefault {
+    /**
+     * Two letter unicode region codes to disallow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json
+     */
+    disallowedRegions?: string[] | null;
+  }
+  /**
+   * Defines a policy of only allowing regions by explicitly adding them to an allowlist.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2AllowlistOnly {
+    /**
+     * Two letter unicode region codes to allow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json
+     */
+    allowedRegions?: string[] | null;
+  }
+  /**
    * Configuration options related to authenticating an anonymous user.
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2Anonymous {
@@ -241,6 +259,10 @@ export namespace identitytoolkit_v2 {
      */
     client?: Schema$GoogleCloudIdentitytoolkitAdminV2ClientConfig;
     /**
+     * Configuration for settings related to email privacy and public visibility.
+     */
+    emailPrivacyConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig;
+    /**
      * Configuration for this project's multi-factor authentication, including whether it is active and what factors can be used for the second factor
      */
     mfa?: Schema$GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig;
@@ -268,6 +290,10 @@ export namespace identitytoolkit_v2 {
      * Configuration related to local sign in methods.
      */
     signIn?: Schema$GoogleCloudIdentitytoolkitAdminV2SignInConfig;
+    /**
+     * Configures which regions are enabled for SMS verification code sending.
+     */
+    smsRegionConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig;
     /**
      * Output only. The subtype of this config.
      */
@@ -348,6 +374,15 @@ export namespace identitytoolkit_v2 {
      * Whether a password is required for email auth or not. If true, both an email and password must be provided to sign in. If false, a user may sign in via either email/password or email link.
      */
     passwordRequired?: boolean | null;
+  }
+  /**
+   * Configuration for settings related to email privacy and public visibility. Settings in this config protect against email enumeration, but may make some trade-offs in user-friendliness.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig {
+    /**
+     * Migrates the project to a state of improved email privacy. For example certain error codes are more generic to avoid giving away information on whether the account exists. In addition, this disables certain features that as a side-effect allow user enumeration. Enabling this toggle disables the fetchSignInMethodsForEmail functionality and changing the user's email to an unverified email. It is recommended to remove dependence on this functionality and enable this toggle to improve user privacy.
+     */
+    enableImprovedEmailPrivacy?: boolean | null;
   }
   /**
    * Email template. The subject and body fields can contain the following placeholders which will be replaced with the appropriate values: %LINK% - The link to use to redeem the send OOB code. %EMAIL% - The email where the email is being sent. %NEW_EMAIL% - The new email being set for the account (when applicable). %APP_NAME% - The GCP project's display name. %DISPLAY_NAME% - The user's display name.
@@ -488,6 +523,14 @@ export namespace identitytoolkit_v2 {
      */
     emailSendingConfig?: boolean | null;
   }
+  /**
+   * Request for InitializeIdentityPlatform.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformRequest {}
+  /**
+   * Response for InitializeIdentityPlatform. Empty for now.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse {}
   /**
    * Response for DefaultSupportedIdpConfigs
    */
@@ -779,6 +822,19 @@ export namespace identitytoolkit_v2 {
     phoneNumber?: Schema$GoogleCloudIdentitytoolkitAdminV2PhoneNumber;
   }
   /**
+   * Configures the regions where users are allowed to send verification SMS for the project or tenant. This is based on the calling code of the destination phone number.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig {
+    /**
+     * A policy of allowing SMS to every region by default and adding disallowed regions to a disallow list.
+     */
+    allowByDefault?: Schema$GoogleCloudIdentitytoolkitAdminV2AllowByDefault;
+    /**
+     * A policy of only allowing regions by explicitly adding them to an allowlist.
+     */
+    allowlistOnly?: Schema$GoogleCloudIdentitytoolkitAdminV2AllowlistOnly;
+  }
+  /**
    * The template to use when sending an SMS.
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2SmsTemplate {
@@ -888,6 +944,10 @@ export namespace identitytoolkit_v2 {
      */
     displayName?: string | null;
     /**
+     * Configuration for settings related to email privacy and public visibility.
+     */
+    emailPrivacyConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig;
+    /**
      * Whether to enable anonymous user authentication.
      */
     enableAnonymousUser?: boolean | null;
@@ -908,9 +968,17 @@ export namespace identitytoolkit_v2 {
      */
     mfaConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig;
     /**
+     * Configuration related to monitoring project activity.
+     */
+    monitoring?: Schema$GoogleCloudIdentitytoolkitAdminV2MonitoringConfig;
+    /**
      * Output only. Resource name of a tenant. For example: "projects/{project-id\}/tenants/{tenant-id\}"
      */
     name?: string | null;
+    /**
+     * Configures which regions are enabled for SMS verification code sending.
+     */
+    smsRegionConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig;
     /**
      * A map of pairs that can be used for MFA. The phone number should be in E.164 format (https://www.itu.int/rec/T-REC-E.164/) and a maximum of 10 pairs can be added (error will be thrown once exceeded).
      */
@@ -1207,7 +1275,7 @@ export namespace identitytoolkit_v2 {
      */
     condition?: Schema$GoogleTypeExpr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -2277,6 +2345,7 @@ export namespace identitytoolkit_v2 {
   export class Resource$Projects {
     context: APIRequestContext;
     defaultSupportedIdpConfigs: Resource$Projects$Defaultsupportedidpconfigs;
+    identityPlatform: Resource$Projects$Identityplatform;
     inboundSamlConfigs: Resource$Projects$Inboundsamlconfigs;
     oauthIdpConfigs: Resource$Projects$Oauthidpconfigs;
     tenants: Resource$Projects$Tenants;
@@ -2284,6 +2353,9 @@ export namespace identitytoolkit_v2 {
       this.context = context;
       this.defaultSupportedIdpConfigs =
         new Resource$Projects$Defaultsupportedidpconfigs(this.context);
+      this.identityPlatform = new Resource$Projects$Identityplatform(
+        this.context
+      );
       this.inboundSamlConfigs = new Resource$Projects$Inboundsamlconfigs(
         this.context
       );
@@ -2331,6 +2403,7 @@ export namespace identitytoolkit_v2 {
      *   //   "autodeleteAnonymousUsers": false,
      *   //   "blockingFunctions": {},
      *   //   "client": {},
+     *   //   "emailPrivacyConfig": {},
      *   //   "mfa": {},
      *   //   "monitoring": {},
      *   //   "multiTenant": {},
@@ -2338,6 +2411,7 @@ export namespace identitytoolkit_v2 {
      *   //   "notification": {},
      *   //   "quota": {},
      *   //   "signIn": {},
+     *   //   "smsRegionConfig": {},
      *   //   "subtype": "my_subtype"
      *   // }
      * }
@@ -2483,6 +2557,7 @@ export namespace identitytoolkit_v2 {
      *       //   "autodeleteAnonymousUsers": false,
      *       //   "blockingFunctions": {},
      *       //   "client": {},
+     *       //   "emailPrivacyConfig": {},
      *       //   "mfa": {},
      *       //   "monitoring": {},
      *       //   "multiTenant": {},
@@ -2490,6 +2565,7 @@ export namespace identitytoolkit_v2 {
      *       //   "notification": {},
      *       //   "quota": {},
      *       //   "signIn": {},
+     *       //   "smsRegionConfig": {},
      *       //   "subtype": "my_subtype"
      *       // }
      *     },
@@ -2502,6 +2578,7 @@ export namespace identitytoolkit_v2 {
      *   //   "autodeleteAnonymousUsers": false,
      *   //   "blockingFunctions": {},
      *   //   "client": {},
+     *   //   "emailPrivacyConfig": {},
      *   //   "mfa": {},
      *   //   "monitoring": {},
      *   //   "multiTenant": {},
@@ -2509,6 +2586,7 @@ export namespace identitytoolkit_v2 {
      *   //   "notification": {},
      *   //   "quota": {},
      *   //   "signIn": {},
+     *   //   "smsRegionConfig": {},
      *   //   "subtype": "my_subtype"
      *   // }
      * }
@@ -3444,6 +3522,168 @@ export namespace identitytoolkit_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig;
+  }
+
+  export class Resource$Projects$Identityplatform {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Initialize Identity Platform for a Cloud project. Identity Platform is an end-to-end authentication system for third-party users to access your apps and services. These could include mobile/web apps, games, APIs and beyond. This is the publicly available variant of EnableIdentityPlatform that is only available to billing-enabled projects.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.projects.identityPlatform.initializeAuth({
+     *     // The resource name of the target project the developer wants to enable Identity Platform for.
+     *     project: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initializeAuth(
+      params: Params$Resource$Projects$Identityplatform$Initializeauth,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    initializeAuth(
+      params?: Params$Resource$Projects$Identityplatform$Initializeauth,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>;
+    initializeAuth(
+      params: Params$Resource$Projects$Identityplatform$Initializeauth,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initializeAuth(
+      params: Params$Resource$Projects$Identityplatform$Initializeauth,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+    ): void;
+    initializeAuth(
+      params: Params$Resource$Projects$Identityplatform$Initializeauth,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+    ): void;
+    initializeAuth(
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+    ): void;
+    initializeAuth(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Identityplatform$Initializeauth
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Identityplatform$Initializeauth;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Identityplatform$Initializeauth;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+project}/identityPlatform:initializeAuth'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Identityplatform$Initializeauth
+    extends StandardParameters {
+    /**
+     * The resource name of the target project the developer wants to enable Identity Platform for.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformRequest;
   }
 
   export class Resource$Projects$Inboundsamlconfigs {
@@ -5128,12 +5368,15 @@ export namespace identitytoolkit_v2 {
      *       //   "client": {},
      *       //   "disableAuth": false,
      *       //   "displayName": "my_displayName",
+     *       //   "emailPrivacyConfig": {},
      *       //   "enableAnonymousUser": false,
      *       //   "enableEmailLinkSignin": false,
      *       //   "hashConfig": {},
      *       //   "inheritance": {},
      *       //   "mfaConfig": {},
+     *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
      *       // }
      *     },
@@ -5147,12 +5390,15 @@ export namespace identitytoolkit_v2 {
      *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
+     *   //   "emailPrivacyConfig": {},
      *   //   "enableAnonymousUser": false,
      *   //   "enableEmailLinkSignin": false,
      *   //   "hashConfig": {},
      *   //   "inheritance": {},
      *   //   "mfaConfig": {},
+     *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
      * }
@@ -5431,12 +5677,15 @@ export namespace identitytoolkit_v2 {
      *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
+     *   //   "emailPrivacyConfig": {},
      *   //   "enableAnonymousUser": false,
      *   //   "enableEmailLinkSignin": false,
      *   //   "hashConfig": {},
      *   //   "inheritance": {},
      *   //   "mfaConfig": {},
+     *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
      * }
@@ -5879,12 +6128,15 @@ export namespace identitytoolkit_v2 {
      *       //   "client": {},
      *       //   "disableAuth": false,
      *       //   "displayName": "my_displayName",
+     *       //   "emailPrivacyConfig": {},
      *       //   "enableAnonymousUser": false,
      *       //   "enableEmailLinkSignin": false,
      *       //   "hashConfig": {},
      *       //   "inheritance": {},
      *       //   "mfaConfig": {},
+     *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
      *       // }
      *     },
@@ -5898,12 +6150,15 @@ export namespace identitytoolkit_v2 {
      *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
+     *   //   "emailPrivacyConfig": {},
      *   //   "enableAnonymousUser": false,
      *   //   "enableEmailLinkSignin": false,
      *   //   "hashConfig": {},
      *   //   "inheritance": {},
      *   //   "mfaConfig": {},
+     *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
      * }

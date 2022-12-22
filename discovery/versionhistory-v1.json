@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20220814",
+  "revision": "20221220",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
@@ -422,9 +422,11 @@
             "LACROS",
             "LACROS_ARM32",
             "CHROMEOS",
-            "LACROS_ARM64"
+            "LACROS_ARM64",
+            "FUCHSIA"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -491,7 +493,7 @@
     }
   },
   "servicePath": "",
-  "title": "Version History API",
+  "title": "versionhistory.googleapis.com API",
   "version": "v1",
   "version_module": true
 }

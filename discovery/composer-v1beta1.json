@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221215",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -601,6 +601,17 @@
         "displayName": {
           "description": "User-defined name that identifies the CIDR block.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudDataLineageIntegration": {
+      "description": "Configuration for Cloud Data Lineage integration.",
+      "id": "CloudDataLineageIntegration",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether or not Cloud Data Lineage integration is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -778,6 +789,10 @@
           "$ref": "PrivateEnvironmentConfig",
           "description": "The configuration used for the Private IP Cloud Composer environment."
         },
+        "recoveryConfig": {
+          "$ref": "RecoveryConfig",
+          "description": "Optional. The Recovery settings configuration of an environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+        },
         "softwareConfig": {
           "$ref": "SoftwareConfig",
           "description": "The configuration settings for software inside the environment."
@@ -793,6 +808,45 @@
         "workloadsConfig": {
           "$ref": "WorkloadsConfig",
           "description": "Optional. The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web server and workers workloads. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteAirflowCommandResponse": {
+      "description": "Response to ExecuteAirflowCommandRequest.",
+      "id": "ExecuteAirflowCommandResponse",
+      "properties": {
+        "error": {
+          "description": "Error message. Empty if there was no error.",
+          "type": "string"
+        },
+        "executionId": {
+          "description": "The unique ID of the command execution for polling.",
+          "type": "string"
+        },
+        "pod": {
+          "description": "The name of the pod where the command is executed.",
+          "type": "string"
+        },
+        "podNamespace": {
+          "description": "The namespace of the pod where the command is executed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExitInfo": {
+      "description": "Information about how a command ended.",
+      "id": "ExitInfo",
+      "properties": {
+        "error": {
+          "description": "Error message. Empty if there was no error.",
+          "type": "string"
+        },
+        "exitCode": {
+          "description": "The exit code from the command execution.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -858,6 +912,22 @@
       },
       "type": "object"
     },
+    "Line": {
+      "description": "Contains information about a single line from logs.",
+      "id": "Line",
+      "properties": {
+        "content": {
+          "description": "Text content of the log line.",
+          "type": "string"
+        },
+        "lineNumber": {
+          "description": "Number of the line.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ListEnvironmentsResponse": {
       "description": "The environments in a project and location.",
       "id": "ListEnvironmentsResponse",
@@ -916,6 +986,18 @@
       "description": "Request to load a snapshot into a Cloud Composer environment.",
       "id": "LoadSnapshotRequest",
       "properties": {
+        "skipAirflowOverridesSetting": {
+          "description": "Whether or not to skip setting Airflow overrides when loading the environment's state.",
+          "type": "boolean"
+        },
+        "skipEnvironmentVariablesSetting": {
+          "description": "Whether or not to skip setting environment variables when loading the environment's state.",
+          "type": "boolean"
+        },
+        "skipGcsDataCopying": {
+          "description": "Whether or not to skip copying Cloud Storage data when loading the environment's state.",
+          "type": "boolean"
+        },
         "skipPypiPackagesInstallation": {
           "description": "Whether or not to skip installing Pypi packages when loading the environment's state.",
           "type": "boolean"
@@ -968,6 +1050,27 @@
         "enabled": {
           "description": "Whether or not master authorized networks feature is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkingConfig": {
+      "description": "Configuration options for networking connections in the Composer 2 environment.",
+      "id": "NetworkingConfig",
+      "properties": {
+        "connectionType": {
+          "description": "Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "VPC_PEERING",
+            "PRIVATE_SERVICE_CONNECT"
+          ],
+          "enumDescriptions": [
+            "No specific connection type was requested, so the environment uses the default value corresponding to the rest of its configuration.",
+            "Requests the use of VPC peerings for connecting the Customer and Tenant projects.",
+            "Requests the use of Private Service Connect for connecting the Customer and Tenant projects."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1131,6 +1234,28 @@
       },
       "type": "object"
     },
+    "PollAirflowCommandResponse": {
+      "description": "Response to PollAirflowCommandRequest.",
+      "id": "PollAirflowCommandResponse",
+      "properties": {
+        "exitInfo": {
+          "$ref": "ExitInfo",
+          "description": "The result exit status of the command."
+        },
+        "output": {
+          "description": "Output from the command execution. It may not contain the full output and the caller may need to poll for more lines.",
+          "items": {
+            "$ref": "Line"
+          },
+          "type": "array"
+        },
+        "outputEnd": {
+          "description": "Whether the command execution has finished and there is no more output.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "PrivateClusterConfig": {
       "description": "Configuration options for the private GKE cluster in a Cloud Composer environment.",
       "id": "PrivateClusterConfig",
@@ -1180,6 +1305,10 @@
           "description": "Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for `IPAllocationPolicy.cluster_ipv4_cidr_block` and `IPAllocationPolicy.service_ipv4_cidr_block`.",
           "type": "boolean"
         },
+        "networkingConfig": {
+          "$ref": "NetworkingConfig",
+          "description": "Optional. Configuration for the network connections configuration in the environment."
+        },
         "privateClusterConfig": {
           "$ref": "PrivateClusterConfig",
           "description": "Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment."
@@ -1192,6 +1321,17 @@
           "description": "Output only. The IP range reserved for the tenant project's App Engine VMs. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecoveryConfig": {
+      "description": "The Recovery settings of an environment.",
+      "id": "RecoveryConfig",
+      "properties": {
+        "scheduledSnapshotsConfig": {
+          "$ref": "ScheduledSnapshotsConfig",
+          "description": "Optional. The configuration for scheduled snapshot creation mechanism."
         }
       },
       "type": "object"
@@ -1219,6 +1359,29 @@
       "properties": {
         "snapshotPath": {
           "description": "The fully-resolved Cloud Storage path of the created snapshot, e.g.: \"gs://my-bucket/snapshots/project_location_environment_timestamp\". This field is populated only if the snapshot creation was successful.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScheduledSnapshotsConfig": {
+      "description": "The configuration for scheduled snapshot creation mechanism.",
+      "id": "ScheduledSnapshotsConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether scheduled snapshots creation is enabled.",
+          "type": "boolean"
+        },
+        "snapshotCreationSchedule": {
+          "description": "Optional. The cron expression representing the time when snapshots creation mechanism runs. This field is subject to additional validation around frequency of execution.",
+          "type": "string"
+        },
+        "snapshotLocation": {
+          "description": "Optional. The Cloud Storage location for storing automatically created snapshots.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Optional. Time zone that sets the context to interpret snapshot_creation_schedule.",
           "type": "string"
         }
       },
@@ -1261,6 +1424,10 @@
           },
           "description": "Optional. Apache Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example \"core-dags_are_paused_at_creation\". Section names must not contain hyphens (\"-\"), opening square brackets (\"[\"), or closing square brackets (\"]\"). The property name must not be empty and must not contain an equals sign (\"=\") or semicolon (\";\"). Section and property names must not contain a period (\".\"). Apache Airflow configuration property names must be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can contain any character, and can be written in any lower/upper case format. Certain Apache Airflow configuration property values are [blocked](/composer/docs/concepts/airflow-configurations), and cannot be overridden.",
           "type": "object"
+        },
+        "cloudDataLineageIntegration": {
+          "$ref": "CloudDataLineageIntegration",
+          "description": "Optional. The configuration for Cloud Data Lineage integration."
         },
         "envVariables": {
           "additionalProperties": {
@@ -1315,6 +1482,28 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TriggererResource": {
+      "description": "Configuration for resources used by Airflow triggerers.",
+      "id": "TriggererResource",
+      "properties": {
+        "count": {
+          "description": "Optional. The number of triggerers.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "cpu": {
+          "description": "Optional. CPU request and limit for a single Airflow triggerer replica.",
+          "format": "float",
+          "type": "number"
+        },
+        "memoryGb": {
+          "description": "Optional. Memory (GB) request and limit for a single Airflow triggerer replica.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -1405,6 +1594,10 @@
         "scheduler": {
           "$ref": "SchedulerResource",
           "description": "Optional. Resources used by Airflow schedulers."
+        },
+        "triggerer": {
+          "$ref": "TriggererResource",
+          "description": "Optional. Resources used by Airflow triggerers."
         },
         "webServer": {
           "$ref": "WebServerResource",

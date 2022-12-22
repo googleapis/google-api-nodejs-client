@@ -134,7 +134,7 @@
                 "Malware targeting any platform.",
                 "Social engineering targeting any platform.",
                 "Unwanted software targeting any platform.",
-                "Extended Coverage Social Engineering list targeting any platform."
+                "A list of extended coverage social engineering URIs targeting any platform."
               ],
               "location": "query",
               "repeated": true,
@@ -384,7 +384,7 @@
                 "Malware targeting any platform.",
                 "Social engineering targeting any platform.",
                 "Unwanted software targeting any platform.",
-                "Extended Coverage Social Engineering list targeting any platform."
+                "A list of extended coverage social engineering URIs targeting any platform."
               ],
               "location": "query",
               "type": "string"
@@ -429,7 +429,7 @@
                 "Malware targeting any platform.",
                 "Social engineering targeting any platform.",
                 "Unwanted software targeting any platform.",
-                "Extended Coverage Social Engineering list targeting any platform."
+                "A list of extended coverage social engineering URIs targeting any platform."
               ],
               "location": "query",
               "repeated": true,
@@ -452,7 +452,7 @@
       }
     }
   },
-  "revision": "20220806",
+  "revision": "20221023",
   "rootUrl": "https://webrisk.googleapis.com/",
   "schemas": {
     "GoogleCloudWebriskV1ComputeThreatListDiffResponse": {
@@ -615,7 +615,7 @@
               "Malware targeting any platform.",
               "Social engineering targeting any platform.",
               "Unwanted software targeting any platform.",
-              "Extended Coverage Social Engineering list targeting any platform."
+              "A list of extended coverage social engineering URIs targeting any platform."
             ],
             "type": "string"
           },
@@ -629,7 +629,7 @@
       "properties": {
         "threat": {
           "$ref": "GoogleCloudWebriskV1SearchUrisResponseThreatUri",
-          "description": "The threat list matches. This may be empty if the URI is on no list."
+          "description": "The threat list matches. This might be empty if the URI is on no list."
         }
       },
       "type": "object"
@@ -658,7 +658,7 @@
               "Malware targeting any platform.",
               "Social engineering targeting any platform.",
               "Unwanted software targeting any platform.",
-              "Extended Coverage Social Engineering list targeting any platform."
+              "A list of extended coverage social engineering URIs targeting any platform."
             ],
             "type": "string"
           },
@@ -672,7 +672,7 @@
       "id": "GoogleCloudWebriskV1Submission",
       "properties": {
         "threatTypes": {
-          "description": "ThreatTypes found to be associated with the submitted URI after reviewing it. This may be empty if the URI was not added to any list.",
+          "description": "ThreatTypes found to be associated with the submitted URI after reviewing it. This might be empty if the URI was not added to any list.",
           "items": {
             "enum": [
               "THREAT_TYPE_UNSPECIFIED",
@@ -686,7 +686,7 @@
               "Malware targeting any platform.",
               "Social engineering targeting any platform.",
               "Unwanted software targeting any platform.",
-              "Extended Coverage Social Engineering list targeting any platform."
+              "A list of extended coverage social engineering URIs targeting any platform."
             ],
             "type": "string"
           },
@@ -821,11 +821,11 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "description": "Contains a `SubmitUriMetadata` object.",
           "type": "object"
         },
         "name": {
-          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "description": "Matches the `/v1/{project-name}/operations/{operation-id}` pattern.",
           "type": "string"
         },
         "response": {

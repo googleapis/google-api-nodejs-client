@@ -113,7 +113,6 @@ export namespace gamesConfiguration_v1configuration {
   export class Gamesconfiguration {
     context: APIRequestContext;
     achievementConfigurations: Resource$Achievementconfigurations;
-    imageConfigurations: Resource$Imageconfigurations;
     leaderboardConfigurations: Resource$Leaderboardconfigurations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -125,7 +124,6 @@ export namespace gamesConfiguration_v1configuration {
       this.achievementConfigurations = new Resource$Achievementconfigurations(
         this.context
       );
-      this.imageConfigurations = new Resource$Imageconfigurations(this.context);
       this.leaderboardConfigurations = new Resource$Leaderboardconfigurations(
         this.context
       );
@@ -264,27 +262,6 @@ export namespace gamesConfiguration_v1configuration {
      * An optional suffix for the NUMERIC format type. These strings follow the same plural rules as all Android string resources.
      */
     suffix?: Schema$GamesNumberAffixConfiguration;
-  }
-  /**
-   * An image configuration resource.
-   */
-  export interface Schema$ImageConfiguration {
-    /**
-     * The image type for the image.
-     */
-    imageType?: string | null;
-    /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#imageConfiguration`.
-     */
-    kind?: string | null;
-    /**
-     * The resource ID of resource which the image belongs to.
-     */
-    resourceId?: string | null;
-    /**
-     * The url for this image.
-     */
-    url?: string | null;
   }
   /**
    * An leaderboard configuration resource.
@@ -1177,195 +1154,6 @@ export namespace gamesConfiguration_v1configuration {
      * Request body metadata
      */
     requestBody?: Schema$AchievementConfiguration;
-  }
-
-  export class Resource$Imageconfigurations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Uploads an image for a resource with the given ID and image type.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gamesConfiguration = google.gamesConfiguration('v1configuration');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gamesConfiguration.imageConfigurations.upload({
-     *     // Selects which image in a resource for this method.
-     *     imageType: 'placeholder-value',
-     *     // The ID of the resource used by this method.
-     *     resourceId: 'placeholder-value',
-     *
-     *     requestBody: {
-     *       // request body parameters
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "imageType": "my_imageType",
-     *   //   "kind": "my_kind",
-     *   //   "resourceId": "my_resourceId",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    upload(
-      params: Params$Resource$Imageconfigurations$Upload,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    upload(
-      params?: Params$Resource$Imageconfigurations$Upload,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ImageConfiguration>;
-    upload(
-      params: Params$Resource$Imageconfigurations$Upload,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    upload(
-      params: Params$Resource$Imageconfigurations$Upload,
-      options: MethodOptions | BodyResponseCallback<Schema$ImageConfiguration>,
-      callback: BodyResponseCallback<Schema$ImageConfiguration>
-    ): void;
-    upload(
-      params: Params$Resource$Imageconfigurations$Upload,
-      callback: BodyResponseCallback<Schema$ImageConfiguration>
-    ): void;
-    upload(callback: BodyResponseCallback<Schema$ImageConfiguration>): void;
-    upload(
-      paramsOrCallback?:
-        | Params$Resource$Imageconfigurations$Upload
-        | BodyResponseCallback<Schema$ImageConfiguration>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ImageConfiguration>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ImageConfiguration>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ImageConfiguration>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Imageconfigurations$Upload;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Imageconfigurations$Upload;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://gamesconfiguration.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/games/v1configuration/images/{resourceId}/imageType/{imageType}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        mediaUrl: (
-          rootUrl +
-          '/upload/games/v1configuration/images/{resourceId}/imageType/{imageType}'
-        ).replace(/([^:]\/)\/+/g, '$1'),
-        requiredParams: ['resourceId', 'imageType'],
-        pathParams: ['imageType', 'resourceId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ImageConfiguration>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ImageConfiguration>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Imageconfigurations$Upload
-    extends StandardParameters {
-    /**
-     * Selects which image in a resource for this method.
-     */
-    imageType?: string;
-    /**
-     * The ID of the resource used by this method.
-     */
-    resourceId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: {};
-
-    /**
-     * Media metadata
-     */
-    media?: {
-      /**
-       * Media mime-type
-       */
-      mimeType?: string;
-
-      /**
-       * Media body contents
-       */
-      body?: any;
-    };
   }
 
   export class Resource$Leaderboardconfigurations {

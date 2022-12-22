@@ -12,7 +12,7 @@
   "baseUrl": "https://androidpublisher.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Android Publisher",
-  "description": "Lets Android application developers access their Google Play accounts.",
+  "description": "Lets Android application developers access their Google Play accounts. At a high level, the expected workflow is to \"insert\" an Edit, make changes as necessary, and then \"commit\" it. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/android-publisher",
   "icons": {
@@ -549,6 +549,11 @@
                   "description": "Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).",
                   "location": "query",
                   "type": "boolean"
+                },
+                "deviceTierConfigId": {
+                  "description": "Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or \"LATEST\" for last uploaded DTC.",
+                  "location": "query",
+                  "type": "string"
                 },
                 "editId": {
                   "description": "Identifier of the edit.",
@@ -3915,7 +3920,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20221215",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "AcquisitionTargetingRule": {
@@ -4074,6 +4079,10 @@
           "description": "Whether the renewing base plan is backward compatible. The backward compatible base plan is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one renewing base plan can be marked as legacy compatible for a given subscription.",
           "type": "boolean"
         },
+        "legacyCompatibleSubscriptionOfferId": {
+          "description": "Subscription offer id which is legacy compatible. The backward compatible subscription offer is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one subscription offer can be marked as legacy compatible for a given renewing base plan. To have no Subscription offer as legacy compatible set this field as empty string.",
+          "type": "string"
+        },
         "prorationMode": {
           "description": "The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE.",
           "enum": [
@@ -4112,6 +4121,10 @@
         "autoRenewEnabled": {
           "description": "If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription",
           "type": "boolean"
+        },
+        "priceChangeDetails": {
+          "$ref": "SubscriptionItemPriceChangeDetails",
+          "description": "The information of the last price change for the item since subscription signup."
         }
       },
       "type": "object"
@@ -5398,6 +5411,28 @@
       },
       "type": "object"
     },
+    "OfferDetails": {
+      "description": "Offer details information related to a purchase line item.",
+      "id": "OfferDetails",
+      "properties": {
+        "basePlanId": {
+          "description": "The base plan ID. Present for all base plan and offers.",
+          "type": "string"
+        },
+        "offerId": {
+          "description": "The offer ID. Only present for discounted offers.",
+          "type": "string"
+        },
+        "offerTags": {
+          "description": "The latest offer tags associated with the offer. It includes tags inherited from the base plan.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "OfferTag": {
       "description": "Represents a custom tag specified for base plans and subscription offers.",
       "id": "OfferTag",
@@ -5538,7 +5573,7 @@
       "id": "PrepaidPlan",
       "properties": {
         "allowExtendAfterTime": {
-          "description": "After this time, the subscription is allowed for a new top-up purchase. Not present if the subscription is already extended by a top-up purchase.",
+          "description": "If present, this is the time after which top up purchases are allowed for the prepaid plan. Will not be present for expired prepaid plans.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -5721,6 +5756,28 @@
         "eligibleForStreamingServiceTaxRate": {
           "description": "You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.",
           "type": "boolean"
+        },
+        "streamingTaxType": {
+          "description": "To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).",
+          "enum": [
+            "STREAMING_TAX_TYPE_UNSPECIFIED",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_MULTI_CHANNEL",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL"
+          ],
+          "enumDescriptions": [
+            "No telecommunications tax collected.",
+            "US-specific telecommunications tax tier for video streaming, on demand, rentals / subscriptions / pay-per-view.",
+            "US-specific telecommunications tax tier for video streaming of pre-recorded content like movies, tv shows.",
+            "US-specific telecommunications tax tier for video streaming of multi-channel programming.",
+            "US-specific telecommunications tax tier for audio streaming, rental / subscription.",
+            "US-specific telecommunications tax tier for audio streaming, sale / permanent download.",
+            "US-specific telecommunications tax tier for multi channel audio streaming like radio."
+          ],
+          "type": "string"
         },
         "taxTier": {
           "description": "Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).",
@@ -5936,6 +5993,52 @@
         "expectedExpiryTimeMillis": {
           "description": "The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionItemPriceChangeDetails": {
+      "description": "Price change related information of a subscription item.",
+      "id": "SubscriptionItemPriceChangeDetails",
+      "properties": {
+        "expectedNewPriceChargeTime": {
+          "description": "The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "newPrice": {
+          "$ref": "Money",
+          "description": "New recurring price for the subscription item."
+        },
+        "priceChangeMode": {
+          "description": "Price change mode specifies how the subscription item price is changing.",
+          "enum": [
+            "PRICE_CHANGE_MODE_UNSPECIFIED",
+            "PRICE_DECREASE",
+            "PRICE_INCREASE"
+          ],
+          "enumDescriptions": [
+            "Price change mode unspecified. This value should never be set.",
+            "If the subscription price is decreasing.",
+            "If the subscription price is increasing and the user needs to accept it."
+          ],
+          "type": "string"
+        },
+        "priceChangeState": {
+          "description": "State the price change is currently in.",
+          "enum": [
+            "PRICE_CHANGE_STATE_UNSPECIFIED",
+            "OUTSTANDING",
+            "CONFIRMED",
+            "APPLIED"
+          ],
+          "enumDescriptions": [
+            "Price change state unspecified. This value should not be used.",
+            "Waiting for the user to agree for the price change.",
+            "The price change is confirmed to happen for the user.",
+            "The price change is applied, i.e. the user has started being charged the new price."
+          ],
           "type": "string"
         }
       },
@@ -6239,6 +6342,10 @@
           "description": "Time at which the subscription expired or will expire unless the access is extended (ex. renews).",
           "format": "google-datetime",
           "type": "string"
+        },
+        "offerDetails": {
+          "$ref": "OfferDetails",
+          "description": "The offer details for this item."
         },
         "prepaidPlan": {
           "$ref": "PrepaidPlan",

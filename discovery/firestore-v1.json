@@ -146,6 +146,47 @@
                 "https://www.googleapis.com/auth/datastore"
               ]
             },
+            "delete": {
+              "description": "Deletes a database.",
+              "flatPath": "v1/projects/{projectsId}/databases/{databasesId}",
+              "httpMethod": "DELETE",
+              "id": "firestore.projects.databases.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "allowMissing": {
+                  "description": "If set to true and the Database is not found, the request will succeed but no action will be taken.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "etag": {
+                  "description": "The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/databases/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "validateOnly": {
+                  "description": "If set, validate the request and preview the response, but do not actually delete the database.",
+                  "location": "query",
+                  "type": "boolean"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/datastore"
+              ]
+            },
             "exportDocuments": {
               "description": "Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage. For more details on export behavior and output format, refer to: https://cloud.google.com/firestore/docs/manage-data/export-import",
               "flatPath": "v1/projects/{projectsId}/databases/{databasesId}:exportDocuments",
@@ -788,7 +829,7 @@
                   ],
                   "parameters": {
                     "collectionId": {
-                      "description": "Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.",
+                      "description": "Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -800,18 +841,18 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "The order to sort results by. For example: `priority desc, name`.",
+                      "description": "Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of documents to return.",
+                      "description": "Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The `next_page_token` value returned from a previous List request, if any.",
+                      "description": "Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -823,18 +864,18 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+                      "description": "Perform the read at the provided time. This may not be older than 270 seconds.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "showMissing": {
-                      "description": "If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.",
+                      "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "transaction": {
-                      "description": "Reads documents in a transaction.",
+                      "description": "Perform the read as part of an already active transaction.",
                       "format": "byte",
                       "location": "query",
                       "type": "string"
@@ -889,7 +930,7 @@
                   ],
                   "parameters": {
                     "collectionId": {
-                      "description": "Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.",
+                      "description": "Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -901,18 +942,18 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "The order to sort results by. For example: `priority desc, name`.",
+                      "description": "Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of documents to return.",
+                      "description": "Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The `next_page_token` value returned from a previous List request, if any.",
+                      "description": "Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -924,18 +965,18 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+                      "description": "Perform the read at the provided time. This may not be older than 270 seconds.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "showMissing": {
-                      "description": "If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.",
+                      "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "transaction": {
-                      "description": "Reads documents in a transaction.",
+                      "description": "Perform the read as part of an already active transaction.",
                       "format": "byte",
                       "location": "query",
                       "type": "string"
@@ -1083,6 +1124,35 @@
                   },
                   "response": {
                     "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "runAggregationQuery": {
+                  "description": "Runs an aggregation query. Rather than producing Document results like Firestore.RunQuery, this API allows running an aggregation to produce a series of AggregationResult server-side. High-Level Example: ``` -- Return the number of documents in table given a filter. SELECT COUNT(*) FROM ( SELECT * FROM k where a = true ); ```",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/documents/{documentsId}/{documentsId1}:runAggregationQuery",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.documents.runAggregationQuery",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/documents/[^/]+/.*$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:runAggregationQuery",
+                  "request": {
+                    "$ref": "RunAggregationQueryRequest"
+                  },
+                  "response": {
+                    "$ref": "RunAggregationQueryResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -1353,9 +1423,38 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221210",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
+    "Aggregation": {
+      "description": "Defines a aggregation that produces a single result.",
+      "id": "Aggregation",
+      "properties": {
+        "alias": {
+          "description": "Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.",
+          "type": "string"
+        },
+        "count": {
+          "$ref": "Count",
+          "description": "Count aggregator."
+        }
+      },
+      "type": "object"
+    },
+    "AggregationResult": {
+      "description": "The result of a single bucket from a Firestore aggregation query. The keys of `aggregate_fields` are the same for all results in an aggregation query, unlike document queries which can have different fields present for each result.",
+      "id": "AggregationResult",
+      "properties": {
+        "aggregateFields": {
+          "additionalProperties": {
+            "$ref": "Value"
+          },
+          "description": "The result of the aggregation functions, ex: `COUNT(*) AS total_docs`. The key is the alias assigned to the aggregation function on input and the size of this map equals the number of aggregation functions in the query.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ArrayValue": {
       "description": "An array value.",
       "id": "ArrayValue",
@@ -1566,6 +1665,18 @@
             "Unspecified. This value must not be used.",
             "Documents are required to satisfy all of the combined filters."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Count": {
+      "description": "Count of documents that match the query. The `COUNT(*)` aggregation function operates on the entire document so it does not require a field reference.",
+      "id": "Count",
+      "properties": {
+        "upTo": {
+          "description": "Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1807,10 +1918,11 @@
       "type": "object"
     },
     "FieldReference": {
-      "description": "A reference to a field, such as `max(messages.time) as max_time`.",
+      "description": "A reference to a field in a document, ex: `stats.operations`.",
       "id": "FieldReference",
       "properties": {
         "fieldPath": {
+          "description": "The relative path of the document being referenced. Requires: * Conform to document field name limitations.",
           "type": "string"
         }
       },
@@ -2200,8 +2312,20 @@
       "description": "Cloud Firestore indexes enable simple and complex queries against documents in a database.",
       "id": "GoogleFirestoreAdminV1Index",
       "properties": {
+        "apiScope": {
+          "description": "The API scope supported by this index.",
+          "enum": [
+            "ANY_API",
+            "DATASTORE_MODE_API"
+          ],
+          "enumDescriptions": [
+            "The index can be used by both Firestore Native and Firestore in Datastore Mode query API. This is the default.",
+            "The index can only be used by the Firestore in Datastore Mode query API."
+          ],
+          "type": "string"
+        },
         "fields": {
-          "description": "The fields supported by this index. For composite indexes, this is always 2 or more fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.",
+          "description": "The fields supported by this index. For composite indexes, this requires a minimum of 2 and a maximum of 100 fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.",
           "items": {
             "$ref": "GoogleFirestoreAdminV1IndexField"
           },
@@ -2216,12 +2340,14 @@
           "enum": [
             "QUERY_SCOPE_UNSPECIFIED",
             "COLLECTION",
-            "COLLECTION_GROUP"
+            "COLLECTION_GROUP",
+            "COLLECTION_RECURSIVE"
           ],
           "enumDescriptions": [
             "The query scope is unspecified. Not a valid option.",
             "Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the collection id specified by the index.",
-            "Indexes with a collection group query scope specified allow queries against all collections that has the collection id specified by the index."
+            "Indexes with a collection group query scope specified allow queries against all collections that has the collection id specified by the index.",
+            "Include all the collections's ancestor in the index. Only available for Datastore Mode databases."
           ],
           "type": "string"
         },
@@ -2636,7 +2762,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The next page token.",
+          "description": "A token to retrieve the next page of documents. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -2912,6 +3038,52 @@
       },
       "type": "object"
     },
+    "RunAggregationQueryRequest": {
+      "description": "The request for Firestore.RunAggregationQuery.",
+      "id": "RunAggregationQueryRequest",
+      "properties": {
+        "newTransaction": {
+          "$ref": "TransactionOptions",
+          "description": "Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream."
+        },
+        "readTime": {
+          "description": "Executes the query at the given timestamp. Requires: * Cannot be more than 270 seconds in the past.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "structuredAggregationQuery": {
+          "$ref": "StructuredAggregationQuery",
+          "description": "An aggregation query."
+        },
+        "transaction": {
+          "description": "Run the aggregation within an already active transaction. The value here is the opaque transaction ID to execute the query in.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunAggregationQueryResponse": {
+      "description": "The response for Firestore.RunAggregationQuery.",
+      "id": "RunAggregationQueryResponse",
+      "properties": {
+        "readTime": {
+          "description": "The time at which the aggregate value is valid for.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "result": {
+          "$ref": "AggregationResult",
+          "description": "A single aggregation result. Not present when reporting partial progress."
+        },
+        "transaction": {
+          "description": "The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RunQueryRequest": {
       "description": "The request for Firestore.RunQuery.",
       "id": "RunQueryRequest",
@@ -2994,13 +3166,31 @@
       },
       "type": "object"
     },
+    "StructuredAggregationQuery": {
+      "description": "Firestore query for running an aggregation over a StructuredQuery.",
+      "id": "StructuredAggregationQuery",
+      "properties": {
+        "aggregations": {
+          "description": "Optional. Series of aggregations to apply over the results of the `structured_query`. Requires: * A minimum of one and maximum of five aggregations per query.",
+          "items": {
+            "$ref": "Aggregation"
+          },
+          "type": "array"
+        },
+        "structuredQuery": {
+          "$ref": "StructuredQuery",
+          "description": "Nested structured query."
+        }
+      },
+      "type": "object"
+    },
     "StructuredQuery": {
       "description": "A Firestore query.",
       "id": "StructuredQuery",
       "properties": {
         "endAt": {
           "$ref": "Cursor",
-          "description": "A end point for the query results."
+          "description": "A potential prefix of a position in the result set to end the query at. This is similar to `START_AT` but with it controlling the end position rather than the start position. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause."
         },
         "from": {
           "description": "The collections to query.",
@@ -3010,12 +3200,12 @@
           "type": "array"
         },
         "limit": {
-          "description": "The maximum number of results to return. Applies after all other constraints. Must be >= 0 if specified.",
+          "description": "The maximum number of results to return. Applies after all other constraints. Requires: * The value must be greater than or equal to zero if specified.",
           "format": "int32",
           "type": "integer"
         },
         "offset": {
-          "description": "The number of results to skip. Applies before limit, but after all other constraints. Must be >= 0 if specified.",
+          "description": "The number of documents to skip before returning the first result. This applies after the constraints specified by the `WHERE`, `START AT`, & `END AT` but before the `LIMIT` clause. Requires: * The value must be greater than or equal to zero if specified.",
           "format": "int32",
           "type": "integer"
         },
@@ -3032,7 +3222,7 @@
         },
         "startAt": {
           "$ref": "Cursor",
-          "description": "A starting point for the query results."
+          "description": "A potential prefix of a position in the result set to start the query at. The ordering of the result set is based on the `ORDER BY` clause of the original query. ``` SELECT * FROM k WHERE a = 1 AND b > 2 ORDER BY b ASC, __name__ ASC; ``` This query's results are ordered by `(b ASC, __name__ ASC)`. Cursors can reference either the full ordering or a prefix of the location, though it cannot reference more fields than what are in the provided `ORDER BY`. Continuing off the example above, attaching the following start cursors will have varying impact: - `START BEFORE (2, /k/123)`: start the query right before `a = 1 AND b > 2 AND __name__ > /k/123`. - `START AFTER (10)`: start the query right after `a = 1 AND b > 10`. Unlike `OFFSET` which requires scanning over the first N results to skip, a start cursor allows the query to begin at a logical position. This position is not required to match an actual result, it will scan forward from this position to find the next document. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause."
         },
         "where": {
           "$ref": "Filter",

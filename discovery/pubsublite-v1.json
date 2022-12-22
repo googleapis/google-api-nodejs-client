@@ -1040,7 +1040,7 @@
       }
     }
   },
-  "revision": "20220318",
+  "revision": "20221206",
   "rootUrl": "https://pubsublite.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1222,6 +1222,58 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "ExportConfig": {
+      "description": "Configuration for a Pub/Sub Lite subscription that writes messages to a destination. User subscriber clients must not connect to this subscription.",
+      "id": "ExportConfig",
+      "properties": {
+        "currentState": {
+          "description": "Output only. The current state of the export, which may be different to the desired state due to errors. This field is output only.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PAUSED",
+            "PERMISSION_DENIED",
+            "NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Messages are being exported.",
+            "Exporting messages is suspended.",
+            "Messages cannot be exported due to permission denied errors. Output only.",
+            "Messages cannot be exported due to missing resources. Output only."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "deadLetterTopic": {
+          "description": "Optional. The name of an optional Pub/Sub Lite topic to publish messages that can not be exported to the destination. For example, the message can not be published to the Pub/Sub service because it does not satisfy the constraints documented at https://cloud.google.com/pubsub/docs/publisher. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}. Must be within the same project and location as the subscription. The topic may be changed or removed.",
+          "type": "string"
+        },
+        "desiredState": {
+          "description": "The desired state of this export. Setting this to values other than `ACTIVE` and `PAUSED` will result in an error.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PAUSED",
+            "PERMISSION_DENIED",
+            "NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Messages are being exported.",
+            "Exporting messages is suspended.",
+            "Messages cannot be exported due to permission denied errors. Output only.",
+            "Messages cannot be exported due to missing resources. Output only."
+          ],
+          "type": "string"
+        },
+        "pubsubConfig": {
+          "$ref": "PubSubConfig",
+          "description": "Messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a Pub/Sub topic."
+        }
+      },
       "type": "object"
     },
     "ListOperationsResponse": {
@@ -1447,6 +1499,17 @@
       },
       "type": "object"
     },
+    "PubSubConfig": {
+      "description": "Configuration for exporting to a Pub/Sub topic.",
+      "id": "PubSubConfig",
+      "properties": {
+        "topic": {
+          "description": "The name of the Pub/Sub topic. Structured like: projects/{project_number}/topics/{topic_id}. The topic may be changed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Reservation": {
       "description": "Metadata about a reservation resource.",
       "id": "Reservation",
@@ -1556,6 +1619,10 @@
         "deliveryConfig": {
           "$ref": "DeliveryConfig",
           "description": "The settings for this subscription's message delivery."
+        },
+        "exportConfig": {
+          "$ref": "ExportConfig",
+          "description": "If present, messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a destination."
         },
         "name": {
           "description": "The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}",

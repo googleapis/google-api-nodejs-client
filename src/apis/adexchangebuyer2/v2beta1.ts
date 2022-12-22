@@ -340,7 +340,7 @@ export namespace adexchangebuyer2_v2beta1 {
     visibleToSeller?: boolean | null;
   }
   /**
-   * A client user is created under a client buyer and has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client buyer. The only way a new client user can be created is via accepting an email invitation (see the accounts.clients.invitations.create method). All fields are required unless otherwise specified.
+   * A client user is created under a client buyer and has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client buyer. The only way a new client user can be created is through accepting an email invitation (see the accounts.clients.invitations.create method). All fields are required unless otherwise specified.
    */
   export interface Schema$ClientUser {
     /**
@@ -436,7 +436,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     agencyId?: string | null;
     /**
-     * Output only. The last update timestamp of the creative via API.
+     * Output only. The last update timestamp of the creative through the API.
      */
     apiUpdateTime?: string | null;
     /**
@@ -504,7 +504,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     restrictedCategories?: string[] | null;
     /**
-     * Output only. The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction).
+     * Output only. The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS versus HTTP request, or the type of auction).
      */
     servingRestrictions?: Schema$ServingRestriction[];
     /**
@@ -679,7 +679,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     availableEndTime?: string | null;
     /**
-     * Optional. Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.
+     * Optional. Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (for example, in milliseconds) will be truncated towards the start of time in seconds.
      */
     availableStartTime?: string | null;
     /**
@@ -703,7 +703,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     creativePreApprovalPolicy?: string | null;
     /**
-     * Output only. Restricitions about the creatives associated with the deal (i.e., size) This is available for Programmatic Guaranteed/Preferred Deals in Ad Manager.
+     * Output only. Restricitions about the creatives associated with the deal (for example, size) This is available for Programmatic Guaranteed/Preferred Deals in Ad Manager.
      */
     creativeRestrictions?: Schema$CreativeRestrictions;
     /**
@@ -810,7 +810,7 @@ export namespace adexchangebuyer2_v2beta1 {
     dealPauseStatus?: Schema$DealPauseStatus;
   }
   /**
-   * The deal terms specify the details of a Product/deal. They specify things like price per buyer, the type of pricing model (e.g., fixed price, auction) and expected impressions from the publisher.
+   * The deal terms specify the details of a Product/deal. They specify things like price per buyer, the type of pricing model (for example, fixed price, auction) and expected impressions from the publisher.
    */
   export interface Schema$DealTerms {
     /**
@@ -898,7 +898,7 @@ export namespace adexchangebuyer2_v2beta1 {
     rowDimensions?: Schema$RowDimensions;
   }
   /**
-   * The number of filtered bids with the specified dimension values, among those filtered due to the requested filtering reason (i.e. creative status), that have the specified detail.
+   * The number of filtered bids with the specified dimension values, among those filtered due to the requested filtering reason (for example, creative status), that have the specified detail.
    */
   export interface Schema$FilteredBidDetailRow {
     /**
@@ -919,7 +919,7 @@ export namespace adexchangebuyer2_v2beta1 {
     rowDimensions?: Schema$RowDimensions;
   }
   /**
-   * A set of filters that is applied to a request for data. Within a filter set, an AND operation is performed across the filters represented by each field. An OR operation is performed across the filters represented by the multiple values of a repeated field, e.g., "format=VIDEO AND deal_id=12 AND (seller_network_id=34 OR seller_network_id=56)".
+   * A set of filters that is applied to a request for data. Within a filter set, an AND operation is performed across the filters represented by each field. An OR operation is performed across the filters represented by the multiple values of a repeated field, for example, "format=VIDEO AND deal_id=12 AND (seller_network_id=34 OR seller_network_id=56)".
    */
   export interface Schema$FilterSet {
     /**
@@ -931,11 +931,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     breakdownDimensions?: string[] | null;
     /**
-     * The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e., one whose name matches the `bidders/x/accounts/x/filterSets/x` pattern.
+     * The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, for example, one whose name matches the `bidders/x/accounts/x/filterSets/x` pattern.
      */
     creativeId?: string | null;
     /**
-     * The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e., one whose name matches the `bidders/x/accounts/x/filterSets/x` pattern.
+     * The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, for example, one whose name matches the `bidders/x/accounts/x/filterSets/x` pattern.
      */
     dealId?: string | null;
     /**
@@ -955,7 +955,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     name?: string | null;
     /**
-     * The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (i.e., if non-empty, results must match any one of the platforms).
+     * The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (for example, if non-empty, results must match any one of the platforms).
      */
     platforms?: string[] | null;
     /**
@@ -971,11 +971,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     relativeDateRange?: Schema$RelativeDateRange;
     /**
-     * For Authorized Buyers only. The list of IDs of the seller (publisher) networks on which to filter; may be empty. The filters represented by multiple seller network IDs are ORed together (i.e., if non-empty, results must match any one of the publisher networks). See [seller-network-ids](https://developers.google.com/authorized-buyers/rtb/downloads/seller-network-ids) file for the set of existing seller network IDs.
+     * For Authorized Buyers only. The list of IDs of the seller (publisher) networks on which to filter; may be empty. The filters represented by multiple seller network IDs are ORed together (for example, if non-empty, results must match any one of the publisher networks). See [seller-network-ids](https://developers.google.com/authorized-buyers/rtb/downloads/seller-network-ids) file for the set of existing seller network IDs.
      */
     sellerNetworkIds?: number[] | null;
     /**
-     * The granularity of time intervals if a time series breakdown is desired; optional.
+     * The granularity of time intervals if a time series breakdown is preferred; optional.
      */
     timeSeriesGranularity?: string | null;
   }
@@ -1261,7 +1261,7 @@ export namespace adexchangebuyer2_v2beta1 {
    */
   export interface Schema$ListFilteredBidsResponse {
     /**
-     * List of rows, with counts of filtered bids aggregated by filtering reason (i.e. creative status).
+     * List of rows, with counts of filtered bids aggregated by filtering reason (for example, creative status).
      */
     creativeStatusRows?: Schema$CreativeStatusRow[];
     /**
@@ -1300,7 +1300,7 @@ export namespace adexchangebuyer2_v2beta1 {
    */
   export interface Schema$ListLosingBidsResponse {
     /**
-     * List of rows, with counts of losing bids aggregated by loss reason (i.e. creative status).
+     * List of rows, with counts of losing bids aggregated by loss reason (for example, creative status).
      */
     creativeStatusRows?: Schema$CreativeStatusRow[];
     /**
@@ -1365,7 +1365,7 @@ export namespace adexchangebuyer2_v2beta1 {
    */
   export interface Schema$LocationContext {
     /**
-     * IDs representing the geo location for this context. Please refer to the [geo-table.csv](https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv) file for different geo criteria IDs.
+     * IDs representing the geo location for this context. Refer to the [geo-table.csv](https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv) file for different geo criteria IDs.
      */
     geoCriteriaIds?: number[] | null;
   }
@@ -1382,11 +1382,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     inventorySizeTargeting?: Schema$InventorySizeTargeting;
     /**
-     * Placement targeting information, e.g., URL, mobile applications.
+     * Placement targeting information, for example, URL, mobile applications.
      */
     placementTargeting?: Schema$PlacementTargeting;
     /**
-     * Technology targeting information, e.g., operating system, device category.
+     * Technology targeting information, for example, operating system, device category.
      */
     technologyTargeting?: Schema$TechnologyTargeting;
     /**
@@ -1395,7 +1395,7 @@ export namespace adexchangebuyer2_v2beta1 {
     videoTargeting?: Schema$VideoTargeting;
   }
   /**
-   * A metric value, with an expected value and a variance; represents a count that may be either exact or estimated (i.e. when sampled).
+   * A metric value, with an expected value and a variance; represents a count that may be either exact or estimated (for example, when sampled).
    */
   export interface Schema$MetricValue {
     /**
@@ -1403,7 +1403,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     value?: string | null;
     /**
-     * The variance (i.e. square of the standard deviation) of the metric value. If value is exact, variance is 0. Can be used to calculate margin of error as a percentage of value, using the following formula, where Z is the standard constant that depends on the desired size of the confidence interval (e.g. for 90% confidence interval, use Z = 1.645): marginOfError = 100 * Z * sqrt(variance) / value
+     * The variance (for example, square of the standard deviation) of the metric value. If value is exact, variance is 0. Can be used to calculate margin of error as a percentage of value, using the following formula, where Z is the standard constant that depends on the preferred size of the confidence interval (for example, for 90% confidence interval, use Z = 1.645): marginOfError = 100 * Z * sqrt(variance) / value
      */
     variance?: string | null;
   }
@@ -1590,7 +1590,7 @@ export namespace adexchangebuyer2_v2beta1 {
     reason?: string | null;
   }
   /**
-   * Represents targeting about where the ads can appear, e.g., certain sites or mobile applications. Different placement targeting types will be logically OR'ed.
+   * Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed.
    */
   export interface Schema$PlacementTargeting {
     /**
@@ -1651,7 +1651,7 @@ export namespace adexchangebuyer2_v2beta1 {
     referenceId?: string | null;
   }
   /**
-   * A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.
+   * A product is a segment of inventory that a seller wants to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.
    */
   export interface Schema$Product {
     /**
@@ -1896,15 +1896,15 @@ export namespace adexchangebuyer2_v2beta1 {
     startTimestamp?: string | null;
   }
   /**
-   * A relative date range, specified by an offset and a duration. The supported range of dates begins 30 days before today and ends today, i.e., the limits for these values are: offset_days \>= 0 duration_days \>= 1 offset_days + duration_days <= 30
+   * A relative date range, specified by an offset and a duration. The supported range of dates begins 30 days before today and ends today, for example, the limits for these values are: offset_days \>= 0 duration_days \>= 1 offset_days + duration_days <= 30
    */
   export interface Schema$RelativeDateRange {
     /**
-     * The number of days in the requested date range, e.g., for a range spanning today: 1. For a range spanning the last 7 days: 7.
+     * The number of days in the requested date range, for example, for a range spanning today: 1. For a range spanning the last 7 days: 7.
      */
     durationDays?: number | null;
     /**
-     * The end date of the filter set, specified as the number of days before today, e.g., for a range where the last date is today: 0.
+     * The end date of the filter set, specified as the number of days before today, for example, for a range where the last date is today: 0.
      */
     offsetDays?: number | null;
   }
@@ -1995,7 +1995,7 @@ export namespace adexchangebuyer2_v2beta1 {
     securityType?: Schema$SecurityContext;
   }
   /**
-   * Output only. A representation of the status of an ad in a specific context. A context here relates to where something ultimately serves (for example, a user or publisher geo, a platform, an HTTPS vs HTTP request, or the type of auction).
+   * Output only. A representation of the status of an ad in a specific context. A context here relates to where something ultimately serves (for example, a user or publisher geo, a platform, an HTTPS versus HTTP request, or the type of auction).
    */
   export interface Schema$ServingRestriction {
     /**
@@ -2007,7 +2007,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     disapproval?: Schema$Disapproval;
     /**
-     * Any disapprovals bound to this restriction. Only present if status=DISAPPROVED. Can be used to filter the response of the creatives.list method. Deprecated; please use disapproval field instead.
+     * Any disapprovals bound to this restriction. Only present if status=DISAPPROVED. Can be used to filter the response of the creatives.list method. Deprecated; use disapproval field instead.
      */
     disapprovalReasons?: Schema$Disapproval[];
     /**
@@ -2122,7 +2122,7 @@ export namespace adexchangebuyer2_v2beta1 {
     seconds?: number | null;
   }
   /**
-   * Represents a list of targeted and excluded URLs (e.g., google.com). For Private Auction and AdX Preferred Deals, URLs are either included or excluded. For Programmatic Guaranteed and Preferred Deals, this doesn't apply.
+   * Represents a list of targeted and excluded URLs (for example, google.com). For Private Auction and AdX Preferred Deals, URLs are either included or excluded. For Programmatic Guaranteed and Preferred Deals, this doesn't apply.
    */
   export interface Schema$UrlTargeting {
     /**
@@ -4223,7 +4223,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   const res = await adexchangebuyer2.accounts.creatives.list({
      *     // The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
      *     accountId: 'placeholder-value',
-     *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
+     *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.next_page_token returned from the previous call to 'ListCreatives' method.
      *     pageToken: 'placeholder-value',
@@ -4834,7 +4834,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     accountId?: string;
     /**
-     * Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
+     * Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      */
     pageSize?: number;
     /**
@@ -5535,7 +5535,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
 
     /**
-     * Update given deals to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.pause endpoint. It is a no-op to pause already-paused deals. It is an error to call PauseProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.
+     * Update given deals to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, call accounts.proposals.pause endpoint. It is a no-op to pause already-paused deals. It is an error to call PauseProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.
      * @example
      * ```js
      * // Before running the sample:
@@ -5694,7 +5694,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
 
     /**
-     * Update given deals to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.resume endpoint. It is a no-op to resume running deals or deals paused by the other party. It is an error to call ResumeProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.
+     * Update given deals to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, call accounts.proposals.resume endpoint. It is a no-op to resume running deals or deals paused by the other party. It is an error to call ResumeProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.
      * @example
      * ```js
      * // Before running the sample:

@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20220813",
+  "revision": "20221024",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -966,7 +966,7 @@
             "Resource is known but no action has been taken yet.",
             "Resource is being analyzed.",
             "Analysis has finished successfully.",
-            "Analysis has completed",
+            "Analysis has completed.",
             "Analysis has finished unsuccessfully, the analysis itself is in a bad state.",
             "The resource is known not to be supported."
           ],
@@ -1704,11 +1704,11 @@
           "type": "string"
         },
         "os": {
-          "description": "The OS affected by a vulnerability This field is deprecated and the information is in cpe_uri",
+          "description": "The OS affected by a vulnerability Used to generate the cpe_uri for OS packages",
           "type": "string"
         },
         "osVersion": {
-          "description": "The version of the OS This field is deprecated and the information is in cpe_uri",
+          "description": "The version of the OS Used to generate the cpe_uri for OS packages",
           "type": "string"
         },
         "package": {
@@ -2321,6 +2321,20 @@
           "description": "Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.",
           "format": "float",
           "type": "number"
+        },
+        "cvssVersion": {
+          "description": "Output only. CVSS version used to populate cvss_score and severity.",
+          "enum": [
+            "CVSS_VERSION_UNSPECIFIED",
+            "CVSS_VERSION_2",
+            "CVSS_VERSION_3"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "cvssv3": {
           "$ref": "CVSS",

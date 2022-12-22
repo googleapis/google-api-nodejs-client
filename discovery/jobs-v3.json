@@ -651,7 +651,7 @@
       }
     }
   },
-  "revision": "20220802",
+  "revision": "20221219",
   "rootUrl": "https://jobs.googleapis.com/",
   "schemas": {
     "ApplicationInfo": {
@@ -863,7 +863,7 @@
           "type": "string"
         },
         "keywordSearchableJobCustomAttributes": {
-          "description": "Optional. A list of keys of filterable Job.custom_attributes, whose corresponding `string_values` are used in keyword search. Jobs with `string_values` under these specified field keys are returned if any of the values matches the search keyword. Custom field values with parenthesis, brackets and special symbols won't be properly searchable, and those keyword queries need to be surrounded by quotes.",
+          "description": "Optional. This field is deprecated. Please set the searchability of the custom attribute in the Job.custom_attributes going forward. A list of keys of filterable Job.custom_attributes, whose corresponding `string_values` are used in keyword search. Jobs with `string_values` under these specified field keys are returned if any of the values matches the search keyword. Custom field values with parenthesis, brackets and special symbols won't be properly searchable, and those keyword queries need to be surrounded by quotes.",
           "items": {
             "type": "string"
           },
@@ -2323,7 +2323,7 @@
           "type": "array"
         },
         "disableAutomaticEnrollmentSelection": {
-          "description": "If true, disable automatic enrollment selection (at all diversion points). Automatic enrollment selection means experiment selection process based on the experiment's automatic enrollment condition. This does not disable selection of forced experiments. Setting this filed to false does not change anything in experiment selection process.",
+          "description": "If true, disable automatic enrollment selection (at all diversion points). Automatic enrollment selection means experiment selection process based on the experiment's automatic enrollment condition. This does not disable selection of forced experiments. Setting this field to false does not change anything in the experiment selection process.",
           "type": "boolean"
         },
         "disableExpNames": {
@@ -2349,11 +2349,11 @@
           "type": "array"
         },
         "disableManualEnrollmentSelection": {
-          "description": "If true, disable manual enrollment selection (at all diversion points). Manual enrollment selection means experiment selection process based on the request's manual enrollment states (a.k.a. opt-in experiments). This does not disable selection of forced experiments. Setting this filed to false does not change anything in experiment selection process.",
+          "description": "If true, disable manual enrollment selection (at all diversion points). Manual enrollment selection means experiment selection process based on the request's manual enrollment states (a.k.a. opt-in experiments). This does not disable selection of forced experiments. Setting this field to false does not change anything in the experiment selection process.",
           "type": "boolean"
         },
         "disableOrganicSelection": {
-          "description": "If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments. This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem. Setting this filed to false does not change anything in experiment selection process.",
+          "description": "If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments. This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem. Setting this field to false does not change anything in the experiment selection process.",
           "type": "boolean"
         },
         "forcedFlags": {
@@ -2371,7 +2371,7 @@
           "type": "object"
         },
         "testingMode": {
-          "description": "If set to ALL_OFF, organic selection will be disabled; if set to ALL_ON, organic selection will be disabled, and only select launch experiments will receive traffic. See go/mendel-aoao-runtime-design.",
+          "description": "Sets different testing modes. See the documentation in the TestingMode message for more information.",
           "enum": [
             "TESTING_MODE_UNSPECIFIED",
             "TESTING_MODE_ALL_OFF",

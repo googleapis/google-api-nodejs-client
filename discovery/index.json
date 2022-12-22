@@ -255,6 +255,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "analyticsadmin:v1beta",
+      "name": "analyticsadmin",
+      "version": "v1beta",
+      "title": "Google Analytics Admin API",
+      "description": "",
+      "discoveryRestUrl": "https://analyticsadmin.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
       "preferred": true
     },
     {
@@ -280,6 +295,21 @@
       "title": "Analytics Hub API",
       "description": "Exchange data and analytics assets securely and efficiently.",
       "discoveryRestUrl": "https://analyticshub.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bigquery/docs/analytics-hub-introduction",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "analyticshub:v1",
+      "name": "analyticshub",
+      "version": "v1",
+      "title": "Analytics Hub API",
+      "description": "Exchange data and analytics assets securely and efficiently.",
+      "discoveryRestUrl": "https://analyticshub.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -352,7 +382,7 @@
       "name": "androidpublisher",
       "version": "v3",
       "title": "Google Play Android Developer API",
-      "description": "Lets Android application developers access their Google Play accounts.",
+      "description": "Lets Android application developers access their Google Play accounts. At a high level, the expected workflow is to \"insert\" an Edit, make changes as necessary, and then \"commit\" it.",
       "discoveryRestUrl": "https://androidpublisher.googleapis.com/$discovery/rest?version=v3",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -543,6 +573,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "assuredworkloads:v1beta1",
+      "name": "assuredworkloads",
+      "version": "v1beta1",
+      "title": "Assured Workloads API",
+      "description": "",
+      "discoveryRestUrl": "https://assuredworkloads.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/learnmoreurl",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "assuredworkloads:v1",
       "name": "assuredworkloads",
       "version": "v1",
@@ -553,7 +598,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com",
+      "documentationLink": "https://cloud.google.com/learnmoreurl",
       "preferred": true
     },
     {
@@ -614,6 +659,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/bare-metal",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "batch:v1",
+      "name": "batch",
+      "version": "v1",
+      "title": "Batch API",
+      "description": "An API to manage the running of batch jobs on Google Cloud Platform.",
+      "discoveryRestUrl": "https://batch.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/batch/",
       "preferred": true
     },
     {
@@ -690,21 +750,6 @@
       },
       "documentationLink": "https://cloud.google.com/bigquery-transfer/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "bigqueryreservation:v1beta1",
-      "name": "bigqueryreservation",
-      "version": "v1beta1",
-      "title": "BigQuery Reservation API",
-      "description": "A service to modify your BigQuery flat-rate reservations.",
-      "discoveryRestUrl": "https://bigqueryreservation.googleapis.com/$discovery/rest?version=v1beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/bigquery/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -847,7 +892,7 @@
       "name": "businessprofileperformance",
       "version": "v1",
       "title": "Business Profile Performance API",
-      "description": "The Business Profile Performance API allows merchants to fetch performance reports about their business profile on Google.",
+      "description": "The Business Profile Performance API allows merchants to fetch performance reports about their business profile on Google. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://businessprofileperformance.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1050,6 +1095,21 @@
       },
       "documentationLink": "https://cloud.google.com/asset-inventory/docs/quickstart",
       "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudbilling:v1beta",
+      "name": "cloudbilling",
+      "version": "v1beta",
+      "title": "Cloud Billing API",
+      "description": "Allows developers to manage billing for their Google Cloud Platform projects programmatically.",
+      "discoveryRestUrl": "https://cloudbilling.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/billing/",
+      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -1274,6 +1334,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/identity/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudiot:v1",
+      "name": "cloudiot",
+      "version": "v1",
+      "title": "Cloud IoT API",
+      "description": "Registers and manages IoT (Internet of Things) devices that connect to the Google Cloud Platform.",
+      "discoveryRestUrl": "https://cloudiot.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/iot",
       "preferred": true
     },
     {
@@ -1656,6 +1731,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "contactcenteraiplatform:v1alpha1",
+      "name": "contactcenteraiplatform",
+      "version": "v1alpha1",
+      "title": "Contact Center AI Platform API",
+      "description": "",
+      "discoveryRestUrl": "https://contactcenteraiplatform.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/solutions/contact-center-ai-platform",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "contactcenterinsights:v1",
       "name": "contactcenterinsights",
       "version": "v1",
@@ -1761,6 +1851,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "contentwarehouse:v1",
+      "name": "contentwarehouse",
+      "version": "v1",
+      "title": "contentwarehouse API",
+      "description": "",
+      "discoveryRestUrl": "https://contentwarehouse.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/document-warehouse",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "customsearch:v1",
       "name": "customsearch",
       "version": "v1",
@@ -1817,6 +1922,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/dataflow",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dataform:v1beta1",
+      "name": "dataform",
+      "version": "v1beta1",
+      "title": "Dataform API",
+      "description": "",
+      "discoveryRestUrl": "https://dataform.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dataform/docs",
       "preferred": true
     },
     {
@@ -2181,12 +2301,57 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "discoveryengine:v1alpha",
+      "name": "discoveryengine",
+      "version": "v1alpha",
+      "title": "Discovery Engine API",
+      "description": "Discovery Engine API.",
+      "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "discoveryengine:v1beta",
+      "name": "discoveryengine",
+      "version": "v1beta",
+      "title": "Discovery Engine API",
+      "description": "Discovery Engine API.",
+      "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "displayvideo:v1",
       "name": "displayvideo",
       "version": "v1",
       "title": "Display & Video 360 API",
       "description": "Display & Video 360 API allows users to automate complex Display & Video 360 workflows, such as creating insertion orders and setting targeting options for individual line items.",
       "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/display-video/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "displayvideo:v2",
+      "name": "displayvideo",
+      "version": "v2",
+      "title": "Display & Video 360 API",
+      "description": "Display & Video 360 API allows users to automate complex Display & Video 360 workflows, such as creating insertion orders and setting targeting options for individual line items.",
+      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2651,8 +2816,8 @@
       "id": "firebasedatabase:v1beta",
       "name": "firebasedatabase",
       "version": "v1beta",
-      "title": "Firebase Realtime Database Management API",
-      "description": "The Firebase Realtime Database Management API enables programmatic provisioning and management of Realtime Database instances.",
+      "title": "Firebase Realtime Database API",
+      "description": "The Firebase Realtime Database API enables programmatic provisioning and management of Realtime Database instances.",
       "discoveryRestUrl": "https://firebasedatabase.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3233,21 +3398,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "ideahub:v1alpha",
-      "name": "ideahub",
-      "version": "v1alpha",
-      "title": "Idea Hub API",
-      "description": "This is an invitation-only API.",
-      "discoveryRestUrl": "https://ideahub.googleapis.com/$discovery/rest?version=v1alpha",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://console.cloud.google.com/apis/library/ideahub.googleapis.com",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "ideahub:v1beta",
       "name": "ideahub",
       "version": "v1beta",
@@ -3334,6 +3484,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/search/apis/indexing-api/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "integrations:v1",
+      "name": "integrations",
+      "version": "v1",
+      "title": "Application Integration API",
+      "description": "",
+      "discoveryRestUrl": "https://integrations.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/application-integration",
       "preferred": true
     },
     {
@@ -3649,6 +3814,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "metastore:v1",
+      "name": "metastore",
+      "version": "v1",
+      "title": "Dataproc Metastore API",
+      "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
+      "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
       "preferred": true
     },
     {
@@ -3702,7 +3882,7 @@
       "name": "mybusinessaccountmanagement",
       "version": "v1",
       "title": "My Business Account Management API",
-      "description": "The My Business Account Management API provides an interface for managing access to a location on Google.",
+      "description": "The My Business Account Management API provides an interface for managing access to a location on Google. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinessaccountmanagement.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3717,7 +3897,7 @@
       "name": "mybusinessbusinesscalls",
       "version": "v1",
       "title": "My Business Business Calls API",
-      "description": "The My Business Business Calls API manages business calls information of a location on Google and collect insights like the number of missed calls to their location. Additional information about Business calls can be found at https://support.google.com/business/answer/9688285?p=call_history. If the Google Business Profile links to a Google Ads account and call history is turned on, calls that last longer than a specific time, and that can be attributed to an ad interaction, will show in the linked Google Ads account under the \"Calls from Ads\" conversion. If smart bidding and call conversions are used in the optimization strategy, there could be a change in ad spend. Learn more about smart bidding <https://support.google.com/google-ads/answer/7065882>. To view and perform actions on a location's calls, you need to be a `OWNER`, `CO_OWNER` or `MANAGER` of the location.",
+      "description": "The My Business Business Calls API manages business calls information of a location on Google and collect insights like the number of missed calls to their location. Additional information about Business calls can be found at https://support.google.com/business/answer/9688285?p=call_history. If the Google Business Profile links to a Google Ads account and call history is turned on, calls that last longer than a specific time, and that can be attributed to an ad interaction, will show in the linked Google Ads account under the \"Calls from Ads\" conversion. If smart bidding and call conversions are used in the optimization strategy, there could be a change in ad spend. Learn more about smart bidding <https://support.google.com/google-ads/answer/7065882>. To view and perform actions on a location's calls, you need to be a `OWNER`, `CO_OWNER` or `MANAGER` of the location. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinessbusinesscalls.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3732,7 +3912,7 @@
       "name": "mybusinessbusinessinformation",
       "version": "v1",
       "title": "My Business Business Information API",
-      "description": "The My Business Business Information API provides an interface for managing business information on Google.",
+      "description": "The My Business Business Information API provides an interface for managing business information. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3747,7 +3927,7 @@
       "name": "mybusinesslodging",
       "version": "v1",
       "title": "My Business Lodging API",
-      "description": "The My Business Lodging API enables managing lodging business information on Google.",
+      "description": "The My Business Lodging API enables managing lodging business information on Google. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinesslodging.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3762,7 +3942,7 @@
       "name": "mybusinessnotifications",
       "version": "v1",
       "title": "My Business Notifications API",
-      "description": "The My Business Notification Settings API enables managing notification settings for business accounts.",
+      "description": "The My Business Notification Settings API enables managing notification settings for business accounts. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinessnotifications.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3777,7 +3957,7 @@
       "name": "mybusinessplaceactions",
       "version": "v1",
       "title": "My Business Place Actions API",
-      "description": "The My Business Place Actions API provides an interface for managing place action links of a location on Google.",
+      "description": "The My Business Place Actions API provides an interface for managing place action links of a location on Google. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinessplaceactions.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3792,7 +3972,7 @@
       "name": "mybusinessqanda",
       "version": "v1",
       "title": "My Business Q&A API",
-      "description": "The My Business Q&A API allows questions and answers to be posted for specific listings.",
+      "description": "The My Business Q&A API allows questions and answers to be posted for specific listings. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinessqanda.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4198,7 +4378,7 @@
       "name": "playintegrity",
       "version": "v1",
       "title": "Google Play Integrity API",
-      "description": "Play Integrity",
+      "description": "The Play Integrity API helps you check that you're interacting with your genuine app on a genuine Android device powered by Google Play services. The Play Integrity API has replaced SafetyNet Attestation and Android Device Verification.",
       "discoveryRestUrl": "https://playintegrity.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4468,7 +4648,7 @@
       "name": "recaptchaenterprise",
       "version": "v1",
       "title": "reCAPTCHA Enterprise API",
-      "description": "",
+      "description": "Help protect your website from fraudulent activity, spam, and abuse without creating friction.",
       "discoveryRestUrl": "https://recaptchaenterprise.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4626,21 +4806,6 @@
       },
       "documentationLink": "https://cloud.google.com/recommendations",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "run:v1alpha1",
-      "name": "run",
-      "version": "v1alpha1",
-      "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.",
-      "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/run/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -5375,6 +5540,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/tpu/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "tpu:v2",
+      "name": "tpu",
+      "version": "v2",
+      "title": "Cloud TPU API",
+      "description": "TPU API provides customers with access to Google TPU technology.",
+      "discoveryRestUrl": "https://tpu.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/tpu/",
       "preferred": true
     },
     {
@@ -5398,7 +5578,7 @@
       "name": "transcoder",
       "version": "v1",
       "title": "Transcoder API",
-      "description": "This API converts video files into formats suitable for consumer distribution.",
+      "description": "This API converts video files into formats suitable for consumer distribution. For more information, see the Transcoder API overview <https://cloud.google.com/transcoder/docs/concepts/overview>.",
       "discoveryRestUrl": "https://transcoder.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5454,6 +5634,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "travelimpactmodel:v1",
+      "name": "travelimpactmodel",
+      "version": "v1",
+      "title": "Travel Impact Model API",
+      "description": "Travel Impact Model API lets you query travel carbon emission estimates.",
+      "discoveryRestUrl": "https://travelimpactmodel.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/travel/impact-model",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "vault:v1",
       "name": "vault",
       "version": "v1",
@@ -5502,7 +5697,7 @@
       "id": "versionhistory:v1",
       "name": "versionhistory",
       "version": "v1",
-      "title": "Version History API",
+      "title": "versionhistory.googleapis.com API",
       "description": "Version History API - Prod",
       "discoveryRestUrl": "https://versionhistory.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -5637,7 +5832,7 @@
       "id": "vmmigration:v1alpha1",
       "name": "vmmigration",
       "version": "v1alpha1",
-      "title": "VM Migration API",
+      "title": "Migrate to Virtual Machines API",
       "description": "Use the Migrate to Virtual Machines API to programmatically migrate workloads.",
       "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
@@ -5652,7 +5847,7 @@
       "id": "vmmigration:v1",
       "name": "vmmigration",
       "version": "v1",
-      "title": "VM Migration API",
+      "title": "Migrate to Virtual Machines API",
       "description": "Use the Migrate to Virtual Machines API to programmatically migrate workloads.",
       "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -5795,6 +5990,36 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/workflows",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "workloadmanager:v1",
+      "name": "workloadmanager",
+      "version": "v1",
+      "title": "Workload Manager API",
+      "description": "",
+      "discoveryRestUrl": "https://workloadmanager.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/workload-manager/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "workstations:v1beta",
+      "name": "workstations",
+      "version": "v1beta",
+      "title": "Cloud Workstations API",
+      "description": "",
+      "discoveryRestUrl": "https://workstations.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/workstations",
       "preferred": true
     },
     {

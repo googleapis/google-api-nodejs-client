@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/fitness-v1.0.3...fitness-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/fitness-v1.0.2...fitness-v1.0.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **fitness:** update the API ([706123f](https://github.com/googleapis/google-api-nodejs-client/commit/706123f6423bb526a9ba6180a5de41b2c9be2295))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/fitness-v1.0.1...fitness-v1.0.2) (2022-06-21)
 
 

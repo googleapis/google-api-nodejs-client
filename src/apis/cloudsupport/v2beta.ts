@@ -230,6 +230,10 @@ export namespace cloudsupport_v2beta {
      */
     escalated?: boolean | null;
     /**
+     * The language the user has requested to receive support in. This should be a BCP 47 language code (e.g., `"en"`, `"zh-CN"`, `"zh-TW"`, `"ja"`, `"ko"`). If no language or an unsupported language is specified, this field defaults to English (en). Language selection during case creation may affect your available support options. For a list of supported languages and their support working hours, see: https://cloud.google.com/support/docs/language-working-hours
+     */
+    languageCode?: string | null;
+    /**
      * The resource name for the case.
      */
     name?: string | null;
@@ -731,7 +735,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a file attachment on a case or Cloud resource.
+     * Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.
      * @example
      * ```js
      * // Before running the sample:
@@ -757,7 +761,7 @@ export namespace cloudsupport_v2beta {
      *
      *   // Do the magic
      *   const res = await cloudsupport.attachments.create({
-     *     // Required. The resource name of the case to which attachment should be attached.
+     *     // Required. The resource name of the case (or case parent) to which the attachment should be attached.
      *     parent: '[^/]+/[^/]+',
      *
      *     // Request body metadata
@@ -876,7 +880,7 @@ export namespace cloudsupport_v2beta {
   export interface Params$Resource$Attachments$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of the case to which attachment should be attached.
+     * Required. The resource name of the case (or case parent) to which the attachment should be attached.
      */
     parent?: string;
 
@@ -1108,6 +1112,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1210,7 +1215,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a new case and associate it with the given Cloud resource.
+     * Create a new case and associate it with the given Cloud resource. The case object must have the following fields set: display_name, description, classification, and severity.
      * @example
      * ```js
      * // Before running the sample:
@@ -1249,6 +1254,7 @@ export namespace cloudsupport_v2beta {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "escalated": false,
+     *       //   "languageCode": "my_languageCode",
      *       //   "name": "my_name",
      *       //   "priority": "my_priority",
      *       //   "severity": "my_severity",
@@ -1270,6 +1276,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1419,6 +1426,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1560,6 +1568,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1797,7 +1806,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Update the specified case. Only a subset of fields (display_name, description, time_zone, subscriber_email_addresses, related_resources, severity, priority, primary_contact, and labels) can be updated.
+     * Update the specified case. Only a subset of fields can be updated.
      * @example
      * ```js
      * // Before running the sample:
@@ -1838,6 +1847,7 @@ export namespace cloudsupport_v2beta {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "escalated": false,
+     *       //   "languageCode": "my_languageCode",
      *       //   "name": "my_name",
      *       //   "priority": "my_priority",
      *       //   "severity": "my_severity",
@@ -1859,6 +1869,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1988,7 +1999,7 @@ export namespace cloudsupport_v2beta {
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
      *     pageToken: 'placeholder-value',
-     *     // An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
+     *     // An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2176,7 +2187,7 @@ export namespace cloudsupport_v2beta {
      */
     pageToken?: string;
     /**
-     * An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
+     * An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      */
     query?: string;
   }
@@ -2350,7 +2361,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Add a new comment to the specified Case.
+     * Add a new comment to the specified Case. The comment object must have the following fields set: body.
      * @example
      * ```js
      * // Before running the sample:
@@ -2826,7 +2837,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a file attachment on a case or Cloud resource.
+     * Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.
      * @example
      * ```js
      * // Before running the sample:
@@ -2852,7 +2863,7 @@ export namespace cloudsupport_v2beta {
      *
      *   // Do the magic
      *   const res = await cloudsupport.media.upload({
-     *     // Required. The resource name of the case to which attachment should be attached.
+     *     // Required. The resource name of the case (or case parent) to which the attachment should be attached.
      *     parent: '[^/]+/[^/]+/cases/my-case',
      *
      *     // Request body metadata
@@ -2983,7 +2994,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Required. The resource name of the case to which attachment should be attached.
+     * Required. The resource name of the case (or case parent) to which the attachment should be attached.
      */
     parent?: string;
 

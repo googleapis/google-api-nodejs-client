@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/books-v0.3.3...books-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/books-v0.3.2...books-v0.3.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **books:** update the API ([01d79f4](https://github.com/googleapis/google-api-nodejs-client/commit/01d79f4beea11394f0a80d7f206a620102bbd434))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/books-v0.3.1...books-v0.3.2) (2022-06-21)
 
 

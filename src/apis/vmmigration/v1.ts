@@ -100,7 +100,7 @@ export namespace vmmigration_v1 {
   }
 
   /**
-   * VM Migration API
+   * Migrate to Virtual Machines API
    *
    * Use the Migrate to Virtual Machines API to programmatically migrate workloads.
    *
@@ -124,6 +124,10 @@ export namespace vmmigration_v1 {
     }
   }
 
+  /**
+   * AdaptingOSStep contains specific step details.
+   */
+  export interface Schema$AdaptingOSStep {}
   /**
    * Request message for 'AddGroupMigration' request.
    */
@@ -224,6 +228,35 @@ export namespace vmmigration_v1 {
      * Output only. The time the state was last updated.
      */
     stateTime?: string | null;
+    /**
+     * Output only. The clone steps list representing its progress.
+     */
+    steps?: Schema$CloneStep[];
+  }
+  /**
+   * CloneStep holds information about the clone step progress.
+   */
+  export interface Schema$CloneStep {
+    /**
+     * Adapting OS step.
+     */
+    adaptingOs?: Schema$AdaptingOSStep;
+    /**
+     * The time the step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Instantiating migrated VM step.
+     */
+    instantiatingMigratedVm?: Schema$InstantiatingMigratedVMStep;
+    /**
+     * Preparing VM disks step.
+     */
+    preparingVmDisks?: Schema$PreparingVMDisksStep;
+    /**
+     * The time the step has started.
+     */
+    startTime?: string | null;
   }
   /**
    * ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.
@@ -359,7 +392,7 @@ export namespace vmmigration_v1 {
      */
     networkTags?: string[] | null;
     /**
-     * The GCP target project ID or project name.
+     * The Google Cloud target project ID or project name.
      */
     project?: string | null;
     /**
@@ -440,9 +473,71 @@ export namespace vmmigration_v1 {
      * Output only. The time the state was last updated.
      */
     stateTime?: string | null;
+    /**
+     * Output only. The cutover steps list representing its progress.
+     */
+    steps?: Schema$CutoverStep[];
   }
   /**
-   * DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.
+   * CutoverStep holds information about the cutover step progress.
+   */
+  export interface Schema$CutoverStep {
+    /**
+     * The time the step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Final sync step.
+     */
+    finalSync?: Schema$ReplicationCycle;
+    /**
+     * Instantiating migrated VM step.
+     */
+    instantiatingMigratedVm?: Schema$InstantiatingMigratedVMStep;
+    /**
+     * Preparing VM disks step.
+     */
+    preparingVmDisks?: Schema$PreparingVMDisksStep;
+    /**
+     * A replication cycle prior cutover step.
+     */
+    previousReplicationCycle?: Schema$ReplicationCycle;
+    /**
+     * Shutting down VM step.
+     */
+    shuttingDownSourceVm?: Schema$ShuttingDownSourceVMStep;
+    /**
+     * The time the step has started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * CycleStep holds information about a step progress.
+   */
+  export interface Schema$CycleStep {
+    /**
+     * The time the cycle step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Initializing replication step.
+     */
+    initializingReplication?: Schema$InitializingReplicationStep;
+    /**
+     * Post processing step.
+     */
+    postProcessing?: Schema$PostProcessingStep;
+    /**
+     * Replicating step.
+     */
+    replicating?: Schema$ReplicatingStep;
+    /**
+     * The time the cycle step has started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * DatacenterConnector message describes a connector between the Source and Google Cloud, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to Google Cloud and support vm migration data transfer.
    */
   export interface Schema$DatacenterConnector {
     /**
@@ -458,7 +553,7 @@ export namespace vmmigration_v1 {
      */
     availableVersions?: Schema$AvailableUpdates;
     /**
-     * Output only. The communication channel between the datacenter connector and GCP.
+     * Output only. The communication channel between the datacenter connector and Google Cloud.
      */
     bucket?: string | null;
     /**
@@ -552,6 +647,14 @@ export namespace vmmigration_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * InitializingReplicationStep contains specific step details.
+   */
+  export interface Schema$InitializingReplicationStep {}
+  /**
+   * InstantiatingMigratedVMStep contains specific step details.
+   */
+  export interface Schema$InstantiatingMigratedVMStep {}
   /**
    * Describes a URL link.
    */
@@ -675,6 +778,23 @@ export namespace vmmigration_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Response message for 'ListReplicationCycles' request.
+   */
+  export interface Schema$ListReplicationCyclesResponse {
+    /**
+     * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. The list of replication cycles response.
+     */
+    replicationCycles?: Schema$ReplicationCycle[];
+    /**
+     * Output only. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message for 'ListSources' request.
@@ -947,6 +1067,14 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$PauseMigrationRequest {}
   /**
+   * PostProcessingStep contains specific step details.
+   */
+  export interface Schema$PostProcessingStep {}
+  /**
+   * PreparingVMDisksStep contains specific step details.
+   */
+  export interface Schema$PreparingVMDisksStep {}
+  /**
    * Request message for 'RemoveMigration' request.
    */
   export interface Schema$RemoveGroupMigrationRequest {
@@ -956,17 +1084,66 @@ export namespace vmmigration_v1 {
     migratingVm?: string | null;
   }
   /**
+   * ReplicatingStep contains specific step details.
+   */
+  export interface Schema$ReplicatingStep {
+    /**
+     * The source disks replication rate for the last 30 minutes in bytes per second.
+     */
+    lastThirtyMinutesAverageBytesPerSecond?: string | null;
+    /**
+     * The source disks replication rate for the last 2 minutes in bytes per second.
+     */
+    lastTwoMinutesAverageBytesPerSecond?: string | null;
+    /**
+     * Replicated bytes in the step.
+     */
+    replicatedBytes?: string | null;
+    /**
+     * Total bytes to be handled in the step.
+     */
+    totalBytes?: string | null;
+  }
+  /**
    * ReplicationCycle contains information about the current replication cycle status.
    */
   export interface Schema$ReplicationCycle {
     /**
-     * The current progress in percentage of this cycle.
+     * The cycle's ordinal number.
+     */
+    cycleNumber?: number | null;
+    /**
+     * The time the replication cycle has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Provides details on the state of the cycle in case of an error.
+     */
+    error?: Schema$Status;
+    /**
+     * The identifier of the ReplicationCycle.
+     */
+    name?: string | null;
+    /**
+     * The current progress in percentage of this cycle. Was replaced by 'steps' field, which breaks down the cycle progression more accurately.
      */
     progressPercent?: number | null;
     /**
      * The time the replication cycle has started.
      */
     startTime?: string | null;
+    /**
+     * State of the ReplicationCycle.
+     */
+    state?: string | null;
+    /**
+     * The cycle's steps list representing its progress.
+     */
+    steps?: Schema$CycleStep[];
+    /**
+     * The accumulated duration the replication cycle was paused.
+     */
+    totalPauseDuration?: string | null;
   }
   /**
    * ReplicationSync contain information about the last replica sync to the cloud.
@@ -1011,6 +1188,10 @@ export namespace vmmigration_v1 {
      */
     values?: string[] | null;
   }
+  /**
+   * ShuttingDownSourceVMStep contains specific step details.
+   */
+  export interface Schema$ShuttingDownSourceVMStep {}
   /**
    * Source message describes a specific vm migration Source resource. It contains the source environment information.
    */
@@ -5092,6 +5273,7 @@ export namespace vmmigration_v1 {
     context: APIRequestContext;
     cloneJobs: Resource$Projects$Locations$Sources$Migratingvms$Clonejobs;
     cutoverJobs: Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs;
+    replicationCycles: Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.cloneJobs =
@@ -5100,6 +5282,10 @@ export namespace vmmigration_v1 {
         );
       this.cutoverJobs =
         new Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs(
+          this.context
+        );
+      this.replicationCycles =
+        new Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles(
           this.context
         );
     }
@@ -6743,7 +6929,8 @@ export namespace vmmigration_v1 {
      *         //   "error": {},
      *         //   "name": "my_name",
      *         //   "state": "my_state",
-     *         //   "stateTime": "my_stateTime"
+     *         //   "stateTime": "my_stateTime",
+     *         //   "steps": []
      *         // }
      *       },
      *     });
@@ -6892,7 +7079,8 @@ export namespace vmmigration_v1 {
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "state": "my_state",
-     *   //   "stateTime": "my_stateTime"
+     *   //   "stateTime": "my_stateTime",
+     *   //   "steps": []
      *   // }
      * }
      *
@@ -7391,7 +7579,8 @@ export namespace vmmigration_v1 {
      *           //   "progressPercent": 0,
      *           //   "state": "my_state",
      *           //   "stateMessage": "my_stateMessage",
-     *           //   "stateTime": "my_stateTime"
+     *           //   "stateTime": "my_stateTime",
+     *           //   "steps": []
      *           // }
      *         },
      *       }
@@ -7543,7 +7732,8 @@ export namespace vmmigration_v1 {
      *   //   "progressPercent": 0,
      *   //   "state": "my_state",
      *   //   "stateMessage": "my_stateMessage",
-     *   //   "stateTime": "my_stateTime"
+     *   //   "stateTime": "my_stateTime",
+     *   //   "steps": []
      *   // }
      * }
      *
@@ -7843,6 +8033,335 @@ export namespace vmmigration_v1 {
     pageToken?: string;
     /**
      * Required. The parent, which owns this collection of migrating VMs.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single ReplicationCycle.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.migratingVms.replicationCycles.get(
+     *       {
+     *         // Required. The name of the ReplicationCycle.
+     *         name: 'projects/my-project/locations/my-location/sources/my-source/migratingVms/my-migratingVm/replicationCycles/my-replicationCycle',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cycleNumber": 0,
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "name": "my_name",
+     *   //   "progressPercent": 0,
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "steps": [],
+     *   //   "totalPauseDuration": "my_totalPauseDuration"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReplicationCycle>;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReplicationCycle>,
+      callback: BodyResponseCallback<Schema$ReplicationCycle>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get,
+      callback: BodyResponseCallback<Schema$ReplicationCycle>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ReplicationCycle>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get
+        | BodyResponseCallback<Schema$ReplicationCycle>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReplicationCycle>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReplicationCycle>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReplicationCycle> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReplicationCycle>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReplicationCycle>(parameters);
+      }
+    }
+
+    /**
+     * Lists ReplicationCycles in a given MigratingVM.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.migratingVms.replicationCycles.list(
+     *       {
+     *         // Optional. The filter request.
+     *         filter: 'placeholder-value',
+     *         // Optional. the order by fields for the result.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of replication cycles to return. The service may return fewer than this value. If unspecified, at most 100 migrating VMs will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *         pageSize: 'placeholder-value',
+     *         // Required. A page token, received from a previous `ListReplicationCycles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReplicationCycles` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent, which owns this collection of ReplicationCycles.
+     *         parent:
+     *           'projects/my-project/locations/my-location/sources/my-source/migratingVms/my-migratingVm',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "replicationCycles": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReplicationCyclesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReplicationCyclesResponse>,
+      callback: BodyResponseCallback<Schema$ListReplicationCyclesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List,
+      callback: BodyResponseCallback<Schema$ListReplicationCyclesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListReplicationCyclesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List
+        | BodyResponseCallback<Schema$ListReplicationCyclesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReplicationCyclesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReplicationCyclesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReplicationCyclesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/replicationCycles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReplicationCyclesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReplicationCyclesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the ReplicationCycle.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter request.
+     */
+    filter?: string;
+    /**
+     * Optional. the order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of replication cycles to return. The service may return fewer than this value. If unspecified, at most 100 migrating VMs will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Required. A page token, received from a previous `ListReplicationCycles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReplicationCycles` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of ReplicationCycles.
      */
     parent?: string;
   }

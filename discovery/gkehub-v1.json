@@ -905,95 +905,9 @@
       }
     }
   },
-  "revision": "20220805",
+  "revision": "20221207",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
-    "AnthosVMMembershipSpec": {
-      "description": "AnthosVMMembershipSpec contains the AnthosVM feature configuration for a membership/cluster.",
-      "id": "AnthosVMMembershipSpec",
-      "properties": {
-        "subfeaturesSpec": {
-          "description": "List of configurations of the Anthos For VM subfeatures that are to be enabled",
-          "items": {
-            "$ref": "AnthosVMSubFeatureSpec"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "AnthosVMMembershipState": {
-      "description": "AnthosVMFeatureState contains the state of the AnthosVM feature. It represents the actual state in the cluster, while the AnthosVMMembershipSpec represents the desired state.",
-      "id": "AnthosVMMembershipState",
-      "properties": {
-        "localControllerState": {
-          "$ref": "LocalControllerState",
-          "description": "State of the local PE-controller inside the cluster"
-        },
-        "subfeatureState": {
-          "description": "List of AnthosVM subfeature states",
-          "items": {
-            "$ref": "AnthosVMSubFeatureState"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "AnthosVMSubFeatureSpec": {
-      "description": "AnthosVMSubFeatureSpec contains the subfeature configuration for a membership/cluster.",
-      "id": "AnthosVMSubFeatureSpec",
-      "properties": {
-        "enabled": {
-          "description": "Indicates whether the subfeature should be enabled on the cluster or not. If set to true, the subfeature's control plane and resources will be installed in the cluster. If set to false, the oneof spec if present will be ignored and nothing will be installed in the cluster.",
-          "type": "boolean"
-        },
-        "migrateSpec": {
-          "$ref": "MigrateSpec",
-          "description": "MigrateSpec repsents the configuration for Migrate subfeature."
-        },
-        "serviceMeshSpec": {
-          "$ref": "ServiceMeshSpec",
-          "description": "ServiceMeshSpec repsents the configuration for Service Mesh subfeature."
-        }
-      },
-      "type": "object"
-    },
-    "AnthosVMSubFeatureState": {
-      "description": "AnthosVMSubFeatureState contains the state of the AnthosVM subfeatures.",
-      "id": "AnthosVMSubFeatureState",
-      "properties": {
-        "description": {
-          "description": "Description represents human readable description of the subfeature state. If the deployment failed, this should also contain the reason for the failure.",
-          "type": "string"
-        },
-        "installationState": {
-          "description": "InstallationState represents the state of installation of the subfeature in the cluster.",
-          "enum": [
-            "INSTALLATION_STATE_UNSPECIFIED",
-            "INSTALLATION_STATE_NOT_INSTALLED",
-            "INSTALLATION_STATE_INSTALLED",
-            "INSTALLATION_STATE_FAILED"
-          ],
-          "enumDescriptions": [
-            "state of installation is unknown",
-            "component is not installed",
-            "component is successfully installed",
-            "installation failed"
-          ],
-          "type": "string"
-        },
-        "migrateState": {
-          "$ref": "MigrateState",
-          "description": "MigrateState represents the state of the Migrate subfeature."
-        },
-        "serviceMeshState": {
-          "$ref": "ServiceMeshState",
-          "description": "ServiceMeshState represents the state of the Service Mesh subfeature."
-        }
-      },
-      "type": "object"
-    },
     "AppDevExperienceFeatureSpec": {
       "description": "Spec for App Dev Experience Feature.",
       "id": "AppDevExperienceFeatureSpec",
@@ -1105,7 +1019,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1132,6 +1046,10 @@
           "$ref": "AppDevExperienceFeatureSpec",
           "description": "Appdevexperience specific spec."
         },
+        "fleetobservability": {
+          "$ref": "FleetObservabilityFeatureSpec",
+          "description": "FleetObservability feature spec."
+        },
         "multiclusteringress": {
           "$ref": "MultiClusterIngressFeatureSpec",
           "description": "Multicluster Ingress-specific spec."
@@ -1147,6 +1065,10 @@
           "$ref": "AppDevExperienceFeatureState",
           "description": "Appdevexperience specific state."
         },
+        "fleetobservability": {
+          "$ref": "FleetObservabilityFeatureState",
+          "description": "FleetObservability feature state."
+        },
         "state": {
           "$ref": "FeatureState",
           "description": "Output only. The \"running state\" of the Feature in this Hub.",
@@ -1159,6 +1081,10 @@
       "description": "Configuration for Config Sync",
       "id": "ConfigManagementConfigSync",
       "properties": {
+        "allowVerticalScale": {
+          "description": "Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling. This field is deprecated.",
+          "type": "boolean"
+        },
         "enabled": {
           "description": "Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of git field.",
           "type": "boolean"
@@ -1176,7 +1102,7 @@
           "type": "boolean"
         },
         "sourceFormat": {
-          "description": "Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.",
+          "description": "Specifies whether the Config Sync Repo is in \"hierarchical\" or \"unstructured\" mode.",
           "type": "string"
         }
       },
@@ -1400,6 +1326,22 @@
         },
         "gatekeeperControllerManagerState": {
           "description": "Status of gatekeeper-controller-manager pod.",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "gatekeeperMutation": {
+          "description": "Status of the pod serving the mutation webhook.",
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -1968,6 +1910,21 @@
           "description": "Output only. State of the Feature resource itself.",
           "readOnly": true
         },
+        "scopeSpecs": {
+          "additionalProperties": {
+            "$ref": "ScopeFeatureSpec"
+          },
+          "description": "Optional. Scope-specific configuration for this Feature. If this Feature does not support any per-Scope configuration, this field may be unused. The keys indicate which Scope the configuration is for, in the form: `projects/{p}/locations/global/scopes/{s}` Where {p} is the project, {s} is a valid Scope in this project. {p} WILL match the Feature's project. {p} will always be returned as the project number, but the project ID is also accepted during input. If the same Scope is specified in the map twice (using the project ID form, and the project number form), exactly ONE of the entries will be saved, with no guarantees as to which. For this reason, it is recommended the same format be used for all entries when mutating a Feature.",
+          "type": "object"
+        },
+        "scopeStates": {
+          "additionalProperties": {
+            "$ref": "ScopeFeatureState"
+          },
+          "description": "Output only. Scope-specific Feature status. If this Feature does report any per-Scope status, this field may be unused. The keys indicate which Scope the state is for, in the form: `projects/{p}/locations/global/scopes/{s}` Where {p} is the project, {s} is a valid Scope in this project. {p} WILL match the Feature's project.",
+          "readOnly": true,
+          "type": "object"
+        },
         "spec": {
           "$ref": "CommonFeatureSpec",
           "description": "Optional. Hub-wide Feature configuration. If this Feature does not support any Hub-wide configuration, this field may be unused."
@@ -2045,6 +2002,30 @@
       },
       "type": "object"
     },
+    "FleetObservabilityFeatureSpec": {
+      "description": "**Fleet Observability**: The Hub-wide input for the FleetObservability feature.",
+      "id": "FleetObservabilityFeatureSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "FleetObservabilityFeatureState": {
+      "description": "**FleetObservability**: An empty state left as an example Hub-wide Feature state.",
+      "id": "FleetObservabilityFeatureState",
+      "properties": {},
+      "type": "object"
+    },
+    "FleetObservabilityMembershipSpec": {
+      "description": "**FleetObservability**: The membership-specific input for FleetObservability feature.",
+      "id": "FleetObservabilityMembershipSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "FleetObservabilityMembershipState": {
+      "description": "**FleetObservability**: An empty state left as an example membership-specific Feature state.",
+      "id": "FleetObservabilityMembershipState",
+      "properties": {},
+      "type": "object"
+    },
     "GenerateConnectManifestResponse": {
       "description": "GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.",
       "id": "GenerateConnectManifestResponse",
@@ -2106,6 +2087,14 @@
       "description": "Configuration of an auth method for a member/cluster. Only one authentication method (e.g., OIDC and LDAP) can be set per AuthMethod.",
       "id": "IdentityServiceAuthMethod",
       "properties": {
+        "azureadConfig": {
+          "$ref": "IdentityServiceAzureADConfig",
+          "description": "AzureAD specific Configuration."
+        },
+        "googleConfig": {
+          "$ref": "IdentityServiceGoogleConfig",
+          "description": "GoogleConfig specific configuration"
+        },
         "name": {
           "description": "Identifier for auth config.",
           "type": "string"
@@ -2117,6 +2106,46 @@
         "proxy": {
           "description": "Proxy server address to use for auth method.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceAzureADConfig": {
+      "description": "Configuration for the AzureAD Auth flow.",
+      "id": "IdentityServiceAzureADConfig",
+      "properties": {
+        "clientId": {
+          "description": "ID for the registered client application that makes authentication requests to the Azure AD identity provider.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub CLH.",
+          "type": "string"
+        },
+        "encryptedClientSecret": {
+          "description": "Output only. Encrypted AzureAD client secret.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kubectlRedirectUri": {
+          "description": "The redirect URL that kubectl uses for authorization.",
+          "type": "string"
+        },
+        "tenant": {
+          "description": "Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityServiceGoogleConfig": {
+      "description": "Configuration for the Google Plugin Auth flow.",
+      "id": "IdentityServiceGoogleConfig",
+      "properties": {
+        "disable": {
+          "description": "Disable automatic configuration of Google Plugin on supported platforms.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2186,6 +2215,10 @@
         },
         "deployCloudConsoleProxy": {
           "description": "Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.",
+          "type": "boolean"
+        },
+        "enableAccessToken": {
+          "description": "Enable access token.",
           "type": "boolean"
         },
         "encryptedClientSecret": {
@@ -2380,33 +2413,6 @@
       },
       "type": "object"
     },
-    "LocalControllerState": {
-      "description": "LocalControllerState contains the state of the local controller deployed in the cluster.",
-      "id": "LocalControllerState",
-      "properties": {
-        "description": {
-          "description": "Description represents the human readable description of the current state of the local PE controller",
-          "type": "string"
-        },
-        "installationState": {
-          "description": "InstallationState represents the state of deployment of the local PE controller in the cluster.",
-          "enum": [
-            "INSTALLATION_STATE_UNSPECIFIED",
-            "INSTALLATION_STATE_NOT_INSTALLED",
-            "INSTALLATION_STATE_INSTALLED",
-            "INSTALLATION_STATE_FAILED"
-          ],
-          "enumDescriptions": [
-            "state of installation is unknown",
-            "component is not installed",
-            "component is successfully installed",
-            "installation failed"
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Location": {
       "description": "A resource that represents Google Cloud Platform location.",
       "id": "Location",
@@ -2551,13 +2557,17 @@
       "description": "MembershipFeatureSpec contains configuration information for a single Membership.",
       "id": "MembershipFeatureSpec",
       "properties": {
-        "anthosvm": {
-          "$ref": "AnthosVMMembershipSpec",
-          "description": "AnthosVM spec."
-        },
         "configmanagement": {
           "$ref": "ConfigManagementMembershipSpec",
           "description": "Config Management-specific spec."
+        },
+        "fleetInherited": {
+          "description": "True if value of `feature_spec` was inherited from a fleet-level default.",
+          "type": "boolean"
+        },
+        "fleetobservability": {
+          "$ref": "FleetObservabilityMembershipSpec",
+          "description": "Fleet observability membership spec"
         },
         "identityservice": {
           "$ref": "IdentityServiceMembershipSpec",
@@ -2574,10 +2584,6 @@
       "description": "MembershipFeatureState contains Feature status information for a single Membership.",
       "id": "MembershipFeatureState",
       "properties": {
-        "anthosvm": {
-          "$ref": "AnthosVMMembershipState",
-          "description": "AnthosVM state."
-        },
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureState",
           "description": "Appdevexperience specific state."
@@ -2585,6 +2591,10 @@
         "configmanagement": {
           "$ref": "ConfigManagementMembershipState",
           "description": "Config Management-specific state."
+        },
+        "fleetobservability": {
+          "$ref": "FleetObservabilityMembershipState",
+          "description": "Fleet observability membership state."
         },
         "identityservice": {
           "$ref": "IdentityServiceMembershipState",
@@ -2627,18 +2637,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "MigrateSpec": {
-      "description": "MigrateSpec contains the migrate subfeature configuration.",
-      "id": "MigrateSpec",
-      "properties": {},
-      "type": "object"
-    },
-    "MigrateState": {
-      "description": "MigrateState contains the state of Migrate subfeature",
-      "id": "MigrateState",
-      "properties": {},
       "type": "object"
     },
     "MultiCloudCluster": {
@@ -2850,6 +2848,24 @@
       },
       "type": "object"
     },
+    "ScopeFeatureSpec": {
+      "description": "ScopeFeatureSpec contains feature specs for a fleet scope.",
+      "id": "ScopeFeatureSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "ScopeFeatureState": {
+      "description": "ScopeFeatureState contains Scope-wide Feature status information.",
+      "id": "ScopeFeatureState",
+      "properties": {
+        "state": {
+          "$ref": "FeatureState",
+          "description": "Output only. The \"running state\" of the Feature in this Scope.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "ServiceMeshControlPlaneManagement": {
       "description": "Status of control plane management.",
       "id": "ServiceMeshControlPlaneManagement",
@@ -2863,6 +2879,44 @@
         },
         "state": {
           "description": "LifecycleState of control plane management.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "DISABLED",
+            "FAILED_PRECONDITION",
+            "PROVISIONING",
+            "ACTIVE",
+            "STALLED",
+            "NEEDS_ATTENTION",
+            "DEGRADED"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "DISABLED means that the component is not enabled.",
+            "FAILED_PRECONDITION means that provisioning cannot proceed because of some characteristic of the member cluster.",
+            "PROVISIONING means that provisioning is in progress.",
+            "ACTIVE means that the component is ready for use.",
+            "STALLED means that provisioning could not be done.",
+            "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)",
+            "DEGRADED means that the component is ready, but operating in a degraded state."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMeshDataPlaneManagement": {
+      "description": "Status of data plane management. Only reported per-member.",
+      "id": "ServiceMeshDataPlaneManagement",
+      "properties": {
+        "details": {
+          "description": "Explanation of the status.",
+          "items": {
+            "$ref": "ServiceMeshStatusDetails"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Lifecycle status of data plane management.",
           "enum": [
             "LIFECYCLE_STATE_UNSPECIFIED",
             "DISABLED",
@@ -2905,6 +2959,20 @@
             "User will manually configure the control plane (e.g. via CLI, or via the ControlPlaneRevision KRM API)"
           ],
           "type": "string"
+        },
+        "management": {
+          "description": "Enables automatic Service Mesh management.",
+          "enum": [
+            "MANAGEMENT_UNSPECIFIED",
+            "MANAGEMENT_AUTOMATIC",
+            "MANAGEMENT_MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Google should manage my Service Mesh for the cluster.",
+            "User will manually configure their service mesh components."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2917,20 +2985,13 @@
           "$ref": "ServiceMeshControlPlaneManagement",
           "description": "Output only. Status of control plane management",
           "readOnly": true
+        },
+        "dataPlaneManagement": {
+          "$ref": "ServiceMeshDataPlaneManagement",
+          "description": "Output only. Status of data plane management.",
+          "readOnly": true
         }
       },
-      "type": "object"
-    },
-    "ServiceMeshSpec": {
-      "description": "ServiceMeshSpec contains the serviceMesh subfeature configuration.",
-      "id": "ServiceMeshSpec",
-      "properties": {},
-      "type": "object"
-    },
-    "ServiceMeshState": {
-      "description": "ServiceMeshState contains the state of Service Mesh subfeature",
-      "id": "ServiceMeshState",
-      "properties": {},
       "type": "object"
     },
     "ServiceMeshStatusDetails": {

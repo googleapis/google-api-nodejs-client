@@ -524,9 +524,22 @@
       }
     }
   },
-  "revision": "20220602",
+  "revision": "20221219",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
+    "ABNFGrammar": {
+      "id": "ABNFGrammar",
+      "properties": {
+        "abnfStrings": {
+          "description": "All declarations and rules of an ABNF grammar broken up into multiple strings that will end up concatenated.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ClassItem": {
       "description": "An item of the class.",
       "id": "ClassItem",
@@ -732,12 +745,21 @@
           "$ref": "Status",
           "description": "If the transcript output fails this field contains the relevant error."
         },
+        "requestId": {
+          "description": "The ID associated with the request. This is a unique ID specific only to the given request.",
+          "format": "int64",
+          "type": "string"
+        },
         "results": {
           "description": "Sequential list of transcription results corresponding to sequential portions of audio.",
           "items": {
             "$ref": "SpeechRecognitionResult"
           },
           "type": "array"
+        },
+        "speechAdaptationInfo": {
+          "$ref": "SpeechAdaptationInfo",
+          "description": "Provides information on speech adaptation behavior in response"
         },
         "totalBilledTime": {
           "description": "When available, billed audio seconds for the corresponding request.",
@@ -853,7 +875,7 @@
           "type": "array"
         },
         "audioChannelCount": {
-          "description": "The number of channels in the input audio data. ONLY set this for MULTI-CHANNEL recognition. Valid values for LINEAR16 and FLAC are `1`-`8`. Valid values for OGG_OPUS are '1'-'254'. Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If `0` or omitted, defaults to one channel (mono). Note: We only recognize the first channel by default. To perform independent recognition on each channel set `enable_separate_recognition_per_channel` to 'true'.",
+          "description": "The number of channels in the input audio data. ONLY set this for MULTI-CHANNEL recognition. Valid values for LINEAR16, OGG_OPUS and FLAC are `1`-`8`. Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If `0` or omitted, defaults to one channel (mono). Note: We only recognize the first channel by default. To perform independent recognition on each channel set `enable_separate_recognition_per_channel` to 'true'.",
           "format": "int32",
           "type": "integer"
         },
@@ -1092,12 +1114,21 @@
       "description": "The only message returned to the client by the `Recognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages.",
       "id": "RecognizeResponse",
       "properties": {
+        "requestId": {
+          "description": "The ID associated with the request. This is a unique ID specific only to the given request.",
+          "format": "int64",
+          "type": "string"
+        },
         "results": {
           "description": "Sequential list of transcription results corresponding to sequential portions of audio.",
           "items": {
             "$ref": "SpeechRecognitionResult"
           },
           "type": "array"
+        },
+        "speechAdaptationInfo": {
+          "$ref": "SpeechAdaptationInfo",
+          "description": "Provides information on adaptation behavior in response"
         },
         "totalBilledTime": {
           "description": "When available, billed audio seconds for the corresponding request.",
@@ -1138,6 +1169,10 @@
       "description": "Speech adaptation configuration.",
       "id": "SpeechAdaptation",
       "properties": {
+        "abnfGrammar": {
+          "$ref": "ABNFGrammar",
+          "description": "Augmented Backus-Naur form (ABNF) is a standardized grammar notation comprised by a set of derivation rules. See specifications: https://www.w3.org/TR/speech-grammar"
+        },
         "customClasses": {
           "description": "A collection of custom classes. To specify the classes inline, leave the class' `name` blank and fill in the rest of its fields, giving it a unique `custom_class_id`. Refer to the inline defined class in phrase hints by its `custom_class_id`.",
           "items": {
@@ -1158,6 +1193,21 @@
             "$ref": "PhraseSet"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SpeechAdaptationInfo": {
+      "description": "Information on speech adaptation use in results",
+      "id": "SpeechAdaptationInfo",
+      "properties": {
+        "adaptationTimeout": {
+          "description": "Whether there was a timeout when applying speech adaptation. If true, adaptation had no effect in the response transcript.",
+          "type": "boolean"
+        },
+        "timeoutMessage": {
+          "description": "If set, returns a message specifying which part of the speech adaptation request timed out.",
+          "type": "string"
         }
       },
       "type": "object"

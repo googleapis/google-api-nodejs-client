@@ -296,6 +296,10 @@ export namespace composer_v1 {
      */
     privateEnvironmentConfig?: Schema$PrivateEnvironmentConfig;
     /**
+     * Optional. The Recovery settings configuration of an environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    recoveryConfig?: Schema$RecoveryConfig;
+    /**
      * The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
@@ -406,6 +410,35 @@ export namespace composer_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Request to load a snapshot into a Cloud Composer environment.
+   */
+  export interface Schema$LoadSnapshotRequest {
+    /**
+     * Whether or not to skip setting Airflow overrides when loading the environment's state.
+     */
+    skipAirflowOverridesSetting?: boolean | null;
+    /**
+     * Whether or not to skip setting environment variables when loading the environment's state.
+     */
+    skipEnvironmentVariablesSetting?: boolean | null;
+    /**
+     * Whether or not to skip copying Cloud Storage data when loading the environment's state.
+     */
+    skipGcsDataCopying?: boolean | null;
+    /**
+     * Whether or not to skip installing Pypi packages when loading the environment's state.
+     */
+    skipPypiPackagesInstallation?: boolean | null;
+    /**
+     * A Cloud Storage path to a snapshot to load, e.g.: "gs://my-bucket/snapshots/project_location_environment_timestamp".
+     */
+    snapshotPath?: string | null;
+  }
+  /**
+   * Response to LoadSnapshotRequest.
+   */
+  export interface Schema$LoadSnapshotResponse {}
+  /**
    * The configuration settings for Cloud Composer maintenance window. The following example: ``` { "startTime":"2019-08-01T01:00:00Z" "endTime":"2019-08-01T07:00:00Z" "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE" \} ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.
    */
   export interface Schema$MaintenanceWindow {
@@ -434,6 +467,15 @@ export namespace composer_v1 {
      * Whether or not master authorized networks feature is enabled.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Configuration options for networking connections in the Composer 2 environment.
+   */
+  export interface Schema$NetworkingConfig {
+    /**
+     * Optional. Indicates the user requested specifc connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment.
+     */
+    connectionType?: string | null;
   }
   /**
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
@@ -580,6 +622,10 @@ export namespace composer_v1 {
      */
     enablePrivatelyUsedPublicIps?: boolean | null;
     /**
+     * Optional. Configuration for the network connections configuration in the environment.
+     */
+    networkingConfig?: Schema$NetworkingConfig;
+    /**
      * Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
@@ -591,6 +637,54 @@ export namespace composer_v1 {
      * Output only. The IP range reserved for the tenant project's App Engine VMs. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
     webServerIpv4ReservedRange?: string | null;
+  }
+  /**
+   * The Recovery settings of an environment.
+   */
+  export interface Schema$RecoveryConfig {
+    /**
+     * Optional. The configuration for scheduled snapshot creation mechanism.
+     */
+    scheduledSnapshotsConfig?: Schema$ScheduledSnapshotsConfig;
+  }
+  /**
+   * Request to create a snapshot of a Cloud Composer environment.
+   */
+  export interface Schema$SaveSnapshotRequest {
+    /**
+     * Location in a Cloud Storage where the snapshot is going to be stored, e.g.: "gs://my-bucket/snapshots".
+     */
+    snapshotLocation?: string | null;
+  }
+  /**
+   * Response to SaveSnapshotRequest.
+   */
+  export interface Schema$SaveSnapshotResponse {
+    /**
+     * The fully-resolved Cloud Storage path of the created snapshot, e.g.: "gs://my-bucket/snapshots/project_location_environment_timestamp". This field is populated only if the snapshot creation was successful.
+     */
+    snapshotPath?: string | null;
+  }
+  /**
+   * The configuration for scheduled snapshot creation mechanism.
+   */
+  export interface Schema$ScheduledSnapshotsConfig {
+    /**
+     * Optional. Whether scheduled snapshots creation is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. The cron expression representing the time when snapshots creation mechanism runs. This field is subject to additional validation around frequency of execution.
+     */
+    snapshotCreationSchedule?: string | null;
+    /**
+     * Optional. The Cloud Storage location for storing automatically created snapshots.
+     */
+    snapshotLocation?: string | null;
+    /**
+     * Optional. Time zone that sets the context to interpret snapshot_creation_schedule.
+     */
+    timeZone?: string | null;
   }
   /**
    * Configuration for resources used by Airflow schedulers.
@@ -1320,6 +1414,153 @@ export namespace composer_v1 {
     }
 
     /**
+     * Loads a snapshot of a Cloud Composer environment. As a result of this operation, a snapshot of environment's specified in LoadSnapshotRequest is loaded into the environment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.loadSnapshot({
+     *     // The resource name of the target environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *     environment:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "skipAirflowOverridesSetting": false,
+     *       //   "skipEnvironmentVariablesSetting": false,
+     *       //   "skipGcsDataCopying": false,
+     *       //   "skipPypiPackagesInstallation": false,
+     *       //   "snapshotPath": "my_snapshotPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    loadSnapshot(
+      params?: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    loadSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Loadsnapshot,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    loadSnapshot(callback: BodyResponseCallback<Schema$Operation>): void;
+    loadSnapshot(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Loadsnapshot
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Loadsnapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Loadsnapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:loadSnapshot').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Update an environment.
      * @example
      * ```js
@@ -1464,6 +1705,149 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.saveSnapshot({
+     *     // The resource name of the source environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *     environment:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "snapshotLocation": "my_snapshotLocation"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    saveSnapshot(
+      params?: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    saveSnapshot(
+      params: Params$Resource$Projects$Locations$Environments$Savesnapshot,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    saveSnapshot(callback: BodyResponseCallback<Schema$Operation>): void;
+    saveSnapshot(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Savesnapshot
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Savesnapshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Savesnapshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:saveSnapshot').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Environments$Create
@@ -1507,6 +1891,18 @@ export namespace composer_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Environments$Loadsnapshot
+    extends StandardParameters {
+    /**
+     * The resource name of the target environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LoadSnapshotRequest;
+  }
   export interface Params$Resource$Projects$Locations$Environments$Patch
     extends StandardParameters {
     /**
@@ -1522,6 +1918,18 @@ export namespace composer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Environment;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Savesnapshot
+    extends StandardParameters {
+    /**
+     * The resource name of the source environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SaveSnapshotRequest;
   }
 
   export class Resource$Projects$Locations$Imageversions {

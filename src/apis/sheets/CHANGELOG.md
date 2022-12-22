@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v3.0.3...sheets-v4.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v3.0.2...sheets-v3.0.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([619e0bd](https://github.com/googleapis/google-api-nodejs-client/commit/619e0bd1e87c73a5cb2a6f9e335fb00e59ff4f09))
+
 ## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v3.0.1...sheets-v3.0.2) (2022-07-04)
 
 

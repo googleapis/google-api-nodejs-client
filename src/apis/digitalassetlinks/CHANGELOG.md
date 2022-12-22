@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v0.4.2...digitalassetlinks-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v0.4.1...digitalassetlinks-v0.4.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **digitalassetlinks:** update the API ([4f1268b](https://github.com/googleapis/google-api-nodejs-client/commit/4f1268b939ddf37da26b12e7b0b9271d71dabd82))
+
 ## [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v0.4.0...digitalassetlinks-v0.4.1) (2022-06-21)
 
 

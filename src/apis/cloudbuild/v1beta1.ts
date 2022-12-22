@@ -197,9 +197,17 @@ export namespace cloudbuild_v1beta1 {
      */
     images?: string[] | null;
     /**
+     * A list of Maven artifacts to be uploaded to Artifact Registry upon successful completion of all build steps. Artifacts in the workspace matching specified paths globs will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any artifacts fail to be pushed, the build is marked FAILURE.
+     */
+    mavenArtifacts?: Schema$MavenArtifact[];
+    /**
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ArtifactObjects;
+    /**
+     * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    pythonPackages?: Schema$PythonPackage[];
   }
   /**
    * Response of BatchCreateBitbucketServerConnectedRepositories RPC method including all successfully connected Bitbucket Server repositories.
@@ -226,6 +234,41 @@ export namespace cloudbuild_v1beta1 {
      * Time the operation was created.
      */
     createTime?: string | null;
+  }
+  /**
+   * Response of BatchCreateGitLabConnectedRepositories RPC method.
+   */
+  export interface Schema$BatchCreateGitLabConnectedRepositoriesResponse {
+    /**
+     * The GitLab connected repository requests' responses.
+     */
+    gitlabConnectedRepositories?: Schema$GitLabConnectedRepository[];
+  }
+  /**
+   * Metadata for `BatchCreateGitLabConnectedRepositories` operation.
+   */
+  export interface Schema$BatchCreateGitLabConnectedRepositoriesResponseMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * The name of the `GitLabConfig` that added connected repositories. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     */
+    config?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+  }
+  /**
+   * Message for response of creating repositories in batch.
+   */
+  export interface Schema$BatchCreateRepositoriesResponse {
+    /**
+     * Repository resources created.
+     */
+    repositories?: Schema$Repository[];
   }
   /**
    * / BitbucketServerConnectedRepository represents a connected Bitbucket Server / repository.
@@ -374,7 +417,7 @@ export namespace cloudbuild_v1beta1 {
      */
     timeout?: string | null;
     /**
-     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
+     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all artifacts including docker images and non docker artifacts. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
      */
     timing?: {[key: string]: Schema$TimeSpan} | null;
     /**
@@ -413,7 +456,7 @@ export namespace cloudbuild_v1beta1 {
    */
   export interface Schema$BuildOptions {
     /**
-     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
+     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.
      */
     diskSizeGb?: string | null;
     /**
@@ -470,6 +513,14 @@ export namespace cloudbuild_v1beta1 {
    */
   export interface Schema$BuildStep {
     /**
+     * Allow this build step to fail without failing the entire build if and only if the exit code is one of the specified codes. If allow_failure is also specified, this field will take precedence.
+     */
+    allowExitCodes?: number[] | null;
+    /**
+     * Allow this build step to fail without failing the entire build. If false, the entire build will fail if this step fails. Otherwise, the build will succeed, but this step will still have a failure status. Error information will be reported in the failure_detail field.
+     */
+    allowFailure?: boolean | null;
+    /**
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
@@ -485,6 +536,10 @@ export namespace cloudbuild_v1beta1 {
      * A list of environment variable definitions to be used when running a step. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
     env?: string[] | null;
+    /**
+     * Output only. Return code from running the step.
+     */
+    exitCode?: number | null;
     /**
      * Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.
      */
@@ -582,6 +637,23 @@ export namespace cloudbuild_v1beta1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
+   * Metadata for `CreateGitLabConfig` operation.
+   */
+  export interface Schema$CreateGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
+  }
+  /**
    * Metadata for the `CreateWorkerPool` operation.
    */
   export interface Schema$CreateWorkerPoolOperationMetadata {
@@ -633,6 +705,23 @@ export namespace cloudbuild_v1beta1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
+   * Metadata for `DeleteGitLabConfig` operation.
+   */
+  export interface Schema$DeleteGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
+  }
+  /**
    * Metadata for the `DeleteWorkerPool` operation.
    */
   export interface Schema$DeleteWorkerPoolOperationMetadata {
@@ -674,6 +763,36 @@ export namespace cloudbuild_v1beta1 {
      * Collection of file hashes.
      */
     fileHash?: Schema$Hash[];
+  }
+  /**
+   * GitLabConnectedRepository represents a GitLab connected repository request response.
+   */
+  export interface Schema$GitLabConnectedRepository {
+    /**
+     * The name of the `GitLabConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
+     */
+    parent?: string | null;
+    /**
+     * The GitLab repositories to connect.
+     */
+    repo?: Schema$GitLabRepositoryId;
+    /**
+     * Output only. The status of the repo connection request.
+     */
+    status?: Schema$Status;
+  }
+  /**
+   * GitLabRepositoryId identifies a specific repository hosted on GitLab.com or GitLabEnterprise
+   */
+  export interface Schema$GitLabRepositoryId {
+    /**
+     * Required. Identifier for the repository. example: "namespace/project-slug", namespace is usually the username or group ID
+     */
+    id?: string | null;
+    /**
+     * Output only. The ID of the webhook that was created for receiving events from this repo. We only create and manage a single webhook for each repo.
+     */
+    webhookId?: number | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -751,6 +870,31 @@ export namespace cloudbuild_v1beta1 {
      * `WorkerPools` for the specified project.
      */
     workerPools?: Schema$WorkerPool[];
+  }
+  /**
+   * A Maven artifact to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$MavenArtifact {
+    /**
+     * Maven `artifactId` value used when uploading the artifact to Artifact Registry.
+     */
+    artifactId?: string | null;
+    /**
+     * Maven `groupId` value used when uploading the artifact to Artifact Registry.
+     */
+    groupId?: string | null;
+    /**
+     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     */
+    path?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-maven.pkg.dev/$PROJECT/$REPOSITORY" Artifact in the workspace specified by path will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+    /**
+     * Maven `version` value used when uploading the artifact to Artifact Registry.
+     */
+    version?: string | null;
   }
   /**
    * Network describes the network configuration for a `WorkerPool`.
@@ -940,6 +1084,48 @@ export namespace cloudbuild_v1beta1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
+   * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
+   */
+  export interface Schema$PythonPackage {
+    /**
+     * Path globs used to match files in the build's workspace. For Python/ Twine, this is usually `dist/x`, and sometimes additionally an `.asc` file.
+     */
+    paths?: string[] | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-python.pkg.dev/$PROJECT/$REPOSITORY" Files in the workspace matching any path pattern will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+  }
+  /**
+   * A repository associated to a parent connection.
+   */
+  export interface Schema$Repository {
+    /**
+     * Allows clients to store small amounts of arbitrary data.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. Server assigned timestamp for when the connection was created.
+     */
+    createTime?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Immutable. Resource name of the repository, in the format `projects/x/locations/x/connections/x/repositories/x`.
+     */
+    name?: string | null;
+    /**
+     * Required. Git Clone HTTPS URI.
+     */
+    remoteUri?: string | null;
+    /**
+     * Output only. Server assigned timestamp for when the connection was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Location of the source in a Google Cloud Source Repository.
    */
   export interface Schema$RepoSource {
@@ -981,11 +1167,11 @@ export namespace cloudbuild_v1beta1 {
    */
   export interface Schema$Results {
     /**
-     * Path to the artifact manifest. Only populated when artifacts are uploaded.
+     * Path to the artifact manifest for non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     artifactManifest?: string | null;
     /**
-     * Time to push all non-container artifacts.
+     * Time to push all non-container artifacts to Cloud Storage.
      */
     artifactTiming?: Schema$TimeSpan;
     /**
@@ -1001,9 +1187,17 @@ export namespace cloudbuild_v1beta1 {
      */
     images?: Schema$BuiltImage[];
     /**
-     * Number of artifacts uploaded. Only populated when artifacts are uploaded.
+     * Maven artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    mavenArtifacts?: Schema$UploadedMavenArtifact[];
+    /**
+     * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     numArtifacts?: string | null;
+    /**
+     * Python artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    pythonPackages?: Schema$UploadedPythonPackage[];
   }
   /**
    * Represents the custom metadata of the RunWorkflow long-running operation.
@@ -1252,6 +1446,23 @@ export namespace cloudbuild_v1beta1 {
     githubEnterpriseConfig?: string | null;
   }
   /**
+   * Metadata for `UpdateGitLabConfig` operation.
+   */
+  export interface Schema$UpdateGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
+  }
+  /**
    * Metadata for the `UpdateWorkerPool` operation.
    */
   export interface Schema$UpdateWorkerPoolOperationMetadata {
@@ -1267,6 +1478,40 @@ export namespace cloudbuild_v1beta1 {
      * The resource name of the `WorkerPool` being updated. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
      */
     workerPool?: string | null;
+  }
+  /**
+   * A Maven artifact uploaded using the MavenArtifact directive.
+   */
+  export interface Schema$UploadedMavenArtifact {
+    /**
+     * Hash types and values of the Maven Artifact.
+     */
+    fileHashes?: Schema$FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Artifact uploaded using the PythonPackage directive.
+   */
+  export interface Schema$UploadedPythonPackage {
+    /**
+     * Hash types and values of the Python Artifact.
+     */
+    fileHashes?: Schema$FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution.

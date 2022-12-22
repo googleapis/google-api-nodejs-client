@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v4.3.1...sasportal-v5.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [4.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v4.3.0...sasportal-v4.3.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **sasportal:** update the API ([6c2bd4f](https://github.com/googleapis/google-api-nodejs-client/commit/6c2bd4ff81b630a66217055e1268ffee713567b0))
+
 ## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v4.2.1...sasportal-v4.3.0) (2022-07-04)
 
 

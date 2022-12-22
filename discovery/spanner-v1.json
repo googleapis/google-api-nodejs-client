@@ -113,8 +113,119 @@
   "resources": {
     "projects": {
       "resources": {
+        "instanceConfigOperations": {
+          "methods": {
+            "list": {
+              "description": "Lists the user-managed instance config long-running operations in the given project. An instance config operation has a name of the form `projects//instanceConfigs//operations/`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations. Operations returned are ordered by `operation.metadata.value.start_time` in descending order starting from the most recently started operation.",
+              "flatPath": "v1/projects/{projectsId}/instanceConfigOperations",
+              "httpMethod": "GET",
+              "id": "spanner.projects.instanceConfigOperations.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \\ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \\ `(metadata.instance_config.name:custom-config) AND` \\ `(metadata.progress.start_time < \\\"2021-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance config name contains \"custom-config\". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "If non-empty, `page_token` should contain a next_page_token from a previous ListInstanceConfigOperationsResponse to the same `parent` and with the same `filter`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The project of the instance config operations. Values are of the form `projects/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/instanceConfigOperations",
+              "response": {
+                "$ref": "ListInstanceConfigOperationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/spanner.admin"
+              ]
+            }
+          }
+        },
         "instanceConfigs": {
           "methods": {
+            "create": {
+              "description": "Creates an instance config and begins preparing it to be used. The returned long-running operation can be used to track the progress of preparing the new instance config. The instance config name is assigned by the caller. If the named instance config already exists, `CreateInstanceConfig` returns `ALREADY_EXISTS`. Immediately after the request returns: * The instance config is readable via the API, with all requested attributes. The instance config's reconciling field is set to true. Its state is `CREATING`. While the operation is pending: * Cancelling the operation renders the instance config immediately unreadable via the API. * Except for deleting the creating resource, all other attempts to modify the instance config are rejected. Upon completion of the returned operation: * Instances can be created using the instance configuration. * The instance config's reconciling field becomes false. Its state becomes `READY`. The returned long-running operation will have a name of the format `/operations/` and can be used to track creation of the instance config. The metadata field type is CreateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.create` permission on the resource parent.",
+              "flatPath": "v1/projects/{projectsId}/instanceConfigs",
+              "httpMethod": "POST",
+              "id": "spanner.projects.instanceConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the project in which to create the instance config. Values are of the form `projects/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/instanceConfigs",
+              "request": {
+                "$ref": "CreateInstanceConfigRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/spanner.admin"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the instance config. Deletion is only allowed when no instances are using the configuration. If any instances are using the config, returns `FAILED_PRECONDITION`. Only user managed configurations can be deleted. Authorization requires `spanner.instanceConfigs.delete` permission on the resource name.",
+              "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "spanner.projects.instanceConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "etag": {
+                  "description": "Used for optimistic concurrency control as a way to help prevent simultaneous deletes of an instance config from overwriting each other. If not empty, the API only deletes the instance config when the etag provided matches the current status of the requested instance config. Otherwise, deletes the instance config without checking the current status of the requested instance config.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The name of the instance configuration to be deleted. Values are of the form `projects//instanceConfigs/`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/instanceConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "validateOnly": {
+                  "description": "An option to validate, but not actually execute, a request, and provide the same response.",
+                  "location": "query",
+                  "type": "boolean"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/spanner.admin"
+              ]
+            },
             "get": {
               "description": "Gets information about a particular instance configuration.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}",
@@ -172,6 +283,35 @@
               "path": "v1/{+parent}/instanceConfigs",
               "response": {
                 "$ref": "ListInstanceConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/spanner.admin"
+              ]
+            },
+            "patch": {
+              "description": "Updates an instance config. The returned long-running operation can be used to track the progress of updating the instance. If the named instance config does not exist, returns `NOT_FOUND`. Only user managed configurations can be updated. Immediately after the request returns: * The instance config's reconciling field is set to true. While the operation is pending: * Cancelling the operation sets its metadata's cancel_time. The operation is guaranteed to succeed at undoing all changes, after which point it terminates with a `CANCELLED` status. * All other attempts to modify the instance config are rejected. * Reading the instance config via the API continues to give the pre-request values. Upon completion of the returned operation: * Creating instances using the instance configuration uses the new values. * The instance config's new values are readable via the API. * The instance config's reconciling field becomes false. The returned long-running operation will have a name of the format `/operations/` and can be used to track the instance config modification. The metadata field type is UpdateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.update` permission on the resource name.",
+              "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "spanner.projects.instanceConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/instanceConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "UpdateInstanceConfigRequest"
+              },
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -610,7 +750,7 @@
             "backups": {
               "methods": {
                 "copy": {
-                  "description": "Starts copying a Cloud Spanner Backup. The returned backup long-running operation will have a name of the format `projects//instances//backups//operations/` and can be used to track copying of the backup. The operation is associated with the destination backup. The metadata field type is CopyBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the copying and delete the backup. Concurrent CopyBackup requests can run on the same source backup.",
+                  "description": "Starts copying a Cloud Spanner Backup. The returned backup long-running operation will have a name of the format `projects//instances//backups//operations/` and can be used to track copying of the backup. The operation is associated with the destination backup. The metadata field type is CopyBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the copying and delete the destination backup. Concurrent CopyBackup requests can run on the same source backup.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/backups:copy",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.backups.copy",
@@ -2262,7 +2402,7 @@
       }
     }
   },
-  "revision": "20220811",
+  "revision": "20221213",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2438,7 +2578,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -2584,7 +2724,7 @@
             "Unspecified. Do not use.",
             "This is the default option for CopyBackup when encryption_config is not specified. For example, if the source backup is using `Customer_Managed_Encryption`, the backup will be using the same Cloud KMS key as the source backup.",
             "Use Google default encryption.",
-            "Use customer managed encryption. If specified, `kms_key_name` must contain a valid Cloud KMS key."
+            "Use customer managed encryption. If specified, either `kms_key_name` or `kms_key_names` must contain valid Cloud KMS key(s)."
           ],
           "type": "string"
         },
@@ -2710,6 +2850,50 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "protoDescriptors": {
+          "description": "Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in 'extra_statements' above. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run \"\"\" $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto \"\"\" For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateInstanceConfigMetadata": {
+      "description": "Metadata type for the operation returned by CreateInstanceConfig.",
+      "id": "CreateInstanceConfigMetadata",
+      "properties": {
+        "cancelTime": {
+          "description": "The time at which this operation was cancelled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "instanceConfig": {
+          "$ref": "InstanceConfig",
+          "description": "The target instance config end state."
+        },
+        "progress": {
+          "$ref": "InstanceOperationProgress",
+          "description": "The progress of the CreateInstanceConfig operation."
+        }
+      },
+      "type": "object"
+    },
+    "CreateInstanceConfigRequest": {
+      "description": "The request for CreateInstanceConfigRequest.",
+      "id": "CreateInstanceConfigRequest",
+      "properties": {
+        "instanceConfig": {
+          "$ref": "InstanceConfig",
+          "description": "Required. The InstanceConfig proto of the configuration to create. instance_config.name must be `/instanceConfigs/`. instance_config.base_config must be a Google managed configuration name, e.g. /instanceConfigs/us-east1, /instanceConfigs/nam3."
+        },
+        "instanceConfigId": {
+          "description": "Required. The ID of the instance config to create. Valid identifiers are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in length. The `custom-` prefix is required to avoid name conflicts with Google managed configurations.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "An option to validate, but not actually execute, a request, and provide the same response.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2808,7 +2992,7 @@
           "readOnly": true
         },
         "encryptionInfo": {
-          "description": "Output only. For databases that are using customer managed encryption, this field contains the encryption information for the database, such as encryption state and the Cloud KMS key versions that are in use. For databases that are using Google default or other types of encryption, this field is empty. This field is propagated lazily from the backend. There might be a delay from when a key version is being used and when it appears in this field.",
+          "description": "Output only. For databases that are using customer managed encryption, this field contains the encryption information for the database, such as all Cloud KMS key versions that are in use. The `encryption_status' field inside of each `EncryptionInfo` is not populated. For databases that are using Google default or other types of encryption, this field is empty. This field is propagated lazily from the backend. There might be a delay from when a key version is being used and when it appears in this field.",
           "items": {
             "$ref": "EncryptionInfo"
           },
@@ -2854,7 +3038,7 @@
       "id": "DatabaseRole",
       "properties": {
         "name": {
-          "description": "Required. The name of the database role. Values are of the form `projects//instances//databases//databaseRoles/ {role}`, where `` is as specified in the `CREATE ROLE` DDL statement. This name can be passed to Get/Set IAMPolicy methods to identify the database role.",
+          "description": "Required. The name of the database role. Values are of the form `projects//instances//databases//databaseRoles/` where `` is as specified in the `CREATE ROLE` DDL statement.",
           "type": "string"
         }
       },
@@ -3167,6 +3351,11 @@
       "description": "The response for GetDatabaseDdl.",
       "id": "GetDatabaseDdlResponse",
       "properties": {
+        "protoDescriptors": {
+          "description": "Proto descriptors stored in the database. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "format": "byte",
+          "type": "string"
+        },
         "statements": {
           "description": "A list of formatted DDL statements defining the schema of the database specified in the request.",
           "items": {
@@ -3321,8 +3510,31 @@
       "description": "A possible configuration for a Cloud Spanner instance. Configurations define the geographic placement of nodes and their replication.",
       "id": "InstanceConfig",
       "properties": {
+        "baseConfig": {
+          "description": "Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user managed configurations. `base_config` must refer to a configuration of type GOOGLE_MANAGED in the same project as this configuration.",
+          "type": "string"
+        },
+        "configType": {
+          "description": "Output only. Whether this instance config is a Google or User Managed Configuration.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_MANAGED",
+            "USER_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Google managed configuration.",
+            "User managed configuration."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "displayName": {
           "description": "The name of this instance configuration as it appears in UIs.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance config from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance config updates in order to avoid race conditions: An etag is returned in the response which contains instance configs, and systems are expected to put that etag in the request to update instance config to ensure that their change will be applied to the same version of the instance config. If no etag is provided in the call to update instance config, then the existing instance config is overwritten blindly.",
           "type": "string"
         },
         "freeInstanceAvailability": {
@@ -3344,6 +3556,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cloud Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. Cloud Labels can be used to filter collections of resources. They can be used to control how resource metrics are aggregated. And they can be used as arguments to policy management rules (e.g. route, firewall, load balancing, etc.). * Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `a-z{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression `[a-z0-9_-]{0,63}`. * No more than 64 labels can be associated with a given resource. See https://goo.gl/xmQnxf for more information on and examples of labels. If you plan to use labels in your own code, please note that additional characters may be allowed in the future. Therefore, you are advised to use an internal label representation, such as JSON, which doesn't rely upon specific characters being disallowed. For example, representing labels as the string: name + \"_\" + value would prove problematic if we were to allow \"_\" in a future release.",
+          "type": "object"
+        },
         "leaderOptions": {
           "description": "Allowed values of the \"default_leader\" schema option for databases in instances that use this instance configuration.",
           "items": {
@@ -3355,12 +3574,62 @@
           "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`.",
           "type": "string"
         },
+        "optionalReplicas": {
+          "description": "Output only. The available optional replicas to choose from for user managed configurations. Populated for Google managed configurations.",
+          "items": {
+            "$ref": "ReplicaInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "reconciling": {
+          "description": "Output only. If true, the instance config is being created or updated. If false, there are no ongoing operations for the instance config.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "replicas": {
           "description": "The geographic placement of nodes in this instance configuration and their replication properties.",
           "items": {
             "$ref": "ReplicaInfo"
           },
           "type": "array"
+        },
+        "state": {
+          "description": "Output only. The current instance config state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The instance config is still being created.",
+            "The instance config is fully created and ready to be used to create instances."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceOperationProgress": {
+      "description": "Encapsulates progress related information for a Cloud Spanner long running instance operations.",
+      "id": "InstanceOperationProgress",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation failed or was completed successfully.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "progressPercent": {
+          "description": "Percent completion of the operation. Values are between 0 and 100 inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "description": "Time the request was received.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3584,6 +3853,24 @@
         "nextPageToken": {
           "description": "`next_page_token` can be sent in a subsequent ListDatabases call to fetch more of the matching databases.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListInstanceConfigOperationsResponse": {
+      "description": "The response for ListInstanceConfigOperations.",
+      "id": "ListInstanceConfigOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "`next_page_token` can be sent in a subsequent ListInstanceConfigOperations call to fetch more of the matching metadata.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "The list of matching instance config long-running operations. Each operation's name will be prefixed by the instance config's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4286,7 +4573,22 @@
     "ReadWrite": {
       "description": "Message type to initiate a read-write transaction. Currently this transaction type has no options.",
       "id": "ReadWrite",
-      "properties": {},
+      "properties": {
+        "readLockMode": {
+          "description": "Read lock mode for the transaction.",
+          "enum": [
+            "READ_LOCK_MODE_UNSPECIFIED",
+            "PESSIMISTIC",
+            "OPTIMISTIC"
+          ],
+          "enumDescriptions": [
+            "Default value. If the value is not specified, the pessimistic read lock is used.",
+            "Pessimistic lock mode. Read locks are acquired immediately on read.",
+            "Optimistic lock mode. Locks for reads within the transaction are not acquired on read. Instead the locks are acquired on a commit to validate that read/queried data has not changed since the transaction started."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ReplicaInfo": {
@@ -4495,6 +4797,10 @@
         "transaction": {
           "$ref": "Transaction",
           "description": "If the read or SQL query began a transaction as a side-effect, the information about the new transaction is yielded here."
+        },
+        "undeclaredParameters": {
+          "$ref": "StructType",
+          "description": "A SQL query can be parameterized. In PLAN mode, these parameters can be undeclared. This indicates the field names and types for those undeclared parameters in the SQL query. For example, a SQL query like `\"SELECT * FROM Users where UserId = @userId and UserName = @userName \"` could return a `undeclared_parameters` value like: \"fields\": [ { \"name\": \"UserId\", \"type\": { \"code\": \"INT64\" } }, { \"name\": \"UserName\", \"type\": { \"code\": \"STRING\" } }, ]"
         }
       },
       "type": "object"
@@ -4833,7 +5139,9 @@
             "ARRAY",
             "STRUCT",
             "NUMERIC",
-            "JSON"
+            "JSON",
+            "PROTO",
+            "ENUM"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -4847,8 +5155,14 @@
             "Encoded as `list`, where the list elements are represented according to array_element_type.",
             "Encoded as `list`, where list element `i` is represented according to [struct_type.fields[i]][google.spanner.v1.StructType.fields].",
             "Encoded as `string`, in decimal format or scientific notation format. Decimal format: `[+-]Digits[.[Digits]]` or `+-.Digits` Scientific notation: `[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or `+-.Digits[ExponentIndicator[+-]Digits]` (ExponentIndicator is `\"e\"` or `\"E\"`)",
-            "Encoded as a JSON-formatted `string` as described in RFC 7159. The following rules are applied when parsing JSON input: - Whitespace characters are not preserved. - If a JSON object has duplicate keys, only the first key is preserved. - Members of a JSON object are not guaranteed to have their order preserved. - JSON array elements will have their order preserved."
+            "Encoded as a JSON-formatted `string` as described in RFC 7159. The following rules are applied when parsing JSON input: - Whitespace characters are not preserved. - If a JSON object has duplicate keys, only the first key is preserved. - Members of a JSON object are not guaranteed to have their order preserved. - JSON array elements will have their order preserved.",
+            "Encoded as a base64-encoded `string`, as described in RFC 4648, section 4.",
+            "Encoded as `string`, in decimal format."
           ],
+          "type": "string"
+        },
+        "protoTypeFqn": {
+          "description": "If code == PROTO or code == ENUM, then `proto_type_fqn` is the fully qualified name of the proto type representing the proto/enum definition.",
           "type": "string"
         },
         "structType": {
@@ -4859,11 +5173,13 @@
           "description": "The TypeAnnotationCode that disambiguates SQL type that Spanner will use to represent values of this type during query processing. This is necessary for some type codes because a single TypeCode can be mapped to different SQL types depending on the SQL dialect. type_annotation typically is not needed to process the content of a value (it doesn't affect serialization) and clients can ignore it on the read path.",
           "enum": [
             "TYPE_ANNOTATION_CODE_UNSPECIFIED",
-            "PG_NUMERIC"
+            "PG_NUMERIC",
+            "PG_JSONB"
           ],
           "enumDescriptions": [
             "Not specified.",
-            "PostgreSQL compatible NUMERIC type. This annotation needs to be applied to Type instances having NUMERIC type code to specify that values of this type should be treated as PostgreSQL NUMERIC values. Currently this annotation is always needed for NUMERIC when a client interacts with PostgreSQL-enabled Spanner databases."
+            "PostgreSQL compatible NUMERIC type. This annotation needs to be applied to Type instances having NUMERIC type code to specify that values of this type should be treated as PostgreSQL NUMERIC values. Currently this annotation is always needed for NUMERIC when a client interacts with PostgreSQL-enabled Spanner databases.",
+            "PostgreSQL compatible JSONB type. This annotation needs to be applied to Type instances having JSON type code to specify that values of this type should be treated as PostgreSQL JSONB values. Currently this annotation is always needed for JSON when a client interacts with PostgreSQL-enabled Spanner databases."
           ],
           "type": "string"
         }
@@ -4916,12 +5232,57 @@
           "description": "If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation. Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the name of the resulting longrunning.Operation: `/operations/`. `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`.",
           "type": "string"
         },
+        "protoDescriptors": {
+          "description": "Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run \"\"\" $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto \"\"\" For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "format": "byte",
+          "type": "string"
+        },
         "statements": {
           "description": "Required. DDL statements to be applied to the database.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateInstanceConfigMetadata": {
+      "description": "Metadata type for the operation returned by UpdateInstanceConfig.",
+      "id": "UpdateInstanceConfigMetadata",
+      "properties": {
+        "cancelTime": {
+          "description": "The time at which this operation was cancelled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "instanceConfig": {
+          "$ref": "InstanceConfig",
+          "description": "The desired instance config after updating."
+        },
+        "progress": {
+          "$ref": "InstanceOperationProgress",
+          "description": "The progress of the UpdateInstanceConfig operation."
+        }
+      },
+      "type": "object"
+    },
+    "UpdateInstanceConfigRequest": {
+      "description": "The request for UpdateInstanceConfigRequest.",
+      "id": "UpdateInstanceConfigRequest",
+      "properties": {
+        "instanceConfig": {
+          "$ref": "InstanceConfig",
+          "description": "Required. The user instance config to update, which must always include the instance config name. Otherwise, only fields mentioned in update_mask need be included. To prevent conflicts of concurrent updates, etag can be used."
+        },
+        "updateMask": {
+          "description": "Required. A mask specifying which fields in InstanceConfig should be updated. The field mask must always be specified; this prevents any future fields in InstanceConfig from being erased accidentally by clients that do not know about them. Only display_name and labels can be updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "An option to validate, but not actually execute, a request, and provide the same response.",
+          "type": "boolean"
         }
       },
       "type": "object"

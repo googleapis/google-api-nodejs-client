@@ -246,6 +246,19 @@ export namespace monitoring_v3 {
     username?: string | null;
   }
   /**
+   * A well-known service type, defined by its service type and service labels. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+   */
+  export interface Schema$BasicService {
+    /**
+     * Labels that specify the resource that emits the monitoring data which is used for SLO reporting of this Service. Documentation and valid values for given service types here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     */
+    serviceLabels?: {[key: string]: string} | null;
+    /**
+     * The type of service that this basic service defines, e.g. APP_ENGINE service type. Documentation and valid values here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     */
+    serviceType?: string | null;
+  }
+  /**
    * An SLI measuring performance on a well-known service type. Performance will be computed on the basis of pre-defined metrics. The type of the service_resource determines the metrics to use and the service_resource.labels and metric_labels are used to construct a monitoring filter to filter that metric down to just the data relevant to this service.
    */
   export interface Schema$BasicSli {
@@ -517,7 +530,16 @@ export namespace monitoring_v3 {
     totalPointCount?: number | null;
   }
   /**
-   * Custom view of service telemetry. Currently a place-holder pending final design.
+   * Criteria specific to the AlertPolicys that this Snooze applies to. The Snooze will suppress alerts that come from one of the AlertPolicys whose names are supplied.
+   */
+  export interface Schema$Criteria {
+    /**
+     * The specific AlertPolicy names for the alert that should be snoozed. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID] There is a limit of 10 policies per snooze. This limit is checked during snooze creation.
+     */
+    policies?: string[] | null;
+  }
+  /**
+   * Use a custom service to designate a service that you want to monitor when none of the other service types (like App Engine, Cloud Run, or a GKE type) matches your intended service.
    */
   export interface Schema$Custom {}
   /**
@@ -571,7 +593,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Documentation {
     /**
-     * The text of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller. This text can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables).
+     * The body of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller. This text can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables).
      */
     content?: string | null;
     /**
@@ -692,6 +714,15 @@ export namespace monitoring_v3 {
      * The field type URL, without the scheme, for message or enumeration types. Example: "type.googleapis.com/google.protobuf.Timestamp".
      */
     typeUrl?: string | null;
+  }
+  /**
+   * Options used when forecasting the time series and testing the predicted value against the threshold.
+   */
+  export interface Schema$ForecastOptions {
+    /**
+     * Required. The length of time into the future to forecast whether a time series will violate the threshold. If the predicted value is found to violate the threshold, and the violation is observed in all forecasts made for the configured duration, then the time series is considered to be failing.
+     */
+    forecastHorizon?: string | null;
   }
   /**
    * The GetNotificationChannelVerificationCode request.
@@ -860,6 +891,10 @@ export namespace monitoring_v3 {
      * Optional (defaults to "/"). The path to the page against which to run the check. Will be combined with the host (specified within the monitored_resource) and port to construct the full URL. If the provided path does not begin with "/", a "/" will be prepended automatically.
      */
     path?: string | null;
+    /**
+     * Contains information needed to add pings to an HTTP check.
+     */
+    pingConfig?: Schema$PingConfig;
     /**
      * Optional (defaults to 80 when use_ssl is false, and 443 when use_ssl is true). The TCP port on the HTTP server against which to run the check. Will be combined with host (specified within the monitored_resource) and path to construct the full URL.
      */
@@ -1126,6 +1161,19 @@ export namespace monitoring_v3 {
     services?: Schema$Service[];
   }
   /**
+   * The results of a successful ListSnoozes call, containing the matching Snoozes.
+   */
+  export interface Schema$ListSnoozesResponse {
+    /**
+     * Page token for repeated calls to ListSnoozes, to fetch additional pages of results. If this is empty or missing, there are no more pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Snoozes matching this list call.
+     */
+    snoozes?: Schema$Snooze[];
+  }
+  /**
    * The ListTimeSeries response.
    */
   export interface Schema$ListTimeSeriesResponse {
@@ -1351,6 +1399,10 @@ export namespace monitoring_v3 {
      * Required. A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that call is useful to verify the time series that will be retrieved / processed). The filter must specify the metric type and the resource type. Optionally, it can specify resource labels and metric labels. This field must not exceed 2048 Unicode characters in length.
      */
     filter?: string | null;
+    /**
+     * When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecast_horizion. When this field is not set, the MetricThreshold tests the current value of the timeseries against the threshold.
+     */
+    forecastOptions?: Schema$ForecastOptions;
     /**
      * A value against which to compare the time series.
      */
@@ -1584,6 +1636,15 @@ export namespace monitoring_v3 {
     threshold?: number | null;
   }
   /**
+   * Information involved in sending ICMP pings alongside public HTTP/TCP checks. For HTTP, the pings are performed for each part of the redirect chain.
+   */
+  export interface Schema$PingConfig {
+    /**
+     * Number of ICMP pings. A maximum of 3 ICMP pings is currently supported.
+     */
+    pingsCount?: number | null;
+  }
+  /**
    * A single data point in a time series.
    */
   export interface Schema$Point {
@@ -1712,6 +1773,10 @@ export namespace monitoring_v3 {
      */
     appEngine?: Schema$AppEngine;
     /**
+     * Message that contains the service type and service labels of this service if it is a basic service. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     */
+    basicService?: Schema$BasicService;
+    /**
      * Type used for Cloud Endpoints services.
      */
     cloudEndpoints?: Schema$CloudEndpoints;
@@ -1815,6 +1880,27 @@ export namespace monitoring_v3 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
+   * A Snooze will prevent any alerts from being opened, and close any that are already open. The Snooze will work on alerts that match the criteria defined in the Snooze. The Snooze will be active from interval.start_time through interval.end_time.
+   */
+  export interface Schema$Snooze {
+    /**
+     * Required. This defines the criteria for applying the Snooze. See Criteria for more information.
+     */
+    criteria?: Schema$Criteria;
+    /**
+     * Required. A display name for the Snooze. This can be, at most, 512 unicode characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The Snooze will be active from interval.start_time through interval.end_time. interval.start_time cannot be in the past. There is a 15 second clock skew to account for the time it takes for a request to reach the API from the UI.
+     */
+    interval?: Schema$TimeInterval;
+    /**
+     * Required. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system.
+     */
+    name?: string | null;
+  }
+  /**
    * SourceContext represents information about the source of a protobuf element, like the file in which it is defined.
    */
   export interface Schema$SourceContext {
@@ -1853,6 +1939,10 @@ export namespace monitoring_v3 {
    * Information required for a TCP Uptime check request.
    */
   export interface Schema$TcpCheck {
+    /**
+     * Contains information needed to add pings to a TCP check.
+     */
+    pingConfig?: Schema$PingConfig;
     /**
      * The TCP port on the server against which to run the check. Will be combined with host (specified within the monitored_resource) to construct the full URL. Required.
      */
@@ -2676,6 +2766,7 @@ export namespace monitoring_v3 {
     monitoredResourceDescriptors: Resource$Projects$Monitoredresourcedescriptors;
     notificationChannelDescriptors: Resource$Projects$Notificationchanneldescriptors;
     notificationChannels: Resource$Projects$Notificationchannels;
+    snoozes: Resource$Projects$Snoozes;
     timeSeries: Resource$Projects$Timeseries;
     uptimeCheckConfigs: Resource$Projects$Uptimecheckconfigs;
     constructor(context: APIRequestContext) {
@@ -2695,6 +2786,7 @@ export namespace monitoring_v3 {
       this.notificationChannels = new Resource$Projects$Notificationchannels(
         this.context
       );
+      this.snoozes = new Resource$Projects$Snoozes(this.context);
       this.timeSeries = new Resource$Projects$Timeseries(this.context);
       this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs(
         this.context
@@ -2709,7 +2801,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Creates a new alerting policy.
+     * Creates a new alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      * @example
      * ```js
      * // Before running the sample:
@@ -2871,7 +2963,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Deletes an alerting policy.
+     * Deletes an alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      * @example
      * ```js
      * // Before running the sample:
@@ -3289,7 +3381,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.
+     * Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.Design your application to single-thread API calls that modify the state of alerting policies in a single project. This includes calls to CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      * @example
      * ```js
      * // Before running the sample:
@@ -5953,7 +6045,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.
+     * Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.
      * @example
      * ```js
      * // Before running the sample:
@@ -6114,7 +6206,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Deletes a notification channel.
+     * Deletes a notification channel.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.
      * @example
      * ```js
      * // Before running the sample:
@@ -6689,7 +6781,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Updates a notification channel. Fields not specified in the field mask remain unchanged.
+     * Updates a notification channel. Fields not specified in the field mask remain unchanged.Design your application to single-thread API calls that modify the state of notification channels in a single project. This includes calls to CreateNotificationChannel, DeleteNotificationChannel and UpdateNotificationChannel.
      * @example
      * ```js
      * // Before running the sample:
@@ -7240,6 +7332,635 @@ export namespace monitoring_v3 {
      * Request body metadata
      */
     requestBody?: Schema$VerifyNotificationChannelRequest;
+  }
+
+  export class Resource$Projects$Snoozes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Snooze that will prevent alerts, which match the provided criteria, from being opened. The Snooze applies for a specific time interval.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.snoozes.create({
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which a Snooze should be created. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "criteria": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "interval": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "criteria": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "interval": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Snoozes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Snoozes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snooze>;
+    create(
+      params: Params$Resource$Projects$Snoozes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Snoozes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Snooze>,
+      callback: BodyResponseCallback<Schema$Snooze>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Snoozes$Create,
+      callback: BodyResponseCallback<Schema$Snooze>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Snooze>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snoozes$Create
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snooze> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snoozes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snoozes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/snoozes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snooze>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Snooze>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a Snooze by name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.snoozes.get({
+     *     // Required. The ID of the Snooze to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID]
+     *     name: 'projects/my-project/snoozes/my-snooze',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "criteria": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "interval": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Snoozes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Snoozes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snooze>;
+    get(
+      params: Params$Resource$Projects$Snoozes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Snoozes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Snooze>,
+      callback: BodyResponseCallback<Schema$Snooze>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Snoozes$Get,
+      callback: BodyResponseCallback<Schema$Snooze>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Snooze>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snoozes$Get
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snooze> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snoozes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snoozes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snooze>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Snooze>(parameters);
+      }
+    }
+
+    /**
+     * Lists the Snoozes associated with a project. Can optionally pass in filter, which specifies predicates to match Snoozes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.snoozes.list({
+     *     // Optional. Optional filter to restrict results to the given criteria. The following fields are supported. interval.start_time interval.end_timeFor example: ``` interval.start_time \> "2022-03-11T00:00:00-08:00" AND interval.end_time < "2022-03-12T00:00:00-08:00" ```
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to return for a single query. The server may further constrain the maximum number of results returned in a single page. The value should be in the range 1, 1000. If the value given is outside this range, the server will decide the number of results to be returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token from a previous call to ListSnoozesRequest to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Snoozes should be listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "snoozes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Snoozes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Snoozes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnoozesResponse>;
+    list(
+      params: Params$Resource$Projects$Snoozes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Snoozes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSnoozesResponse>,
+      callback: BodyResponseCallback<Schema$ListSnoozesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Snoozes$List,
+      callback: BodyResponseCallback<Schema$ListSnoozesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnoozesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snoozes$List
+        | BodyResponseCallback<Schema$ListSnoozesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSnoozesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSnoozesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSnoozesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snoozes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snoozes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/snoozes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnoozesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSnoozesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a Snooze, identified by its name, with the parameters in the given Snooze object.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.snoozes.patch({
+     *     // Required. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system.
+     *     name: 'projects/my-project/snoozes/my-snooze',
+     *     // Required. The fields to update.For each field listed in update_mask: If the Snooze object supplied in the UpdateSnoozeRequest has a value for that field, the value of the field in the existing Snooze will be set to the value of the field in the supplied Snooze. If the field does not have a value in the supplied Snooze, the field in the existing Snooze is set to its default value.Fields not listed retain their existing value.The following are the field names that are accepted in update_mask: display_name interval.start_time interval.end_timeThat said, the start time and end time of the Snooze determines which fields can legally be updated. Before attempting an update, users should consult the documentation for UpdateSnoozeRequest, which talks about which fields can be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "criteria": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "interval": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "criteria": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "interval": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Snoozes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Snoozes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snooze>;
+    patch(
+      params: Params$Resource$Projects$Snoozes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Snoozes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Snooze>,
+      callback: BodyResponseCallback<Schema$Snooze>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Snoozes$Patch,
+      callback: BodyResponseCallback<Schema$Snooze>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Snooze>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Snoozes$Patch
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snooze>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snooze> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Snoozes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Snoozes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snooze>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Snooze>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Snoozes$Create
+    extends StandardParameters {
+    /**
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which a Snooze should be created. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Snooze;
+  }
+  export interface Params$Resource$Projects$Snoozes$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the Snooze to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID]
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Snoozes$List
+    extends StandardParameters {
+    /**
+     * Optional. Optional filter to restrict results to the given criteria. The following fields are supported. interval.start_time interval.end_timeFor example: ``` interval.start_time \> "2022-03-11T00:00:00-08:00" AND interval.end_time < "2022-03-12T00:00:00-08:00" ```
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return for a single query. The server may further constrain the maximum number of results returned in a single page. The value should be in the range 1, 1000. If the value given is outside this range, the server will decide the number of results to be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token from a previous call to ListSnoozesRequest to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Snoozes should be listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Snoozes$Patch
+    extends StandardParameters {
+    /**
+     * Required. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system.
+     */
+    name?: string;
+    /**
+     * Required. The fields to update.For each field listed in update_mask: If the Snooze object supplied in the UpdateSnoozeRequest has a value for that field, the value of the field in the existing Snooze will be set to the value of the field in the supplied Snooze. If the field does not have a value in the supplied Snooze, the field in the existing Snooze is set to its default value.Fields not listed retain their existing value.The following are the field names that are accepted in update_mask: display_name interval.start_time interval.end_timeThat said, the start time and end time of the Snooze determines which fields can legally be updated. Before attempting an update, users should consult the documentation for UpdateSnoozeRequest, which talks about which fields can be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Snooze;
   }
 
   export class Resource$Projects$Timeseries {
@@ -8432,6 +9153,8 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.list({
+     *     // If provided, this field specifies the criteria that must be met by uptime checks to be included in the response.For more details, see Filtering syntax (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
+     *     filter: 'placeholder-value',
      *     // The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
@@ -8747,6 +9470,10 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Uptimecheckconfigs$List
     extends StandardParameters {
     /**
+     * If provided, this field specifies the criteria that must be met by uptime checks to be included in the response.For more details, see Filtering syntax (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax).
+     */
+    filter?: string;
+    /**
      * The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
      */
     pageSize?: number;
@@ -8825,6 +9552,7 @@ export namespace monitoring_v3 {
      *       // request body parameters
      *       // {
      *       //   "appEngine": {},
+     *       //   "basicService": {},
      *       //   "cloudEndpoints": {},
      *       //   "cloudRun": {},
      *       //   "clusterIstio": {},
@@ -8846,6 +9574,7 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "appEngine": {},
+     *   //   "basicService": {},
      *   //   "cloudEndpoints": {},
      *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
@@ -9117,6 +9846,7 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "appEngine": {},
+     *   //   "basicService": {},
      *   //   "cloudEndpoints": {},
      *   //   "cloudRun": {},
      *   //   "clusterIstio": {},
@@ -9404,6 +10134,7 @@ export namespace monitoring_v3 {
      *       // request body parameters
      *       // {
      *       //   "appEngine": {},
+     *       //   "basicService": {},
      *       //   "cloudEndpoints": {},
      *       //   "cloudRun": {},
      *       //   "clusterIstio": {},
@@ -9425,6 +10156,7 @@ export namespace monitoring_v3 {
      *   // Example response
      *   // {
      *   //   "appEngine": {},
+     *   //   "basicService": {},
      *   //   "cloudEndpoints": {},
      *   //   "cloudRun": {},
      *   //   "clusterIstio": {},

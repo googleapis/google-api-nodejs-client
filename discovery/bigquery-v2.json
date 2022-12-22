@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20220813",
+  "revision": "20221209",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2391,7 +2391,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -2698,6 +2698,17 @@
       },
       "type": "object"
     },
+    "DataMaskingStatistics": {
+      "id": "DataMaskingStatistics",
+      "properties": {
+        "dataMaskingApplied": {
+          "default": "false",
+          "description": "[Output-only] [Preview] Whether any accessed data was protected by data masking. The actual evaluation is done by accessStats.masked_field_count > 0. Since this is only used for the discovery_doc generation purpose, as long as the type (boolean) matches, client library can leverage this. The actual evaluation of the variable is done else-where.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DataSplitResult": {
       "description": "Data split result. This contains references to the training and evaluation data tables that were used to train the model.",
       "id": "DataSplitResult",
@@ -2845,6 +2856,10 @@
           "description": "[Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.",
           "type": "string"
         },
+        "storageBillingModel": {
+          "description": "[Optional] Storage billing model to be used for all tables in the dataset. Can be set to PHYSICAL. Default is LOGICAL.",
+          "type": "string"
+        },
         "tags": {
           "description": "[Optional]The tags associated with this dataset. Tag keys are globally unique.",
           "items": {
@@ -2876,11 +2891,13 @@
           "items": {
             "enum": [
               "TARGET_TYPE_UNSPECIFIED",
-              "VIEWS"
+              "VIEWS",
+              "ROUTINES"
             ],
             "enumDescriptions": [
               "Do not use. You must set a target type explicitly.",
-              "This entry applies to views in the dataset."
+              "This entry applies to views in the dataset.",
+              "This entry applies to routines in the dataset."
             ],
             "type": "string"
           },
@@ -3423,6 +3440,14 @@
           "description": "[Optional] The maximum number of bad records that BigQuery can ignore when reading data. If the number of bad records exceeds this value, an invalid error is returned in the job result. This is only valid for CSV, JSON, and Google Sheets. The default value is 0, which requires that all records are valid. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.",
           "format": "int32",
           "type": "integer"
+        },
+        "metadataCacheMode": {
+          "description": "[Optional] Metadata Cache Mode for the table. Set this to enable caching of metadata from external data source.",
+          "type": "string"
+        },
+        "objectMetadata": {
+          "description": "ObjectMetadata is used to create Object Tables. Object Tables contain a listing of objects (with their metadata) found at the source_uris. If ObjectMetadata is set, source_format should be omitted. Currently SIMPLE is the only supported Object Metadata type.",
+          "type": "string"
         },
         "parquetOptions": {
           "$ref": "ParquetOptions",
@@ -4085,9 +4110,20 @@
           "$ref": "Clustering",
           "description": "[Beta] Clustering specification for the destination table. Must be specified with time-based partitioning, data in the table will be first partitioned and subsequently clustered."
         },
+        "connectionProperties": {
+          "description": "Connection properties.",
+          "items": {
+            "$ref": "ConnectionProperty"
+          },
+          "type": "array"
+        },
         "createDisposition": {
           "description": "[Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.",
           "type": "string"
+        },
+        "createSession": {
+          "description": "If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs the load job in non-session mode.",
+          "type": "boolean"
         },
         "decimalTargetTypes": {
           "description": "[Optional] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is [\"NUMERIC\", \"BIGNUMERIC\"]. If (precision,scale) is: (38,9) -> NUMERIC; (39,9) -> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); (38,10) -> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); (76,38) -> BIGNUMERIC; (77,38) -> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, [\"BIGNUMERIC\", \"NUMERIC\"] is the same as [\"NUMERIC\", \"BIGNUMERIC\"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to [\"NUMERIC\", \"STRING\"] for ORC and [\"NUMERIC\"] for the other file formats.",
@@ -4491,6 +4527,10 @@
           "format": "int64",
           "type": "string"
         },
+        "dataMaskingStatistics": {
+          "$ref": "DataMaskingStatistics",
+          "description": "[Output-only] Statistics for data masking. Present only for query and extract jobs."
+        },
         "endTime": {
           "description": "[Output-only] End time of this job, in milliseconds since the epoch. This field will be present whenever a job is in the DONE state.",
           "format": "int64",
@@ -4585,25 +4625,25 @@
       "properties": {
         "biEngineStatistics": {
           "$ref": "BiEngineStatistics",
-          "description": "BI Engine specific Statistics. [Output-only] BI Engine specific Statistics."
+          "description": "BI Engine specific Statistics. [Output only] BI Engine specific Statistics."
         },
         "billingTier": {
-          "description": "[Output-only] Billing tier for the job.",
+          "description": "[Output only] Billing tier for the job.",
           "format": "int32",
           "type": "integer"
         },
         "cacheHit": {
-          "description": "[Output-only] Whether the query result was fetched from the query cache.",
+          "description": "[Output only] Whether the query result was fetched from the query cache.",
           "type": "boolean"
         },
         "ddlAffectedRowAccessPolicyCount": {
-          "description": "[Output-only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.",
+          "description": "[Output only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.",
           "format": "int64",
           "type": "string"
         },
         "ddlDestinationTable": {
           "$ref": "TableReference",
-          "description": "[Output-only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information."
+          "description": "[Output only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information."
         },
         "ddlOperationPerformed": {
           "description": "The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): \"CREATE\": The query created the DDL target. \"SKIP\": No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. \"REPLACE\": The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. \"DROP\": The query deleted the DDL target.",
@@ -4611,7 +4651,7 @@
         },
         "ddlTargetDataset": {
           "$ref": "DatasetReference",
-          "description": "[Output-only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries."
+          "description": "[Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries."
         },
         "ddlTargetRoutine": {
           "$ref": "RoutineReference",
@@ -4619,75 +4659,75 @@
         },
         "ddlTargetRowAccessPolicy": {
           "$ref": "RowAccessPolicyReference",
-          "description": "[Output-only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries."
+          "description": "[Output only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries."
         },
         "ddlTargetTable": {
           "$ref": "TableReference",
-          "description": "[Output-only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries."
+          "description": "[Output only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries."
         },
         "dmlStats": {
           "$ref": "DmlStatistics",
-          "description": "[Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE."
+          "description": "[Output only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE."
         },
         "estimatedBytesProcessed": {
-          "description": "[Output-only] The original estimate of bytes processed for the job.",
+          "description": "[Output only] The original estimate of bytes processed for the job.",
           "format": "int64",
           "type": "string"
         },
         "mlStatistics": {
           "$ref": "MlStatistics",
-          "description": "[Output-only] Statistics of a BigQuery ML training job."
+          "description": "[Output only] Statistics of a BigQuery ML training job."
         },
         "modelTraining": {
           "$ref": "BigQueryModelTraining",
-          "description": "[Output-only, Beta] Information about create model query job progress."
+          "description": "[Output only, Beta] Information about create model query job progress."
         },
         "modelTrainingCurrentIteration": {
-          "description": "[Output-only, Beta] Deprecated; do not use.",
+          "description": "[Output only, Beta] Deprecated; do not use.",
           "format": "int32",
           "type": "integer"
         },
         "modelTrainingExpectedTotalIteration": {
-          "description": "[Output-only, Beta] Deprecated; do not use.",
+          "description": "[Output only, Beta] Deprecated; do not use.",
           "format": "int64",
           "type": "string"
         },
         "numDmlAffectedRows": {
-          "description": "[Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.",
+          "description": "[Output only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.",
           "format": "int64",
           "type": "string"
         },
         "queryPlan": {
-          "description": "[Output-only] Describes execution plan for the query.",
+          "description": "[Output only] Describes execution plan for the query.",
           "items": {
             "$ref": "ExplainQueryStage"
           },
           "type": "array"
         },
         "referencedRoutines": {
-          "description": "[Output-only] Referenced routines (persistent user-defined functions and stored procedures) for the job.",
+          "description": "[Output only] Referenced routines (persistent user-defined functions and stored procedures) for the job.",
           "items": {
             "$ref": "RoutineReference"
           },
           "type": "array"
         },
         "referencedTables": {
-          "description": "[Output-only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.",
+          "description": "[Output only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.",
           "items": {
             "$ref": "TableReference"
           },
           "type": "array"
         },
         "reservationUsage": {
-          "description": "[Output-only] Job resource usage breakdown by reservation.",
+          "description": "[Output only] Job resource usage breakdown by reservation.",
           "items": {
             "properties": {
               "name": {
-                "description": "[Output-only] Reservation name or \"unreserved\" for on-demand resources usage.",
+                "description": "[Output only] Reservation name or \"unreserved\" for on-demand resources usage.",
                 "type": "string"
               },
               "slotMs": {
-                "description": "[Output-only] Slot-milliseconds the job spent in the given reservation.",
+                "description": "[Output only] Slot-milliseconds the job spent in the given reservation.",
                 "format": "int64",
                 "type": "string"
               }
@@ -4698,44 +4738,53 @@
         },
         "schema": {
           "$ref": "TableSchema",
-          "description": "[Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries."
+          "description": "[Output only] The schema of the results. Present only for successful dry run of non-legacy SQL queries."
         },
         "searchStatistics": {
           "$ref": "SearchStatistics",
-          "description": "[Output-only] Search query specific statistics."
+          "description": "[Output only] Search query specific statistics."
+        },
+        "sparkStatistics": {
+          "$ref": "SparkStatistics",
+          "description": "[Output only] Statistics of a Spark procedure job."
         },
         "statementType": {
           "description": "The type of query statement, if valid. Possible values (new values might be added in the future): \"SELECT\": SELECT query. \"INSERT\": INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"UPDATE\": UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"DELETE\": DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"MERGE\": MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. \"ALTER_TABLE\": ALTER TABLE query. \"ALTER_VIEW\": ALTER VIEW query. \"ASSERT\": ASSERT condition AS 'description'. \"CREATE_FUNCTION\": CREATE FUNCTION query. \"CREATE_MODEL\": CREATE [OR REPLACE] MODEL ... AS SELECT ... . \"CREATE_PROCEDURE\": CREATE PROCEDURE query. \"CREATE_TABLE\": CREATE [OR REPLACE] TABLE without AS SELECT. \"CREATE_TABLE_AS_SELECT\": CREATE [OR REPLACE] TABLE ... AS SELECT ... . \"CREATE_VIEW\": CREATE [OR REPLACE] VIEW ... AS SELECT ... . \"DROP_FUNCTION\" : DROP FUNCTION query. \"DROP_PROCEDURE\": DROP PROCEDURE query. \"DROP_TABLE\": DROP TABLE query. \"DROP_VIEW\": DROP VIEW query.",
           "type": "string"
         },
         "timeline": {
-          "description": "[Output-only] [Beta] Describes a timeline of job execution.",
+          "description": "[Output only] [Beta] Describes a timeline of job execution.",
           "items": {
             "$ref": "QueryTimelineSample"
           },
           "type": "array"
         },
         "totalBytesBilled": {
-          "description": "[Output-only] Total bytes billed for the job.",
+          "description": "[Output only] Total bytes billed for the job.",
           "format": "int64",
           "type": "string"
         },
         "totalBytesProcessed": {
-          "description": "[Output-only] Total bytes processed for the job.",
+          "description": "[Output only] Total bytes processed for the job.",
           "format": "int64",
           "type": "string"
         },
         "totalBytesProcessedAccuracy": {
-          "description": "[Output-only] For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.",
+          "description": "[Output only] For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.",
           "type": "string"
         },
         "totalPartitionsProcessed": {
-          "description": "[Output-only] Total number of partitions processed from all partitioned tables referenced in the job.",
+          "description": "[Output only] Total number of partitions processed from all partitioned tables referenced in the job.",
           "format": "int64",
           "type": "string"
         },
         "totalSlotMs": {
-          "description": "[Output-only] Slot-milliseconds for the job.",
+          "description": "[Output only] Slot-milliseconds for the job.",
+          "format": "int64",
+          "type": "string"
+        },
+        "transferredBytes": {
+          "description": "[Output-only] Total bytes transferred for cross-cloud queries such as Cross Cloud Transfer and CREATE TABLE AS SELECT (CTAS).",
           "format": "int64",
           "type": "string"
         },
@@ -4873,7 +4922,7 @@
           "type": "string"
         },
         "routines": {
-          "description": "Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.",
+          "description": "Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, language, and remote_function_options.",
           "items": {
             "$ref": "Routine"
           },
@@ -4914,6 +4963,10 @@
     "MaterializedViewDefinition": {
       "id": "MaterializedViewDefinition",
       "properties": {
+        "allow_non_incremental_definition": {
+          "description": "[Optional] Allow non incremental materialized view definition. The default value is \"false\".",
+          "type": "boolean"
+        },
         "enableRefresh": {
           "description": "[Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is \"true\".",
           "type": "boolean"
@@ -5071,7 +5124,9 @@
             "DNN_LINEAR_COMBINED_CLASSIFIER",
             "DNN_LINEAR_COMBINED_REGRESSOR",
             "AUTOENCODER",
-            "ARIMA_PLUS"
+            "ARIMA_PLUS",
+            "RANDOM_FOREST_REGRESSOR",
+            "RANDOM_FOREST_CLASSIFIER"
           ],
           "enumDescriptions": [
             "",
@@ -5091,7 +5146,9 @@
             "Wide-and-deep classifier model.",
             "Wide-and-deep regressor model.",
             "Autoencoder model.",
-            "New name for the ARIMA model."
+            "New name for the ARIMA model.",
+            "Random Forest regressor model.",
+            "Random Forest classifier model."
           ],
           "readOnly": true,
           "type": "string"
@@ -5106,11 +5163,10 @@
           "type": "array"
         },
         "trainingRuns": {
-          "description": "Output only. Information for all training runs in increasing order of start_time.",
+          "description": "Information for all training runs in increasing order of start_time.",
           "items": {
             "$ref": "TrainingRun"
           },
-          "readOnly": true,
           "type": "array"
         }
       },
@@ -5764,16 +5820,18 @@
           "type": "array"
         },
         "language": {
-          "description": "Optional. Defaults to \"SQL\".",
+          "description": "Optional. Defaults to \"SQL\" if remote_function_options field is absent, not set otherwise.",
           "enum": [
             "LANGUAGE_UNSPECIFIED",
             "SQL",
-            "JAVASCRIPT"
+            "JAVASCRIPT",
+            "PYTHON"
           ],
           "enumDescriptions": [
             "",
             "SQL language.",
-            "JavaScript language."
+            "JavaScript language.",
+            "Python language."
           ],
           "type": "string"
         },
@@ -5789,7 +5847,7 @@
         },
         "returnTableType": {
           "$ref": "StandardSqlTableType",
-          "description": "Optional. Can be set only if routine_type = \"TABLE_VALUED_FUNCTION\". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specificed in return table type, at query time."
+          "description": "Optional. Can be set only if routine_type = \"TABLE_VALUED_FUNCTION\". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specified in return table type, at query time."
         },
         "returnType": {
           "$ref": "StandardSqlDataType",
@@ -6035,6 +6093,20 @@
       },
       "type": "object"
     },
+    "SparkLoggingInfo": {
+      "id": "SparkLoggingInfo",
+      "properties": {
+        "project_id": {
+          "description": "[Output-only] Project ID used for logging",
+          "type": "string"
+        },
+        "resource_type": {
+          "description": "[Output-only] Resource type used for logging",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SparkOptions": {
       "description": "Options for a user-defined Spark routine.",
       "id": "SparkOptions",
@@ -6069,7 +6141,7 @@
           "type": "array"
         },
         "mainFileUri": {
-          "description": "The main file URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set.",
+          "description": "The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python. Exactly one of main_class and main_file_uri field should be set for Java/Scala language type.",
           "type": "string"
         },
         "properties": {
@@ -6093,8 +6165,33 @@
       },
       "type": "object"
     },
+    "SparkStatistics": {
+      "id": "SparkStatistics",
+      "properties": {
+        "endpoints": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "[Output-only] Endpoints generated for the Spark job.",
+          "type": "object"
+        },
+        "logging_info": {
+          "$ref": "SparkLoggingInfo",
+          "description": "[Output-only] Logging info is used to generate a link to Cloud Logging."
+        },
+        "spark_job_id": {
+          "description": "[Output-only] Spark job id if a Spark job is created successfully.",
+          "type": "string"
+        },
+        "spark_job_location": {
+          "description": "[Output-only] Location where the Spark job is executed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StandardSqlDataType": {
-      "description": "The data type of a variable such as a function argument. Examples include: * INT64: `{\"typeKind\": \"INT64\"}` * ARRAY: { \"typeKind\": \"ARRAY\", \"arrayElementType\": {\"typeKind\": \"STRING\"} } * STRUCT>: { \"typeKind\": \"STRUCT\", \"structType\": { \"fields\": [ { \"name\": \"x\", \"type\": {\"typeKind: \"STRING\"} }, { \"name\": \"y\", \"type\": { \"typeKind\": \"ARRAY\", \"arrayElementType\": {\"typekind\": \"DATE\"} } } ] } }",
+      "description": "The data type of a variable such as a function argument. Examples include: * INT64: `{\"typeKind\": \"INT64\"}` * ARRAY: { \"typeKind\": \"ARRAY\", \"arrayElementType\": {\"typeKind\": \"STRING\"} } * STRUCT>: { \"typeKind\": \"STRUCT\", \"structType\": { \"fields\": [ { \"name\": \"x\", \"type\": {\"typeKind\": \"STRING\"} }, { \"name\": \"y\", \"type\": { \"typeKind\": \"ARRAY\", \"arrayElementType\": {\"typeKind\": \"DATE\"} } } ] } }",
       "id": "StandardSqlDataType",
       "properties": {
         "arrayElementType": {
@@ -7461,51 +7558,60 @@
       "id": "TrainingRun",
       "properties": {
         "classLevelGlobalExplanations": {
-          "description": "Global explanation contains the explanation of top features on the class level. Applies to classification models only.",
+          "description": "Output only. Global explanation contains the explanation of top features on the class level. Applies to classification models only.",
           "items": {
             "$ref": "GlobalExplanation"
           },
+          "readOnly": true,
           "type": "array"
         },
         "dataSplitResult": {
           "$ref": "DataSplitResult",
-          "description": "Data split result of the training run. Only set when the input data is actually split."
+          "description": "Output only. Data split result of the training run. Only set when the input data is actually split.",
+          "readOnly": true
         },
         "evaluationMetrics": {
           "$ref": "EvaluationMetrics",
-          "description": "The evaluation metrics over training/eval data that were computed at the end of training."
+          "description": "Output only. The evaluation metrics over training/eval data that were computed at the end of training.",
+          "readOnly": true
         },
         "modelLevelGlobalExplanation": {
           "$ref": "GlobalExplanation",
-          "description": "Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models."
+          "description": "Output only. Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models.",
+          "readOnly": true
         },
         "results": {
-          "description": "Output of each iteration run, results.size() <= max_iterations.",
+          "description": "Output only. Output of each iteration run, results.size() <= max_iterations.",
           "items": {
             "$ref": "IterationResult"
           },
+          "readOnly": true,
           "type": "array"
         },
         "startTime": {
-          "description": "The start time of this training run.",
+          "description": "Output only. The start time of this training run.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "trainingOptions": {
           "$ref": "TrainingOptions",
-          "description": "Options that were used for this training run, includes user specified and default options that were used."
+          "description": "Output only. Options that were used for this training run, includes user specified and default options that were used.",
+          "readOnly": true
         },
         "trainingStartTime": {
-          "description": "The start time of this training run, in milliseconds since epoch.",
+          "description": "Output only. The start time of this training run, in milliseconds since epoch.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "vertexAiModelId": {
-          "description": "The model id in Vertex AI Model Registry for this training run",
+          "description": "The model id in the [Vertex AI Model Registry](https://cloud.google.com/vertex-ai/docs/model-registry/introduction) for this training run.",
           "type": "string"
         },
         "vertexAiModelVersion": {
-          "description": "The model version in Vertex AI Model Registry for this training run",
+          "description": "Output only. The model version in the [Vertex AI Model Registry](https://cloud.google.com/vertex-ai/docs/model-registry/introduction) for this training run.",
+          "readOnly": true,
           "type": "string"
         }
       },

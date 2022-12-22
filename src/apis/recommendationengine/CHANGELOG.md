@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v1.0.1...recommendationengine-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v1.0.0...recommendationengine-v1.0.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **recommendationengine:** update the API ([ec5ac33](https://github.com/googleapis/google-api-nodejs-client/commit/ec5ac33b42f13992fc7bac67d9837e104936b324))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v0.3.3...recommendationengine-v1.0.0) (2022-07-04)
 
 

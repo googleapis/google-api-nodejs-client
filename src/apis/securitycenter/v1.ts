@@ -149,7 +149,7 @@ export namespace securitycenter_v1 {
      */
     principalEmail?: string | null;
     /**
-     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subjects/{subject\}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
      */
     principalSubject?: string | null;
     /**
@@ -168,6 +168,10 @@ export namespace securitycenter_v1 {
      * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
      */
     userAgentFamily?: string | null;
+    /**
+     * A string representing a username. This is likely not an IAM principal. For instance, this may be the system user name if the finding is VM-related, or this may be some type of application login user name, depending on the type of finding.
+     */
+    userName?: string | null;
   }
   /**
    * Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.
@@ -257,6 +261,23 @@ export namespace securitycenter_v1 {
     projectIds?: string[] | null;
   }
   /**
+   * A finding that is associated with this node in the exposure path.
+   */
+  export interface Schema$AssociatedFinding {
+    /**
+     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
+     */
+    canonicalFindingName?: string | null;
+    /**
+     * The additional taxonomy group within findings from a given source.
+     */
+    findingCategory?: string | null;
+    /**
+     * Full resource name of the finding.
+     */
+    name?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -291,7 +312,7 @@ export namespace securitycenter_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -355,11 +376,11 @@ export namespace securitycenter_v1 {
     sourcePort?: number | null;
   }
   /**
-   * Representa a single contact's email address
+   * The email address of a contact.
    */
   export interface Schema$Contact {
     /**
-     * An email address e.g. "person123@company.com"
+     * An email address. For example, "`person123@company.com`".
      */
     email?: string | null;
   }
@@ -494,6 +515,19 @@ export namespace securitycenter_v1 {
     percentPagesMatched?: number | null;
   }
   /**
+   * Represents a connection between a source node and a destination node in this exposure path.
+   */
+  export interface Schema$Edge {
+    /**
+     * This is the resource name of the destination node.
+     */
+    destination?: string | null;
+    /**
+     * This is the resource name of the source node.
+     */
+    source?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -611,7 +645,7 @@ export namespace securitycenter_v1 {
      */
     connections?: Schema$Connection[];
     /**
-     * Output only. Map containing the point of contacts for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { "security": { "contacts": [ { "email": "person1@company.com" \}, { "email": "person2@company.com" \} ] \}
+     * Output only. Map containing the points of contact for the given finding. The key represents the type of contact, while the value contains a list of all the contacts that pertain. Please refer to: https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories { "security": { "contacts": [ { "email": "person1@company.com" \}, { "email": "person2@company.com" \} ] \} \}
      */
     contacts?: {[key: string]: Schema$ContactDetails} | null;
     /**
@@ -649,6 +683,10 @@ export namespace securitycenter_v1 {
      */
     externalUri?: string | null;
     /**
+     * File associated with the finding.
+     */
+    files?: Schema$File[];
+    /**
      * The class of the finding.
      */
     findingClass?: string | null;
@@ -660,6 +698,10 @@ export namespace securitycenter_v1 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * Kernel Rootkit signature.
+     */
+    kernelRootkit?: Schema$KernelRootkit;
     /**
      * Kubernetes resources associated with the finding.
      */
@@ -693,6 +735,10 @@ export namespace securitycenter_v1 {
      */
     parent?: string | null;
     /**
+     * Output only. The human readable display name of the finding source such as "Event Threat Detection" or "Security Health Analytics".
+     */
+    parentDisplayName?: string | null;
+    /**
      * Represents operating system processes associated with the Finding.
      */
     processes?: Schema$Process[];
@@ -717,7 +763,7 @@ export namespace securitycenter_v1 {
      */
     state?: string | null;
     /**
-     * Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     vulnerability?: Schema$Vulnerability;
   }
@@ -779,7 +825,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
     /**
-     * Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.
+     * Output only. The time at which the BigQuery export was created. This field is set by the server and will be ignored if provided on export on creation.
      */
     createTime?: string | null;
     /**
@@ -795,7 +841,7 @@ export namespace securitycenter_v1 {
      */
     filter?: string | null;
     /**
-     * Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. Email address of the user who last edited the BigQuery export. This field is set by the server and will be ignored if provided on export creation or update.
      */
     mostRecentEditor?: string | null;
     /**
@@ -803,11 +849,11 @@ export namespace securitycenter_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The service account that needs permission to create table, upload data to the big query dataset.
+     * Output only. The service account that needs permission to create table and upload data to the BigQuery dataset.
      */
     principal?: string | null;
     /**
-     * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. The most recent time at which the BigQuery export was updated. This field is set by the server and will be ignored if provided on export creation or update.
      */
     updateTime?: string | null;
   }
@@ -828,7 +874,7 @@ export namespace securitycenter_v1 {
      */
     role?: Schema$Role;
     /**
-     * Represents the subjects(s) bound to the role. Not always available for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always available for PATCH requests.
      */
     subjects?: Schema$Subject[];
   }
@@ -836,6 +882,56 @@ export namespace securitycenter_v1 {
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
+  /**
+   * A resource that is exposed as a result of a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExposedResource {
+    /**
+     * Human readable name of the resource that is exposed.
+     */
+    displayName?: string | null;
+    /**
+     * The ways in which this resource is exposed. Examples: Read, Write
+     */
+    methods?: string[] | null;
+    /**
+     * Exposed Resource Name e.g.: `organizations/123/attackExposureResults/456/exposedResources/789`
+     */
+    name?: string | null;
+    /**
+     * The name of the resource that is exposed. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resource?: string | null;
+    /**
+     * The resource type of the exposed resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
+     */
+    resourceType?: string | null;
+    /**
+     * How valuable this resource is.
+     */
+    resourceValue?: string | null;
+  }
+  /**
+   * A path that an attacker could take to reach an exposed resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExposurePath {
+    /**
+     * A list of the edges between nodes in this exposure path.
+     */
+    edges?: Schema$Edge[];
+    /**
+     * The leaf node of this exposure path.
+     */
+    exposedResource?: Schema$GoogleCloudSecuritycenterV1ExposedResource;
+    /**
+     * Exposure Path Name e.g.: `organizations/123/attackExposureResults/456/exposurePaths/789`
+     */
+    name?: string | null;
+    /**
+     * A list of nodes that exist in this exposure path.
+     */
+    pathNodes?: Schema$PathNode[];
+  }
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
    */
@@ -853,7 +949,7 @@ export namespace securitycenter_v1 {
      */
     externalUid?: string | null;
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
     name?: string | null;
     /**
@@ -1091,6 +1187,31 @@ export namespace securitycenter_v1 {
     type?: string | null;
   }
   /**
+   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
+    /**
+     * Name for the resource value config
+     */
+    name?: string | null;
+    /**
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     */
+    resourceType?: string | null;
+    /**
+     * Required. Resource value level this expression represents
+     */
+    resourceValue?: string | null;
+    /**
+     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     */
+    scope?: string | null;
+    /**
+     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     */
+    tagValues?: string[] | null;
+  }
+  /**
    * Response of asset discovery run
    */
   export interface Schema$GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse {
@@ -1243,7 +1364,7 @@ export namespace securitycenter_v1 {
     policyBlob?: string | null;
   }
   /**
-   * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+   * Represents what's commonly known as an _indicator of compromise_ (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
    */
   export interface Schema$Indicator {
     /**
@@ -1251,7 +1372,7 @@ export namespace securitycenter_v1 {
      */
     domains?: string[] | null;
     /**
-     * List of ip addresses associated to the Finding.
+     * The list of IP addresses that are associated with the finding.
      */
     ipAddresses?: string[] | null;
     /**
@@ -1259,12 +1380,53 @@ export namespace securitycenter_v1 {
      */
     signatures?: Schema$ProcessSignature[];
     /**
-     * The list of URIs associated to the Findings
+     * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
   }
   /**
-   * Kubernetes related attributes.
+   * Kernel mode rootkit signatures.
+   */
+  export interface Schema$KernelRootkit {
+    /**
+     * Rootkit name when available.
+     */
+    name?: string | null;
+    /**
+     * True when unexpected modifications of kernel code memory are present.
+     */
+    unexpectedCodeModification?: boolean | null;
+    /**
+     * True when `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedFtraceHandler?: boolean | null;
+    /**
+     * True when interrupt handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedInterruptHandler?: boolean | null;
+    /**
+     * True when kernel code pages that are not in the expected kernel or module code regions are present.
+     */
+    unexpectedKernelCodePages?: boolean | null;
+    /**
+     * True when `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedKprobeHandler?: boolean | null;
+    /**
+     * True when unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.
+     */
+    unexpectedProcessesInRunqueue?: boolean | null;
+    /**
+     * True when unexpected modifications of kernel read-only data memory are present.
+     */
+    unexpectedReadOnlyDataModification?: boolean | null;
+    /**
+     * True when system call handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedSystemCallHandler?: boolean | null;
+  }
+  /**
+   * Kubernetes-related attributes.
    */
   export interface Schema$Kubernetes {
     /**
@@ -1511,7 +1673,7 @@ export namespace securitycenter_v1 {
      */
     description?: string | null;
     /**
-     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket".
+     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
      */
     name?: string | null;
     /**
@@ -1568,6 +1730,27 @@ export namespace securitycenter_v1 {
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/organizationSettings".
      */
     name?: string | null;
+  }
+  /**
+   * Represents one point that an attacker passes through in this exposure path.
+   */
+  export interface Schema$PathNode {
+    /**
+     * The findings associated with this node in the exposure path.
+     */
+    associatedFindings?: Schema$AssociatedFinding[];
+    /**
+     * Human readable name of this resource.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the resource at this point in the exposure path. The format of the name is: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resource?: string | null;
+    /**
+     * The resource type of this resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
+     */
+    resourceType?: string | null;
   }
   /**
    * Kubernetes Pod.
@@ -1803,11 +1986,11 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$ServiceAccountDelegationInfo {
     /**
-     * The email address of a Google account. .
+     * The email address of a Google account.
      */
     principalEmail?: string | null;
     /**
-     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subjects/{subject\}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
      */
     principalSubject?: string | null;
   }
@@ -1953,6 +2136,7 @@ export namespace securitycenter_v1 {
     bigQueryExports: Resource$Folders$Bigqueryexports;
     findings: Resource$Folders$Findings;
     muteConfigs: Resource$Folders$Muteconfigs;
+    notificationConfigs: Resource$Folders$Notificationconfigs;
     sources: Resource$Folders$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1960,6 +2144,9 @@ export namespace securitycenter_v1 {
       this.bigQueryExports = new Resource$Folders$Bigqueryexports(this.context);
       this.findings = new Resource$Folders$Findings(this.context);
       this.muteConfigs = new Resource$Folders$Muteconfigs(this.context);
+      this.notificationConfigs = new Resource$Folders$Notificationconfigs(
+        this.context
+      );
       this.sources = new Resource$Folders$Sources(this.context);
     }
   }
@@ -1997,7 +2184,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.assets.group({
-     *     // Required. Name of the organization to groupBy. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -2158,7 +2345,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
      *     // Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      *     readTime: 'placeholder-value',
@@ -2418,7 +2605,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Assets$Group
     extends StandardParameters {
     /**
-     * Required. Name of the organization to groupBy. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
 
@@ -2454,7 +2641,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
     /**
@@ -2490,7 +2677,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Creates a big query export.
+     * Creates a BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -2518,7 +2705,7 @@ export namespace securitycenter_v1 {
      *   const res = await securitycenter.folders.bigQueryExports.create({
      *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      *     bigQueryExportId: 'placeholder-value',
-     *     // Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -2653,7 +2840,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Deletes an existing big query export.
+     * Deletes an existing BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -2679,7 +2866,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.bigQueryExports.delete({
-     *     // Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     // Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      *     name: 'folders/my-folder/bigQueryExports/my-bigQueryExport',
      *   });
      *   console.log(res.data);
@@ -2778,7 +2965,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Gets a big query export.
+     * Gets a BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -2804,7 +2991,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.bigQueryExports.get({
-     *     // Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     // Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      *     name: 'folders/my-folder/bigQueryExports/my-bigQueryExport',
      *   });
      *   console.log(res.data);
@@ -3230,7 +3417,7 @@ export namespace securitycenter_v1 {
      */
     bigQueryExportId?: string;
     /**
-     * Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
 
@@ -3242,14 +3429,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Bigqueryexports$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Bigqueryexports$Get
     extends StandardParameters {
     /**
-     * Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      */
     name?: string;
   }
@@ -4243,6 +4430,777 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
   }
 
+  export class Resource$Folders$Notificationconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.notificationConfigs.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
+     *     configId: 'placeholder-value',
+     *     // Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "streamingConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Notificationconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Notificationconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    create(
+      params: Params$Resource$Folders$Notificationconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Notificationconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Notificationconfigs$Create,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Notificationconfigs$Create
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NotificationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Notificationconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Notificationconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notificationConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.notificationConfigs.delete({
+     *     // Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     *     name: 'folders/my-folder/notificationConfigs/my-notificationConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Notificationconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Notificationconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Notificationconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Notificationconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Notificationconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Notificationconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Notificationconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Notificationconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.notificationConfigs.get({
+     *     // Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     *     name: 'folders/my-folder/notificationConfigs/my-notificationConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Notificationconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Notificationconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    get(
+      params: Params$Resource$Folders$Notificationconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Notificationconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Notificationconfigs$Get,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Notificationconfigs$Get
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NotificationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Notificationconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Notificationconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists notification configs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.notificationConfigs.list({
+     *     // The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListNotificationConfigsResponse`; indicates that this is a continuation of a prior `ListNotificationConfigs` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent in which to list the notification configurations. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notificationConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Notificationconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Notificationconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNotificationConfigsResponse>;
+    list(
+      params: Params$Resource$Folders$Notificationconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Notificationconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Notificationconfigs$List,
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Notificationconfigs$List
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNotificationConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Notificationconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Notificationconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notificationConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNotificationConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNotificationConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     *  Updates a notification config. The following update fields are allowed: description, pubsub_topic, streaming_config.filter
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.notificationConfigs.patch({
+     *     // The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
+     *     name: 'folders/my-folder/notificationConfigs/my-notificationConfig',
+     *     // The FieldMask to use when updating the notification config. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "streamingConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Notificationconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Notificationconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    patch(
+      params: Params$Resource$Folders$Notificationconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Notificationconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Notificationconfigs$Patch,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Notificationconfigs$Patch
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NotificationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Notificationconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Notificationconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Notificationconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
+     */
+    configId?: string;
+    /**
+     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NotificationConfig;
+  }
+  export interface Params$Resource$Folders$Notificationconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Notificationconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Notificationconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListNotificationConfigsResponse`; indicates that this is a continuation of a prior `ListNotificationConfigs` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent in which to list the notification configurations. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Notificationconfigs$Patch
+    extends StandardParameters {
+    /**
+     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
+     */
+    name?: string;
+    /**
+     * The FieldMask to use when updating the notification config. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NotificationConfig;
+  }
+
   export class Resource$Folders$Sources {
     context: APIRequestContext;
     findings: Resource$Folders$Sources$Findings;
@@ -4282,7 +5240,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -4401,7 +5359,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
   }
@@ -4768,9 +5726,11 @@ export namespace securitycenter_v1 {
      *       //   "exfiltration": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
+     *       //   "files": [],
      *       //   "findingClass": "my_findingClass",
      *       //   "iamBindings": [],
      *       //   "indicator": {},
+     *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
@@ -4779,6 +5739,7 @@ export namespace securitycenter_v1 {
      *       //   "name": "my_name",
      *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
+     *       //   "parentDisplayName": "my_parentDisplayName",
      *       //   "processes": [],
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -4807,9 +5768,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -4818,6 +5781,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -4944,7 +5908,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.sources.findings.setMute({
-     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     // Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      *     name: 'folders/my-folder/sources/my-source/findings/my-finding',
      *
      *     // Request body metadata
@@ -4973,9 +5937,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -4984,6 +5950,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -5113,7 +6080,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.sources.findings.setState({
-     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     // Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      *     name: 'folders/my-folder/sources/my-source/findings/my-finding',
      *
      *     // Request body metadata
@@ -5143,9 +6110,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -5154,6 +6123,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -5471,7 +6441,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Sources$Findings$Setmute
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string;
 
@@ -5483,7 +6453,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string;
 
@@ -5547,7 +6517,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res =
      *     await securitycenter.folders.sources.findings.externalSystems.patch({
-     *       // External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     *       // Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      *       name: 'folders/my-folder/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
      *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
      *       updateMask: 'placeholder-value',
@@ -5679,7 +6649,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Sources$Findings$Externalsystems$Patch
     extends StandardParameters {
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
     name?: string;
     /**
@@ -6059,7 +7029,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.assets.group({
-     *     // Required. Name of the organization to groupBy. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -6220,7 +7190,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *     // Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      *     readTime: 'placeholder-value',
@@ -6620,7 +7590,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Assets$Group
     extends StandardParameters {
     /**
-     * Required. Name of the organization to groupBy. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
 
@@ -6656,7 +7626,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
     /**
@@ -6704,7 +7674,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Creates a big query export.
+     * Creates a BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -6732,7 +7702,7 @@ export namespace securitycenter_v1 {
      *   const res = await securitycenter.organizations.bigQueryExports.create({
      *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      *     bigQueryExportId: 'placeholder-value',
-     *     // Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -6867,7 +7837,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Deletes an existing big query export.
+     * Deletes an existing BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -6893,7 +7863,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.bigQueryExports.delete({
-     *     // Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     // Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      *     name: 'organizations/my-organization/bigQueryExports/my-bigQueryExport',
      *   });
      *   console.log(res.data);
@@ -6992,7 +7962,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Gets a big query export.
+     * Gets a BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -7018,7 +7988,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.bigQueryExports.get({
-     *     // Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     // Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      *     name: 'organizations/my-organization/bigQueryExports/my-bigQueryExport',
      *   });
      *   console.log(res.data);
@@ -7444,7 +8414,7 @@ export namespace securitycenter_v1 {
      */
     bigQueryExportId?: string;
     /**
-     * Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
 
@@ -7456,14 +8426,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Bigqueryexports$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Bigqueryexports$Get
     extends StandardParameters {
     /**
-     * Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      */
     name?: string;
   }
@@ -8490,9 +9460,9 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.create({
-     *     // Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters, and contains alphanumeric characters, underscores or hyphens only.
+     *     // Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
      *     configId: 'placeholder-value',
-     *     // Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]" or "projects/[project_id]".
+     *     // Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -8641,7 +9611,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.delete({
-     *     // Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     *     // Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
      *     name: 'organizations/my-organization/notificationConfigs/my-notificationConfig',
      *   });
      *   console.log(res.data);
@@ -8766,7 +9736,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.get({
-     *     // Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     *     // Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
      *     name: 'organizations/my-organization/notificationConfigs/my-notificationConfig',
      *   });
      *   console.log(res.data);
@@ -8904,7 +9874,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListNotificationConfigsResponse`; indicates that this is a continuation of a prior `ListNotificationConfigs` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the organization to list notification configs. Its format is "organizations/[organization_id]" or "projects/[project_id]".
+     *     // Required. The name of the parent in which to list the notification configurations. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -9044,7 +10014,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.patch({
-     *     // The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket".
+     *     // The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
      *     name: 'organizations/my-organization/notificationConfigs/my-notificationConfig',
      *     // The FieldMask to use when updating the notification config. If empty all mutable fields will be updated.
      *     updateMask: 'placeholder-value',
@@ -9169,11 +10139,11 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Notificationconfigs$Create
     extends StandardParameters {
     /**
-     * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters, and contains alphanumeric characters, underscores or hyphens only.
+     * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
      */
     configId?: string;
     /**
-     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]" or "projects/[project_id]".
+     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
 
@@ -9185,14 +10155,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Notificationconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Notificationconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
      */
     name?: string;
   }
@@ -9207,14 +10177,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the organization to list notification configs. Its format is "organizations/[organization_id]" or "projects/[project_id]".
+     * Required. The name of the parent in which to list the notification configurations. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Notificationconfigs$Patch
     extends StandardParameters {
     /**
-     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket".
+     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
      */
     name?: string;
     /**
@@ -10250,7 +11220,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -10830,7 +11800,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
   }
@@ -10936,9 +11906,11 @@ export namespace securitycenter_v1 {
      *       //   "exfiltration": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
+     *       //   "files": [],
      *       //   "findingClass": "my_findingClass",
      *       //   "iamBindings": [],
      *       //   "indicator": {},
+     *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
@@ -10947,6 +11919,7 @@ export namespace securitycenter_v1 {
      *       //   "name": "my_name",
      *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
+     *       //   "parentDisplayName": "my_parentDisplayName",
      *       //   "processes": [],
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -10975,9 +11948,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -10986,6 +11961,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -11441,9 +12417,11 @@ export namespace securitycenter_v1 {
      *       //   "exfiltration": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
+     *       //   "files": [],
      *       //   "findingClass": "my_findingClass",
      *       //   "iamBindings": [],
      *       //   "indicator": {},
+     *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
@@ -11452,6 +12430,7 @@ export namespace securitycenter_v1 {
      *       //   "name": "my_name",
      *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
+     *       //   "parentDisplayName": "my_parentDisplayName",
      *       //   "processes": [],
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -11480,9 +12459,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -11491,6 +12472,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -11617,7 +12599,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.setMute({
-     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     // Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      *     name: 'organizations/my-organization/sources/my-source/findings/my-finding',
      *
      *     // Request body metadata
@@ -11646,9 +12628,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -11657,6 +12641,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -11786,7 +12771,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.sources.findings.setState({
-     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     // Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      *     name: 'organizations/my-organization/sources/my-source/findings/my-finding',
      *
      *     // Request body metadata
@@ -11816,9 +12801,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -11827,6 +12814,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -12159,7 +13147,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Findings$Setmute
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string;
 
@@ -12171,7 +13159,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string;
 
@@ -12235,7 +13223,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res =
      *     await securitycenter.organizations.sources.findings.externalSystems.patch({
-     *       // External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     *       // Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      *       name: 'organizations/my-organization/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
      *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
      *       updateMask: 'placeholder-value',
@@ -12367,7 +13355,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch
     extends StandardParameters {
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
     name?: string;
     /**
@@ -12387,6 +13375,7 @@ export namespace securitycenter_v1 {
     bigQueryExports: Resource$Projects$Bigqueryexports;
     findings: Resource$Projects$Findings;
     muteConfigs: Resource$Projects$Muteconfigs;
+    notificationConfigs: Resource$Projects$Notificationconfigs;
     sources: Resource$Projects$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -12396,6 +13385,9 @@ export namespace securitycenter_v1 {
       );
       this.findings = new Resource$Projects$Findings(this.context);
       this.muteConfigs = new Resource$Projects$Muteconfigs(this.context);
+      this.notificationConfigs = new Resource$Projects$Notificationconfigs(
+        this.context
+      );
       this.sources = new Resource$Projects$Sources(this.context);
     }
   }
@@ -12433,7 +13425,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.assets.group({
-     *     // Required. Name of the organization to groupBy. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -12594,7 +13586,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
      *     // Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      *     readTime: 'placeholder-value',
@@ -12854,7 +13846,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Assets$Group
     extends StandardParameters {
     /**
-     * Required. Name of the organization to groupBy. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
 
@@ -12890,7 +13882,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
     /**
@@ -12926,7 +13918,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Creates a big query export.
+     * Creates a BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -12954,7 +13946,7 @@ export namespace securitycenter_v1 {
      *   const res = await securitycenter.projects.bigQueryExports.create({
      *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
      *     bigQueryExportId: 'placeholder-value',
-     *     // Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -13089,7 +14081,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Deletes an existing big query export.
+     * Deletes an existing BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -13115,7 +14107,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.bigQueryExports.delete({
-     *     // Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     // Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      *     name: 'projects/my-project/bigQueryExports/my-bigQueryExport',
      *   });
      *   console.log(res.data);
@@ -13214,7 +14206,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Gets a big query export.
+     * Gets a BigQuery export.
      * @example
      * ```js
      * // Before running the sample:
@@ -13240,7 +14232,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.bigQueryExports.get({
-     *     // Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     // Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      *     name: 'projects/my-project/bigQueryExports/my-bigQueryExport',
      *   });
      *   console.log(res.data);
@@ -13666,7 +14658,7 @@ export namespace securitycenter_v1 {
      */
     bigQueryExportId?: string;
     /**
-     * Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
 
@@ -13678,14 +14670,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Bigqueryexports$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Bigqueryexports$Get
     extends StandardParameters {
     /**
-     * Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
      */
     name?: string;
   }
@@ -14679,6 +15671,777 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
   }
 
+  export class Resource$Projects$Notificationconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.notificationConfigs.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
+     *     configId: 'placeholder-value',
+     *     // Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "streamingConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Notificationconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Notificationconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    create(
+      params: Params$Resource$Projects$Notificationconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Notificationconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Notificationconfigs$Create,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationconfigs$Create
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NotificationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notificationConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.notificationConfigs.delete({
+     *     // Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     *     name: 'projects/my-project/notificationConfigs/my-notificationConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Notificationconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Notificationconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Notificationconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Notificationconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Notificationconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.notificationConfigs.get({
+     *     // Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     *     name: 'projects/my-project/notificationConfigs/my-notificationConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Notificationconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Notificationconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    get(
+      params: Params$Resource$Projects$Notificationconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Notificationconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Notificationconfigs$Get,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationconfigs$Get
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NotificationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists notification configs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.notificationConfigs.list({
+     *     // The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListNotificationConfigsResponse`; indicates that this is a continuation of a prior `ListNotificationConfigs` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent in which to list the notification configurations. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notificationConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Notificationconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Notificationconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNotificationConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Notificationconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Notificationconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Notificationconfigs$List,
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationconfigs$List
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNotificationConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notificationConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNotificationConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNotificationConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     *  Updates a notification config. The following update fields are allowed: description, pubsub_topic, streaming_config.filter
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.notificationConfigs.patch({
+     *     // The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
+     *     name: 'projects/my-project/notificationConfigs/my-notificationConfig',
+     *     // The FieldMask to use when updating the notification config. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "pubsubTopic": "my_pubsubTopic",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "streamingConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "pubsubTopic": "my_pubsubTopic",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "streamingConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Notificationconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Notificationconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    patch(
+      params: Params$Resource$Projects$Notificationconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Notificationconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Notificationconfigs$Patch,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Notificationconfigs$Patch
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$NotificationConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Notificationconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Notificationconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Notificationconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters and contain alphanumeric characters, underscores, or hyphens only.
+     */
+    configId?: string;
+    /**
+     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NotificationConfig;
+  }
+  export interface Params$Resource$Projects$Notificationconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Notificationconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Notificationconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListNotificationConfigsResponse`; indicates that this is a continuation of a prior `ListNotificationConfigs` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent in which to list the notification configurations. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Notificationconfigs$Patch
+    extends StandardParameters {
+    /**
+     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket", "folders/{folder_id\}/notificationConfigs/notify_public_bucket", or "projects/{project_id\}/notificationConfigs/notify_public_bucket".
+     */
+    name?: string;
+    /**
+     * The FieldMask to use when updating the notification config. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NotificationConfig;
+  }
+
   export class Resource$Projects$Sources {
     context: APIRequestContext;
     findings: Resource$Projects$Sources$Findings;
@@ -14718,7 +16481,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -14837,7 +16600,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], folders/[folder_id], or projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
   }
@@ -15204,9 +16967,11 @@ export namespace securitycenter_v1 {
      *       //   "exfiltration": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
+     *       //   "files": [],
      *       //   "findingClass": "my_findingClass",
      *       //   "iamBindings": [],
      *       //   "indicator": {},
+     *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
@@ -15215,6 +16980,7 @@ export namespace securitycenter_v1 {
      *       //   "name": "my_name",
      *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
+     *       //   "parentDisplayName": "my_parentDisplayName",
      *       //   "processes": [],
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -15243,9 +17009,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -15254,6 +17022,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -15380,7 +17149,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.sources.findings.setMute({
-     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     // Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      *     name: 'projects/my-project/sources/my-source/findings/my-finding',
      *
      *     // Request body metadata
@@ -15409,9 +17178,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -15420,6 +17191,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -15549,7 +17321,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.sources.findings.setState({
-     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     // Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      *     name: 'projects/my-project/sources/my-source/findings/my-finding',
      *
      *     // Request body metadata
@@ -15579,9 +17351,11 @@ export namespace securitycenter_v1 {
      *   //   "exfiltration": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
+     *   //   "files": [],
      *   //   "findingClass": "my_findingClass",
      *   //   "iamBindings": [],
      *   //   "indicator": {},
+     *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
@@ -15590,6 +17364,7 @@ export namespace securitycenter_v1 {
      *   //   "name": "my_name",
      *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
+     *   //   "parentDisplayName": "my_parentDisplayName",
      *   //   "processes": [],
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -15906,7 +17681,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Sources$Findings$Setmute
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string;
 
@@ -15918,7 +17693,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string;
 
@@ -15982,7 +17757,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res =
      *     await securitycenter.projects.sources.findings.externalSystems.patch({
-     *       // External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     *       // Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      *       name: 'projects/my-project/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
      *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
      *       updateMask: 'placeholder-value',
@@ -16114,7 +17889,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Sources$Findings$Externalsystems$Patch
     extends StandardParameters {
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
     name?: string;
     /**

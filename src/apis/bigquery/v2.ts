@@ -547,7 +547,7 @@ export namespace bigquery_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -751,6 +751,12 @@ export namespace bigquery_v2 {
      */
     skipLeadingRows?: string | null;
   }
+  export interface Schema$DataMaskingStatistics {
+    /**
+     * [Output-only] [Preview] Whether any accessed data was protected by data masking. The actual evaluation is done by accessStats.masked_field_count \> 0. Since this is only used for the discovery_doc generation purpose, as long as the type (boolean) matches, client library can leverage this. The actual evaluation of the variable is done else-where.
+     */
+    dataMaskingApplied?: boolean | null;
+  }
   export interface Schema$Dataset {
     /**
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
@@ -835,6 +841,10 @@ export namespace bigquery_v2 {
      * [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
      */
     selfLink?: string | null;
+    /**
+     * [Optional] Storage billing model to be used for all tables in the dataset. Can be set to PHYSICAL. Default is LOGICAL.
+     */
+    storageBillingModel?: string | null;
     /**
      * [Optional]The tags associated with this dataset. Tag keys are globally unique.
      */
@@ -1256,6 +1266,14 @@ export namespace bigquery_v2 {
      * [Optional] The maximum number of bad records that BigQuery can ignore when reading data. If the number of bad records exceeds this value, an invalid error is returned in the job result. This is only valid for CSV, JSON, and Google Sheets. The default value is 0, which requires that all records are valid. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
      */
     maxBadRecords?: number | null;
+    /**
+     * [Optional] Metadata Cache Mode for the table. Set this to enable caching of metadata from external data source.
+     */
+    metadataCacheMode?: string | null;
+    /**
+     * ObjectMetadata is used to create Object Tables. Object Tables contain a listing of objects (with their metadata) found at the source_uris. If ObjectMetadata is set, source_format should be omitted. Currently SIMPLE is the only supported Object Metadata type.
+     */
+    objectMetadata?: string | null;
     /**
      * Additional properties to set if sourceFormat is set to Parquet.
      */
@@ -1778,9 +1796,17 @@ export namespace bigquery_v2 {
      */
     clustering?: Schema$Clustering;
     /**
+     * Connection properties.
+     */
+    connectionProperties?: Schema$ConnectionProperty[];
+    /**
      * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
+    /**
+     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs the load job in non-session mode.
+     */
+    createSession?: boolean | null;
     /**
      * [Optional] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: (38,9) -\> NUMERIC; (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); (76,38) -\> BIGNUMERIC; (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
      */
@@ -2078,6 +2104,10 @@ export namespace bigquery_v2 {
      */
     creationTime?: string | null;
     /**
+     * [Output-only] Statistics for data masking. Present only for query and extract jobs.
+     */
+    dataMaskingStatistics?: Schema$DataMaskingStatistics;
+    /**
      * [Output-only] End time of this job, in milliseconds since the epoch. This field will be present whenever a job is in the DONE state.
      */
     endTime?: string | null;
@@ -2144,23 +2174,23 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobStatistics2 {
     /**
-     * BI Engine specific Statistics. [Output-only] BI Engine specific Statistics.
+     * BI Engine specific Statistics. [Output only] BI Engine specific Statistics.
      */
     biEngineStatistics?: Schema$BiEngineStatistics;
     /**
-     * [Output-only] Billing tier for the job.
+     * [Output only] Billing tier for the job.
      */
     billingTier?: number | null;
     /**
-     * [Output-only] Whether the query result was fetched from the query cache.
+     * [Output only] Whether the query result was fetched from the query cache.
      */
     cacheHit?: boolean | null;
     /**
-     * [Output-only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.
+     * [Output only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlAffectedRowAccessPolicyCount?: string | null;
     /**
-     * [Output-only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information.
+     * [Output only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information.
      */
     ddlDestinationTable?: Schema$TableReference;
     /**
@@ -2168,7 +2198,7 @@ export namespace bigquery_v2 {
      */
     ddlOperationPerformed?: string | null;
     /**
-     * [Output-only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries.
+     * [Output only] The DDL target dataset. Present only for CREATE/ALTER/DROP SCHEMA queries.
      */
     ddlTargetDataset?: Schema$DatasetReference;
     /**
@@ -2176,93 +2206,101 @@ export namespace bigquery_v2 {
      */
     ddlTargetRoutine?: Schema$RoutineReference;
     /**
-     * [Output-only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries.
+     * [Output only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries.
      */
     ddlTargetRowAccessPolicy?: Schema$RowAccessPolicyReference;
     /**
-     * [Output-only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
+     * [Output only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
-     * [Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
+     * [Output only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
      */
     dmlStats?: Schema$DmlStatistics;
     /**
-     * [Output-only] The original estimate of bytes processed for the job.
+     * [Output only] The original estimate of bytes processed for the job.
      */
     estimatedBytesProcessed?: string | null;
     /**
-     * [Output-only] Statistics of a BigQuery ML training job.
+     * [Output only] Statistics of a BigQuery ML training job.
      */
     mlStatistics?: Schema$MlStatistics;
     /**
-     * [Output-only, Beta] Information about create model query job progress.
+     * [Output only, Beta] Information about create model query job progress.
      */
     modelTraining?: Schema$BigQueryModelTraining;
     /**
-     * [Output-only, Beta] Deprecated; do not use.
+     * [Output only, Beta] Deprecated; do not use.
      */
     modelTrainingCurrentIteration?: number | null;
     /**
-     * [Output-only, Beta] Deprecated; do not use.
+     * [Output only, Beta] Deprecated; do not use.
      */
     modelTrainingExpectedTotalIteration?: string | null;
     /**
-     * [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+     * [Output only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
      */
     numDmlAffectedRows?: string | null;
     /**
-     * [Output-only] Describes execution plan for the query.
+     * [Output only] Describes execution plan for the query.
      */
     queryPlan?: Schema$ExplainQueryStage[];
     /**
-     * [Output-only] Referenced routines (persistent user-defined functions and stored procedures) for the job.
+     * [Output only] Referenced routines (persistent user-defined functions and stored procedures) for the job.
      */
     referencedRoutines?: Schema$RoutineReference[];
     /**
-     * [Output-only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
+     * [Output only] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
      */
     referencedTables?: Schema$TableReference[];
     /**
-     * [Output-only] Job resource usage breakdown by reservation.
+     * [Output only] Job resource usage breakdown by reservation.
      */
     reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
-     * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
+     * [Output only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
     schema?: Schema$TableSchema;
     /**
-     * [Output-only] Search query specific statistics.
+     * [Output only] Search query specific statistics.
      */
     searchStatistics?: Schema$SearchStatistics;
+    /**
+     * [Output only] Statistics of a Spark procedure job.
+     */
+    sparkStatistics?: Schema$SparkStatistics;
     /**
      * The type of query statement, if valid. Possible values (new values might be added in the future): "SELECT": SELECT query. "INSERT": INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "UPDATE": UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "DELETE": DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "MERGE": MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "ALTER_TABLE": ALTER TABLE query. "ALTER_VIEW": ALTER VIEW query. "ASSERT": ASSERT condition AS 'description'. "CREATE_FUNCTION": CREATE FUNCTION query. "CREATE_MODEL": CREATE [OR REPLACE] MODEL ... AS SELECT ... . "CREATE_PROCEDURE": CREATE PROCEDURE query. "CREATE_TABLE": CREATE [OR REPLACE] TABLE without AS SELECT. "CREATE_TABLE_AS_SELECT": CREATE [OR REPLACE] TABLE ... AS SELECT ... . "CREATE_VIEW": CREATE [OR REPLACE] VIEW ... AS SELECT ... . "DROP_FUNCTION" : DROP FUNCTION query. "DROP_PROCEDURE": DROP PROCEDURE query. "DROP_TABLE": DROP TABLE query. "DROP_VIEW": DROP VIEW query.
      */
     statementType?: string | null;
     /**
-     * [Output-only] [Beta] Describes a timeline of job execution.
+     * [Output only] [Beta] Describes a timeline of job execution.
      */
     timeline?: Schema$QueryTimelineSample[];
     /**
-     * [Output-only] Total bytes billed for the job.
+     * [Output only] Total bytes billed for the job.
      */
     totalBytesBilled?: string | null;
     /**
-     * [Output-only] Total bytes processed for the job.
+     * [Output only] Total bytes processed for the job.
      */
     totalBytesProcessed?: string | null;
     /**
-     * [Output-only] For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.
+     * [Output only] For dry-run jobs, totalBytesProcessed is an estimate and this field specifies the accuracy of the estimate. Possible values can be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is precise. LOWER_BOUND: estimate is lower bound of what the query would cost. UPPER_BOUND: estimate is upper bound of what the query would cost.
      */
     totalBytesProcessedAccuracy?: string | null;
     /**
-     * [Output-only] Total number of partitions processed from all partitioned tables referenced in the job.
+     * [Output only] Total number of partitions processed from all partitioned tables referenced in the job.
      */
     totalPartitionsProcessed?: string | null;
     /**
-     * [Output-only] Slot-milliseconds for the job.
+     * [Output only] Slot-milliseconds for the job.
      */
     totalSlotMs?: string | null;
+    /**
+     * [Output-only] Total bytes transferred for cross-cloud queries such as Cross Cloud Transfer and CREATE TABLE AS SELECT (CTAS).
+     */
+    transferredBytes?: string | null;
     /**
      * Standard SQL only: list of undeclared query parameters detected during a dry run validation.
      */
@@ -2345,7 +2383,7 @@ export namespace bigquery_v2 {
      */
     nextPageToken?: string | null;
     /**
-     * Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.
+     * Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, language, and remote_function_options.
      */
     routines?: Schema$Routine[];
   }
@@ -2372,6 +2410,10 @@ export namespace bigquery_v2 {
     legacyLocationId?: string | null;
   }
   export interface Schema$MaterializedViewDefinition {
+    /**
+     * [Optional] Allow non incremental materialized view definition. The default value is "false".
+     */
+    allow_non_incremental_definition?: boolean | null;
     /**
      * [Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is "true".
      */
@@ -2477,7 +2519,7 @@ export namespace bigquery_v2 {
      */
     optimalTrialIds?: string[] | null;
     /**
-     * Output only. Information for all training runs in increasing order of start_time.
+     * Information for all training runs in increasing order of start_time.
      */
     trainingRuns?: Schema$TrainingRun[];
   }
@@ -2914,7 +2956,7 @@ export namespace bigquery_v2 {
      */
     importedLibraries?: string[] | null;
     /**
-     * Optional. Defaults to "SQL".
+     * Optional. Defaults to "SQL" if remote_function_options field is absent, not set otherwise.
      */
     language?: string | null;
     /**
@@ -2926,7 +2968,7 @@ export namespace bigquery_v2 {
      */
     remoteFunctionOptions?: Schema$RemoteFunctionOptions;
     /**
-     * Optional. Can be set only if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specificed in return table type, at query time.
+     * Optional. Can be set only if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specified in return table type, at query time.
      */
     returnTableType?: Schema$StandardSqlTableType;
     /**
@@ -3101,6 +3143,16 @@ export namespace bigquery_v2 {
      */
     snapshotTime?: string | null;
   }
+  export interface Schema$SparkLoggingInfo {
+    /**
+     * [Output-only] Project ID used for logging
+     */
+    project_id?: string | null;
+    /**
+     * [Output-only] Resource type used for logging
+     */
+    resource_type?: string | null;
+  }
   /**
    * Options for a user-defined Spark routine.
    */
@@ -3126,7 +3178,7 @@ export namespace bigquery_v2 {
      */
     jarUris?: string[] | null;
     /**
-     * The main file URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set.
+     * The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python. Exactly one of main_class and main_file_uri field should be set for Java/Scala language type.
      */
     mainFileUri?: string | null;
     /**
@@ -3142,8 +3194,26 @@ export namespace bigquery_v2 {
      */
     runtimeVersion?: string | null;
   }
+  export interface Schema$SparkStatistics {
+    /**
+     * [Output-only] Endpoints generated for the Spark job.
+     */
+    endpoints?: {[key: string]: string} | null;
+    /**
+     * [Output-only] Logging info is used to generate a link to Cloud Logging.
+     */
+    logging_info?: Schema$SparkLoggingInfo;
+    /**
+     * [Output-only] Spark job id if a Spark job is created successfully.
+     */
+    spark_job_id?: string | null;
+    /**
+     * [Output-only] Location where the Spark job is executed.
+     */
+    spark_job_location?: string | null;
+  }
   /**
-   * The data type of a variable such as a function argument. Examples include: * INT64: `{"typeKind": "INT64"\}` * ARRAY: { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "STRING"\} \} * STRUCT\>: { "typeKind": "STRUCT", "structType": { "fields": [ { "name": "x", "type": {"typeKind: "STRING"\} \}, { "name": "y", "type": { "typeKind": "ARRAY", "arrayElementType": {"typekind": "DATE"\} \} \} ] \} \}
+   * The data type of a variable such as a function argument. Examples include: * INT64: `{"typeKind": "INT64"\}` * ARRAY: { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "STRING"\} \} * STRUCT\>: { "typeKind": "STRUCT", "structType": { "fields": [ { "name": "x", "type": {"typeKind": "STRING"\} \}, { "name": "y", "type": { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "DATE"\} \} \} ] \} \}
    */
   export interface Schema$StandardSqlDataType {
     /**
@@ -3845,43 +3915,43 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TrainingRun {
     /**
-     * Global explanation contains the explanation of top features on the class level. Applies to classification models only.
+     * Output only. Global explanation contains the explanation of top features on the class level. Applies to classification models only.
      */
     classLevelGlobalExplanations?: Schema$GlobalExplanation[];
     /**
-     * Data split result of the training run. Only set when the input data is actually split.
+     * Output only. Data split result of the training run. Only set when the input data is actually split.
      */
     dataSplitResult?: Schema$DataSplitResult;
     /**
-     * The evaluation metrics over training/eval data that were computed at the end of training.
+     * Output only. The evaluation metrics over training/eval data that were computed at the end of training.
      */
     evaluationMetrics?: Schema$EvaluationMetrics;
     /**
-     * Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models.
+     * Output only. Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models.
      */
     modelLevelGlobalExplanation?: Schema$GlobalExplanation;
     /**
-     * Output of each iteration run, results.size() <= max_iterations.
+     * Output only. Output of each iteration run, results.size() <= max_iterations.
      */
     results?: Schema$IterationResult[];
     /**
-     * The start time of this training run.
+     * Output only. The start time of this training run.
      */
     startTime?: string | null;
     /**
-     * Options that were used for this training run, includes user specified and default options that were used.
+     * Output only. Options that were used for this training run, includes user specified and default options that were used.
      */
     trainingOptions?: Schema$TrainingOptions;
     /**
-     * The start time of this training run, in milliseconds since epoch.
+     * Output only. The start time of this training run, in milliseconds since epoch.
      */
     trainingStartTime?: string | null;
     /**
-     * The model id in Vertex AI Model Registry for this training run
+     * The model id in the [Vertex AI Model Registry](https://cloud.google.com/vertex-ai/docs/model-registry/introduction) for this training run.
      */
     vertexAiModelId?: string | null;
     /**
-     * The model version in Vertex AI Model Registry for this training run
+     * Output only. The model version in the [Vertex AI Model Registry](https://cloud.google.com/vertex-ai/docs/model-registry/introduction) for this training run.
      */
     vertexAiModelVersion?: string | null;
   }
@@ -4115,6 +4185,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }
@@ -4264,6 +4335,7 @@ export namespace bigquery_v2 {
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
      *       //   "tags": []
      *       // }
      *     },
@@ -4291,6 +4363,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }
@@ -4584,6 +4657,7 @@ export namespace bigquery_v2 {
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
      *       //   "tags": []
      *       // }
      *     },
@@ -4611,6 +4685,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }
@@ -4762,6 +4837,7 @@ export namespace bigquery_v2 {
      *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
+     *       //   "storageBillingModel": "my_storageBillingModel",
      *       //   "tags": []
      *       // }
      *     },
@@ -4789,6 +4865,7 @@ export namespace bigquery_v2 {
      *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
+     *   //   "storageBillingModel": "my_storageBillingModel",
      *   //   "tags": []
      *   // }
      * }

@@ -1,5 +1,27 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v7.0.0...servicenetworking-v8.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v6.1.0...servicenetworking-v7.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicenetworking:** This release has breaking changes.
+
+### Features
+
+* **servicenetworking:** update the API ([541cc3a](https://github.com/googleapis/google-api-nodejs-client/commit/541cc3a7f65368541a3f578aabb55b19be14c555))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v6.0.0...servicenetworking-v6.1.0) (2022-08-19)
 
 

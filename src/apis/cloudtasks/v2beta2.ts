@@ -112,6 +112,7 @@ export namespace cloudtasks_v2beta2 {
    */
   export class Cloudtasks {
     context: APIRequestContext;
+    api: Resource$Api;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace cloudtasks_v2beta2 {
         google,
       };
 
+      this.api = new Resource$Api(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -218,7 +220,7 @@ export namespace cloudtasks_v2beta2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -227,22 +229,22 @@ export namespace cloudtasks_v2beta2 {
     role?: string | null;
   }
   /**
-   * Request message for BufferQueue.
+   * Request message for BufferTask.
    */
-  export interface Schema$BufferQueueRequest {
+  export interface Schema$BufferTaskRequest {
     /**
-     * Body of the HTTP request. The body can take any generic value. The value will be written to the HttpRequest of the [Task].
+     * Optional. Body of the HTTP request. The body can take any generic value. The value is written to the HttpRequest of the [Task].
      */
     body?: Schema$HttpBody;
   }
   /**
-   * Response message for BufferQueue.
+   * Response message for BufferTask.
    */
-  export interface Schema$BufferQueueResponse {
+  export interface Schema$BufferTaskResponse {
     /**
-     * The name of the created task. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`. TASK_ID is randomly generated and is unique within the queue.
+     * The created task.
      */
-    task?: string | null;
+    task?: Schema$Task;
   }
   /**
    * Request message for canceling a lease using CancelLease.
@@ -317,7 +319,13 @@ export namespace cloudtasks_v2beta2 {
    * Defines a header message. A header can have a key and a value.
    */
   export interface Schema$Header {
+    /**
+     * The key of the header.
+     */
     key?: string | null;
+    /**
+     * The value of the header.
+     */
     value?: string | null;
   }
   /**
@@ -396,7 +404,7 @@ export namespace cloudtasks_v2beta2 {
      */
     oidcToken?: Schema$OidcToken;
     /**
-     * Uri override. When specified modifies the execution Uri for all the tasks in the queue.
+     * Uri override. When specified, modifies the execution Uri for all the tasks in the queue.
      */
     uriOverride?: Schema$UriOverride;
   }
@@ -838,6 +846,171 @@ export namespace cloudtasks_v2beta2 {
      * Scheme override. When specified, the Uri scheme is replaced by the provided value.
      */
     scheme?: string | null;
+    /**
+     * Uri Override Enforce Mode Determines the Target UriOverride mode.
+     */
+    uriOverrideEnforceMode?: string | null;
+  }
+
+  export class Resource$Api {
+    context: APIRequestContext;
+    queue: Resource$Api$Queue;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.queue = new Resource$Api$Queue(this.context);
+    }
+  }
+
+  export class Resource$Api$Queue {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Update queue list by uploading a queue.yaml file. The queue.yaml file is supplied in the request body as a YAML encoded string. This method was added to support gcloud clients versions before 322.0.0. New clients should use CreateQueue instead of this method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtasks = google.cloudtasks('v2beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtasks.api.queue.update({
+     *     // Required. The App ID is supplied as an HTTP parameter. Unlike internal usage of App ID, it does not include a region prefix. Rather, the App ID represents the Project ID against which to make the request.
+     *     appId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentType": "my_contentType",
+     *       //   "data": "my_data",
+     *       //   "extensions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Api$Queue$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    update(
+      params: Params$Resource$Api$Queue$Update,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Empty>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Api$Queue$Update
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Api$Queue$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Api$Queue$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/api/queue/update').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Api$Queue$Update extends StandardParameters {
+    /**
+     * Required. The App ID is supplied as an HTTP parameter. Unlike internal usage of App ID, it does not include a region prefix. Rather, the App ID represents the Project ID against which to make the request.
+     */
+    appId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
   }
 
   export class Resource$Projects {
@@ -1162,146 +1335,6 @@ export namespace cloudtasks_v2beta2 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.tasks = new Resource$Projects$Locations$Queues$Tasks(this.context);
-    }
-
-    /**
-     * Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferQueues Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8). Creates and buffers a new task without the need to explicitly define a Task message. The queue must be an http queue (i.e., must have HTTP target). This method is used for a simplified application of Cloud Tasks queues in buffer and rate limitting HTTP requests.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudtasks = google.cloudtasks('v2beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudtasks.projects.locations.queues.buffer({
-     *     // Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
-     *     name: 'projects/my-project/locations/my-location/queues/my-queue',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "body": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "task": "my_task"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    buffer(
-      params: Params$Resource$Projects$Locations$Queues$Buffer,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    buffer(
-      params?: Params$Resource$Projects$Locations$Queues$Buffer,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$BufferQueueResponse>;
-    buffer(
-      params: Params$Resource$Projects$Locations$Queues$Buffer,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    buffer(
-      params: Params$Resource$Projects$Locations$Queues$Buffer,
-      options: MethodOptions | BodyResponseCallback<Schema$BufferQueueResponse>,
-      callback: BodyResponseCallback<Schema$BufferQueueResponse>
-    ): void;
-    buffer(
-      params: Params$Resource$Projects$Locations$Queues$Buffer,
-      callback: BodyResponseCallback<Schema$BufferQueueResponse>
-    ): void;
-    buffer(callback: BodyResponseCallback<Schema$BufferQueueResponse>): void;
-    buffer(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Queues$Buffer
-        | BodyResponseCallback<Schema$BufferQueueResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BufferQueueResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BufferQueueResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$BufferQueueResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Queues$Buffer;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Queues$Buffer;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2beta2/{+name}:buffer').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BufferQueueResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BufferQueueResponse>(parameters);
-      }
     }
 
     /**
@@ -2879,18 +2912,6 @@ export namespace cloudtasks_v2beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Buffer
-    extends StandardParameters {
-    /**
-     * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BufferQueueRequest;
-  }
   export interface Params$Resource$Projects$Locations$Queues$Create
     extends StandardParameters {
     /**
@@ -3172,6 +3193,148 @@ export namespace cloudtasks_v2beta2 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. To create the task with a custom ID, use the following format and set TASK_ID to your desired ID: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create the task with an automatically generated ID, use the following format: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer. Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferTask Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudtasks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudtasks = google.cloudtasks('v2beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudtasks.projects.locations.queues.tasks.buffer({
+     *     // Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     *     queue: 'projects/my-project/locations/my-location/queues/my-queue',
+     *     // Optional. Task ID for the task being created. If not provided, a random task ID is assigned to the task.
+     *     taskId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "body": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    buffer(
+      params?: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BufferTaskResponse>;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      options: MethodOptions | BodyResponseCallback<Schema$BufferTaskResponse>,
+      callback: BodyResponseCallback<Schema$BufferTaskResponse>
+    ): void;
+    buffer(
+      params: Params$Resource$Projects$Locations$Queues$Tasks$Buffer,
+      callback: BodyResponseCallback<Schema$BufferTaskResponse>
+    ): void;
+    buffer(callback: BodyResponseCallback<Schema$BufferTaskResponse>): void;
+    buffer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queues$Tasks$Buffer
+        | BodyResponseCallback<Schema$BufferTaskResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BufferTaskResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BufferTaskResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BufferTaskResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queues$Tasks$Buffer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$Buffer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta2/{+queue}/tasks/{taskId}:buffer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['queue', 'taskId'],
+        pathParams: ['queue', 'taskId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BufferTaskResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BufferTaskResponse>(parameters);
       }
     }
 
@@ -4310,6 +4473,22 @@ export namespace cloudtasks_v2beta2 {
      * Request body metadata
      */
     requestBody?: Schema$AcknowledgeTaskRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Buffer
+    extends StandardParameters {
+    /**
+     * Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
+     */
+    queue?: string;
+    /**
+     * Optional. Task ID for the task being created. If not provided, a random task ID is assigned to the task.
+     */
+    taskId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BufferTaskRequest;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Cancellease
     extends StandardParameters {

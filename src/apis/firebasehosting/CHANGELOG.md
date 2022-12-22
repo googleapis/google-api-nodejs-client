@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v3.0.2...firebasehosting-v4.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v3.0.1...firebasehosting-v3.0.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **firebasehosting:** update the API ([c04fe5e](https://github.com/googleapis/google-api-nodejs-client/commit/c04fe5ec61b5814cc6e9b210536483abb6f4e2c1))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v3.0.0...firebasehosting-v3.0.1) (2022-06-21)
 
 

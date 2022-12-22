@@ -112,7 +112,7 @@
             "catalogs": {
               "methods": {
                 "completeQuery": {
-                  "description": "Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                  "description": "Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}:completeQuery",
                   "httpMethod": "GET",
                   "id": "retail.projects.locations.catalogs.completeQuery",
@@ -133,7 +133,7 @@
                       "type": "string"
                     },
                     "deviceType": {
-                      "description": "The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.",
+                      "description": "The device type context for completion suggestions. We recommend that you leave this field empty. It can apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -203,7 +203,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Full CompletionConfig resource name. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig",
+                      "description": "Required. Full CompletionConfig resource name. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/completionConfig$",
                       "required": true,
@@ -468,6 +468,34 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "replaceCatalogAttribute": {
+                      "description": "Replaces the specified CatalogAttribute in the AttributesConfig by updating the catalog attribute with the same CatalogAttribute.key. If the CatalogAttribute to replace does not exist, a NOT_FOUND error is returned.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/attributesConfig:replaceCatalogAttribute",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.attributesConfig.replaceCatalogAttribute",
+                      "parameterOrder": [
+                        "attributesConfig"
+                      ],
+                      "parameters": {
+                        "attributesConfig": {
+                          "description": "Required. Full AttributesConfig resource name. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/attributesConfig`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/attributesConfig$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+attributesConfig}:replaceCatalogAttribute",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2ReplaceCatalogAttributeRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2AttributesConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -505,7 +533,7 @@
                     "products": {
                       "methods": {
                         "addFulfillmentPlaces": {
-                          "description": "Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:addFulfillmentPlaces",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.addFulfillmentPlaces",
@@ -533,7 +561,7 @@
                           ]
                         },
                         "addLocalInventories": {
-                          "description": "Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be modified using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be modified using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:addLocalInventories",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.addLocalInventories",
@@ -758,7 +786,7 @@
                           ]
                         },
                         "removeFulfillmentPlaces": {
-                          "description": "Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:removeFulfillmentPlaces",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.removeFulfillmentPlaces",
@@ -786,7 +814,7 @@
                           ]
                         },
                         "removeLocalInventories": {
-                          "description": "Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be removed using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be removed using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:removeLocalInventories",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.removeLocalInventories",
@@ -814,7 +842,7 @@
                           ]
                         },
                         "setInventory": {
-                          "description": "Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. When inventory is updated with ProductService.CreateProduct and ProductService.UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the ProductService.CreateProduct or ProductService.UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with ProductService.SetInventory, ProductService.AddFulfillmentPlaces, and ProductService.RemoveFulfillmentPlaces. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                          "description": "Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update is enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. When inventory is updated with ProductService.CreateProduct and ProductService.UpdateProduct, the specified inventory field value(s) overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update times for the specified inventory fields are overwritten by the times of the ProductService.CreateProduct or ProductService.UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product is used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information is preserved. Pre-existing inventory information can only be updated with ProductService.SetInventory, ProductService.AddFulfillmentPlaces, and ProductService.RemoveFulfillmentPlaces. The returned Operations is obsolete after one day, and the GetOperation API returns `NOT_FOUND` afterwards. If conflicting updates are issued, the Operations associated with the stale updates are not marked as done until they are obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:setInventory",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.setInventory",
@@ -848,7 +876,7 @@
                 "completionData": {
                   "methods": {
                     "import": {
-                      "description": "Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                      "description": "Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/completionData:import",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.completionData.import",
@@ -870,6 +898,168 @@
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "controls": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a Control. If the Control to create already exists, an ALREADY_EXISTS error is returned.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/controls",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.controls.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "controlId": {
+                          "description": "Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Full resource name of parent catalog. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/controls",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2Control"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2Control"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/controls/{controlsId}",
+                      "httpMethod": "DELETE",
+                      "id": "retail.projects.locations.catalogs.controls.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Control to delete. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/controls/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Control.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/controls/{controlsId}",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.controls.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Control to get. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/controls/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2Control"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all Controls by their parent Catalog.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/controls",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.controls.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List controls that are used in a single ServingConfig: 'serving_config = \"boosted_home_page_cvr\"'",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The catalog resource name. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/controls",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2ListControlsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a Control. Control cannot be set to a different oneof field, if so an INVALID_ARGUMENT is returned. If the Control to update does not exist, a NOT_FOUND error is returned.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/controls/{controlsId}",
+                      "httpMethod": "PATCH",
+                      "id": "retail.projects.locations.catalogs.controls.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. Fully qualified name `projects/*/locations/global/catalogs/*/controls/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/controls/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name If not set or empty, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2Control"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2Control"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -959,7 +1149,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. Full resource name of the format: `{placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*}` or `{placement=projects/*/locations/global/catalogs/default_catalog/placements/*}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
+                          "description": "Required. Full resource name of the format: `{placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*}` or `{placement=projects/*/locations/global/catalogs/default_catalog/placements/*}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Manage serving configs] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
                           "required": true,
@@ -978,7 +1168,7 @@
                       ]
                     },
                     "search": {
-                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/placements/{placementsId}:search",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.placements.search",
@@ -987,7 +1177,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. The resource name of the Retail Search serving config, such as `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
+                          "description": "Required. The resource name of the Retail Search serving config, such as `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that will be used to make the search.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
                           "required": true,
@@ -1009,6 +1199,187 @@
                 },
                 "servingConfigs": {
                   "methods": {
+                    "addControl": {
+                      "description": "Enables a Control on the specified ServingConfig. The control is added in the last position of the list of controls it belongs to (e.g. if it's a facet spec control it will be applied in the last position of servingConfig.facetSpecIds) Returns a ALREADY_EXISTS error if the control has already been applied. Returns a FAILED_PRECONDITION error if the addition could exceed maximum number of control allowed for that type of control.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:addControl",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.addControl",
+                      "parameterOrder": [
+                        "servingConfig"
+                      ],
+                      "parameters": {
+                        "servingConfig": {
+                          "description": "Required. The source ServingConfig resource name . Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+servingConfig}:addControl",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2AddControlRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2ServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a ServingConfig. A maximum of 100 ServingConfigs are allowed in a Catalog, otherwise a FAILED_PRECONDITION error is returned.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Full resource name of parent. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "servingConfigId": {
+                          "description": "Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/servingConfigs",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2ServingConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2ServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}",
+                      "httpMethod": "DELETE",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the ServingConfig to delete. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the ServingConfig to get. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2ServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all ServingConfigs linked to this catalog.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The catalog resource name. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/servingConfigs",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2ListServingConfigsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a ServingConfig.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}",
+                      "httpMethod": "PATCH",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. Fully qualified name `projects/*/locations/global/catalogs/*/servingConfig/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2ServingConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2ServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "predict": {
                       "description": "Makes a recommendation prediction.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:predict",
@@ -1019,7 +1390,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. Full resource name of the format: `{placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*}` or `{placement=projects/*/locations/global/catalogs/default_catalog/placements/*}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Managing serving configurations] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
+                          "description": "Required. Full resource name of the format: `{placement=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*}` or `{placement=projects/*/locations/global/catalogs/default_catalog/placements/*}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Manage serving configs] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -1037,8 +1408,36 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "removeControl": {
+                      "description": "Disables a Control on the specified ServingConfig. The control is removed from the ServingConfig. Returns a NOT_FOUND error if the Control is not enabled for the ServingConfig.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:removeControl",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.removeControl",
+                      "parameterOrder": [
+                        "servingConfig"
+                      ],
+                      "parameters": {
+                        "servingConfig": {
+                          "description": "Required. The source ServingConfig resource name . Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+servingConfig}:removeControl",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2RemoveControlRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2ServingConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "search": {
-                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
+                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:search",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.servingConfigs.search",
@@ -1047,7 +1446,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. The resource name of the Retail Search serving config, such as `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
+                          "description": "Required. The resource name of the Retail Search serving config, such as `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that will be used to make the search.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -1089,6 +1488,16 @@
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "prebuiltRule": {
+                          "description": "The prebuilt rule name that can convert a specific type of raw_json. For example: \"default_schema/v1.0\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "rawJson": {
+                          "description": "An arbitrary serialized JSON string that contains necessary information that can comprise a user event. When this field is specified, the user_event field will be ignored. Note: line-delimited JSON is not supported, a single JSON only.",
+                          "location": "query",
                           "type": "string"
                         },
                         "uri": {
@@ -1167,7 +1576,7 @@
                       ]
                     },
                     "rejoin": {
-                      "description": "Starts a user event rejoin operation with latest product catalog. Events will not be annotated with detailed product information if product is missing from the catalog at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This method can be used to start a join operation on specified events with latest version of product catalog. It can also be used to correct events joined with the wrong product catalog. A rejoin operation can take hours or days to complete.",
+                      "description": "Starts a user-event rejoin operation with latest product catalog. Events are not annotated with detailed product information for products that are missing from the catalog when the user event is ingested. These events are stored as unjoined events with limited usage on training and serving. You can use this method to start a join operation on specified events with the latest version of product catalog. You can also use this method to correct events joined with the wrong product catalog. A rejoin operation can take hours or days to complete.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:rejoin",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.userEvents.rejoin",
@@ -1209,6 +1618,11 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "writeAsync": {
+                          "description": "If set to true, the user event will be written asynchronously after validation, and the API will respond without waiting for the write. Therefore, silent failures can occur even if the API returns success. In case of silent failures, error messages can be found in Stackdriver logs.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v2/{+parent}/userEvents:write",
@@ -1371,7 +1785,7 @@
       }
     }
   },
-  "revision": "20220811",
+  "revision": "20221214",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1472,7 +1886,7 @@
       "type": "object"
     },
     "GoogleCloudRetailLoggingImportErrorContext": {
-      "description": "The error payload that is populated on LRO import APIs. Including: \"google.cloud.retail.v2.ProductService.ImportProducts\" \"google.cloud.retail.v2.EventService.ImportUserEvents\"",
+      "description": "The error payload that is populated on LRO import APIs, including \"google.cloud.retail.v2.ProductService.ImportProducts\" and \"google.cloud.retail.v2.EventService.ImportUserEvents\".",
       "id": "GoogleCloudRetailLoggingImportErrorContext",
       "properties": {
         "catalogItem": {
@@ -1531,6 +1945,17 @@
         "catalogAttribute": {
           "$ref": "GoogleCloudRetailV2CatalogAttribute",
           "description": "Required. The CatalogAttribute to add."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2AddControlRequest": {
+      "description": "Request for AddControl method.",
+      "id": "GoogleCloudRetailV2AddControlRequest",
+      "properties": {
+        "controlId": {
+          "description": "Required. The id of the control to apply. Assumed to be in the same catalog as the serving config - if id is not found a NOT_FOUND error is returned.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1723,33 +2148,47 @@
       "id": "GoogleCloudRetailV2CatalogAttribute",
       "properties": {
         "dynamicFacetableOption": {
-          "description": "If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic facet. Could only be DYNAMIC_FACETABLE_DISABLED if CatalogAttribute.indexable_option is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic facet. Could only be DYNAMIC_FACETABLE_DISABLED if CatalogAttribute.indexable_option is INDEXABLE_DISABLED. Otherwise, an INVALID_ARGUMENT error is returned. Must be specified, otherwise throws INVALID_FORMAT error.",
           "enum": [
             "DYNAMIC_FACETABLE_OPTION_UNSPECIFIED",
             "DYNAMIC_FACETABLE_ENABLED",
             "DYNAMIC_FACETABLE_DISABLED"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to DYNAMIC_FACETABLE_ENABLED.",
+            "Value used when unset.",
             "Dynamic facetable option enabled for an attribute.",
             "Dynamic facetable option disabled for an attribute."
           ],
           "type": "string"
         },
+        "exactSearchableOption": {
+          "description": "If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable. This property only applies to textual custom attributes and requires indexable set to enabled to enable exact-searchable.",
+          "enum": [
+            "EXACT_SEARCHABLE_OPTION_UNSPECIFIED",
+            "EXACT_SEARCHABLE_ENABLED",
+            "EXACT_SEARCHABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset. Defaults to EXACT_SEARCHABLE_DISABLED.",
+            "Exact searchable option enabled for an attribute.",
+            "Exact searchable option disabled for an attribute."
+          ],
+          "type": "string"
+        },
         "inUse": {
-          "description": "Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute, CatalogService.ImportCatalogAttributes, or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only pre-loaded CatalogAttributes that are neither in use by products nor predefined can be deleted. CatalogAttributes that are either in use by products or are predefined cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.",
+          "description": "Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute, CatalogService.ImportCatalogAttributes, or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only pre-loaded catalog attributes that are neither in use by products nor predefined can be deleted. Catalog attributes that are either in use by products or are predefined attributes cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.",
           "readOnly": true,
           "type": "boolean"
         },
         "indexableOption": {
-          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search.",
+          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search. Must be specified, otherwise throws INVALID_FORMAT error.",
           "enum": [
             "INDEXABLE_OPTION_UNSPECIFIED",
             "INDEXABLE_ENABLED",
             "INDEXABLE_DISABLED"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to INDEXABLE_ENABLED.",
+            "Value used when unset.",
             "Indexable option enabled for an attribute.",
             "Indexable option disabled for an attribute."
           ],
@@ -1759,15 +2198,29 @@
           "description": "Required. Attribute name. For example: `color`, `brands`, `attributes.custom_attribute`, such as `attributes.xyz`. To be indexable, the attribute name can contain only alpha-numeric characters and underscores. For example, an attribute named `attributes.abc_xyz` can be indexed, but an attribute named `attributes.abc-xyz` cannot be indexed.",
           "type": "string"
         },
+        "retrievableOption": {
+          "description": "If RETRIEVABLE_ENABLED, attribute values are retrievable in the search results.",
+          "enum": [
+            "RETRIEVABLE_OPTION_UNSPECIFIED",
+            "RETRIEVABLE_ENABLED",
+            "RETRIEVABLE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset. Defaults to RETRIEVABLE_DISABLED.",
+            "Retrievable option enabled for an attribute.",
+            "Retrievable option disabled for an attribute."
+          ],
+          "type": "string"
+        },
         "searchableOption": {
-          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes.",
+          "description": "When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes. Must be specified, otherwise throws INVALID_FORMAT error.",
           "enum": [
             "SEARCHABLE_OPTION_UNSPECIFIED",
             "SEARCHABLE_ENABLED",
             "SEARCHABLE_DISABLED"
           ],
           "enumDescriptions": [
-            "Value used when unset. Defaults to SEARCHABLE_DISABLED.",
+            "Value used when unset.",
             "Searchable option enabled for an attribute.",
             "Searchable option disabled for an attribute."
           ],
@@ -1952,6 +2405,120 @@
         "selectedSuggestion": {
           "description": "End user selected CompleteQueryResponse.CompletionResult.suggestion.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2Condition": {
+      "description": "Metadata that is used to define a condition that triggers an action. A valid condition must specify at least one of 'query_terms' or 'products_filter'. If multiple fields are specified, the condition is met if all the fields are satisfied e.g. if a set of query terms and product_filter are set, then only items matching the product_filter for requests with a query matching the query terms wil get boosted.",
+      "id": "GoogleCloudRetailV2Condition",
+      "properties": {
+        "activeTimeRange": {
+          "description": "Range of time(s) specifying when Condition is active. Condition true if any time range matches.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2ConditionTimeRange"
+          },
+          "type": "array"
+        },
+        "queryTerms": {
+          "description": "A list (up to 10 entries) of terms to match the query on. If not specified, match all queries. If many query terms are specified, the condition is matched if any of the terms is a match (i.e. using the OR operator).",
+          "items": {
+            "$ref": "GoogleCloudRetailV2ConditionQueryTerm"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ConditionQueryTerm": {
+      "description": "Query terms that we want to match on.",
+      "id": "GoogleCloudRetailV2ConditionQueryTerm",
+      "properties": {
+        "fullMatch": {
+          "description": "Whether this is supposed to be a full or partial match.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The value of the term to match on. Value cannot be empty. Value can have at most 3 terms if specified as a partial match. Each space separated string is considered as one term. For example, \"a b c\" is 3 terms and allowed, but \" a b c d\" is 4 terms and not allowed for a partial match.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ConditionTimeRange": {
+      "description": "Used for time-dependent conditions. Example: Want to have rule applied for week long sale.",
+      "id": "GoogleCloudRetailV2ConditionTimeRange",
+      "properties": {
+        "endTime": {
+          "description": "End of time range. Range is inclusive.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start of time range. Range is inclusive.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2Control": {
+      "description": "Configures dynamic metadata that can be linked to a ServingConfig and affect search or recommendation results at serving time.",
+      "id": "GoogleCloudRetailV2Control",
+      "properties": {
+        "associatedServingConfigIds": {
+          "description": "Output only. List of serving config ids that are associated with this control in the same Catalog. Note the association is managed via the ServingConfig, this is an output only denormalized view.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The human readable control display name. Used in Retail UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is thrown.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Fully qualified name `projects/*/locations/global/catalogs/*/controls/*`",
+          "type": "string"
+        },
+        "rule": {
+          "$ref": "GoogleCloudRetailV2Rule",
+          "description": "A rule control - a condition-action pair. Enacts a set action when the condition is triggered. For example: Boost \"gShoe\" when query full matches \"Running Shoes\"."
+        },
+        "searchSolutionUseCase": {
+          "description": "Specifies the use case for the control. Affects what condition fields can be set. Only settable by search controls. Will default to SEARCH_SOLUTION_USE_CASE_SEARCH if not specified. Currently only allow one search_solution_use_case per control.",
+          "items": {
+            "enum": [
+              "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
+              "SEARCH_SOLUTION_USE_CASE_SEARCH",
+              "SEARCH_SOLUTION_USE_CASE_BROWSE"
+            ],
+            "enumDescriptions": [
+              "The value when it's unspecified. In this case, server behavior defaults to SEARCH_SOLUTION_USE_CASE_SEARCH.",
+              "Search use case. Expects the traffic has a non-empty query.",
+              "Browse use case. Expects the traffic has an empty query."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "solutionTypes": {
+          "description": "Required. Immutable. The solution types that the control is used for. Currently we support setting only one type of solution at creation time. Only `SOLUTION_TYPE_SEARCH` value is supported at the moment. If no solution type is provided at creation time, will default to SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "enum": [
+              "SOLUTION_TYPE_UNSPECIFIED",
+              "SOLUTION_TYPE_RECOMMENDATION",
+              "SOLUTION_TYPE_SEARCH"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Used for Recommendations AI.",
+              "Used for Retail Search."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2280,6 +2847,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2ListControlsResponse": {
+      "description": "Response for ListControls method.",
+      "id": "GoogleCloudRetailV2ListControlsResponse",
+      "properties": {
+        "controls": {
+          "description": "All the Controls for a given catalog.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2Control"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Pagination token, if not returned indicates the last page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2ListProductsResponse": {
       "description": "Response message for ProductService.ListProducts method.",
       "id": "GoogleCloudRetailV2ListProductsResponse",
@@ -2292,6 +2877,24 @@
           "description": "The Products.",
           "items": {
             "$ref": "GoogleCloudRetailV2Product"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ListServingConfigsResponse": {
+      "description": "Response for ListServingConfigs method.",
+      "id": "GoogleCloudRetailV2ListServingConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token, if not returned indicates the last page.",
+          "type": "string"
+        },
+        "servingConfigs": {
+          "description": "All the ServingConfigs for a given catalog.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2ServingConfig"
           },
           "type": "array"
         }
@@ -2332,7 +2935,7 @@
       "id": "GoogleCloudRetailV2PredictRequest",
       "properties": {
         "filter": {
-          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return generic (unfiltered) popular products. If you only want results strictly matching the filters, set `strictFiltering` to True in `PredictRequest.params` to receive empty results instead. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (availability: ANY(\"IN_STOCK\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\"))",
+          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (availability: ANY(\"IN_STOCK\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\"))",
           "type": "string"
         },
         "labels": {
@@ -2355,7 +2958,7 @@
           "additionalProperties": {
             "type": "any"
           },
-          "description": "Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of an product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field is interpreteted according to the new, attribute-based syntax.",
+          "description": "Additional domain specific parameters for the predictions. Allowed values: * `returnProduct`: Boolean. If set to true, the associated product object will be returned in the `results.metadata` field in the prediction response. * `returnScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned product will be set in the `results.metadata` field in the prediction response. The given 'score' indicates the probability of a product being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular products instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'}. This gives request-level control and adjusts prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'}. This gives request-level control and adjusts prediction results based on product category. * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter` field is interpreteted according to the new, attribute-based syntax.",
           "type": "object"
         },
         "userEvent": {
@@ -2511,7 +3114,7 @@
           "type": "integer"
         },
         "availableTime": {
-          "description": "The timestamp when this Product becomes available for SearchService.Search.",
+          "description": "The timestamp when this Product becomes available for SearchService.Search. Note that this is only applicable to Type.PRIMARY and Type.COLLECTION, and ignored for Type.VARIANT.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2523,7 +3126,7 @@
           "type": "array"
         },
         "categories": {
-          "description": "Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, please replace it with other character(s). For example, if a shoes product belongs to both [\"Shoes & Accessories\" -> \"Shoes\"] and [\"Sports & Fitness\" -> \"Athletic Clothing\" -> \"Shoes\"], it could be represented as: \"categories\": [ \"Shoes & Accessories > Shoes\", \"Sports & Fitness > Athletic Clothing > Shoes\" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436",
+          "description": "Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, if a shoes product belongs to both [\"Shoes & Accessories\" -> \"Shoes\"] and [\"Sports & Fitness\" -> \"Athletic Clothing\" -> \"Shoes\"], it could be represented as: \"categories\": [ \"Shoes & Accessories > Shoes\", \"Sports & Fitness > Athletic Clothing > Shoes\" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436",
           "items": {
             "type": "string"
           },
@@ -2552,7 +3155,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "The timestamp when this product becomes unavailable for SearchService.Search. If it is set, the Product is not available for SearchService.Search after expire_time. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts. expire_time must be later than available_time and publish_time, otherwise an INVALID_ARGUMENT error is thrown. Corresponding properties: Google Merchant Center property [expiration_date](https://support.google.com/merchants/answer/6324499).",
+          "description": "The timestamp when this product becomes unavailable for SearchService.Search. Note that this is only applicable to Type.PRIMARY and Type.COLLECTION, and ignored for Type.VARIANT. In general, we suggest the users to delete the stale products explicitly, instead of using this field to determine staleness. If it is set, the Product is not available for SearchService.Search after expire_time. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts. expire_time must be later than available_time and publish_time, otherwise an INVALID_ARGUMENT error is thrown. Corresponding properties: Google Merchant Center property [expiration_date](https://support.google.com/merchants/answer/6324499).",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2581,6 +3184,14 @@
         "languageCode": {
           "description": "Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). For product prediction, this field is ignored and the model automatically detects the text language. The Product can include text in different languages, but duplicating Products to provide text in multiple languages can result in degraded model performance. For product search this field is in use. It defaults to \"en-US\" if unset.",
           "type": "string"
+        },
+        "localInventories": {
+          "description": "Output only. A list of local inventories specific to different places. This is only available for users who have Retail Search enabled, and it can be managed by ProductService.AddLocalInventories and ProductService.RemoveLocalInventories APIs.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2LocalInventory"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "materials": {
           "description": "The material of the product. For example, \"leather\", \"wooden\". A maximum of 20 values are allowed. Each value must be a UTF-8 encoded string with a length limit of 200 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [material](https://support.google.com/merchants/answer/6324410). Schema.org property [Product.material](https://schema.org/material).",
@@ -2625,7 +3236,7 @@
           "description": "The rating of this product."
         },
         "retrievableFields": {
-          "description": "Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form \"attributes.key\" where \"key\" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is returned. Note: Returning more fields in SearchResponse can increase response payload size and serving latency.",
+          "description": "Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form \"attributes.key\" where \"key\" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is returned. Note: Returning more fields in SearchResponse can increase response payload size and serving latency. This field is deprecated. Use the retrievable site-wide control instead.",
           "format": "google-fieldmask",
           "type": "string"
         },
@@ -2648,7 +3259,7 @@
           "type": "string"
         },
         "ttl": {
-          "description": "Input only. The TTL (time to live) of the product. If it is set, it must be a non-negative value, and expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.",
+          "description": "Input only. The TTL (time to live) of the product. Note that this is only applicable to Type.PRIMARY and Type.COLLECTION, and ignored for Type.VARIANT. In general, we suggest the users to delete the stale products explicitly, instead of using this field to determine staleness. If it is set, it must be a non-negative value, and expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2847,7 +3458,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2RejoinUserEventsMetadata": {
-      "description": "Metadata for RejoinUserEvents method.",
+      "description": "Metadata for `RejoinUserEvents` method.",
       "id": "GoogleCloudRetailV2RejoinUserEventsMetadata",
       "properties": {},
       "type": "object"
@@ -2857,7 +3468,7 @@
       "id": "GoogleCloudRetailV2RejoinUserEventsRequest",
       "properties": {
         "userEventRejoinScope": {
-          "description": "The type of the user event rejoin to define the scope and range of the user events to be rejoined with the latest product catalog. Defaults to USER_EVENT_REJOIN_SCOPE_UNSPECIFIED if this field is not set, or set to an invalid integer value.",
+          "description": "The type of the user event rejoin to define the scope and range of the user events to be rejoined with the latest product catalog. Defaults to `USER_EVENT_REJOIN_SCOPE_UNSPECIFIED` if this field is not set, or set to an invalid integer value.",
           "enum": [
             "USER_EVENT_REJOIN_SCOPE_UNSPECIFIED",
             "JOINED_EVENTS",
@@ -2874,7 +3485,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2RejoinUserEventsResponse": {
-      "description": "Response message for RejoinUserEvents method.",
+      "description": "Response message for `RejoinUserEvents` method.",
       "id": "GoogleCloudRetailV2RejoinUserEventsResponse",
       "properties": {
         "rejoinedUserEventsCount": {
@@ -2891,6 +3502,17 @@
       "properties": {
         "key": {
           "description": "Required. The attribute name key of the CatalogAttribute to remove.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RemoveControlRequest": {
+      "description": "Request for RemoveControl method.",
+      "id": "GoogleCloudRetailV2RemoveControlRequest",
+      "properties": {
+        "controlId": {
+          "description": "Required. The id of the control to apply. Assumed to be in the same catalog as the serving config.",
           "type": "string"
         }
       },
@@ -2970,6 +3592,209 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2ReplaceCatalogAttributeRequest": {
+      "description": "Request for CatalogService.ReplaceCatalogAttribute method.",
+      "id": "GoogleCloudRetailV2ReplaceCatalogAttributeRequest",
+      "properties": {
+        "catalogAttribute": {
+          "$ref": "GoogleCloudRetailV2CatalogAttribute",
+          "description": "Required. The updated CatalogAttribute."
+        },
+        "updateMask": {
+          "description": "Indicates which fields in the provided CatalogAttribute to update. The following are NOT supported: * CatalogAttribute.key If not set, all supported fields are updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2Rule": {
+      "description": "A rule is a condition-action pair * A condition defines when a rule is to be triggered. * An action specifies what occurs on that trigger. Currently rules only work for controls with SOLUTION_TYPE_SEARCH.",
+      "id": "GoogleCloudRetailV2Rule",
+      "properties": {
+        "boostAction": {
+          "$ref": "GoogleCloudRetailV2RuleBoostAction",
+          "description": "A boost action."
+        },
+        "condition": {
+          "$ref": "GoogleCloudRetailV2Condition",
+          "description": "Required. The condition that triggers the rule. If the condition is empty, the rule will always apply."
+        },
+        "doNotAssociateAction": {
+          "$ref": "GoogleCloudRetailV2RuleDoNotAssociateAction",
+          "description": "Prevents term from being associated with other terms."
+        },
+        "filterAction": {
+          "$ref": "GoogleCloudRetailV2RuleFilterAction",
+          "description": "Filters results."
+        },
+        "ignoreAction": {
+          "$ref": "GoogleCloudRetailV2RuleIgnoreAction",
+          "description": "Ignores specific terms from query during search."
+        },
+        "onewaySynonymsAction": {
+          "$ref": "GoogleCloudRetailV2RuleOnewaySynonymsAction",
+          "description": "Treats specific term as a synonym with a group of terms. Group of terms will not be treated as synonyms with the specific term."
+        },
+        "redirectAction": {
+          "$ref": "GoogleCloudRetailV2RuleRedirectAction",
+          "description": "Redirects a shopper to a specific page."
+        },
+        "replacementAction": {
+          "$ref": "GoogleCloudRetailV2RuleReplacementAction",
+          "description": "Replaces specific terms in the query."
+        },
+        "twowaySynonymsAction": {
+          "$ref": "GoogleCloudRetailV2RuleTwowaySynonymsAction",
+          "description": "Treats a set of terms as synonyms of one another."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleBoostAction": {
+      "description": "A boost action to apply to results matching condition specified above.",
+      "id": "GoogleCloudRetailV2RuleBoostAction",
+      "properties": {
+        "boost": {
+          "description": "Strength of the condition boost, which must be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the item a big promotion. However, it does not necessarily mean that the boosted item will be the top result at all times, nor that other items will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant items. Setting to -1.0 gives the item a big demotion. However, results that are deeply relevant might still be shown. The item will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.",
+          "format": "float",
+          "type": "number"
+        },
+        "productsFilter": {
+          "description": "The filter can have a max size of 5000 characters. An expression which specifies which products to apply an action to. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost products with product ID \"product_1\" or \"product_2\", and color \"Red\" or \"Blue\": *(id: ANY(\"product_1\", \"product_2\")) * *AND * *(colorFamilies: ANY(\"Red\", \"Blue\")) *",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleDoNotAssociateAction": {
+      "description": "Prevents `query_term` from being associated with specified terms during search. Example: Don't associate \"gShoe\" and \"cheap\".",
+      "id": "GoogleCloudRetailV2RuleDoNotAssociateAction",
+      "properties": {
+        "doNotAssociateTerms": {
+          "description": "Cannot contain duplicates or the query term. Can specify up to 100 terms.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "queryTerms": {
+          "description": "Terms from the search query. Will not consider do_not_associate_terms for search if in search query. Can specify up to 100 terms.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "terms": {
+          "description": "Will be [deprecated = true] post migration;",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleFilterAction": {
+      "description": "* Rule Condition: - No Condition.query_terms provided is a global match. - 1 or more Condition.query_terms provided are combined with OR operator. * Action Input: The request query and filter that are applied to the retrieved products, in addition to any filters already provided with the SearchRequest. The AND operator is used to combine the query's existing filters with the filter rule(s). NOTE: May result in 0 results when filters conflict. * Action Result: Filters the returned objects to be ONLY those that passed the filter.",
+      "id": "GoogleCloudRetailV2RuleFilterAction",
+      "properties": {
+        "filter": {
+          "description": "A filter to apply on the matching condition results. Supported features: * filter must be set. * Filter syntax is identical to SearchRequest.filter. See more details at the Retail Search [user guide](/retail/search/docs/filter-and-order#filter). * To filter products with product ID \"product_1\" or \"product_2\", and color \"Red\" or \"Blue\": *(id: ANY(\"product_1\", \"product_2\")) * *AND * *(colorFamilies: ANY(\"Red\", \"Blue\")) *",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleIgnoreAction": {
+      "description": "Prevents a term in the query from being used in search. Example: Don't search for \"shoddy\".",
+      "id": "GoogleCloudRetailV2RuleIgnoreAction",
+      "properties": {
+        "ignoreTerms": {
+          "description": "Terms to ignore in the search query.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleOnewaySynonymsAction": {
+      "description": "Maps a set of terms to a set of synonyms. Set of synonyms will be treated as synonyms of each query term only. `query_terms` will not be treated as synonyms of each other. Example: \"sneakers\" will use a synonym of \"shoes\". \"shoes\" will not use a synonym of \"sneakers\".",
+      "id": "GoogleCloudRetailV2RuleOnewaySynonymsAction",
+      "properties": {
+        "onewayTerms": {
+          "description": "Will be [deprecated = true] post migration;",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "queryTerms": {
+          "description": "Terms from the search query. Will treat synonyms as their synonyms. Not themselves synonyms of the synonyms. Can specify up to 100 terms.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "synonyms": {
+          "description": "Defines a set of synonyms. Cannot contain duplicates. Can specify up to 100 synonyms.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleRedirectAction": {
+      "description": "Redirects a shopper to a specific page. * Rule Condition: - Must specify Condition.query_terms. * Action Input: Request Query * Action Result: Redirects shopper to provided uri.",
+      "id": "GoogleCloudRetailV2RuleRedirectAction",
+      "properties": {
+        "redirectUri": {
+          "description": "URL must have length equal or less than 2000 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleReplacementAction": {
+      "description": "Replaces a term in the query. Multiple replacement candidates can be specified. All `query_terms` will be replaced with the replacement term. Example: Replace \"gShoe\" with \"google shoe\".",
+      "id": "GoogleCloudRetailV2RuleReplacementAction",
+      "properties": {
+        "queryTerms": {
+          "description": "Terms from the search query. Will be replaced by replacement term. Can specify up to 100 terms.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "replacementTerm": {
+          "description": "Term that will be used for replacement.",
+          "type": "string"
+        },
+        "term": {
+          "description": "Will be [deprecated = true] post migration;",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleTwowaySynonymsAction": {
+      "description": "Creates a set of terms that will be treated as synonyms of each other. Example: synonyms of \"sneakers\" and \"shoes\": * \"sneakers\" will use a synonym of \"shoes\". * \"shoes\" will use a synonym of \"sneakers\".",
+      "id": "GoogleCloudRetailV2RuleTwowaySynonymsAction",
+      "properties": {
+        "synonyms": {
+          "description": "Defines a set of synonyms. Can specify up to 100 synonyms. Must specify at least 2 synonyms.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2SearchRequest": {
       "description": "Request message for SearchService.Search method.",
       "id": "GoogleCloudRetailV2SearchRequest",
@@ -3018,7 +3843,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "The categories associated with a category page. Required for category navigation queries to achieve good search quality. The format should be the same as UserEvent.page_categories; To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, please replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: \"pageCategories\" : [\"Sales > 2017 Black Friday Deals\"].",
+          "description": "The categories associated with a category page. Required for category navigation queries to achieve good search quality. The format should be the same as UserEvent.page_categories; To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: \"pageCategories\" : [\"Sales > 2017 Black Friday Deals\"].",
           "items": {
             "type": "string"
           },
@@ -3035,7 +3860,7 @@
         },
         "personalizationSpec": {
           "$ref": "GoogleCloudRetailV2SearchRequestPersonalizationSpec",
-          "description": "The specification for personalization."
+          "description": "The specification for personalization. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set. SearchRequest.personalization_spec will override ServingConfig.personalization_spec."
         },
         "query": {
           "description": "Raw search query. If this field is empty, the request is considered a category browsing request and returned results are based on filter and page_categories.",
@@ -3053,9 +3878,9 @@
             "FACETED_SEARCH_ONLY"
           ],
           "enumDescriptions": [
-            "Default value. In this case both product search and faceted search will be performed. Both [SearchResponse.SearchResult] and [SearchResponse.Facet] will be returned.",
-            "Only product search will be performed. The faceted search will be disabled. Only [SearchResponse.SearchResult] will be returned. [SearchResponse.Facet] will not be returned, even if SearchRequest.facet_specs or SearchRequest.dynamic_facet_spec is set.",
-            "Only faceted search will be performed. The product search will be disabled. When in this mode, one or both of SearchRequest.facet_specs and SearchRequest.dynamic_facet_spec should be set. Otherwise, an INVALID_ARGUMENT error is returned. Only [SearchResponse.Facet] will be returned. [SearchResponse.SearchResult] will not be returned."
+            "Default value. In this case both product search and faceted search will be performed. Both SearchResponse.SearchResult and SearchResponse.Facet will be returned.",
+            "Only product search will be performed. The faceted search will be disabled. Only SearchResponse.SearchResult will be returned. SearchResponse.Facet will not be returned, even if SearchRequest.facet_specs or SearchRequest.dynamic_facet_spec is set.",
+            "Only faceted search will be performed. The product search will be disabled. When in this mode, one or both of SearchRequest.facet_specs and SearchRequest.dynamic_facet_spec should be set. Otherwise, an INVALID_ARGUMENT error is returned. Only SearchResponse.Facet will be returned. SearchResponse.SearchResult will not be returned."
           ],
           "type": "string"
         },
@@ -3156,7 +3981,7 @@
           "description": "Required. The facet key specification."
         },
         "limit": {
-          "description": "Maximum of facet values that should be returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 will be coerced to 300. If this field is negative, an INVALID_ARGUMENT is returned.",
+          "description": "Maximum of facet values that should be returned for this facet. If unspecified, defaults to 50. The maximum allowed value is 300. Values above 300 will be coerced to 300. If this field is negative, an INVALID_ARGUMENT is returned.",
           "format": "int32",
           "type": "integer"
         }
@@ -3455,6 +4280,139 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2ServingConfig": {
+      "description": "Configures metadata that is used to generate serving time results (e.g. search results or recommendation predictions).",
+      "id": "GoogleCloudRetailV2ServingConfig",
+      "properties": {
+        "boostControlIds": {
+          "description": "Condition boost specifications. If a product matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 100. Notice that if both ServingConfig.boost_control_ids and SearchRequest.boost_spec are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The human readable serving config display name. Used in Retail UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "diversityLevel": {
+          "description": "How much diversity to use in recommendation model results e.g. `medium-diversity` or `high-diversity`. Currently supported values: * `no-diversity` * `low-diversity` * `medium-diversity` * `high-diversity` * `auto-diversity` If not specified, we choose default based on recommendation model type. Default value: `no-diversity`. Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.",
+          "type": "string"
+        },
+        "diversityType": {
+          "description": "What kind of diversity to use - data driven or rule based.",
+          "enum": [
+            "DIVERSITY_TYPE_UNSPECIFIED",
+            "RULE_BASED_DIVERSITY",
+            "DATA_DRIVEN_DIVERSITY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Rule based diversity.",
+            "Data driven diversity."
+          ],
+          "type": "string"
+        },
+        "doNotAssociateControlIds": {
+          "description": "Condition do not associate specifications. If multiple do not associate conditions match, all matching do not associate controls in the list will execute. - Order does not matter. - Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dynamicFacetSpec": {
+          "$ref": "GoogleCloudRetailV2SearchRequestDynamicFacetSpec",
+          "description": "The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated. Can only be set if solution_types is SOLUTION_TYPE_SEARCH."
+        },
+        "enableCategoryFilterLevel": {
+          "description": "Whether to add additional category filters on the `similar-items` model. If not specified, we enable it by default. Allowed values are: * `no-category-match`: No additional filtering of original results from the model and the customer's filters. * `relaxed-category-match`: Only keep results with categories that match at least one item categories in the PredictRequests's context item. * If customer also sends filters in the PredictRequest, then the results will satisfy both conditions (user given and category match). Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.",
+          "type": "string"
+        },
+        "facetControlIds": {
+          "description": "Facet specifications for faceted search. If empty, no facets are returned. The ids refer to the ids of Control resources with only the Facet control set. These controls are assumed to be in the same Catalog as the ServingConfig. A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filterControlIds": {
+          "description": "Condition filter specifications. If a product matches multiple conditions in the specifications, filters from these specifications are all applied and combined via the AND operator. Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignoreControlIds": {
+          "description": "Condition ignore specifications. If multiple ignore conditions match, all matching ignore controls in the list will execute. - Order does not matter. - Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "modelId": {
+          "description": "The id of the model in the same Catalog to use at serving time. Currently only RecommendationModels are supported: https://cloud.google.com/retail/recommendations-ai/docs/create-models Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when solution_types is SOLUTION_TYPE_RECOMMENDATION.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Fully qualified name `projects/*/locations/global/catalogs/*/servingConfig/*`",
+          "type": "string"
+        },
+        "onewaySynonymsControlIds": {
+          "description": "Condition oneway synonyms specifications. If multiple oneway synonyms conditions match, all matching oneway synonyms controls in the list will execute. Order of controls in the list will not matter. Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "personalizationSpec": {
+          "$ref": "GoogleCloudRetailV2SearchRequestPersonalizationSpec",
+          "description": "The specification for personalization spec. Can only be set if solution_types is SOLUTION_TYPE_SEARCH. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set. SearchRequest.personalization_spec will override ServingConfig.personalization_spec."
+        },
+        "priceRerankingLevel": {
+          "description": "How much price ranking we want in serving results. Price reranking causes product items with a similar recommendation probability to be ordered by price, with the highest-priced items first. This setting could result in a decrease in click-through and conversion rates. Allowed values are: * `no-price-reranking` * `low-price-raranking` * `medium-price-reranking` * `high-price-reranking` If not specified, we choose default based on model type. Default value: `no-price-reranking`. Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.",
+          "type": "string"
+        },
+        "redirectControlIds": {
+          "description": "Condition redirect specifications. Only the first triggered redirect action is applied, even if multiple apply. Maximum number of specifications is 1000. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "replacementControlIds": {
+          "description": "Condition replacement specifications. - Applied according to the order in the list. - A previously replaced term can not be re-replaced. - Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "solutionTypes": {
+          "description": "Required. Immutable. Specifies the solution types that a serving config can be associated with. Currently we support setting only one type of solution.",
+          "items": {
+            "enum": [
+              "SOLUTION_TYPE_UNSPECIFIED",
+              "SOLUTION_TYPE_RECOMMENDATION",
+              "SOLUTION_TYPE_SEARCH"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Used for Recommendations AI.",
+              "Used for Retail Search."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "twowaySynonymsControlIds": {
+          "description": "Condition synonyms specifications. If multiple syonyms conditions match, all matching synonyms control in the list will execute. Order of controls in the list will not matter. Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2SetDefaultBranchRequest": {
       "description": "Request message to set a specified branch as new default_branch.",
       "id": "GoogleCloudRetailV2SetDefaultBranchRequest",
@@ -3564,7 +4522,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "The categories associated with a category page. To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, please replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: \"pageCategories\" : [\"Sales > 2017 Black Friday Deals\"]. Required for `category-page-view` events. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "The categories associated with a category page. To represent full path of category, use '>' sign to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: \"pageCategories\" : [\"Sales > 2017 Black Friday Deals\"]. Required for `category-page-view` events. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.",
           "items": {
             "type": "string"
           },
@@ -3729,7 +4687,7 @@
       "id": "GoogleCloudRetailV2alphaCreateModelMetadata",
       "properties": {
         "model": {
-          "description": "The resource name of the model that this create applies to. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+          "description": "The resource name of the model that this create applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
           "type": "string"
         }
       },
@@ -3747,7 +4705,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaExportMetadata": {
-      "description": "Metadata related to the progress of the Export operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRetailV2alphaExportMetadata",
       "properties": {
         "createTime": {
@@ -3803,6 +4761,17 @@
         "outputResult": {
           "$ref": "GoogleCloudRetailV2alphaOutputResult",
           "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaGcsOutputResult": {
+      "description": "A Gcs output result.",
+      "id": "GoogleCloudRetailV2alphaGcsOutputResult",
+      "properties": {
+        "outputUri": {
+          "description": "The uri of Gcs output",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3965,7 +4934,7 @@
           "type": "string"
         },
         "optimizationObjective": {
-          "description": "Optional. The optimization objective e.g. `cvr`. Currently supported values: `ctr`, `cvr`, `revenue-per-order`. If not specified, we choose default based on model type. Default depends on type of recommendation: `recommended-for-you` => `ctr` `others-you-may-like` => `ctr` `frequently-bought-together` => `revenue_per_order`",
+          "description": "Optional. The optimization objective e.g. `cvr`. Currently supported values: `ctr`, `cvr`, `revenue-per-order`. If not specified, we choose default based on model type. Default depends on type of recommendation: `recommended-for-you` => `ctr` `others-you-may-like` => `ctr` `frequently-bought-together` => `revenue_per_order` This field together with optimization_objective describe model metadata to use to control model training and serving. See https://cloud.google.com/retail/docs/models for more details on what the model metadata control and which combination of parameters are valid. For invalid combinations of parameters (e.g. type = `frequently-bought-together` and optimization_objective = `ctr`), you receive an error 400 if you try to create/update a recommendation with this set of knobs.",
           "type": "string"
         },
         "pageOptimizationConfig": {
@@ -4033,7 +5002,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of model e.g. `home-page`. Currently supported values: `recommended-for-you`, `others-you-may-like`, `frequently-bought-together`, `page-optimization`, `similar-items`, `buy-it-again`, and `recently-viewed`(readonly value).",
+          "description": "Required. The type of model e.g. `home-page`. Currently supported values: `recommended-for-you`, `others-you-may-like`, `frequently-bought-together`, `page-optimization`, `similar-items`, `buy-it-again`, `on-sale-items`, and `recently-viewed`(readonly value). This field together with optimization_objective describe model metadata to use to control model training and serving. See https://cloud.google.com/retail/docs/models for more details on what the model metadata control and which combination of parameters are valid. For invalid combinations of parameters (e.g. type = `frequently-bought-together` and optimization_objective = `ctr`), you receive an error 400 if you try to create/update a recommendation with this set of knobs.",
           "type": "string"
         },
         "updateTime": {
@@ -4046,7 +5015,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaModelPageOptimizationConfig": {
-      "description": "The PageOptimizationConfig for model training. This determines how many panels to optimize for, and which serving configurations to consider for each panel. The purpose of this model is to optimize which ServingConfig to show on which panels in way that optimizes the visitors shopping journey.",
+      "description": "The PageOptimizationConfig for model training. This determines how many panels to optimize for, and which serving configs to consider for each panel. The purpose of this model is to optimize which ServingConfig to show on which panels in way that optimizes the visitors shopping journey.",
       "id": "GoogleCloudRetailV2alphaModelPageOptimizationConfig",
       "properties": {
         "pageOptimizationEventType": {
@@ -4097,7 +5066,7 @@
       "id": "GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel",
       "properties": {
         "candidates": {
-          "description": "Required. The candidates to consider on the panel. Limit = 10.",
+          "description": "Required. The candidates to consider on the panel.",
           "items": {
             "$ref": "GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate"
           },
@@ -4129,13 +5098,20 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaOutputResult": {
-      "description": "Output result.",
+      "description": "Output result that stores the information about where the exported data is stored.",
       "id": "GoogleCloudRetailV2alphaOutputResult",
       "properties": {
         "bigqueryResult": {
-          "description": "Export result in BigQuery.",
+          "description": "The BigQuery location where the result is stored.",
           "items": {
             "$ref": "GoogleCloudRetailV2alphaBigQueryOutputResult"
+          },
+          "type": "array"
+        },
+        "gcsResult": {
+          "description": "The Google Cloud Storage location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaGcsOutputResult"
           },
           "type": "array"
         }
@@ -4207,13 +5183,13 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRejoinUserEventsMetadata": {
-      "description": "Metadata for RejoinUserEvents method.",
+      "description": "Metadata for `RejoinUserEvents` method.",
       "id": "GoogleCloudRetailV2alphaRejoinUserEventsMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaRejoinUserEventsResponse": {
-      "description": "Response message for RejoinUserEvents method.",
+      "description": "Response message for `RejoinUserEvents` method.",
       "id": "GoogleCloudRetailV2alphaRejoinUserEventsResponse",
       "properties": {
         "rejoinedUserEventsCount": {
@@ -4282,7 +5258,7 @@
       "id": "GoogleCloudRetailV2alphaTuneModelMetadata",
       "properties": {
         "model": {
-          "description": "The resource name of the model that this tune applies to. Format: projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}",
+          "description": "The resource name of the model that this tune applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
           "type": "string"
         }
       },
@@ -4350,6 +5326,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaCreateModelMetadata": {
+      "description": "Metadata associated with a create operation.",
+      "id": "GoogleCloudRetailV2betaCreateModelMetadata",
+      "properties": {
+        "model": {
+          "description": "The resource name of the model that this create applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaExportErrorsConfig": {
       "description": "Configuration of destination for Export related errors.",
       "id": "GoogleCloudRetailV2betaExportErrorsConfig",
@@ -4362,7 +5349,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2betaExportMetadata": {
-      "description": "Metadata related to the progress of the Export operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "description": "Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRetailV2betaExportMetadata",
       "properties": {
         "createTime": {
@@ -4418,6 +5405,17 @@
         "outputResult": {
           "$ref": "GoogleCloudRetailV2betaOutputResult",
           "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaGcsOutputResult": {
+      "description": "A Gcs output result.",
+      "id": "GoogleCloudRetailV2betaGcsOutputResult",
+      "properties": {
+        "outputUri": {
+          "description": "The uri of Gcs output",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4522,14 +5520,165 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaModel": {
+      "description": "Metadata that describes the training and serving parameters of a Model. A Model can be associated with a ServingConfig and then queried through the Predict API.",
+      "id": "GoogleCloudRetailV2betaModel",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp the Recommendation Model was created at.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataState": {
+          "description": "Output only. The state of data requirements for this model: `DATA_OK` and `DATA_ERROR`. Recommendation model cannot be trained if the data is in `DATA_ERROR` state. Recommendation model can have `DATA_ERROR` state even if serving state is `ACTIVE`: models were trained successfully before, but cannot be refreshed because model no longer has sufficient data for training.",
+          "enum": [
+            "DATA_STATE_UNSPECIFIED",
+            "DATA_OK",
+            "DATA_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified default value, should never be explicitly set.",
+            "The model has sufficient training data.",
+            "The model does not have sufficient training data. Error messages can be queried via Stackdriver."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the model. Should be human readable, used to display Recommendation Models in the Retail Cloud Console Dashboard. UTF-8 encoded string with limit of 1024 characters.",
+          "type": "string"
+        },
+        "filteringOption": {
+          "description": "Optional. If `RECOMMENDATIONS_FILTERING_ENABLED`, recommendation filtering by attributes is enabled for the model.",
+          "enum": [
+            "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED",
+            "RECOMMENDATIONS_FILTERING_DISABLED",
+            "RECOMMENDATIONS_FILTERING_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Value used when unset. In this case, server behavior defaults to RECOMMENDATIONS_FILTERING_DISABLED.",
+            "Recommendation filtering is disabled.",
+            "Recommendation filtering is enabled."
+          ],
+          "type": "string"
+        },
+        "lastTuneTime": {
+          "description": "Output only. The timestamp when the latest successful tune finished.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.",
+          "type": "string"
+        },
+        "optimizationObjective": {
+          "description": "Optional. The optimization objective e.g. `cvr`. Currently supported values: `ctr`, `cvr`, `revenue-per-order`. If not specified, we choose default based on model type. Default depends on type of recommendation: `recommended-for-you` => `ctr` `others-you-may-like` => `ctr` `frequently-bought-together` => `revenue_per_order` This field together with optimization_objective describe model metadata to use to control model training and serving. See https://cloud.google.com/retail/docs/models for more details on what the model metadata control and which combination of parameters are valid. For invalid combinations of parameters (e.g. type = `frequently-bought-together` and optimization_objective = `ctr`), you receive an error 400 if you try to create/update a recommendation with this set of knobs.",
+          "type": "string"
+        },
+        "periodicTuningState": {
+          "description": "Optional. The state of periodic tuning. The period we use is 3 months - to do a one-off tune earlier use the `TuneModel` method. Default value is `PERIODIC_TUNING_ENABLED`.",
+          "enum": [
+            "PERIODIC_TUNING_STATE_UNSPECIFIED",
+            "PERIODIC_TUNING_DISABLED",
+            "ALL_TUNING_DISABLED",
+            "PERIODIC_TUNING_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified default value, should never be explicitly set.",
+            "The model has periodic tuning disabled. Tuning can be reenabled by calling the `EnableModelPeriodicTuning` method or by calling the `TuneModel` method.",
+            "The model cannot be tuned with periodic tuning OR the `TuneModel` method. Hide the options in customer UI and reject any requests through the backend self serve API.",
+            "The model has periodic tuning enabled. Tuning can be disabled by calling the `DisableModelPeriodicTuning` method."
+          ],
+          "type": "string"
+        },
+        "servingConfigLists": {
+          "description": "Output only. The list of valid serving configs associated with the PageOptimizationConfig.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaModelServingConfigList"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "servingState": {
+          "description": "Output only. The serving state of the model: `ACTIVE`, `NOT_ACTIVE`.",
+          "enum": [
+            "SERVING_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE",
+            "TUNED"
+          ],
+          "enumDescriptions": [
+            "Unspecified serving state.",
+            "The model is not serving.",
+            "The model is serving and can be queried.",
+            "The model is trained on tuned hyperparameters and can be queried."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "trainingState": {
+          "description": "Optional. The training state that the model is in (e.g. `TRAINING` or `PAUSED`). Since part of the cost of running the service is frequency of training - this can be used to determine when to train model in order to control cost. If not specified: the default value for `CreateModel` method is `TRAINING`. The default value for `UpdateModel` method is to keep the state the same as before.",
+          "enum": [
+            "TRAINING_STATE_UNSPECIFIED",
+            "PAUSED",
+            "TRAINING"
+          ],
+          "enumDescriptions": [
+            "Unspecified training state.",
+            "The model training is paused.",
+            "The model is training."
+          ],
+          "type": "string"
+        },
+        "tuningOperation": {
+          "description": "Output only. The tune operation associated with the model. Can be used to determine if there is an ongoing tune for this recommendation. Empty field implies no tune is goig on.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of model e.g. `home-page`. Currently supported values: `recommended-for-you`, `others-you-may-like`, `frequently-bought-together`, `page-optimization`, `similar-items`, `buy-it-again`, `on-sale-items`, and `recently-viewed`(readonly value). This field together with optimization_objective describe model metadata to use to control model training and serving. See https://cloud.google.com/retail/docs/models for more details on what the model metadata control and which combination of parameters are valid. For invalid combinations of parameters (e.g. type = `frequently-bought-together` and optimization_objective = `ctr`), you receive an error 400 if you try to create/update a recommendation with this set of knobs.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the Recommendation Model was last updated. E.g. if a Recommendation Model was paused - this would be the time the pause was initiated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaModelServingConfigList": {
+      "description": "Represents an ordered combination of valid serving configs, which can be used for `PAGE_OPTIMIZATION` recommendations.",
+      "id": "GoogleCloudRetailV2betaModelServingConfigList",
+      "properties": {
+        "servingConfigIds": {
+          "description": "Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaOutputResult": {
-      "description": "Output result.",
+      "description": "Output result that stores the information about where the exported data is stored.",
       "id": "GoogleCloudRetailV2betaOutputResult",
       "properties": {
         "bigqueryResult": {
-          "description": "Export result in BigQuery.",
+          "description": "The BigQuery location where the result is stored.",
           "items": {
             "$ref": "GoogleCloudRetailV2betaBigQueryOutputResult"
+          },
+          "type": "array"
+        },
+        "gcsResult": {
+          "description": "The Google Cloud Storage location where the result is stored.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaGcsOutputResult"
           },
           "type": "array"
         }
@@ -4555,13 +5704,13 @@
       "type": "object"
     },
     "GoogleCloudRetailV2betaRejoinUserEventsMetadata": {
-      "description": "Metadata for RejoinUserEvents method.",
+      "description": "Metadata for `RejoinUserEvents` method.",
       "id": "GoogleCloudRetailV2betaRejoinUserEventsMetadata",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2betaRejoinUserEventsResponse": {
-      "description": "Response message for RejoinUserEvents method.",
+      "description": "Response message for `RejoinUserEvents` method.",
       "id": "GoogleCloudRetailV2betaRejoinUserEventsResponse",
       "properties": {
         "rejoinedUserEventsCount": {
@@ -4605,6 +5754,23 @@
     "GoogleCloudRetailV2betaSetInventoryResponse": {
       "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2betaSetInventoryResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaTuneModelMetadata": {
+      "description": "Metadata associated with a tune operation.",
+      "id": "GoogleCloudRetailV2betaTuneModelMetadata",
+      "properties": {
+        "model": {
+          "description": "The resource name of the model that this tune applies to. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaTuneModelResponse": {
+      "description": "Response associated with a tune operation.",
+      "id": "GoogleCloudRetailV2betaTuneModelResponse",
       "properties": {},
       "type": "object"
     },

@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedynamiclinks-v0.2.3...firebasedynamiclinks-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.2.3](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedynamiclinks-v0.2.2...firebasedynamiclinks-v0.2.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **firebasedynamiclinks:** update the API ([c19cca9](https://github.com/googleapis/google-api-nodejs-client/commit/c19cca9dd28c7cde97459ceb80243b57b19ecae8))
+
 ## [0.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedynamiclinks-v0.2.1...firebasedynamiclinks-v0.2.2) (2022-06-21)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/testing",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "description": "testing",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -18,7 +18,7 @@
     "url": "https://github.com/googleapis/google-api-nodejs-client.git"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   },
   "scripts": {
     "fix": "gts fix",
@@ -28,16 +28,16 @@
     "webpack": "webpack"
   },
   "dependencies": {
-    "googleapis-common": "^5.0.1"
+    "googleapis-common": "^6.0.3"
   },
   "devDependencies": {
     "@microsoft/api-documenter": "^7.8.10",
     "@microsoft/api-extractor": "^7.8.10",
-    "gts": "^2.0.0",
+    "gts": "^3.1.1",
     "null-loader": "^4.0.0",
     "ts-loader": "^9.0.0",
-    "typescript": "~3.7.0",
+    "typescript": "~4.8.4",
     "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+    "webpack-cli": "^5.0.0"
   }
 }

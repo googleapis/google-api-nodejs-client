@@ -2,7 +2,7 @@
 
 # transcoder
 
-> This API converts video files into formats suitable for consumer distribution.
+> This API converts video files into formats suitable for consumer distribution. For more information, see the Transcoder API overview &lt;https://cloud.google.com/transcoder/docs/concepts/overview&gt;.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

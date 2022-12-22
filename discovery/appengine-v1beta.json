@@ -118,7 +118,13 @@
           "httpMethod": "POST",
           "id": "appengine.apps.create",
           "parameterOrder": [],
-          "parameters": {},
+          "parameters": {
+            "parent": {
+              "description": "The project and location in which the application should be created, specified in the format projects/*/locations/*",
+              "location": "query",
+              "type": "string"
+            }
+          },
           "path": "v1beta/apps",
           "request": {
             "$ref": "Application"
@@ -1593,13 +1599,310 @@
           }
         }
       }
+    },
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "appengine.projects.locations.get",
+              "parameterOrder": [
+                "projectsId",
+                "locationsId"
+              ],
+              "parameters": {
+                "locationsId": {
+                  "description": "Part of `name`. See documentation of `projectsId`.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "projectsId": {
+                  "description": "Part of `name`. Resource name for the location.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/projects/{projectsId}/locations/{locationsId}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/appengine.admin",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service.",
+              "flatPath": "v1beta/projects/{projectsId}/locations",
+              "httpMethod": "GET",
+              "id": "appengine.projects.locations.list",
+              "parameterOrder": [
+                "projectsId"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "projectsId": {
+                  "description": "Part of `name`. The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/projects/{projectsId}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/appengine.admin",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            }
+          },
+          "resources": {
+            "applications": {
+              "methods": {
+                "create": {
+                  "description": "Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications",
+                  "httpMethod": "POST",
+                  "id": "appengine.projects.locations.applications.create",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId"
+                  ],
+                  "parameters": {
+                    "locationsId": {
+                      "description": "Part of `parent`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `parent`. The project and location in which the application should be created, specified in the format projects/*/locations/*",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications",
+                  "request": {
+                    "$ref": "Application"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about an application.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}",
+                  "httpMethod": "GET",
+                  "id": "appengine.projects.locations.applications.get",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId",
+                    "applicationsId"
+                  ],
+                  "parameters": {
+                    "applicationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. Name of the Application resource to get. Example: apps/myapp.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}",
+                  "response": {
+                    "$ref": "Application"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/appengine.admin",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "repair": {
+                  "description": "Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B\"name\"%3A\"projects%2F-%2FserviceAccounts%2Funique_id\"%2C\"resource\"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:repair",
+                  "httpMethod": "POST",
+                  "id": "appengine.projects.locations.applications.repair",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId",
+                    "applicationsId"
+                  ],
+                  "parameters": {
+                    "applicationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. Name of the application to repair. Example: apps/myapp",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:repair",
+                  "request": {
+                    "$ref": "RepairApplicationRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "appengine.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId",
+                    "operationsId"
+                  ],
+                  "parameters": {
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "operationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. The name of the operation resource.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/appengine.admin",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "appengine.projects.locations.operations.list",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. The name of the operation's parent resource.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/projects/{projectsId}/locations/{locationsId}/operations",
+                  "response": {
+                    "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/appengine.admin",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20220604",
+  "revision": "20221212",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
-      "description": "Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/) configuration for API handlers.",
+      "description": "Google Cloud Endpoints (https://cloud.google.com/endpoints) configuration for API handlers.",
       "id": "ApiConfigHandler",
       "properties": {
         "authFailAction": {
@@ -1681,7 +1984,8 @@
           "type": "string"
         },
         "codeBucket": {
-          "description": "Google Cloud Storage bucket that can be used for storing files associated with this application. This bucket is associated with the application and can be used by the gcloud deployment commands.@OutputOnly",
+          "description": "Output only. Google Cloud Storage bucket that can be used for storing files associated with this application. This bucket is associated with the application and can be used by the gcloud deployment commands.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "databaseType": {
@@ -1701,7 +2005,8 @@
           "type": "string"
         },
         "defaultBucket": {
-          "description": "Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly",
+          "description": "Output only. Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "defaultCookieExpiration": {
@@ -1710,7 +2015,8 @@
           "type": "string"
         },
         "defaultHostname": {
-          "description": "Hostname used to reach this application, as resolved by App Engine.@OutputOnly",
+          "description": "Output only. Hostname used to reach this application, as resolved by App Engine.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "dispatchRules": {
@@ -1725,7 +2031,8 @@
           "description": "The feature specific settings to be used in the application."
         },
         "gcrDomain": {
-          "description": "The Google Container Registry domain used for storing managed build docker images for this application.",
+          "description": "Output only. The Google Container Registry domain used for storing managed build docker images for this application.",
+          "readOnly": true,
           "type": "string"
         },
         "iap": {
@@ -1740,7 +2047,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly",
+          "description": "Output only. Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "serviceAccount": {
@@ -2184,7 +2492,7 @@
       "type": "object"
     },
     "EndpointsApiService": {
-      "description": "Cloud Endpoints (https://cloud.google.com/endpoints) configuration. The Endpoints API Service provides tooling for serving Open API and gRPC endpoints via an NGINX proxy. Only valid for App Engine Flexible environment deployments.The fields here refer to the name and configuration ID of a \"service\" resource in the Service Management API (https://cloud.google.com/service-management/overview).",
+      "description": "Google Cloud Endpoints (https://cloud.google.com/endpoints) configuration. The Endpoints API Service provides tooling for serving Open API and gRPC endpoints via an NGINX proxy. Only valid for App Engine Flexible environment deployments.The fields here refer to the name and configuration ID of a \"service\" resource in the Service Management API (https://cloud.google.com/service-management/overview).",
       "id": "EndpointsApiService",
       "properties": {
         "configId": {
@@ -2405,7 +2713,8 @@
           "type": "string"
         },
         "oauth2ClientSecretSha256": {
-          "description": "Hex-encoded SHA-256 hash of the client secret.@OutputOnly",
+          "description": "Output only. Hex-encoded SHA-256 hash of the client secret.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3110,6 +3419,122 @@
       },
       "type": "object"
     },
+    "ProjectEvent": {
+      "description": "The request sent to CLHs during project events.",
+      "id": "ProjectEvent",
+      "properties": {
+        "eventId": {
+          "description": "The unique ID for this project event. CLHs can use this value to dedup repeated calls. required",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "UNKNOWN",
+            "BEFORE_RESOURCE_HANDLING",
+            "AFTER_RESOURCE_HANDLING"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "projectMetadata": {
+          "$ref": "ProjectsMetadata",
+          "description": "The projects metadata for this project. required"
+        },
+        "state": {
+          "$ref": "ProjectState",
+          "description": "The state of the project that led to this event."
+        }
+      },
+      "type": "object"
+    },
+    "ProjectState": {
+      "description": "ProjectState contains the externally-visible project state that is used to communicate the state and reasoning for that state to the CLH. This data is not persisted by CCFE, but is instead derived from CCFE's internal representation of the project state.",
+      "id": "ProjectState",
+      "properties": {
+        "currentReasons": {
+          "$ref": "Reasons"
+        },
+        "previousReasons": {
+          "$ref": "Reasons",
+          "description": "The previous and current reasons for a project state will be sent for a project event. CLHs that need to know the signal that caused the project event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com)."
+        },
+        "state": {
+          "description": "The current state of the project. This state is the culmination of all of the opinions from external systems that CCFE knows about of the project.",
+          "enum": [
+            "UNKNOWN_STATE",
+            "ON",
+            "OFF",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "A project should never be in an unknown state. Receipt of a project with this state is an error.",
+            "CCFE considers the project to be serving or transitioning into serving.",
+            "CCFE considers the project to be in an OFF state. This could occur due to various factors. The state could be triggered by Google-internal audits (ex. abuse suspension, billing closed) or cleanups trigged by compliance systems (ex. data governance hide). User-initiated events such as service management deactivation trigger a project to an OFF state.CLHs might choose to do nothing in this case or to turn off costly resources. CLHs need to consider the customer experience if an ON/OFF/ON sequence of state transitions occurs vs. the cost of deleting resources, keeping metadata about resources, or even keeping resources live for a period of time.CCFE will not send any new customer requests to the CLH when the project is in an OFF state. However, CCFE will allow all previous customer requests relayed to CLH to complete.",
+            "This state indicates that the project has been (or is being) completely removed. This is often due to a data governance purge request and therefore resources should be deleted when this state is reached."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectsMetadata": {
+      "description": "ProjectsMetadata is the metadata CCFE stores about the all the relevant projects (tenant, consumer, producer).",
+      "id": "ProjectsMetadata",
+      "properties": {
+        "consumerProjectId": {
+          "description": "The consumer project id.",
+          "type": "string"
+        },
+        "consumerProjectNumber": {
+          "description": "The consumer project number.",
+          "format": "int64",
+          "type": "string"
+        },
+        "consumerProjectState": {
+          "description": "The CCFE state of the consumer project. It is the same state that is communicated to the CLH during project events. Notice that this field is not set in the DB, it is only set in this proto when communicated to CLH in the side channel.",
+          "enum": [
+            "UNKNOWN_STATE",
+            "ON",
+            "OFF",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "A project should never be in an unknown state. Receipt of a project with this state is an error.",
+            "CCFE considers the project to be serving or transitioning into serving.",
+            "CCFE considers the project to be in an OFF state. This could occur due to various factors. The state could be triggered by Google-internal audits (ex. abuse suspension, billing closed) or cleanups trigged by compliance systems (ex. data governance hide). User-initiated events such as service management deactivation trigger a project to an OFF state.CLHs might choose to do nothing in this case or to turn off costly resources. CLHs need to consider the customer experience if an ON/OFF/ON sequence of state transitions occurs vs. the cost of deleting resources, keeping metadata about resources, or even keeping resources live for a period of time.CCFE will not send any new customer requests to the CLH when the project is in an OFF state. However, CCFE will allow all previous customer requests relayed to CLH to complete.",
+            "This state indicates that the project has been (or is being) completely removed. This is often due to a data governance purge request and therefore resources should be deleted when this state is reached."
+          ],
+          "type": "string"
+        },
+        "p4ServiceAccount": {
+          "description": "The service account authorized to operate on the consumer project. Note: CCFE only propagates P4SA with default tag to CLH.",
+          "type": "string"
+        },
+        "producerProjectId": {
+          "description": "The producer project id.",
+          "type": "string"
+        },
+        "producerProjectNumber": {
+          "description": "The producer project number.",
+          "format": "int64",
+          "type": "string"
+        },
+        "tenantProjectId": {
+          "description": "The tenant project id.",
+          "type": "string"
+        },
+        "tenantProjectNumber": {
+          "description": "The tenant project number.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReadinessCheck": {
       "description": "Readiness checking configuration for VM instances. Unhealthy instances are removed from traffic rotation.",
       "id": "ReadinessCheck",
@@ -3145,6 +3570,81 @@
         "timeout": {
           "description": "Time before the check is considered failed.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Reasons": {
+      "description": "Projects transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)",
+      "id": "Reasons",
+      "properties": {
+        "abuse": {
+          "enum": [
+            "ABUSE_UNKNOWN_REASON",
+            "ABUSE_CONTROL_PLANE_SYNC",
+            "SUSPEND",
+            "REINSTATE"
+          ],
+          "enumDescriptions": [
+            "An unknown reason indicates that the abuse system has not sent a signal for this project.",
+            "Due to various reasons CCFE might proactively restate a project state to a CLH to ensure that the CLH and CCFE are both aware of the project state. This reason can be tied to any of the states.",
+            "If a project is deemed abusive we receive a suspend signal. Suspend is a reason to put the project into an INTERNAL_OFF state.",
+            "Projects that were once considered abusive can later be deemed non-abusive. When this happens we must reinstate the project. Reinstate is a reason to put the project into an ON state."
+          ],
+          "type": "string"
+        },
+        "billing": {
+          "enum": [
+            "BILLING_UNKNOWN_REASON",
+            "BILLING_CONTROL_PLANE_SYNC",
+            "PROBATION",
+            "CLOSE",
+            "OPEN"
+          ],
+          "enumDescriptions": [
+            "An unknown reason indicates that the billing system has not sent a signal for this project.",
+            "Due to various reasons CCFE might proactively restate a project state to a CLH to ensure that the CLH and CCFE are both aware of the project state. This reason can be tied to any of the states.",
+            "Minor infractions cause a probation signal to be sent. Probation is a reason to put the project into a ON state even though it is a negative signal. CCFE will block mutations for this project while it is on billing probation, but the CLH is expected to serve non-mutation requests.",
+            "When a billing account is closed, it is a stronger signal about non-payment. Close is a reason to put the project into an INTERNAL_OFF state.",
+            "Consumers can re-open billing accounts and update accounts to pull them out of probation. When this happens, we get a signal that the account is open. Open is a reason to put the project into an ON state."
+          ],
+          "type": "string"
+        },
+        "dataGovernance": {
+          "enum": [
+            "DATA_GOVERNANCE_UNKNOWN_REASON",
+            "DATA_GOVERNANCE_CONTROL_PLANE_SYNC",
+            "HIDE",
+            "UNHIDE",
+            "PURGE"
+          ],
+          "enumDescriptions": [
+            "An unknown reason indicates that data governance has not sent a signal for this project.",
+            "Due to various reasons CCFE might proactively restate a project state to a CLH to ensure that the CLH and CCFE are both aware of the project state. This reason can be tied to any of the states.",
+            "When a project is deleted we retain some data for a period of time to allow the consumer to change their mind. Data governance sends a signal to hide the data when this occurs. Hide is a reason to put the project in an INTERNAL_OFF state.",
+            "The decision to un-delete a project can be made. When this happens data governance tells us to unhide any hidden data. Unhide is a reason to put the project in an ON state.",
+            "After a period of time data must be completely removed from our systems. When data governance sends a purge signal we need to remove data. Purge is a reason to put the project in a DELETED state. Purge is the only event that triggers a delete mutation. All other events have update semantics."
+          ],
+          "type": "string"
+        },
+        "serviceManagement": {
+          "enum": [
+            "SERVICE_MANAGEMENT_UNKNOWN_REASON",
+            "SERVICE_MANAGEMENT_CONTROL_PLANE_SYNC",
+            "ACTIVATION",
+            "PREPARE_DEACTIVATION",
+            "ABORT_DEACTIVATION",
+            "COMMIT_DEACTIVATION"
+          ],
+          "enumDescriptions": [
+            "An unknown reason indicates that we have not received a signal from service management about this project. Since projects are created by request of service management, this reason should never be set.",
+            "Due to various reasons CCFE might proactively restate a project state to a CLH to ensure that the CLH and CCFE are both aware of the project state. This reason can be tied to any of the states.",
+            "When a customer activates an API CCFE notifies the CLH and sets the project to the ON state.",
+            "When a customer deactivates and API service management starts a two-step process to perform the deactivation. The first step is to prepare. Prepare is a reason to put the project in a EXTERNAL_OFF state.",
+            "If the deactivation is cancelled, service managed needs to abort the deactivation. Abort is a reason to put the project in an ON state.",
+            "If the deactivation is followed through with, service management needs to finish deactivation. Commit is a reason to put the project in a DELETED state."
+          ],
           "type": "string"
         }
       },
@@ -3541,7 +4041,7 @@
       "properties": {
         "apiConfig": {
           "$ref": "ApiConfigHandler",
-          "description": "Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set."
+          "description": "Serving configuration for Google Cloud Endpoints (https://cloud.google.com/endpoints).Only returned in GET requests if view=FULL is set."
         },
         "appEngineApis": {
           "description": "Allows App Engine second generation runtimes to access the legacy bundled services.",

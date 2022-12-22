@@ -102,7 +102,7 @@ export namespace mybusinessplaceactions_v1 {
   /**
    * My Business Place Actions API
    *
-   * The My Business Place Actions API provides an interface for managing place action links of a location on Google.
+   * The My Business Place Actions API provides an interface for managing place action links of a location on Google. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.
    *
    * @example
    * ```js
@@ -129,86 +129,9 @@ export namespace mybusinessplaceactions_v1 {
   }
 
   /**
-   * Day level availability.
-   */
-  export interface Schema$AvailableDay {
-    /**
-     * An available date for a fulfillment method. Assumed to be in merchant's timezone.
-     */
-    fulfillmentDate?: Schema$Date;
-    /**
-     * Unix timestamp. The last time till when, a user could place an order to be received by `fulfillment_date`. In other words, after last_ordering_time, fulfillment_date will no longer be shown as available.
-     */
-    lastOrderingTime?: string | null;
-  }
-  /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
-   */
-  export interface Schema$Date {
-    /**
-     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     */
-    day?: number | null;
-    /**
-     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     */
-    month?: number | null;
-    /**
-     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     */
-    year?: number | null;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
-  /**
-   * Fee details for the fulfillment method associated with the action.
-   */
-  export interface Schema$FeeDetails {
-    /**
-     * The base fee associated with the fulfillment method.
-     */
-    baseFee?: Schema$MinimumFee;
-    /**
-     * The fixed fee associated with the fulfillment method.
-     */
-    fixedFee?: Schema$FixedFee;
-    /**
-     * No fee for the fulfillment method.
-     */
-    noFee?: Schema$NoFee;
-  }
-  /**
-   * The fixed fee required for the fulfillment method.
-   */
-  export interface Schema$FixedFee {
-    /**
-     * The amount of the fixed fee for the fulfillment method.
-     */
-    amount?: Schema$Money;
-  }
-  /**
-   * The fulfillment option for an order online action.
-   */
-  export interface Schema$FulfillmentOption {
-    /**
-     * A list of days on which there is availability for this fulfillment method (preferably at least 2).
-     */
-    availableDay?: Schema$AvailableDay[];
-    /**
-     * Fee details for the fulfillment method.
-     */
-    feeDetails?: Schema$FeeDetails;
-    /**
-     * Fulfillment type
-     */
-    fulfillmentType?: string | null;
-    /**
-     * Minimum order for the fulfillment method associated with the action.
-     */
-    minimumOrder?: Schema$Money;
-  }
   /**
    * Response message for PlaceActions.ListPlaceActionLinks.
    */
@@ -236,45 +159,6 @@ export namespace mybusinessplaceactions_v1 {
     placeActionTypeMetadata?: Schema$PlaceActionTypeMetadata[];
   }
   /**
-   * The minimum fee required for the fulfillment method.
-   */
-  export interface Schema$MinimumFee {
-    /**
-     * The base fee amount for the fulfillment method.
-     */
-    baseFeeAmount?: Schema$Money;
-  }
-  /**
-   * Represents an amount of money with its currency type.
-   */
-  export interface Schema$Money {
-    /**
-     * The three-letter currency code defined in ISO 4217.
-     */
-    currencyCode?: string | null;
-    /**
-     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
-     */
-    nanos?: number | null;
-    /**
-     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
-     */
-    units?: string | null;
-  }
-  /**
-   * No fee required for the fulfillment method associated with the action.
-   */
-  export interface Schema$NoFee {}
-  /**
-   * Client version of the metadata for an order online action.
-   */
-  export interface Schema$OrderOnlineMetadata {
-    /**
-     * Available fulfillment options for an order online action.
-     */
-    fulfillmentOption?: Schema$FulfillmentOption[];
-  }
-  /**
    * Represents a place action link and its attributes.
    */
   export interface Schema$PlaceActionLink {
@@ -294,10 +178,6 @@ export namespace mybusinessplaceactions_v1 {
      * Optional. The resource name, in the format `locations/{location_id\}/placeActionLinks/{place_action_link_id\}`. The name field will only be considered in UpdatePlaceActionLink and DeletePlaceActionLink requests for updating and deleting links respectively. However, it will be ignored in CreatePlaceActionLink request, where `place_action_link_id` will be assigned by the server on successful creation of a new link and returned as part of the response.
      */
     name?: string | null;
-    /**
-     * Optional. Metadata for the order online link. Supports action with PlaceActionType of SHOP_ONLINE.
-     */
-    orderOnlineMetadata?: Schema$OrderOnlineMetadata;
     /**
      * Required. The type of place action that can be performed using this link.
      */
@@ -384,7 +264,6 @@ export namespace mybusinessplaceactions_v1 {
      *       //   "isEditable": false,
      *       //   "isPreferred": false,
      *       //   "name": "my_name",
-     *       //   "orderOnlineMetadata": {},
      *       //   "placeActionType": "my_placeActionType",
      *       //   "providerType": "my_providerType",
      *       //   "updateTime": "my_updateTime",
@@ -400,7 +279,6 @@ export namespace mybusinessplaceactions_v1 {
      *   //   "isEditable": false,
      *   //   "isPreferred": false,
      *   //   "name": "my_name",
-     *   //   "orderOnlineMetadata": {},
      *   //   "placeActionType": "my_placeActionType",
      *   //   "providerType": "my_providerType",
      *   //   "updateTime": "my_updateTime",
@@ -663,7 +541,6 @@ export namespace mybusinessplaceactions_v1 {
      *   //   "isEditable": false,
      *   //   "isPreferred": false,
      *   //   "name": "my_name",
-     *   //   "orderOnlineMetadata": {},
      *   //   "placeActionType": "my_placeActionType",
      *   //   "providerType": "my_providerType",
      *   //   "updateTime": "my_updateTime",
@@ -946,7 +823,6 @@ export namespace mybusinessplaceactions_v1 {
      *       //   "isEditable": false,
      *       //   "isPreferred": false,
      *       //   "name": "my_name",
-     *       //   "orderOnlineMetadata": {},
      *       //   "placeActionType": "my_placeActionType",
      *       //   "providerType": "my_providerType",
      *       //   "updateTime": "my_updateTime",
@@ -962,7 +838,6 @@ export namespace mybusinessplaceactions_v1 {
      *   //   "isEditable": false,
      *   //   "isPreferred": false,
      *   //   "name": "my_name",
-     *   //   "orderOnlineMetadata": {},
      *   //   "placeActionType": "my_placeActionType",
      *   //   "providerType": "my_providerType",
      *   //   "updateTime": "my_updateTime",

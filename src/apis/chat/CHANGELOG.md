@@ -1,5 +1,27 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v8.0.0...chat-v9.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v7.0.0...chat-v8.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([21b00d5](https://github.com/googleapis/google-api-nodejs-client/commit/21b00d58a1ad66f4aaecd64b6f1ac172aedf462a))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v6.1.0...chat-v7.0.0) (2022-08-19)
 
 

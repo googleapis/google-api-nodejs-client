@@ -464,6 +464,10 @@ export namespace testing_v1 {
      */
     maxSdkVersion?: number | null;
     /**
+     * Meta-data tags defined in the manifest.
+     */
+    metadata?: Schema$Metadata[];
+    /**
      * Minimum API level required for the application to run.
      */
     minSdkVersion?: number | null;
@@ -476,9 +480,21 @@ export namespace testing_v1 {
      */
     targetSdkVersion?: number | null;
     /**
+     * Feature usage tags defined in the manifest.
+     */
+    usesFeature?: Schema$UsesFeature[];
+    /**
      * Permissions declared to be used by the application
      */
     usesPermission?: string[] | null;
+    /**
+     * Version number used internally by the app.
+     */
+    versionCode?: string | null;
+    /**
+     * Version number shown to users.
+     */
+    versionName?: string | null;
   }
   /**
    * An Android App Bundle file format, containing a BundleConfig.pb file, a base module directory, zero or more dynamic feature module directories. See https://developer.android.com/guide/app-bundle/build for guidance on building App Bundles.
@@ -927,6 +943,19 @@ export namespace testing_v1 {
      * Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
+  }
+  /**
+   * A tag within a manifest. https://developer.android.com/guide/topics/manifest/meta-data-element.html
+   */
+  export interface Schema$Metadata {
+    /**
+     * The android:name value
+     */
+    name?: string | null;
+    /**
+     * The android:value value
+     */
+    value?: string | null;
   }
   export interface Schema$NetworkConfiguration {
     /**
@@ -1424,6 +1453,19 @@ export namespace testing_v1 {
      * Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.
      */
     numShards?: number | null;
+  }
+  /**
+   * A tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-feature-element.html
+   */
+  export interface Schema$UsesFeature {
+    /**
+     * The android:required value
+     */
+    isRequired?: boolean | null;
+    /**
+     * The android:name value
+     */
+    name?: string | null;
   }
   /**
    * An Xcode version that an iOS version is compatible with.

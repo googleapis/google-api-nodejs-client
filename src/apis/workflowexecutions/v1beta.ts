@@ -182,6 +182,10 @@ export namespace workflowexecutions_v1beta {
      */
     state?: string | null;
     /**
+     * Output only. Status tracks the current steps and progress data of this execution.
+     */
+    status?: Schema$Status;
+    /**
      * Output only. Revision of the workflow this execution is using.
      */
     workflowRevisionId?: string | null;
@@ -239,6 +243,28 @@ export namespace workflowexecutions_v1beta {
     routine?: string | null;
     /**
      * The step the error occurred at.
+     */
+    step?: string | null;
+  }
+  /**
+   * Represents the current status of this execution.
+   */
+  export interface Schema$Status {
+    /**
+     * A list of currently executing or last executed step names for the workflow execution currently running. If the workflow has succeeded or failed, this is the last attempted or executed step. Presently, if the current step is inside a subworkflow, the list only includes that step. In the future, the list will contain items for each step in the call stack, starting with the outermost step in the `main` subworkflow, and ending with the most deeply nested step.
+     */
+    currentSteps?: Schema$Step[];
+  }
+  /**
+   * Represents a step of the workflow this execution is running.
+   */
+  export interface Schema$Step {
+    /**
+     * Name of a routine within the workflow.
+     */
+    routine?: string | null;
+    /**
+     * Name of a step within the routine.
      */
     step?: string | null;
   }
@@ -327,6 +353,7 @@ export namespace workflowexecutions_v1beta {
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
      * }
@@ -467,6 +494,7 @@ export namespace workflowexecutions_v1beta {
      *         //   "result": "my_result",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
+     *         //   "status": {},
      *         //   "workflowRevisionId": "my_workflowRevisionId"
      *         // }
      *       },
@@ -483,6 +511,7 @@ export namespace workflowexecutions_v1beta {
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
      * }
@@ -625,6 +654,7 @@ export namespace workflowexecutions_v1beta {
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
      * }

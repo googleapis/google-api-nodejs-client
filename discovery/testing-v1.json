@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221214",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -755,6 +755,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "metadata": {
+          "description": "Meta-data tags defined in the manifest.",
+          "items": {
+            "$ref": "Metadata"
+          },
+          "type": "array"
+        },
         "minSdkVersion": {
           "description": "Minimum API level required for the application to run.",
           "format": "int32",
@@ -769,12 +776,28 @@
           "format": "int32",
           "type": "integer"
         },
+        "usesFeature": {
+          "description": "Feature usage tags defined in the manifest.",
+          "items": {
+            "$ref": "UsesFeature"
+          },
+          "type": "array"
+        },
         "usesPermission": {
           "description": "Permissions declared to be used by the application",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "versionCode": {
+          "description": "Version number used internally by the app.",
+          "format": "int64",
+          "type": "string"
+        },
+        "versionName": {
+          "description": "Version number shown to users.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1411,6 +1434,21 @@
       },
       "type": "object"
     },
+    "Metadata": {
+      "description": "A tag within a manifest. https://developer.android.com/guide/topics/manifest/meta-data-element.html",
+      "id": "Metadata",
+      "properties": {
+        "name": {
+          "description": "The android:name value",
+          "type": "string"
+        },
+        "value": {
+          "description": "The android:value value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkConfiguration": {
       "id": "NetworkConfiguration",
       "properties": {
@@ -1828,7 +1866,11 @@
             "MALFORMED_APP_BUNDLE",
             "NO_CODE_APK",
             "INVALID_INPUT_APK",
-            "INVALID_APK_PREVIEW_SDK"
+            "INVALID_APK_PREVIEW_SDK",
+            "MATRIX_TOO_LARGE",
+            "TEST_QUOTA_EXCEEDED",
+            "SERVICE_NOT_ACTIVATED",
+            "UNKNOWN_PERMISSION_ERROR"
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
@@ -1865,7 +1907,11 @@
             "The iOS application bundle (.app) couldn't be processed.",
             "APK contains no code. See also https://developer.android.com/guide/topics/manifest/application-element.html#code",
             "Either the provided input APK path was malformed, the APK file does not exist, or the user does not have permission to access the APK file.",
-            "APK is built for a preview SDK which is unsupported"
+            "APK is built for a preview SDK which is unsupported",
+            "The matrix expanded to contain too many executions.",
+            "Not enough test quota to run the executions in this matrix.",
+            "A required cloud service api is not activated. See: https://firebase.google.com/docs/test-lab/android/continuous#requirements",
+            "There was an unknown permission issue running this test."
           ],
           "type": "string"
         },
@@ -2158,6 +2204,21 @@
           "description": "Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "UsesFeature": {
+      "description": "A tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-feature-element.html",
+      "id": "UsesFeature",
+      "properties": {
+        "isRequired": {
+          "description": "The android:required value",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The android:name value",
+          "type": "string"
         }
       },
       "type": "object"

@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20220812",
+  "revision": "20221218",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3425,11 +3425,11 @@
         },
         "jobNotificationEmails": {
           "$ref": "GooglePrivacyDlpV2JobNotificationEmails",
-          "description": "Enable email notification for project owners and editors on job's completion/failure."
+          "description": "Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts)."
         },
         "pubSub": {
           "$ref": "GooglePrivacyDlpV2PublishToPubSub",
-          "description": "Publish a notification to a pubsub topic."
+          "description": "Publish a notification to a Pub/Sub topic."
         },
         "publishFindingsToCloudDataCatalog": {
           "$ref": "GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog",
@@ -4100,7 +4100,6 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2ContentItem": {
-      "description": "Container structure for the content to inspect.",
       "id": "GooglePrivacyDlpV2ContentItem",
       "properties": {
         "byteItem": {
@@ -4491,7 +4490,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2DataProfilePubSubCondition": {
-      "description": "A condition for determining whether a PubSub should be triggered.",
+      "description": "A condition for determining whether a Pub/Sub should be triggered.",
       "id": "GooglePrivacyDlpV2DataProfilePubSubCondition",
       "properties": {
         "expressions": {
@@ -4502,7 +4501,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2DataProfilePubSubMessage": {
-      "description": "Pub/Sub topic message for a DataProfileAction.PubSubNotification event. To receive a message of protocol buffer schema type, convert the message data to an object of this proto class. https://cloud.google.com/pubsub/docs/samples/pubsub-subscribe-proto-messages",
+      "description": "Pub/Sub topic message for a DataProfileAction.PubSubNotification event. To receive a message of protocol buffer schema type, convert the message data to an object of this proto class.",
       "id": "GooglePrivacyDlpV2DataProfilePubSubMessage",
       "properties": {
         "event": {
@@ -4744,7 +4743,7 @@
         },
         "item": {
           "$ref": "GooglePrivacyDlpV2ContentItem",
-          "description": "The item to de-identify. Will be treated as text."
+          "description": "The item to de-identify. Will be treated as text. This value must be of type Table if your deidentify_config is a RecordTransformations object."
         },
         "locationId": {
           "description": "Deprecated. This field has no effect.",
@@ -5045,6 +5044,21 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2ExcludeByHotword": {
+      "description": "The rule to exclude findings based on a hotword. For record inspection of tables, column names are considered hotwords. An example of this is to exclude a finding if it belongs to a BigQuery column that matches a specific pattern.",
+      "id": "GooglePrivacyDlpV2ExcludeByHotword",
+      "properties": {
+        "hotwordRegex": {
+          "$ref": "GooglePrivacyDlpV2Regex",
+          "description": "Regular expression pattern defining what qualifies as a hotword."
+        },
+        "proximity": {
+          "$ref": "GooglePrivacyDlpV2Proximity",
+          "description": "Range of characters within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. The windowBefore property in proximity should be set to 1 if the hotword needs to be included in a column header."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2ExcludeInfoTypes": {
       "description": "List of excluded infoTypes.",
       "id": "GooglePrivacyDlpV2ExcludeInfoTypes",
@@ -5066,6 +5080,10 @@
         "dictionary": {
           "$ref": "GooglePrivacyDlpV2Dictionary",
           "description": "Dictionary which defines the rule."
+        },
+        "excludeByHotword": {
+          "$ref": "GooglePrivacyDlpV2ExcludeByHotword",
+          "description": "Drop if the hotword rule is contained in the proximate context. For tabular data, the context includes the column name."
         },
         "excludeInfoTypes": {
           "$ref": "GooglePrivacyDlpV2ExcludeInfoTypes",
@@ -5529,7 +5547,7 @@
       "id": "GooglePrivacyDlpV2InfoType",
       "properties": {
         "name": {
-          "description": "Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$-_]{1,64}`.",
+          "description": "Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.",
           "type": "string"
         },
         "version": {
@@ -5602,7 +5620,8 @@
             "UNITED_STATES",
             "URUGUAY",
             "VENEZUELA",
-            "INTERNAL"
+            "INTERNAL",
+            "NEW_ZEALAND"
           ],
           "enumDescriptions": [
             "Unused location",
@@ -5645,7 +5664,8 @@
             "The infoType is typically used in the United States.",
             "The infoType is typically used in Uruguay.",
             "The infoType is typically used in Venezuela.",
-            "The infoType is typically used in Google internally."
+            "The infoType is typically used in Google internally.",
+            "The infoType is typically used in New Zealand."
           ],
           "type": "string"
         },
@@ -5698,6 +5718,10 @@
         "name": {
           "description": "Internal name of the infoType.",
           "type": "string"
+        },
+        "sensitivityScore": {
+          "$ref": "GooglePrivacyDlpV2SensitivityScore",
+          "description": "The default sensitivity of the infoType."
         },
         "supportedBy": {
           "description": "Which parts of the API supports this InfoType.",
@@ -5763,7 +5787,7 @@
       "id": "GooglePrivacyDlpV2InfoTypeSummary",
       "properties": {
         "estimatedPrevalence": {
-          "description": "Approximate percentage of non-null rows that contained data detected by this infotype.",
+          "description": "Not populated for predicted infotypes.",
           "format": "int32",
           "type": "integer"
         },
@@ -7023,7 +7047,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2PublishSummaryToCscc": {
-      "description": "Publish the result summary of a DlpJob to the Cloud Security Command Center (CSCC Alpha). This action is only available for projects which are parts of an organization and whitelisted for the alpha Cloud Security Command Center. The action will publish the count of finding instances and their info types. The summary of findings will be persisted in CSCC and are governed by CSCC service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified. Compatible with: Inspect",
+      "description": "Publish the result summary of a DlpJob to [Security Command Center](https://cloud.google.com/security-command-center). This action is available for only projects that belong to an organization. This action publishes the count of finding instances and their infoTypes. The summary of findings are persisted in Security Command Center and are governed by [service-specific policies for Security Command Center](https://cloud.google.com/terms/service-terms). Only a single instance of this action can be specified. Compatible with: Inspect",
       "id": "GooglePrivacyDlpV2PublishSummaryToCscc",
       "properties": {},
       "type": "object"
@@ -7877,7 +7901,7 @@
           "type": "string"
         },
         "rowCount": {
-          "description": "Number of rows in the table when the profile was generated.",
+          "description": "Number of rows in the table when the profile was generated. This will not be populated for BigLake tables.",
           "format": "int64",
           "type": "string"
         },
@@ -8017,7 +8041,7 @@
       "id": "GooglePrivacyDlpV2TimespanConfig",
       "properties": {
         "enableAutoPopulationOfTimespanConfig": {
-          "description": "When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger.",
+          "description": "When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger.",
           "type": "boolean"
         },
         "endTime": {

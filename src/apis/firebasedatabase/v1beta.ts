@@ -100,9 +100,9 @@ export namespace firebasedatabase_v1beta {
   }
 
   /**
-   * Firebase Realtime Database Management API
+   * Firebase Realtime Database API
    *
-   * The Firebase Realtime Database Management API enables programmatic provisioning and management of Realtime Database instances.
+   * The Firebase Realtime Database API enables programmatic provisioning and management of Realtime Database instances.
    *
    * @example
    * ```js
@@ -231,7 +231,7 @@ export namespace firebasedatabase_v1beta {
      *   const res = await firebasedatabase.projects.locations.instances.create({
      *     // The globally unique identifier of the database instance.
      *     databaseId: 'placeholder-value',
-     *     // The parent project for which to create a database instance, in the form: `projects/{project-number\}/locations/{location-id\}`.
+     *     // Required. The parent project for which to create a database instance, in the form: `projects/{project-number\}/locations/{location-id\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // When set to true, the request will be validated but not submitted.
      *     validateOnly: 'placeholder-value',
@@ -382,7 +382,7 @@ export namespace firebasedatabase_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasedatabase.projects.locations.instances.delete({
-     *     // The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     *     // Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -516,7 +516,7 @@ export namespace firebasedatabase_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasedatabase.projects.locations.instances.disable({
-     *     // The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     *     // Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -661,7 +661,7 @@ export namespace firebasedatabase_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasedatabase.projects.locations.instances.get({
-     *     // The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`. `database-id` is a globally unique identifier across all parent collections. For convenience, this method allows you to supply `-` as a wildcard character in place of specific collections under `projects` and `locations`. The resulting wildcarding form of the method is: `projects/-/locations/-/instances/{database-id\}`.
+     *     // Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`. `database-id` is a globally unique identifier across all parent collections. For convenience, this method allows you to supply `-` as a wildcard character in place of specific collections under `projects` and `locations`. The resulting wildcarding form of the method is: `projects/-/locations/-/instances/{database-id\}`.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -801,7 +801,7 @@ export namespace firebasedatabase_v1beta {
      *     pageSize: 'placeholder-value',
      *     // Token returned from a previous call to `ListDatabaseInstances` indicating where in the set of database instances to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
+     *     // Required. The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
      *     parent: 'projects/my-project/locations/my-location',
      *     // Indicate that DatabaseInstances in the `DELETED` state should also be returned.
      *     showDeleted: 'placeholder-value',
@@ -946,7 +946,7 @@ export namespace firebasedatabase_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasedatabase.projects.locations.instances.reenable({
-     *     // The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     *     // Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -1089,7 +1089,7 @@ export namespace firebasedatabase_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasedatabase.projects.locations.instances.undelete({
-     *     // The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     *     // Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -1210,7 +1210,7 @@ export namespace firebasedatabase_v1beta {
      */
     databaseId?: string;
     /**
-     * The parent project for which to create a database instance, in the form: `projects/{project-number\}/locations/{location-id\}`.
+     * Required. The parent project for which to create a database instance, in the form: `projects/{project-number\}/locations/{location-id\}`.
      */
     parent?: string;
     /**
@@ -1226,14 +1226,14 @@ export namespace firebasedatabase_v1beta {
   export interface Params$Resource$Projects$Locations$Instances$Delete
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Disable
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
     name?: string;
 
@@ -1245,7 +1245,7 @@ export namespace firebasedatabase_v1beta {
   export interface Params$Resource$Projects$Locations$Instances$Get
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`. `database-id` is a globally unique identifier across all parent collections. For convenience, this method allows you to supply `-` as a wildcard character in place of specific collections under `projects` and `locations`. The resulting wildcarding form of the method is: `projects/-/locations/-/instances/{database-id\}`.
+     * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`. `database-id` is a globally unique identifier across all parent collections. For convenience, this method allows you to supply `-` as a wildcard character in place of specific collections under `projects` and `locations`. The resulting wildcarding form of the method is: `projects/-/locations/-/instances/{database-id\}`.
      */
     name?: string;
   }
@@ -1260,7 +1260,7 @@ export namespace firebasedatabase_v1beta {
      */
     pageToken?: string;
     /**
-     * The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
+     * Required. The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
      */
     parent?: string;
     /**
@@ -1271,7 +1271,7 @@ export namespace firebasedatabase_v1beta {
   export interface Params$Resource$Projects$Locations$Instances$Reenable
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
     name?: string;
 
@@ -1283,7 +1283,7 @@ export namespace firebasedatabase_v1beta {
   export interface Params$Resource$Projects$Locations$Instances$Undelete
     extends StandardParameters {
     /**
-     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
     name?: string;
 

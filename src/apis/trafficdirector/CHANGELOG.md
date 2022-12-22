@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v0.3.3...trafficdirector-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v0.3.2...trafficdirector-v0.3.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **trafficdirector:** update the API ([eb9e763](https://github.com/googleapis/google-api-nodejs-client/commit/eb9e763c729a28442c8f5797c0519f34454beabf))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v0.3.1...trafficdirector-v0.3.2) (2022-08-19)
 
 

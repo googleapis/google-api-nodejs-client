@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v0.4.5...classroom-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.4.5](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v0.4.4...classroom-v0.4.5) (2022-09-21)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([4be851e](https://github.com/googleapis/google-api-nodejs-client/commit/4be851e2cfe3eeec13986665c6baef6edb106593))
+
 ## [0.4.4](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v0.4.3...classroom-v0.4.4) (2022-06-21)
 
 

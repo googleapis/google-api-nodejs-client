@@ -8364,7 +8364,7 @@
           ],
           "parameters": {
             "profileId": {
-              "description": "The DFA user profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -8602,8 +8602,8 @@
                     "DESCENDING"
                   ],
                   "enumDescriptions": [
-                    "",
-                    ""
+                    "Ascending order.",
+                    "Descending order."
                   ],
                   "location": "query",
                   "type": "string"
@@ -10032,7 +10032,7 @@
       }
     }
   },
-  "revision": "20220815",
+  "revision": "20220920",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -14786,7 +14786,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The dimension name, e.g. dfa:advertiser",
+          "description": "The dimension name, e.g. advertiser",
           "type": "string"
         }
       },
@@ -15163,6 +15163,10 @@
         "kind": {
           "description": "The kind of resource this is, in this case dfareporting#eventFilter.",
           "type": "string"
+        },
+        "uvarFilter": {
+          "$ref": "UvarFilter",
+          "description": "Filter on a custom variable."
         }
       },
       "type": "object"
@@ -21332,6 +21336,47 @@
           "description": "User role collection.",
           "items": {
             "$ref": "UserRole"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UvarFilter": {
+      "description": "Defines the filtering on a single uvar.",
+      "id": "UvarFilter",
+      "properties": {
+        "complement": {
+          "description": "Return rows which don't match this filter.",
+          "type": "boolean"
+        },
+        "index": {
+          "description": "Custom variable index the filter is applied to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#uvarFilter.",
+          "type": "string"
+        },
+        "match": {
+          "description": "Indicates how the filter should be matched to the values.",
+          "enum": [
+            "UNSPECIFIED",
+            "EXACT",
+            "CONTAINS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "Values to filter on.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

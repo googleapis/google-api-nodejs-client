@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v3.0.1...networkmanagement-v4.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v3.0.0...networkmanagement-v3.0.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **networkmanagement:** update the API ([c7cdd80](https://github.com/googleapis/google-api-nodejs-client/commit/c7cdd805b917553d871b65834311284191774320))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v2.0.1...networkmanagement-v3.0.0) (2022-08-20)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v0.2.2...adsensehost-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v0.2.1...adsensehost-v0.2.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **adsensehost:** update the API ([5bedf1a](https://github.com/googleapis/google-api-nodejs-client/commit/5bedf1a651ee082bbc39f2e20484a03dc9b25d9d))
+
 ## [0.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v0.2.0...adsensehost-v0.2.1) (2022-06-21)
 
 

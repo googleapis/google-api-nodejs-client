@@ -139,7 +139,7 @@ export namespace dlp_v2 {
      */
     deidentify?: Schema$GooglePrivacyDlpV2Deidentify;
     /**
-     * Enable email notification for project owners and editors on job's completion/failure.
+     * Sends an email when the job completes. The email goes to IAM project owners and technical [Essential Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
      */
     jobNotificationEmails?: Schema$GooglePrivacyDlpV2JobNotificationEmails;
     /**
@@ -155,7 +155,7 @@ export namespace dlp_v2 {
      */
     publishToStackdriver?: Schema$GooglePrivacyDlpV2PublishToStackdriver;
     /**
-     * Publish a notification to a pubsub topic.
+     * Publish a notification to a Pub/Sub topic.
      */
     pubSub?: Schema$GooglePrivacyDlpV2PublishToPubSub;
     /**
@@ -584,9 +584,6 @@ export namespace dlp_v2 {
      */
     version?: string | null;
   }
-  /**
-   * Container structure for the content to inspect.
-   */
   export interface Schema$GooglePrivacyDlpV2ContentItem {
     /**
      * Content data to inspect or redact. Replaces `type` and `data`.
@@ -893,7 +890,7 @@ export namespace dlp_v2 {
     organizationId?: string | null;
   }
   /**
-   * A condition for determining whether a PubSub should be triggered.
+   * A condition for determining whether a Pub/Sub should be triggered.
    */
   export interface Schema$GooglePrivacyDlpV2DataProfilePubSubCondition {
     /**
@@ -902,7 +899,7 @@ export namespace dlp_v2 {
     expressions?: Schema$GooglePrivacyDlpV2PubSubExpressions;
   }
   /**
-   * Pub/Sub topic message for a DataProfileAction.PubSubNotification event. To receive a message of protocol buffer schema type, convert the message data to an object of this proto class. https://cloud.google.com/pubsub/docs/samples/pubsub-subscribe-proto-messages
+   * Pub/Sub topic message for a DataProfileAction.PubSubNotification event. To receive a message of protocol buffer schema type, convert the message data to an object of this proto class.
    */
   export interface Schema$GooglePrivacyDlpV2DataProfilePubSubMessage {
     /**
@@ -1050,7 +1047,7 @@ export namespace dlp_v2 {
      */
     inspectTemplateName?: string | null;
     /**
-     * The item to de-identify. Will be treated as text.
+     * The item to de-identify. Will be treated as text. This value must be of type Table if your deidentify_config is a RecordTransformations object.
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
     /**
@@ -1263,6 +1260,19 @@ export namespace dlp_v2 {
     timestamps?: string[] | null;
   }
   /**
+   * The rule to exclude findings based on a hotword. For record inspection of tables, column names are considered hotwords. An example of this is to exclude a finding if it belongs to a BigQuery column that matches a specific pattern.
+   */
+  export interface Schema$GooglePrivacyDlpV2ExcludeByHotword {
+    /**
+     * Regular expression pattern defining what qualifies as a hotword.
+     */
+    hotwordRegex?: Schema$GooglePrivacyDlpV2Regex;
+    /**
+     * Range of characters within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. The windowBefore property in proximity should be set to 1 if the hotword needs to be included in a column header.
+     */
+    proximity?: Schema$GooglePrivacyDlpV2Proximity;
+  }
+  /**
    * List of excluded infoTypes.
    */
   export interface Schema$GooglePrivacyDlpV2ExcludeInfoTypes {
@@ -1279,6 +1289,10 @@ export namespace dlp_v2 {
      * Dictionary which defines the rule.
      */
     dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
+    /**
+     * Drop if the hotword rule is contained in the proximate context. For tabular data, the context includes the column name.
+     */
+    excludeByHotword?: Schema$GooglePrivacyDlpV2ExcludeByHotword;
     /**
      * Set of infoTypes for which findings would affect this rule.
      */
@@ -1625,7 +1639,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoType {
     /**
-     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$-_]{1,64\}`.
+     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64\}`.
      */
     name?: string | null;
     /**
@@ -1671,6 +1685,10 @@ export namespace dlp_v2 {
      */
     name?: string | null;
     /**
+     * The default sensitivity of the infoType.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
      * Which parts of the API supports this InfoType.
      */
     supportedBy?: string[] | null;
@@ -1710,7 +1728,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeSummary {
     /**
-     * Approximate percentage of non-null rows that contained data detected by this infotype.
+     * Not populated for predicted infotypes.
      */
     estimatedPrevalence?: number | null;
     /**
@@ -2532,7 +2550,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog {}
   /**
-   * Publish the result summary of a DlpJob to the Cloud Security Command Center (CSCC Alpha). This action is only available for projects which are parts of an organization and whitelisted for the alpha Cloud Security Command Center. The action will publish the count of finding instances and their info types. The summary of findings will be persisted in CSCC and are governed by CSCC service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified. Compatible with: Inspect
+   * Publish the result summary of a DlpJob to [Security Command Center](https://cloud.google.com/security-command-center). This action is available for only projects that belong to an organization. This action publishes the count of finding instances and their infoTypes. The summary of findings are persisted in Security Command Center and are governed by [service-specific policies for Security Command Center](https://cloud.google.com/terms/service-terms). Only a single instance of this action can be specified. Compatible with: Inspect
    */
   export interface Schema$GooglePrivacyDlpV2PublishSummaryToCscc {}
   /**
@@ -3214,7 +3232,7 @@ export namespace dlp_v2 {
      */
     resourceVisibility?: string | null;
     /**
-     * Number of rows in the table when the profile was generated.
+     * Number of rows in the table when the profile was generated. This will not be populated for BigLake tables.
      */
     rowCount?: string | null;
     /**
@@ -3295,7 +3313,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TimespanConfig {
     /**
-     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger.
+     * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan end_time used in the last run of the JobTrigger.
      */
     enableAutoPopulationOfTimespanConfig?: boolean | null;
     /**

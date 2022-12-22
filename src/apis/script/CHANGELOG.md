@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v0.4.3...script-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.4.3](https://github.com/googleapis/google-api-nodejs-client/compare/script-v0.4.2...script-v0.4.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **script:** update the API ([d0747fe](https://github.com/googleapis/google-api-nodejs-client/commit/d0747fe943adaf1bd406ee25b4b29886c3f284e5))
+
 ## [0.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/script-v0.4.1...script-v0.4.2) (2022-06-21)
 
 

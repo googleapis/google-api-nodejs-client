@@ -108,7 +108,7 @@
     "attachments": {
       "methods": {
         "create": {
-          "description": "Create a file attachment on a case or Cloud resource.",
+          "description": "Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/attachments",
           "httpMethod": "POST",
           "id": "cloudsupport.attachments.create",
@@ -117,7 +117,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. The resource name of the case to which attachment should be attached.",
+              "description": "Required. The resource name of the case (or case parent) to which the attachment should be attached.",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -204,7 +204,7 @@
           ]
         },
         "create": {
-          "description": "Create a new case and associate it with the given Cloud resource.",
+          "description": "Create a new case and associate it with the given Cloud resource. The case object must have the following fields set: display_name, description, classification, and severity.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases",
           "httpMethod": "POST",
           "id": "cloudsupport.cases.create",
@@ -326,7 +326,7 @@
           ]
         },
         "patch": {
-          "description": "Update the specified case. Only a subset of fields (display_name, description, time_zone, subscriber_email_addresses, related_resources, severity, priority, primary_contact, and labels) can be updated.",
+          "description": "Update the specified case. Only a subset of fields can be updated.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}",
           "httpMethod": "PATCH",
           "id": "cloudsupport.cases.patch",
@@ -378,7 +378,7 @@
               "type": "string"
             },
             "query": {
-              "description": "An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `\"my search\"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time>\"2020-01-01T00:00:00-05:00\"`. `update_time` only supports the greater than operator (`>`). Examples: - `organization=\"organizations/123456789\"` - `project=\"projects/my-project-id\"` - `project=\"projects/123456789\"` - `organization=\"organizations/123456789\" AND state=CLOSED` - `project=\"projects/my-project-id\" AND creator.email=\"tester@example.com\"` - `project=\"projects/my-project-id\" AND (priority=P0 OR priority=P1)`",
+              "description": "An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `\"my search\"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time>\"2020-01-01T00:00:00-05:00\"`. `update_time` only supports the greater than operator (`>`). Examples: - `organization=\"organizations/123456789\"` - `project=\"projects/my-project-id\"` - `project=\"projects/123456789\"` - `billing_account=\"billingAccounts/123456-A0B0C0-CUZ789\"` - `organization=\"organizations/123456789\" AND state=CLOSED` - `project=\"projects/my-project-id\" AND creator.email=\"tester@example.com\"` - `project=\"projects/my-project-id\" AND (priority=P0 OR priority=P1)`",
               "location": "query",
               "type": "string"
             }
@@ -436,7 +436,7 @@
         "comments": {
           "methods": {
             "create": {
-              "description": "Add a new comment to the specified Case.",
+              "description": "Add a new comment to the specified Case. The comment object must have the following fields set: body.",
               "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/comments",
               "httpMethod": "POST",
               "id": "cloudsupport.cases.comments.create",
@@ -533,7 +533,7 @@
           "useMediaDownloadService": true
         },
         "upload": {
-          "description": "Create a file attachment on a case or Cloud resource.",
+          "description": "Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/attachments",
           "httpMethod": "POST",
           "id": "cloudsupport.media.upload",
@@ -553,7 +553,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. The resource name of the case to which attachment should be attached.",
+              "description": "Required. The resource name of the case (or case parent) to which the attachment should be attached.",
               "location": "path",
               "pattern": "^[^/]+/[^/]+/cases/[^/]+$",
               "required": true,
@@ -575,7 +575,7 @@
       }
     }
   },
-  "revision": "20220812",
+  "revision": "20221213",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -695,6 +695,10 @@
         "escalated": {
           "description": "Whether the case is currently escalated.",
           "type": "boolean"
+        },
+        "languageCode": {
+          "description": "The language the user has requested to receive support in. This should be a BCP 47 language code (e.g., `\"en\"`, `\"zh-CN\"`, `\"zh-TW\"`, `\"ja\"`, `\"ko\"`). If no language or an unsupported language is specified, this field defaults to English (en). Language selection during case creation may affect your available support options. For a list of supported languages and their support working hours, see: https://cloud.google.com/support/docs/language-working-hours",
+          "type": "string"
         },
         "name": {
           "description": "The resource name for the case.",

@@ -12,7 +12,7 @@
   "baseUrl": "https://recaptchaenterprise.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Recaptcha Enterprise",
-  "description": "",
+  "description": "Help protect your website from fraudulent activity, spam, and abuse without creating friction.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/recaptcha-enterprise/",
   "fullyEncodeReservedExpansion": true,
@@ -514,7 +514,7 @@
       }
     }
   },
-  "revision": "20220812",
+  "revision": "20221219",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -541,6 +541,57 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo": {
+      "description": "Information about account verification, used for identity verification.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo",
+      "properties": {
+        "endpoints": {
+          "description": "Endpoints that can be used for identity verification.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo"
+          },
+          "type": "array"
+        },
+        "languageCode": {
+          "description": "Language code preference for the verification message, set as a IETF BCP 47 language code.",
+          "type": "string"
+        },
+        "latestVerificationResult": {
+          "description": "Output only. Result of the latest account verification challenge.",
+          "enum": [
+            "RESULT_UNSPECIFIED",
+            "SUCCESS_USER_VERIFIED",
+            "ERROR_USER_NOT_VERIFIED",
+            "ERROR_SITE_ONBOARDING_INCOMPLETE",
+            "ERROR_RECIPIENT_NOT_ALLOWED",
+            "ERROR_RECIPIENT_ABUSE_LIMIT_EXHAUSTED",
+            "ERROR_CRITICAL_INTERNAL",
+            "ERROR_CUSTOMER_QUOTA_EXHAUSTED",
+            "ERROR_VERIFICATION_BYPASSED",
+            "ERROR_VERDICT_MISMATCH"
+          ],
+          "enumDescriptions": [
+            "No information about the latest account verification.",
+            "The user was successfully verified. This means the account verification challenge was successfully completed.",
+            "The user failed the verification challenge.",
+            "The site is not properly onboarded to use the account verification feature.",
+            "The recipient is not allowed for account verification. This can occur during integration but should not occur in production.",
+            "The recipient has already been sent too many verification codes in a short amount of time.",
+            "The verification flow could not be completed due to a critical internal error.",
+            "The client has exceeded their two factor request quota for this period of time.",
+            "The request cannot be processed at the time because of an incident. This bypass can be restricted to a problematic destination email domain, a customer, or could affect the entire service.",
+            "The request parameters do not match with the token provided and cannot be processed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "username": {
+          "description": "Username of the account that is being verified. Deprecated. Customers should now provide the hashed account ID field in Event.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -607,7 +658,8 @@
               "PASSED_TWO_FACTOR",
               "FAILED_TWO_FACTOR",
               "CORRECT_PASSWORD",
-              "INCORRECT_PASSWORD"
+              "INCORRECT_PASSWORD",
+              "SOCIAL_SPAM"
             ],
             "enumDescriptions": [
               "Default unspecified reason.",
@@ -623,7 +675,8 @@
               "Indicates that the user passed a 2FA challenge.",
               "Indicates that the user failed a 2FA challenge.",
               "Indicates the user provided the correct password.",
-              "Indicates the user provided an incorrect password."
+              "Indicates the user provided an incorrect password.",
+              "Indicates that the user sent unwanted and abusive messages to other users of the platform, such as spam, scams, phishing, or social engineering."
             ],
             "type": "string"
           },
@@ -645,6 +698,10 @@
         "accountDefenderAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
           "description": "Assessment returned by account defender when a hashed_account_id is provided."
+        },
+        "accountVerification": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo",
+          "description": "Account verification information for identity verification. The assessment event must include a token and site key to use this feature."
         },
         "event": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
@@ -694,6 +751,32 @@
         "passedCount": {
           "description": "Count of nocaptchas (successful verification without a challenge) plus submitted challenge solutions that were correct and resulted in verification.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo": {
+      "description": "Information about a verification endpoint that can be used for 2FA.",
+      "id": "GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo",
+      "properties": {
+        "emailAddress": {
+          "description": "Email address for which to trigger a verification request.",
+          "type": "string"
+        },
+        "lastVerificationTime": {
+          "description": "Output only. Timestamp of the last successful verification for the endpoint, if any.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Phone number for which to trigger a verification request. Should be given in E.164 format.",
+          "type": "string"
+        },
+        "requestToken": {
+          "description": "Output only. Token to provide to the client to trigger endpoint verification. It must be used within 15 minutes.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -883,7 +966,12 @@
     "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest": {
       "description": "The migrate key request message.",
       "id": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
-      "properties": {},
+      "properties": {
+        "skipBillingCheck": {
+          "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha-enterprise/docs/billing-information.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification": {
@@ -1014,7 +1102,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1ScoreDistribution"
           },
-          "description": "Action-based metrics. The map key is the action name which specified by the site owners at time of the \"execute\" client-side call. Populated only for SCORE keys.",
+          "description": "Action-based metrics. The map key is the action name which specified by the site owners at time of the \"execute\" client-side call.",
           "type": "object"
         },
         "overallMetrics": {
@@ -1096,13 +1184,17 @@
           "description": "Action name provided at token generation.",
           "type": "string"
         },
+        "androidPackageName": {
+          "description": "The name of the Android package with which the token was generated (Android keys only).",
+          "type": "string"
+        },
         "createTime": {
           "description": "The timestamp corresponding to the generation of the token.",
           "format": "google-datetime",
           "type": "string"
         },
         "hostname": {
-          "description": "The hostname of the page on which the token was generated.",
+          "description": "The hostname of the page on which the token was generated (Web keys only).",
           "type": "string"
         },
         "invalidReason": {
@@ -1125,6 +1217,10 @@
             "The user verification token was not present.",
             "A retriable error (such as network failure) occurred on the browser. Could easily be simulated by an attacker."
           ],
+          "type": "string"
+        },
+        "iosBundleId": {
+          "description": "The ID of the iOS bundle with which the token was generated (iOS keys only).",
           "type": "string"
         },
         "valid": {

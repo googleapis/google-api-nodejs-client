@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20220405",
+  "revision": "20220915",
   "rootUrl": "https://forms.googleapis.com/",
   "schemas": {
     "Answer": {
@@ -1043,7 +1043,7 @@
           "type": "string"
         },
         "responses": {
-          "description": "The returned responses.",
+          "description": "The returned form responses. Note: The `formId` field is not returned in the `FormResponse` object for list requests.",
           "items": {
             "$ref": "FormResponse"
           },

@@ -997,7 +997,7 @@
                   "type": "boolean"
                 },
                 "requestOptions.languageCode": {
-                  "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.",
+                  "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1213,6 +1213,12 @@
                   "pattern": "^datasources/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "updateMask": {
+                  "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/settings/{+name}",
@@ -1395,6 +1401,12 @@
                   "pattern": "^searchapplications/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "updateMask": {
+                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/settings/{+name}",
@@ -1454,6 +1466,12 @@
                   "location": "path",
                   "pattern": "^searchapplications/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -2059,7 +2077,7 @@
       }
     }
   },
-  "revision": "20220816",
+  "revision": "20221129",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -2214,6 +2232,23 @@
           "type": "string"
         },
         "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddonComposeUiActionMarkup": {
+      "id": "AddonComposeUiActionMarkup",
+      "properties": {
+        "type": {
+          "enum": [
+            "UNSPECIFIED",
+            "DISMISS"
+          ],
+          "enumDescriptions": [
+            "Default. When unspecified, no action is taken.",
+            "Dismisses the add-on compose UI."
+          ],
           "type": "string"
         }
       },
@@ -2500,7 +2535,8 @@
             "ASSISTIVE_SUGGESTION_APP",
             "CONTACTS_APP",
             "ACTIVITY_FEED_APP",
-            "DRIVE_APP"
+            "DRIVE_APP",
+            "CHAT_IN_MEET_APP"
           ],
           "enumDescriptions": [
             "",
@@ -2511,6 +2547,7 @@
             "",
             "",
             "Powered by Bullseye",
+            "",
             "",
             "",
             ""
@@ -2581,12 +2618,17 @@
       "type": "object"
     },
     "AppsDynamiteSharedActivityFeedAnnotationData": {
-      "description": "Next Id: 5",
+      "description": "Next Id: 7",
       "id": "AppsDynamiteSharedActivityFeedAnnotationData",
       "properties": {
-        "activityFeedMessageId": {
-          "description": "Unique id of the Activity Feed message. This will be in the form of \"space-id/message-id\" or \"dm-id/message-id\", where the space-/dm-id and message-id components are extracted from the top-level MessageId in message.proto (http://shortn/_SulV51DNfF). This is copied into annotations so that no client changes are needed to access this value. Clients will need a unique id for every Activity Feed message to implement click-to-source.",
+        "activityFeedMessageCreateTime": {
+          "description": "Timestamp of when the Activity Feed message that contains this annotation was created. This is roughly when the activity happened, such as when a reaction happened, but will have at least some small delay, since the Activity Feed message is created asynchronously after. This timestamp should only be used for display when the activity create time is not available in the Chat UI, like the time of a reaction.",
+          "format": "google-datetime",
           "type": "string"
+        },
+        "activityFeedMessageId": {
+          "$ref": "MessageId",
+          "description": "Unique id of the Activity Feed message used by clients to implement click-to-source. This is the same messageId as the top-level id field for the Activity Feed item."
         },
         "chatItem": {
           "$ref": "AppsDynamiteSharedChatItem"
@@ -2833,6 +2875,7 @@
             "SCAN_SUCCEEDED_WARN",
             "SCAN_SUCCEEDED_AUDIT_ONLY",
             "SCAN_FAILURE_EXCEPTION",
+            "SCAN_FAILURE_RULE_FETCH_FAILED",
             "SCAN_FAILURE_TIMEOUT",
             "SCAN_FAILURE_ALL_RULES_FAILED",
             "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
@@ -2847,6 +2890,7 @@
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
             "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
             "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
+            "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
             "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
             "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
             "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
@@ -2859,6 +2903,7 @@
             "Violation is detected. The user will be warned, and the violation will be logged to BIP.",
             "Violation is detected and will be logged to BIP (no user-facing action performed).",
             "Rule fetch and evaluation were attempted but an exception occurred.",
+            "Rule fetch was attempted but failed, so rule evaluation could not be performed.",
             "Rule fetch and evaluation were attempted but the scanning timed out.",
             "Rule fetch completed and evaluation were attempted, but all of the rules failed to be evaluated.",
             "An IllegalStateException is thrown when executing DLP on attachments. This could happen if the space row is missing.",
@@ -2873,6 +2918,7 @@
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given trigger.",
             "Rule fetch happened, but rule evaluation is skipped because Changeling returned permanent failure while converting the attachment to text.",
             "Rule fetch happened, but rule evaluation is skipped because Changeling returned an empty response while converting the attachment to text.",
+            "Rule fetch happened, but rule evaluation is skipped because file type is unsupported.",
             "Rules were fetched but some evaluations failed. No violation was found in the rules that were successfully evaluated.",
             "Rules were fetched but some evaluations failed. A blocking violation was found in the rules that were successfully evaluated. The message/attachment will be blocked, the user will be notified, and the violation will be logged to BIP. A blocking violation takes precedence over all other violation types.",
             "Rules were fetched but some evaluations failed. A warn violation was found in the rules that were successfully evaluated. The user will be warned, and the violation will be logged to BIP.",
@@ -3366,7 +3412,7 @@
             "A flat room that contains a single thread.",
             "A threaded room. Topics in this room are threaded, and users can reply to any topic.",
             "A DM with immutable group membership. It can be a 1:1 DM or a group DM with multiple human users.",
-            "A post room. Topics in this room are organized in a post/reply style. See the design doc for more details: go/PostRoomsInDynamite.",
+            "A post room. Topics in this room are organized in a post/reply style. See the design doc for more details: go/PostRoomsInDynamite. Deprecated. Post rooms are no longer supported.",
             "Represents an Activity Feed space. These groups are modeled like flat rooms and contain items for users to catch up on important things. Each user should only have one group of this type. See go/activity-feed. LINT.ThenChange(//depot/google3/logs/proto/apps_dynamite/dynamite_visual_element_entry.proto:LoggingGroupType,//depot/google3/java/com/google/apps/dynamite/v1/web/ui/group/groups.js:LoggingGroupType)"
           ],
           "type": "string"
@@ -3523,6 +3569,9 @@
             "SPAM",
             "CONFIDENTIAL_INFORMATION",
             "SENSITIVE_INFORMATION",
+            "FRAUD",
+            "MALWARE",
+            "ILLEGAL_ACTIVITIES",
             "OTHER"
           ],
           "enumDescriptions": [
@@ -3533,6 +3582,9 @@
             "\"Spam\"",
             "\"Confidential information\"",
             "\"Sensitive information\"",
+            "Phishing, impersonation/misrepresentation, or deceiving other users into sharing information under false pretenses.",
+            "Malware, viruses, Trojan horses, corrupted files, destructive code, etc.",
+            "Promoting, organizing, or engaging in illegal activities.",
             "\"Something else\""
           ],
           "type": "string"
@@ -4152,12 +4204,24 @@
       "type": "object"
     },
     "AppsDynamiteSharedMessageInfo": {
-      "description": "Information that references a Dynamite chat message.",
+      "description": "Information that references a Dynamite chat message. This is only used for Activity Feed messages.",
       "id": "AppsDynamiteSharedMessageInfo",
       "properties": {
         "messageId": {
           "$ref": "MessageId",
           "description": "Id of the source chat message. This is kept here because the top-level message ID to refers the AF message ID."
+        },
+        "messageType": {
+          "description": "The type of the source chat message.",
+          "enum": [
+            "MESSAGE_TYPE_UNSPECIFIED",
+            "INLINE_REPLY"
+          ],
+          "enumDescriptions": [
+            "Default value where type is not specified.",
+            "The source chat message is a threaded reply to another message."
+          ],
+          "type": "string"
         },
         "topicReadTimeUsec": {
           "description": "Timestamp of when the topic containing the message has been read by the user. This is populated if the message references an inline reply, in which case the space may be marked as read but the topic still has unread messages.",
@@ -4200,6 +4264,10 @@
         "action": {
           "$ref": "AppsDynamiteSharedAction",
           "description": "If specified, an action is triggered by this onClick."
+        },
+        "hostAppAction": {
+          "$ref": "HostAppActionMarkup",
+          "description": "Triggers host app action on click directly without invoking form actions. This is currently not available to end-users and is used internal only."
         },
         "openDynamicLinkAction": {
           "$ref": "AppsDynamiteSharedAction",
@@ -4400,6 +4468,60 @@
             "The message/topic should be kept with a 24-hour TTL."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsDynamiteSharedSegmentedMembershipCount": {
+      "description": "Contains info on membership count for member types: HUMAN_USER, APP_USER & ROSTER_MEMBER different states: INVITED, JOINED",
+      "id": "AppsDynamiteSharedSegmentedMembershipCount",
+      "properties": {
+        "memberType": {
+          "enum": [
+            "MEMBER_TYPE_UNSPECIFIED",
+            "HUMAN_USER",
+            "ROSTER_MEMBER"
+          ],
+          "enumDescriptions": [
+            "default value",
+            "member is a human user",
+            "member is a roster"
+          ],
+          "type": "string"
+        },
+        "membershipCount": {
+          "description": "count of members with given type and state",
+          "format": "int32",
+          "type": "integer"
+        },
+        "membershipState": {
+          "enum": [
+            "MEMBER_UNKNOWN",
+            "MEMBER_INVITED",
+            "MEMBER_JOINED",
+            "MEMBER_NOT_A_MEMBER",
+            "MEMBER_FAILED"
+          ],
+          "enumDescriptions": [
+            "Default state, do not use",
+            "An invitation to the space has been sent",
+            "User has joined the space",
+            "User is not a member",
+            "This state should never be stored in Spanner. It is a state for responses to the clients to indicate that membership mutations have failed and the member is in its previous state."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsDynamiteSharedSegmentedMembershipCounts": {
+      "id": "AppsDynamiteSharedSegmentedMembershipCounts",
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "AppsDynamiteSharedSegmentedMembershipCount"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4731,9 +4853,13 @@
             "UNKNOWN_STATUS",
             "SUCCESS",
             "ERROR",
-            "NOT_APPLICABLE"
+            "NOT_APPLICABLE",
+            "THUMBNAIL_SUCCESS",
+            "GO_LIVE_SUCCESS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -4973,6 +5099,219 @@
       },
       "type": "object"
     },
+    "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup",
+      "properties": {
+        "addonAttachments": {
+          "items": {
+            "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment",
+      "properties": {
+        "iconUrl": {
+          "description": "Link to the resource's icon.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "MIME type of the content in resource_url.",
+          "type": "string"
+        },
+        "resourceUrl": {
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the attachment.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup": {
+      "description": "Markup that defines conference data associated to a Google Calendar event.",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup",
+      "properties": {
+        "conferenceId": {
+          "description": "Unique identifier for this conference data. Maximum 512 characters long.",
+          "type": "string"
+        },
+        "conferenceSolutionId": {
+          "description": "An identifier of the conferencing solution. Must match a value from the deployment's `calendar.conferenceSolution.id` field.",
+          "type": "string"
+        },
+        "entryPoints": {
+          "description": "Entry points to the conference. Maximum 300 entry points are allowed.",
+          "items": {
+            "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup"
+          },
+          "type": "array"
+        },
+        "error": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError",
+          "description": "If set, it means an error occurred during conference creation."
+        },
+        "note": {
+          "description": "Additional notes (such as instructions from the administrator, legal notices) to display to the user. Can contain HTML. Max length 2048 characters.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Additional add-on parameters. Maximum 300 parameters are allowed.",
+          "items": {
+            "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup": {
+      "description": "A way to join the conference.",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup",
+      "properties": {
+        "accessCode": {
+          "description": "An access code for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "features": {
+          "description": "Features of the entry point, such as being toll or toll-free. One entry point can have multiple features.",
+          "items": {
+            "enum": [
+              "UNKNOWN_FEATURE",
+              "TOLL",
+              "TOLL_FREE"
+            ],
+            "enumDescriptions": [
+              "Unknown feature.",
+              "Applies to `PHONE` entry point. A call to a toll number is charged to the calling party. A number can't be toll and toll-free at the same time.",
+              "Applies to `PHONE` entry point. For the calling party, a call to a toll-free number is free of charge. A number can't be toll and toll-free at the same time."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "label": {
+          "description": "The label of the entry point to display to the user. Maximum 512 characters long.",
+          "type": "string"
+        },
+        "meetingCode": {
+          "description": "A meeting code for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "passcode": {
+          "description": "A passcode for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "password": {
+          "description": "A password for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "pin": {
+          "description": "A PIN for accessing the conference. Maximum 128 characters long.",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "The CLDR/ISO 3166 region code for the country associated with this entry point. Applicable only to `Type.PHONE`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the entry point. Required.",
+          "enum": [
+            "UNKNOWN",
+            "VIDEO",
+            "PHONE",
+            "MORE",
+            "SIP"
+          ],
+          "enumDescriptions": [
+            "Unknown conference type.",
+            "A video conference.",
+            "A phone conference.",
+            "Used to provide a link to further conference joining information.",
+            "A conference using [Session Initiation Protocol](https://en.wikipedia.org/wiki/Session_Initiation_Protocol)"
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "A URI for joining the conference. Supports tel: and http(s): and should be at most 1300 characters long. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError": {
+      "description": "Represents an error that occurred during conference creation.",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError",
+      "properties": {
+        "authenticationUrl": {
+          "description": "If the error type is `AUTHENTICATION`, the add-on can provide a URL allowing users to log in. Maximum 1300 characters long.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of error. Required.",
+          "enum": [
+            "UNKNOWN",
+            "AUTHENTICATION",
+            "TEMPORARY",
+            "PERMANENT",
+            "PERMISSION_DENIED",
+            "CONFERENCE_SOLUTION_FORBIDDEN"
+          ],
+          "enumDescriptions": [
+            "Unknown error.",
+            "An authentication error.",
+            "A temporary error.",
+            "A permanent error.",
+            "The user isn't allowed to perform some action in the third-party conferencing system.",
+            "The user isn't allowed to use the selected conference solution (but might be allowed to use other solutions offered by the add-on)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter": {
+      "description": "Solution-specific parameters that are persisted with the event data and, if an update or delete is needed, are passed to the add-on. For example: `[{key: 'sessionKey', value: '123'}, {key: 'meetingId', value: '456'}]`",
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter",
+      "properties": {
+        "key": {
+          "description": "The key of the parameter. Maximum 50 characters long. Required.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the parameter. Maximum 1024 characters long. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup",
+      "properties": {
+        "addAttendeeEmails": {
+          "description": "A list of attendees to add to the Google Calendar event.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup": {
+      "id": "AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup",
+      "properties": {
+        "conferenceData": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup",
+          "description": "The conference data to add to the Google Calendar event."
+        }
+      },
+      "type": "object"
+    },
     "Attachment": {
       "description": "Attachments that follow the message text.",
       "id": "Attachment",
@@ -5005,6 +5344,69 @@
           "description": "The height of image url as fetched by fife. This field is asynchronously filled.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Attribute": {
+      "description": "An Attribute is a piece of data attached an Item. Attributes are opaque to the Starbox and have no effect on, nor are they effected by, message storage, indexing, or search. ",
+      "id": "Attribute",
+      "properties": {
+        "name": {
+          "description": "The name of the attribute. Required - If a write is attempted with an empty string, the server will return an error.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "CaribouAttributeValue"
+        }
+      },
+      "type": "object"
+    },
+    "AttributeRemoved": {
+      "description": "An attribute was deleted from some (subset of the) messages in this thread.",
+      "id": "AttributeRemoved",
+      "properties": {
+        "attributeId": {
+          "type": "string"
+        },
+        "messageKeys": {
+          "items": {
+            "$ref": "MultiKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AttributeSet": {
+      "description": "An attribute was added to some (subset of the) messages in this thread.",
+      "id": "AttributeSet",
+      "properties": {
+        "attributeId": {
+          "type": "string"
+        },
+        "attributeValue": {
+          "description": "The serialized attribute_value as persisted in the storage layer. The application is responsible for deserializing it to an Attribute.Value if appropriate.",
+          "format": "byte",
+          "type": "string"
+        },
+        "messageKeys": {
+          "items": {
+            "$ref": "MultiKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Attributes": {
+      "id": "Attributes",
+      "properties": {
+        "attribute": {
+          "items": {
+            "$ref": "Attribute"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5172,6 +5574,21 @@
       "description": "Bot-specific profile information.",
       "id": "BotInfo",
       "properties": {
+        "appAllowlistStatus": {
+          "enum": [
+            "UNSPECIFIED_STATUS",
+            "ALLOWED",
+            "ALL_APPS_DISABLED_BY_ADMIN",
+            "APP_NOT_ALLOWLISTED_BY_ADMIN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "For both ALL_APPS_DISABLED_BY_ADMIN and APP_NOT_ALLOWLISTED_BY_ADMIN, the app should still be visible in the catalog, but usage of the app will be disabled. Indicates that all apps have been disabled by the dasher admin.",
+            "Indicates that the customer is using allowlisting, but that the bot is not allowlisted."
+          ],
+          "type": "string"
+        },
         "appId": {
           "$ref": "AppId",
           "description": "Identifier of the application associated with the bot."
@@ -5210,6 +5627,10 @@
           ],
           "type": "string"
         },
+        "supportHomeScreen": {
+          "description": "If the app supports a home screen.",
+          "type": "boolean"
+        },
         "supportUrls": {
           "$ref": "SupportUrls",
           "description": "Urls with additional information related to the bot. This field should always be set even if all the fields within it are empty, so that it is convenient for clients to work with this field in javascript."
@@ -5232,21 +5653,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "whitelistStatus": {
-          "enum": [
-            "UNSPECIFIED_STATUS",
-            "ALLOWED",
-            "ALL_BOTS_DISABLED_BY_ADMIN",
-            "BOT_NOT_WHITELISTED_BY_ADMIN"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "For both ALL_BOTS_DISABLED_BY_ADMIN and BOT_NOT_WHITELISTED_BY_ADMIN, the bot should still be visible in the catalog, but usage of the bot will be disabled. Indicates that all bots has been disabled by the dasher admin.",
-            "Indicates that the customer is using whitelisting, but that the bot is not whitelisted."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -5278,7 +5684,8 @@
             "SETUP_REQUIRED",
             "DISABLED_BY_ADMIN",
             "DISABLED_BY_DEVELOPER",
-            "PRIVATE"
+            "PRIVATE",
+            "APP_SUGGESTION"
           ],
           "enumDescriptions": [
             "",
@@ -5286,7 +5693,8 @@
             "Bot requires auth or config",
             "Bot fails to respond because it is disabled by domain admin",
             "Bot fails to respond because it is disabled by the bot's developer",
-            "Message to bot should be permanently private."
+            "Message to bot should be permanently private.",
+            "A suggestion to promote an app."
           ],
           "type": "string"
         },
@@ -5370,6 +5778,24 @@
       },
       "type": "object"
     },
+    "CalendarClientActionMarkup": {
+      "id": "CalendarClientActionMarkup",
+      "properties": {
+        "addAttachmentsActionMarkup": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup",
+          "description": "An action that adds attachments to the Google Calendar event."
+        },
+        "editAttendeesActionMarkup": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup",
+          "description": "An action that adds attendees to the Google Calendar event."
+        },
+        "editConferenceDataActionMarkup": {
+          "$ref": "AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup",
+          "description": "An action that adds conference data to the Google Calendar event."
+        }
+      },
+      "type": "object"
+    },
     "CallInfo": {
       "description": "Contains information regarding an ongoing conference (aka call) for a meeting space.",
       "id": "CallInfo",
@@ -5408,10 +5834,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "chatConfig": {
-          "$ref": "ChatConfig",
-          "description": "Configuration for the chat for this conference."
-        },
         "coActivity": {
           "$ref": "CoActivity",
           "description": "The current co-activity session, or unset if there is none in progress. A co-activity session can be initiated by devices in JOINED state . Initiator of the co-activity is expected to populate this field to start the session. Once clients detect that the co-activity has finished, any JOINED device can clear this field to end the co-activity session. In the case of switching activities, the initiator of the new activity merely needs to override this with the new co-activity data, and all connected clients are expected to handle the transition gracefully."
@@ -5429,11 +5851,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "mediaBackendInfo": {
-          "description": "Output only. Information about the media backend for the currently ongoing conference in the meeting space. The media backend information will only be filled in for clients that are supposed to present the information. The information should be displayed in a debug panel and is only intended for internal debugging purposes. If the string is empty nothing should be displayed about the media backend.",
-          "readOnly": true,
-          "type": "string"
         },
         "organizationName": {
           "description": "Output only. The name or description of the organization or domain that the organizer belongs to. The expected use of this in clients is to present messages like \"John Doe (outside of Google.com) is trying to join this call\", where \"Google.com\" is the organization name. The field will be empty if the organization name could not be determined, possibly because of a backend error.",
@@ -5495,6 +5912,26 @@
           "description": "Indicates whether the access lock is currently on or off.",
           "type": "boolean"
         },
+        "accessType": {
+          "description": "The current access type of the conference.",
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "ACCESS_TYPE_OPEN",
+            "ACCESS_TYPE_TRUSTED",
+            "ACCESS_TYPE_RESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Anyone with meeting join information (url, phone access...) can join, no knocking required. (Subject to organization policies)",
+            "Members of the Host's organization, invited external users, and dial-in users can join without knocking, everyone else must knock. (Subject to organization policies)",
+            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks."
+          ],
+          "type": "string"
+        },
+        "allowJoiningBeforeHost": {
+          "description": "Whether users can join this conference before a host (Host or Cohost).",
+          "type": "boolean"
+        },
         "attendanceReportEnabled": {
           "description": "Indicates whether the attendance report is currently enabled or disabled.",
           "type": "boolean"
@@ -5512,15 +5949,11 @@
           "type": "boolean"
         },
         "moderationEnabled": {
-          "description": "Indicates whether the current call is moderated. go/meet-multimod-dd",
+          "description": "Indicates whether moderation is currently on or off.",
           "type": "boolean"
         },
         "presentLock": {
           "description": "Indicates whether the present lock is currently on or off.",
-          "type": "boolean"
-        },
-        "projectDinoEnabled": {
-          "description": "Indicates whether project Dino is currently on or off. WARNING: This is currently an experimental field. It should not be used without getting an explicit review and approval from the Meet team.",
           "type": "boolean"
         },
         "reactionsLock": {
@@ -5663,29 +6096,36 @@
       },
       "type": "object"
     },
-    "ChatConfig": {
-      "description": "Configuration of the in meeting chat.",
-      "id": "ChatConfig",
+    "CaribouAttributeValue": {
+      "id": "CaribouAttributeValue",
       "properties": {
-        "chatType": {
-          "description": "The Type of chat this Conference is currently using.",
-          "enum": [
-            "CHAT_TYPE_UNSPECIFIED",
-            "MEET_CHAT",
-            "GOOGLE_CHAT"
-          ],
-          "enumDescriptions": [
-            "Chat Type has not been specified.",
-            "Meets native chat.",
-            "Google Chat."
-          ],
+        "booleanValue": {
+          "description": "Tags 1 through 15 are reserved for the most commonly used fields.",
+          "type": "boolean"
+        },
+        "intValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "longValue": {
+          "format": "int64",
           "type": "string"
         },
-        "googleChatConfig": {
-          "$ref": "GoogleChatConfig",
-          "description": "The configuration of Google Chat when selected."
+        "rawByteValue": {
+          "description": "Generally, applications should avoid storing raw bytes and instead store structured data as protocol buffer extensions. This both reduces the amount of ad-hoc attribute parsing code as well as eliminates an intermediate copy of the data when deserializing the value. The rawByteValue field is mainly provided for compatibility with attributes stored before the introduction of the Attribute.Value.",
+          "format": "byte",
+          "type": "string"
+        },
+        "stringValue": {
+          "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ChatClientActionMarkup": {
+      "description": "Actions handled by Chat Clients.",
+      "id": "ChatClientActionMarkup",
+      "properties": {},
       "type": "object"
     },
     "ChatConserverDynamitePlaceholderMetadata": {
@@ -5895,6 +6335,29 @@
       },
       "type": "object"
     },
+    "ClientContext": {
+      "description": "Represents the context of the client on behalf of which a HistoryRecord is produced. The ClientContext message can be used to hold context about the service client (e.g. the internal server making fusebox requests) or the user client (e.g. the IP address of the end user).",
+      "id": "ClientContext",
+      "properties": {
+        "clientOperationId": {
+          "description": "The client operation to which this history record belongs. The notion of a client operation is provided to keep track of client operations which might span multiple transactions in the lower level.",
+          "type": "string"
+        },
+        "clientType": {
+          "description": "E.g. \"pinto\", \"imap\", \"bigtop\", \"upload\"",
+          "type": "string"
+        },
+        "sessionContext": {
+          "$ref": "SessionContext",
+          "description": "Contains information about the session which created this history record. This will be empty if the history record was generated by an internal request."
+        },
+        "userIp": {
+          "description": "Textual representation of the user's IP address, if available.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CloudPrincipalProto": {
       "description": "Principal associated with a Cloud Principal representing third party user.",
       "id": "CloudPrincipalProto",
@@ -5902,6 +6365,24 @@
         "id": {
           "description": "Format: \"{identity-pool}:{subject}#\" Details: go/cloud-principal-identifiers",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterInfo": {
+      "description": "ClusterInfo contains clustering related information for a particular thread that would be sent as part of the conversation view. Today, this information would be used by iOS notification server to identify whether the thread belongs to a cluster. If the thread belongs to a grouped cluster, it would identify whether the cluster is throttled.",
+      "id": "ClusterInfo",
+      "properties": {
+        "clusterId": {
+          "description": "IDs of the highest priority clusters to which the thread belongs to. If this field is not present, the thread does not belong to any cluster and would be shown in the inbox, unclustered.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "throttled": {
+          "description": "If the thread belongs to a grouped cluster and all of those clusters are throttled, then this field is set to true.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5923,7 +6404,9 @@
             "CO_ACTIVITY_APP_UNO",
             "CO_ACTIVITY_APP_HEADSUP",
             "CO_ACTIVITY_APP_KAHOOT",
-            "CO_ACTIVITY_APP_GQUEUES"
+            "CO_ACTIVITY_APP_GQUEUES",
+            "CO_ACTIVITY_APP_YOU_TUBE_MUSIC",
+            "CO_ACTIVITY_APP_SAMSUNG_NOTES"
           ],
           "enumDescriptions": [
             "Should never be used.",
@@ -5932,7 +6415,9 @@
             "Uno game.",
             "HeadsUp game.",
             "Kahoot! educational software.",
-            "GQueues task manager."
+            "GQueues task manager.",
+            "YouTube Music",
+            "Samsung Notes"
           ],
           "type": "string"
         }
@@ -6172,6 +6657,21 @@
       "properties": {
         "customEmoji": {
           "$ref": "AppsDynamiteSharedCustomEmoji"
+        }
+      },
+      "type": "object"
+    },
+    "CustomFunctionReturnValueMarkup": {
+      "description": "The result of a user running a custom function.",
+      "id": "CustomFunctionReturnValueMarkup",
+      "properties": {
+        "errorMessage": {
+          "description": "The error message to show to the user if something went wrong.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value that resulted from running the custom function.",
+          "type": "any"
         }
       },
       "type": "object"
@@ -6628,6 +7128,7 @@
             "SCAN_SUCCEEDED_WARN",
             "SCAN_SUCCEEDED_AUDIT_ONLY",
             "SCAN_FAILURE_EXCEPTION",
+            "SCAN_FAILURE_RULE_FETCH_FAILED",
             "SCAN_FAILURE_TIMEOUT",
             "SCAN_FAILURE_ALL_RULES_FAILED",
             "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
@@ -6642,6 +7143,7 @@
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
             "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
             "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
+            "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
             "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
             "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
             "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
@@ -6654,6 +7156,7 @@
             "Violation is detected. The user will be warned, and the violation will be logged to BIP.",
             "Violation is detected and will be logged to BIP (no user-facing action performed).",
             "Rule fetch and evaluation were attempted but an exception occurred.",
+            "Rule fetch was attempted but failed, so rule evaluation could not be performed.",
             "Rule fetch and evaluation were attempted but the scanning timed out.",
             "Rule fetch completed and evaluation were attempted, but all of the rules failed to be evaluated.",
             "An IllegalStateException is thrown when executing DLP on attachments. This could happen if the space row is missing.",
@@ -6668,6 +7171,7 @@
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given trigger.",
             "Rule fetch happened, but rule evaluation is skipped because Changeling returned permanent failure while converting the attachment to text.",
             "Rule fetch happened, but rule evaluation is skipped because Changeling returned an empty response while converting the attachment to text.",
+            "Rule fetch happened, but rule evaluation is skipped because file type is unsupported.",
             "Rules were fetched but some evaluations failed. No violation was found in the rules that were successfully evaluated.",
             "Rules were fetched but some evaluations failed. A blocking violation was found in the rules that were successfully evaluated. The message/attachment will be blocked, the user will be notified, and the violation will be logged to BIP. A blocking violation takes precedence over all other violation types.",
             "Rules were fetched but some evaluations failed. A warn violation was found in the rules that were successfully evaluated. The user will be warned, and the violation will be logged to BIP.",
@@ -6731,6 +7235,15 @@
             "type": "number"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DriveClientActionMarkup": {
+      "id": "DriveClientActionMarkup",
+      "properties": {
+        "requestFileScope": {
+          "$ref": "RequestFileScope"
         }
       },
       "type": "object"
@@ -6980,6 +7493,33 @@
       },
       "type": "object"
     },
+    "DynamiteMessagesScoringInfo": {
+      "description": "This is the proto for holding message level scoring information. This data is used for logging in query-api server and for testing purposes.",
+      "id": "DynamiteMessagesScoringInfo",
+      "properties": {
+        "finalScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "freshnessScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "joinedSpaceAffinityScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "messageAgeInDays": {
+          "format": "double",
+          "type": "number"
+        },
+        "topicalityScore": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "DynamiteSpacesScoringInfo": {
       "description": "This is the proto for holding space level scoring information. This data is used for logging in query-api server and for testing purposes.",
       "id": "DynamiteSpacesScoringInfo",
@@ -7055,6 +7595,15 @@
       "description": "A message edit in Dynamite inserts a Babel-only item containing this field.",
       "id": "EditMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "EditorClientActionMarkup": {
+      "id": "EditorClientActionMarkup",
+      "properties": {
+        "requestFileScopeForActiveDocument": {
+          "$ref": "RequestFileScopeForActiveDocument"
+        }
+      },
       "type": "object"
     },
     "EmailAddress": {
@@ -8135,6 +8684,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "filter": {
+          "$ref": "Filter",
+          "description": "Filter to be passed in the search request if the corresponding bucket is selected."
+        },
         "percentage": {
           "description": "Percent of results that match the bucket value. The returned value is between (0-100], and is rounded down to an integer if fractional. If the value is not explicitly returned, it represents a percentage value that rounds to 0. Percentages are returned for all searches, but are an estimate. Because percentages are always returned, you should render percentages instead of counts.",
           "format": "int32",
@@ -8150,6 +8703,10 @@
       "description": "Specifies operators to return facet results for. There will be one FacetResult for every source_name/object_type/operator_name combination.",
       "id": "FacetOptions",
       "properties": {
+        "integerFacetingOptions": {
+          "$ref": "IntegerFacetingOptions",
+          "description": "If set, describes integer faceting options for the given integer property. The corresponding integer property in the schema should be marked isFacetable. The number of buckets returned would be minimum of this and num_facet_buckets."
+        },
         "numFacetBuckets": {
           "description": "Maximum number of facet buckets that should be returned for this facet. Defaults to 10. Maximum value is 100.",
           "format": "int32",
@@ -8223,6 +8780,18 @@
       },
       "type": "object"
     },
+    "FilterCreated": {
+      "description": "A filter was created.",
+      "id": "FilterCreated",
+      "properties": {},
+      "type": "object"
+    },
+    "FilterDeleted": {
+      "description": "A filter was deleted.",
+      "id": "FilterDeleted",
+      "properties": {},
+      "type": "object"
+    },
     "FilterOptions": {
       "description": "Filter options to be applied on query.",
       "id": "FilterOptions",
@@ -8233,6 +8802,22 @@
         },
         "objectType": {
           "description": "If object_type is set, only objects of that type are returned. This should correspond to the name of the object that was registered within the definition of schema. The maximum length is 256 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FilterUpdate": {
+      "description": "HistoryRecord for changes associated with a filter, namely: FILTER_CREATED FILTER_DELETED",
+      "id": "FilterUpdate",
+      "properties": {
+        "filterCreated": {
+          "$ref": "FilterCreated"
+        },
+        "filterDeleted": {
+          "$ref": "FilterDeleted"
+        },
+        "filterId": {
           "type": "string"
         }
       },
@@ -8253,6 +8838,38 @@
         },
         "secondaryButton": {
           "$ref": "TextButton"
+        }
+      },
+      "type": "object"
+    },
+    "Folder": {
+      "id": "Folder",
+      "properties": {
+        "id": {
+          "description": "Folder mapping id.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "message": {
+          "description": "One for each copy of the message in the IMAP folder.",
+          "items": {
+            "$ref": "ImapsyncFolderAttributeFolderMessage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FolderAttribute": {
+      "description": "This is the content of //imapsync/folder attribute.",
+      "id": "FolderAttribute",
+      "properties": {
+        "folder": {
+          "description": "List of all IMAP folders where the message presents.",
+          "items": {
+            "$ref": "Folder"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8386,6 +9003,118 @@
         },
         "freshnessProperty": {
           "description": "This property indicates the freshness level of the object in the index. If set, this property must be a top-level property within the property definitions and it must be a timestamp type or date type. Otherwise, the Indexing API uses updateTime as the freshness indicator. The maximum length is 256 characters. When a property is used to calculate freshness, the value defaults to 2 years from the current time.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FuseboxItem": {
+      "description": "The Item message is the read interface for user data (traditionally referred to as a \"message\", such as a mail message or a chat message, but generalized to encompass other types such as tasks) and stored in Tingle. Each Item is associated with a single Thread. An Item contains three classes of data. (1): Item \"fields\" are common to items of all message types (e.g. mail, chat, task, etc.) and are identified by the ItemFieldSpec.FetchType enum when fetching Items. (2): Item \"attributes\" represent data associated with an Item that is stored on behalf of the client but to which the fusebox and storage layers are otherwise agnostic. (3): Item \"parts\" are application-defined protocol buffers that affect how the Item is indexed. Item parts are referenced as extensions to the ItemParts message. By default the application specifies the index terms associated with an Item part. For performance sensitive applications, the storage layer can be modified to understand and index data types natively.",
+      "id": "FuseboxItem",
+      "properties": {
+        "attributes": {
+          "$ref": "Attributes"
+        },
+        "creationTimeMicroseconds": {
+          "description": "The creation time of the Item in micro seconds.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "history": {
+          "$ref": "History"
+        },
+        "itemKey": {
+          "$ref": "MultiKey",
+          "description": "The key is used to refer to an item. Note that every field of the MultiKey is unique to the Item, and thus the Item can be looked up by any of the fields."
+        },
+        "labels": {
+          "$ref": "Labels"
+        },
+        "lastModificationTimeUs": {
+          "description": "The modification time of the Item in micro seconds. Modifications to the message include label addition, deletion, etc.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "lockerReferences": {
+          "$ref": "References",
+          "description": "go/lockpicker Locker counterpart of references."
+        },
+        "matchInfo": {
+          "$ref": "MatchInfo"
+        },
+        "parts": {
+          "$ref": "ItemParts",
+          "description": "Type-specific data are represented as extensions to the ItemParts message."
+        },
+        "readTs": {
+          "description": "The read timestamp at which this item was read. This is a temporary field used to check if two items streamed during dual reading were read at the same timestamp. This will be populated by Fusebox RPCs. \"DO NOT USE UNLESS YOU TALK TO FUSEBOX TEAM (gmail-fusebox@)\".",
+          "format": "int64",
+          "type": "string"
+        },
+        "references": {
+          "$ref": "References",
+          "description": "References to attachments, video attachments in Youtube and Hangout messages."
+        },
+        "snippet": {
+          "description": "The snippet is a brief bit of text describing this item.",
+          "type": "string"
+        },
+        "threadKey": {
+          "$ref": "MultiKey",
+          "description": "The key of the Thread with which this Item is associated."
+        },
+        "threadLocator": {
+          "description": "A base64 encoded and encrypted string generated from the Gaia Id and the thread id. Used to generate the permalink for this thread, exposed from Gmail API.",
+          "type": "string"
+        },
+        "triggers": {
+          "$ref": "Triggers"
+        },
+        "version": {
+          "description": "The latest history operation id that resulted in a mutation of the item.",
+          "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FuseboxItemThreadMatchInfo": {
+      "description": "In the context of a search, the MatchInfo contains information about which Items matched the query.",
+      "id": "FuseboxItemThreadMatchInfo",
+      "properties": {
+        "clusterId": {
+          "description": "If SearchQuery.Options.Clustering is present, the query will be treated as a cluster query, and this field may be populated with the cluster ID of the cluster to which this thread belongs, if any. The cluster ID will be a label on the message.",
+          "type": "string"
+        },
+        "lastMatchingItemId": {
+          "description": "The server id of the last item that matched the query. This is always set, regardless of the compute_matching_items_per_thread option. This is the value by which search results are sorted, in descending (i.e. newest first) order.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "lastMatchingItemKey": {
+          "$ref": "MultiKey",
+          "description": "The MultiKey of the last item that matched the query. This is always set, regardless of the compute_matching_items_per_thread option. This is the value by which search results are sorted, in descending (i.e. newest first) order."
+        },
+        "matchingItemKey": {
+          "description": "If SearchQuery.Options.compute_matching_items_per_thread, this field will contain the keys of all items that matched the query, in ascending order. Note that this option requires extra computation.",
+          "items": {
+            "$ref": "MultiKey"
+          },
+          "type": "array"
+        },
+        "rank": {
+          "$ref": "Rank",
+          "description": "The rank of this ItemThread in the result set of the query. This rank may be used to sort ItemThreads in proper order. Ranks are specific to a query, and stable for a given query at a specific time."
+        }
+      },
+      "type": "object"
+    },
+    "FuseboxPrefUpdatePreState": {
+      "description": "If the Value field is not set this means the pref did not exist.",
+      "id": "FuseboxPrefUpdatePreState",
+      "properties": {
+        "value": {
+          "format": "byte",
           "type": "string"
         }
       },
@@ -8595,13 +9324,20 @@
       },
       "type": "object"
     },
-    "GoogleChatConfig": {
-      "description": "Configuration of the Google Chat in Meet.",
-      "id": "GoogleChatConfig",
+    "GmailClientActionMarkup": {
+      "id": "GmailClientActionMarkup",
       "properties": {
-        "chatGroupId": {
-          "description": "ID of the Chat group.",
-          "type": "string"
+        "addonComposeUiActionMarkup": {
+          "$ref": "AddonComposeUiActionMarkup"
+        },
+        "openCreatedDraftActionMarkup": {
+          "$ref": "OpenCreatedDraftActionMarkup"
+        },
+        "taskAction": {
+          "$ref": "TaskActionMarkup"
+        },
+        "updateDraftActionMarkup": {
+          "$ref": "UpdateDraftActionMarkup"
         }
       },
       "type": "object"
@@ -8650,7 +9386,7 @@
       "type": "object"
     },
     "GoogleChatV1ContextualAddOnMarkupCardCardAction": {
-      "description": "A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser.",
+      "description": "A card action is the action associated with the card. For an invoice card, a typical action would be: delete invoice, email invoice or open the invoice in browser. Not supported by Google Chat apps.",
       "id": "GoogleChatV1ContextualAddOnMarkupCardCardAction",
       "properties": {
         "actionLabel": {
@@ -9054,7 +9790,7 @@
       "type": "object"
     },
     "GoogleDocsMetadata": {
-      "description": "The corpus specific metadata for office-type documents, from Google Docs and other sources. This message is passed to the scorer and beyond. Next tag: 7",
+      "description": "The corpus specific metadata for office-type documents, from Google Docs and other sources. This message is passed to the scorer and beyond. Next tag: 9",
       "id": "GoogleDocsMetadata",
       "properties": {
         "aclInfo": {
@@ -9111,6 +9847,16 @@
           "description": "The last time this document was modified, in seconds since epoch. Only counts content modifications.",
           "format": "int64",
           "type": "string"
+        },
+        "numSubscribers": {
+          "description": "Contains number of subscribers for the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numViewers": {
+          "description": "Size of untruncated viewers list.",
+          "format": "int32",
+          "type": "integer"
         },
         "resultInfo": {
           "$ref": "GoogleDocsResultInfo",
@@ -9418,6 +10164,134 @@
       "properties": {
         "searchText": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "History": {
+      "description": "The most recent history records associated with the item.",
+      "id": "History",
+      "properties": {
+        "record": {
+          "items": {
+            "$ref": "HistoryRecord"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "HistoryRecord": {
+      "id": "HistoryRecord",
+      "properties": {
+        "clientContext": {
+          "$ref": "ClientContext",
+          "description": "This will almost always be set, but there are corner cases in which the information is not available, and thus applications must handle its absence appropriately."
+        },
+        "filterUpdate": {
+          "$ref": "FilterUpdate"
+        },
+        "imapUpdate": {
+          "$ref": "ImapUpdate"
+        },
+        "labelUpdate": {
+          "$ref": "LabelUpdate"
+        },
+        "prefUpdate": {
+          "$ref": "PrefUpdate"
+        },
+        "recordId": {
+          "description": "Each HistoryRecord has a unique id. Ids are monotonically increasing, and not necessarily contiguous.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "threadUpdate": {
+          "$ref": "ThreadUpdate"
+        },
+        "transactionContext": {
+          "$ref": "TransactionContext",
+          "description": "This will almost always be set, but there are corner cases in which the information is not available, and thus applications must handle its absence appropriately."
+        },
+        "txnDebugInfo": {
+          "$ref": "TransactionDebugInfo"
+        },
+        "type": {
+          "enum": [
+            "UNKNOWN",
+            "INTERNAL",
+            "MESSAGE_ADDED",
+            "MESSAGE_DELETED",
+            "LABEL_ADDED",
+            "LABEL_REMOVED",
+            "ATTRIBUTE_SET",
+            "ATTRIBUTE_REMOVED",
+            "THREAD_KEY_SET",
+            "LABEL_CREATED",
+            "LABEL_DELETED",
+            "LABEL_RENAMED",
+            "LABEL_UPDATED",
+            "PREF_WRITTEN",
+            "PREF_DELETED",
+            "FILTER_CREATED",
+            "FILTER_DELETED",
+            "IMAP_UIDS_REASSIGN",
+            "TOPIC_STATE_UPDATED",
+            "TXN_DEBUG_INFO"
+          ],
+          "enumDescriptions": [
+            "Represents a type that is deprecated or not known by the executing code. Even if Fusebox sends a HistoryRecord with Type not UNKNOWN, it may send Type values that are not yet defined on the client-side, in which case they will be appear as Type.UNKNOWN on the client.",
+            "Represents a change internal to the Fusebox. HistoryRecords for Fusebox internal changes contribute to the user's version, which is defined as the latest HistoryRecord's record_id. INTERNAL HistoryRecords exist to allow a client to update its notion of the latest record_id it has processed, but do not necessarily contain any other information.",
+            "ThreadUpdate:",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "LabelUpdate:",
+            "",
+            "",
+            "",
+            "PrefUpdate:",
+            "",
+            "FilterUpdate:",
+            "",
+            "IMAP",
+            "EAI",
+            "TXN_DEBUG_INFO"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HostAppActionMarkup": {
+      "description": "Actions handled by individual host apps.",
+      "id": "HostAppActionMarkup",
+      "properties": {
+        "calendarAction": {
+          "$ref": "CalendarClientActionMarkup",
+          "description": "Actions handled by Calendar."
+        },
+        "chatAction": {
+          "$ref": "ChatClientActionMarkup",
+          "description": "Actions handled by Chat."
+        },
+        "driveAction": {
+          "$ref": "DriveClientActionMarkup",
+          "description": "Actions handled by Drive."
+        },
+        "editorAction": {
+          "$ref": "EditorClientActionMarkup",
+          "description": "Actions handled by Docs, Sheets, or Slides."
+        },
+        "gmailAction": {
+          "$ref": "GmailClientActionMarkup",
+          "description": "Actions handled by Gmail."
+        },
+        "sheetsAction": {
+          "$ref": "SheetsClientActionMarkup",
+          "description": "Actions handled by Sheets."
         }
       },
       "type": "object"
@@ -9856,6 +10730,377 @@
       },
       "type": "object"
     },
+    "ImapSessionContext": {
+      "id": "ImapSessionContext",
+      "properties": {
+        "app": {
+          "enum": [
+            "OTHER_APP",
+            "CHROME",
+            "FIREFOX",
+            "MSIE",
+            "SAFARI",
+            "OPERA",
+            "EDGE",
+            "MSIE_COMPATIBILITY",
+            "OTHER_BROWSER",
+            "SAMSUNG_BROWSER",
+            "UC_BROWSER",
+            "ANDROID_BROWSER",
+            "YANDEX_BROWSER",
+            "SILK_BROWSER",
+            "COC_COC_BROWSER",
+            "MAX_BROWSER_APP_VALUE",
+            "GMAIL_APP",
+            "GMAIL_INBOX_APP",
+            "ANDROID_EMAIL_APP",
+            "SAMSUNG_MAIL_APP",
+            "MOTO_EMAIL_APP",
+            "BOXER_APP",
+            "LIMILABS_MAIL_DLL",
+            "BIS_APP",
+            "OUTLOOK_MAIL_APP",
+            "APPLE_NATIVE_APP",
+            "CHROME_WEBVIEW_APP",
+            "SAFARI_WEBVIEW_APP",
+            "CHROME_SYNC_APP",
+            "GSA_APP",
+            "GMM_APP",
+            "CALENDAR_APP",
+            "PLUS_APP",
+            "HANGOUTS_APP",
+            "HANGOUTS_MEET_APP",
+            "JAMBOARD_APP",
+            "VOICE_APP",
+            "PHOTOS_APP",
+            "DRIVE_SYNC_APP",
+            "DRIVE_APP",
+            "DOCS_APP",
+            "SHEETS_APP",
+            "SLIDES_APP",
+            "KEEP_APP",
+            "WHATS_APP_IN_DRIVE_APP",
+            "TRANSLATE_APP",
+            "YOUTUBE_APP",
+            "YOUTUBE_MUSIC_APP",
+            "YOUTUBE_GAMING_APP",
+            "YOUTUBE_KIDS_APP",
+            "YOUTUBE_CAPTURE_APP",
+            "YOUTUBE_CREATOR_APP",
+            "YOUTUBE_GO_APP",
+            "YOUTUBE_TV_APP",
+            "YOUTUBE_VR_APP",
+            "PLAY_APP",
+            "PLAY_MUSIC_APP",
+            "PLAY_BOOKS_APP",
+            "PLAY_MOVIES_APP",
+            "PLAY_NEWSSTAND_APP",
+            "PLAY_GAMES_APP",
+            "POKEMON_GO_APP",
+            "ALLO_APP",
+            "DUO_APP",
+            "CLASSROOM_APP",
+            "TRIPS_APP",
+            "GOOGLE_PAY_APP",
+            "WAZE_APP",
+            "ASSISTANT_APP",
+            "GBOARD_APP",
+            "NEWS_APP",
+            "HOME_APP",
+            "EARTH_APP",
+            "STREET_VIEW_APP",
+            "TEZ_APP",
+            "GOOGLE_ANALYTICS_APP",
+            "ADSENSE_APP",
+            "ADWORDS_APP",
+            "EXPRESS_APP",
+            "WEAR_APP",
+            "GOOGLE_MY_BUSINESS_APP",
+            "FAMILY_LINK_APP",
+            "OPINION_REWARDS_APP",
+            "WALLET_APP",
+            "ARTS_AND_CULTURE_APP",
+            "ANDROID_DEVICE_MANAGER_APP",
+            "GOOGLE_GO_APP",
+            "FILES_GO_APP",
+            "DATALLY_APP",
+            "WIFI_APP",
+            "STADIA_APP",
+            "BATTLESTAR_APP",
+            "SMART_LOCK_APP",
+            "LOGDOG_APP",
+            "DEPRECATED_MAC_OSX_MAIL_APP",
+            "DEPRECATED_IOS_MAIL_APP"
+          ],
+          "enumDescriptions": [
+            "Unknown",
+            "Browsers Google Chrome",
+            "Mozilla Firefox",
+            "Microsoft Internet Explorer",
+            "Apple Safari",
+            "Opera",
+            "Tag #7 used to be CHROME_WEBVIEW, which was deprecated and replaced by CHROME_WEBVIEW_APP. When adding a new browser, skip #7 for safety. Microsoft Edge",
+            "MSIE in Compatibility View. See b/22467241.",
+            "Browser not otherwise specified",
+            "Samsung browser on Android",
+            "UC Browser",
+            "Android's legacy default AOSP browser (distinct",
+            "from customized OEM flavours). Yandex Browser",
+            "Amazon Silk browser",
+            "Popoular browser in Vietnam",
+            "Tag for the maximum enum value that represents a browser. Enum values (strictly) between OTHER_APP and this value represent browsers. This should never appear in real data.",
+            "Email apps Gmail",
+            "Inbox by Gmail",
+            "Native Android email app",
+            "(replaced by Gmail in Lollipop) Samsung mail",
+            "Motorola email app",
+            "Boxer",
+            "Mail.dll by Limilabs",
+            "BlackBerry Internet Service",
+            "Microsoft Outlook",
+            "Apple apps (mail, contacts & calendar)",
+            "Chrome Webview",
+            "Safari Webview",
+            "Chrome Sync",
+            "Includes both Now and Search on GSA.",
+            "Maps",
+            "Calendar",
+            "Google+",
+            "Hangouts Classic",
+            "Hangouts Meet",
+            "Jamboard app (go/jamboard)",
+            "Google Voice",
+            "Photos",
+            "Drive Sync",
+            "Drive",
+            "Docs",
+            "Sheets",
+            "Slides",
+            "Keep",
+            "WhatsApp in Drive",
+            "Translate",
+            "YouTube",
+            "YouTube Music",
+            "YouTube Gaming",
+            "YouTube Kids",
+            "YouTube Capture",
+            "YouTube Creator Studio",
+            "YouTube Go",
+            "YouTube TV",
+            "YouTube VR",
+            "Google Play",
+            "Google Play Music",
+            "Google Play Books",
+            "Google Play Movies & TV",
+            "Google Play Newsstand",
+            "Google Play Games",
+            "Pokemon GO (uses Google to sign in)",
+            "Allo",
+            "Duo",
+            "Google Classroom",
+            "Google Trips",
+            "Google Pay (formerly Android Pay)",
+            "Waze",
+            "Google Assistant standalone app. iOS only,",
+            "since on Android OPA is integrated in GSA. Gboard - the Google Keyboard",
+            "Google News & Weather",
+            "Google Home app (rebranded from Chromecast app)",
+            "Google Earth",
+            "Google Street View",
+            "Tez payment app for India (go/paisa)",
+            "Google Analytics",
+            "AdSense",
+            "AdWords",
+            "Google Express (formerly Shopping Express)",
+            "Android Wear companion app",
+            "Google My Business",
+            "Google Family Link",
+            "Google Opinion Rewards",
+            "Google Wallet",
+            "Google Arts & Culture",
+            "Android Device Manager",
+            "Google Go",
+            "Files Go",
+            "Datally",
+            "Google Wifi (incl. OnHub)",
+            "Stadia (go/stadia)",
+            "Battlestar (go/battlestar)",
+            "SmartLock",
+            "Non-browser, non-mail, non-first-party apps LogDog (https://getlogdog.com/)",
+            "Do not remove this fields - remvoing them caused issues in the past (see cl/180425348 for reference).",
+            ""
+          ],
+          "type": "string"
+        },
+        "deviceType": {
+          "description": "User agent information",
+          "enum": [
+            "UNKNOWN",
+            "PC",
+            "MOBILE",
+            "TABLET",
+            "PORTABLE_MEDIA_PLAYER",
+            "TV",
+            "GAME_CONSOLE",
+            "MEDIA_PLAYER",
+            "SMART_SPEAKER",
+            "SMART_DISPLAY",
+            "CONNECTED_HOME_OTHER",
+            "WEARABLE",
+            "GLASS",
+            "CAR",
+            "VR_HEADSET"
+          ],
+          "enumDescriptions": [
+            "Unknown device type.",
+            "PCs (incl. Macs). Desktops, laptops and various niche form factors that typically run desktop-class OSes (all-in-ones, HTPCs etc.).",
+            "Primarily used for phones, but also set as default for OSes that are predominantly for phones (Android, iOS etc.) when we can't determine otherwise.",
+            "Tablets.",
+            "Mobile devices which are not phones, but are capable of storing and playing digital media such as audio, images, and video files. Example: iPod.",
+            "Smart TVs which interact with Google products without an external additional device. Includes TV sets which run Android TV directly. Refers to actual TV screens, rather than connected boxes or dongles.",
+            "Devices whose primary purpose is playing games. Examples: Xbox, Playstation.",
+            "Add-on devices (i.e. devices which require connecting to another device, such as screens/TVs/speakers) whose primary purpose is media consumption (excludes physical TV screens). Examples: Chromecast, Roku, Apple TV, Nexus Player.",
+            "Examples: Google Home, Amazon Echo.",
+            "Examples: Google Home Display (Quartz/Manhattan/Jasper/Dragonglass), Amazon Echo Spot, Amazon Echo Show.",
+            "Other connected home devices which do not fit in any of the above categories; that is, neither media- or gaming-focused, nor primarily a voice-enabled speaker.",
+            "Wearable devices such as smartwatches.",
+            "Google Glass.",
+            "Examples: Android Auto (Embedded mode, not mirrored from phone).",
+            "Standalone VR headsets, such as the Lenovo Mirage Solo. Does not include phone-based VR (such as Daydream View or Gear VR) or PC/Console-based such as Oculus Rift, HTC Vive and PSVR; in such cases, the form factor may be PHONE, PC or GAME_CONSOLE as applicable."
+          ],
+          "type": "string"
+        },
+        "guidFingerprint": {
+          "description": "As agreed with Bond team, this holds the fingerprint of any \"aguid\" or \"guid\" provided by the ID command. The fingerprint should be calculated by fingerprint2011. Note that not all clients will provide aguid or guid through ID command.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "os": {
+          "enum": [
+            "UNKNOWN_OS",
+            "ANDROID_OS",
+            "IOS_OS",
+            "BLACKBERRY_OS",
+            "WIN_PHONE_OS",
+            "FIRE_OS",
+            "MAX_MOBILE_OS_VALUE",
+            "WINDOWS_OS",
+            "LINUX_OS",
+            "MAC_OS",
+            "CHROME_OS",
+            "PLAYSTATION_OS",
+            "XBOX_OS",
+            "TIZEN_OS",
+            "APPLE_TV_OS",
+            "KAI_OS",
+            "ANDROID_THINGS_OS",
+            "CAST_OS",
+            "STADIA_OS"
+          ],
+          "enumDescriptions": [
+            "",
+            "Mobile operating systems (1-99).",
+            "",
+            "",
+            "",
+            "Amazon Fire OS (for Kindle Fire devices or Fire TV).",
+            "Tag for the maximum enum value that represents a mobile OS. Enum values (strictly) between UNKNOWN_OS and this value represent mobile OSes. This should never appear in real data.",
+            "PC operating systems.",
+            "",
+            "",
+            "",
+            "The OS powering Playstation consoles. Ignores OS changes across console generations.",
+            "The Windows-derived OS used on Xbox consoles.",
+            "Tizen OS, popular in Samsung TVs, watches and more.",
+            "Apple tvOS (powering the Apple TV).",
+            "KaiOS, a fork from Firefox OS that is between a full smartphone and a feature phone. Notably, it supports the Google Assistant. go/kaiosama",
+            "Android optimized for IoT devices. go/things",
+            "Cast family devices, including Chromecast, Google Home, and third-party speaker with integrated Assistant.",
+            "Stadia on Cast devices. This is not truly an OS, but it's a temporary setting since Stadia uses a different sign-in flow (and is revoked differently) from Cast. See http://go/stadia-in-google-account. Do not use without discussing with id-devices-eng@."
+          ],
+          "type": "string"
+        },
+        "osVersion": {
+          "$ref": "OsVersion"
+        },
+        "possiblyTrimmedModel": {
+          "$ref": "PossiblyTrimmedModel"
+        }
+      },
+      "type": "object"
+    },
+    "ImapSyncDelete": {
+      "description": "Message delete history record extension that exports //imapsync/folder attribute of deleted messages which have ^is label.",
+      "id": "ImapSyncDelete",
+      "properties": {
+        "mappings": {
+          "$ref": "FolderAttribute",
+          "description": "Contains the value of //imapsync/folder attribute of deleted message."
+        },
+        "msgId": {
+          "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImapUidsReassign": {
+      "id": "ImapUidsReassign",
+      "properties": {
+        "labelId": {
+          "description": "Label",
+          "type": "string"
+        },
+        "messageId": {
+          "description": "The message Ids",
+          "items": {
+            "format": "uint64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImapUpdate": {
+      "description": "HistoryRecord for changes associated with IMAP, namely: IMAP_UIDS_REASSIGN",
+      "id": "ImapUpdate",
+      "properties": {
+        "imapUidsReassign": {
+          "$ref": "ImapUidsReassign"
+        }
+      },
+      "type": "object"
+    },
+    "ImapsyncFolderAttributeFolderMessage": {
+      "id": "ImapsyncFolderAttributeFolderMessage",
+      "properties": {
+        "flags": {
+          "$ref": "ImapsyncFolderAttributeFolderMessageFlags",
+          "description": "Flags of the message. Represents unseen and flagged state."
+        },
+        "uid": {
+          "description": "UID of the message.",
+          "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImapsyncFolderAttributeFolderMessageFlags": {
+      "id": "ImapsyncFolderAttributeFolderMessageFlags",
+      "properties": {
+        "flagged": {
+          "description": "Flagged state of the message.",
+          "type": "boolean"
+        },
+        "seen": {
+          "description": "Seen state of the message.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "IncomingWebhookChangedMetadata": {
       "description": "Annotation metadata to display system messages for incoming webhook events. Next Tag: 7",
       "id": "IncomingWebhookChangedMetadata",
@@ -9956,6 +11201,60 @@
       "properties": {},
       "type": "object"
     },
+    "InsertContent": {
+      "id": "InsertContent",
+      "properties": {
+        "content": {
+          "description": "The content to be inserted.",
+          "type": "string"
+        },
+        "contentType": {
+          "description": "The type of inserted content.",
+          "enum": [
+            "UNSPECIFIED_CONTENT_TYPE",
+            "TEXT",
+            "MUTABLE_HTML",
+            "IMMUTABLE_HTML"
+          ],
+          "enumDescriptions": [
+            "Default value when nothing is set for ContentType.",
+            "Specifies that the content is in plain text.",
+            "Specifies that the content is in HTML and is mutable (can be edited).",
+            "Specifies that the content is in HTML and is immutable (cannot be edited)."
+          ],
+          "type": "string"
+        },
+        "mimeType": {
+          "enum": [
+            "UNSPECIFIED_EMAIL_MIME_TYPE",
+            "PLAIN_TEXT",
+            "HTML"
+          ],
+          "enumDescriptions": [
+            "Default value when nothing is set for EmailMimeType.",
+            "Specifies that the inserted content is in plain text.",
+            "Specifies that the inserted content is in HTML."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntegerFacetingOptions": {
+      "description": "Used to specify integer faceting options.",
+      "id": "IntegerFacetingOptions",
+      "properties": {
+        "integerBuckets": {
+          "description": "Buckets for given integer values should be in strictly ascending order. For example, if values supplied are (1,5,10,100), the following facet buckets will be formed {<1, [1,5), [5-10), [10-100), >=100}.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "IntegerOperatorOptions": {
       "description": "Used to provide a search operator for integer properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.",
       "id": "IntegerOperatorOptions",
@@ -9979,6 +11278,10 @@
       "description": "The options for integer properties.",
       "id": "IntegerPropertyOptions",
       "properties": {
+        "integerFacetingOptions": {
+          "$ref": "IntegerFacetingOptions",
+          "description": "If set, describes integer faceting options for the given integer property. The corresponding integer property should be marked isFacetable."
+        },
         "maximumValue": {
           "description": "The maximum value of the property. The minimum and maximum values for the property are used to rank results according to the ordered ranking. Indexing requests with values greater than the maximum are accepted and ranked with the same weight as items indexed with the maximum value.",
           "format": "int64",
@@ -10368,6 +11671,12 @@
       },
       "type": "object"
     },
+    "ItemParts": {
+      "description": "Container for type-specific extensions of an Item. This protobuf is defined in a separate file to allow types to reference/extend the message without depending on other fusebox protobufs. See items.proto.",
+      "id": "ItemParts",
+      "properties": {},
+      "type": "object"
+    },
     "ItemStatus": {
       "description": "This contains item's status and any errors.",
       "id": "ItemStatus",
@@ -10418,6 +11727,67 @@
         "object": {
           "$ref": "StructuredDataObject",
           "description": "The structured data object that should conform to a registered object definition in the schema for the data source."
+        }
+      },
+      "type": "object"
+    },
+    "ItemThread": {
+      "description": "An ItemThread is an ordered list of Items. An ItemThread corresponds to a \"conversation\" in the context of mail. An Item belongs to exactly one ItemThread.",
+      "id": "ItemThread",
+      "properties": {
+        "clusterInfo": {
+          "$ref": "ClusterInfo"
+        },
+        "item": {
+          "description": "The Items in the ItemThread. In the context of a search, the list of Items may be a subset of those that logically belong to the ItemThread. The details of which items are included are available in the ItemThreadView returned in the overall rpc response.",
+          "items": {
+            "$ref": "FuseboxItem"
+          },
+          "type": "array"
+        },
+        "lastItemId": {
+          "description": "The server id of the last item returned in the ItemThread. This can be deduced from the [item] list but is provided for convenience. When manually constructing an ItemThreadViewSpec to perform operations on the ItemThread, this value can be used as the [high_item_id_watermark].",
+          "format": "uint64",
+          "type": "string"
+        },
+        "matchInfo": {
+          "$ref": "FuseboxItemThreadMatchInfo"
+        },
+        "snippet": {
+          "description": "A snippet summarizing the thread. This field is only populated for searches.",
+          "type": "string"
+        },
+        "threadKey": {
+          "$ref": "MultiKey",
+          "description": "The MultiKey that identifies this thread. This value never changes, i.e. remains constant across modifications to the thread, including addition, relabeling, or deletion of contained Items. As such, the thread key may not necessarily correspond to the key of an contained Item. Legacy note: The \"server_id\" of the thread key is equivalent to the notion of the \"original thread id\" in the CSS API."
+        },
+        "threadLocator": {
+          "description": "A base64 encoded and encrypted string generated from the Gaia Id and the thread id. Used to generate the permalink for this thread, exposed from Gmail API.",
+          "type": "string"
+        },
+        "topicState": {
+          "$ref": "TopicState",
+          "description": "Next available id : 10"
+        },
+        "version": {
+          "description": "The latest history operation id that resulted in a mutation of any item in the thread.",
+          "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "JobsettedServerSpec": {
+      "description": "Identifies a jobsetted server as a target for Trigger dispatch.",
+      "id": "JobsettedServerSpec",
+      "properties": {
+        "portName": {
+          "description": "E.g. \"gateway\", \"stubby\" etc. Leave unset to use the default unnamed port.",
+          "type": "string"
+        },
+        "serverName": {
+          "description": "E.g. \"satellite-server\", \"bigtop-sync\", etc.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10555,6 +11925,129 @@
         "topLabel": {
           "description": "Formatted text supported.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LabelAdded": {
+      "description": "A label was added to some (subset of the) messages in this thread.",
+      "id": "LabelAdded",
+      "properties": {
+        "labelId": {
+          "type": "string"
+        },
+        "labelName": {
+          "type": "string"
+        },
+        "messageKeys": {
+          "items": {
+            "$ref": "MultiKey"
+          },
+          "type": "array"
+        },
+        "syncId": {
+          "format": "uint32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "LabelCreated": {
+      "description": "A label was created.",
+      "id": "LabelCreated",
+      "properties": {},
+      "type": "object"
+    },
+    "LabelDeleted": {
+      "description": "A label was deleted.",
+      "id": "LabelDeleted",
+      "properties": {},
+      "type": "object"
+    },
+    "LabelRemoved": {
+      "description": "A label was removed from some (subset of the) messages in this thread.",
+      "id": "LabelRemoved",
+      "properties": {
+        "labelId": {
+          "type": "string"
+        },
+        "labelName": {
+          "type": "string"
+        },
+        "messageKeys": {
+          "items": {
+            "$ref": "MultiKey"
+          },
+          "type": "array"
+        },
+        "syncId": {
+          "format": "uint32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "LabelRenamed": {
+      "description": "A label was renamed.",
+      "id": "LabelRenamed",
+      "properties": {
+        "oldCanonicalName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LabelUpdate": {
+      "description": "HistoryRecord for changes associated with a label, namely: LABEL_CREATED LABEL_DELETED LABEL_RENAMED LABEL_UPDATED",
+      "id": "LabelUpdate",
+      "properties": {
+        "canonicalName": {
+          "type": "string"
+        },
+        "labelCreated": {
+          "$ref": "LabelCreated"
+        },
+        "labelDeleted": {
+          "$ref": "LabelDeleted"
+        },
+        "labelId": {
+          "type": "string"
+        },
+        "labelRenamed": {
+          "$ref": "LabelRenamed"
+        },
+        "labelUpdated": {
+          "$ref": "LabelUpdated"
+        },
+        "syncId": {
+          "format": "uint32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "LabelUpdated": {
+      "description": "A label pref was updated outside of a rename, create, or delete.",
+      "id": "LabelUpdated",
+      "properties": {},
+      "type": "object"
+    },
+    "Labels": {
+      "id": "Labels",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the labels. This is populated (instead of the id) when the request fetch_spec has LABEL_DISPLAY_NAMES.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "The ids of the labels attached to the Item, e.g. \"^i\", \"^x_1\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10769,6 +12262,19 @@
       },
       "type": "object"
     },
+    "MatchInfo": {
+      "id": "MatchInfo",
+      "properties": {
+        "matchingImageReferenceKey": {
+          "description": "Reference keys for image attachments that matches search query.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "MatchRange": {
       "description": "Matched range of a snippet [start, end).",
       "id": "MatchRange",
@@ -10865,7 +12371,7 @@
           "type": "array"
         },
         "meetingAlias": {
-          "description": "An optional alias for the meeting space. The alias can in some cases be resolved to the meeting space, similar to the meeting code. The limitation is that the user needs to be in the same meeting domain as the meeting space. See go/thor-backend/meeting-alias for more details.",
+          "description": "An optional alias for the meeting space. The alias can in some cases be resolved to the meeting space, similar to the meeting code. The limitation is that the user needs to be in the same meeting domain as the meeting space.",
           "type": "string"
         },
         "meetingCode": {
@@ -10881,7 +12387,7 @@
           "type": "string"
         },
         "moreJoinUrl": {
-          "description": "Output only. A URL that clients (e.g. Calendar) can use to show the web page with all join methods available for this meeting space. This link is also used in iOS universal links and Android intents, used for opening the \"More ways to join\" view in the Thor mobile apps. Example: https://tel.meet/mee-ting-cod?pin=1234567891011 Here, \"pin\" is the universal phone PIN. We include it explicitly to better support the offline case on the mobile. This is set when the meeting space has either a universal PIN or an interop PIN and clients who can show a \"more ways to join\" button should show it whenever this field is set.",
+          "description": "Output only. A URL that clients (e.g. Calendar) can use to show the web page with all join methods available for this meeting space. This link is also used in iOS universal links and Android intents, used for opening the \"More ways to join\" view in the Meet mobile apps. Example: https://tel.meet/mee-ting-cod?pin=1234567891011 Here, \"pin\" is the universal phone PIN. We include it explicitly to better support the offline case on the mobile. This is set when the meeting space has either a universal PIN or an interop PIN and clients who can show a \"more ways to join\" button should show it whenever this field is set.",
           "readOnly": true,
           "type": "string"
         },
@@ -10968,7 +12474,7 @@
       "type": "object"
     },
     "MembershipChangedMetadata": {
-      "description": "Annotation metadata to display system messages for membership changes.",
+      "description": "Annotation metadata to display system messages for membership changes. Next Tag: 8",
       "id": "MembershipChangedMetadata",
       "properties": {
         "affectedMemberProfiles": {
@@ -10997,6 +12503,20 @@
         "initiatorProfile": {
           "$ref": "User",
           "description": "Complete member profiles, when ListTopicsRequest FetchOptions.USER is set. Otherwise, only the id will be filled in."
+        },
+        "initiatorType": {
+          "description": "The type of the user who initiated this membership change.",
+          "enum": [
+            "INITIATOR_TYPE_UNSPECIFIED",
+            "INITIATOR_TYPE_END_USER",
+            "INITIATOR_TYPE_ADMIN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "type": {
           "enum": [
@@ -11135,9 +12655,9 @@
           ],
           "enumDescriptions": [
             "Default case, should never be used. If this data is encountered in the DB any request should throw an exception.",
-            "No one can mutate the entity.",
-            "Only the creator of an entity can mutate it.",
-            "Every human member of a space or the creator can mutate the entity."
+            "No one except for the message creator/origin pair can mutate. This permission checks both gaia id and the request origin. Request origin can be Chat API or Chat UI. Mutation is allowed iff both attributes of the request match the original message creation. Use case: this allows historical 1P apps lock down message edit permission i.e. In Chat UI, humans cannot edit their messages created via these 1P apps. Do not use this for additional use cases.",
+            "The message creator can mutate regardless of request origin. Use case: for messages created by human via Chat UI or Chat API. These messages can be mutated by the same human user via Chat UI or via any app on Chat API.",
+            "Every human member of a space or the creator can mutate the entity. This excludes app acting on behalf of human via Chat API. Use case: This is to enable humans to delete messages created by apps."
           ],
           "type": "string"
         },
@@ -11164,6 +12684,7 @@
             "SCAN_SUCCEEDED_WARN",
             "SCAN_SUCCEEDED_AUDIT_ONLY",
             "SCAN_FAILURE_EXCEPTION",
+            "SCAN_FAILURE_RULE_FETCH_FAILED",
             "SCAN_FAILURE_TIMEOUT",
             "SCAN_FAILURE_ALL_RULES_FAILED",
             "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
@@ -11178,6 +12699,7 @@
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
             "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
             "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
+            "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
             "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
             "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
             "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
@@ -11190,6 +12712,7 @@
             "Violation is detected. The user will be warned, and the violation will be logged to BIP.",
             "Violation is detected and will be logged to BIP (no user-facing action performed).",
             "Rule fetch and evaluation were attempted but an exception occurred.",
+            "Rule fetch was attempted but failed, so rule evaluation could not be performed.",
             "Rule fetch and evaluation were attempted but the scanning timed out.",
             "Rule fetch completed and evaluation were attempted, but all of the rules failed to be evaluated.",
             "An IllegalStateException is thrown when executing DLP on attachments. This could happen if the space row is missing.",
@@ -11204,6 +12727,7 @@
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given trigger.",
             "Rule fetch happened, but rule evaluation is skipped because Changeling returned permanent failure while converting the attachment to text.",
             "Rule fetch happened, but rule evaluation is skipped because Changeling returned an empty response while converting the attachment to text.",
+            "Rule fetch happened, but rule evaluation is skipped because file type is unsupported.",
             "Rules were fetched but some evaluations failed. No violation was found in the rules that were successfully evaluated.",
             "Rules were fetched but some evaluations failed. A blocking violation was found in the rules that were successfully evaluated. The message/attachment will be blocked, the user will be notified, and the violation will be logged to BIP. A blocking violation takes precedence over all other violation types.",
             "Rules were fetched but some evaluations failed. A warn violation was found in the rules that were successfully evaluated. The user will be warned, and the violation will be logged to BIP.",
@@ -11225,9 +12749,9 @@
           ],
           "enumDescriptions": [
             "Default case, should never be used. If this data is encountered in the DB any request should throw an exception.",
-            "No one can mutate the entity.",
-            "Only the creator of an entity can mutate it.",
-            "Every human member of a space or the creator can mutate the entity."
+            "No one except for the message creator/origin pair can mutate. This permission checks both gaia id and the request origin. Request origin can be Chat API or Chat UI. Mutation is allowed iff both attributes of the request match the original message creation. Use case: this allows historical 1P apps lock down message edit permission i.e. In Chat UI, humans cannot edit their messages created via these 1P apps. Do not use this for additional use cases.",
+            "The message creator can mutate regardless of request origin. Use case: for messages created by human via Chat UI or Chat API. These messages can be mutated by the same human user via Chat UI or via any app on Chat API.",
+            "Every human member of a space or the creator can mutate the entity. This excludes app acting on behalf of human via Chat API. Use case: This is to enable humans to delete messages created by apps."
           ],
           "type": "string"
         },
@@ -11238,6 +12762,10 @@
         "id": {
           "$ref": "MessageId",
           "description": "ID of the resource."
+        },
+        "isContentPurged": {
+          "description": "Whether the message is content purged. Content purged messages contain only data required for tombstone (see go/chat-infinite-tombstone). This field is only used by Vault to display tombstone and should only be set to true if the message is a tombstone.",
+          "type": "boolean"
         },
         "isInlineReply": {
           "description": "Output only. Indicates if the message is an inline reply. Set to true only if the message's ParentPath is non-NULL. Currently, only inline replies have non-NULL ParentPath. See go/chat-be-inline-reply-indicator.",
@@ -11338,7 +12866,7 @@
           ],
           "enumDescriptions": [
             "Unspecified state for QuotedByState.",
-            "State to indicate that this message is quoted by another message (excluding soft-deleted message and purged ones).",
+            "State to indicate that this message is quoted by another message (excluding purged message).",
             "State to indicate that this message are not quoted by another message."
           ],
           "readOnly": true,
@@ -11368,6 +12896,24 @@
           "$ref": "AppsDynamiteSharedRetentionSettings",
           "description": "The retention settings of the message."
         },
+        "richTextFormattingType": {
+          "description": "Used by clients to correctly log format type for message creation due to complexity with client side optimistic update (see go/content-metric-post-send-logging for details). Currently, only set by server in the message or topic creation path.",
+          "enum": [
+            "NONE",
+            "MARKDOWN",
+            "FORMAT_ANNOTATIONS",
+            "FORMAT_ANNOTATIONS_IGNORED",
+            "FORMAT_ANNOTATIONS_IGNORED_WITH_MARKDOWN"
+          ],
+          "enumDescriptions": [
+            "",
+            "The formatting was specified as *markdown characters* in message text.",
+            "The formatting was specified as {@link com.google.apps.dynamite.v1.shared.FormatMetadata} annotations.",
+            "The client sent the format annotations, but didn't set the accept_format_annotations field to true. This shouldn't happen, but there might be some old clients that end up here.",
+            "A combination of MARKDOWN and FORMAT_ANNOTATIONS_IGNORED."
+          ],
+          "type": "string"
+        },
         "secondaryMessageKey": {
           "description": "A client-specified string that can be used to uniquely identify a message in a space, in lieu of `id.message_id`.",
           "type": "string"
@@ -11394,6 +12940,36 @@
       },
       "type": "object"
     },
+    "MessageAdded": {
+      "description": "A message was added. Specifying id and initial labels.",
+      "id": "MessageAdded",
+      "properties": {
+        "attributeIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labelIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "messageKey": {
+          "$ref": "MultiKey"
+        },
+        "syncIds": {
+          "description": "Note that there can be fewer sync ids than label ids.",
+          "items": {
+            "format": "uint32",
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "MessageAttributes": {
       "description": "Stores tombstone message attributes: go/tombstone-message-attributes-overview",
       "id": "MessageAttributes",
@@ -11401,6 +12977,26 @@
         "isTombstone": {
           "description": "If true: message is a tombstone in the client. Default false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "MessageDeleted": {
+      "description": "Some (subset of the) messages in this thread were deleted.",
+      "id": "MessageDeleted",
+      "properties": {
+        "imapSyncMappings": {
+          "description": "Value of coproc's message delete history record extension that exports /imapsync/folder attribute of deleted messages which have ^is label.",
+          "items": {
+            "$ref": "ImapSyncDelete"
+          },
+          "type": "array"
+        },
+        "messageKeys": {
+          "items": {
+            "$ref": "MultiKey"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -11469,6 +13065,12 @@
       },
       "type": "object"
     },
+    "MessageSet": {
+      "description": "This is proto2's version of MessageSet.",
+      "id": "MessageSet",
+      "properties": {},
+      "type": "object"
+    },
     "Metadata": {
       "description": "Metadata of a matched search result.",
       "id": "Metadata",
@@ -11527,6 +13129,22 @@
             "$ref": "DisplayedProperty"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MultiKey": {
+      "description": "A union-like type for identifiying an object in storage. MultiKeys contain multiple key fields, each in a separate key space. At least one key field must be set. More than one key field may be set as long as all key values refer to the same object. All objects in storage have unique server_id keys. All MultiKeys returned from storage to storage clients will always have the server_id field set. When creating an object, if a MultiKey without a server_id is supplied to storage, the storage system will auto-assign a server ID to the new object. For all other storage requests (i.e. those not creating new objects), clients may omit server_id (as long as they supply another key). Instead of server ids, clients can specify string based client_assigned_perm_id keys. Mail message drafts are a prime example of these kinds of objects. Each time a user saves a new version of a draft, the storage system needs to create a new object with the updated draft content and needs to delete the object containing the old content. The new object gets a new SERVER_ID but should get the same CLIENT_ASSIGNED_PERM_ID as the now-deleted object containing the old content. Carrying forward the perm ID allows it to be used to consistently refer to the same logical object across revisions. These perm IDs save sync clients from having to deal with changing object IDs. For example, assume there's a mail message in storage with SERVER_ID = 123 and CLIENT_ASSIGNED_PERM_ID = \"foo\". The following are all valid ways of addressing the object using MultiKeys: 1) MultiKey { server_id = 123 } 2) MultiKey { server_id = 123, client_assigned_perm_id = \"foo\" } 3) MultiKey { client_assigned_perm_id = \"foo\" } Multikeys are never serialized in the storage. The individual keys are extracted and processed separately. Both the integer ids as well as string ids are indexed for efficient retrieval using the same fields in the backend. See go/tingle-multikeys for more information on background and motivation.",
+      "id": "MultiKey",
+      "properties": {
+        "clientAssignedPermId": {
+          "description": "A client-assigned string based key.",
+          "type": "string"
+        },
+        "serverId": {
+          "description": "A server-assigned ID. This ID must be used only by Gmail and is constructed using millesecond ts << 20 + randomness. The ID affects the sort order of the index.",
+          "format": "uint64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11699,6 +13317,28 @@
       },
       "type": "object"
     },
+    "OpenCreatedDraftActionMarkup": {
+      "id": "OpenCreatedDraftActionMarkup",
+      "properties": {
+        "draftId": {
+          "description": "The ID of the newly created draft in the form \"r123\".",
+          "type": "string"
+        },
+        "draftStorageId": {
+          "description": "The server storage ID in hex format, for example,\"15e9fa622ce1029d\".",
+          "type": "string"
+        },
+        "draftThreadId": {
+          "description": "The ID of the thread containing the newly created draft, for example, \"15e9fa622ce1029d\".",
+          "type": "string"
+        },
+        "draftThreadServerPermId": {
+          "description": "The server permanent ID for the draft's thread. This field isn't set anywhere, and it's ignored when processing OpenCreatedDraftActionMarkup. Supply and use draftThreadStorageId instead.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OpenLink": {
       "id": "OpenLink",
       "properties": {
@@ -11773,6 +13413,24 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OsVersion": {
+      "id": "OsVersion",
+      "properties": {
+        "majorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tertiaryVersion": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -12100,12 +13758,89 @@
       },
       "type": "object"
     },
+    "PossiblyTrimmedModel": {
+      "description": "This message contains either the device model, or a prefix of the device model (AKA a trimmed device model). The \"is_trimmed\" field indicates which one it is.",
+      "id": "PossiblyTrimmedModel",
+      "properties": {
+        "isTrimmed": {
+          "type": "boolean"
+        },
+        "model": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PostiniUserProto": {
       "description": "See http://s/?fileprint=//depot/google3/security/authentication/postini/auth_token.proto",
       "id": "PostiniUserProto",
       "properties": {
         "postiniUserId": {
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PreState": {
+      "description": "State of the thread previous to the update. This really just describes the label state of all messages before the update.",
+      "id": "PreState",
+      "properties": {
+        "labelIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "messageKey": {
+          "$ref": "MultiKey"
+        },
+        "syncIds": {
+          "description": "Note that there can be fewer sync ids than label ids.",
+          "items": {
+            "format": "uint32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "threadKey": {
+          "$ref": "MultiKey"
+        }
+      },
+      "type": "object"
+    },
+    "PrefDeleted": {
+      "description": "PREF_DELETED",
+      "id": "PrefDeleted",
+      "properties": {},
+      "type": "object"
+    },
+    "PrefUpdate": {
+      "description": "HistoryRecord for changes associated with prefs, namely: PREF_WRITTEN PREF_DELETED",
+      "id": "PrefUpdate",
+      "properties": {
+        "name": {
+          "description": "Name of the affected preference.",
+          "type": "string"
+        },
+        "preState": {
+          "$ref": "FuseboxPrefUpdatePreState"
+        },
+        "prefDeleted": {
+          "$ref": "PrefDeleted"
+        },
+        "prefWritten": {
+          "$ref": "PrefWritten"
+        }
+      },
+      "type": "object"
+    },
+    "PrefWritten": {
+      "description": "PREF_WRITTEN",
+      "id": "PrefWritten",
+      "properties": {
+        "value": {
+          "format": "byte",
           "type": "string"
         }
       },
@@ -12328,7 +14063,7 @@
       "type": "object"
     },
     "PrivateMessageInfo": {
-      "description": "Private message information specific to a given user.",
+      "description": "Private message information specific to a given user. DEPRECATED: Use the privateMessageViewer field in CreateMessageInfo instead.",
       "id": "PrivateMessageInfo",
       "properties": {
         "annotations": {
@@ -12450,7 +14185,7 @@
           "type": "boolean"
         },
         "isWildcardSearchable": {
-          "description": "Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.",
+          "description": "Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable. For more details, see [Define object properties](https://developers.google.com/cloud-search/docs/guides/schema-guide#properties)",
           "type": "boolean"
         },
         "name": {
@@ -12825,10 +14560,22 @@
           "readOnly": true,
           "type": "string"
         },
+        "createTimeMicros": {
+          "description": "Output only. Time when the quoted message was posted in microseconds.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "creatorId": {
           "$ref": "UserId",
           "description": "Output only. ID of the User who posted the quoted message. This includes information to identify if the quoted message was posted by an App on behalf of a user.",
           "readOnly": true
+        },
+        "lastEditTimeMicros": {
+          "description": "Output only. Time when the quoted message was last edited by a user at the time when quoting action happens. Time is in microseconds.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "lastUpdateTimeWhenQuotedMicros": {
           "description": "The `last_update_time` of the original message when the client initiated the quote creation. This is derived from the request payload passed from clients. Used to fetch the quoted message contents at a specific time on the read path. This field is populated from storage directly.",
@@ -12844,12 +14591,14 @@
           "enum": [
             "MESSAGE_STATE_UNSPECIFIED",
             "MESSAGE_STATE_ACTIVE",
-            "MESSAGE_STATE_DELETED"
+            "MESSAGE_STATE_DELETED",
+            "MESSAGE_STATE_OTR_EDITED"
           ],
           "enumDescriptions": [
             "",
-            "",
-            ""
+            "The original message is present in storage and not deleted; the message contents can be hydrated.",
+            "The original message has been deleted; the message contents cannot be hydrated.",
+            "The OTR original message was edited and therefore no longer retrievable from storage; the message contents cannot be hydrated. See go/message-quoting-otr-edits for more context."
           ],
           "readOnly": true,
           "type": "string"
@@ -12864,13 +14613,35 @@
           "readOnly": true,
           "type": "string"
         },
+        "updaterId": {
+          "$ref": "UserId",
+          "description": "Output only. ID of the User who last updated (created/edited/deleted) the quoted message at the time when quoting action happens. This includes information to identify if the quoted message was posted by an App on behalf of a user.",
+          "readOnly": true
+        },
         "uploadMetadata": {
-          "description": "Output only. Upload metadata of the quoted message. NEXT TAG: 11",
+          "description": "Output only. Upload metadata of the quoted message.",
           "items": {
             "$ref": "UploadMetadata"
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Rank": {
+      "description": "The rank contains a tuple of numbers which may be used as a general sort order. The rank should be treated as an ordered set of numbers, where the ordering is done in descending order of the most significant rank member. For example, given the following ranks described as (primary, secondary): (1,1), (1,2), (2,2) (2,1) The descending rank-order is: (2,2) > (2,1) > (1,2) > (1,1)",
+      "id": "Rank",
+      "properties": {
+        "primary": {
+          "description": "The primary rank is the most significant rank member. This rank element should always be present. Items with higher primary rank are always considered of higher rank than those of lower primary rank.",
+          "format": "int64",
+          "type": "string"
+        },
+        "secondary": {
+          "description": "The secondary rank may be used to rank items of identical primary rank. This rank element should always be present.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -12924,6 +14695,15 @@
         "readReceiptsEnabled": {
           "description": "The new read receipts state.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Recipient": {
+      "id": "Recipient",
+      "properties": {
+        "email": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -12996,8 +14776,8 @@
           "enumDescriptions": [
             "This is never used.",
             "A meeting recording saved to a video file in Google Drive.",
-            "A *Google Live* managed stream. See go/thor-managed-streaming.",
-            "A meeting broadcast. See go/thor-streaming-prd."
+            "A *Google Live* managed stream.",
+            "A meeting broadcast."
           ],
           "type": "string"
         },
@@ -13039,6 +14819,46 @@
         "sessionStateInfo": {
           "$ref": "SessionStateInfo",
           "description": "Recording session's state information."
+        }
+      },
+      "type": "object"
+    },
+    "Reference": {
+      "description": "All fields in this proto are now columns in spanner see google3/storage/slice/production/gmail/user_data_tables.pi for documentation.",
+      "id": "Reference",
+      "properties": {
+        "blobId": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "key": {
+          "description": "LINT.IfChange",
+          "type": "string"
+        },
+        "name": {
+          "description": "LINT.ThenChange(//depot/google3/storage/slice/production/gmail/ user_data_tables.pi)",
+          "type": "string"
+        },
+        "size": {
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "References": {
+      "id": "References",
+      "properties": {
+        "references": {
+          "items": {
+            "$ref": "Reference"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13099,6 +14919,20 @@
       },
       "type": "object"
     },
+    "RequestFileScope": {
+      "id": "RequestFileScope",
+      "properties": {
+        "itemId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestFileScopeForActiveDocument": {
+      "id": "RequestFileScopeForActiveDocument",
+      "properties": {},
+      "type": "object"
+    },
     "RequestOptions": {
       "description": "Shared request options for all RPC methods.",
       "id": "RequestOptions",
@@ -13108,7 +14942,7 @@
           "description": "Debug options of the request"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.",
+          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. From Suggest API perspective, for 3p suggest this is used as a hint while making predictions to add language boosting.",
           "type": "string"
         },
         "searchApplicationId": {
@@ -13130,9 +14964,13 @@
           "items": {
             "enum": [
               "REQUIRED_FEATURE_UNSPECIFIED",
-              "REQUIRED_FEATURE_MESSAGE_QUOTING"
+              "REQUIRED_FEATURE_MESSAGE_QUOTING",
+              "REQUIRED_FEATURE_TOMBSTONES_IN_DMS_AND_UFRS",
+              "REQUIRED_FEATURE_CUSTOM_HYPERLINK"
             ],
             "enumDescriptions": [
+              "",
+              "",
               "",
               ""
             ],
@@ -13177,14 +15015,6 @@
       "description": "Debugging information about the response.",
       "id": "ResponseDebugInfo",
       "properties": {
-        "enabledExperiments": {
-          "description": "Experiments enabled in QAPI.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
         "formattedDebugInfo": {
           "description": "General debug info formatted for display.",
           "type": "string"
@@ -13378,6 +15208,10 @@
         "id": {
           "$ref": "RosterId"
         },
+        "isMembershipVisibleToCaller": {
+          "description": "Whether caller has visibility into members of the roster.",
+          "type": "boolean"
+        },
         "membershipCount": {
           "format": "int32",
           "type": "integer"
@@ -13402,6 +15236,10 @@
             "Roster deleted"
           ],
           "type": "string"
+        },
+        "segmentedMembershipCounts": {
+          "$ref": "AppsDynamiteSharedSegmentedMembershipCounts",
+          "description": "Roster membership count. May contain counts based on member type and membership state."
         }
       },
       "type": "object"
@@ -13413,6 +15251,17 @@
         "id": {
           "description": "Opaque, server-assigned ID of the Roster.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RpcOptions": {
+      "description": "Options for Triggers dispatched via RPC.",
+      "id": "RpcOptions",
+      "properties": {
+        "requestExtensions": {
+          "$ref": "MessageSet",
+          "description": "The RPC's request extensions (i.e. RPC::request_extensions(), a.k.a. the Stubby side channel) will be merged with the specified [request_extensions]. When Triggers are batched, the RPC's request extensions will be merged with all of the [request_extensions] of the Triggers in the batch. Note that merging of request extensions follows standard protocol buffer semantics; values of singular fields override previous values, and values of repeated fields are appended (In the case of Triggers, Triggers with later fire times will be merged after Triggers with earlier fire times in the same batch). It is not advised to specify extensions with repeated fields on batchable Triggers."
         }
       },
       "type": "object"
@@ -13914,6 +15763,40 @@
       },
       "type": "object"
     },
+    "SessionContext": {
+      "id": "SessionContext",
+      "properties": {
+        "authTime": {
+          "description": "Time at which this activity's session was authenticated, in seconds since the epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "delegateUserId": {
+          "description": "Gaia ID of the authenticated user when delegate access is active. In such sessions the main gaia ID is that of the delegator, i.e. the account being accessed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "dusi": {
+          "description": "Device User Session ID, see go/dusi.",
+          "type": "string"
+        },
+        "imapSessionContext": {
+          "$ref": "ImapSessionContext",
+          "description": "Imap session context for Bond/Gmail integration"
+        },
+        "oauthLoginId": {
+          "description": "OAuth login ID.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "oauthProjectId": {
+          "description": "The devconsole project ID of the developer who authenticated with OAuth.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SessionEvent": {
       "description": "A session event is something that happens to the streaming session in a conference.",
       "id": "SessionEvent",
@@ -14020,11 +15903,31 @@
       "type": "object"
     },
     "Settings": {
-      "description": "Settings of a meeting space that can be viewed and edited by users with permissions. These settings are always populated for output.",
+      "description": "Settings of a meeting space that can be edited by users with corresponding manage privilege. These settings are always populated in responses.",
       "id": "Settings",
       "properties": {
         "accessLock": {
-          "description": "The access lock of the meeting space that lets owner control who can join the meeting. True if the access lock feature is enabled for the meeting space.",
+          "description": "The access lock of the meeting space that lets hosts control who can join the meeting.",
+          "type": "boolean"
+        },
+        "accessType": {
+          "description": "The access type of the meeting space.",
+          "enum": [
+            "ACCESS_TYPE_UNSPECIFIED",
+            "ACCESS_TYPE_OPEN",
+            "ACCESS_TYPE_TRUSTED",
+            "ACCESS_TYPE_RESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Anyone with meeting join information (url, phone access...) can join, no knocking required. (Subject to organization policies)",
+            "Members of the Host's organization, invited external users, and dial-in users can join without knocking, everyone else must knock. (Subject to organization policies)",
+            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks."
+          ],
+          "type": "string"
+        },
+        "allowJoiningBeforeHost": {
+          "description": "Whether users can join before host in the conferences of this meeting space.",
           "type": "boolean"
         },
         "attendanceReportEnabled": {
@@ -14032,11 +15935,11 @@
           "type": "boolean"
         },
         "chatLock": {
-          "description": "The chat lock of the meeting space that lets owner control whether the participants can send chat messages. True if the chat lock feature is enabled for the meeting space.",
+          "description": "The chat lock of the meeting space that lets owner control whether the participants can send chat messages.",
           "type": "boolean"
         },
         "cohostArtifactSharingEnabled": {
-          "description": "Whether meeting artifacts will be shared with co-hosts.",
+          "description": "Whether meeting artifacts will be shared with cohosts.",
           "type": "boolean"
         },
         "cseEnabled": {
@@ -14048,15 +15951,15 @@
           "type": "boolean"
         },
         "moderationEnabled": {
-          "description": "Indicates whether the meeting space is moderated. go/meet-multimod-dd",
+          "description": "Indicates whether the meeting space is moderated.",
           "type": "boolean"
         },
         "presentLock": {
-          "description": "The present lock of the meeting space that lets owner control whether the participants can present their screen. True if the present lock feature is enabled for the meeting space.",
+          "description": "The present lock of the meeting space that lets owner control whether the participants can present their screen.",
           "type": "boolean"
         },
         "reactionsLock": {
-          "description": "The reactions lock of the meeting space that lets owner control whether the participants can send reactions. True if the reactions lock feature is enabled for the meeting space.",
+          "description": "The reactions lock of the meeting space that lets owner control whether the participants can send reactions.",
           "type": "boolean"
         }
       },
@@ -14088,6 +15991,15 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SheetsClientActionMarkup": {
+      "id": "SheetsClientActionMarkup",
+      "properties": {
+        "customFunctionReturnValueMarkup": {
+          "$ref": "CustomFunctionReturnValueMarkup"
         }
       },
       "type": "object"
@@ -14515,8 +16427,8 @@
           "enumDescriptions": [
             "This is never used.",
             "A meeting recording saved to a video file in Google Drive.",
-            "A *Google Live* managed stream. See go/thor-managed-streaming.",
-            "A meeting broadcast. See go/thor-streaming-prd."
+            "A *Google Live* managed stream.",
+            "A meeting broadcast."
           ],
           "type": "string"
         },
@@ -14669,6 +16581,10 @@
           "description": "Link to the deletion policy webpage for the bot. Configured by Pantheon, may be empty.",
           "type": "string"
         },
+        "gwmUrl": {
+          "description": "Link to GWM page of the app. May be empty.",
+          "type": "string"
+        },
         "privacyPolicyUrl": {
           "description": "Link to the privacy policy webpage for the bot. May be empty.",
           "type": "string"
@@ -14717,6 +16633,15 @@
         "value": {
           "description": "The value is what is passed back in apps script callback.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaskActionMarkup": {
+      "id": "TaskActionMarkup",
+      "properties": {
+        "reloadTasks": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -14878,6 +16803,79 @@
       },
       "type": "object"
     },
+    "ThreadKeySet": {
+      "description": "The ThreadKey was set on some (subset of the) messages in this thread.",
+      "id": "ThreadKeySet",
+      "properties": {
+        "messageKeys": {
+          "description": "Messages on which the thread_key was changed.",
+          "items": {
+            "$ref": "MultiKey"
+          },
+          "type": "array"
+        },
+        "newThreadKey": {
+          "$ref": "MultiKey",
+          "description": "The new thread_key for this thread"
+        }
+      },
+      "type": "object"
+    },
+    "ThreadUpdate": {
+      "description": "HistoryRecord for changes associated with a thread, namely: MESSAGE_ADDED MESSAGE_DELETED LABEL_ADDED LABEL_REMOVED ATTRIBUTE_SET ATTRIBUTE_REMOVED THREAD_KEY_SET All label_ids refer to the (unchanging) value as defined by the Label.id field in labels.proto. In particular, it is *not* the canonical_name.",
+      "id": "ThreadUpdate",
+      "properties": {
+        "attributeRemoved": {
+          "$ref": "AttributeRemoved"
+        },
+        "attributeSet": {
+          "$ref": "AttributeSet"
+        },
+        "labelAdded": {
+          "$ref": "LabelAdded"
+        },
+        "labelRemoved": {
+          "$ref": "LabelRemoved"
+        },
+        "lastHistoryRecordId": {
+          "description": "Indicates the record id of the last operation that modified this thread.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "messageAdded": {
+          "$ref": "MessageAdded"
+        },
+        "messageDeleted": {
+          "$ref": "MessageDeleted"
+        },
+        "originalThreadKey": {
+          "$ref": "MultiKey",
+          "description": "The first non-empty thread-key on any message in the thread (including deleted messages). This field has been introduced to maintain backward compatibility for clients that are not subthread aware."
+        },
+        "preState": {
+          "description": "The PreStates of all messages before the transaction. These are suppressed if the client requested that prestates not be included in the output of the GetHistoryRequest.",
+          "items": {
+            "$ref": "PreState"
+          },
+          "type": "array"
+        },
+        "threadKey": {
+          "$ref": "MultiKey",
+          "description": "Affected thread"
+        },
+        "threadKeySet": {
+          "$ref": "ThreadKeySet"
+        },
+        "threadLocator": {
+          "description": "Thread PLID",
+          "type": "string"
+        },
+        "topicStateUpdate": {
+          "$ref": "TopicStateUpdate"
+        }
+      },
+      "type": "object"
+    },
     "TimestampOperatorOptions": {
       "description": "Used to provide a search operator for timestamp properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.",
       "id": "TimestampOperatorOptions",
@@ -14982,6 +16980,63 @@
       },
       "type": "object"
     },
+    "TopicState": {
+      "description": "State of an topic thread as maintained within Tingle.",
+      "id": "TopicState",
+      "properties": {
+        "labelIdMessageCount": {
+          "additionalProperties": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "description": "Map of label => count of topic constituent messages with label These only contain counts of labels that are relevant for topic normalization/denormalization. Eg. If a topic thread has 5 constituents, 4 of which are in inbox, this will contain ^i => 4. Some labels of interest are archive, inbox, trash, spam, etc.",
+          "type": "object"
+        },
+        "numConstituents": {
+          "description": "Number of constituents for this entity.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TopicStateUpdate": {
+      "id": "TopicStateUpdate",
+      "properties": {
+        "topicState": {
+          "$ref": "TopicState"
+        }
+      },
+      "type": "object"
+    },
+    "TransactionContext": {
+      "description": "Storage information pertaining to the transaction with which a HistoryRecord is associated.",
+      "id": "TransactionContext",
+      "properties": {
+        "endingRecordId": {
+          "description": "The last HistoryRecord of the transaction. Note that this may correspond to a record that is filtered by Tingle (and thus not returned to the client). See http://b/9513464.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "startingRecordId": {
+          "description": "The first HistoryRecord of the transaction. Note that this may be a record of type INTERNAL.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "writeTimestampUs": {
+          "description": "The microsecond timestamp of the transaction.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransactionDebugInfo": {
+      "description": "HistoryRecord for debug info associated with the transaction, namely: TXN_DEBUG_INFO TODO(b/143845917) This is a short-term workaround for unblocking fusebox writes migration. Clean up the code or land a long-term solution after the rollout. go/diff-to-historyrecord",
+      "id": "TransactionDebugInfo",
+      "properties": {},
+      "type": "object"
+    },
     "TranscriptionSessionInfo": {
       "description": "Information about a transcription session.",
       "id": "TranscriptionSessionInfo",
@@ -15001,6 +17056,200 @@
       "description": "Transient generic data that will not be saved on the server.",
       "id": "TransientData",
       "properties": {},
+      "type": "object"
+    },
+    "Trigger": {
+      "id": "Trigger",
+      "properties": {
+        "actionType": {
+          "description": "Each dispatcher should use an enum to for the actions that it supports. If a dispatcher has only one action, this does not need to be set. (It can be expanded later, defining the default behaviour as type 0.) For purposes such as batching, the type of a trigger is (dispatcher, action_type).",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "batchTimeUs": {
+          "description": "Maximum possible delay in micros that can be tolerated so triggers can be batched, which makes processing more efficient compared to firing triggers individually. Note that the actual fire time will be somewhere in the timerange interval [fire_time_us, fire_time_us + batch_time_us).",
+          "format": "int64",
+          "type": "string"
+        },
+        "dispatchId": {
+          "description": "Must be set for DISPATCHER_STUBBY_DISPATCHER.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "dispatcher": {
+          "description": "Which server should interpret action_type.",
+          "enum": [
+            "DISPATCHER_COPROC",
+            "DISPATCHER_JOBSETTED_PRIMARY",
+            "DISPATCHER_STRATUS",
+            "DISPATCHER_TASKS_SERVER",
+            "DISPATCHER_STUBBY_DISPATCHER",
+            "DISPATCHER_CS"
+          ],
+          "enumDescriptions": [
+            "Replace ACTION_INVOKE_X; the CS and Stratus are no longer limited to a single type of action. Each additional remote client should be defined here.",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "fireTimeUs": {
+          "description": "Earliest time to fire at in microseconds. The actual time that the trigger will fire will be in the timerange: [fire_time_us, fire_time_us + batch_time_us).",
+          "format": "int64",
+          "type": "string"
+        },
+        "jobsettedServerSpec": {
+          "$ref": "JobsettedServerSpec",
+          "description": "Must be set for DISPATCHER_JOBSETTED_PRIMARY."
+        },
+        "key": {
+          "description": "The trigger key, if applicable.",
+          "type": "string"
+        },
+        "rpcOptions": {
+          "$ref": "RpcOptions"
+        },
+        "sliceFireTimeUs": {
+          "description": "The slice_fire_time_us is automatically computed and stored as part of the trigger write. It represents the exact fire time at which the trigger will be queued to fire and will satisfy fire_time_us < slice_fire_time_us <= fire_time_us + batch_time_us Triggers have an index row in the slice trigger index with the row prefix matching this time. Note that this field is internal to gmail_cp and is ignored if set by external clients when adding / updating triggers.",
+          "format": "int64",
+          "type": "string"
+        },
+        "triggerAction": {
+          "$ref": "TriggerAction",
+          "description": "Trigger action to perform. This should always be set."
+        },
+        "triggerKey": {
+          "$ref": "TriggerKey",
+          "description": "The TriggerKey will uniquely determine a trigger within a given context. A context is a single message for message triggers or a single account for account triggers."
+        }
+      },
+      "type": "object"
+    },
+    "TriggerAction": {
+      "id": "TriggerAction",
+      "properties": {
+        "action": {
+          "enum": [
+            "ACTION_NONE",
+            "ACTION_DELETE",
+            "ACTION_CREATE_NEW_TRIGGER",
+            "ACTION_MESSAGE_EXPUNGE",
+            "ACTION_RETENTION_POLICY_UPDATE",
+            "ACTION_UPDATE_ICEBOX_MODEL",
+            "ACTION_INVOKE_CS",
+            "ACTION_INVOKE_STRATUS",
+            "ACTION_PDH_EXPUNGE",
+            "ACTION_QUERY_RETENTION",
+            "ACTION_INVOKE_JOBSETTED_PRIMARY",
+            "ACTION_INVOKE_TASKS_SERVER",
+            "ACTION_INVOKE_PUBLISHER",
+            "ACTION_INVOKE_OBSERVER",
+            "ACTION_PUSH_HISTORY_TO_PDH",
+            "ACTION_INVOKE_STUBBY_DISPATCHER",
+            "ACTION_PDH_BACKFILL",
+            "ACTION_MESSAGE_UNDELETE",
+            "ACTION_VAULT_END_USER_ACCESS",
+            "ACTION_INVOKE_GROUPS",
+            "ACTION_ACCOUNT_INITIALIZATION",
+            "ACTION_INVOKE_OBSERVER_WIPEOUT",
+            "ACTION_SERVICE_REMOVED_MESSAGE_EXPUNGE",
+            "ACTION_EVERCLEAR_EXPUNGE",
+            "ACTION_INVOKE_SMIME_CERTIFICATE_ISSUER",
+            "ACTION_GROUPS_QUERY_RETENTION",
+            "ACTION_INVOKE_SATELLITE_BACKUP",
+            "ACTION_INVOKE_DEBUG_LOG",
+            "ACTION_PREFERENCE_CLEANUP",
+            "ACTION_CARIBOU_DATA_RETENTION",
+            "ACTION_HISTORY_CLEANUP",
+            "ACTION_ITEM_BULK_RELABEL",
+            "ACTION_INVOKE_SATELLITE_IMAGE_PROCESSING",
+            "ACTION_CARIBOU_DATA_RETENTION_DIFF",
+            "ACTION_RELEVANCY_SCORE_BACKFILL",
+            "ACTION_PDH_PUSH_NOTIFICATION_BACKFILL",
+            "ACTION_AUTO_SAVE_DRAFT_EXPUNGE"
+          ],
+          "enumDescriptions": [
+            "",
+            "No-op",
+            "No-op",
+            "This action begins the message expunge process. It will trigger a purge attempt for all messages that have this trigger.",
+            "When this trigger fires, the current retention policy will be loaded from the policy management system and stored into the preference cache (if necessary). This will also create new expunge triggers if necessary.",
+            "When this trigger fires, the message should be used to update the user's importance model. See http://go/io-tingle for more details.",
+            "Sends the trigger to the master Caribou server via the Stubby TriggerHandlerService interface (defined in caribou/coproc/proto/trigger_handler.proto). The trigger is handled at fire time in the account's primary replica, and only in non-primary replicas after a delay.",
+            "Similar to ACTION_INVOKE_CS, but instead of sending the trigger to the master Caribou server, sends it to a Stratus server that also implements the TriggerHandlerService. This Stratus server is specified via FLAGS_triggers_stratus_server_address. The trigger is handled at fire time in the account's primary replica, and only in non-primary replicas after a delay.",
+            "This action begins the message's PDH expunge. It will trigger a expunge (from pdh) attempt for all messages that have this trigger.",
+            "When this trigger fires, based on the latest retention policy: 1. messages that need to be deleted will be deleted through the CS trigger handler 2. ^deleted messages that need to be expunged will be expunged",
+            "Similar to ACTION_INVOKE_CS, but instead of sending the trigger to the master Caribou server, sends it to a jobsetted server in the user's master jobset using the consistent-hash homing algorithm. The jobsetted_server_spec must be specified when using this TriggerAction.",
+            "Send the trigger to a Tasks server that implements the TriggerHandlerService. Dispatched via GSLB target specified by FLAGS_triggers_tasks_server_address.",
+            "Send the trigger to a SmartMail Publisher server that implements the TriggerHandlerService. Dispatched via GSLB target specified by FLAGS_triggers_publisher_server_address.",
+            "Send the trigger to an Observer server that implements the TriggerHandlerService. Dispatched via GSLB target specified by FLAGS_triggers_observer_server_address.",
+            "Push a set of history records to PDH.",
+            "Send the trigger to the stubby dispatcher, which routes the RPC using the value of Trigger.dispatch_id as the RoutingInfo.extension_tag field. Dispatched via the GSLB target specified by FLAGS_triggers_stubby_dispatcher_address.",
+            "Backfills a set of records from an account and pushes them to PDH.",
+            "Move messages from ^deleted to ^all. This trigger will only undelete messages that were deleted before the fire time of the trigger. Also, messages whose blobs are already deleted will not be undeleted. This is an account trigger.",
+            "This trigger will undelete messages that were ^deleted arbitrarily long in the past and a trash label will be applied to these undeleted messages. This is an account trigger that will be written when the Vault admin enables end user access for the Vault customer. This trigger shares its implementation with the ACTION_MESSAGE_UNDELETE trigger.",
+            "Send the trigger to a groups server that implements the TriggerHandlerService. Dispatched via GSLB target specified by FLAGS_triggers_groups_server_address.",
+            "This trigger will be executed once per newly created account. It will be created as part of the first transaction written to the account. The trigger can also be written as part of an SVF in case we want to re-initialize every account.",
+            "Send the trigger to an Observer server that implements the TriggerHandlerService for wipeout purpose. Dispatched via GSLB target specified by FLAGS_triggers_observer_server_address. It behaves differently from the invoke observer trigger (ACTION_INVOKE_OBSERVER) and should be batched separately. Tingle always fires this kind of action trigger for ^deleted messages.",
+            "Begins the message expunge similar to ACTION_MESSAGE_EXPUNGE but doesn't check if the message was deleted at least 30 days back. To be used ONLY for service removal. See go/gmail-service-removal for more details.",
+            "Sends RPC to everclear for the message expunge.",
+            "Send the trigger to the S/MIME certificate issuer server. Dispatched via the GSLB target specified by FLAGS_triggers_smime_certificate_issuer_server_address.",
+            "The retention trigger that will be written to implement Groups retention.",
+            "Dispatches the permanent backup trigger to Satellite through Stubby dispatcher.",
+            "Process the debug log trigger by adding message body before dispatching to the Caribou Server through Stubby Dispatcher.",
+            "This trigger deletes expired temporary preferences. See go/tingle-temp-prefs for more details.",
+            "Similar to ACTION_QUERY_RETENTION but uses the MessageRetention policies to trash/delete the messages: cs/caribou/base/lib/proto/data_retention.proto .",
+            "This trigger deletes expired HistoryRecords. See go/history-record-cleanup for more details.",
+            "This trigger relabels messages asynchronously. See go/fusebox-bulk-api for more details.",
+            "Dispatches the image processing trigger to Satellite through Stubby dispatcher. See go/gmail-photo-sharing for details.",
+            "Trigger for executing comparison logic between the output of ApplyDataRetention idle task and CaribouDataRetention trigger.",
+            "Trigger for backfill relevancy score. see go/gmail-relevancy-scoring-write for detail.",
+            "Trigger to backfill gaps left by pdh pushed via push notification. see go/tingle-moonshine-push-v2",
+            "Begins the message expunge similar to ACTION_MESSAGE_EXPUNGE but fires within one day. To be used ONLY for auto save drafts. See go/faster-auto-save-draft-deletion for more details."
+          ],
+          "type": "string"
+        },
+        "data": {
+          "description": "Clients should use extensions on the Trigger message instead.",
+          "format": "byte",
+          "type": "string"
+        },
+        "dataInt": {
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TriggerKey": {
+      "description": "A TriggerKey (type + instance_id) uniquely identifies a trigger within a message for a message-trigger and within an account for an account-trigger.",
+      "id": "TriggerKey",
+      "properties": {
+        "instanceId": {
+          "description": "Identifier to distinguish multiple Triggers of the same type (per message or per account).",
+          "type": "string"
+        },
+        "type": {
+          "description": "A non-empty string that identifies the type of Trigger. Triggers of the same type may be batched together. The universe of values for the type field should be finite as it is used as a stats key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Triggers": {
+      "id": "Triggers",
+      "properties": {
+        "triggers": {
+          "description": "A list of triggers.",
+          "items": {
+            "$ref": "Trigger"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "TrustedResourceUrlProto": {
@@ -15088,6 +17337,60 @@
       },
       "type": "object"
     },
+    "UpdateBccRecipients": {
+      "id": "UpdateBccRecipients",
+      "properties": {
+        "bccRecipients": {
+          "items": {
+            "$ref": "Recipient"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateBody": {
+      "id": "UpdateBody",
+      "properties": {
+        "insertContents": {
+          "description": "A repeated field that contains a series of content to insert into the draft that the user is currently editing. The content can contain HTML content or plain text content.",
+          "items": {
+            "$ref": "InsertContent"
+          },
+          "type": "array"
+        },
+        "type": {
+          "enum": [
+            "UNSPECIFIED_ACTION_TYPE",
+            "IN_PLACE_INSERT",
+            "INSERT_AT_START",
+            "INSERT_AT_END",
+            "REPLACE"
+          ],
+          "enumDescriptions": [
+            "Default value when nothing is set for Type.",
+            "Indicates this action is to perform an in-place insertion. By default the content is inserted at the current cursor position, if there is selected content, it replaces the selected content.",
+            "Indicates this action is to perform insert at the start of the message body.",
+            "Indicates this action is to perform insert at the end of the message body.",
+            "Indicates this action is to replace the message body."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateCcRecipients": {
+      "id": "UpdateCcRecipients",
+      "properties": {
+        "ccRecipients": {
+          "items": {
+            "$ref": "Recipient"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "UpdateDataSourceRequest": {
       "id": "UpdateDataSourceRequest",
       "properties": {
@@ -15097,6 +17400,37 @@
         },
         "source": {
           "$ref": "DataSource"
+        },
+        "updateMask": {
+          "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateDraftActionMarkup": {
+      "id": "UpdateDraftActionMarkup",
+      "properties": {
+        "updateBccRecipients": {
+          "$ref": "UpdateBccRecipients",
+          "description": "If set, replaces the existing Bcc recipients of the draft the user is currently editing."
+        },
+        "updateBody": {
+          "$ref": "UpdateBody",
+          "description": "A field that contains a series of update actions to perform on the draft body that the user is currently editing."
+        },
+        "updateCcRecipients": {
+          "$ref": "UpdateCcRecipients",
+          "description": "If set, replaces the existing Cc recipients of the draft the user is currently editing."
+        },
+        "updateSubject": {
+          "$ref": "UpdateSubject",
+          "description": "If set, replaces the existing subject of the draft the user is currently editing."
+        },
+        "updateToRecipients": {
+          "$ref": "UpdateToRecipients",
+          "description": "If set, replaces the existing To recipients of the draft the user is currently editing."
         }
       },
       "type": "object"
@@ -15115,6 +17449,27 @@
         "validateOnly": {
           "description": "If true, the schema will be checked for validity, but will not be registered with the data source, even if valid.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSubject": {
+      "id": "UpdateSubject",
+      "properties": {
+        "subject": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateToRecipients": {
+      "id": "UpdateToRecipients",
+      "properties": {
+        "toRecipients": {
+          "items": {
+            "$ref": "Recipient"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -15179,6 +17534,11 @@
         "dlpMetricsMetadata": {
           "$ref": "AppsDynamiteSharedDlpMetricsMetadata",
           "description": "The metrics metadata of the Data Loss Prevention attachment scan."
+        },
+        "latestVirusScanTimestamp": {
+          "description": "The timestamp of the most recent virus scan completed (in microseconds).",
+          "format": "int64",
+          "type": "string"
         },
         "localId": {
           "description": "A copy of the LocalId in Annotation. This field is supposed to be filled by server only.",
@@ -15253,7 +17613,7 @@
           "type": "integer"
         },
         "mimeType": {
-          "description": "Mime type of the content (Currently mapped from Page Render Service ItemType) Note that this is not necessarily the mime type of the http resource. For example a text/html from youtube or vimeo may actually be classified as a video type. Then we shall mark it as video/* since we don't know exactly what type of video it is. NEXT TAG : 16",
+          "description": "Mime type of the content (Currently mapped from Page Render Service ItemType) Note that this is not necessarily the mime type of the http resource. For example a text/html from youtube or vimeo may actually be classified as a video type. Then we shall mark it as video/* since we don't know exactly what type of video it is.",
           "type": "string"
         },
         "redirectUrl": {
@@ -15275,6 +17635,21 @@
         "url": {
           "$ref": "SafeUrlProto",
           "description": "The original URL."
+        },
+        "urlSource": {
+          "enum": [
+            "URL_SOURCE_UNKNOWN",
+            "SERVER_SUPPLIED_POLICY_VIOLATION",
+            "AUTO_DETECTED_PLAIN_TEXT",
+            "RICH_TEXT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "Set by the server, when it detects a URL in the message text",
+            "Set by the client, when the user adds a link as a custom hyperlink. Validated by the server and persisted in storage."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -15428,20 +17803,26 @@
       "type": "object"
     },
     "UserInfo": {
-      "description": "Contains info regarding the updater of an Activity Feed item. Next Id: 6",
+      "description": "Contains info regarding the updater of an Activity Feed item. Next Id: 8",
       "id": "UserInfo",
       "properties": {
+        "driveNotificationAvatarUrl": {
+          "description": "Avatar url of the user who triggered the Drive Notification email. This field will be populated if we can extract such information from the Drive Notification email. This should only be used to fetch user avatars when updater_to_show_email is not populated. This field is not set for non-Drive Notification items.",
+          "type": "string"
+        },
         "updaterCountDisplayType": {
           "description": "Describes how updater_count_to_show should be used.",
           "enum": [
             "UPDATER_COUNT_DISPLAY_TYPE_UNSPECIFIED",
+            "NO_DISPLAY_COUNT",
             "EXACT_COUNT",
             "NONZERO_COUNT"
           ],
           "enumDescriptions": [
             "",
-            "A precise updater count is known and the value set in updater_count_to_show should be used. If set, updater_count_to_show is set to the total number of updaters minus the one set in updater_to_show.",
-            "A precise updater count could not be calculated, but there is at least one. Any value set in updater_count_to_show should NOT be used."
+            "No additional updaters where involved. Shows up in clients as \"$USERNAME replied\".",
+            "A precise updater count is known and the value set in updater_count_to_show should be used. If set, updater_count_to_show is set to the total number of updaters minus the one set in updater_to_show. Shows up in clients as \"$USERNAME and $NUM others replied\".",
+            "A precise updater count could not be calculated, but there is at least one. Any value set in updater_count_to_show should NOT be used. Shows up in clients as \"$USERNAME and others replied\"."
           ],
           "type": "string"
         },
@@ -15451,12 +17832,16 @@
           "type": "integer"
         },
         "updaterToShowEmail": {
-          "description": "The email of the updater for clients to show used for Gmail items.",
+          "description": "The email of the updater for clients to show used for Gmail items. For Drive Notifications, this is the email of the user who triggered the Drive Notification email. This field will be populated if we can extract such information from the Drive Notification email. This is not the actual sender of the email, as the sender is always comments-noreply@docs.google.com.",
           "type": "string"
         },
         "updaterToShowGaiaId": {
           "description": "The gaia id of the updater for clients to show used for Gmail items. If the updater is an external user, the email field below should be populated.",
           "format": "int64",
+          "type": "string"
+        },
+        "updaterToShowName": {
+          "description": "The display name of the updater for clients to show used for Gmail items. For non-Drive Notification items, this field will always be populated. If the display name cannot be found for the user, the fallback string will be the email address. For Drive Notification items, this is the name of the user who triggered the Drive notification email. This field will be populated if we can extract such information from the Drive Notification email. If the name cannot be extracted, then the email will be the fallback string, which is used as the display name text in the UI when needed. This is not the actual sender of the email, as the sender is always comments-noreply@docs.google.com.",
           "type": "string"
         },
         "updaterToShowUserId": {

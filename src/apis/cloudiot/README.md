@@ -2,7 +2,7 @@
 
 # cloudiot
 
-> 
+> Registers and manages IoT (Internet of Things) devices that connect to the Google Cloud Platform.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

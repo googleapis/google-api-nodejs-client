@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sql-v0.3.1...sql-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/sql-v0.3.0...sql-v0.3.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **sql:** update the API ([ffe8763](https://github.com/googleapis/google-api-nodejs-client/commit/ffe87631e1e1cec9204f88c7fa58357404d18d8b))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/sql-v0.2.3...sql-v0.3.0) (2021-09-14)
 
 

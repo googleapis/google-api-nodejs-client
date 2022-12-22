@@ -171,7 +171,7 @@ export namespace artifactregistry_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -386,6 +386,19 @@ export namespace artifactregistry_v1 {
      * The yum artifacts imported.
      */
     yumArtifacts?: Schema$YumArtifact[];
+  }
+  /**
+   * A detailed representation of a GooGet artifact.
+   */
+  export interface Schema$KfpArtifact {
+    /**
+     * Output only. Resource name of the KFP artifact. Since users don't directly interact with this resource, the name will be derived from the associated version. For example, when version = ".../versions/sha256:abcdef...", the name will be ".../kfpArtifacts/sha256:abcdef...".
+     */
+    name?: string | null;
+    /**
+     * The version associated with the KFP artifact. Must follow the Semantic Versioning standard.
+     */
+    version?: string | null;
   }
   /**
    * The response from listing docker images.
@@ -759,6 +772,10 @@ export namespace artifactregistry_v1 {
      */
     name?: string | null;
     /**
+     * Output only. If set, the repository satisfies physical zone separation.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
      */
     sizeBytes?: string | null;
@@ -853,6 +870,32 @@ export namespace artifactregistry_v1 {
   /**
    * The response to upload an artifact.
    */
+  export interface Schema$UploadKfpArtifactMediaResponse {
+    /**
+     * Operation that will be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The operation metadata for uploading KFP artifacts.
+   */
+  export interface Schema$UploadKfpArtifactMetadata {}
+  /**
+   * The request to upload an artifact.
+   */
+  export interface Schema$UploadKfpArtifactRequest {
+    /**
+     * Description of the package version.
+     */
+    description?: string | null;
+    /**
+     * Tags to be created with the version.
+     */
+    tags?: string[] | null;
+  }
+  /**
+   * The response to upload an artifact.
+   */
   export interface Schema$UploadYumArtifactMediaResponse {
     /**
      * Operation to be returned to the user.
@@ -889,7 +932,7 @@ export namespace artifactregistry_v1 {
      */
     description?: string | null;
     /**
-     * Output only. Repository-specific Metadata stored against this version. The fields returned are defined by the underlying repository-specific resource. Currently, the only resource in use is DockerImage
+     * Output only. Repository-specific Metadata stored against this version. The fields returned are defined by the underlying repository-specific resource. Currently, the resources could be: DockerImage MavenArtifact
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1709,6 +1752,7 @@ export namespace artifactregistry_v1 {
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     files: Resource$Projects$Locations$Repositories$Files;
+    kfpArtifacts: Resource$Projects$Locations$Repositories$Kfpartifacts;
     mavenArtifacts: Resource$Projects$Locations$Repositories$Mavenartifacts;
     npmPackages: Resource$Projects$Locations$Repositories$Npmpackages;
     packages: Resource$Projects$Locations$Repositories$Packages;
@@ -1723,6 +1767,8 @@ export namespace artifactregistry_v1 {
       this.files = new Resource$Projects$Locations$Repositories$Files(
         this.context
       );
+      this.kfpArtifacts =
+        new Resource$Projects$Locations$Repositories$Kfpartifacts(this.context);
       this.mavenArtifacts =
         new Resource$Projects$Locations$Repositories$Mavenartifacts(
           this.context
@@ -1783,6 +1829,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2067,6 +2114,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2487,6 +2535,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2503,6 +2552,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -3987,6 +4037,199 @@ export namespace artifactregistry_v1 {
      * The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Kfpartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Directly uploads a KFP artifact. The returned Operation will complete once the resource is uploaded. Package, Version, and File resources will be created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will be overwritten.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.kfpArtifacts.upload({
+     *       // The resource name of the repository where the KFP artifact will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "description": "my_description",
+     *         //   "tags": []
+     *         // }
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadKfpArtifactMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadKfpArtifactMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadKfpArtifactMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload,
+      callback: BodyResponseCallback<Schema$UploadKfpArtifactMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadKfpArtifactMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload
+        | BodyResponseCallback<Schema$UploadKfpArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadKfpArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadKfpArtifactMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadKfpArtifactMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/kfpArtifacts:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1/{+parent}/kfpArtifacts:create'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadKfpArtifactMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadKfpArtifactMediaResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Kfpartifacts$Upload
+    extends StandardParameters {
+    /**
+     * The resource name of the repository where the KFP artifact will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadKfpArtifactRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects$Locations$Repositories$Mavenartifacts {

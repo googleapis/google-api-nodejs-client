@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gamesManagement-v0.2.2...gamesManagement-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/gamesManagement-v0.2.1...gamesManagement-v0.2.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **gamesManagement:** update the API ([8dbdf14](https://github.com/googleapis/google-api-nodejs-client/commit/8dbdf148d105c40a709b999f49d79ca22d7c6994))
+
 ## [0.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/gamesManagement-v0.2.0...gamesManagement-v0.2.1) (2022-06-21)
 
 

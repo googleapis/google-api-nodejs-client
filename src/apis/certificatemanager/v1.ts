@@ -199,6 +199,65 @@ export namespace certificatemanager_v1 {
     updateTime?: string | null;
   }
   /**
+   * The CA that issues the workload certificate. It includes CA address, type, authentication to CA service, etc.
+   */
+  export interface Schema$CertificateAuthorityConfig {
+    /**
+     * Defines a CertificateAuthorityServiceConfig.
+     */
+    certificateAuthorityServiceConfig?: Schema$CertificateAuthorityServiceConfig;
+  }
+  /**
+   * Contains information required to contact CA service.
+   */
+  export interface Schema$CertificateAuthorityServiceConfig {
+    /**
+     * Required. A CA pool resource used to issue a certificate. The CA pool string has a relative resource path following the form "projects/{project\}/locations/{location\}/caPools/{ca_pool\}".
+     */
+    caPool?: string | null;
+  }
+  /**
+   * CertificateIssuanceConfig specifies how to issue and manage a certificate.
+   */
+  export interface Schema$CertificateIssuanceConfig {
+    /**
+     * Required. The CA that issues the workload certificate. It includes the CA address, type, authentication to CA service, etc.
+     */
+    certificateAuthorityConfig?: Schema$CertificateAuthorityConfig;
+    /**
+     * Output only. The creation timestamp of a CertificateIssuanceConfig.
+     */
+    createTime?: string | null;
+    /**
+     * One or more paragraphs of text description of a CertificateIssuanceConfig.
+     */
+    description?: string | null;
+    /**
+     * Required. The key algorithm to use when generating the private key.
+     */
+    keyAlgorithm?: string | null;
+    /**
+     * Set of labels associated with a CertificateIssuanceConfig.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. Workload certificate lifetime requested.
+     */
+    lifetime?: string | null;
+    /**
+     * A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/x/locations/x/certificateIssuanceConfigs/x`.
+     */
+    name?: string | null;
+    /**
+     * Required. Specifies the percentage of elapsed time of the certificate lifetime to wait before renewing the certificate. Must be a number between 1-99, inclusive.
+     */
+    rotationWindowPercentage?: number | null;
+    /**
+     * Output only. The last update timestamp of a CertificateIssuanceConfig.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Defines a collection of certificate configurations.
    */
   export interface Schema$CertificateMap {
@@ -211,7 +270,7 @@ export namespace certificatemanager_v1 {
      */
     description?: string | null;
     /**
-     * Output only. A list of GCLB targets which use this Certificate Map.
+     * Output only. A list of GCLB targets that use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule.
      */
     gclbTargets?: Schema$GclbTarget[];
     /**
@@ -285,7 +344,7 @@ export namespace certificatemanager_v1 {
      */
     dnsResourceRecord?: Schema$DnsResourceRecord;
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`.
+     * Required. Immutable. A domain that is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`.
      */
     domain?: string | null;
     /**
@@ -323,7 +382,7 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Describes a Target Proxy which uses this Certificate Map.
+   * Describes a Target Proxy that uses this Certificate Map.
    */
   export interface Schema$GclbTarget {
     /**
@@ -351,6 +410,23 @@ export namespace certificatemanager_v1 {
      * Output only. Ports.
      */
     ports?: number[] | null;
+  }
+  /**
+   * Response for the `ListCertificateIssuanceConfigs` method.
+   */
+  export interface Schema$ListCertificateIssuanceConfigsResponse {
+    /**
+     * A list of certificate configs for the parent resource.
+     */
+    certificateIssuanceConfigs?: Schema$CertificateIssuanceConfig[];
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for the `ListCertificateMapEntries` method.
@@ -488,6 +564,10 @@ export namespace certificatemanager_v1 {
      */
     domains?: string[] | null;
     /**
+     * Immutable. The resource name for a CertificateIssuanceConfig used to configure private PKI certificates in the format `projects/x/locations/x/certificateIssuanceConfigs/x`. If this field is not set, the certificates will instead be publicly signed as documented at https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
+     */
+    issuanceConfig?: string | null;
+    /**
      * Output only. Information about issues with provisioning a Managed Certificate.
      */
     provisioningIssue?: Schema$ProvisioningIssue;
@@ -609,12 +689,17 @@ export namespace certificatemanager_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    certificateIssuanceConfigs: Resource$Projects$Locations$Certificateissuanceconfigs;
     certificateMaps: Resource$Projects$Locations$Certificatemaps;
     certificates: Resource$Projects$Locations$Certificates;
     dnsAuthorizations: Resource$Projects$Locations$Dnsauthorizations;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.certificateIssuanceConfigs =
+        new Resource$Projects$Locations$Certificateissuanceconfigs(
+          this.context
+        );
       this.certificateMaps = new Resource$Projects$Locations$Certificatemaps(
         this.context
       );
@@ -927,6 +1012,653 @@ export namespace certificatemanager_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Certificateissuanceconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new CertificateIssuanceConfig in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/certificatemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const certificatemanager = google.certificatemanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await certificatemanager.projects.locations.certificateIssuanceConfigs.create(
+     *       {
+     *         // Required. A user-provided name of the certificate config.
+     *         certificateIssuanceConfigId: 'placeholder-value',
+     *         // Required. The parent resource of the certificate issuance config. Must be in the format `projects/x/locations/x`.
+     *         parent: 'projects/my-project/locations/my-location',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "certificateAuthorityConfig": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "description": "my_description",
+     *           //   "keyAlgorithm": "my_keyAlgorithm",
+     *           //   "labels": {},
+     *           //   "lifetime": "my_lifetime",
+     *           //   "name": "my_name",
+     *           //   "rotationWindowPercentage": 0,
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://certificatemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/certificateIssuanceConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single CertificateIssuanceConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/certificatemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const certificatemanager = google.certificatemanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await certificatemanager.projects.locations.certificateIssuanceConfigs.delete(
+     *       {
+     *         // Required. A name of the certificate issuance config to delete. Must be in the format `projects/x/locations/x/certificateIssuanceConfigs/x`.
+     *         name: 'projects/my-project/locations/my-location/certificateIssuanceConfigs/my-certificateIssuanceConfig',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://certificatemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single CertificateIssuanceConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/certificatemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const certificatemanager = google.certificatemanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await certificatemanager.projects.locations.certificateIssuanceConfigs.get({
+     *       // Required. A name of the certificate issuance config to describe. Must be in the format `projects/x/locations/x/certificateIssuanceConfigs/x`.
+     *       name: 'projects/my-project/locations/my-location/certificateIssuanceConfigs/my-certificateIssuanceConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateAuthorityConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "keyAlgorithm": "my_keyAlgorithm",
+     *   //   "labels": {},
+     *   //   "lifetime": "my_lifetime",
+     *   //   "name": "my_name",
+     *   //   "rotationWindowPercentage": 0,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CertificateIssuanceConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CertificateIssuanceConfig>,
+      callback: BodyResponseCallback<Schema$CertificateIssuanceConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
+      callback: BodyResponseCallback<Schema$CertificateIssuanceConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CertificateIssuanceConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get
+        | BodyResponseCallback<Schema$CertificateIssuanceConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CertificateIssuanceConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CertificateIssuanceConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CertificateIssuanceConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://certificatemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CertificateIssuanceConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CertificateIssuanceConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists CertificateIssuanceConfigs in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/certificatemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const certificatemanager = google.certificatemanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await certificatemanager.projects.locations.certificateIssuanceConfigs.list(
+     *       {
+     *         // Filter expression to restrict the Certificates Configs returned.
+     *         filter: 'placeholder-value',
+     *         // A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix " desc".
+     *         orderBy: 'placeholder-value',
+     *         // Maximum number of certificate configs to return per call.
+     *         pageSize: 'placeholder-value',
+     *         // The value returned by the last `ListCertificateIssuanceConfigsResponse`. Indicates that this is a continuation of a prior `ListCertificateIssuanceConfigs` call, and that the system should return the next page of data.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The project and location from which the certificate should be listed, specified in the format `projects/x/locations/x`.
+     *         parent: 'projects/my-project/locations/my-location',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificateIssuanceConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCertificateIssuanceConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCertificateIssuanceConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListCertificateIssuanceConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$List,
+      callback: BodyResponseCallback<Schema$ListCertificateIssuanceConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCertificateIssuanceConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificateissuanceconfigs$List
+        | BodyResponseCallback<Schema$ListCertificateIssuanceConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCertificateIssuanceConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCertificateIssuanceConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCertificateIssuanceConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateissuanceconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://certificatemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/certificateIssuanceConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCertificateIssuanceConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCertificateIssuanceConfigsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. A user-provided name of the certificate config.
+     */
+    certificateIssuanceConfigId?: string;
+    /**
+     * Required. The parent resource of the certificate issuance config. Must be in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CertificateIssuanceConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. A name of the certificate issuance config to delete. Must be in the format `projects/x/locations/x/certificateIssuanceConfigs/x`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the certificate issuance config to describe. Must be in the format `projects/x/locations/x/certificateIssuanceConfigs/x`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$List
+    extends StandardParameters {
+    /**
+     * Filter expression to restrict the Certificates Configs returned.
+     */
+    filter?: string;
+    /**
+     * A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix " desc".
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of certificate configs to return per call.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListCertificateIssuanceConfigsResponse`. Indicates that this is a continuation of a prior `ListCertificateIssuanceConfigs` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the certificate should be listed, specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Certificatemaps {

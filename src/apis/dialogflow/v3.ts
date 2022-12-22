@@ -3704,7 +3704,7 @@ export namespace dialogflow_v3 {
      */
     redactionStrategy?: string | null;
     /**
-     * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.
+     * Retains the data for the specified number of days. User must set a value lower than Dialogflow's default 365d TTL (30 days for Agent Assist traffic), higher value will be ignored and use default. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use default TTL.
      */
     retentionWindowDays?: number | null;
   }
@@ -3725,7 +3725,7 @@ export namespace dialogflow_v3 {
      */
     enableAudioRedaction?: boolean | null;
     /**
-     * Cloud Storage bucket to export audio record to. You need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Storage Object Admin` role in this bucket.
+     * Cloud Storage bucket to export audio record to. Setting this field would grant the Storage Object Creator role to the Dialogflow Service Agent. API caller that tries to modify this field should have the permission of storage.buckets.setIamPolicy.
      */
     gcsBucket?: string | null;
   }
@@ -5856,7 +5856,7 @@ export namespace dialogflow_v3 {
     webhookSource?: string | null;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Sentiment {
     /**
@@ -6169,7 +6169,12 @@ export namespace dialogflow_v3 {
   /**
    * Metadata for ConversationDatasets.
    */
-  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {}
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {
+    /**
+     * The resource name of the conversation dataset that will be created. Format: `projects//locations//conversationDatasets/`
+     */
+    conversationDataset?: string | null;
+  }
   /**
    * Metadata for a ConversationModels.CreateConversationModelEvaluation operation.
    */
@@ -7229,7 +7234,7 @@ export namespace dialogflow_v3 {
     webhookSource?: string | null;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
    */
   export interface Schema$GoogleCloudDialogflowV2Sentiment {
     /**

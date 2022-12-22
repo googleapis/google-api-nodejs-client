@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsreporting-v0.3.2...analyticsreporting-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsreporting-v0.3.1...analyticsreporting-v0.3.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **analyticsreporting:** update the API ([a00fdcf](https://github.com/googleapis/google-api-nodejs-client/commit/a00fdcf7dddedd856596606b0a708a4e5e962532))
+
 ## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsreporting-v0.3.0...analyticsreporting-v0.3.1) (2022-06-21)
 
 

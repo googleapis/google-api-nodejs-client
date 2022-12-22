@@ -125,6 +125,28 @@ export namespace firestore_v1 {
   }
 
   /**
+   * Defines a aggregation that produces a single result.
+   */
+  export interface Schema$Aggregation {
+    /**
+     * Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.
+     */
+    alias?: string | null;
+    /**
+     * Count aggregator.
+     */
+    count?: Schema$Count;
+  }
+  /**
+   * The result of a single bucket from a Firestore aggregation query. The keys of `aggregate_fields` are the same for all results in an aggregation query, unlike document queries which can have different fields present for each result.
+   */
+  export interface Schema$AggregationResult {
+    /**
+     * The result of the aggregation functions, ex: `COUNT(*) AS total_docs`. The key is the alias assigned to the aggregation function on input and the size of this map equals the number of aggregation functions in the query.
+     */
+    aggregateFields?: {[key: string]: Schema$Value} | null;
+  }
+  /**
    * An array value.
    */
   export interface Schema$ArrayValue {
@@ -274,6 +296,15 @@ export namespace firestore_v1 {
      * The operator for combining multiple filters.
      */
     op?: string | null;
+  }
+  /**
+   * Count of documents that match the query. The `COUNT(*)` aggregation function operates on the entire document so it does not require a field reference.
+   */
+  export interface Schema$Count {
+    /**
+     * Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.
+     */
+    upTo?: string | null;
   }
   /**
    * A position in a query result set.
@@ -426,9 +457,12 @@ export namespace firestore_v1 {
     value?: Schema$Value;
   }
   /**
-   * A reference to a field, such as `max(messages.time) as max_time`.
+   * A reference to a field in a document, ex: `stats.operations`.
    */
   export interface Schema$FieldReference {
+    /**
+     * The relative path of the document being referenced. Requires: * Conform to document field name limitations.
+     */
     fieldPath?: string | null;
   }
   /**
@@ -674,7 +708,11 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1Index {
     /**
-     * The fields supported by this index. For composite indexes, this is always 2 or more fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.
+     * The API scope supported by this index.
+     */
+    apiScope?: string | null;
+    /**
+     * The fields supported by this index. For composite indexes, this requires a minimum of 2 and a maximum of 100 fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field.
      */
     fields?: Schema$GoogleFirestoreAdminV1IndexField[];
     /**
@@ -938,7 +976,7 @@ export namespace firestore_v1 {
      */
     documents?: Schema$Document[];
     /**
-     * The next page token.
+     * A token to retrieve the next page of documents. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -1145,6 +1183,44 @@ export namespace firestore_v1 {
     transaction?: string | null;
   }
   /**
+   * The request for Firestore.RunAggregationQuery.
+   */
+  export interface Schema$RunAggregationQueryRequest {
+    /**
+     * Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream.
+     */
+    newTransaction?: Schema$TransactionOptions;
+    /**
+     * Executes the query at the given timestamp. Requires: * Cannot be more than 270 seconds in the past.
+     */
+    readTime?: string | null;
+    /**
+     * An aggregation query.
+     */
+    structuredAggregationQuery?: Schema$StructuredAggregationQuery;
+    /**
+     * Run the aggregation within an already active transaction. The value here is the opaque transaction ID to execute the query in.
+     */
+    transaction?: string | null;
+  }
+  /**
+   * The response for Firestore.RunAggregationQuery.
+   */
+  export interface Schema$RunAggregationQueryResponse {
+    /**
+     * The time at which the aggregate value is valid for.
+     */
+    readTime?: string | null;
+    /**
+     * A single aggregation result. Not present when reporting partial progress.
+     */
+    result?: Schema$AggregationResult;
+    /**
+     * The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction.
+     */
+    transaction?: string | null;
+  }
+  /**
    * The request for Firestore.RunQuery.
    */
   export interface Schema$RunQueryRequest {
@@ -1208,11 +1284,24 @@ export namespace firestore_v1 {
     message?: string | null;
   }
   /**
+   * Firestore query for running an aggregation over a StructuredQuery.
+   */
+  export interface Schema$StructuredAggregationQuery {
+    /**
+     * Optional. Series of aggregations to apply over the results of the `structured_query`. Requires: * A minimum of one and maximum of five aggregations per query.
+     */
+    aggregations?: Schema$Aggregation[];
+    /**
+     * Nested structured query.
+     */
+    structuredQuery?: Schema$StructuredQuery;
+  }
+  /**
    * A Firestore query.
    */
   export interface Schema$StructuredQuery {
     /**
-     * A end point for the query results.
+     * A potential prefix of a position in the result set to end the query at. This is similar to `START_AT` but with it controlling the end position rather than the start position. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause.
      */
     endAt?: Schema$Cursor;
     /**
@@ -1220,11 +1309,11 @@ export namespace firestore_v1 {
      */
     from?: Schema$CollectionSelector[];
     /**
-     * The maximum number of results to return. Applies after all other constraints. Must be \>= 0 if specified.
+     * The maximum number of results to return. Applies after all other constraints. Requires: * The value must be greater than or equal to zero if specified.
      */
     limit?: number | null;
     /**
-     * The number of results to skip. Applies before limit, but after all other constraints. Must be \>= 0 if specified.
+     * The number of documents to skip before returning the first result. This applies after the constraints specified by the `WHERE`, `START AT`, & `END AT` but before the `LIMIT` clause. Requires: * The value must be greater than or equal to zero if specified.
      */
     offset?: number | null;
     /**
@@ -1236,7 +1325,7 @@ export namespace firestore_v1 {
      */
     select?: Schema$Projection;
     /**
-     * A starting point for the query results.
+     * A potential prefix of a position in the result set to start the query at. The ordering of the result set is based on the `ORDER BY` clause of the original query. ``` SELECT * FROM k WHERE a = 1 AND b \> 2 ORDER BY b ASC, __name__ ASC; ``` This query's results are ordered by `(b ASC, __name__ ASC)`. Cursors can reference either the full ordering or a prefix of the location, though it cannot reference more fields than what are in the provided `ORDER BY`. Continuing off the example above, attaching the following start cursors will have varying impact: - `START BEFORE (2, /k/123)`: start the query right before `a = 1 AND b \> 2 AND __name__ \> /k/123`. - `START AFTER (10)`: start the query right after `a = 1 AND b \> 10`. Unlike `OFFSET` which requires scanning over the first N results to skip, a start cursor allows the query to begin at a logical position. This position is not required to match an actual result, it will scan forward from this position to find the next document. Requires: * The number of values cannot be greater than the number of fields specified in the `ORDER BY` clause.
      */
     startAt?: Schema$Cursor;
     /**
@@ -1632,6 +1721,152 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a database.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.delete({
+     *     // If set to true and the Database is not found, the request will succeed but no action will be taken.
+     *     allowMissing: 'placeholder-value',
+     *     // The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
+     *     etag: 'placeholder-value',
+     *     // Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
+     *     name: 'projects/my-project/databases/my-database',
+     *     // If set, validate the request and preview the response, but do not actually delete the database.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Databases$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Databases$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Databases$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
@@ -2406,6 +2641,25 @@ export namespace firestore_v1 {
      */
     requestBody?: Schema$GoogleFirestoreAdminV1Database;
   }
+  export interface Params$Resource$Projects$Databases$Delete
+    extends StandardParameters {
+    /**
+     * If set to true and the Database is not found, the request will succeed but no action will be taken.
+     */
+    allowMissing?: boolean;
+    /**
+     * The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
+     */
+    etag?: string;
+    /**
+     * Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
+     */
+    name?: string;
+    /**
+     * If set, validate the request and preview the response, but do not actually delete the database.
+     */
+    validateOnly?: boolean;
+  }
   export interface Params$Resource$Projects$Databases$Exportdocuments
     extends StandardParameters {
     /**
@@ -3013,6 +3267,7 @@ export namespace firestore_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "apiScope": "my_apiScope",
      *         //   "fields": [],
      *         //   "name": "my_name",
      *         //   "queryScope": "my_queryScope",
@@ -3297,6 +3552,7 @@ export namespace firestore_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiScope": "my_apiScope",
      *   //   "fields": [],
      *   //   "name": "my_name",
      *   //   "queryScope": "my_queryScope",
@@ -4643,24 +4899,24 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.list({
-     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     *     // Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      *     collectionId: 'placeholder-value',
      *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
-     *     // The order to sort results by. For example: `priority desc, name`.
+     *     // Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of documents to return.
+     *     // Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     // Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent:
      *       'projects/my-project/databases/my-database/documents/my-document/.*',
-     *     // Reads documents as they were at the given time. This may not be older than 270 seconds.
+     *     // Perform the read at the provided time. This may not be older than 270 seconds.
      *     readTime: 'placeholder-value',
-     *     // If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
-     *     // Reads documents in a transaction.
+     *     // Perform the read as part of an already active transaction.
      *     transaction: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4950,23 +5206,23 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.documents.listDocuments({
-     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     *     // Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      *     collectionId: 'placeholder-value',
      *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
-     *     // The order to sort results by. For example: `priority desc, name`.
+     *     // Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of documents to return.
+     *     // Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     // Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     parent: 'projects/my-project/databases/my-database/documents',
-     *     // Reads documents as they were at the given time. This may not be older than 270 seconds.
+     *     // Perform the read at the provided time. This may not be older than 270 seconds.
      *     readTime: 'placeholder-value',
-     *     // If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     *     // If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      *     showMissing: 'placeholder-value',
-     *     // Reads documents in a transaction.
+     *     // Perform the read as part of an already active transaction.
      *     transaction: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5667,6 +5923,160 @@ export namespace firestore_v1 {
     }
 
     /**
+     * Runs an aggregation query. Rather than producing Document results like Firestore.RunQuery, this API allows running an aggregation to produce a series of AggregationResult server-side. High-Level Example: ``` -- Return the number of documents in table given a filter. SELECT COUNT(*) FROM ( SELECT * FROM k where a = true ); ```
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.documents.runAggregationQuery({
+     *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     parent:
+     *       'projects/my-project/databases/my-database/documents/my-document/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "newTransaction": {},
+     *       //   "readTime": "my_readTime",
+     *       //   "structuredAggregationQuery": {},
+     *       //   "transaction": "my_transaction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "readTime": "my_readTime",
+     *   //   "result": {},
+     *   //   "transaction": "my_transaction"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runAggregationQuery(
+      params?: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RunAggregationQueryResponse>;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>,
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Documents$Runaggregationquery
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RunAggregationQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Documents$Runaggregationquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Runaggregationquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:runAggregationQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RunAggregationQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RunAggregationQueryResponse>(parameters);
+      }
+    }
+
+    /**
      * Runs a query.
      * @example
      * ```js
@@ -6070,7 +6480,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Documents$List
     extends StandardParameters {
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     * Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      */
     collectionId?: string;
     /**
@@ -6078,15 +6488,15 @@ export namespace firestore_v1 {
      */
     'mask.fieldPaths'?: string[];
     /**
-     * The order to sort results by. For example: `priority desc, name`.
+     * Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      */
     orderBy?: string;
     /**
-     * The maximum number of documents to return.
+     * Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      */
     pageSize?: number;
     /**
-     * The `next_page_token` value returned from a previous List request, if any.
+     * Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      */
     pageToken?: string;
     /**
@@ -6094,15 +6504,15 @@ export namespace firestore_v1 {
      */
     parent?: string;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Perform the read at the provided time. This may not be older than 270 seconds.
      */
     readTime?: string;
     /**
-     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
     /**
-     * Reads documents in a transaction.
+     * Perform the read as part of an already active transaction.
      */
     transaction?: string;
   }
@@ -6121,7 +6531,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Documents$Listdocuments
     extends StandardParameters {
     /**
-     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     * Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.
      */
     collectionId?: string;
     /**
@@ -6129,15 +6539,15 @@ export namespace firestore_v1 {
      */
     'mask.fieldPaths'?: string[];
     /**
-     * The order to sort results by. For example: `priority desc, name`.
+     * Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.
      */
     orderBy?: string;
     /**
-     * The maximum number of documents to return.
+     * Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.
      */
     pageSize?: number;
     /**
-     * The `next_page_token` value returned from a previous List request, if any.
+     * Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.
      */
     pageToken?: string;
     /**
@@ -6145,15 +6555,15 @@ export namespace firestore_v1 {
      */
     parent?: string;
     /**
-     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     * Perform the read at the provided time. This may not be older than 270 seconds.
      */
     readTime?: string;
     /**
-     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     * If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.
      */
     showMissing?: boolean;
     /**
-     * Reads documents in a transaction.
+     * Perform the read as part of an already active transaction.
      */
     transaction?: string;
   }
@@ -6220,6 +6630,18 @@ export namespace firestore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RollbackRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Runaggregationquery
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunAggregationQueryRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Runquery
     extends StandardParameters {

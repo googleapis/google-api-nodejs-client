@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "107.0.0",
+  "version": "109.0.1",
   "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -64,9 +64,9 @@
     "@types/mocha": "^9.0.0",
     "@types/mv": "^2.1.0",
     "@types/ncp": "^2.0.1",
-    "@types/node": "^16.0.0",
+    "@types/node": "^18.0.0",
     "@types/nunjucks": "^3.1.1",
-    "@types/prettier": "^2.0.0",
+    "@types/prettier": "2.7.2",
     "@types/proxyquire": "^1.3.28",
     "@types/qs": "^6.5.3",
     "@types/sinon": "^10.0.0",
@@ -93,7 +93,7 @@
     "proxyquire": "^2.1.3",
     "rimraf": "^3.0.2",
     "server-destroy": "^1.0.1",
-    "sinon": "^14.0.0",
+    "sinon": "^15.0.0",
     "tmp": "^0.2.0",
     "typescript": "^4.6.4",
     "yargs-parser": "^20.2.0"

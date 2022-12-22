@@ -468,6 +468,38 @@
             }
           }
         },
+        "identityPlatform": {
+          "methods": {
+            "initializeAuth": {
+              "description": "Initialize Identity Platform for a Cloud project. Identity Platform is an end-to-end authentication system for third-party users to access your apps and services. These could include mobile/web apps, games, APIs and beyond. This is the publicly available variant of EnableIdentityPlatform that is only available to billing-enabled projects.",
+              "flatPath": "v2/projects/{projectsId}/identityPlatform:initializeAuth",
+              "httpMethod": "POST",
+              "id": "identitytoolkit.projects.identityPlatform.initializeAuth",
+              "parameterOrder": [
+                "project"
+              ],
+              "parameters": {
+                "project": {
+                  "description": "The resource name of the target project the developer wants to enable Identity Platform for.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+project}/identityPlatform:initializeAuth",
+              "request": {
+                "$ref": "GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "inboundSamlConfigs": {
           "methods": {
             "create": {
@@ -1527,9 +1559,37 @@
       }
     }
   },
-  "revision": "20220815",
+  "revision": "20221206",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
+    "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
+      "description": "Defines a policy of allowing every region by default and adding disallowed regions to a disallow list.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2AllowByDefault",
+      "properties": {
+        "disallowedRegions": {
+          "description": "Two letter unicode region codes to disallow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2AllowlistOnly": {
+      "description": "Defines a policy of only allowing regions by explicitly adding them to an allowlist.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2AllowlistOnly",
+      "properties": {
+        "allowedRegions": {
+          "description": "Two letter unicode region codes to allow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIdentitytoolkitAdminV2Anonymous": {
       "description": "Configuration options related to authenticating an anonymous user.",
       "id": "GoogleCloudIdentitytoolkitAdminV2Anonymous",
@@ -1665,6 +1725,10 @@
           "$ref": "GoogleCloudIdentitytoolkitAdminV2ClientConfig",
           "description": "Options related to how clients making requests on behalf of a project should be configured."
         },
+        "emailPrivacyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+          "description": "Configuration for settings related to email privacy and public visibility."
+        },
         "mfa": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig",
           "description": "Configuration for this project's multi-factor authentication, including whether it is active and what factors can be used for the second factor"
@@ -1693,6 +1757,10 @@
         "signIn": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2SignInConfig",
           "description": "Configuration related to local sign in methods."
+        },
+        "smsRegionConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig",
+          "description": "Configures which regions are enabled for SMS verification code sending."
         },
         "subtype": {
           "description": "Output only. The subtype of this config.",
@@ -1810,6 +1878,17 @@
         },
         "passwordRequired": {
           "description": "Whether a password is required for email auth or not. If true, both an email and password must be provided to sign in. If false, a user may sign in via either email/password or email link.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig": {
+      "description": "Configuration for settings related to email privacy and public visibility. Settings in this config protect against email enumeration, but may make some trade-offs in user-friendliness.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+      "properties": {
+        "enableImprovedEmailPrivacy": {
+          "description": "Migrates the project to a state of improved email privacy. For example certain error codes are more generic to avoid giving away information on whether the account exists. In addition, this disables certain features that as a side-effect allow user enumeration. Enabling this toggle disables the fetchSignInMethodsForEmail functionality and changing the user's email to an unverified email. It is recommended to remove dependence on this functionality and enable this toggle to improve user privacy.",
           "type": "boolean"
         }
       },
@@ -2019,6 +2098,18 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformRequest": {
+      "description": "Request for InitializeIdentityPlatform.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse": {
+      "description": "Response for InitializeIdentityPlatform. Empty for now.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse": {
@@ -2400,6 +2491,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig": {
+      "description": "Configures the regions where users are allowed to send verification SMS for the project or tenant. This is based on the calling code of the destination phone number.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig",
+      "properties": {
+        "allowByDefault": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2AllowByDefault",
+          "description": "A policy of allowing SMS to every region by default and adding disallowed regions to a disallow list."
+        },
+        "allowlistOnly": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2AllowlistOnly",
+          "description": "A policy of only allowing regions by explicitly adding them to an allowlist."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIdentitytoolkitAdminV2SmsTemplate": {
       "description": "The template to use when sending an SMS.",
       "id": "GoogleCloudIdentitytoolkitAdminV2SmsTemplate",
@@ -2539,6 +2645,10 @@
           "description": "Display name of the tenant.",
           "type": "string"
         },
+        "emailPrivacyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+          "description": "Configuration for settings related to email privacy and public visibility."
+        },
         "enableAnonymousUser": {
           "description": "Whether to enable anonymous user authentication.",
           "type": "boolean"
@@ -2560,10 +2670,18 @@
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig",
           "description": "The tenant-level configuration of MFA options."
         },
+        "monitoring": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2MonitoringConfig",
+          "description": "Configuration related to monitoring project activity."
+        },
         "name": {
           "description": "Output only. Resource name of a tenant. For example: \"projects/{project-id}/tenants/{tenant-id}\"",
           "readOnly": true,
           "type": "string"
+        },
+        "smsRegionConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig",
+          "description": "Configures which regions are enabled for SMS verification code sending."
         },
         "testPhoneNumbers": {
           "additionalProperties": {
@@ -2922,7 +3040,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },

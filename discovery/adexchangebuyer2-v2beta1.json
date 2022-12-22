@@ -595,7 +595,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.",
+                  "description": "Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -902,7 +902,7 @@
               ]
             },
             "pause": {
-              "description": "Update given deals to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.pause endpoint. It is a no-op to pause already-paused deals. It is an error to call PauseProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.",
+              "description": "Update given deals to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, call accounts.proposals.pause endpoint. It is a no-op to pause already-paused deals. It is an error to call PauseProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.",
               "flatPath": "v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:pause",
               "httpMethod": "POST",
               "id": "adexchangebuyer2.accounts.finalizedProposals.pause",
@@ -936,7 +936,7 @@
               ]
             },
             "resume": {
-              "description": "Update given deals to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.resume endpoint. It is a no-op to resume running deals or deals paused by the other party. It is an error to call ResumeProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.",
+              "description": "Update given deals to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, call accounts.proposals.resume endpoint. It is a no-op to resume running deals or deals paused by the other party. It is an error to call ResumeProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.",
               "flatPath": "v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:resume",
               "httpMethod": "POST",
               "id": "adexchangebuyer2.accounts.finalizedProposals.resume",
@@ -2568,7 +2568,7 @@
       }
     }
   },
-  "revision": "20220616",
+  "revision": "20220920",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -2621,7 +2621,7 @@
             "Ad slot with size specified by height and width in pixels.",
             "Special size to describe an interstitial ad slot.",
             "Native (mobile) ads rendered by the publisher.",
-            "Fluid size (i.e., responsive size) can be resized automatically with the change of outside environment."
+            "Fluid size (for example, responsive size) can be resized automatically with the change of outside environment."
           ],
           "type": "string"
         },
@@ -2907,7 +2907,7 @@
       "type": "object"
     },
     "ClientUser": {
-      "description": "A client user is created under a client buyer and has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client buyer. The only way a new client user can be created is via accepting an email invitation (see the accounts.clients.invitations.create method). All fields are required unless otherwise specified.",
+      "description": "A client user is created under a client buyer and has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client buyer. The only way a new client user can be created is through accepting an email invitation (see the accounts.clients.invitations.create method). All fields are required unless otherwise specified.",
       "id": "ClientUser",
       "properties": {
         "clientAccountId": {
@@ -3064,7 +3064,7 @@
           "type": "string"
         },
         "apiUpdateTime": {
-          "description": "Output only. The last update timestamp of the creative via API.",
+          "description": "Output only. The last update timestamp of the creative through the API.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3293,7 +3293,7 @@
           "type": "array"
         },
         "servingRestrictions": {
-          "description": "Output only. The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction).",
+          "description": "Output only. The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS versus HTTP request, or the type of auction).",
           "items": {
             "$ref": "ServingRestriction"
           },
@@ -3626,7 +3626,7 @@
           "type": "string"
         },
         "availableStartTime": {
-          "description": "Optional. Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.",
+          "description": "Optional. Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (for example, in milliseconds) will be truncated towards the start of time in seconds.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3666,7 +3666,7 @@
         },
         "creativeRestrictions": {
           "$ref": "CreativeRestrictions",
-          "description": "Output only. Restricitions about the creatives associated with the deal (i.e., size) This is available for Programmatic Guaranteed/Preferred Deals in Ad Manager.",
+          "description": "Output only. Restricitions about the creatives associated with the deal (for example, size) This is available for Programmatic Guaranteed/Preferred Deals in Ad Manager.",
           "readOnly": true
         },
         "creativeSafeFrameCompatibility": {
@@ -3841,7 +3841,7 @@
       "type": "object"
     },
     "DealTerms": {
-      "description": "The deal terms specify the details of a Product/deal. They specify things like price per buyer, the type of pricing model (e.g., fixed price, auction) and expected impressions from the publisher.",
+      "description": "The deal terms specify the details of a Product/deal. They specify things like price per buyer, the type of pricing model (for example, fixed price, auction) and expected impressions from the publisher.",
       "id": "DealTerms",
       "properties": {
         "brandingType": {
@@ -4170,7 +4170,7 @@
       "type": "object"
     },
     "FilterSet": {
-      "description": "A set of filters that is applied to a request for data. Within a filter set, an AND operation is performed across the filters represented by each field. An OR operation is performed across the filters represented by the multiple values of a repeated field, e.g., \"format=VIDEO AND deal_id=12 AND (seller_network_id=34 OR seller_network_id=56)\".",
+      "description": "A set of filters that is applied to a request for data. Within a filter set, an AND operation is performed across the filters represented by each field. An OR operation is performed across the filters represented by the multiple values of a repeated field, for example, \"format=VIDEO AND deal_id=12 AND (seller_network_id=34 OR seller_network_id=56)\".",
       "id": "FilterSet",
       "properties": {
         "absoluteDateRange": {
@@ -4193,11 +4193,11 @@
           "type": "array"
         },
         "creativeId": {
-          "description": "The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e., one whose name matches the `bidders/*/accounts/*/filterSets/*` pattern.",
+          "description": "The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, for example, one whose name matches the `bidders/*/accounts/*/filterSets/*` pattern.",
           "type": "string"
         },
         "dealId": {
-          "description": "The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e., one whose name matches the `bidders/*/accounts/*/filterSets/*` pattern.",
+          "description": "The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, for example, one whose name matches the `bidders/*/accounts/*/filterSets/*` pattern.",
           "format": "int64",
           "type": "string"
         },
@@ -4226,9 +4226,9 @@
           ],
           "enumDescriptions": [
             "A placeholder for an undefined format; indicates that no format filter will be applied.",
-            "The ad impression is a native ad, and display (i.e., image) format.",
+            "The ad impression is a native ad, and display (for example, image) format.",
             "The ad impression is a native ad, and video format.",
-            "The ad impression is not a native ad, and display (i.e., image) format.",
+            "The ad impression is not a native ad, and display (for example, image) format.",
             "The ad impression is not a native ad, and video format."
           ],
           "type": "string"
@@ -4245,9 +4245,9 @@
             ],
             "enumDescriptions": [
               "A placeholder for an undefined format; indicates that no format filter will be applied.",
-              "The ad impression is a native ad, and display (i.e., image) format.",
+              "The ad impression is a native ad, and display (for example, image) format.",
               "The ad impression is a native ad, and video format.",
-              "The ad impression is not a native ad, and display (i.e., image) format.",
+              "The ad impression is not a native ad, and display (for example, image) format.",
               "The ad impression is not a native ad, and video format."
             ],
             "type": "string"
@@ -4259,7 +4259,7 @@
           "type": "string"
         },
         "platforms": {
-          "description": "The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (i.e., if non-empty, results must match any one of the platforms).",
+          "description": "The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (for example, if non-empty, results must match any one of the platforms).",
           "items": {
             "enum": [
               "PLATFORM_UNSPECIFIED",
@@ -4293,7 +4293,7 @@
           "description": "A relative date range, defined by an offset from today and a duration. Interpreted relative to Pacific time zone."
         },
         "sellerNetworkIds": {
-          "description": "For Authorized Buyers only. The list of IDs of the seller (publisher) networks on which to filter; may be empty. The filters represented by multiple seller network IDs are ORed together (i.e., if non-empty, results must match any one of the publisher networks). See [seller-network-ids](https://developers.google.com/authorized-buyers/rtb/downloads/seller-network-ids) file for the set of existing seller network IDs.",
+          "description": "For Authorized Buyers only. The list of IDs of the seller (publisher) networks on which to filter; may be empty. The filters represented by multiple seller network IDs are ORed together (for example, if non-empty, results must match any one of the publisher networks). See [seller-network-ids](https://developers.google.com/authorized-buyers/rtb/downloads/seller-network-ids) file for the set of existing seller network IDs.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -4301,7 +4301,7 @@
           "type": "array"
         },
         "timeSeriesGranularity": {
-          "description": "The granularity of time intervals if a time series breakdown is desired; optional.",
+          "description": "The granularity of time intervals if a time series breakdown is preferred; optional.",
           "enum": [
             "TIME_SERIES_GRANULARITY_UNSPECIFIED",
             "HOURLY",
@@ -4337,7 +4337,7 @@
       "type": "object"
     },
     "FilteredBidDetailRow": {
-      "description": "The number of filtered bids with the specified dimension values, among those filtered due to the requested filtering reason (i.e. creative status), that have the specified detail.",
+      "description": "The number of filtered bids with the specified dimension values, among those filtered due to the requested filtering reason (for example, creative status), that have the specified detail.",
       "id": "FilteredBidDetailRow",
       "properties": {
         "bidCount": {
@@ -4817,7 +4817,7 @@
       "id": "ListFilteredBidsResponse",
       "properties": {
         "creativeStatusRows": {
-          "description": "List of rows, with counts of filtered bids aggregated by filtering reason (i.e. creative status).",
+          "description": "List of rows, with counts of filtered bids aggregated by filtering reason (for example, creative status).",
           "items": {
             "$ref": "CreativeStatusRow"
           },
@@ -4853,7 +4853,7 @@
       "id": "ListLosingBidsResponse",
       "properties": {
         "creativeStatusRows": {
-          "description": "List of rows, with counts of losing bids aggregated by loss reason (i.e. creative status).",
+          "description": "List of rows, with counts of losing bids aggregated by loss reason (for example, creative status).",
           "items": {
             "$ref": "CreativeStatusRow"
           },
@@ -4943,7 +4943,7 @@
       "id": "LocationContext",
       "properties": {
         "geoCriteriaIds": {
-          "description": "IDs representing the geo location for this context. Please refer to the [geo-table.csv](https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv) file for different geo criteria IDs.",
+          "description": "IDs representing the geo location for this context. Refer to the [geo-table.csv](https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv) file for different geo criteria IDs.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -4967,11 +4967,11 @@
         },
         "placementTargeting": {
           "$ref": "PlacementTargeting",
-          "description": "Placement targeting information, e.g., URL, mobile applications."
+          "description": "Placement targeting information, for example, URL, mobile applications."
         },
         "technologyTargeting": {
           "$ref": "TechnologyTargeting",
-          "description": "Technology targeting information, e.g., operating system, device category."
+          "description": "Technology targeting information, for example, operating system, device category."
         },
         "videoTargeting": {
           "$ref": "VideoTargeting",
@@ -4981,7 +4981,7 @@
       "type": "object"
     },
     "MetricValue": {
-      "description": "A metric value, with an expected value and a variance; represents a count that may be either exact or estimated (i.e. when sampled).",
+      "description": "A metric value, with an expected value and a variance; represents a count that may be either exact or estimated (for example, when sampled).",
       "id": "MetricValue",
       "properties": {
         "value": {
@@ -4990,7 +4990,7 @@
           "type": "string"
         },
         "variance": {
-          "description": "The variance (i.e. square of the standard deviation) of the metric value. If value is exact, variance is 0. Can be used to calculate margin of error as a percentage of value, using the following formula, where Z is the standard constant that depends on the desired size of the confidence interval (e.g. for 90% confidence interval, use Z = 1.645): marginOfError = 100 * Z * sqrt(variance) / value",
+          "description": "The variance (for example, square of the standard deviation) of the metric value. If value is exact, variance is 0. Can be used to calculate margin of error as a percentage of value, using the following formula, where Z is the standard constant that depends on the preferred size of the confidence interval (for example, for 90% confidence interval, use Z = 1.645): marginOfError = 100 * Z * sqrt(variance) / value",
           "format": "int64",
           "type": "string"
         }
@@ -5242,7 +5242,7 @@
       "type": "object"
     },
     "PlacementTargeting": {
-      "description": "Represents targeting about where the ads can appear, e.g., certain sites or mobile applications. Different placement targeting types will be logically OR'ed.",
+      "description": "Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed.",
       "id": "PlacementTargeting",
       "properties": {
         "mobileApplicationTargeting": {
@@ -5339,7 +5339,7 @@
       "type": "object"
     },
     "Product": {
-      "description": "A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.",
+      "description": "A product is a segment of inventory that a seller wants to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.",
       "id": "Product",
       "properties": {
         "availableEndTime": {
@@ -5722,16 +5722,16 @@
       "type": "object"
     },
     "RelativeDateRange": {
-      "description": "A relative date range, specified by an offset and a duration. The supported range of dates begins 30 days before today and ends today, i.e., the limits for these values are: offset_days >= 0 duration_days >= 1 offset_days + duration_days <= 30",
+      "description": "A relative date range, specified by an offset and a duration. The supported range of dates begins 30 days before today and ends today, for example, the limits for these values are: offset_days >= 0 duration_days >= 1 offset_days + duration_days <= 30",
       "id": "RelativeDateRange",
       "properties": {
         "durationDays": {
-          "description": "The number of days in the requested date range, e.g., for a range spanning today: 1. For a range spanning the last 7 days: 7.",
+          "description": "The number of days in the requested date range, for example, for a range spanning today: 1. For a range spanning the last 7 days: 7.",
           "format": "int32",
           "type": "integer"
         },
         "offsetDays": {
-          "description": "The end date of the filter set, specified as the number of days before today, e.g., for a range where the last date is today: 0.",
+          "description": "The end date of the filter set, specified as the number of days before today, for example, for a range where the last date is today: 0.",
           "format": "int32",
           "type": "integer"
         }
@@ -5860,7 +5860,7 @@
       "type": "object"
     },
     "ServingRestriction": {
-      "description": "Output only. A representation of the status of an ad in a specific context. A context here relates to where something ultimately serves (for example, a user or publisher geo, a platform, an HTTPS vs HTTP request, or the type of auction).",
+      "description": "Output only. A representation of the status of an ad in a specific context. A context here relates to where something ultimately serves (for example, a user or publisher geo, a platform, an HTTPS versus HTTP request, or the type of auction).",
       "id": "ServingRestriction",
       "properties": {
         "contexts": {
@@ -5875,7 +5875,7 @@
           "description": "Disapproval bound to this restriction. Only present if status=DISAPPROVED. Can be used to filter the response of the creatives.list method."
         },
         "disapprovalReasons": {
-          "description": "Any disapprovals bound to this restriction. Only present if status=DISAPPROVED. Can be used to filter the response of the creatives.list method. Deprecated; please use disapproval field instead.",
+          "description": "Any disapprovals bound to this restriction. Only present if status=DISAPPROVED. Can be used to filter the response of the creatives.list method. Deprecated; use disapproval field instead.",
           "items": {
             "$ref": "Disapproval"
           },
@@ -6034,7 +6034,7 @@
       "type": "object"
     },
     "UrlTargeting": {
-      "description": "Represents a list of targeted and excluded URLs (e.g., google.com). For Private Auction and AdX Preferred Deals, URLs are either included or excluded. For Programmatic Guaranteed and Preferred Deals, this doesn't apply.",
+      "description": "Represents a list of targeted and excluded URLs (for example, google.com). For Private Auction and AdX Preferred Deals, URLs are either included or excluded. For Programmatic Guaranteed and Preferred Deals, this doesn't apply.",
       "id": "UrlTargeting",
       "properties": {
         "excludedUrls": {

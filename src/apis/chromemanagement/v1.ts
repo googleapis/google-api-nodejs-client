@@ -224,7 +224,7 @@ export namespace chromemanagement_v1 {
     type?: string | null;
   }
   /**
-   * Audio report.
+   * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceAudioStatus](https://chromeenterprise.google/policies/#ReportDeviceAudioStatus) * Data Collection Frequency: 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1AudioStatusReport {
     /**
@@ -257,7 +257,7 @@ export namespace chromemanagement_v1 {
     reportTime?: string | null;
   }
   /**
-   * Battery info
+   * Information about the battery. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1BatteryInfo {
     /**
@@ -286,7 +286,7 @@ export namespace chromemanagement_v1 {
     technology?: string | null;
   }
   /**
-   * Sampling data for battery.
+   * Sampling data for battery. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1BatterySampleReport {
     /**
@@ -323,7 +323,7 @@ export namespace chromemanagement_v1 {
     voltage?: string | null;
   }
   /**
-   * Status data for battery.
+   * Status data for battery. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1BatteryStatusReport {
     /**
@@ -350,6 +350,35 @@ export namespace chromemanagement_v1 {
      * Output only. Battery serial number.
      */
     serialNumber?: string | null;
+  }
+  /**
+   * Boot performance report of a device. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceBootMode](https://chromeenterprise.google/policies/#ReportDeviceBootMode) * Data Collection Frequency: On every boot up event * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
+   */
+  export interface Schema$GoogleChromeManagementV1BootPerformanceReport {
+    /**
+     * Total time to boot up.
+     */
+    bootUpDuration?: string | null;
+    /**
+     * The timestamp when power came on.
+     */
+    bootUpTime?: string | null;
+    /**
+     * Timestamp when the report was collected.
+     */
+    reportTime?: string | null;
+    /**
+     * Total time since shutdown start to power off.
+     */
+    shutdownDuration?: string | null;
+    /**
+     * The shutdown reason.
+     */
+    shutdownReason?: string | null;
+    /**
+     * The timestamp when shutdown.
+     */
+    shutdownTime?: string | null;
   }
   /**
    * Describes a browser version and its install count.
@@ -388,6 +417,10 @@ export namespace chromemanagement_v1 {
      * Output only. Whether the app or extension is in a published state in the Chrome Web Store.
      */
     isCwsHosted?: boolean | null;
+    /**
+     * Output only. Whether an app supports policy for extensions.
+     */
+    isExtensionPolicySupported?: boolean | null;
     /**
      * Output only. Whether the app is only for Kiosk mode on ChromeOS devices
      */
@@ -528,6 +561,27 @@ export namespace chromemanagement_v1 {
     unsupportedPolicyCount?: string | null;
   }
   /**
+   * Response containing a list of devices with a specific type of hardware specification from the requested hardware type.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse {
+    /**
+     * The DeviceHardwareCountReport for device cpu type (for example Intel(R) Core(TM) i7-10610U CPU @ 1.80GHz).
+     */
+    cpuReports?: Schema$GoogleChromeManagementV1DeviceHardwareCountReport[];
+    /**
+     * The DeviceHardwareCountReport for device memory amount in gigabytes (for example 16).
+     */
+    memoryReports?: Schema$GoogleChromeManagementV1DeviceHardwareCountReport[];
+    /**
+     * The DeviceHardwareCountReport for device model type (for example Acer C7 Chromebook).
+     */
+    modelReports?: Schema$GoogleChromeManagementV1DeviceHardwareCountReport[];
+    /**
+     * The DeviceHardwareCountReport for device storage amount in gigabytes (for example 128).
+     */
+    storageReports?: Schema$GoogleChromeManagementV1DeviceHardwareCountReport[];
+  }
+  /**
    * Response containing requested browser versions details and counts.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeVersionsResponse {
@@ -562,11 +616,11 @@ export namespace chromemanagement_v1 {
     totalSize?: number | null;
   }
   /**
-   * CPU specs for a CPU.
+   * CPU specifications for the device * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1CpuInfo {
     /**
-     * Output only. The CPU architecture.
+     * Output only. Architecture type for the CPU. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
      */
     architecture?: string | null;
     /**
@@ -587,7 +641,7 @@ export namespace chromemanagement_v1 {
     model?: string | null;
   }
   /**
-   * Contains samples of the cpu status reports.
+   * Provides information about the status of the CPU. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Every 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1CpuStatusReport {
     /**
@@ -608,7 +662,7 @@ export namespace chromemanagement_v1 {
     sampleFrequency?: string | null;
   }
   /**
-   * CPU temperature of a device. Sampled per CPU core in Celsius
+   * CPU temperature of a device. Sampled per CPU core in Celsius. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Every 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1CpuTemperatureInfo {
     /**
@@ -657,6 +711,19 @@ export namespace chromemanagement_v1 {
      * Public model name of the devices.
      */
     model?: string | null;
+  }
+  /**
+   * Report for CountChromeDevicesPerHardwareSpecResponse, contains the count of devices with a unique hardware specification.
+   */
+  export interface Schema$GoogleChromeManagementV1DeviceHardwareCountReport {
+    /**
+     * Public name of the hardware specification.
+     */
+    bucket?: string | null;
+    /**
+     * Count of devices with a unique hardware specification.
+     */
+    count?: string | null;
   }
   /**
    * Status of the single storage device.
@@ -775,7 +842,7 @@ export namespace chromemanagement_v1 {
     driverVersion?: string | null;
   }
   /**
-   * Information of the graphics subsystem.
+   * Information of the graphics subsystem. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceGraphicsStatus](https://chromeenterprise.google/policies/#ReportDeviceGraphicsStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1GraphicsInfo {
     /**
@@ -784,7 +851,7 @@ export namespace chromemanagement_v1 {
     adapterInfo?: Schema$GoogleChromeManagementV1GraphicsAdapterInfo;
   }
   /**
-   * Information of the graphics subsystem.
+   * Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1GraphicsStatusReport {
     /**
@@ -869,7 +936,20 @@ export namespace chromemanagement_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Memory information of a device.
+   * Response message for listing telemetry events for a customer.
+   */
+  export interface Schema$GoogleChromeManagementV1ListTelemetryEventsResponse {
+    /**
+     * Token to specify next page in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Telemetry events returned in the response.
+     */
+    telemetryEvents?: Schema$GoogleChromeManagementV1TelemetryEvent[];
+  }
+  /**
+   * Memory information of a device. * This field has both telemetry and device information: - `totalRamBytes` - Device information - `availableRamBytes` - Telemetry information - `totalMemoryEncryption` - Device information * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: - `totalRamBytes` - Only at upload - `availableRamBytes` - Every 10 minutes - `totalMemoryEncryption` - at device startup * Default Data Reporting Frequency: - `totalRamBytes` - 3 hours - `availableRamBytes` - 3 hours - `totalMemoryEncryption` - at device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: only for `totalMemoryEncryption` * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1MemoryInfo {
     /**
@@ -886,7 +966,7 @@ export namespace chromemanagement_v1 {
     totalRamBytes?: string | null;
   }
   /**
-   * Contains samples of memory status reports.
+   * Contains samples of memory status reports. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: Only at upload, SystemRamFreeByes is collected every 10 minutes * Default Data Reporting Frequency: Every 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1MemoryStatusReport {
     /**
@@ -907,7 +987,7 @@ export namespace chromemanagement_v1 {
     systemRamFreeBytes?: string | null;
   }
   /**
-   * Network device.
+   * Details about the network device. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportNetworkDeviceConfiguration](https://chromeenterprise.google/policies/#ReportNetworkDeviceConfiguration) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1NetworkDevice {
     /**
@@ -949,7 +1029,7 @@ export namespace chromemanagement_v1 {
     reportTime?: string | null;
   }
   /**
-   * Network devices info.
+   * Network device information. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportNetworkDeviceConfiguration](https://chromeenterprise.google/policies/#ReportNetworkDeviceConfiguration) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1NetworkInfo {
     /**
@@ -958,7 +1038,7 @@ export namespace chromemanagement_v1 {
     networkDevices?: Schema$GoogleChromeManagementV1NetworkDevice[];
   }
   /**
-   * State of visible/configured networks.
+   * State of visible/configured networks. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportNetworkStatus](https://chromeenterprise.google/policies/#ReportNetworkStatus) * Data Collection Frequency: 60 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: Yes
    */
   export interface Schema$GoogleChromeManagementV1NetworkStatusReport {
     /**
@@ -1019,7 +1099,7 @@ export namespace chromemanagement_v1 {
     wifiPowerManagementEnabled?: boolean | null;
   }
   /**
-   * Contains information regarding the current OS update status.
+   * Contains information regarding the current OS update status. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceOsUpdateStatus](https://chromeenterprise.google/policies/#ReportDeviceOsUpdateStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1OsUpdateStatus {
     /**
@@ -1048,7 +1128,7 @@ export namespace chromemanagement_v1 {
     updateState?: string | null;
   }
   /**
-   * Status data for storage.
+   * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1StorageInfo {
     /**
@@ -1082,7 +1162,7 @@ export namespace chromemanagement_v1 {
     volumeId?: string | null;
   }
   /**
-   * Status data for storage.
+   * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1StorageStatusReport {
     /**
@@ -1094,6 +1174,10 @@ export namespace chromemanagement_v1 {
      */
     reportTime?: string | null;
   }
+  /**
+   * `TelemetryAudioSevereUnderrunEvent` is triggered when a audio devices run out of buffer data for more than 5 seconds.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent {}
   /**
    * Telemetry data collected from a managed device.
    */
@@ -1110,6 +1194,10 @@ export namespace chromemanagement_v1 {
      * Output only. Battery reports collected periodically.
      */
     batteryStatusReport?: Schema$GoogleChromeManagementV1BatteryStatusReport[];
+    /**
+     * Output only. Boot performance reports of the device.
+     */
+    bootPerformanceReport?: Schema$GoogleChromeManagementV1BootPerformanceReport[];
     /**
      * Output only. Information regarding CPU specs for the device.
      */
@@ -1184,7 +1272,96 @@ export namespace chromemanagement_v1 {
     thunderboltInfo?: Schema$GoogleChromeManagementV1ThunderboltInfo[];
   }
   /**
-   * Thunderbolt bus info.
+   * Information about a device associated with telemetry data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryDeviceInfo {
+    /**
+     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.
+     */
+    deviceId?: string | null;
+    /**
+     * Output only. Organization unit ID of the device.
+     */
+    orgUnitId?: string | null;
+  }
+  /**
+   * Telemetry data reported by a managed device.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryEvent {
+    /**
+     * Output only. Payload for audio severe underrun event. Present only when the `event_type` field is `AUDIO_SEVERE_UNDERRUN`.
+     */
+    audioSevereUnderrunEvent?: Schema$GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent;
+    /**
+     * Output only. Information about the device associated with the event.
+     */
+    device?: Schema$GoogleChromeManagementV1TelemetryDeviceInfo;
+    /**
+     * The event type of the current event.
+     */
+    eventType?: string | null;
+    /**
+     * Output only. Payload for HTTPS latency change event. Present only when `event_type` is `NETWORK_HTTPS_LATENCY_CHANGE`.
+     */
+    httpsLatencyChangeEvent?: Schema$GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent;
+    /**
+     * Output only. Resource name of the event.
+     */
+    name?: string | null;
+    /**
+     * Output only. Payload for network connection state change event. Present only when `event_type` is `NETWORK_CONNECTION_STATE_CHANGE`.
+     */
+    networkConnectionStateChangeEvent?: Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent;
+    /**
+     * Timestamp that represents when the event was reported.
+     */
+    reportTime?: string | null;
+    /**
+     * Output only. Information about the user associated with the event.
+     */
+    user?: Schema$GoogleChromeManagementV1TelemetryUserInfo;
+  }
+  /**
+   * Https latency routine is run periodically and `TelemetryHttpsLatencyChangeEvent` is triggered if a latency problem was detected or if the device has recovered from a latency problem..
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent {
+    /**
+     * HTTPS latency routine data that triggered the event.
+     */
+    httpsLatencyRoutineData?: Schema$GoogleChromeManagementV1HttpsLatencyRoutineData;
+    /**
+     * Current HTTPS latency state.
+     */
+    httpsLatencyState?: string | null;
+  }
+  /**
+   * `TelemetryNetworkConnectionStateChangeEvent` is triggered on network connection state changes.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent {
+    /**
+     * Current connection state of the network.
+     */
+    connectionState?: string | null;
+    /**
+     * Unique identifier of the network.
+     */
+    guid?: string | null;
+  }
+  /**
+   * Information about a user associated with telemetry data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryUserInfo {
+    /**
+     * Output only. User's email.
+     */
+    email?: string | null;
+    /**
+     * Output only. Organization unit ID of the user.
+     */
+    orgUnitId?: string | null;
+  }
+  /**
+   * Thunderbolt bus info. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceSecurityStatus](https://chromeenterprise.google/policies/#ReportDeviceSecurityStatus) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: No * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1ThunderboltInfo {
     /**
@@ -1193,7 +1370,7 @@ export namespace chromemanagement_v1 {
     securityLevel?: string | null;
   }
   /**
-   * Memory encryption information of a device.
+   * Memory encryption information of a device. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1TotalMemoryEncryptionInfo {
     /**
@@ -2272,6 +2449,156 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Counts of devices with a specific hardware specification from the requested hardware type (for example model name, processor type). Further information can be found here https://support.google.com/chrome/a/answer/10564947
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeHardwareFleetDevices({
+     *       // Required. The customer ID or "my_customer".
+     *       customer: 'customers/my-customer',
+     *       // Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     *       orgUnitId: 'placeholder-value',
+     *       // Required. Mask of the fields that should be populated in the returned report.
+     *       readMask: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cpuReports": [],
+     *   //   "memoryReports": [],
+     *   //   "modelReports": [],
+     *   //   "storageReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeHardwareFleetDevices(
+      params: Params$Resource$Customers$Reports$Countchromehardwarefleetdevices,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countChromeHardwareFleetDevices(
+      params?: Params$Resource$Customers$Reports$Countchromehardwarefleetdevices,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>;
+    countChromeHardwareFleetDevices(
+      params: Params$Resource$Customers$Reports$Countchromehardwarefleetdevices,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeHardwareFleetDevices(
+      params: Params$Resource$Customers$Reports$Countchromehardwarefleetdevices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+    ): void;
+    countChromeHardwareFleetDevices(
+      params: Params$Resource$Customers$Reports$Countchromehardwarefleetdevices,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+    ): void;
+    countChromeHardwareFleetDevices(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+    ): void;
+    countChromeHardwareFleetDevices(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromehardwarefleetdevices
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromehardwarefleetdevices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countchromehardwarefleetdevices;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/reports:countChromeHardwareFleetDevices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of installed Chrome versions.
      * @example
      * ```js
@@ -2765,6 +3092,21 @@ export namespace chromemanagement_v1 {
      */
     readMask?: string;
   }
+  export interface Params$Resource$Customers$Reports$Countchromehardwarefleetdevices
+    extends StandardParameters {
+    /**
+     * Required. The customer ID or "my_customer".
+     */
+    customer?: string;
+    /**
+     * Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     */
+    orgUnitId?: string;
+    /**
+     * Required. Mask of the fields that should be populated in the returned report.
+     */
+    readMask?: string;
+  }
   export interface Params$Resource$Customers$Reports$Countchromeversions
     extends StandardParameters {
     /**
@@ -2854,9 +3196,11 @@ export namespace chromemanagement_v1 {
   export class Resource$Customers$Telemetry {
     context: APIRequestContext;
     devices: Resource$Customers$Telemetry$Devices;
+    events: Resource$Customers$Telemetry$Events;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.devices = new Resource$Customers$Telemetry$Devices(this.context);
+      this.events = new Resource$Customers$Telemetry$Events(this.context);
     }
   }
 
@@ -2907,6 +3251,7 @@ export namespace chromemanagement_v1 {
      *   //   "audioStatusReport": [],
      *   //   "batteryInfo": [],
      *   //   "batteryStatusReport": [],
+     *   //   "bootPerformanceReport": [],
      *   //   "cpuInfo": [],
      *   //   "cpuStatusReport": [],
      *   //   "customer": "my_customer",
@@ -3200,6 +3545,187 @@ export namespace chromemanagement_v1 {
     pageSize?: number;
     /**
      * Token to specify next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    parent?: string;
+    /**
+     * Required. Read mask to specify which fields to return.
+     */
+    readMask?: string;
+  }
+
+  export class Resource$Customers$Telemetry$Events {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List telemetry events.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.events.list({
+     *     // Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     parent: 'customers/my-customer',
+     *     // Required. Read mask to specify which fields to return.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "telemetryEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Telemetry$Events$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>;
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Events$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Telemetry$Events$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Telemetry$Events$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Telemetry$Events$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/telemetry/events').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryEventsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Telemetry$Events$List
+    extends StandardParameters {
+    /**
+     * Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify next page in the list.
      */
     pageToken?: string;
     /**

@@ -15,6 +15,7 @@
   "description": "Public API for managing Manufacturer Center related data.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/manufacturers/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -287,7 +288,7 @@
       }
     }
   },
-  "revision": "20220812",
+  "revision": "20220913",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -357,7 +358,7 @@
         },
         "grocery": {
           "$ref": "Grocery",
-          "description": "Grocery Attributes. For more information, see go/mfc-nutrition-attributes."
+          "description": "Grocery Attributes. See more at https://support.google.com/manufacturers/answer/12098458#grocery."
         },
         "gtin": {
           "description": "The Global Trade Item Number (GTIN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gtin.",
@@ -391,7 +392,7 @@
         },
         "nutrition": {
           "$ref": "Nutrition",
-          "description": "Nutrition Attributes. For more information, see go/mfc-nutrition-attributes."
+          "description": "Nutrition Attributes. See more at https://support.google.com/manufacturers/answer/12098458#food-servings."
         },
         "pattern": {
           "description": "The pattern of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#pattern.",
@@ -571,7 +572,7 @@
       "type": "object"
     },
     "FloatUnit": {
-      "description": "Combination of float amout and unit.",
+      "description": "Combination of float amount and unit.",
       "id": "FloatUnit",
       "properties": {
         "amount": {

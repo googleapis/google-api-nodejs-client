@@ -350,7 +350,7 @@ export namespace androidmanagement_v1 {
      */
     installType?: string | null;
     /**
-     * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.
+     * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to configure a dedicated device.
      */
     lockTaskAllowed?: boolean | null;
     /**
@@ -373,6 +373,10 @@ export namespace androidmanagement_v1 {
      * Explicit permission grants or denials for the app. These values override the default_permission_policy and permission_grants which apply to all apps.
      */
     permissionGrants?: Schema$PermissionGrant[];
+    /**
+     * Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.
+     */
+    workProfileWidgets?: string | null;
   }
   /**
    * Information reported about an installed app.
@@ -387,7 +391,7 @@ export namespace androidmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * List of app events. The most recent 20 events are stored in the list.
+     * The list of app events which have occurred in the last 30 hours.
      */
     events?: Schema$ApplicationEvent[];
     /**
@@ -774,6 +778,10 @@ export namespace androidmanagement_v1 {
      * Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.
      */
     showWorkContactsInPersonalProfile?: string | null;
+    /**
+     * Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.
+     */
+    workProfileWidgetsDefault?: string | null;
   }
   /**
    * Validates whether Android’s built-in cryptographic library (BoringSSL) is valid. Should always succeed on device boot, if it fails, the device should be considered untrusted.
@@ -1128,7 +1136,7 @@ export namespace androidmanagement_v1 {
     termsAndConditions?: Schema$TermsAndConditions[];
   }
   /**
-   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.
+   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command (https://developer.android.com/management/reference/rest/v1/enterprises.devices/issueCommand#CommandType) on extension apps if needed for Android 13 and above.
    */
   export interface Schema$ExtensionConfig {
     /**
@@ -1172,7 +1180,7 @@ export namespace androidmanagement_v1 {
     filePath?: string | null;
   }
   /**
-   * A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.
+   * A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.Note: For Freeze Periods to take effect, SystemUpdateType cannot be specified as SYSTEM_UPDATE_TYPE_UNSPECIFIED, because freeze periods require a defined policy to be specified.
    */
   export interface Schema$FreezePeriod {
     /**
@@ -1922,7 +1930,7 @@ export namespace androidmanagement_v1 {
      */
     accountTypesWithManagementDisabled?: string[] | null;
     /**
-     * Whether camera is disabled.
+     * If true, the camera is disabled on the personal profile.
      */
     cameraDisabled?: boolean | null;
     /**
@@ -1938,7 +1946,7 @@ export namespace androidmanagement_v1 {
      */
     personalPlayStoreMode?: string | null;
     /**
-     * Whether screen capture is disabled.
+     * If true, screen capture is disabled for all users.
      */
     screenCaptureDisabled?: boolean | null;
   }
@@ -2079,7 +2087,7 @@ export namespace androidmanagement_v1 {
      */
     installUnknownSourcesAllowed?: boolean | null;
     /**
-     * Whether the keyguard is disabled.
+     * If true, this disables the Lock Screen (https://source.android.com/docs/core/display/multi_display/lock-screen) for primary and/or secondary displays.
      */
     keyguardDisabled?: boolean | null;
     /**
@@ -2227,7 +2235,7 @@ export namespace androidmanagement_v1 {
      */
     setWallpaperDisabled?: boolean | null;
     /**
-     * Whether location sharing is disabled.
+     * Whether location sharing is disabled. share_location_disabled is supported for both fully managed devices and personally owned work profiles.
      */
     shareLocationDisabled?: boolean | null;
     /**
@@ -2263,7 +2271,7 @@ export namespace androidmanagement_v1 {
      */
     tetheringConfigDisabled?: boolean | null;
     /**
-     * Whether user uninstallation of applications is disabled.
+     * Whether user uninstallation of applications is disabled. This prevents apps from being uninstalled, even those removed using applications
      */
     uninstallAppsDisabled?: boolean | null;
     /**
@@ -2275,7 +2283,7 @@ export namespace androidmanagement_v1 {
      */
     usageLog?: Schema$UsageLog;
     /**
-     * Whether transferring files over USB is disabled.
+     * Whether transferring files over USB is disabled. This is supported only on company-owned devices.
      */
     usbFileTransferDisabled?: boolean | null;
     /**
@@ -2291,7 +2299,7 @@ export namespace androidmanagement_v1 {
      */
     vpnConfigDisabled?: boolean | null;
     /**
-     * Whether configuring Wi-Fi access points is disabled.Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
+     * Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
      */
     wifiConfigDisabled?: boolean | null;
     /**
@@ -2304,7 +2312,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$PolicyEnforcementRule {
     /**
-     * An action to block access to apps and data on a fully managed device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified.
+     * An action to block access to apps and data on a company owned device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified.
      */
     blockAction?: Schema$BlockAction;
     /**
@@ -2312,7 +2320,7 @@ export namespace androidmanagement_v1 {
      */
     settingName?: string | null;
     /**
-     * An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.
+     * An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified.
      */
     wipeAction?: Schema$WipeAction;
   }
@@ -2860,7 +2868,7 @@ export namespace androidmanagement_v1 {
     value?: string | null;
   }
   /**
-   * An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.
+   * An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified.
    */
   export interface Schema$WipeAction {
     /**
@@ -3862,7 +3870,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Deletes a device. This operation wipes the device.
+     * Deletes a device. This operation wipes the device. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.
      * @example
      * ```js
      * // Before running the sample:
@@ -3991,7 +3999,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Gets a device.
+     * Gets a device. Deleted devices will respond with a 404 error.
      * @example
      * ```js
      * // Before running the sample:
@@ -4302,7 +4310,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Lists devices for a given enterprise.
+     * Lists devices for a given enterprise. Deleted devices are not returned in the response.
      * @example
      * ```js
      * // Before running the sample:

@@ -1,5 +1,27 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v6.0.0...serviceconsumermanagement-v7.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v5.1.0...serviceconsumermanagement-v6.0.0) (2022-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceconsumermanagement:** This release has breaking changes.
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([6906817](https://github.com/googleapis/google-api-nodejs-client/commit/69068171ba8a8c093ef0406a5b583a7797fa8c56))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v5.0.0...serviceconsumermanagement-v5.1.0) (2022-08-19)
 
 

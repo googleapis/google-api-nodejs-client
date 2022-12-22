@@ -110,7 +110,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. Specifies the filters for the products results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId Multiple parameters can be specified, for example: \"regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign\"",
+                  "description": "Optional. Specifies the filters for the product results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`",
                   "location": "query",
                   "type": "string"
                 },
@@ -177,7 +177,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if the specified parameter(s) is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - region_codes: \"US\" - zip_code: \"94043\" - eligibility_id: \"2022H1Campaign\" Multiple parameters can be specified, for example: \"region_codes=US zip_code=94043 eligibility_id=2022H1Campaign\"",
+                  "description": "Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`",
                   "location": "query",
                   "type": "string"
                 },
@@ -290,7 +290,7 @@
               }
             },
             "extend": {
-              "description": "Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.",
+              "description": "[Deprecated] New partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:extend",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.extend",
@@ -396,14 +396,30 @@
       }
     }
   },
-  "revision": "20220818",
+  "revision": "20221212",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
+    "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
+      "description": "Describes the amount unit including the currency code.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1Amount",
+      "properties": {
+        "amountMicros": {
+          "description": "Required. Amount in micros (1_000_000 micros = 1 currency unit)",
+          "format": "int64",
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Required. Currency codes in accordance with [ISO-4217 Currency Codes] (https://en.wikipedia.org/wiki/ISO_4217). For example, USD.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
       "id": "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest",
       "properties": {
         "cancelImmediately": {
-          "description": "Optional. If true, the subscription will be cancelled immediately. Otherwise, the subscription will be cancelled at renewal_time, and therefore no prorated refund will be issued for the rest of the cycle.",
+          "description": "Optional. If true, Google will cancel the subscription immediately, and issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and therefore, will not issue a refund.",
           "type": "boolean"
         },
         "cancellationReason": {
@@ -543,7 +559,7 @@
       "id": "GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest",
       "properties": {
         "filter": {
-          "description": "Optional. Specifies the filters for the promotion results. The syntax defined in the EBNF grammar: https://google.aip.dev/assets/misc/ebnf-filtering.txt. An error will be thrown if any specified parameter is not supported. Currently, it can only be used by Youtube partners. Allowed parameters are: - regionCodes - zipCode - eligibilityId - applicableProducts Multiple parameters can be specified, for example: \"regionCodes=US zipCode=94043 eligibilityId=2022H1Campaign\", or \"applicableProducts=partners/p1/products/product2\"",
+          "description": "Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: - Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) - Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` - Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`",
           "type": "string"
         },
         "pageSize": {
@@ -572,6 +588,60 @@
             "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Promotion"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload": {
+      "description": "Payload specific to Google One products.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
+      "properties": {
+        "campaigns": {
+          "description": "Campaign attributed to sales of this subscription.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "offering": {
+          "description": "The type of offering the subscription was sold by the partner. e.g. VAS.",
+          "enum": [
+            "OFFERING_UNSPECIFIED",
+            "OFFERING_VAS_BUNDLE",
+            "OFFERING_VAS_STANDALONE",
+            "OFFERING_HARD_BUNDLE",
+            "OFFERING_SOFT_BUNDLE"
+          ],
+          "enumDescriptions": [
+            "The type of partner offering is unspecified.",
+            "Google One product purchased as a Value added service in addition to existing partner's products. Customer pays additional amount for Google One product.",
+            "Google One product purchased by itself by customer as a value add service. Customer pays additional amount for Google One product.",
+            "Product purchased as part of a hard bundle where Google One was included with the bundle. Google One pricing is included in the bundle.",
+            "Purchased as part of a bundle where Google One was provided as an option. Google One pricing is included in the bundle."
+          ],
+          "type": "string"
+        },
+        "salesChannel": {
+          "description": "The type of sales channel through which the subscription was sold.",
+          "enum": [
+            "CHANNEL_UNSPECIFIED",
+            "CHANNEL_RETAIL",
+            "CHANNEL_ONLINE_WEB",
+            "CHANNEL_ONLINE_ANDROID_APP",
+            "CHANNEL_ONLINE_IOS_APP"
+          ],
+          "enumDescriptions": [
+            "The channel type is unspecified.",
+            "Sold at store.",
+            "Sold through partner website.",
+            "Sold through partner android app.",
+            "Sold through partner iOS app."
+          ],
+          "type": "string"
+        },
+        "storeId": {
+          "description": "The identifier for the partner store where the subscription was sold.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -630,9 +700,17 @@
       "id": "GoogleCloudPaymentsResellerSubscriptionV1Product",
       "properties": {
         "name": {
-          "description": "Output only. Response only. Resource name of the subscription. It will have the format of \"partners/{partner_id}/products/{product_id}\"",
+          "description": "Output only. Response only. Resource name of the product. It will have the format of \"partners/{partner_id}/products/{product_id}\"",
           "readOnly": true,
           "type": "string"
+        },
+        "priceConfigs": {
+          "description": "Output only. Price configs for the product in the available regions.",
+          "items": {
+            "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "regionCodes": {
           "description": "Output only. 2-letter ISO region code where the product is available in. Ex. \"US\" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1",
@@ -654,6 +732,38 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1ProductPayload": {
+      "description": "Specifies product specific payload.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1ProductPayload",
+      "properties": {
+        "googleOnePayload": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
+          "description": "Payload specific to Google One products."
+        },
+        "youtubePayload": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload",
+          "description": "Payload specific to Youtube products."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig": {
+      "description": "Configs the prices in an available region.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig",
+      "properties": {
+        "amount": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Amount",
+          "description": "Output only. The price in the region.",
+          "readOnly": true
+        },
+        "regionCode": {
+          "description": "Output only. 2-letter ISO region code where the product is available in. Ex. \"US\".",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -745,11 +855,27 @@
       "description": "The duration of an introductory pricing promotion.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec",
       "properties": {
+        "discountAmount": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Amount",
+          "description": "Output only. The discount amount. The value is positive.",
+          "readOnly": true
+        },
+        "discountRatioMicros": {
+          "description": "Output only. The discount percentage in micros. For example, 50,000 represents 5%.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "recurrenceCount": {
           "description": "Output only. Output Only. The duration of an introductory offer in billing cycles.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "regionCode": {
+          "description": "Output only. 2-letter ISO region code where the product is available in. Ex. \"US\".",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -811,8 +937,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. Response only. Resource name of the subscription. It will have the format of \"partners/{partner_id}/subscriptions/{subscription_id}\"",
-          "readOnly": true,
+          "description": "Optional. Resource name of the subscription. It will have the format of \"partners/{partner_id}/subscriptions/{subscription_id}\". This is available for authorizeAddon, but otherwise is response only.",
           "type": "string"
         },
         "partnerUserToken": {
@@ -878,7 +1003,8 @@
             "STATE_ACTIVE",
             "STATE_CANCELLED",
             "STATE_IN_GRACE_PERIOD",
-            "STATE_CANCEL_AT_END_OF_CYCLE"
+            "STATE_CANCEL_AT_END_OF_CYCLE",
+            "STATE_SUSPENDED"
           ],
           "enumDescriptions": [
             "The state is unspecified.",
@@ -886,7 +1012,8 @@
             "The subscription is active.",
             "The subscription is cancelled.",
             "The subscription has not been extended by the partner after the end of current cycle.",
-            "The subscription is waiting to be cancelled by the next recurrence cycle."
+            "The subscription is waiting to be cancelled by the next recurrence cycle.",
+            "The subscription is suspended."
           ],
           "readOnly": true,
           "type": "string"
@@ -938,7 +1065,7 @@
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem": {
-      "description": "Individual line item definition of a subscription. Next id: 8",
+      "description": "Individual line item definition of a subscription.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem",
       "properties": {
         "description": {
@@ -968,6 +1095,10 @@
           "description": "Required. Product resource name that identifies one the line item The format is 'partners/{partner_id}/products/{product_id}'.",
           "type": "string"
         },
+        "productPayload": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ProductPayload",
+          "description": "Optional. Product specific payload for this line item."
+        },
         "recurrenceType": {
           "description": "Output only. The recurrence type of the line item.",
           "enum": [
@@ -991,7 +1122,8 @@
             "LINE_ITEM_STATE_INACTIVE",
             "LINE_ITEM_STATE_NEW",
             "LINE_ITEM_STATE_ACTIVATING",
-            "LINE_ITEM_STATE_DEACTIVATING"
+            "LINE_ITEM_STATE_DEACTIVATING",
+            "LINE_ITEM_STATE_WAITING_TO_DEACTIVATE"
           ],
           "enumDescriptions": [
             "Unspecified state.",
@@ -999,7 +1131,8 @@
             "The line item is in INACTIVE state.",
             "The line item is new, and is not activated or charged yet.",
             "The line item is being activated in order to be charged. If a free trial applies to the line item, the line item is pending a prorated charge at the end of the free trial period, as indicated by `line_item_free_trial_end_time`.",
-            "The line item is being deactivated."
+            "The line item is being deactivated, and a prorated refund in being processed.",
+            "The line item is scheduled to be deactivated at the end of the current cycle."
           ],
           "readOnly": true,
           "type": "string"
@@ -1092,6 +1225,20 @@
         "subscription": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Subscription",
           "description": "The updated subscription resource."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload": {
+      "description": "Payload specific to Youtube products.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload",
+      "properties": {
+        "partnerEligibilityIds": {
+          "description": "The list of eligibility_ids which are applicable for the line item.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -436,7 +436,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -511,6 +511,38 @@
                 }
               },
               "resources": {
+                "connectionSchemaMetadata": {
+                  "methods": {
+                    "refresh": {
+                      "description": "Refresh runtime schema of a connection.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/connectionSchemaMetadata:refresh",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.connections.connectionSchemaMetadata.refresh",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name. Format: projects/{project}/locations/{location}/connections/{connection}/connectionSchemaMetadata",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/connectionSchemaMetadata$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:refresh",
+                      "request": {
+                        "$ref": "RefreshConnectionSchemaMetadataRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "runtimeActionSchemas": {
                   "methods": {
                     "list": {
@@ -1047,7 +1079,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221201",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1116,14 +1148,16 @@
             "USER_PASSWORD",
             "OAUTH2_JWT_BEARER",
             "OAUTH2_CLIENT_CREDENTIALS",
-            "SSH_PUBLIC_KEY"
+            "SSH_PUBLIC_KEY",
+            "OAUTH2_AUTH_CODE_FLOW"
           ],
           "enumDescriptions": [
             "Authentication type not specified.",
             "Username and Password Authentication.",
             "JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication",
             "Oauth 2.0 Client Credentials Grant Authentication",
-            "SSH Public Key Authentication"
+            "SSH Public Key Authentication",
+            "Oauth 2.0 Authorization Code Flow"
           ],
           "type": "string"
         },
@@ -1157,14 +1191,16 @@
             "USER_PASSWORD",
             "OAUTH2_JWT_BEARER",
             "OAUTH2_CLIENT_CREDENTIALS",
-            "SSH_PUBLIC_KEY"
+            "SSH_PUBLIC_KEY",
+            "OAUTH2_AUTH_CODE_FLOW"
           ],
           "enumDescriptions": [
             "Authentication type not specified.",
             "Username and Password Authentication.",
             "JSON Web Token (JWT) Profile for Oauth 2.0 Authorization Grant based authentication",
             "Oauth 2.0 Client Credentials Grant Authentication",
-            "SSH Public Key Authentication"
+            "SSH Public Key Authentication",
+            "Oauth 2.0 Authorization Code Flow"
           ],
           "type": "string"
         },
@@ -1213,7 +1249,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1432,7 +1468,7 @@
       "type": "object"
     },
     "ConnectionSchemaMetadata": {
-      "description": "Metadata of connection schema.",
+      "description": "ConnectionSchemaMetadata is the singleton resource of each connection. It includes the entity and action names of runtime resources exposed by a connection backend.",
       "id": "ConnectionSchemaMetadata",
       "properties": {
         "actions": {
@@ -1450,6 +1486,38 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "name": {
+          "description": "Output only. Resource name. Format: projects/{project}/locations/{location}/connections/{connection}/connectionSchemaMetadata",
+          "readOnly": true,
+          "type": "string"
+        },
+        "refreshTime": {
+          "description": "Output only. Timestamp when the connection runtime schema refresh was triggered.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of runtime schema.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "REFRESHING",
+            "UPDATED"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "Schema refresh is in progress.",
+            "Schema has been updated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the connection runtime schema was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1535,13 +1603,15 @@
             "LAUNCH_STAGE_UNSPECIFIED",
             "PREVIEW",
             "GA",
-            "DEPRECATED"
+            "DEPRECATED",
+            "PRIVATE_PREVIEW"
           ],
           "enumDescriptions": [
             "LAUNCH_STAGE_UNSPECIFIED.",
             "PREVIEW.",
             "GA.",
-            "DEPRECATED."
+            "DEPRECATED.",
+            "PRIVATE_PREVIEW."
           ],
           "readOnly": true,
           "type": "string"
@@ -1615,13 +1685,15 @@
             "LAUNCH_STAGE_UNSPECIFIED",
             "PREVIEW",
             "GA",
-            "DEPRECATED"
+            "DEPRECATED",
+            "PRIVATE_PREVIEW"
           ],
           "enumDescriptions": [
             "LAUNCH_STAGE_UNSPECIFIED.",
             "PREVIEW.",
             "GA.",
-            "DEPRECATED."
+            "DEPRECATED.",
+            "PRIVATE_PREVIEW."
           ],
           "readOnly": true,
           "type": "string"
@@ -2487,13 +2559,15 @@
             "LAUNCH_STAGE_UNSPECIFIED",
             "PREVIEW",
             "GA",
-            "DEPRECATED"
+            "DEPRECATED",
+            "PRIVATE_PREVIEW"
           ],
           "enumDescriptions": [
             "LAUNCH_STAGE_UNSPECIFIED.",
             "PREVIEW.",
             "GA.",
-            "DEPRECATED."
+            "DEPRECATED.",
+            "PRIVATE_PREVIEW."
           ],
           "readOnly": true,
           "type": "string"
@@ -2515,6 +2589,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RefreshConnectionSchemaMetadataRequest": {
+      "description": "Request message for ConnectorsService.RefreshConnectionSchemaMetadata.",
+      "id": "RefreshConnectionSchemaMetadataRequest",
+      "properties": {},
       "type": "object"
     },
     "Resource": {
@@ -2873,10 +2953,6 @@
         "certType": {
           "description": "Format of SSH Client cert.",
           "type": "string"
-        },
-        "password": {
-          "$ref": "Secret",
-          "description": "This is an optional field used in case client has enabled multi-factor authentication"
         },
         "sshClientCert": {
           "$ref": "Secret",

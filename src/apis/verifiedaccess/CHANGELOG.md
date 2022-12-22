@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v0.3.4...verifiedaccess-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v0.3.3...verifiedaccess-v0.3.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* **verifiedaccess:** update the API ([97ba50f](https://github.com/googleapis/google-api-nodejs-client/commit/97ba50f23fcc265c9e7b0f48729f777ced2af198))
+
 ## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v0.3.2...verifiedaccess-v0.3.3) (2022-07-04)
 
 

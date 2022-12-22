@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20221216",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -6909,7 +6909,7 @@
           "type": "string"
         },
         "retentionWindowDays": {
-          "description": "Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.",
+          "description": "Retains the data for the specified number of days. User must set a value lower than Dialogflow's default 365d TTL (30 days for Agent Assist traffic), higher value will be ignored and use default. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use default TTL.",
           "format": "int32",
           "type": "integer"
         }
@@ -6945,7 +6945,7 @@
           "type": "boolean"
         },
         "gcsBucket": {
-          "description": "Cloud Storage bucket to export audio record to. You need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Storage Object Admin` role in this bucket.",
+          "description": "Cloud Storage bucket to export audio record to. Setting this field would grant the Storage Object Creator role to the Dialogflow Service Agent. API caller that tries to modify this field should have the permission of storage.buckets.setIamPolicy.",
           "type": "string"
         }
       },
@@ -9903,9 +9903,9 @@
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
-            "Run FAQ model.",
-            "Run smart reply model."
+            "Run article suggestion model for chat.",
+            "Run FAQ model for chat.",
+            "Run smart reply model for chat."
           ],
           "type": "string"
         }
@@ -10045,7 +10045,12 @@
     "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata": {
       "description": "Metadata for ConversationDatasets.",
       "id": "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata",
-      "properties": {},
+      "properties": {
+        "conversationDataset": {
+          "description": "The resource name of the conversation dataset that will be created. Format: `projects//locations//conversationDatasets/`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata": {
@@ -11555,7 +11560,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Sentiment": {
-      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.",
+      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.",
       "id": "GoogleCloudDialogflowV2Sentiment",
       "properties": {
         "magnitude": {
@@ -11653,9 +11658,9 @@
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
-            "Run FAQ model.",
-            "Run smart reply model."
+            "Run article suggestion model for chat.",
+            "Run FAQ model for chat.",
+            "Run smart reply model for chat."
           ],
           "type": "string"
         }
@@ -11998,13 +12003,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
+            "Run article suggestion model for chat.",
             "Run FAQ model.",
-            "Run smart reply model."
+            "Run smart reply model for chat.",
+            "Run conversation summarization model for chat."
           ],
           "type": "string"
         }
@@ -13769,7 +13776,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1Sentiment": {
-      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.",
+      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.",
       "id": "GoogleCloudDialogflowV2beta1Sentiment",
       "properties": {
         "magnitude": {
@@ -13863,13 +13870,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
+            "Run article suggestion model for chat.",
             "Run FAQ model.",
-            "Run smart reply model."
+            "Run smart reply model for chat.",
+            "Run conversation summarization model for chat."
           ],
           "type": "string"
         }

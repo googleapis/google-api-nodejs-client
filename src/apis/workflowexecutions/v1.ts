@@ -158,6 +158,10 @@ export namespace workflowexecutions_v1 {
      */
     callLogLevel?: string | null;
     /**
+     * Output only. Measures the duration of the execution.
+     */
+    duration?: string | null;
+    /**
      * Output only. Marks the end of execution, successful or not.
      */
     endTime?: string | null;
@@ -181,6 +185,10 @@ export namespace workflowexecutions_v1 {
      * Output only. Current state of the execution.
      */
     state?: string | null;
+    /**
+     * Output only. Status tracks the current steps and progress data of this execution.
+     */
+    status?: Schema$Status;
     /**
      * Output only. Revision of the workflow this execution is using.
      */
@@ -264,6 +272,28 @@ export namespace workflowexecutions_v1 {
     routine?: string | null;
     /**
      * The step the error occurred at.
+     */
+    step?: string | null;
+  }
+  /**
+   * Represents the current status of this execution.
+   */
+  export interface Schema$Status {
+    /**
+     * A list of currently executing or last executed step names for the workflow execution currently running. If the workflow has succeeded or failed, this is the last attempted or executed step. Presently, if the current step is inside a subworkflow, the list only includes that step. In the future, the list will contain items for each step in the call stack, starting with the outermost step in the `main` subworkflow, and ending with the most deeply nested step.
+     */
+    currentSteps?: Schema$Step[];
+  }
+  /**
+   * Represents a step of the workflow this execution is running.
+   */
+  export interface Schema$Step {
+    /**
+     * Name of a routine within the workflow.
+     */
+    routine?: string | null;
+    /**
+     * Name of a step within the routine.
      */
     step?: string | null;
   }
@@ -363,12 +393,14 @@ export namespace workflowexecutions_v1 {
      *   // {
      *   //   "argument": "my_argument",
      *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
      * }
@@ -531,12 +563,14 @@ export namespace workflowexecutions_v1 {
      *   // {
      *   //   "argument": "my_argument",
      *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
      * }
@@ -668,12 +702,14 @@ export namespace workflowexecutions_v1 {
      *         // {
      *         //   "argument": "my_argument",
      *         //   "callLogLevel": "my_callLogLevel",
+     *         //   "duration": "my_duration",
      *         //   "endTime": "my_endTime",
      *         //   "error": {},
      *         //   "name": "my_name",
      *         //   "result": "my_result",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
+     *         //   "status": {},
      *         //   "workflowRevisionId": "my_workflowRevisionId"
      *         // }
      *       },
@@ -684,12 +720,14 @@ export namespace workflowexecutions_v1 {
      *   // {
      *   //   "argument": "my_argument",
      *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
      * }
@@ -826,12 +864,14 @@ export namespace workflowexecutions_v1 {
      *   // {
      *   //   "argument": "my_argument",
      *   //   "callLogLevel": "my_callLogLevel",
+     *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
      * }
@@ -954,7 +994,7 @@ export namespace workflowexecutions_v1 {
      *   // Do the magic
      *   const res =
      *     await workflowexecutions.projects.locations.workflows.executions.list({
-     *       // Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 10000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
+     *       // Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
@@ -1109,7 +1149,7 @@ export namespace workflowexecutions_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$List
     extends StandardParameters {
     /**
-     * Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 10000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
+     * Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
      */
     pageSize?: number;
     /**

@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/webmasters-v0.3.2...webmasters-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/webmasters-v0.3.1...webmasters-v0.3.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **webmasters:** update the API ([c68bd60](https://github.com/googleapis/google-api-nodejs-client/commit/c68bd602535a10d48fcbcf7ffa9b03f812e3598e))
+
 ### [0.3.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/webmasters-v0.3.0...webmasters-v0.3.1) (2021-11-25)
 
 

@@ -308,6 +308,10 @@ export namespace sqladmin_v1 {
      */
     status?: string | null;
     /**
+     * Backup time zone to prevent restores to an instance with a different time zone. Now relevant only for SQL Server.
+     */
+    timeZone?: string | null;
+    /**
      * The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL". This field defaults to "ON_DEMAND" and is ignored, when specified for insert requests.
      */
     type?: string | null;
@@ -355,13 +359,17 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$CloneContext {
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the cloned instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.
+     * The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the cloned instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.
      */
     allocatedIpRange?: string | null;
     /**
      * Binary log coordinates, if specified, identify the position up to which the source instance is cloned. If not specified, the source instance is cloned up to the most recent binary log coordinates.
      */
     binLogCoordinates?: Schema$BinLogCoordinates;
+    /**
+     * (SQL Server only) Clone only the specified databases from the source instance. Clone all databases if empty.
+     */
+    databaseNames?: string[] | null;
     /**
      * Name of the Cloud SQL instance to be created as a clone.
      */
@@ -736,6 +744,10 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$ExportContext {
     /**
+     * Options for exporting BAK files (SQL Server-only)
+     */
+    bakExportOptions?: {stripeCount?: number; striped?: boolean} | null;
+    /**
      * Options for exporting data as CSV. `MySQL` and `PostgreSQL` instances only.
      */
     csvExportOptions?: {
@@ -888,6 +900,7 @@ export namespace sqladmin_v1 {
         pvkPassword?: string;
         pvkPath?: string;
       };
+      striped?: boolean;
     } | null;
     /**
      * Options for importing data as CSV.
@@ -1075,13 +1088,17 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.`
+     * The name of the allocated ip range for the private ip Cloud SQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.`
      */
     allocatedIpRange?: string | null;
     /**
      * The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: `157.197.200.0/24`).
      */
     authorizedNetworks?: Schema$AclEntry[];
+    /**
+     * Controls connectivity to private IP instances from Google services, such as BigQuery.
+     */
+    enablePrivatePathForGoogleCloudServices?: boolean | null;
     /**
      * Whether the instance is assigned a public IP address or not.
      */
@@ -1400,7 +1417,7 @@ export namespace sqladmin_v1 {
      */
     minLength?: number | null;
     /**
-     * Minimum interval after which the password can be changed. This flag is only supported for PostgresSQL.
+     * Minimum interval after which the password can be changed. This flag is only supported for PostgreSQL.
      */
     passwordChangeInterval?: string | null;
     /**
@@ -1498,6 +1515,10 @@ export namespace sqladmin_v1 {
      */
     collation?: string | null;
     /**
+     * Specifies if connections must use Cloud SQL connectors. Option values include the following: `NOT_REQUIRED` (Cloud SQL instances can be connected without Cloud SQL Connectors) and `REQUIRED` (Only allow connections that use Cloud SQL Connectors). Note that using REQUIRED disables all existing authorized networks. If this field is not specified when creating a new instance, NOT_REQUIRED is used. If this field is not specified when patching or updating an existing instance, it is left unchanged in the instance.
+     */
+    connectorEnforcement?: string | null;
+    /**
      * Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property was only applicable to First Generation instances.
      */
     crashSafeReplicationEnabled?: boolean | null;
@@ -1577,6 +1598,10 @@ export namespace sqladmin_v1 {
      * The tier (or machine type) for this instance, for example `db-custom-1-3840`. WARNING: Changing this restarts the instance.
      */
     tier?: string | null;
+    /**
+     * Server timezone, relevant only for Cloud SQL for SQL Server.
+     */
+    timeZone?: string | null;
     /**
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
@@ -2229,6 +2254,7 @@ export namespace sqladmin_v1 {
      *   //   "selfLink": "my_selfLink",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
+     *   //   "timeZone": "my_timeZone",
      *   //   "type": "my_type",
      *   //   "windowStartTime": "my_windowStartTime"
      *   // }
@@ -2377,6 +2403,7 @@ export namespace sqladmin_v1 {
      *       //   "selfLink": "my_selfLink",
      *       //   "startTime": "my_startTime",
      *       //   "status": "my_status",
+     *       //   "timeZone": "my_timeZone",
      *       //   "type": "my_type",
      *       //   "windowStartTime": "my_windowStartTime"
      *       // }
@@ -5927,7 +5954,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Updates settings of a Cloud SQL instance. This method supports patch semantics.
+     * Partially updates settings of a Cloud SQL instance by merging the request with the current configuration. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -9814,9 +9841,11 @@ export namespace sqladmin_v1 {
      *
      *   // Do the magic
      *   const res = await sql.users.get({
+     *     // Host of a user of the instance.
+     *     host: 'placeholder-value',
      *     // Database instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
-     *     // User of the instance. If the database user has a host, this is specified as {username\}@{host\} else as {username\}.
+     *     // User of the instance.
      *     name: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
@@ -10421,11 +10450,15 @@ export namespace sqladmin_v1 {
   }
   export interface Params$Resource$Users$Get extends StandardParameters {
     /**
+     * Host of a user of the instance.
+     */
+    host?: string;
+    /**
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
     /**
-     * User of the instance. If the database user has a host, this is specified as {username\}@{host\} else as {username\}.
+     * User of the instance.
      */
     name?: string;
     /**

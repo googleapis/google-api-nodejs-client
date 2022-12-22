@@ -314,7 +314,7 @@
         "devices": {
           "methods": {
             "delete": {
-              "description": "Deletes a device. This operation wipes the device.",
+              "description": "Deletes a device. This operation wipes the device. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.",
               "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}",
               "httpMethod": "DELETE",
               "id": "androidmanagement.enterprises.devices.delete",
@@ -360,7 +360,7 @@
               ]
             },
             "get": {
-              "description": "Gets a device.",
+              "description": "Gets a device. Deleted devices will respond with a 404 error.",
               "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}",
               "httpMethod": "GET",
               "id": "androidmanagement.enterprises.devices.get",
@@ -413,7 +413,7 @@
               ]
             },
             "list": {
-              "description": "Lists devices for a given enterprise.",
+              "description": "Lists devices for a given enterprise. Deleted devices are not returned in the response.",
               "flatPath": "v1/enterprises/{enterprisesId}/devices",
               "httpMethod": "GET",
               "id": "androidmanagement.enterprises.devices.list",
@@ -1065,7 +1065,7 @@
       }
     }
   },
-  "revision": "20220808",
+  "revision": "20221205",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1633,7 +1633,7 @@
           "type": "string"
         },
         "lockTaskAllowed": {
-          "description": "Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.",
+          "description": "Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to configure a dedicated device.",
           "type": "boolean"
         },
         "managedConfiguration": {
@@ -1663,6 +1663,20 @@
             "$ref": "PermissionGrant"
           },
           "type": "array"
+        },
+        "workProfileWidgets": {
+          "description": "Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.",
+          "enum": [
+            "WORK_PROFILE_WIDGETS_UNSPECIFIED",
+            "WORK_PROFILE_WIDGETS_ALLOWED",
+            "WORK_PROFILE_WIDGETS_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to work_profile_widgets_default",
+            "Work profile widgets are allowed. This means the application will be able to add widgets to the home screen.",
+            "Work profile widgets are disallowed. This means the application will not be able to add widgets to the home screen."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1692,7 +1706,7 @@
           "type": "string"
         },
         "events": {
-          "description": "List of app events. The most recent 20 events are stored in the list.",
+          "description": "The list of app events which have occurred in the last 30 hours.",
           "items": {
             "$ref": "ApplicationEvent"
           },
@@ -2177,6 +2191,20 @@
             "Unspecified. Defaults to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED.",
             "Prevents work profile contacts from appearing in personal profile contact searches and incoming calls",
             "Default. Allows work profile contacts to appear in personal profile contact searches and incoming calls"
+          ],
+          "type": "string"
+        },
+        "workProfileWidgetsDefault": {
+          "description": "Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.",
+          "enum": [
+            "WORK_PROFILE_WIDGETS_DEFAULT_UNSPECIFIED",
+            "WORK_PROFILE_WIDGETS_DEFAULT_ALLOWED",
+            "WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED.",
+            "Work profile widgets are allowed by default. This means that if the policy does not specify work_profile_widgets as WORK_PROFILE_WIDGETS_DISALLOWED for the application, it will be able to add widgets to the home screen.",
+            "Work profile widgets are disallowed by default. This means that if the policy does not specify work_profile_widgets as WORK_PROFILE_WIDGETS_ALLOWED for the application, it will be unable to add widgets to the home screen."
           ],
           "type": "string"
         }
@@ -2717,7 +2745,7 @@
       "type": "object"
     },
     "ExtensionConfig": {
-      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.",
+      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command (https://developer.android.com/management/reference/rest/v1/enterprises.devices/issueCommand#CommandType) on extension apps if needed for Android 13 and above.",
       "id": "ExtensionConfig",
       "properties": {
         "notificationReceiver": {
@@ -2772,7 +2800,7 @@
       "type": "object"
     },
     "FreezePeriod": {
-      "description": "A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.",
+      "description": "A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.Note: For Freeze Periods to take effect, SystemUpdateType cannot be specified as SYSTEM_UPDATE_TYPE_UNSPECIFIED, because freeze periods require a defined policy to be specified.",
       "id": "FreezePeriod",
       "properties": {
         "endDate": {
@@ -4065,7 +4093,7 @@
           "type": "array"
         },
         "cameraDisabled": {
-          "description": "Whether camera is disabled.",
+          "description": "If true, the camera is disabled on the personal profile.",
           "type": "boolean"
         },
         "maxDaysWithWorkOff": {
@@ -4097,7 +4125,7 @@
           "type": "string"
         },
         "screenCaptureDisabled": {
-          "description": "Whether screen capture is disabled.",
+          "description": "If true, screen capture is disabled for all users.",
           "type": "boolean"
         }
       },
@@ -4326,7 +4354,7 @@
           "type": "boolean"
         },
         "keyguardDisabled": {
-          "description": "Whether the keyguard is disabled.",
+          "description": "If true, this disables the Lock Screen (https://source.android.com/docs/core/display/multi_display/lock-screen) for primary and/or secondary displays.",
           "type": "boolean"
         },
         "keyguardDisabledFeatures": {
@@ -4579,7 +4607,7 @@
           "type": "array"
         },
         "shareLocationDisabled": {
-          "description": "Whether location sharing is disabled.",
+          "description": "Whether location sharing is disabled. share_location_disabled is supported for both fully managed devices and personally owned work profiles.",
           "type": "boolean"
         },
         "shortSupportMessage": {
@@ -4630,7 +4658,7 @@
           "type": "boolean"
         },
         "uninstallAppsDisabled": {
-          "description": "Whether user uninstallation of applications is disabled.",
+          "description": "Whether user uninstallation of applications is disabled. This prevents apps from being uninstalled, even those removed using applications",
           "type": "boolean"
         },
         "unmuteMicrophoneDisabled": {
@@ -4642,7 +4670,7 @@
           "description": "Configuration of device activity logging."
         },
         "usbFileTransferDisabled": {
-          "description": "Whether transferring files over USB is disabled.",
+          "description": "Whether transferring files over USB is disabled. This is supported only on company-owned devices.",
           "type": "boolean"
         },
         "usbMassStorageEnabled": {
@@ -4659,7 +4687,7 @@
           "type": "boolean"
         },
         "wifiConfigDisabled": {
-          "description": "Whether configuring Wi-Fi access points is disabled.Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
+          "description": "Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
           "type": "boolean"
         },
         "wifiConfigsLockdownEnabled": {
@@ -4675,7 +4703,7 @@
       "properties": {
         "blockAction": {
           "$ref": "BlockAction",
-          "description": "An action to block access to apps and data on a fully managed device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified."
+          "description": "An action to block access to apps and data on a company owned device or in a work profile. This action also triggers a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified."
         },
         "settingName": {
           "description": "The top-level policy to enforce. For example, applications or passwordPolicies.",
@@ -4683,7 +4711,7 @@
         },
         "wipeAction": {
           "$ref": "WipeAction",
-          "description": "An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified."
+          "description": "An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified."
         }
       },
       "type": "object"
@@ -5527,7 +5555,7 @@
       "type": "object"
     },
     "WipeAction": {
-      "description": "An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.",
+      "description": "An action to reset a company owned device or delete a work profile. Note: blockAction must also be specified.",
       "id": "WipeAction",
       "properties": {
         "preserveFrp": {

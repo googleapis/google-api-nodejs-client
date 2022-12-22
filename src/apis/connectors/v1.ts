@@ -222,7 +222,7 @@ export namespace connectors_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -378,7 +378,7 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
-   * Metadata of connection schema.
+   * ConnectionSchemaMetadata is the singleton resource of each connection. It includes the entity and action names of runtime resources exposed by a connection backend.
    */
   export interface Schema$ConnectionSchemaMetadata {
     /**
@@ -389,6 +389,22 @@ export namespace connectors_v1 {
      * Output only. List of entity names.
      */
     entities?: string[] | null;
+    /**
+     * Output only. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when the connection runtime schema refresh was triggered.
+     */
+    refreshTime?: string | null;
+    /**
+     * Output only. The current state of runtime schema.
+     */
+    state?: string | null;
+    /**
+     * Output only. Timestamp when the connection runtime schema was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * ConnectionStatus indicates the state of the connection.
@@ -1010,6 +1026,10 @@ export namespace connectors_v1 {
     webAssetsLocation?: string | null;
   }
   /**
+   * Request message for ConnectorsService.RefreshConnectionSchemaMetadata.
+   */
+  export interface Schema$RefreshConnectionSchemaMetadataRequest {}
+  /**
    * Resource definition
    */
   export interface Schema$Resource {
@@ -1178,10 +1198,6 @@ export namespace connectors_v1 {
      * Format of SSH Client cert.
      */
     certType?: string | null;
-    /**
-     * This is an optional field used in case client has enabled multi-factor authentication
-     */
-    password?: Schema$Secret;
     /**
      * SSH Client Cert. It should contain both public and private key.
      */
@@ -1731,10 +1747,15 @@ export namespace connectors_v1 {
 
   export class Resource$Projects$Locations$Connections {
     context: APIRequestContext;
+    connectionSchemaMetadata: Resource$Projects$Locations$Connections$Connectionschemametadata;
     runtimeActionSchemas: Resource$Projects$Locations$Connections$Runtimeactionschemas;
     runtimeEntitySchemas: Resource$Projects$Locations$Connections$Runtimeentityschemas;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.connectionSchemaMetadata =
+        new Resource$Projects$Locations$Connections$Connectionschemametadata(
+          this.context
+        );
       this.runtimeActionSchemas =
         new Resource$Projects$Locations$Connections$Runtimeactionschemas(
           this.context
@@ -2216,7 +2237,11 @@ export namespace connectors_v1 {
      *   // Example response
      *   // {
      *   //   "actions": [],
-     *   //   "entities": []
+     *   //   "entities": [],
+     *   //   "name": "my_name",
+     *   //   "refreshTime": "my_refreshTime",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2627,7 +2652,7 @@ export namespace connectors_v1 {
      *   const res = await connectors.projects.locations.connections.patch({
      *     // Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *     // Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3131,7 +3156,7 @@ export namespace connectors_v1 {
      */
     name?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config`
      */
     updateMask?: string;
 
@@ -3163,6 +3188,169 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Connections$Connectionschemametadata {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Refresh runtime schema of a connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.connectionSchemaMetadata.refresh(
+     *       {
+     *         // Required. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/connectionSchemaMetadata',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    refresh(
+      params?: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    refresh(callback: BodyResponseCallback<Schema$Operation>): void;
+    refresh(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:refresh').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh
+    extends StandardParameters {
+    /**
+     * Required. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RefreshConnectionSchemaMetadataRequest;
   }
 
   export class Resource$Projects$Locations$Connections$Runtimeactionschemas {

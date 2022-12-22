@@ -450,6 +450,15 @@ export namespace androidenterprise_v1 {
     variableSet?: Schema$VariableSet[];
   }
   /**
+   * Response message for create enrollment token.
+   */
+  export interface Schema$CreateEnrollmentTokenResponse {
+    /**
+     * Enrollment token.
+     */
+    enrollmentToken?: string | null;
+  }
+  /**
    * A Devices resource represents a mobile device managed by the EMM and belonging to a specific enterprise user.
    */
   export interface Schema$Device {
@@ -966,7 +975,7 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$Policy {
     /**
-     * Deprecated. Use autoUpdateMode instead. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect. "choiceToTheUser" allows the device's user to configure the app update policy. "always" enables auto updates. "never" disables auto updates. "wifiOnly" enables auto updates only when the device is connected to wifi.
+     * Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect. "choiceToTheUser" allows the device's user to configure the app update policy. "always" enables auto updates. "never" disables auto updates. "wifiOnly" enables auto updates only when the device is connected to wifi.
      */
     autoUpdatePolicy?: string | null;
     /**
@@ -2677,6 +2686,147 @@ export namespace androidenterprise_v1 {
     }
 
     /**
+     * Returns a token for device enrollment. The DPC can encode this token within the QR/NFC/zero-touch enrollment payload or fetch it before calling the on-device API to authenticate the user. The token can be generated for each device or reused across multiple devices.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidenterprise = google.androidenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidenterprise'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidenterprise.enterprises.createEnrollmentToken({
+     *     // Whether it’s a dedicated device or a knowledge worker device.
+     *     deviceType: 'placeholder-value',
+     *     // The ID of the enterprise.
+     *     enterpriseId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrollmentToken": "my_enrollmentToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createEnrollmentToken(
+      params?: Params$Resource$Enterprises$Createenrollmenttoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CreateEnrollmentTokenResponse>;
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>,
+      callback: BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+    ): void;
+    createEnrollmentToken(
+      params: Params$Resource$Enterprises$Createenrollmenttoken,
+      callback: BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+    ): void;
+    createEnrollmentToken(
+      callback: BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+    ): void;
+    createEnrollmentToken(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Createenrollmenttoken
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CreateEnrollmentTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CreateEnrollmentTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Createenrollmenttoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$Createenrollmenttoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidenterprise/v1/enterprises/{enterpriseId}/createEnrollmentToken'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CreateEnrollmentTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CreateEnrollmentTokenResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the managed Google Play javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.
      * @example
      * ```js
@@ -3661,7 +3811,7 @@ export namespace androidenterprise_v1 {
      *
      *   // Do the magic
      *   const res = await androidenterprise.enterprises.pullNotificationSet({
-     *     // The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
+     *     // The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Specifying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
      *     requestMode: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4329,6 +4479,17 @@ export namespace androidenterprise_v1 {
      */
     enterpriseToken?: string;
   }
+  export interface Params$Resource$Enterprises$Createenrollmenttoken
+    extends StandardParameters {
+    /**
+     * Whether it’s a dedicated device or a knowledge worker device.
+     */
+    deviceType?: string;
+    /**
+     * The ID of the enterprise.
+     */
+    enterpriseId?: string;
+  }
   export interface Params$Resource$Enterprises$Createwebtoken
     extends StandardParameters {
     /**
@@ -4393,7 +4554,7 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Pullnotificationset
     extends StandardParameters {
     /**
-     * The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
+     * The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Specifying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
      */
     requestMode?: string;
   }
@@ -4443,7 +4604,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Removes an entitlement to an app for a user.
+     * Removes an entitlement to an app for a user. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4570,7 +4731,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves details of an entitlement.
+     * Retrieves details of an entitlement. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4704,7 +4865,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Lists all entitlements for the specified user. Only the ID is set.
+     * Lists all entitlements for the specified user. Only the ID is set. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4841,7 +5002,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Adds or updates an entitlement to an app for a user.
+     * Adds or updates an entitlement to an app for a user. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -5059,7 +5220,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves details of an enterprise's group license for a product.
+     * Retrieves details of an enterprise's group license for a product. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -5196,7 +5357,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves IDs of all products for which the enterprise has a group license.
+     * Retrieves IDs of all products for which the enterprise has a group license. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -5359,7 +5520,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves the IDs of the users who have been granted entitlements under the license.
+     * Retrieves the IDs of the users who have been granted entitlements under the license. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -7790,7 +7951,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     *  Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000. To learn how to use managed Google Play to design and create a store layout to display approved products to your users, see Store Layout Design.
+     *  Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000. To learn how to use managed Google Play to design and create a store layout to display approved products to your users, see Store Layout Design. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -7923,7 +8084,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Generates a URL that can be rendered in an iframe to display the permissions (if any) of a product. An enterprise admin must view these permissions and accept them on behalf of their organization in order to approve that product. Admins should accept the displayed permissions by interacting with a separate UI element in the EMM console, which in turn should trigger the use of this URL as the approvalUrlInfo.approvalUrl property in a Products.approve call to approve the product. This URL can only be used to display permissions for up to 1 day.
+     * Generates a URL that can be rendered in an iframe to display the permissions (if any) of a product. An enterprise admin must view these permissions and accept them on behalf of their organization in order to approve that product. Admins should accept the displayed permissions by interacting with a separate UI element in the EMM console, which in turn should trigger the use of this URL as the approvalUrlInfo.approvalUrl property in a Products.approve call to approve the product. This URL can only be used to display permissions for up to 1 day. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -8503,7 +8664,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Finds approved products that match a query, or all approved products if there is no query.
+     * Finds approved products that match a query, or all approved products if there is no query. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -8649,7 +8810,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Unapproves the specified product (and the relevant app permissions, if any)
+     * Unapproves the specified product (and the relevant app permissions, if any) **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -11268,7 +11429,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Retrieves the set of products a user is entitled to access.
+     * Retrieves the set of products a user is entitled to access. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -11808,7 +11969,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Modifies the set of products that a user is entitled to access (referred to as *whitelisted* products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted.
+     * Modifies the set of products that a user is entitled to access (referred to as *whitelisted* products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted. **Note:** This item has been deprecated. New integrations cannot use this method and can refer to our new recommendations.
      * @example
      * ```js
      * // Before running the sample:

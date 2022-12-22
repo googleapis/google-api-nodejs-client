@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v2.0.4...androiddeviceprovisioning-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [2.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v2.0.3...androiddeviceprovisioning-v2.0.4) (2022-09-21)
+
+
+### Bug Fixes
+
+* **androiddeviceprovisioning:** update the API ([d1cbc8c](https://github.com/googleapis/google-api-nodejs-client/commit/d1cbc8c64b2d54b78f894da55cd5fa16bd23916c))
+
 ## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/androiddeviceprovisioning-v2.0.2...androiddeviceprovisioning-v2.0.3) (2022-06-21)
 
 

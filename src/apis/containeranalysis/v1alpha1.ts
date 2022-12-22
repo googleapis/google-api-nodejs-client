@@ -199,7 +199,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -308,6 +308,79 @@ export namespace containeranalysis_v1alpha1 {
      * Signature of the related `BuildProvenance`, encoded in a base64 string.
      */
     signature?: string | null;
+  }
+  /**
+   * A step in the build pipeline. Next ID: 20
+   */
+  export interface Schema$BuildStep {
+    /**
+     * Allow this build step to fail without failing the entire build if and only if the exit code is one of the specified codes. If allow_failure is also specified, this field will take precedence.
+     */
+    allowExitCodes?: number[] | null;
+    /**
+     * Allow this build step to fail without failing the entire build. If false, the entire build will fail if this step fails. Otherwise, the build will succeed, but this step will still have a failure status. Error information will be reported in the failure_detail field.
+     */
+    allowFailure?: boolean | null;
+    /**
+     * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
+     */
+    args?: string[] | null;
+    /**
+     * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
+     */
+    dir?: string | null;
+    /**
+     * Entrypoint to be used instead of the build step image's default entrypoint. If unset, the image's default entrypoint is used.
+     */
+    entrypoint?: string | null;
+    /**
+     * A list of environment variable definitions to be used when running a step. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
+     */
+    env?: string[] | null;
+    /**
+     * Output only. Return code from running the step.
+     */
+    exitCode?: number | null;
+    /**
+     * Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.
+     */
+    id?: string | null;
+    /**
+     * Required. The name of the container image that will run this particular build step. If the image is available in the host's Docker daemon's cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account's credentials if necessary. The Docker daemon's cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like "ubuntu", "debian", but they will be refreshed at the time you attempt to use them. If you built an image in a previous build step, it will be stored in the host's Docker daemon's cache and is available to use as the name for a later build step.
+     */
+    name?: string | null;
+    /**
+     * Output only. Stores timing information for pulling this build step's builder image only.
+     */
+    pullTiming?: Schema$TimeSpan;
+    /**
+     * A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.
+     */
+    script?: string | null;
+    /**
+     * A list of environment variables which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`.
+     */
+    secretEnv?: string[] | null;
+    /**
+     * Output only. Status of the build step. At this time, build step status is only updated on build completion; step status is not updated in real-time as the build progresses.
+     */
+    status?: string | null;
+    /**
+     * Time limit for executing this build step. If not defined, the step has no time limit and will be allowed to continue to run until either it completes or the build itself times out.
+     */
+    timeout?: string | null;
+    /**
+     * Output only. Stores timing information for executing this build step.
+     */
+    timing?: Schema$TimeSpan;
+    /**
+     * List of volumes to mount into the build step. Each volume is created as an empty volume prior to execution of the build step. Upon completion of the build, volumes and their contents are discarded. Using a named volume in only one step is not valid as it is indicative of a build request with an incorrect configuration.
+     */
+    volumes?: Schema$Volume[];
+    /**
+     * The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in `wait_for` have completed successfully. If `wait_for` is empty, this build step will start when all previous build steps in the `Build.Steps` list have completed successfully.
+     */
+    waitFor?: string[] | null;
   }
   /**
    * Note holding the version of the provider's builder and the signature of the provenance message in linked BuildDetails.
@@ -487,9 +560,17 @@ export namespace containeranalysis_v1alpha1 {
      */
     images?: string[] | null;
     /**
+     * A list of Maven artifacts to be uploaded to Artifact Registry upon successful completion of all build steps. Artifacts in the workspace matching specified paths globs will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any artifacts fail to be pushed, the build is marked FAILURE.
+     */
+    mavenArtifacts?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact[];
+    /**
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects;
+    /**
+     * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
+     */
+    pythonPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage[];
   }
   /**
    * Files in the workspace to upload to Cloud Storage upon successful completion of all build steps.
@@ -507,6 +588,44 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. Stores timing information for pushing all artifact objects.
      */
     timing?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+  }
+  /**
+   * A Maven artifact to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact {
+    /**
+     * Maven `artifactId` value used when uploading the artifact to Artifact Registry.
+     */
+    artifactId?: string | null;
+    /**
+     * Maven `groupId` value used when uploading the artifact to Artifact Registry.
+     */
+    groupId?: string | null;
+    /**
+     * Path to an artifact in the build's workspace to be uploaded to Artifact Registry. This can be either an absolute path, e.g. /workspace/my-app/target/my-app-1.0.SNAPSHOT.jar or a relative path from /workspace, e.g. my-app/target/my-app-1.0.SNAPSHOT.jar.
+     */
+    path?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-maven.pkg.dev/$PROJECT/$REPOSITORY" Artifact in the workspace specified by path will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
+    /**
+     * Maven `version` value used when uploading the artifact to Artifact Registry.
+     */
+    version?: string | null;
+  }
+  /**
+   * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage {
+    /**
+     * Path globs used to match files in the build's workspace. For Python/ Twine, this is usually `dist/x`, and sometimes additionally an `.asc` file.
+     */
+    paths?: string[] | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-python.pkg.dev/$PROJECT/$REPOSITORY" Files in the workspace matching any path pattern will be uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
   }
   /**
    * A build resource in the Cloud Build API. At a high level, a `Build` describes where to find source code, how to build it (for example, the builder image to run on the source), and where to store the built artifacts. Fields can include the following variables, which will be expanded when the build is created: - $PROJECT_ID: the project ID of the build. - $PROJECT_NUMBER: the project number of the build. - $LOCATION: the location/region of the build. - $BUILD_ID: the autogenerated ID of the build. - $REPO_NAME: the source repository name specified by RepoSource. - $BRANCH_NAME: the branch name specified by RepoSource. - $TAG_NAME: the tag name specified by RepoSource. - $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or resolved from the specified branch or tag. - $SHORT_SHA: first 7 characters of $REVISION_ID or $COMMIT_SHA.
@@ -621,7 +740,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     timeout?: string | null;
     /**
-     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
+     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all artifacts including docker images and non docker artifacts. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
      */
     timing?: {
       [key: string]: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
@@ -666,7 +785,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions {
     /**
-     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
+     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.
      */
     diskSizeGb?: string | null;
     /**
@@ -732,6 +851,14 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep {
     /**
+     * Allow this build step to fail without failing the entire build if and only if the exit code is one of the specified codes. If allow_failure is also specified, this field will take precedence.
+     */
+    allowExitCodes?: number[] | null;
+    /**
+     * Allow this build step to fail without failing the entire build. If false, the entire build will fail if this step fails. Otherwise, the build will succeed, but this step will still have a failure status. Error information will be reported in the failure_detail field.
+     */
+    allowFailure?: boolean | null;
+    /**
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
@@ -747,6 +874,10 @@ export namespace containeranalysis_v1alpha1 {
      * A list of environment variable definitions to be used when running a step. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
     env?: string[] | null;
+    /**
+     * Output only. Return code from running the step.
+     */
+    exitCode?: number | null;
     /**
      * Unique identifier for this build step, used in `wait_for` to reference this build step as a dependency.
      */
@@ -895,11 +1026,11 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Results {
     /**
-     * Path to the artifact manifest. Only populated when artifacts are uploaded.
+     * Path to the artifact manifest for non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     artifactManifest?: string | null;
     /**
-     * Time to push all non-container artifacts.
+     * Time to push all non-container artifacts to Cloud Storage.
      */
     artifactTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
     /**
@@ -915,9 +1046,17 @@ export namespace containeranalysis_v1alpha1 {
      */
     images?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage[];
     /**
-     * Number of artifacts uploaded. Only populated when artifacts are uploaded.
+     * Maven artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    mavenArtifacts?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact[];
+    /**
+     * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     numArtifacts?: string | null;
+    /**
+     * Python artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    pythonPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage[];
   }
   /**
    * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value. Note: Use `kmsKeyName` with `available_secrets` instead of using `kmsKeyName` with `secret`. For instructions see: https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-credentials.
@@ -1048,6 +1187,40 @@ export namespace containeranalysis_v1alpha1 {
     startTime?: string | null;
   }
   /**
+   * A Maven artifact uploaded using the MavenArtifact directive.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact {
+    /**
+     * Hash types and values of the Maven Artifact.
+     */
+    fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Artifact uploaded using the PythonPackage directive.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage {
+    /**
+     * Hash types and values of the Python Artifact.
+     */
+    fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Volume {
@@ -1150,7 +1323,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     platform?: string | null;
     /**
-     * Output only. Resource URI for the artifact being deployed taken from the deployable field with the same name.
+     * Resource URI for the artifact being deployed taken from the deployable field with the same name.
      */
     resourceUri?: string[] | null;
     /**
@@ -2806,7 +2979,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     repoSource?: Schema$RepoSource;
     /**
-     * If provided, get the source from this location in in Google Cloud Storage.
+     * If provided, get the source from this location in Google Cloud Storage.
      */
     storageSource?: Schema$StorageSource;
   }
@@ -2874,6 +3047,19 @@ export namespace containeranalysis_v1alpha1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Start and end times for a build execution phase. Next ID: 3
+   */
+  export interface Schema$TimeSpan {
+    /**
+     * End of time span.
+     */
+    endTime?: string | null;
+    /**
+     * Start of time span.
+     */
+    startTime?: string | null;
   }
   /**
    * Request for updating an existing operation
@@ -2967,6 +3153,19 @@ export namespace containeranalysis_v1alpha1 {
      * The iteration of the package build from the above version.
      */
     revision?: string | null;
+  }
+  /**
+   * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3
+   */
+  export interface Schema$Volume {
+    /**
+     * Name of the volume to mount. Volume names must be unique per build step and must be valid names for Docker volumes. Each named volume must be used by at least two build steps.
+     */
+    name?: string | null;
+    /**
+     * Path at which to mount the volume. Paths must be absolute and cannot conflict with other volume paths on the same build step or with certain reserved volume paths.
+     */
+    path?: string | null;
   }
   /**
    * Used by Occurrence to point to where the vulnerability exists and how to fix it.

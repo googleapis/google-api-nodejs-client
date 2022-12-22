@@ -3461,6 +3461,39 @@
                   }
                 }
               }
+            },
+            "suggestions": {
+              "methods": {
+                "suggestConversationSummary": {
+                  "description": "Suggest summary for a conversation based on specific historical messages. The range of the messages to be used for summary can be specified in the request.",
+                  "flatPath": "v2beta1/projects/{projectsId}/conversations/{conversationsId}/suggestions:suggestConversationSummary",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.conversations.suggestions.suggestConversationSummary",
+                  "parameterOrder": [
+                    "conversation"
+                  ],
+                  "parameters": {
+                    "conversation": {
+                      "description": "Required. The conversation to fetch suggestion for. Format: `projects//locations//conversations/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/conversations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+conversation}/suggestions:suggestConversationSummary",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                }
+              }
             }
           }
         },
@@ -6843,6 +6876,39 @@
                       }
                     }
                   }
+                },
+                "suggestions": {
+                  "methods": {
+                    "suggestConversationSummary": {
+                      "description": "Suggest summary for a conversation based on specific historical messages. The range of the messages to be used for summary can be specified in the request.",
+                      "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/suggestions:suggestConversationSummary",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.conversations.suggestions.suggestConversationSummary",
+                      "parameterOrder": [
+                        "conversation"
+                      ],
+                      "parameters": {
+                        "conversation": {
+                          "description": "Required. The conversation to fetch suggestion for. Format: `projects//locations//conversations/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta1/{+conversation}/suggestions:suggestConversationSummary",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -7441,7 +7507,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20221216",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -11171,9 +11237,9 @@
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
-            "Run FAQ model.",
-            "Run smart reply model."
+            "Run article suggestion model for chat.",
+            "Run FAQ model for chat.",
+            "Run smart reply model for chat."
           ],
           "type": "string"
         }
@@ -11313,7 +11379,12 @@
     "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata": {
       "description": "Metadata for ConversationDatasets.",
       "id": "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata",
-      "properties": {},
+      "properties": {
+        "conversationDataset": {
+          "description": "The resource name of the conversation dataset that will be created. Format: `projects//locations//conversationDatasets/`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata": {
@@ -12823,7 +12894,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Sentiment": {
-      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.",
+      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.",
       "id": "GoogleCloudDialogflowV2Sentiment",
       "properties": {
         "magnitude": {
@@ -12921,9 +12992,9 @@
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
-            "Run FAQ model.",
-            "Run smart reply model."
+            "Run article suggestion model for chat.",
+            "Run FAQ model for chat.",
+            "Run smart reply model for chat."
           ],
           "type": "string"
         }
@@ -13607,6 +13678,10 @@
           ],
           "type": "string"
         },
+        "cxCurrentPage": {
+          "description": "The unique identifier of the current Dialogflow CX conversation page. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
         "cxSessionParameters": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -13888,13 +13963,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
+            "Run article suggestion model for chat.",
             "Run FAQ model.",
-            "Run smart reply model."
+            "Run smart reply model for chat.",
+            "Run conversation summarization model for chat."
           ],
           "type": "string"
         }
@@ -13927,13 +14004,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
+            "Run article suggestion model for chat.",
             "Run FAQ model.",
-            "Run smart reply model."
+            "Run smart reply model for chat.",
+            "Run conversation summarization model for chat."
           ],
           "type": "string"
         }
@@ -17399,7 +17478,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1Sentiment": {
-      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.",
+      "description": "The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.",
       "id": "GoogleCloudDialogflowV2beta1Sentiment",
       "properties": {
         "magnitude": {
@@ -17504,13 +17583,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
+            "Run article suggestion model for chat.",
             "Run FAQ model.",
-            "Run smart reply model."
+            "Run smart reply model for chat.",
+            "Run conversation summarization model for chat."
           ],
           "type": "string"
         }
@@ -17587,6 +17668,10 @@
       "description": "Configures speech transcription for ConversationProfile.",
       "id": "GoogleCloudDialogflowV2beta1SpeechToTextConfig",
       "properties": {
+        "model": {
+          "description": "Which Speech model to select. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then a default model is used. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.",
+          "type": "string"
+        },
         "speechModelVariant": {
           "description": "The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request. If enhanced model variant is specified and an enhanced version of the specified model for the language does not exist, then it would emit an error.",
           "enum": [
@@ -17660,6 +17745,64 @@
         "latestMessage": {
           "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest": {
+      "description": "The request message for Conversations.SuggestConversationSummary.",
+      "id": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest",
+      "properties": {
+        "contextSize": {
+          "description": "Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used as context for compiling suggestion. If empty, the latest message of the conversation will be used. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SuggestConversationSummaryResponse": {
+      "description": "The response message for Conversations.SuggestConversationSummary.",
+      "id": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including last_conversation_message used to compile the suggestion. It may be smaller than the SuggestSummaryRequest.context_size field in the request if there weren't that many messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used as context for compiling suggestion. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryResponseSummary",
+          "description": "Generated summary."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SuggestConversationSummaryResponseSummary": {
+      "description": "Generated summary for a conversation.",
+      "id": "GoogleCloudDialogflowV2beta1SuggestConversationSummaryResponseSummary",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: \"projects//answerRecords/\"",
+          "type": "string"
+        },
+        "text": {
+          "description": "The summary content that is concatenated into one string.",
+          "type": "string"
+        },
+        "textSections": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The summary content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -17862,13 +18005,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
-            "Run article suggestion model.",
+            "Run article suggestion model for chat.",
             "Run FAQ model.",
-            "Run smart reply model."
+            "Run smart reply model for chat.",
+            "Run conversation summarization model for chat."
           ],
           "type": "string"
         }

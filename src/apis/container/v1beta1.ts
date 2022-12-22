@@ -258,7 +258,7 @@ export namespace container_v1beta1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -322,7 +322,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * Mode of operation for binauthz policy evaluation. Currently the only options are equivalent to enable/disable. If unspecified, defaults to DISABLED.
+     * Mode of operation for binauthz policy evaluation. If unspecified, defaults to DISABLED.
      */
     evaluationMode?: string | null;
   }
@@ -788,6 +788,14 @@ export namespace container_v1beta1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
+     * Enable/Disable private endpoint for the cluster's master.
+     */
+    desiredEnablePrivateEndpoint?: boolean | null;
+    /**
+     * The desired config of Gateway API on this cluster.
+     */
+    desiredGatewayApiConfig?: Schema$GatewayAPIConfig;
+    /**
      * The desired GCFS config for the cluster.
      */
     desiredGcfsConfig?: Schema$GcfsConfig;
@@ -856,6 +864,10 @@ export namespace container_v1beta1 {
      */
     desiredNodePoolId?: string | null;
     /**
+     * The desired node pool logging configuration defaults for the cluster.
+     */
+    desiredNodePoolLoggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
      * The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the Kubernetes master version
      */
     desiredNodeVersion?: string | null;
@@ -895,6 +907,10 @@ export namespace container_v1beta1 {
      * Configuration for Shielded Nodes.
      */
     desiredShieldedNodes?: Schema$ShieldedNodes;
+    /**
+     * The desired stack type of the cluster. If a stack type is provided and does not match the current stack type of the cluster, update will attempt to change the stack type to the new type.
+     */
+    desiredStackType?: string | null;
     /**
      * The desired Cloud TPU configuration.
      */
@@ -1115,6 +1131,15 @@ export namespace container_v1beta1 {
     localSsdCount?: number | null;
   }
   /**
+   * Configuration of Fast Socket feature.
+   */
+  export interface Schema$FastSocket {
+    /**
+     * Whether Fast Socket features are enabled in the node pool.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Allows filtering to one or more specific event types. If event types are present, those and only those event types will be transmitted to the cluster. Other types will be skipped. If no filter is specified, or no event types are present, all event types will be sent
    */
   export interface Schema$Filter {
@@ -1122,6 +1147,15 @@ export namespace container_v1beta1 {
      * Event types to allowlist.
      */
     eventType?: string[] | null;
+  }
+  /**
+   * GatewayAPIConfig contains the desired config of Gateway API on this cluster.
+   */
+  export interface Schema$GatewayAPIConfig {
+    /**
+     * The Gateway API release channel to use for Gateway API.
+     */
+    channel?: string | null;
   }
   /**
    * Configuration for the Compute Engine PD CSI driver.
@@ -1552,6 +1586,15 @@ export namespace container_v1beta1 {
     componentConfig?: Schema$LoggingComponentConfig;
   }
   /**
+   * LoggingVariantConfig specifies the behaviour of the logging component.
+   */
+  export interface Schema$LoggingVariantConfig {
+    /**
+     * Logging variant deployed on nodes.
+     */
+    variant?: string | null;
+  }
+  /**
    * Represents the Maintenance exclusion option.
    */
   export interface Schema$MaintenanceExclusionOptions {
@@ -1641,6 +1684,10 @@ export namespace container_v1beta1 {
      * Whether or not master authorized networks is enabled.
      */
     enabled?: boolean | null;
+    /**
+     * Whether master is accessbile via Google Compute Engine Public IP addresses.
+     */
+    gcpPublicCidrsAccessEnabled?: boolean | null;
   }
   /**
    * Constraints applied to pods.
@@ -1727,6 +1774,10 @@ export namespace container_v1beta1 {
      * Whether L4ILB Subsetting is enabled for this cluster.
      */
     enableL4ilbSubsetting?: boolean | null;
+    /**
+     * GatewayAPIConfig contains the desired config of Gateway API on this cluster.
+     */
+    gatewayApiConfig?: Schema$GatewayAPIConfig;
     /**
      * Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
@@ -1821,6 +1872,10 @@ export namespace container_v1beta1 {
      */
     ephemeralStorageConfig?: Schema$EphemeralStorageConfig;
     /**
+     * Enable or disable NCCL fast socket for the node pool.
+     */
+    fastSocket?: Schema$FastSocket;
+    /**
      * GCFS (Google Container File System) configs.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -1849,6 +1904,10 @@ export namespace container_v1beta1 {
      */
     localSsdCount?: number | null;
     /**
+     * Logging configuration.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
      * The name of a Google Compute Engine [machine type](https://cloud.google.com/compute/docs/machine-types). If unspecified, the default machine type is `e2-medium`.
      */
     machineType?: string | null;
@@ -1857,7 +1916,7 @@ export namespace container_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      */
     minCpuPlatform?: string | null;
     /**
@@ -1876,6 +1935,10 @@ export namespace container_v1beta1 {
      * The optional reservation affinity. Setting this field will apply the specified [Zonal Compute Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) to this node pool.
      */
     reservationAffinity?: Schema$ReservationAffinity;
+    /**
+     * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
+     */
+    resourceLabels?: {[key: string]: string} | null;
     /**
      * Sandbox configuration for this node.
      */
@@ -1913,6 +1976,10 @@ export namespace container_v1beta1 {
      * GCFS (Google Container File System, also known as Riptide) options.
      */
     gcfsConfig?: Schema$GcfsConfig;
+    /**
+     * Logging configuration for node pools.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
   }
   /**
    * Node kubelet configs.
@@ -1969,6 +2036,10 @@ export namespace container_v1beta1 {
      * Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     createPodRange?: boolean | null;
+    /**
+     * Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from cluster.privateClusterConfig.enablePrivateNodes
+     */
+    enablePrivateNodes?: boolean | null;
     /**
      * Network bandwidth tier configuration.
      */
@@ -2109,6 +2180,15 @@ export namespace container_v1beta1 {
      * Subset of NodeConfig message that has defaults.
      */
     nodeConfigDefaults?: Schema$NodeConfigDefaults;
+  }
+  /**
+   * NodePoolLoggingConfig specifies logging configuration for nodepools.
+   */
+  export interface Schema$NodePoolLoggingConfig {
+    /**
+     * Logging variant configuration.
+     */
+    variantConfig?: Schema$LoggingVariantConfig;
   }
   /**
    * Kubernetes taint is comprised of three fields: key, value, and effect. Effect can only be one of three types: NoSchedule, PreferNoSchedule or NoExecute. See [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration) for more information, including usage and the valid values.
@@ -2278,6 +2358,10 @@ export namespace container_v1beta1 {
      */
     privateEndpoint?: string | null;
     /**
+     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format.
+     */
+    privateEndpointSubnetwork?: string | null;
+    /**
      * Output only. The external IP address of this cluster's master endpoint.
      */
     publicEndpoint?: string | null;
@@ -2299,6 +2383,10 @@ export namespace container_v1beta1 {
      * WorkloadConfig defines which actions are enabled for a cluster's workload configurations.
      */
     workloadConfig?: Schema$WorkloadConfig;
+    /**
+     * Sets which mode to use for Protect workload vulnerability scanning feature.
+     */
+    workloadVulnerabilityMode?: string | null;
   }
   /**
    * Pub/Sub specific notification config.
@@ -2369,13 +2457,22 @@ export namespace container_v1beta1 {
      */
     consumeReservationType?: string | null;
     /**
-     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as the key and specify the name of your reservation as its value.
+     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify "compute.googleapis.com/reservation-name" as the key and specify the name of your reservation as its value.
      */
     key?: string | null;
     /**
      * Corresponds to the label value(s) of reservation resource(s).
      */
     values?: string[] | null;
+  }
+  /**
+   * Collection of [GCP labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).
+   */
+  export interface Schema$ResourceLabels {
+    /**
+     * Map of node label keys and node label values.
+     */
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Contains information about amount of some resource in the cluster. For memory, value should be in GB.
@@ -2891,7 +2988,7 @@ export namespace container_v1beta1 {
      */
     batchNodeCount?: number | null;
     /**
-     * Percentage of the bool pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].
+     * Percentage of the blue pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].
      */
     batchPercentage?: number | null;
     /**
@@ -3064,6 +3161,10 @@ export namespace container_v1beta1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Enable or disable NCCL fast socket for the node pool.
+     */
+    fastSocket?: Schema$FastSocket;
+    /**
      * GCFS config.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -3092,6 +3193,10 @@ export namespace container_v1beta1 {
      */
     locations?: string[] | null;
     /**
+     * Logging configuration.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
@@ -3111,6 +3216,10 @@ export namespace container_v1beta1 {
      * Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
+     */
+    resourceLabels?: Schema$ResourceLabels;
     /**
      * The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags.
      */
@@ -8306,6 +8415,7 @@ export namespace container_v1beta1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "fastSocket": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
@@ -8313,11 +8423,13 @@ export namespace container_v1beta1 {
      *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
      *       //   "tags": {},
      *       //   "taints": {},
      *       //   "upgradeSettings": {},
@@ -13756,6 +13868,7 @@ export namespace container_v1beta1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "fastSocket": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
@@ -13763,11 +13876,13 @@ export namespace container_v1beta1 {
      *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
      *       //   "tags": {},
      *       //   "taints": {},
      *       //   "upgradeSettings": {},

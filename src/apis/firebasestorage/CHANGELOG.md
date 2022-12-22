@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v2.0.3...firebasestorage-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v2.0.2...firebasestorage-v2.0.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **firebasestorage:** update the API ([a0c2bf6](https://github.com/googleapis/google-api-nodejs-client/commit/a0c2bf6ce5161d52a25cbc51d028014c35322427))
+
 ## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v2.0.1...firebasestorage-v2.0.2) (2022-06-21)
 
 

@@ -167,7 +167,7 @@ export namespace workflows_v1 {
      */
     unreachable?: string[] | null;
     /**
-     * The workflows which match the request.
+     * The workflows that match the request.
      */
     workflows?: Schema$Workflow[];
   }
@@ -268,7 +268,7 @@ export namespace workflows_v1 {
    */
   export interface Schema$Workflow {
     /**
-     * Output only. The timestamp of when the workflow was created.
+     * Output only. The timestamp for when the workflow was created.
      */
     createTime?: string | null;
     /**
@@ -276,7 +276,7 @@ export namespace workflows_v1 {
      */
     description?: string | null;
     /**
-     * Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.
+     * Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -284,7 +284,7 @@ export namespace workflows_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The timestamp that the latest revision of the workflow was created.
+     * Output only. The timestamp for the latest revision of the workflow's creation.
      */
     revisionCreateTime?: string | null;
     /**
@@ -304,7 +304,7 @@ export namespace workflows_v1 {
      */
     state?: string | null;
     /**
-     * Output only. The last update timestamp of the workflow.
+     * Output only. The timestamp for when the workflow was last updated.
      */
     updateTime?: string | null;
   }
@@ -1072,7 +1072,7 @@ export namespace workflows_v1 {
     }
 
     /**
-     * Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation will return ALREADY_EXISTS error.
+     * Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation returns a ALREADY_EXISTS error.
      * @example
      * ```js
      * // Before running the sample:
@@ -1354,7 +1354,7 @@ export namespace workflows_v1 {
     }
 
     /**
-     * Gets details of a single Workflow.
+     * Gets details of a single workflow.
      * @example
      * ```js
      * // Before running the sample:
@@ -1380,7 +1380,7 @@ export namespace workflows_v1 {
      *
      *   // Do the magic
      *   const res = await workflows.projects.locations.workflows.get({
-     *     // Required. Name of the workflow which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     *     // Required. Name of the workflow for which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      *     name: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *   });
      *   console.log(res.data);
@@ -1489,7 +1489,7 @@ export namespace workflows_v1 {
     }
 
     /**
-     * Lists Workflows in a given project and location. The default order is not specified.
+     * Lists workflows in a given project and location. The default order is not specified.
      * @example
      * ```js
      * // Before running the sample:
@@ -1517,9 +1517,9 @@ export namespace workflows_v1 {
      *   const res = await workflows.projects.locations.workflows.list({
      *     // Filter to restrict results to specific workflows.
      *     filter: 'placeholder-value',
-     *     // Comma-separated list of fields that that specify the order of the results. Default sorting order for a field is ascending. To specify descending order for a field, append a " desc" suffix. If not specified, the results will be returned in an unspecified order.
+     *     // Comma-separated list of fields that specify the order of the results. Default sorting order for a field is ascending. To specify descending order for a field, append a "desc" suffix. If not specified, the results are returned in an unspecified order.
      *     orderBy: 'placeholder-value',
-     *     // Maximum number of workflows to return per call. The service may return fewer than this value. If the value is not specified, a default value of 500 will be used. The maximum permitted value is 1000 and values greater than 1000 will be coerced down to 1000.
+     *     // Maximum number of workflows to return per call. The service might return fewer than this value even if not at the end of the collection. If a value is not specified, a default value of 500 is used. The maximum permitted value is 1000 and values greater than 1000 are coerced down to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListWorkflows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflows` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -1633,7 +1633,7 @@ export namespace workflows_v1 {
     }
 
     /**
-     * Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow may be created as a result of a successful update operation. In that case, such revision will be used in new workflow executions.
+     * Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow might be created as a result of a successful update operation. In that case, the new revision is used in new workflow executions.
      * @example
      * ```js
      * // Before running the sample:
@@ -1808,7 +1808,7 @@ export namespace workflows_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Get
     extends StandardParameters {
     /**
-     * Required. Name of the workflow which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     * Required. Name of the workflow for which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string;
   }
@@ -1819,11 +1819,11 @@ export namespace workflows_v1 {
      */
     filter?: string;
     /**
-     * Comma-separated list of fields that that specify the order of the results. Default sorting order for a field is ascending. To specify descending order for a field, append a " desc" suffix. If not specified, the results will be returned in an unspecified order.
+     * Comma-separated list of fields that specify the order of the results. Default sorting order for a field is ascending. To specify descending order for a field, append a "desc" suffix. If not specified, the results are returned in an unspecified order.
      */
     orderBy?: string;
     /**
-     * Maximum number of workflows to return per call. The service may return fewer than this value. If the value is not specified, a default value of 500 will be used. The maximum permitted value is 1000 and values greater than 1000 will be coerced down to 1000.
+     * Maximum number of workflows to return per call. The service might return fewer than this value even if not at the end of the collection. If a value is not specified, a default value of 500 is used. The maximum permitted value is 1000 and values greater than 1000 are coerced down to 1000.
      */
     pageSize?: number;
     /**

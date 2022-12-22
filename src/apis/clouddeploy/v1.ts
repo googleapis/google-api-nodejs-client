@@ -189,7 +189,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -215,11 +215,37 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Information specifying where to deploy a Cloud Run Service.
+   */
+  export interface Schema$CloudRunLocation {
+    /**
+     * Required. The location for the Cloud Run Service. Format must be `projects/{project\}/locations/{location\}`.
+     */
+    location?: string | null;
+  }
+  /**
+   * CloudRunMetadata contains information from a Cloud Run deployment.
+   */
+  export interface Schema$CloudRunMetadata {
+    /**
+     * Output only. The Cloud Run Revision id associated with a `Rollout`.
+     */
+    revision?: string | null;
+    /**
+     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`. Format is projects/{project\}/locations/{location\}/services/{service\}.
+     */
+    service?: string | null;
+    /**
+     * Output only. The Cloud Run Service urls that are associated with a `Rollout`.
+     */
+    serviceUrls?: string[] | null;
+  }
+  /**
    * Service-wide configuration.
    */
   export interface Schema$Config {
     /**
-     * Output only. Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.
+     * Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.
      */
     defaultSkaffoldVersion?: string | null;
     /**
@@ -227,7 +253,7 @@ export namespace clouddeploy_v1 {
      */
     name?: string | null;
     /**
-     * Output only. All supported versions of Skaffold.
+     * All supported versions of Skaffold.
      */
     supportedVersions?: Schema$SkaffoldVersion[];
   }
@@ -266,7 +292,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$DeliveryPipeline {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -326,6 +352,53 @@ export namespace clouddeploy_v1 {
      * Type of this notification, e.g. for a Pub/Sub failure.
      */
     type?: string | null;
+  }
+  /**
+   * A deploy Job.
+   */
+  export interface Schema$DeployJob {}
+  /**
+   * DeployJobRun contains information specific to a deploy `JobRun`.
+   */
+  export interface Schema$DeployJobRun {
+    /**
+     * Output only. The resource name of the Cloud Build `Build` object that is used to deploy. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     */
+    build?: string | null;
+    /**
+     * Output only. The reason the deploy failed. This will always be unspecified while the deploy is in progress or if it succeeded.
+     */
+    failureCause?: string | null;
+    /**
+     * Output only. Additional information about the deploy failure, if available.
+     */
+    failureMessage?: string | null;
+    /**
+     * Output only. Metadata containing information about the deploy job run.
+     */
+    metadata?: Schema$DeployJobRunMetadata;
+  }
+  /**
+   * DeployJobRunMetadata surfaces information associated with a `DeployJobRun` to the user.
+   */
+  export interface Schema$DeployJobRunMetadata {
+    /**
+     * Output only. The name of the Cloud Run Service that is associated with a `DeployJobRun`.
+     */
+    cloudRun?: Schema$CloudRunMetadata;
+  }
+  /**
+   * Deployment job composition.
+   */
+  export interface Schema$DeploymentJobs {
+    /**
+     * Output only. The deploy Job. This is the first job run in the phase.
+     */
+    deployJob?: Schema$Job;
+    /**
+     * Output only. The verify Job. Runs after a deploy if the deploy succeeds.
+     */
+    verifyJob?: Schema$Job;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -399,6 +472,113 @@ export namespace clouddeploy_v1 {
     internalIp?: boolean | null;
   }
   /**
+   * Job represents an operation for a `Rollout`.
+   */
+  export interface Schema$Job {
+    /**
+     * Output only. A deploy Job.
+     */
+    deployJob?: Schema$DeployJob;
+    /**
+     * Output only. The ID of the Job.
+     */
+    id?: string | null;
+    /**
+     * Output only. The name of the `JobRun` responsible for the most recent invocation of this Job.
+     */
+    jobRun?: string | null;
+    /**
+     * Output only. The current state of the Job.
+     */
+    state?: string | null;
+    /**
+     * Output only. A verify Job.
+     */
+    verifyJob?: Schema$VerifyJob;
+  }
+  /**
+   * A `JobRun` resource in the Google Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.
+   */
+  export interface Schema$JobRun {
+    /**
+     * Output only. Time at which the `JobRun` was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Information specific to a deploy `JobRun`.
+     */
+    deployJobRun?: Schema$DeployJobRun;
+    /**
+     * Output only. Time at which the `JobRun` ended.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Output only. ID of the `Rollout` job this `JobRun` corresponds to.
+     */
+    jobId?: string | null;
+    /**
+     * Optional. Name of the `JobRun`. Format is projects/{project\}/locations/{location\}/ deliveryPipelines/{deliveryPipeline\}/releases/{releases\}/rollouts/ {rollouts\}/jobRuns/{uuid\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. ID of the `Rollout` phase this `JobRun` belongs in.
+     */
+    phaseId?: string | null;
+    /**
+     * Output only. Time at which the `JobRun` was started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The current state of the `JobRun`.
+     */
+    state?: string | null;
+    /**
+     * Output only. Unique identifier of the `JobRun`.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Information specific to a verify `JobRun`.
+     */
+    verifyJobRun?: Schema$VerifyJobRun;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/jobrun_notification" Platform Log event that describes the failure to send JobRun resource update Pub/Sub notification.
+   */
+  export interface Schema$JobRunNotificationEvent {
+    /**
+     * The name of the `JobRun`.
+     */
+    jobRun?: string | null;
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Unique identifier of the `Release`.
+     */
+    releaseUid?: string | null;
+    /**
+     * Unique identifier of the `Rollout`.
+     */
+    rolloutUid?: string | null;
+    /**
+     * ID of the `Target`.
+     */
+    targetId?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * The response object from `ListDeliveryPipelines`.
    */
   export interface Schema$ListDeliveryPipelinesResponse {
@@ -412,6 +592,23 @@ export namespace clouddeploy_v1 {
     nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * ListJobRunsResponse is the response object returned by `ListJobRuns`.
+   */
+  export interface Schema$ListJobRunsResponse {
+    /**
+     * The `JobRun` objects.
+     */
+    jobRuns?: Schema$JobRun[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached
      */
     unreachable?: string[] | null;
   }
@@ -518,6 +715,15 @@ export namespace clouddeploy_v1 {
     name?: string | null;
   }
   /**
+   * Metadata includes information associated with a `Rollout`.
+   */
+  export interface Schema$Metadata {
+    /**
+     * Output only. The name of the Cloud Run Service that is associated with a `Rollout`.
+     */
+    cloudRun?: Schema$CloudRunMetadata;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -576,6 +782,23 @@ export namespace clouddeploy_v1 {
     verb?: string | null;
   }
   /**
+   * Phase represents a collection of jobs that are logically grouped together for a `Rollout`.
+   */
+  export interface Schema$Phase {
+    /**
+     * Output only. Deployment job composition.
+     */
+    deploymentJobs?: Schema$DeploymentJobs;
+    /**
+     * Output only. The ID of the Phase.
+     */
+    id?: string | null;
+    /**
+     * Output only. Current state of the Phase.
+     */
+    state?: string | null;
+  }
+  /**
    * PipelineCondition contains all conditions relevant to a Delivery Pipeline.
    */
   export interface Schema$PipelineCondition {
@@ -584,9 +807,13 @@ export namespace clouddeploy_v1 {
      */
     pipelineReadyCondition?: Schema$PipelineReadyCondition;
     /**
-     * Detalis around targets enumerated in the pipeline.
+     * Details around targets enumerated in the pipeline.
      */
     targetsPresentCondition?: Schema$TargetsPresentCondition;
+    /**
+     * Details on the whether the targets enumerated in the pipeline are of the same type.
+     */
+    targetsTypeCondition?: Schema$TargetsTypeCondition;
   }
   /**
    * PipelineReadyCondition contains information around the status of the Pipeline.
@@ -751,6 +978,23 @@ export namespace clouddeploy_v1 {
     release?: string | null;
   }
   /**
+   * RetryJobRequest is the request object used by `RetryJob`.
+   */
+  export interface Schema$RetryJobRequest {
+    /**
+     * Required. The job ID for the Job to retry.
+     */
+    jobId?: string | null;
+    /**
+     * Required. The phase ID the Job to retry belongs to.
+     */
+    phaseId?: string | null;
+  }
+  /**
+   * The response object from 'RetryJob'.
+   */
+  export interface Schema$RetryJobResponse {}
+  /**
    * A `Rollout` resource in the Google Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
    */
   export interface Schema$Rollout {
@@ -807,9 +1051,17 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. Metadata contains information about the rollout.
+     */
+    metadata?: Schema$Metadata;
+    /**
      * Optional. Name of the `Rollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
      */
     name?: string | null;
+    /**
+     * Output only. The phases that represent the workflows of this `Rollout`.
+     */
+    phases?: Schema$Phase[];
     /**
      * Output only. Current state of the `Rollout`.
      */
@@ -879,7 +1131,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$SkaffoldVersion {
     /**
-     * Date when this version is expected to no longer be supported.
+     * Date when this version is expected to no longer be supported. For a more precise time, use the `support_expiration_time` field.
      */
     supportEndDate?: Schema$Date;
     /**
@@ -896,9 +1148,22 @@ export namespace clouddeploy_v1 {
      */
     profiles?: string[] | null;
     /**
+     * Optional. The strategy to use for a `Rollout` to this stage.
+     */
+    strategy?: Schema$Strategy;
+    /**
      * The target_id to which this stage points. This field refers exclusively to the last segment of a target name. For example, this field would just be `my-target` (rather than `projects/project/locations/location/targets/my-target`). The location of the `Target` is inferred to be the same as the location of the `DeliveryPipeline` that contains this `Stage`.
      */
     targetId?: string | null;
+  }
+  /**
+   * Standard represents the standard deployment strategy.
+   */
+  export interface Schema$Standard {
+    /**
+     * Whether to verify a deployment.
+     */
+    verify?: boolean | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -916,6 +1181,15 @@ export namespace clouddeploy_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Strategy contains deployment strategy information.
+   */
+  export interface Schema$Strategy {
+    /**
+     * Standard deployment strategy executes a single deploy and allows verifying the deployment.
+     */
+    standard?: Schema$Standard;
   }
   /**
    * A `Target` resource in the Google Cloud Deploy API. A `Target` defines a location to which a Skaffold configuration can be deployed.
@@ -961,6 +1235,10 @@ export namespace clouddeploy_v1 {
      * Optional. Whether or not the `Target` requires approval.
      */
     requireApproval?: boolean | null;
+    /**
+     * Information specifying a Cloud Run deployment target.
+     */
+    run?: Schema$CloudRunLocation;
     /**
      * Output only. Resource id of the `Target`.
      */
@@ -1017,6 +1295,10 @@ export namespace clouddeploy_v1 {
      */
     failureCause?: string | null;
     /**
+     * Output only. Additional information about the render failure, if available.
+     */
+    failureMessage?: string | null;
+    /**
      * Output only. The resource name of the Cloud Build `Build` object that is used to render the manifest for this target. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
     renderingBuild?: string | null;
@@ -1030,7 +1312,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TargetsPresentCondition {
     /**
-     * The list of Target names that are missing. For example, projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
+     * The list of Target names that do not exist. For example, projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
      */
     missingTargets?: string[] | null;
     /**
@@ -1041,6 +1323,19 @@ export namespace clouddeploy_v1 {
      * Last time the condition was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * TargetsTypeCondition contains information on whether the Targets defined in the Delivery Pipeline are of the same type.
+   */
+  export interface Schema$TargetsTypeCondition {
+    /**
+     * Human readable error message.
+     */
+    errorDetails?: string | null;
+    /**
+     * True if the targets are all a comparable type. For example this is true if all targets are GKE clusters. This is false if some targets are Cloud Run targets and others are GKE clusters.
+     */
+    status?: boolean | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1059,6 +1354,35 @@ export namespace clouddeploy_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * A verify Job.
+   */
+  export interface Schema$VerifyJob {}
+  /**
+   * VerifyJobRun contains information specific to a verify `JobRun`.
+   */
+  export interface Schema$VerifyJobRun {
+    /**
+     * Output only. URI of a directory containing the verify artifacts. This contains the Skaffold event log.
+     */
+    artifactUri?: string | null;
+    /**
+     * Output only. The resource name of the Cloud Build `Build` object that is used to verify. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     */
+    build?: string | null;
+    /**
+     * Output only. File path of the Skaffold event log relative to the artifact URI.
+     */
+    eventLogPath?: string | null;
+    /**
+     * Output only. The reason the verify failed. This will always be unspecified while the verify is in progress or if it succeeded.
+     */
+    failureCause?: string | null;
+    /**
+     * Output only. Additional information about the verify failure, if available.
+     */
+    failureMessage?: string | null;
   }
 
   export class Resource$Projects {
@@ -3529,8 +3853,13 @@ export namespace clouddeploy_v1 {
 
   export class Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts {
     context: APIRequestContext;
+    jobRuns: Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.jobRuns =
+        new Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns(
+          this.context
+        );
     }
 
     /**
@@ -3735,7 +4064,9 @@ export namespace clouddeploy_v1 {
      *           //   "etag": "my_etag",
      *           //   "failureReason": "my_failureReason",
      *           //   "labels": {},
+     *           //   "metadata": {},
      *           //   "name": "my_name",
+     *           //   "phases": [],
      *           //   "state": "my_state",
      *           //   "targetId": "my_targetId",
      *           //   "uid": "my_uid"
@@ -3897,7 +4228,9 @@ export namespace clouddeploy_v1 {
      *   //   "etag": "my_etag",
      *   //   "failureReason": "my_failureReason",
      *   //   "labels": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name",
+     *   //   "phases": [],
      *   //   "state": "my_state",
      *   //   "targetId": "my_targetId",
      *   //   "uid": "my_uid"
@@ -4141,6 +4474,147 @@ export namespace clouddeploy_v1 {
         return createAPIRequest<Schema$ListRolloutsResponse>(parameters);
       }
     }
+
+    /**
+     * Retries the specified Job in a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.retryJob(
+     *       {
+     *         // Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     *         rollout:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "jobId": "my_jobId",
+     *           //   "phaseId": "my_phaseId"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retryJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retryJob(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetryJobResponse>;
+    retryJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retryJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
+      options: MethodOptions | BodyResponseCallback<Schema$RetryJobResponse>,
+      callback: BodyResponseCallback<Schema$RetryJobResponse>
+    ): void;
+    retryJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob,
+      callback: BodyResponseCallback<Schema$RetryJobResponse>
+    ): void;
+    retryJob(callback: BodyResponseCallback<Schema$RetryJobResponse>): void;
+    retryJob(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob
+        | BodyResponseCallback<Schema$RetryJobResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetryJobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetryJobResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$RetryJobResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+rollout}:retryJob').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['rollout'],
+        pathParams: ['rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetryJobResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetryJobResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve
@@ -4206,6 +4680,343 @@ export namespace clouddeploy_v1 {
     pageToken?: string;
     /**
      * Required. The `Release` which owns this collection of `Rollout` objects.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Retryjob
+    extends StandardParameters {
+    /**
+     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     */
+    rollout?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RetryJobRequest;
+  }
+
+  export class Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single JobRun.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.get(
+     *       {
+     *         // Required. Name of the `JobRun`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}/jobRuns/{job_run_name\}.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout/jobRuns/my-jobRun',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deployJobRun": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "etag": "my_etag",
+     *   //   "jobId": "my_jobId",
+     *   //   "name": "my_name",
+     *   //   "phaseId": "my_phaseId",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "verifyJobRun": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$JobRun>;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$JobRun>,
+      callback: BodyResponseCallback<Schema$JobRun>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get,
+      callback: BodyResponseCallback<Schema$JobRun>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$JobRun>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get
+        | BodyResponseCallback<Schema$JobRun>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$JobRun>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$JobRun>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$JobRun> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$JobRun>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$JobRun>(parameters);
+      }
+    }
+
+    /**
+     * Lists JobRuns in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.list(
+     *       {
+     *         // Optional. Filter results to be returned. See https://google.aip.dev/160 for more details.
+     *         filter: 'placeholder-value',
+     *         // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of `JobRun` objects to return. The service may return fewer than this value. If unspecified, at most 50 `JobRun` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListJobRuns` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The `Rollout` which owns this collection of `JobRun` objects.
+     *         parent:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobRuns": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobRunsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobRunsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobRunsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List,
+      callback: BodyResponseCallback<Schema$ListJobRunsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListJobRunsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List
+        | BodyResponseCallback<Schema$ListJobRunsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobRunsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobRunsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListJobRunsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/jobRuns').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListJobRunsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListJobRunsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the `JobRun`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}/jobRuns/{job_run_name\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter results to be returned. See https://google.aip.dev/160 for more details.
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of `JobRun` objects to return. The service may return fewer than this value. If unspecified, at most 50 `JobRun` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListJobRuns` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The `Rollout` which owns this collection of `JobRun` objects.
      */
     parent?: string;
   }
@@ -4844,6 +5655,7 @@ export namespace clouddeploy_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "requireApproval": false,
+     *       //   "run": {},
      *       //   "targetId": "my_targetId",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
@@ -5135,6 +5947,7 @@ export namespace clouddeploy_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "requireApproval": false,
+     *   //   "run": {},
      *   //   "targetId": "my_targetId",
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
@@ -5557,6 +6370,7 @@ export namespace clouddeploy_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "requireApproval": false,
+     *       //   "run": {},
      *       //   "targetId": "my_targetId",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"

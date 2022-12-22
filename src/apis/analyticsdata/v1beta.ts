@@ -779,9 +779,13 @@ export namespace analyticsdata_v1beta {
      */
     tokensPerDay?: Schema$QuotaStatus;
     /**
-     * Standard Analytics Properties can use up to 5,000 tokens per hour; Analytics 360 Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas.
+     * Standard Analytics Properties can use up to 5,000 tokens per hour; Analytics 360 Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas.
      */
     tokensPerHour?: Schema$QuotaStatus;
+    /**
+     * Analytics Properties can use up to 25% of their tokens per project per hour. This amounts to standard Analytics Properties can use up to 1,250 tokens per project per hour, and Analytics 360 Properties can use 12,500 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas.
+     */
+    tokensPerProjectPerHour?: Schema$QuotaStatus;
   }
   /**
    * Current state for a particular quota group.
@@ -1475,7 +1479,7 @@ export namespace analyticsdata_v1beta {
      *
      *   // Do the magic
      *   const res = await analyticsdata.properties.checkCompatibility({
-     *     // A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234 Set the Property ID to 0 for compatibility checking on dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
+     *     // A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234
      *     property: 'properties/my-propertie',
      *
      *     // Request body metadata
@@ -2253,7 +2257,7 @@ export namespace analyticsdata_v1beta {
   export interface Params$Resource$Properties$Checkcompatibility
     extends StandardParameters {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234 Set the Property ID to 0 for compatibility checking on dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
+     * A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234
      */
     property?: string;
 

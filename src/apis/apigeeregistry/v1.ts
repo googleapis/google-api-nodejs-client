@@ -125,7 +125,7 @@ export namespace apigeeregistry_v1 {
   }
 
   /**
-   * An Api is a top-level description of an API. Apis are produced by producers and are commitments to provide services.
+   * A top-level description of an API. Produced by producers and are commitments to provide services.
    */
   export interface Schema$Api {
     /**
@@ -133,7 +133,7 @@ export namespace apigeeregistry_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * A user-definable description of the availability of this service. Format: free-form, but we expect single words that describe availability, e.g. "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
+     * A user-definable description of the availability of this service. Format: free-form, but we expect single words that describe availability, e.g., "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
      */
     availability?: string | null;
     /**
@@ -149,7 +149,7 @@ export namespace apigeeregistry_v1 {
      */
     displayName?: string | null;
     /**
-     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "apigeeregistry.googleapis.com/" and cannot be changed.
+     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with `apigeeregistry.googleapis.com/` and cannot be changed.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -157,11 +157,11 @@ export namespace apigeeregistry_v1 {
      */
     name?: string | null;
     /**
-     * The recommended deployment of the API. Format: apis/{api\}/deployments/{deployment\}
+     * The recommended deployment of the API. Format: `projects/{project\}/locations/{location\}/apis/{api\}/deployments/{deployment\}`
      */
     recommendedDeployment?: string | null;
     /**
-     * The recommended version of the API. Format: apis/{api\}/versions/{version\}
+     * The recommended version of the API. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}`
      */
     recommendedVersion?: string | null;
     /**
@@ -170,7 +170,7 @@ export namespace apigeeregistry_v1 {
     updateTime?: string | null;
   }
   /**
-   * An ApiDeployment describes a service running at particular address that provides a particular version of an API. ApiDeployments have revisions which correspond to different configurations of a single deployment in time. Revision identifiers should be updated whenever the served API spec or endpoint address changes.
+   * Describes a service running at particular address that provides a particular version of an API. ApiDeployments have revisions which correspond to different configurations of a single deployment in time. Revision identifiers should be updated whenever the served API spec or endpoint address changes.
    */
   export interface Schema$ApiDeployment {
     /**
@@ -182,7 +182,7 @@ export namespace apigeeregistry_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * The full resource name (including revision id) of the spec of the API being served by the deployment. Changes to this value will update the revision. Format: apis/{api\}/deployments/{deployment\}
+     * The full resource name (including revision ID) of the spec of the API being served by the deployment. Changes to this value will update the revision. Format: `apis/{api\}/deployments/{deployment\}`
      */
     apiSpecRevision?: string | null;
     /**
@@ -202,7 +202,7 @@ export namespace apigeeregistry_v1 {
      */
     endpointUri?: string | null;
     /**
-     * The address of the external channel of the API (e.g. the Developer Portal). Changes to this value will not affect the revision.
+     * The address of the external channel of the API (e.g., the Developer Portal). Changes to this value will not affect the revision.
      */
     externalChannelUri?: string | null;
     /**
@@ -210,7 +210,7 @@ export namespace apigeeregistry_v1 {
      */
     intendedAudience?: string | null;
     /**
-     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "apigeeregistry.googleapis.com/" and cannot be changed.
+     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with `apigeeregistry.googleapis.com/` and cannot be changed.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -231,7 +231,7 @@ export namespace apigeeregistry_v1 {
     revisionUpdateTime?: string | null;
   }
   /**
-   * An ApiSpec describes a version of an API in a structured way. ApiSpecs provide formal descriptions that consumers can use to use a version. ApiSpec resources are intended to be fully-resolved descriptions of an ApiVersion. When specs consist of multiple files, these should be bundled together (e.g. in a zip archive) and stored as a unit. Multiple specs can exist to provide representations in different API description formats. Synchronization of these representations would be provided by tooling and background services.
+   * Describes a version of an API in a structured way. ApiSpecs provide formal descriptions that consumers can use to use a version. ApiSpec resources are intended to be fully-resolved descriptions of an ApiVersion. When specs consist of multiple files, these should be bundled together (e.g., in a zip archive) and stored as a unit. Multiple specs can exist to provide representations in different API description formats. Synchronization of these representations would be provided by tooling and background services.
    */
   export interface Schema$ApiSpec {
     /**
@@ -259,11 +259,11 @@ export namespace apigeeregistry_v1 {
      */
     hash?: string | null;
     /**
-     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "apigeeregistry.googleapis.com/" and cannot be changed.
+     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with `apigeeregistry.googleapis.com/` and cannot be changed.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * A style (format) descriptor for this spec that is specified as a Media Type (https://en.wikipedia.org/wiki/Media_type). Possible values include "application/vnd.apigee.proto", "application/vnd.apigee.openapi", and "application/vnd.apigee.graphql", with possible suffixes representing compression types. These hypothetical names are defined in the vendor tree defined in RFC6838 (https://tools.ietf.org/html/rfc6838) and are not final. Content types can specify compression. Currently only GZip compression is supported (indicated with "+gzip").
+     * A style (format) descriptor for this spec that is specified as a Media Type (https://en.wikipedia.org/wiki/Media_type). Possible values include `application/vnd.apigee.proto`, `application/vnd.apigee.openapi`, and `application/vnd.apigee.graphql`, with possible suffixes representing compression types. These hypothetical names are defined in the vendor tree defined in RFC6838 (https://tools.ietf.org/html/rfc6838) and are not final. Content types can specify compression. Currently only GZip compression is supported (indicated with "+gzip").
      */
     mimeType?: string | null;
     /**
@@ -292,7 +292,7 @@ export namespace apigeeregistry_v1 {
     sourceUri?: string | null;
   }
   /**
-   * An ApiVersion describes a particular version of an API. ApiVersions are what consumers actually use.
+   * Describes a particular version of an API. ApiVersions are what consumers actually use.
    */
   export interface Schema$ApiVersion {
     /**
@@ -312,7 +312,7 @@ export namespace apigeeregistry_v1 {
      */
     displayName?: string | null;
     /**
-     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "apigeeregistry.googleapis.com/" and cannot be changed.
+     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with `apigeeregistry.googleapis.com/` and cannot be changed.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -320,7 +320,7 @@ export namespace apigeeregistry_v1 {
      */
     name?: string | null;
     /**
-     * A user-definable description of the lifecycle phase of this API version. Format: free-form, but we expect single words that describe API maturity, e.g. "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION", "DEPRECATED", "RETIRED".
+     * A user-definable description of the lifecycle phase of this API version. Format: free-form, but we expect single words that describe API maturity, e.g., "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION", "DEPRECATED", "RETIRED".
      */
     state?: string | null;
     /**
@@ -329,7 +329,7 @@ export namespace apigeeregistry_v1 {
     updateTime?: string | null;
   }
   /**
-   * Artifacts of resources. Artifacts are unique (single-value) per resource and are used to store metadata that is too large or numerous to be stored directly on the resource. Since artifacts are stored separately from parent resources, they should generally be used for metadata that is needed infrequently, i.e. not for display in primary views of the resource but perhaps displayed or downloaded upon request. The ListArtifacts method allows artifacts to be quickly enumerated and checked for presence without downloading their (potentially-large) contents.
+   * Artifacts of resources. Artifacts are unique (single-value) per resource and are used to store metadata that is too large or numerous to be stored directly on the resource. Since artifacts are stored separately from parent resources, they should generally be used for metadata that is needed infrequently, i.e., not for display in primary views of the resource but perhaps displayed or downloaded upon request. The `ListArtifacts` method allows artifacts to be quickly enumerated and checked for presence without downloading their (potentially-large) contents.
    */
   export interface Schema$Artifact {
     /**
@@ -370,7 +370,7 @@ export namespace apigeeregistry_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -450,7 +450,7 @@ export namespace apigeeregistry_v1 {
      */
     createTime?: string | null;
     /**
-     * Format: `projects/x/locations/x/instance`. Currently only locations/global is supported.
+     * Format: `projects/x/locations/x/instance`. Currently only `locations/global` is supported.
      */
     name?: string | null;
     /**
@@ -688,7 +688,7 @@ export namespace apigeeregistry_v1 {
    */
   export interface Schema$RollbackApiDeploymentRequest {
     /**
-     * Required. The revision ID to roll back to. It must be a revision of the same deployment. Example: c7cfa2a8
+     * Required. The revision ID to roll back to. It must be a revision of the same deployment. Example: `c7cfa2a8`
      */
     revisionId?: string | null;
   }
@@ -697,7 +697,7 @@ export namespace apigeeregistry_v1 {
    */
   export interface Schema$RollbackApiSpecRequest {
     /**
-     * Required. The revision ID to roll back to. It must be a revision of the same spec. Example: c7cfa2a8
+     * Required. The revision ID to roll back to. It must be a revision of the same spec. Example: `c7cfa2a8`
      */
     revisionId?: string | null;
   }
@@ -1111,7 +1111,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateApi creates a specified API.
+     * Creates a specified API.
      * @example
      * ```js
      * // Before running the sample:
@@ -1137,9 +1137,9 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.create({
-     *     // Required. The ID to use for the api, which will become the final component of the api's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
+     *     // Required. The ID to use for the API, which will become the final component of the API's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *     apiId: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of APIs. Format: projects/x/locations/x
+     *     // Required. The parent, which owns this collection of APIs. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1266,7 +1266,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteApi removes a specified API and all of the resources that it owns.
+     * Removes a specified API and all of the resources that it owns.
      * @example
      * ```js
      * // Before running the sample:
@@ -1294,7 +1294,7 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.delete({
      *     // If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      *     force: 'placeholder-value',
-     *     // Required. The name of the API to delete. Format: projects/x/locations/x/apis/x
+     *     // Required. The name of the API to delete. Format: `projects/x/locations/x/apis/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api',
      *   });
      *   console.log(res.data);
@@ -1393,7 +1393,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetApi returns a specified API.
+     * Returns a specified API.
      * @example
      * ```js
      * // Before running the sample:
@@ -1419,7 +1419,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.get({
-     *     // Required. The name of the API to retrieve. Format: projects/x/locations/x/apis/x
+     *     // Required. The name of the API to retrieve. Format: `projects/x/locations/x/apis/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api',
      *   });
      *   console.log(res.data);
@@ -1663,7 +1663,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListApis returns matching APIs.
+     * Returns matching APIs.
      * @example
      * ```js
      * // Before running the sample:
@@ -1691,11 +1691,13 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.list({
      *     // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      *     filter: 'placeholder-value',
+     *     // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of APIs to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListApis` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApis` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of APIs. Format: projects/x/locations/x
+     *     // Required. The parent, which owns this collection of APIs. Format: `projects/x/locations/x`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1797,7 +1799,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * UpdateApi can be used to modify a specified API.
+     * Used to modify a specified API.
      * @example
      * ```js
      * // Before running the sample:
@@ -1823,11 +1825,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.patch({
-     *     // If set to true, and the api is not found, a new api will be created. In this situation, `update_mask` is ignored.
+     *     // If set to true, and the API is not found, a new API will be created. In this situation, `update_mask` is ignored.
      *     allowMissing: 'placeholder-value',
      *     // Resource name.
      *     name: 'projects/my-project/locations/my-location/apis/my-api',
-     *     // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     *     // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2243,11 +2245,11 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Apis$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the api, which will become the final component of the api's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
+     * Required. The ID to use for the API, which will become the final component of the API's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      */
     apiId?: string;
     /**
-     * Required. The parent, which owns this collection of APIs. Format: projects/x/locations/x
+     * Required. The parent, which owns this collection of APIs. Format: `projects/x/locations/x`
      */
     parent?: string;
 
@@ -2263,14 +2265,14 @@ export namespace apigeeregistry_v1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the API to delete. Format: projects/x/locations/x/apis/x
+     * Required. The name of the API to delete. Format: `projects/x/locations/x/apis/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Get
     extends StandardParameters {
     /**
-     * Required. The name of the API to retrieve. Format: projects/x/locations/x/apis/x
+     * Required. The name of the API to retrieve. Format: `projects/x/locations/x/apis/x`
      */
     name?: string;
   }
@@ -2292,6 +2294,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of APIs to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -2300,14 +2306,14 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of APIs. Format: projects/x/locations/x
+     * Required. The parent, which owns this collection of APIs. Format: `projects/x/locations/x`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Patch
     extends StandardParameters {
     /**
-     * If set to true, and the api is not found, a new api will be created. In this situation, `update_mask` is ignored.
+     * If set to true, and the API is not found, a new API will be created. In this situation, `update_mask` is ignored.
      */
     allowMissing?: boolean;
     /**
@@ -2315,7 +2321,7 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
     /**
-     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      */
     updateMask?: string;
 
@@ -2356,7 +2362,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateArtifact creates a specified artifact.
+     * Creates a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -2384,7 +2390,7 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.artifacts.create({
      *     // Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *     artifactId: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *     // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *     parent: 'projects/my-project/locations/my-location/apis/my-api',
      *
      *     // Request body metadata
@@ -2508,7 +2514,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteArtifact removes a specified artifact.
+     * Removes a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -2534,7 +2540,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.artifacts.delete({
-     *     // Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     *     // Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/artifacts/my-artifact',
      *   });
      *   console.log(res.data);
@@ -2633,7 +2639,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifact returns a specified artifact.
+     * Returns a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -2659,7 +2665,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.artifacts.get({
-     *     // Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     *     // Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/artifacts/my-artifact',
      *   });
      *   console.log(res.data);
@@ -2766,7 +2772,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifactContents returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
+     * Returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
      * @example
      * ```js
      * // Before running the sample:
@@ -2793,7 +2799,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.artifacts.getContents({
-     *       // Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     *       // Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/artifacts/my-artifact',
      *     });
      *   console.log(res.data);
@@ -3037,7 +3043,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListArtifacts returns matching artifacts.
+     * Returns matching artifacts.
      * @example
      * ```js
      * // Before running the sample:
@@ -3065,11 +3071,13 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.artifacts.list({
      *     // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      *     filter: 'placeholder-value',
+     *     // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListArtifacts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListArtifacts` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *     // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *     parent: 'projects/my-project/locations/my-location/apis/my-api',
      *   });
      *   console.log(res.data);
@@ -3179,7 +3187,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ReplaceArtifact can be used to replace a specified artifact.
+     * Used to replace a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -3626,7 +3634,7 @@ export namespace apigeeregistry_v1 {
      */
     artifactId?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
 
@@ -3638,21 +3646,21 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Apis$Artifacts$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Artifacts$Get
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Artifacts$Getcontents
     extends StandardParameters {
     /**
-     * Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
@@ -3674,6 +3682,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -3682,7 +3694,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
   }
@@ -3735,7 +3747,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateApiDeployment creates a specified deployment.
+     * Creates a specified deployment.
      * @example
      * ```js
      * // Before running the sample:
@@ -3763,7 +3775,7 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.deployments.create({
      *     // Required. The ID to use for the deployment, which will become the final component of the deployment's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *     apiDeploymentId: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of deployments. Format: projects/x/locations/x/apis/x
+     *     // Required. The parent, which owns this collection of deployments. Format: `projects/x/locations/x/apis/x`
      *     parent: 'projects/my-project/locations/my-location/apis/my-api',
      *
      *     // Request body metadata
@@ -3902,7 +3914,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteApiDeployment removes a specified deployment, all revisions, and all child resources (e.g. artifacts).
+     * Removes a specified deployment, all revisions, and all child resources (e.g., artifacts).
      * @example
      * ```js
      * // Before running the sample:
@@ -3930,7 +3942,7 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.deployments.delete({
      *     // If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      *     force: 'placeholder-value',
-     *     // Required. The name of the deployment to delete. Format: projects/x/locations/x/apis/x/deployments/x
+     *     // Required. The name of the deployment to delete. Format: `projects/x/locations/x/apis/x/deployments/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment',
      *   });
      *   console.log(res.data);
@@ -4030,7 +4042,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteApiDeploymentRevision deletes a revision of a deployment.
+     * Deletes a revision of a deployment.
      * @example
      * ```js
      * // Before running the sample:
@@ -4057,7 +4069,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.deployments.deleteRevision({
-     *       // Required. The name of the deployment revision to be deleted, with a revision ID explicitly included. Example: projects/sample/locations/global/apis/petstore/deployments/prod@c7cfa2a8
+     *       // Required. The name of the deployment revision to be deleted, with a revision ID explicitly included. Example: `projects/sample/locations/global/apis/petstore/deployments/prod@c7cfa2a8`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment',
      *     });
      *   console.log(res.data);
@@ -4175,7 +4187,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetApiDeployment returns a specified deployment.
+     * Returns a specified deployment.
      * @example
      * ```js
      * // Before running the sample:
@@ -4201,7 +4213,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.deployments.get({
-     *     // Required. The name of the deployment to retrieve. Format: projects/x/locations/x/apis/x/deployments/x
+     *     // Required. The name of the deployment to retrieve. Format: `projects/x/locations/x/apis/x/deployments/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment',
      *   });
      *   console.log(res.data);
@@ -4452,7 +4464,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListApiDeployments returns matching deployments.
+     * Returns matching deployments.
      * @example
      * ```js
      * // Before running the sample:
@@ -4480,11 +4492,13 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.deployments.list({
      *     // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      *     filter: 'placeholder-value',
+     *     // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of deployments to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListApiDeployments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiDeployments` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of deployments. Format: projects/x/locations/x/apis/x
+     *     // Required. The parent, which owns this collection of deployments. Format: `projects/x/locations/x/apis/x`
      *     parent: 'projects/my-project/locations/my-location/apis/my-api',
      *   });
      *   console.log(res.data);
@@ -4596,7 +4610,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListApiDeploymentRevisions lists all revisions of a deployment. Revisions are returned in descending order of revision creation time.
+     * Lists all revisions of a deployment. Revisions are returned in descending order of revision creation time.
      * @example
      * ```js
      * // Before running the sample:
@@ -4742,7 +4756,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * UpdateApiDeployment can be used to modify a specified deployment.
+     * Used to modify a specified deployment.
      * @example
      * ```js
      * // Before running the sample:
@@ -4772,7 +4786,7 @@ export namespace apigeeregistry_v1 {
      *     allowMissing: 'placeholder-value',
      *     // Resource name.
      *     name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment',
-     *     // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     *     // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4908,7 +4922,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * RollbackApiDeployment sets the current revision to a specified prior revision. Note that this creates a new revision with a new revision ID.
+     * Sets the current revision to a specified prior revision. Note that this creates a new revision with a new revision ID.
      * @example
      * ```js
      * // Before running the sample:
@@ -5205,7 +5219,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * TagApiDeploymentRevision adds a tag to a specified revision of a deployment.
+     * Adds a tag to a specified revision of a deployment.
      * @example
      * ```js
      * // Before running the sample:
@@ -5515,7 +5529,7 @@ export namespace apigeeregistry_v1 {
      */
     apiDeploymentId?: string;
     /**
-     * Required. The parent, which owns this collection of deployments. Format: projects/x/locations/x/apis/x
+     * Required. The parent, which owns this collection of deployments. Format: `projects/x/locations/x/apis/x`
      */
     parent?: string;
 
@@ -5531,21 +5545,21 @@ export namespace apigeeregistry_v1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the deployment to delete. Format: projects/x/locations/x/apis/x/deployments/x
+     * Required. The name of the deployment to delete. Format: `projects/x/locations/x/apis/x/deployments/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Deployments$Deleterevision
     extends StandardParameters {
     /**
-     * Required. The name of the deployment revision to be deleted, with a revision ID explicitly included. Example: projects/sample/locations/global/apis/petstore/deployments/prod@c7cfa2a8
+     * Required. The name of the deployment revision to be deleted, with a revision ID explicitly included. Example: `projects/sample/locations/global/apis/petstore/deployments/prod@c7cfa2a8`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Deployments$Get
     extends StandardParameters {
     /**
-     * Required. The name of the deployment to retrieve. Format: projects/x/locations/x/apis/x/deployments/x
+     * Required. The name of the deployment to retrieve. Format: `projects/x/locations/x/apis/x/deployments/x`
      */
     name?: string;
   }
@@ -5567,6 +5581,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of deployments to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -5575,7 +5593,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of deployments. Format: projects/x/locations/x/apis/x
+     * Required. The parent, which owns this collection of deployments. Format: `projects/x/locations/x/apis/x`
      */
     parent?: string;
   }
@@ -5605,7 +5623,7 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
     /**
-     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      */
     updateMask?: string;
 
@@ -5670,7 +5688,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateArtifact creates a specified artifact.
+     * Creates a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -5699,7 +5717,7 @@ export namespace apigeeregistry_v1 {
      *     await apigeeregistry.projects.locations.apis.deployments.artifacts.create({
      *       // Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *       artifactId: 'placeholder-value',
-     *       // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *       // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *       parent:
      *         'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment',
      *
@@ -5825,7 +5843,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteArtifact removes a specified artifact.
+     * Removes a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -5852,7 +5870,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.deployments.artifacts.delete({
-     *       // Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     *       // Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment/artifacts/my-artifact',
      *     });
      *   console.log(res.data);
@@ -5952,7 +5970,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifact returns a specified artifact.
+     * Returns a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -5979,7 +5997,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.deployments.artifacts.get({
-     *       // Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     *       // Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment/artifacts/my-artifact',
      *     });
      *   console.log(res.data);
@@ -6087,7 +6105,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifactContents returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
+     * Returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
      * @example
      * ```js
      * // Before running the sample:
@@ -6115,7 +6133,7 @@ export namespace apigeeregistry_v1 {
      *   const res =
      *     await apigeeregistry.projects.locations.apis.deployments.artifacts.getContents(
      *       {
-     *         // Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     *         // Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      *         name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment/artifacts/my-artifact',
      *       }
      *     );
@@ -6223,7 +6241,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListArtifacts returns matching artifacts.
+     * Returns matching artifacts.
      * @example
      * ```js
      * // Before running the sample:
@@ -6252,11 +6270,13 @@ export namespace apigeeregistry_v1 {
      *     await apigeeregistry.projects.locations.apis.deployments.artifacts.list({
      *       // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      *       filter: 'placeholder-value',
+     *       // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *       orderBy: 'placeholder-value',
      *       // The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListArtifacts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListArtifacts` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *       // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *       parent:
      *         'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment',
      *     });
@@ -6368,7 +6388,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ReplaceArtifact can be used to replace a specified artifact.
+     * Used to replace a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -6526,7 +6546,7 @@ export namespace apigeeregistry_v1 {
      */
     artifactId?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
 
@@ -6538,21 +6558,21 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Get
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$Getcontents
     extends StandardParameters {
     /**
-     * Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
@@ -6563,6 +6583,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -6571,7 +6595,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
   }
@@ -6603,7 +6627,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateApiVersion creates a specified version.
+     * Creates a specified version.
      * @example
      * ```js
      * // Before running the sample:
@@ -6631,7 +6655,7 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.versions.create({
      *     // Required. The ID to use for the version, which will become the final component of the version's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *     apiVersionId: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of versions. Format: projects/x/locations/x/apis/x
+     *     // Required. The parent, which owns this collection of versions. Format: `projects/x/locations/x/apis/x`
      *     parent: 'projects/my-project/locations/my-location/apis/my-api',
      *
      *     // Request body metadata
@@ -6757,7 +6781,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteApiVersion removes a specified version and all of the resources that it owns.
+     * Removes a specified version and all of the resources that it owns.
      * @example
      * ```js
      * // Before running the sample:
@@ -6785,7 +6809,7 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.versions.delete({
      *     // If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      *     force: 'placeholder-value',
-     *     // Required. The name of the version to delete. Format: projects/x/locations/x/apis/x/versions/x
+     *     // Required. The name of the version to delete. Format: `projects/x/locations/x/apis/x/versions/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -6884,7 +6908,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetApiVersion returns a specified version.
+     * Returns a specified version.
      * @example
      * ```js
      * // Before running the sample:
@@ -6910,7 +6934,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.versions.get({
-     *     // Required. The name of the version to retrieve. Format: projects/x/locations/x/apis/x/versions/x
+     *     // Required. The name of the version to retrieve. Format: `projects/x/locations/x/apis/x/versions/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -7155,7 +7179,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListApiVersions returns matching versions.
+     * Returns matching versions.
      * @example
      * ```js
      * // Before running the sample:
@@ -7183,11 +7207,13 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.versions.list({
      *     // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
      *     filter: 'placeholder-value',
+     *     // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListApiVersions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiVersions` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of versions. Format: projects/x/locations/x/apis/x
+     *     // Required. The parent, which owns this collection of versions. Format: `projects/x/locations/x/apis/x`
      *     parent: 'projects/my-project/locations/my-location/apis/my-api',
      *   });
      *   console.log(res.data);
@@ -7297,7 +7323,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * UpdateApiVersion can be used to modify a specified version.
+     * Used to modify a specified version.
      * @example
      * ```js
      * // Before running the sample:
@@ -7327,7 +7353,7 @@ export namespace apigeeregistry_v1 {
      *     allowMissing: 'placeholder-value',
      *     // Resource name.
      *     name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
-     *     // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     *     // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7748,7 +7774,7 @@ export namespace apigeeregistry_v1 {
      */
     apiVersionId?: string;
     /**
-     * Required. The parent, which owns this collection of versions. Format: projects/x/locations/x/apis/x
+     * Required. The parent, which owns this collection of versions. Format: `projects/x/locations/x/apis/x`
      */
     parent?: string;
 
@@ -7764,14 +7790,14 @@ export namespace apigeeregistry_v1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the version to delete. Format: projects/x/locations/x/apis/x/versions/x
+     * Required. The name of the version to delete. Format: `projects/x/locations/x/apis/x/versions/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Get
     extends StandardParameters {
     /**
-     * Required. The name of the version to retrieve. Format: projects/x/locations/x/apis/x/versions/x
+     * Required. The name of the version to retrieve. Format: `projects/x/locations/x/apis/x/versions/x`
      */
     name?: string;
   }
@@ -7793,6 +7819,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -7801,7 +7831,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of versions. Format: projects/x/locations/x/apis/x
+     * Required. The parent, which owns this collection of versions. Format: `projects/x/locations/x/apis/x`
      */
     parent?: string;
   }
@@ -7816,7 +7846,7 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
     /**
-     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      */
     updateMask?: string;
 
@@ -7857,7 +7887,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateArtifact creates a specified artifact.
+     * Creates a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -7886,7 +7916,7 @@ export namespace apigeeregistry_v1 {
      *     await apigeeregistry.projects.locations.apis.versions.artifacts.create({
      *       // Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *       artifactId: 'placeholder-value',
-     *       // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *       // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *       parent:
      *         'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
      *
@@ -8012,7 +8042,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteArtifact removes a specified artifact.
+     * Removes a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -8039,7 +8069,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.artifacts.delete({
-     *       // Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     *       // Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/artifacts/my-artifact',
      *     });
      *   console.log(res.data);
@@ -8139,7 +8169,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifact returns a specified artifact.
+     * Returns a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -8166,7 +8196,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.artifacts.get({
-     *       // Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     *       // Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/artifacts/my-artifact',
      *     });
      *   console.log(res.data);
@@ -8274,7 +8304,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifactContents returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
+     * Returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
      * @example
      * ```js
      * // Before running the sample:
@@ -8302,7 +8332,7 @@ export namespace apigeeregistry_v1 {
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.artifacts.getContents(
      *       {
-     *         // Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     *         // Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      *         name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/artifacts/my-artifact',
      *       }
      *     );
@@ -8549,7 +8579,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListArtifacts returns matching artifacts.
+     * Returns matching artifacts.
      * @example
      * ```js
      * // Before running the sample:
@@ -8578,11 +8608,13 @@ export namespace apigeeregistry_v1 {
      *     await apigeeregistry.projects.locations.apis.versions.artifacts.list({
      *       // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      *       filter: 'placeholder-value',
+     *       // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *       orderBy: 'placeholder-value',
      *       // The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListArtifacts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListArtifacts` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *       // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *       parent:
      *         'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
      *     });
@@ -8694,7 +8726,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ReplaceArtifact can be used to replace a specified artifact.
+     * Used to replace a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -9147,7 +9179,7 @@ export namespace apigeeregistry_v1 {
      */
     artifactId?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
 
@@ -9159,21 +9191,21 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Get
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Getcontents
     extends StandardParameters {
     /**
-     * Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
@@ -9195,6 +9227,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -9203,7 +9239,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
   }
@@ -9256,7 +9292,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateApiSpec creates a specified spec.
+     * Creates a specified spec.
      * @example
      * ```js
      * // Before running the sample:
@@ -9285,7 +9321,7 @@ export namespace apigeeregistry_v1 {
      *     await apigeeregistry.projects.locations.apis.versions.specs.create({
      *       // Required. The ID to use for the spec, which will become the final component of the spec's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *       apiSpecId: 'placeholder-value',
-     *       // Required. The parent, which owns this collection of specs. Format: projects/x/locations/x/apis/x/versions/x
+     *       // Required. The parent, which owns this collection of specs. Format: `projects/x/locations/x/apis/x/versions/x`
      *       parent:
      *         'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
      *
@@ -9425,7 +9461,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteApiSpec removes a specified spec, all revisions, and all child resources (e.g. artifacts).
+     * Removes a specified spec, all revisions, and all child resources (e.g., artifacts).
      * @example
      * ```js
      * // Before running the sample:
@@ -9454,7 +9490,7 @@ export namespace apigeeregistry_v1 {
      *     await apigeeregistry.projects.locations.apis.versions.specs.delete({
      *       // If set to true, any child resources will also be deleted. (Otherwise, the request will only work if there are no child resources.)
      *       force: 'placeholder-value',
-     *       // Required. The name of the spec to delete. Format: projects/x/locations/x/apis/x/versions/x/specs/x
+     *       // Required. The name of the spec to delete. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
      *     });
      *   console.log(res.data);
@@ -9554,7 +9590,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteApiSpecRevision deletes a revision of a spec.
+     * Deletes a revision of a spec.
      * @example
      * ```js
      * // Before running the sample:
@@ -9581,7 +9617,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.specs.deleteRevision({
-     *       // Required. The name of the spec revision to be deleted, with a revision ID explicitly included. Example: projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml@c7cfa2a8
+     *       // Required. The name of the spec revision to be deleted, with a revision ID explicitly included. Example: `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml@c7cfa2a8`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
      *     });
      *   console.log(res.data);
@@ -9699,7 +9735,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetApiSpec returns a specified spec.
+     * Returns a specified spec.
      * @example
      * ```js
      * // Before running the sample:
@@ -9725,7 +9761,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.apis.versions.specs.get({
-     *     // Required. The name of the spec to retrieve. Format: projects/x/locations/x/apis/x/versions/x/specs/x
+     *     // Required. The name of the spec to retrieve. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      *     name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
      *   });
      *   console.log(res.data);
@@ -9840,7 +9876,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetApiSpecContents returns the contents of a specified spec. If specs are stored with GZip compression, the default behavior is to return the spec uncompressed (the mime_type response field indicates the exact format returned).
+     * Returns the contents of a specified spec. If specs are stored with GZip compression, the default behavior is to return the spec uncompressed (the mime_type response field indicates the exact format returned).
      * @example
      * ```js
      * // Before running the sample:
@@ -9867,7 +9903,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.specs.getContents({
-     *       // Required. The name of the spec whose contents should be retrieved. Format: projects/x/locations/x/apis/x/versions/x/specs/x
+     *       // Required. The name of the spec whose contents should be retrieved. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
      *     });
      *   console.log(res.data);
@@ -10111,7 +10147,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListApiSpecs returns matching specs.
+     * Returns matching specs.
      * @example
      * ```js
      * // Before running the sample:
@@ -10139,11 +10175,13 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.apis.versions.specs.list({
      *     // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      *     filter: 'placeholder-value',
+     *     // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of specs to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListApiSpecs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiSpecs` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of specs. Format: projects/x/locations/x/apis/x/versions/x
+     *     // Required. The parent, which owns this collection of specs. Format: `projects/x/locations/x/apis/x/versions/x`
      *     parent:
      *       'projects/my-project/locations/my-location/apis/my-api/versions/my-version',
      *   });
@@ -10255,7 +10293,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListApiSpecRevisions lists all revisions of a spec. Revisions are returned in descending order of revision creation time.
+     * Lists all revisions of a spec. Revisions are returned in descending order of revision creation time.
      * @example
      * ```js
      * // Before running the sample:
@@ -10401,7 +10439,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * UpdateApiSpec can be used to modify a specified spec.
+     * Used to modify a specified spec.
      * @example
      * ```js
      * // Before running the sample:
@@ -10432,7 +10470,7 @@ export namespace apigeeregistry_v1 {
      *       allowMissing: 'placeholder-value',
      *       // Resource name.
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
-     *       // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     *       // The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -10569,7 +10607,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * RollbackApiSpec sets the current revision to a specified prior revision. Note that this creates a new revision with a new revision ID.
+     * Sets the current revision to a specified prior revision. Note that this creates a new revision with a new revision ID.
      * @example
      * ```js
      * // Before running the sample:
@@ -10865,7 +10903,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * TagApiSpecRevision adds a tag to a specified revision of a spec.
+     * Adds a tag to a specified revision of a spec.
      * @example
      * ```js
      * // Before running the sample:
@@ -11175,7 +11213,7 @@ export namespace apigeeregistry_v1 {
      */
     apiSpecId?: string;
     /**
-     * Required. The parent, which owns this collection of specs. Format: projects/x/locations/x/apis/x/versions/x
+     * Required. The parent, which owns this collection of specs. Format: `projects/x/locations/x/apis/x/versions/x`
      */
     parent?: string;
 
@@ -11191,28 +11229,28 @@ export namespace apigeeregistry_v1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the spec to delete. Format: projects/x/locations/x/apis/x/versions/x/specs/x
+     * Required. The name of the spec to delete. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Deleterevision
     extends StandardParameters {
     /**
-     * Required. The name of the spec revision to be deleted, with a revision ID explicitly included. Example: projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml@c7cfa2a8
+     * Required. The name of the spec revision to be deleted, with a revision ID explicitly included. Example: `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml@c7cfa2a8`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Get
     extends StandardParameters {
     /**
-     * Required. The name of the spec to retrieve. Format: projects/x/locations/x/apis/x/versions/x/specs/x
+     * Required. The name of the spec to retrieve. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Getcontents
     extends StandardParameters {
     /**
-     * Required. The name of the spec whose contents should be retrieved. Format: projects/x/locations/x/apis/x/versions/x/specs/x
+     * Required. The name of the spec whose contents should be retrieved. Format: `projects/x/locations/x/apis/x/versions/x/specs/x`
      */
     name?: string;
   }
@@ -11234,6 +11272,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of specs to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -11242,7 +11284,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of specs. Format: projects/x/locations/x/apis/x/versions/x
+     * Required. The parent, which owns this collection of specs. Format: `projects/x/locations/x/apis/x/versions/x`
      */
     parent?: string;
   }
@@ -11272,7 +11314,7 @@ export namespace apigeeregistry_v1 {
      */
     name?: string;
     /**
-     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If a "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
+     * The list of fields to be updated. If omitted, all fields are updated that are set in the request message (fields set to default values are ignored). If an asterisk "*" is specified, all fields are updated, including fields that are unspecified/default in the request.
      */
     updateMask?: string;
 
@@ -11337,7 +11379,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateArtifact creates a specified artifact.
+     * Creates a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -11367,7 +11409,7 @@ export namespace apigeeregistry_v1 {
      *       {
      *         // Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *         artifactId: 'placeholder-value',
-     *         // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *         // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *         parent:
      *           'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
      *
@@ -11494,7 +11536,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteArtifact removes a specified artifact.
+     * Removes a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -11522,7 +11564,7 @@ export namespace apigeeregistry_v1 {
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.specs.artifacts.delete(
      *       {
-     *         // Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     *         // Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      *         name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec/artifacts/my-artifact',
      *       }
      *     );
@@ -11623,7 +11665,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifact returns a specified artifact.
+     * Returns a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -11650,7 +11692,7 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.specs.artifacts.get({
-     *       // Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     *       // Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec/artifacts/my-artifact',
      *     });
      *   console.log(res.data);
@@ -11758,7 +11800,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifactContents returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
+     * Returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
      * @example
      * ```js
      * // Before running the sample:
@@ -11786,7 +11828,7 @@ export namespace apigeeregistry_v1 {
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.specs.artifacts.getContents(
      *       {
-     *         // Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     *         // Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      *         name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec/artifacts/my-artifact',
      *       }
      *     );
@@ -12033,7 +12075,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListArtifacts returns matching artifacts.
+     * Returns matching artifacts.
      * @example
      * ```js
      * // Before running the sample:
@@ -12062,11 +12104,13 @@ export namespace apigeeregistry_v1 {
      *     await apigeeregistry.projects.locations.apis.versions.specs.artifacts.list({
      *       // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      *       filter: 'placeholder-value',
+     *       // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *       orderBy: 'placeholder-value',
      *       // The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListArtifacts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListArtifacts` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *       // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *       parent:
      *         'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
      *     });
@@ -12178,7 +12222,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ReplaceArtifact can be used to replace a specified artifact.
+     * Used to replace a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -12631,7 +12675,7 @@ export namespace apigeeregistry_v1 {
      */
     artifactId?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
 
@@ -12643,21 +12687,21 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Get
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Getcontents
     extends StandardParameters {
     /**
-     * Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
@@ -12679,6 +12723,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -12687,7 +12735,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
   }
@@ -12735,7 +12783,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * CreateArtifact creates a specified artifact.
+     * Creates a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -12763,7 +12811,7 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.artifacts.create({
      *     // Required. The ID to use for the artifact, which will become the final component of the artifact's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Following AIP-162, IDs must not have the form of a UUID.
      *     artifactId: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *     // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -12887,7 +12935,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * DeleteArtifact removes a specified artifact.
+     * Removes a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -12913,7 +12961,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.artifacts.delete({
-     *     // Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     *     // Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      *     name: 'projects/my-project/locations/my-location/artifacts/my-artifact',
      *   });
      *   console.log(res.data);
@@ -13012,7 +13060,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifact returns a specified artifact.
+     * Returns a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -13038,7 +13086,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.artifacts.get({
-     *     // Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     *     // Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      *     name: 'projects/my-project/locations/my-location/artifacts/my-artifact',
      *   });
      *   console.log(res.data);
@@ -13145,7 +13193,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * GetArtifactContents returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
+     * Returns the contents of a specified artifact. If artifacts are stored with GZip compression, the default behavior is to return the artifact uncompressed (the mime_type response field indicates the exact format returned).
      * @example
      * ```js
      * // Before running the sample:
@@ -13171,7 +13219,7 @@ export namespace apigeeregistry_v1 {
      *
      *   // Do the magic
      *   const res = await apigeeregistry.projects.locations.artifacts.getContents({
-     *     // Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     *     // Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      *     name: 'projects/my-project/locations/my-location/artifacts/my-artifact',
      *   });
      *   console.log(res.data);
@@ -13412,7 +13460,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ListArtifacts returns matching artifacts.
+     * Returns matching artifacts.
      * @example
      * ```js
      * // Before running the sample:
@@ -13440,11 +13488,13 @@ export namespace apigeeregistry_v1 {
      *   const res = await apigeeregistry.projects.locations.artifacts.list({
      *     // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields except contents.
      *     filter: 'placeholder-value',
+     *     // A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListArtifacts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListArtifacts` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     *     // Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -13554,7 +13604,7 @@ export namespace apigeeregistry_v1 {
     }
 
     /**
-     * ReplaceArtifact can be used to replace a specified artifact.
+     * Used to replace a specified artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -14000,7 +14050,7 @@ export namespace apigeeregistry_v1 {
      */
     artifactId?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
 
@@ -14012,21 +14062,21 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Artifacts$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to delete. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to delete. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Artifacts$Get
     extends StandardParameters {
     /**
-     * Required. The name of the artifact to retrieve. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact to retrieve. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Artifacts$Getcontents
     extends StandardParameters {
     /**
-     * Required. The name of the artifact whose contents should be retrieved. Format: {parent\}/artifacts/x
+     * Required. The name of the artifact whose contents should be retrieved. Format: `{parent\}/artifacts/x`
      */
     name?: string;
   }
@@ -14048,6 +14098,10 @@ export namespace apigeeregistry_v1 {
      */
     filter?: string;
     /**
+     * A comma-separated list of fields, e.g. "foo,bar" Fields can be sorted in descending order using the "desc" identifier, e.g. "foo desc,bar"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of artifacts to return. The service may return fewer than this value. If unspecified, at most 50 values will be returned. The maximum is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -14056,7 +14110,7 @@ export namespace apigeeregistry_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of artifacts. Format: {parent\}
+     * Required. The parent, which owns this collection of artifacts. Format: `{parent\}`
      */
     parent?: string;
   }

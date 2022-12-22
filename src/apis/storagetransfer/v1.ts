@@ -307,6 +307,23 @@ export namespace storagetransfer_v1 {
     errorLogEntries?: Schema$ErrorLogEntry[];
   }
   /**
+   * Specifies the Event-driven transfer options. Event-driven transfers listen to an event stream to transfer updated files.
+   */
+  export interface Schema$EventStream {
+    /**
+     * Specifies the data and time at which Storage Transfer Service stops listening for events from this stream. After this time, any transfers in progress will complete, but no new transfers are initiated.
+     */
+    eventStreamExpirationTime?: string | null;
+    /**
+     * Specifies the date and time that Storage Transfer Service starts listening for events from this stream. If no start time is specified or start time is in the past, Storage Transfer Service starts listening immediately.
+     */
+    eventStreamStartTime?: string | null;
+    /**
+     * Required. Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project\}/subscriptions/{sub\}'.
+     */
+    name?: string | null;
+  }
+  /**
    * In a GcsData resource, an object's name is the Cloud Storage object's name and its "last modification time" refers to the object's `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated.
    */
   export interface Schema$GcsData {
@@ -725,6 +742,10 @@ export namespace storagetransfer_v1 {
      */
     description?: string | null;
     /**
+     * Specifies the event stream for the transfer job for event-driven transfers. When EventStream is specified, the Schedule fields are ignored.
+     */
+    eventStream?: Schema$EventStream;
+    /**
      * Output only. The time that the transfer job was last modified.
      */
     lastModificationTime?: string | null;
@@ -910,7 +931,7 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string | null;
     /**
-     * Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, logging_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permissions.
+     * Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, logging_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permission.
      */
     transferJob?: Schema$TransferJob;
     /**
@@ -1878,6 +1899,7 @@ export namespace storagetransfer_v1 {
      *       //   "creationTime": "my_creationTime",
      *       //   "deletionTime": "my_deletionTime",
      *       //   "description": "my_description",
+     *       //   "eventStream": {},
      *       //   "lastModificationTime": "my_lastModificationTime",
      *       //   "latestOperationName": "my_latestOperationName",
      *       //   "loggingConfig": {},
@@ -1897,6 +1919,7 @@ export namespace storagetransfer_v1 {
      *   //   "creationTime": "my_creationTime",
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
+     *   //   "eventStream": {},
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
      *   //   "loggingConfig": {},
@@ -1999,6 +2022,133 @@ export namespace storagetransfer_v1 {
     }
 
     /**
+     * Deletes a transfer job. Deleting a transfer job sets its status to DELETED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const storagetransfer = google.storagetransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storagetransfer.transferJobs.delete({
+     *     // Required. The job to delete.
+     *     jobName: 'transferJobs/.*',
+     *     // Required. The ID of the Google Cloud project that owns the job.
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Transferjobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Transferjobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Transferjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Transferjobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Transferjobs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Transferjobs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Transferjobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferjobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['jobName', 'projectId'],
+        pathParams: ['jobName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets a transfer job.
      * @example
      * ```js
@@ -2037,6 +2187,7 @@ export namespace storagetransfer_v1 {
      *   //   "creationTime": "my_creationTime",
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
+     *   //   "eventStream": {},
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
      *   //   "loggingConfig": {},
@@ -2321,6 +2472,7 @@ export namespace storagetransfer_v1 {
      *   //   "creationTime": "my_creationTime",
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
+     *   //   "eventStream": {},
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
      *   //   "loggingConfig": {},
@@ -2423,7 +2575,7 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * Attempts to start a new TransferOperation for the current TransferJob. A TransferJob has a maximum of one active TransferOperation. If this method is called while a TransferOperation is active, an error will be returned.
+     * Starts a new operation for the specified transfer job. A `TransferJob` has a maximum of one active `TransferOperation`. If this method is called while a `TransferOperation` is active, an error is returned.
      * @example
      * ```js
      * // Before running the sample:
@@ -2567,6 +2719,17 @@ export namespace storagetransfer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TransferJob;
+  }
+  export interface Params$Resource$Transferjobs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The job to delete.
+     */
+    jobName?: string;
+    /**
+     * Required. The ID of the Google Cloud project that owns the job.
+     */
+    projectId?: string;
   }
   export interface Params$Resource$Transferjobs$Get extends StandardParameters {
     /**

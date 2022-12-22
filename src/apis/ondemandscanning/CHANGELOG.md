@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v4.2.1...ondemandscanning-v5.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [4.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v4.2.0...ondemandscanning-v4.2.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **ondemandscanning:** update the API ([ec356bd](https://github.com/googleapis/google-api-nodejs-client/commit/ec356bdaef4c5aab6874226599ccb1366e99f667))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v4.1.0...ondemandscanning-v4.2.0) (2022-08-19)
 
 

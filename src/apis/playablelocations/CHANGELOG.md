@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playablelocations-v0.3.1...playablelocations-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/playablelocations-v0.3.0...playablelocations-v0.3.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **playablelocations:** update the API ([7b2e2e8](https://github.com/googleapis/google-api-nodejs-client/commit/7b2e2e8fccc39bfdfb0cf65ea5b8537ced745f69))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/playablelocations-v0.2.1...playablelocations-v0.3.0) (2021-09-14)
 
 

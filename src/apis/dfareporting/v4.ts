@@ -3060,7 +3060,7 @@ export namespace dfareporting_v4 {
      */
     kind?: string | null;
     /**
-     * The dimension name, e.g. dfa:advertiser
+     * The dimension name, e.g. advertiser
      */
     name?: string | null;
   }
@@ -3305,6 +3305,10 @@ export namespace dfareporting_v4 {
      * The kind of resource this is, in this case dfareporting#eventFilter.
      */
     kind?: string | null;
+    /**
+     * Filter on a custom variable.
+     */
+    uvarFilter?: Schema$UvarFilter;
   }
   /**
    * Contains properties of an event tag.
@@ -6942,6 +6946,31 @@ export namespace dfareporting_v4 {
      * User role collection.
      */
     userRoles?: Schema$UserRole[];
+  }
+  /**
+   * Defines the filtering on a single uvar.
+   */
+  export interface Schema$UvarFilter {
+    /**
+     * Return rows which don't match this filter.
+     */
+    complement?: boolean | null;
+    /**
+     * Custom variable index the filter is applied to.
+     */
+    index?: string | null;
+    /**
+     * The kind of resource this is, in this case dfareporting#uvarFilter.
+     */
+    kind?: string | null;
+    /**
+     * Indicates how the filter should be matched to the values.
+     */
+    match?: string | null;
+    /**
+     * Values to filter on.
+     */
+    values?: string[] | null;
   }
   /**
    * Contains information about supported video formats.
@@ -37157,7 +37186,7 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.patch({
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The ID of the report.
      *     reportId: 'placeholder-value',
@@ -37683,7 +37712,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Reports$Patch extends StandardParameters {
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**

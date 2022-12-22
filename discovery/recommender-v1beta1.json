@@ -110,6 +110,72 @@
         "locations": {
           "resources": {
             "insightTypes": {
+              "methods": {
+                "getConfig": {
+                  "description": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType.",
+                  "flatPath": "v1beta1/billingAccounts/{billingAccountsId}/locations/{locationsId}/insightTypes/{insightTypesId}/config",
+                  "httpMethod": "GET",
+                  "id": "recommender.billingAccounts.locations.insightTypes.getConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudRecommenderV1beta1InsightTypeConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateConfig": {
+                  "description": "Updates an InsightTypeConfig change. This will create a new revision of the config.",
+                  "flatPath": "v1beta1/billingAccounts/{billingAccountsId}/locations/{locationsId}/insightTypes/{insightTypesId}/config",
+                  "httpMethod": "PATCH",
+                  "id": "recommender.billingAccounts.locations.insightTypes.updateConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If true, validate the request and preview the change, but do not actually update it.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudRecommenderV1beta1InsightTypeConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRecommenderV1beta1InsightTypeConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "insights": {
                   "methods": {
@@ -212,6 +278,72 @@
               }
             },
             "recommenders": {
+              "methods": {
+                "getConfig": {
+                  "description": "Gets the requested Recommender Config. There is only one instance of the config for each Recommender.",
+                  "flatPath": "v1beta1/billingAccounts/{billingAccountsId}/locations/{locationsId}/recommenders/{recommendersId}/config",
+                  "httpMethod": "GET",
+                  "id": "recommender.billingAccounts.locations.recommenders.getConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudRecommenderV1beta1RecommenderConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateConfig": {
+                  "description": "Updates a Recommender Config. This will create a new revision of the config.",
+                  "flatPath": "v1beta1/billingAccounts/{billingAccountsId}/locations/{locationsId}/recommenders/{recommendersId}/config",
+                  "httpMethod": "PATCH",
+                  "id": "recommender.billingAccounts.locations.recommenders.updateConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If true, validate the request and preview the change, but do not actually update it.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudRecommenderV1beta1RecommenderConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRecommenderV1beta1RecommenderConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "recommendations": {
                   "methods": {
@@ -657,7 +789,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
+                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
                       "required": true,
@@ -825,7 +957,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
+                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
                       "required": true,
@@ -1057,7 +1189,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
+                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
                       "required": true,
@@ -1225,7 +1357,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
+                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
                       "required": true,
@@ -1442,7 +1574,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20221023",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1473,7 +1605,8 @@
             "SECURITY",
             "PERFORMANCE",
             "MANAGEABILITY",
-            "SUSTAINABILITY"
+            "SUSTAINABILITY",
+            "RELIABILITY"
           ],
           "enumDescriptions": [
             "Default unspecified category. Don't use directly.",
@@ -1481,13 +1614,18 @@
             "Indicates a potential increase or decrease in security.",
             "Indicates a potential increase or decrease in performance.",
             "Indicates a potential increase or decrease in manageability.",
-            "Indicates a potential increase or decrease in sustainability."
+            "Indicates a potential increase or decrease in sustainability.",
+            "Indicates a potential increase or decrease in reliability."
           ],
           "type": "string"
         },
         "costProjection": {
           "$ref": "GoogleCloudRecommenderV1beta1CostProjection",
           "description": "Use with CategoryType.COST"
+        },
+        "reliabilityProjection": {
+          "$ref": "GoogleCloudRecommenderV1beta1ReliabilityProjection",
+          "description": "Use with CategoryType.RELIABILITY"
         },
         "securityProjection": {
           "$ref": "GoogleCloudRecommenderV1beta1SecurityProjection",
@@ -1501,7 +1639,7 @@
       "type": "object"
     },
     "GoogleCloudRecommenderV1beta1Insight": {
-      "description": "An insight along with the information used to derive the insight. The insight may have associated recomendations as well.",
+      "description": "An insight along with the information used to derive the insight. The insight may have associated recommendations as well.",
       "id": "GoogleCloudRecommenderV1beta1Insight",
       "properties": {
         "associatedRecommendations": {
@@ -1518,14 +1656,18 @@
             "COST",
             "SECURITY",
             "PERFORMANCE",
-            "MANAGEABILITY"
+            "MANAGEABILITY",
+            "SUSTAINABILITY",
+            "RELIABILITY"
           ],
           "enumDescriptions": [
             "Unspecified category.",
             "The insight is related to cost.",
             "The insight is related to security.",
             "The insight is related to performance.",
-            "This insight is related to manageability."
+            "This insight is related to manageability.",
+            "The insight is related to sustainability.",
+            "The insight is related to reliability."
           ],
           "type": "string"
         },
@@ -2060,6 +2202,40 @@
           },
           "description": "Parameters for this RecommenderGenerationConfig. These configs can be used by or are applied to all subtypes.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1ReliabilityProjection": {
+      "description": "Contains information on the impact of a reliability recommendation.",
+      "id": "GoogleCloudRecommenderV1beta1ReliabilityProjection",
+      "properties": {
+        "details": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Per-recommender projection.",
+          "type": "object"
+        },
+        "risks": {
+          "description": "Reliability risks mitigated by this recommendation.",
+          "items": {
+            "enum": [
+              "RISK_TYPE_UNSPECIFIED",
+              "SERVICE_DISRUPTION",
+              "DATA_LOSS",
+              "ACCESS_DENY"
+            ],
+            "enumDescriptions": [
+              "Default unspecified risk. Don't use directly.",
+              "Potential service downtime.",
+              "Potential data loss.",
+              "Potential access denial. The service is still up but some or all clients can't access it."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

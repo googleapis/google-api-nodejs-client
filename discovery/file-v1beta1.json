@@ -199,7 +199,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The backup's project and location, in the format `projects/{project_id}/locations/{location}`. In Filestore, backup locations map to GCP regions, for example **us-west1**.",
+                      "description": "Required. The backup's project and location, in the format `projects/{project_id}/locations/{location}`. In Filestore, backup locations map to Google Cloud regions, for example **us-west1**.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -298,7 +298,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location for which to retrieve backup information, in the format `projects/{project_id}/locations/{location}`. In Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use \"-\" for the `{location}` value.",
+                      "description": "Required. The project and location for which to retrieve backup information, in the format `projects/{project_id}/locations/{location}`. In Filestore, backup locations map to Google Cloud regions, for example **us-west1**. To retrieve backup information for all locations, use \"-\" for the `{location}` value.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -366,7 +366,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The instance's project and location, in the format `projects/{project_id}/locations/{location}`. In Filestore, locations map to GCP zones, for example **us-west1-b**.",
+                      "description": "Required. The instance's project and location, in the format `projects/{project_id}/locations/{location}`. In Filestore, locations map to Google Cloud zones, for example **us-west1-b**.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -470,7 +470,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project and location for which to retrieve instance information, in the format `projects/{project_id}/locations/{location}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use \"-\" for the `{location}` value.",
+                      "description": "Required. The project and location for which to retrieve instance information, in the format `projects/{project_id}/locations/{location}`. In Cloud Filestore, locations map to Google Cloud zones, for example **us-west1-b**. To retrieve instance information for all locations, use \"-\" for the `{location}` value.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1041,7 +1041,7 @@
       }
     }
   },
-  "revision": "20220729",
+  "revision": "20221207",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1610,7 +1610,9 @@
             "ERROR",
             "RESTORING",
             "SUSPENDED",
-            "REVERTING"
+            "REVERTING",
+            "SUSPENDING",
+            "RESUMING"
           ],
           "enumDescriptions": [
             "State not set.",
@@ -1621,7 +1623,9 @@
             "The instance is experiencing an issue and might be unusable. You can get further details from the `statusMessage` field of the `Instance` resource.",
             "The instance is restoring a snapshot or backup to an existing file share and may be unusable during this time.",
             "The instance is suspended. You can get further details from the `suspension_reasons` field of the `Instance` resource.",
-            "The instance is reverting to a snapshot."
+            "The instance is reverting to a snapshot.",
+            "The instance is in the process of becoming suspended.",
+            "The instance is in the process of becoming active."
           ],
           "readOnly": true,
           "type": "string"
@@ -1836,7 +1840,7 @@
       "type": "object"
     },
     "MaintenancePolicy": {
-      "description": "Defines policies to service maintenance events.",
+      "description": "LINT.IfChange Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
       "properties": {
         "createTime": {
@@ -2084,11 +2088,11 @@
       "type": "object"
     },
     "RestoreInstanceRequest": {
-      "description": "RestoreInstanceRequest restores an existing instance's file share from a snapshot or backup.",
+      "description": "RestoreInstanceRequest restores an existing instance's file share from a backup.",
       "id": "RestoreInstanceRequest",
       "properties": {
         "fileShare": {
-          "description": "Required. Name of the file share in the Filestore instance that the snapshot is being restored to.",
+          "description": "Required. Name of the file share in the Filestore instance that the backup is being restored to.",
           "type": "string"
         },
         "sourceBackup": {

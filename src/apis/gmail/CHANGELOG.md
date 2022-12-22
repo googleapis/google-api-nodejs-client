@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v0.3.5...gmail-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.5](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v0.3.4...gmail-v0.3.5) (2022-09-21)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([704ac32](https://github.com/googleapis/google-api-nodejs-client/commit/704ac329ebb44c1b5ad749a7140102604f064d51))
+
 ## [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v0.3.3...gmail-v0.3.4) (2022-06-21)
 
 

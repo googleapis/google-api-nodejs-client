@@ -102,7 +102,7 @@ export namespace androidpublisher_v3 {
   /**
    * Google Play Android Developer API
    *
-   * Lets Android application developers access their Google Play accounts.
+   * Lets Android application developers access their Google Play accounts. At a high level, the expected workflow is to &quot;insert&quot; an Edit, make changes as necessary, and then &quot;commit&quot; it.
    *
    * @example
    * ```js
@@ -276,6 +276,10 @@ export namespace androidpublisher_v3 {
      */
     legacyCompatible?: boolean | null;
     /**
+     * Subscription offer id which is legacy compatible. The backward compatible subscription offer is returned by the Google Play Billing Library deprecated method querySkuDetailsAsync(). Only one subscription offer can be marked as legacy compatible for a given renewing base plan. To have no Subscription offer as legacy compatible set this field as empty string.
+     */
+    legacyCompatibleSubscriptionOfferId?: string | null;
+    /**
      * The proration mode for the base plan determines what happens when a user switches to this plan from another base plan. If unspecified, defaults to CHARGE_ON_NEXT_BILLING_DATE.
      */
     prorationMode?: string | null;
@@ -292,6 +296,10 @@ export namespace androidpublisher_v3 {
      * If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription
      */
     autoRenewEnabled?: boolean | null;
+    /**
+     * The information of the last price change for the item since subscription signup.
+     */
+    priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
   }
   /**
    * A single base plan for a subscription.
@@ -1233,6 +1241,23 @@ export namespace androidpublisher_v3 {
     units?: string | null;
   }
   /**
+   * Offer details information related to a purchase line item.
+   */
+  export interface Schema$OfferDetails {
+    /**
+     * The base plan ID. Present for all base plan and offers.
+     */
+    basePlanId?: string | null;
+    /**
+     * The offer ID. Only present for discounted offers.
+     */
+    offerId?: string | null;
+    /**
+     * The latest offer tags associated with the offer. It includes tags inherited from the base plan.
+     */
+    offerTags?: string[] | null;
+  }
+  /**
    * Represents a custom tag specified for base plans and subscription offers.
    */
   export interface Schema$OfferTag {
@@ -1341,7 +1366,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$PrepaidPlan {
     /**
-     * After this time, the subscription is allowed for a new top-up purchase. Not present if the subscription is already extended by a top-up purchase.
+     * If present, this is the time after which top up purchases are allowed for the prepaid plan. Will not be present for expired prepaid plans.
      */
     allowExtendAfterTime?: string | null;
   }
@@ -1500,6 +1525,10 @@ export namespace androidpublisher_v3 {
      * You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.
      */
     eligibleForStreamingServiceTaxRate?: boolean | null;
+    /**
+     * To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).
+     */
+    streamingTaxType?: string | null;
     /**
      * Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).
      */
@@ -1662,6 +1691,27 @@ export namespace androidpublisher_v3 {
      * The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
      */
     expectedExpiryTimeMillis?: string | null;
+  }
+  /**
+   * Price change related information of a subscription item.
+   */
+  export interface Schema$SubscriptionItemPriceChangeDetails {
+    /**
+     * The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause.
+     */
+    expectedNewPriceChargeTime?: string | null;
+    /**
+     * New recurring price for the subscription item.
+     */
+    newPrice?: Schema$Money;
+    /**
+     * Price change mode specifies how the subscription item price is changing.
+     */
+    priceChangeMode?: string | null;
+    /**
+     * State the price change is currently in.
+     */
+    priceChangeState?: string | null;
   }
   /**
    * The consumer-visible metadata of a subscription.
@@ -1909,6 +1959,10 @@ export namespace androidpublisher_v3 {
      * Time at which the subscription expired or will expire unless the access is extended (ex. renews).
      */
     expiryTime?: string | null;
+    /**
+     * The offer details for this item.
+     */
+    offerDetails?: Schema$OfferDetails;
     /**
      * The item is prepaid.
      */
@@ -4251,6 +4305,8 @@ export namespace androidpublisher_v3 {
      *   const res = await androidpublisher.edits.bundles.upload({
      *     // Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      *     ackBundleInstallationWarning: 'placeholder-value',
+     *     // Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or "LATEST" for last uploaded DTC.
+     *     deviceTierConfigId: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
      *     // Package name of the app.
@@ -4388,6 +4444,10 @@ export namespace androidpublisher_v3 {
      * Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      */
     ackBundleInstallationWarning?: boolean;
+    /**
+     * Device tier config (DTC) to be used for generating deliverables (APKs). Contains id of the DTC or "LATEST" for last uploaded DTC.
+     */
+    deviceTierConfigId?: string;
     /**
      * Identifier of the edit.
      */

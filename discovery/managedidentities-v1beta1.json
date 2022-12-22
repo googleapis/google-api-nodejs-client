@@ -209,6 +209,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "checkMigrationPermission": {
+                      "description": "CheckMigrationPermission API gets the current state of DomainMigration",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}:checkMigrationPermission",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.checkMigrationPermission",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+domain}:checkMigrationPermission",
+                      "request": {
+                        "$ref": "CheckMigrationPermissionRequest"
+                      },
+                      "response": {
+                        "$ref": "CheckMigrationPermissionResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a Microsoft AD domain.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains",
@@ -287,6 +315,90 @@
                       "path": "v1beta1/{+name}:detachTrust",
                       "request": {
                         "$ref": "DetachTrustRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "disableMigration": {
+                      "description": "Disable Domain Migration",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}:disableMigration",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.disableMigration",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+domain}:disableMigration",
+                      "request": {
+                        "$ref": "DisableMigrationRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "domainJoinMachine": {
+                      "description": "DomainJoinMachine API joins a Compute Engine VM to the domain",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}:domainJoinMachine",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.domainJoinMachine",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: projects/{project_id}/locations/global/domains/{domain_name}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+domain}:domainJoinMachine",
+                      "request": {
+                        "$ref": "DomainJoinMachineRequest"
+                      },
+                      "response": {
+                        "$ref": "DomainJoinMachineResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "enableMigration": {
+                      "description": "Enable Domain Migration",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}:enableMigration",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.enableMigration",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+domain}:enableMigration",
+                      "request": {
+                        "$ref": "EnableMigrationRequest"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -1403,7 +1515,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20221027",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1502,7 +1614,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
           "items": {
             "type": "string"
           },
@@ -1547,6 +1659,42 @@
         },
         "thumbprint": {
           "description": "The certificate thumbprint which uniquely identifies the certificate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckMigrationPermissionRequest": {
+      "description": "CheckMigrationPermissionRequest is the request message for CheckMigrationPermission method.",
+      "id": "CheckMigrationPermissionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CheckMigrationPermissionResponse": {
+      "description": "CheckMigrationPermissionResponse is the response message for CheckMigrationPermission method.",
+      "id": "CheckMigrationPermissionResponse",
+      "properties": {
+        "onpremDomains": {
+          "description": "The state of SID filtering of all the domains which has trust established.",
+          "items": {
+            "$ref": "OnPremDomainSIDDetails"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "The state of DomainMigration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "NEEDS_MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "DomainMigration is in unspecified state.",
+            "Domain Migration is Disabled.",
+            "Domain Migration is Enabled.",
+            "Domain Migration is not in valid state."
+          ],
           "type": "string"
         }
       },
@@ -1618,6 +1766,12 @@
           "description": "Required. The domain trust resource to removed."
         }
       },
+      "type": "object"
+    },
+    "DisableMigrationRequest": {
+      "description": "DisableMigrationRequest is the request message for DisableMigration method.",
+      "id": "DisableMigrationRequest",
+      "properties": {},
       "type": "object"
     },
     "Domain": {
@@ -1720,10 +1874,50 @@
       },
       "type": "object"
     },
+    "DomainJoinMachineRequest": {
+      "description": "DomainJoinMachineRequest is the request message for DomainJoinMachine method",
+      "id": "DomainJoinMachineRequest",
+      "properties": {
+        "ouName": {
+          "description": "Optional. OU name to which the VM needs to be domain joined. If the field is not provided, the VM is joined to the default OU which is created. The default OU for the domain join api is created as GCE Instances under the Cloud OU. Example - OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com If the field is provided, then the custom OU is searched for under GCE Instances OU. Example - if ou_name=test_ou then the VM is domain joined to the following OU: OU=test_ou,OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com if present. If OU is not present under GCE Instances, then error is returned.",
+          "type": "string"
+        },
+        "vmIdToken": {
+          "description": "Required. Full instance id token of compute engine VM to verify instance identity. More about this: https://cloud.google.com/compute/docs/instances/verifying-instance-identity#request_signature",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainJoinMachineResponse": {
+      "description": "DomainJoinMachineResponse is the response message for DomainJoinMachine method",
+      "id": "DomainJoinMachineResponse",
+      "properties": {
+        "domainJoinBlob": {
+          "description": "The response is the offline domain join blob that is returned after running the djoin command. To correctly use the response of the API, please refer to the sample usage.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EnableMigrationRequest": {
+      "description": "EnableMigrationRequest is the request message for EnableMigration method.",
+      "id": "EnableMigrationRequest",
+      "properties": {
+        "migratingDomains": {
+          "description": "Required. List of the on-prem domains to be migrated.",
+          "items": {
+            "$ref": "OnPremDomainDetails"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -2438,6 +2632,46 @@
         "weeklyCycle": {
           "$ref": "WeeklyCycle",
           "description": "Weekly cycle."
+        }
+      },
+      "type": "object"
+    },
+    "OnPremDomainDetails": {
+      "description": "OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.",
+      "id": "OnPremDomainDetails",
+      "properties": {
+        "disableSidFiltering": {
+          "description": "Optional. Option to disable SID filtering.",
+          "type": "boolean"
+        },
+        "domainName": {
+          "description": "Required. FQDN of the on-prem domain being migrated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnPremDomainSIDDetails": {
+      "description": "OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.",
+      "id": "OnPremDomainSIDDetails",
+      "properties": {
+        "name": {
+          "description": "FQDN of the on-prem domain being migrated.",
+          "type": "string"
+        },
+        "sidFilteringState": {
+          "description": "Current SID filtering state.",
+          "enum": [
+            "SID_FILTERING_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "SID Filtering is in unspecified state.",
+            "SID Filtering is Enabled.",
+            "SID Filtering is Disabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

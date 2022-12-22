@@ -177,6 +177,660 @@
             }
           },
           "resources": {
+            "dataAttributeBindings": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataAttributeBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataAttributeBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataAttributeBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "dataScans": {
+              "methods": {
+                "create": {
+                  "description": "Creates a dataScan resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataScans.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dataScanId": {
+                      "description": "Required. DataScan identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the customer project / location.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the parent location: projects/{project}/locations/{location_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataScans",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataScan"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete the dataScan resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.dataScans.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the dataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get dataScan resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataScans.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the dataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.",
+                      "enum": [
+                        "DATA_SCAN_VIEW_UNSPECIFIED",
+                        "BASIC",
+                        "FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The API will default to the BASIC view.",
+                        "Basic view that does not include spec and result.",
+                        "Include everything."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1DataScan"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataScans.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists dataScans.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataScans.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 10 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListDataScans call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataScans must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. projects/{project}/locations/{location_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataScans",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListDataScansResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update the dataScan resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.dataScans.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataScan"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "run": {
+                  "description": "Run an on demand execution of a DataScan.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}:run",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataScans.run",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the DataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region. Only on-demand DataScans are allowed.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:run",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1RunDataScanRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1RunDataScanResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataScans.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataScans.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "jobs": {
+                  "methods": {
+                    "get": {
+                      "description": "Get DataScanJob resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}/jobs/{jobsId}",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.dataScans.jobs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the DataScanJob: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+/jobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.",
+                          "enum": [
+                            "DATA_SCAN_JOB_VIEW_UNSPECIFIED",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The API will default to the BASIC view.",
+                            "Basic view that does not include spec and result.",
+                            "Include everything."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1DataScanJob"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists DataScanJobs under the given dataScan.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}/jobs",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.dataScans.jobs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Maximum number of DataScanJobs to return. The service may return fewer than this value. If unspecified, at most 10 DataScanJobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token received from a previous ListDataScanJobs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataScanJobs must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent environment: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/jobs",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1ListDataScanJobsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "dataTaxonomies": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataTaxonomies.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataTaxonomies.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataTaxonomies.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "attributes": {
+                  "methods": {
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+/attributes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+/attributes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+/attributes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "lakes": {
               "methods": {
                 "create": {
@@ -1536,6 +2190,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "run": {
+                      "description": "Run an on demand execution of a Task.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/lakes/{lakesId}/tasks/{tasksId}:run",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.lakes.tasks.run",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the task: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/lakes/[^/]+/tasks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:run",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1RunTaskRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1RunTaskResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/lakes/{lakesId}/tasks/{tasksId}:setIamPolicy",
@@ -2764,7 +3446,7 @@
       }
     }
   },
-  "revision": "20220818",
+  "revision": "20221212",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3227,6 +3909,20 @@
           "description": "Immutable. Relative name of the cloud resource that contains the data that is being managed within a lake. For example: projects/{project_number}/buckets/{bucket_id} projects/{project_number}/datasets/{dataset_id}",
           "type": "string"
         },
+        "readAccessMode": {
+          "description": "Optional. Determines how read permissions are handled for each asset and their associated tables. Only available to storage buckets assets.",
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "DIRECT",
+            "MANAGED"
+          ],
+          "enumDescriptions": [
+            "Access mode unspecified.",
+            "Default. Data is accessed directly using storage APIs.",
+            "Data is accessed through a managed interface using BigQuery APIs."
+          ],
+          "type": "string"
+        },
         "type": {
           "description": "Required. Immutable. Type of resource.",
           "enum": [
@@ -3428,6 +4124,863 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataProfileResult": {
+      "description": "DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.",
+      "id": "GoogleCloudDataplexV1DataProfileResult",
+      "properties": {
+        "profile": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultProfile",
+          "description": "This represents the profile information per field."
+        },
+        "rowCount": {
+          "description": "The count of all rows in the sampled data. Return 0, if zero rows.",
+          "format": "int64",
+          "type": "string"
+        },
+        "scannedData": {
+          "$ref": "GoogleCloudDataplexV1ScannedData",
+          "description": "The data scanned for this profile."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultProfile": {
+      "description": "Profile information describing the structure and layout of the data and contains the profile info.",
+      "id": "GoogleCloudDataplexV1DataProfileResultProfile",
+      "properties": {
+        "fields": {
+          "description": "The sequence of fields describing data in table entities.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataProfileResultProfileField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultProfileField": {
+      "description": "Represents a column field within a table schema.",
+      "id": "GoogleCloudDataplexV1DataProfileResultProfileField",
+      "properties": {
+        "mode": {
+          "description": "The mode of the field. Its value will be: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the field.",
+          "type": "string"
+        },
+        "profile": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo",
+          "description": "The profile information for the corresponding field."
+        },
+        "type": {
+          "description": "The field data type. Possible values include: STRING BYTE INT64 INT32 INT16 DOUBLE FLOAT DECIMAL BOOLEAN BINARY TIMESTAMP DATE TIME NULL RECORD",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo": {
+      "description": "ProfileInfo defines the profile information for each schema field type.",
+      "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo",
+      "properties": {
+        "distinctRatio": {
+          "description": "The ratio of rows that are distinct against the rows in the sampled data.",
+          "format": "double",
+          "type": "number"
+        },
+        "doubleProfile": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo",
+          "description": "The corresponding double field profile."
+        },
+        "integerProfile": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo",
+          "description": "The corresponding integer field profile."
+        },
+        "nullRatio": {
+          "description": "The ratio of null rows against the rows in the sampled data.",
+          "format": "double",
+          "type": "number"
+        },
+        "stringProfile": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo",
+          "description": "The corresponding string field profile."
+        },
+        "topNValues": {
+          "description": "The array of top N values of the field in the sampled data. Currently N is set as 10 or equal to distinct values in the field, whichever is smaller. This will be optional for complex non-groupable data-types such as JSON, ARRAY, JSON, STRUCT.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo": {
+      "description": "DoubleFieldInfo defines output for any double type field.",
+      "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo",
+      "properties": {
+        "average": {
+          "description": "The average of non-null values of double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "double",
+          "type": "number"
+        },
+        "max": {
+          "description": "The maximum value of a double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "double",
+          "type": "number"
+        },
+        "min": {
+          "description": "The minimum value of a double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "double",
+          "type": "number"
+        },
+        "quartiles": {
+          "description": "A quartile divide the numebr of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. So, here the quartiles is provided as an ordered list of quartile values, occurring in order Q1, median, Q3.",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "standardDeviation": {
+          "description": "The standard deviation of non-null of double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo": {
+      "description": "IntegerFieldInfo defines output for any integer type field.",
+      "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo",
+      "properties": {
+        "average": {
+          "description": "The average of non-null values of integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "double",
+          "type": "number"
+        },
+        "max": {
+          "description": "The maximum value of an integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "int64",
+          "type": "string"
+        },
+        "min": {
+          "description": "The minimum value of an integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "int64",
+          "type": "string"
+        },
+        "quartiles": {
+          "description": "A quartile divide the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. So, here the quartiles is provided as an ordered list of quartile values, occurring in order Q1, median, Q3.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "standardDeviation": {
+          "description": "The standard deviation of non-null of integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo": {
+      "description": "StringFieldInfo defines output info for any string type field.",
+      "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo",
+      "properties": {
+        "averageLength": {
+          "description": "The average length of a string field in the sampled data. Optional if zero non-null rows.",
+          "format": "double",
+          "type": "number"
+        },
+        "maxLength": {
+          "description": "The maximum length of a string field in the sampled data. Optional if zero non-null rows.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minLength": {
+          "description": "The minimum length of the string field in the sampled data. Optional if zero non-null rows.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue": {
+      "description": "The TopNValue defines the structure of output of top N values of a field.",
+      "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue",
+      "properties": {
+        "count": {
+          "description": "The frequency count of the corresponding value in the field.",
+          "format": "int64",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value is the string value of the actual value from the field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataProfileSpec": {
+      "description": "DataProfileScan related setting.",
+      "id": "GoogleCloudDataplexV1DataProfileSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityDimensionResult": {
+      "description": "DataQualityDimensionResult provides a more detailed, per-dimension level view of the results.",
+      "id": "GoogleCloudDataplexV1DataQualityDimensionResult",
+      "properties": {
+        "passed": {
+          "description": "Whether the dimension passed or failed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityResult": {
+      "description": "The output of a DataQualityScan.",
+      "id": "GoogleCloudDataplexV1DataQualityResult",
+      "properties": {
+        "dimensions": {
+          "description": "A list of results at the dimension-level.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityDimensionResult"
+          },
+          "type": "array"
+        },
+        "passed": {
+          "description": "Overall data quality result -- true if all rules passed.",
+          "type": "boolean"
+        },
+        "rowCount": {
+          "description": "The count of rows processed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "rules": {
+          "description": "A list of all the rules in a job, and their results.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRuleResult"
+          },
+          "type": "array"
+        },
+        "scannedData": {
+          "$ref": "GoogleCloudDataplexV1ScannedData",
+          "description": "The data scanned for this result."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRule": {
+      "description": "A rule captures data quality intent about a data source.",
+      "id": "GoogleCloudDataplexV1DataQualityRule",
+      "properties": {
+        "column": {
+          "description": "Optional. The unnested column which this rule is evaluated against.",
+          "type": "string"
+        },
+        "dimension": {
+          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension-level. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"INTEGRITY\"",
+          "type": "string"
+        },
+        "ignoreNull": {
+          "description": "Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing. Only applicable to ColumnMap rules.",
+          "type": "boolean"
+        },
+        "nonNullExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleNonNullExpectation",
+          "description": "ColumnMap rule which evaluates whether each column value is null."
+        },
+        "rangeExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleRangeExpectation",
+          "description": "ColumnMap rule which evaluates whether each column value lies between a specified range."
+        },
+        "regexExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleRegexExpectation",
+          "description": "ColumnMap rule which evaluates whether each column value matches a specified regex."
+        },
+        "rowConditionExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation",
+          "description": "Table rule which evaluates whether each row passes the specified condition."
+        },
+        "setExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleSetExpectation",
+          "description": "ColumnMap rule which evaluates whether each column value is contained by a specified set."
+        },
+        "statisticRangeExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation",
+          "description": "ColumnAggregate rule which evaluates whether the column aggregate statistic lies between a specified range."
+        },
+        "tableConditionExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation",
+          "description": "Table rule which evaluates whether the provided expression is true."
+        },
+        "threshold": {
+          "description": "Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.00 indicates default value (i.e. 1.0)",
+          "format": "double",
+          "type": "number"
+        },
+        "uniquenessExpectation": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation",
+          "description": "ColumnAggregate rule which evaluates whether the column has duplicates."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleNonNullExpectation": {
+      "description": "Evaluates whether each column value is null.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleNonNullExpectation",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleRangeExpectation": {
+      "description": "Evaluates whether each column value lies between a specified range.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleRangeExpectation",
+      "properties": {
+        "maxValue": {
+          "description": "Optional. The maximum column value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.",
+          "type": "string"
+        },
+        "minValue": {
+          "description": "Optional. The minimum column value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.",
+          "type": "string"
+        },
+        "strictMaxEnabled": {
+          "description": "Optional. Whether each value needs to be strictly lesser than ('<') the maximum, or if equality is allowed. Only relevant if a max_value has been defined. Default = false.",
+          "type": "boolean"
+        },
+        "strictMinEnabled": {
+          "description": "Optional. Whether each value needs to be strictly greater than ('>') the minimum, or if equality is allowed. Only relevant if a min_value has been defined. Default = false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleRegexExpectation": {
+      "description": "Evaluates whether each column value matches a specified regex.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleRegexExpectation",
+      "properties": {
+        "regex": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleResult": {
+      "description": "DataQualityRuleResult provides a more detailed, per-rule level view of the results.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleResult",
+      "properties": {
+        "evaluatedCount": {
+          "description": "The number of rows a rule was evaluated against. This field is only valid for ColumnMap type rules. Evaluated count can be configured to either (1) include all rows (default) - with null rows automatically failing rule evaluation OR (2) exclude null rows from the evaluated_count, by setting ignore_nulls = true",
+          "format": "int64",
+          "type": "string"
+        },
+        "failingRowsQuery": {
+          "description": "The query to find rows that did not pass this rule. Only applies to ColumnMap and RowCondition rules.",
+          "type": "string"
+        },
+        "nullCount": {
+          "description": "The number of rows with null values in the specified column.",
+          "format": "int64",
+          "type": "string"
+        },
+        "passRatio": {
+          "description": "The ratio of passed_count / evaluated_count. This field is only valid for ColumnMap type rules.",
+          "format": "double",
+          "type": "number"
+        },
+        "passed": {
+          "description": "Whether the rule passed or failed.",
+          "type": "boolean"
+        },
+        "passedCount": {
+          "description": "The number of rows which passed a rule evaluation. This field is only valid for ColumnMap type rules.",
+          "format": "int64",
+          "type": "string"
+        },
+        "rule": {
+          "$ref": "GoogleCloudDataplexV1DataQualityRule",
+          "description": "The rule specified in the DataQualitySpec, as is."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation": {
+      "description": "Evaluates whether each row passes the specified condition. The SQL expression needs to use BigQuery standard SQL syntax and should produce a boolean per row as the result. Example: col1 >= 0 AND col2 < 10",
+      "id": "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation",
+      "properties": {
+        "sqlExpression": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleSetExpectation": {
+      "description": "Evaluates whether each column value is contained by a specified set.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleSetExpectation",
+      "properties": {
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation": {
+      "description": "Evaluates whether the column aggregate statistic lies between a specified range.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation",
+      "properties": {
+        "maxValue": {
+          "description": "The maximum column statistic value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.",
+          "type": "string"
+        },
+        "minValue": {
+          "description": "The minimum column statistic value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.",
+          "type": "string"
+        },
+        "statistic": {
+          "enum": [
+            "STATISTIC_UNDEFINED",
+            "MEAN",
+            "MIN",
+            "MAX"
+          ],
+          "enumDescriptions": [
+            "Unspecified statistic type",
+            "Evaluate the column mean",
+            "Evaluate the column min",
+            "Evaluate the column max"
+          ],
+          "type": "string"
+        },
+        "strictMaxEnabled": {
+          "description": "Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed. Only relevant if a max_value has been defined. Default = false.",
+          "type": "boolean"
+        },
+        "strictMinEnabled": {
+          "description": "Whether column statistic needs to be strictly greater than ('>') the minimum, or if equality is allowed. Only relevant if a min_value has been defined. Default = false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation": {
+      "description": "Evaluates whether the provided expression is true. The SQL expression needs to use BigQuery standard SQL syntax and should produce a scalar boolean result. Example: MIN(col1) >= 0",
+      "id": "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation",
+      "properties": {
+        "sqlExpression": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation": {
+      "description": "Evaluates whether the column has duplicates.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualitySpec": {
+      "description": "DataQualityScan related setting.",
+      "id": "GoogleCloudDataplexV1DataQualitySpec",
+      "properties": {
+        "rules": {
+          "description": "The list of rules to evaluate against a data source. At least one rule is required.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScan": {
+      "description": "Represents a user-visible job which provides the insights for the related data source. For examples: - Data Quality: generates queries based on the rules and run against the data to get data quality check results. - Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).",
+      "id": "GoogleCloudDataplexV1DataScan",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the scan was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "data": {
+          "$ref": "GoogleCloudDataplexV1DataSource",
+          "description": "Required. The data source for DataScan."
+        },
+        "dataProfileResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResult",
+          "description": "Output only. The result of the data profile scan.",
+          "readOnly": true
+        },
+        "dataProfileSpec": {
+          "$ref": "GoogleCloudDataplexV1DataProfileSpec",
+          "description": "DataProfileScan related setting."
+        },
+        "dataQualityResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResult",
+          "description": "Output only. The result of the data quality scan.",
+          "readOnly": true
+        },
+        "dataQualitySpec": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpec",
+          "description": "DataQualityScan related setting."
+        },
+        "description": {
+          "description": "Optional. Description of the scan. * Must be between 1-1024 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name. * Must be between 1-256 characters.",
+          "type": "string"
+        },
+        "executionSpec": {
+          "$ref": "GoogleCloudDataplexV1DataScanExecutionSpec",
+          "description": "Optional. DataScan execution settings. If not specified, the fields under it will use their default values."
+        },
+        "executionStatus": {
+          "$ref": "GoogleCloudDataplexV1DataScanExecutionStatus",
+          "description": "Output only. Status of the data scan execution.",
+          "readOnly": true
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the scan.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the DataScan.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "ACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "State is not specified.",
+            "Resource is active, i.e., ready to use.",
+            "Resource is under creation.",
+            "Resource is under deletion.",
+            "Resource is active but has unresolved actions."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of DataScan.",
+          "enum": [
+            "DATA_SCAN_TYPE_UNSPECIFIED",
+            "DATA_QUALITY",
+            "DATA_PROFILE"
+          ],
+          "enumDescriptions": [
+            "The DataScan Type is unspecified.",
+            "Data Quality Scan.",
+            "Data Profile Scan."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the scan. This ID will be different if the scan is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the scan was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEvent": {
+      "description": "These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'",
+      "id": "GoogleCloudDataplexV1DataScanEvent",
+      "properties": {
+        "dataProfile": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventDataProfileResult",
+          "description": "Data profile result for data profile type data scan."
+        },
+        "dataQuality": {
+          "$ref": "GoogleCloudDataplexV1DataScanEventDataQualityResult",
+          "description": "Data quality result for data quality type data scan."
+        },
+        "dataSource": {
+          "description": "The data source of the data scan",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time when the data scan job finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "jobId": {
+          "description": "The identifier of the specific data scan job this log entry is for.",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message describing the data scan job event.",
+          "type": "string"
+        },
+        "scope": {
+          "description": "The scope of the data scan (e.g. full, incremental).",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "FULL",
+            "INCREMENTAL"
+          ],
+          "enumDescriptions": [
+            "An unspecified scope type.",
+            "Data scan runs on all of the data.",
+            "Data scan runs on incremental data."
+          ],
+          "type": "string"
+        },
+        "specVersion": {
+          "description": "A version identifier of the spec which was used to execute this job.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time when the data scan job started to run.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The status of the data scan job.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTED",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified job state.",
+            "Data scan started.",
+            "Data scan successfully completed.",
+            "Data scan was unsuccessful.",
+            "Data scan was cancelled."
+          ],
+          "type": "string"
+        },
+        "trigger": {
+          "description": "The trigger type of the data scan job.",
+          "enum": [
+            "TRIGGER_UNSPECIFIED",
+            "ON_DEMAND",
+            "SCHEDULE"
+          ],
+          "enumDescriptions": [
+            "An unspecified trigger type.",
+            "Data scan triggers on demand.",
+            "Data scan triggers as per schedule."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the data scan.",
+          "enum": [
+            "SCAN_TYPE_UNSPECIFIED",
+            "DATA_PROFILE",
+            "DATA_QUALITY"
+          ],
+          "enumDescriptions": [
+            "An unspecified data scan type.",
+            "Data scan for data profile.",
+            "Data scan for data quality."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEventDataProfileResult": {
+      "description": "Data profile result for data scan job.",
+      "id": "GoogleCloudDataplexV1DataScanEventDataProfileResult",
+      "properties": {
+        "rowCount": {
+          "description": "The count of rows processed in the data scan job.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanEventDataQualityResult": {
+      "description": "Data quality result for data scan job.",
+      "id": "GoogleCloudDataplexV1DataScanEventDataQualityResult",
+      "properties": {
+        "dimensionPassed": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "description": "The result of each dimension for data quality result. The key of the map is the name of the dimension. The value is the bool value depicting whether the dimension result was pass or not.",
+          "type": "object"
+        },
+        "passed": {
+          "description": "Whether the data quality result was pass or not.",
+          "type": "boolean"
+        },
+        "rowCount": {
+          "description": "The count of rows processed in the data scan job.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanExecutionSpec": {
+      "description": "DataScan execution settings.",
+      "id": "GoogleCloudDataplexV1DataScanExecutionSpec",
+      "properties": {
+        "field": {
+          "description": "Immutable. The unnested field (Date or Timestamp) that contains values that monotonically increase over time.",
+          "type": "string"
+        },
+        "trigger": {
+          "$ref": "GoogleCloudDataplexV1Trigger",
+          "description": "Optional. Spec related to how often and when a scan should be triggered. If not specified, the default is OnDemand, which means the scan will not run until the user calls RunDataScan API."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanExecutionStatus": {
+      "description": "Status of the data scan execution.",
+      "id": "GoogleCloudDataplexV1DataScanExecutionStatus",
+      "properties": {
+        "latestJobEndTime": {
+          "description": "The time when the latest DataScanJob ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "latestJobStartTime": {
+          "description": "The time when the latest DataScanJob started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataScanJob": {
+      "description": "A DataScanJob represents an instance of a data scan.",
+      "id": "GoogleCloudDataplexV1DataScanJob",
+      "properties": {
+        "dataProfileResult": {
+          "$ref": "GoogleCloudDataplexV1DataProfileResult",
+          "description": "Output only. The result of the data profile scan.",
+          "readOnly": true
+        },
+        "dataProfileSpec": {
+          "$ref": "GoogleCloudDataplexV1DataProfileSpec",
+          "description": "Output only. DataProfileScan related setting.",
+          "readOnly": true
+        },
+        "dataQualityResult": {
+          "$ref": "GoogleCloudDataplexV1DataQualityResult",
+          "description": "Output only. The result of the data quality scan.",
+          "readOnly": true
+        },
+        "dataQualitySpec": {
+          "$ref": "GoogleCloudDataplexV1DataQualitySpec",
+          "description": "Output only. DataQualityScan related setting.",
+          "readOnly": true
+        },
+        "endTime": {
+          "description": "Output only. The time when the DataScanJob ended.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "message": {
+          "description": "Output only. Additional information about the current state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the DataScanJob, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The time when the DataScanJob was started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Execution state for the DataScanJob.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "CANCELING",
+            "CANCELLED",
+            "SUCCEEDED",
+            "FAILED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "The DataScanJob state is unspecified.",
+            "The DataScanJob is running.",
+            "The DataScanJob is canceling.",
+            "The DataScanJob cancellation was successful.",
+            "The DataScanJob completed successfully.",
+            "The DataScanJob is no longer running due to an error.",
+            "The DataScanJob has been created but not started to run yet."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the parent DataScan.",
+          "enum": [
+            "DATA_SCAN_TYPE_UNSPECIFIED",
+            "DATA_QUALITY",
+            "DATA_PROFILE"
+          ],
+          "enumDescriptions": [
+            "The DataScan Type is unspecified.",
+            "Data Quality Scan.",
+            "Data Profile Scan."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the DataScanJob.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataSource": {
+      "description": "The data source for DataScan.",
+      "id": "GoogleCloudDataplexV1DataSource",
+      "properties": {
+        "entity": {
+          "description": "Immutable. The dataplex entity that contains the data for DataScan, of the form: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DiscoveryEvent": {
       "description": "The payload associated with Discovery data processing.",
       "id": "GoogleCloudDataplexV1DiscoveryEvent",
@@ -3585,6 +5138,11 @@
       "description": "Represents tables and fileset metadata contained within a zone.",
       "id": "GoogleCloudDataplexV1Entity",
       "properties": {
+        "access": {
+          "$ref": "GoogleCloudDataplexV1StorageAccess",
+          "description": "Output only. Identifies the access mechanism to the entity. Not user settable.",
+          "readOnly": true
+        },
         "asset": {
           "description": "Required. Immutable. The ID of the asset associated with the storage location containing the entity data. The entity must be with in the same zone with the asset.",
           "type": "string"
@@ -4249,6 +5807,49 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ListDataScanJobsResponse": {
+      "description": "List DataScanJobs response.",
+      "id": "GoogleCloudDataplexV1ListDataScanJobsResponse",
+      "properties": {
+        "dataScanJobs": {
+          "description": "DataScanJobs (metadata only) under a given dataScan.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataScanJob"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListDataScansResponse": {
+      "description": "List dataScans response.",
+      "id": "GoogleCloudDataplexV1ListDataScansResponse",
+      "properties": {
+        "dataScans": {
+          "description": "DataScans (metadata only) under the given parent location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataScan"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1ListEntitiesResponse": {
       "description": "List metadata entities response.",
       "id": "GoogleCloudDataplexV1ListEntitiesResponse",
@@ -4478,6 +6079,68 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1RunDataScanRequest": {
+      "description": "Run DataScan Request",
+      "id": "GoogleCloudDataplexV1RunDataScanRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1RunDataScanResponse": {
+      "description": "Run DataScan Response.",
+      "id": "GoogleCloudDataplexV1RunDataScanResponse",
+      "properties": {
+        "job": {
+          "$ref": "GoogleCloudDataplexV1DataScanJob",
+          "description": "DataScanJob created by RunDataScan API."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1RunTaskRequest": {
+      "id": "GoogleCloudDataplexV1RunTaskRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1RunTaskResponse": {
+      "id": "GoogleCloudDataplexV1RunTaskResponse",
+      "properties": {
+        "job": {
+          "$ref": "GoogleCloudDataplexV1Job",
+          "description": "Jobs created by RunTask API."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ScannedData": {
+      "description": "The data scanned during processing (e.g. in incremental DataScan)",
+      "id": "GoogleCloudDataplexV1ScannedData",
+      "properties": {
+        "incrementalField": {
+          "$ref": "GoogleCloudDataplexV1ScannedDataIncrementalField",
+          "description": "The range denoted by values of an incremental field"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ScannedDataIncrementalField": {
+      "description": "A data range denoted by a pair of start/end values of a field.",
+      "id": "GoogleCloudDataplexV1ScannedDataIncrementalField",
+      "properties": {
+        "end": {
+          "description": "Value that marks the end of the range",
+          "type": "string"
+        },
+        "field": {
+          "description": "The field that contains values which monotonically increases over time (e.g. timestamp).",
+          "type": "string"
+        },
+        "start": {
+          "description": "Value that marks the start of the range",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1Schema": {
       "description": "Schema information describing the structure and layout of the data.",
       "id": "GoogleCloudDataplexV1Schema",
@@ -4693,6 +6356,10 @@
           "description": "The status of the event.",
           "type": "boolean"
         },
+        "fastStartupEnabled": {
+          "description": "If the session is associated with an environment with fast startup enabled, and was created before being assigned to a user.",
+          "type": "boolean"
+        },
         "message": {
           "description": "The log message.",
           "type": "string"
@@ -4731,10 +6398,6 @@
         "userId": {
           "description": "The information about the user that created the session. It will be the email address of the user.",
           "type": "string"
-        },
-        "warmPoolEnabled": {
-          "description": "If the session is a warm pooled session.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -4778,6 +6441,28 @@
         "resultSizeBytes": {
           "description": "The size of results the query produced.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1StorageAccess": {
+      "description": "Describes the access mechanism of the data within its storage location.",
+      "id": "GoogleCloudDataplexV1StorageAccess",
+      "properties": {
+        "read": {
+          "description": "Output only. Describes the read access mechanism of the data. Not user settable.",
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "DIRECT",
+            "MANAGED"
+          ],
+          "enumDescriptions": [
+            "Access mode unspecified.",
+            "Default. Data is accessed directly using storage APIs.",
+            "Data is accessed through a managed interface using BigQuery APIs."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4840,12 +6525,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "iceberg": {
+          "$ref": "GoogleCloudDataplexV1StorageFormatIcebergOptions",
+          "description": "Optional. Additional information about iceberg tables."
+        },
         "json": {
           "$ref": "GoogleCloudDataplexV1StorageFormatJsonOptions",
           "description": "Optional. Additional information about CSV formatted data."
         },
         "mimeType": {
-          "description": "Required. The mime type descriptor for the data. Must match the pattern {type}/{subtype}. Supported values: application/x-parquet application/x-avro application/x-orc application/x-tfrecord application/json application/{subtypes} text/csv text/ image/{image subtype} video/{video subtype} audio/{audio subtype}",
+          "description": "Required. The mime type descriptor for the data. Must match the pattern {type}/{subtype}. Supported values: application/x-parquet application/x-avro application/x-orc application/x-tfrecord application/x-parquet+iceberg application/x-avro+iceberg application/x-orc+iceberg application/json application/{subtypes} text/csv text/ image/{image subtype} video/{video subtype} audio/{audio subtype}",
           "type": "string"
         }
       },
@@ -4870,6 +6559,17 @@
         },
         "quote": {
           "description": "Optional. The character used to quote column values. Accepts '\"' (double quotation mark) or ''' (single quotation mark). Defaults to '\"' (double quotation mark) if unspecified.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1StorageFormatIcebergOptions": {
+      "description": "Describes Iceberg data format.",
+      "id": "GoogleCloudDataplexV1StorageFormatIcebergOptions",
+      "properties": {
+        "metadataLocation": {
+          "description": "Optional. The location of where the iceberg metadata is present, must be within the table path",
           "type": "string"
         }
       },
@@ -4924,6 +6624,10 @@
           "description": "Output only. The relative resource name of the task, of the form: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/ tasks/{task_id}.",
           "readOnly": true,
           "type": "string"
+        },
+        "notebook": {
+          "$ref": "GoogleCloudDataplexV1TaskNotebookTaskConfig",
+          "description": "Config related to running scheduled Notebooks."
         },
         "spark": {
           "$ref": "GoogleCloudDataplexV1TaskSparkTaskConfig",
@@ -5105,6 +6809,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1TaskNotebookTaskConfig": {
+      "description": "Config for running scheduled notebooks.",
+      "id": "GoogleCloudDataplexV1TaskNotebookTaskConfig",
+      "properties": {
+        "archiveUris": {
+          "description": "Optional. Cloud Storage URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fileUris": {
+          "description": "Optional. Cloud Storage URIs of files to be placed in the working directory of each executor.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "infrastructureSpec": {
+          "$ref": "GoogleCloudDataplexV1TaskInfrastructureSpec",
+          "description": "Optional. Infrastructure specification for the execution."
+        },
+        "notebook": {
+          "description": "Required. Path to input notebook. This can be the Cloud Storage URI of the notebook file or the path to a Notebook Content. The execution args are accessible as environment variables (TASK_key=value).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1TaskSparkTaskConfig": {
       "description": "User-specified config for running a Spark task.",
       "id": "GoogleCloudDataplexV1TaskSparkTaskConfig",
@@ -5184,6 +6917,38 @@
             "The task runs one-time shortly after Task Creation.",
             "The task is scheduled to run periodically."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1Trigger": {
+      "description": "DataScan scheduling and trigger settings.",
+      "id": "GoogleCloudDataplexV1Trigger",
+      "properties": {
+        "onDemand": {
+          "$ref": "GoogleCloudDataplexV1TriggerOnDemand",
+          "description": "The scan runs one-time shortly after DataScan Creation."
+        },
+        "schedule": {
+          "$ref": "GoogleCloudDataplexV1TriggerSchedule",
+          "description": "The scan is scheduled to run periodically."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1TriggerOnDemand": {
+      "description": "The scan runs one-time via RunDataScan API.",
+      "id": "GoogleCloudDataplexV1TriggerOnDemand",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1TriggerSchedule": {
+      "description": "The scan is scheduled to run periodically.",
+      "id": "GoogleCloudDataplexV1TriggerSchedule",
+      "properties": {
+        "cron": {
+          "description": "Required. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running scans periodically. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\". This field is required for Schedule scans.",
           "type": "string"
         }
       },
@@ -5485,7 +7250,7 @@
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
           "items": {
             "type": "string"
           },

@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v1.2.0...tpu-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v1.1.0...tpu-v1.2.0) (2022-09-21)
+
+
+### Features
+
+* **tpu:** update the API ([0f01b34](https://github.com/googleapis/google-api-nodejs-client/commit/0f01b343da9a688ab53cba9dee0c8f773eb7ee72))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v1.0.2...tpu-v1.1.0) (2022-07-04)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adexperiencereport-v0.3.2...adexperiencereport-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/adexperiencereport-v0.3.1...adexperiencereport-v0.3.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **adexperiencereport:** update the API ([65d3a2e](https://github.com/googleapis/google-api-nodejs-client/commit/65d3a2e2377915217f4720967d23b71ac00185c5))
+
 ## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/adexperiencereport-v0.3.0...adexperiencereport-v0.3.1) (2022-06-21)
 
 

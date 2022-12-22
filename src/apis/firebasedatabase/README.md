@@ -2,7 +2,7 @@
 
 # firebasedatabase
 
-> The Firebase Realtime Database Management API enables programmatic provisioning and management of Realtime Database instances.
+> The Firebase Realtime Database API enables programmatic provisioning and management of Realtime Database instances.
 
 ## Installation
 

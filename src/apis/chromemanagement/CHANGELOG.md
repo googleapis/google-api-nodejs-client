@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v2.3.0...chromemanagement-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v2.2.0...chromemanagement-v2.3.0) (2022-09-21)
+
+
+### Features
+
+* **chromemanagement:** update the API ([70b92d6](https://github.com/googleapis/google-api-nodejs-client/commit/70b92d68157611ef40918a7051af8b9d5cb3a88a))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v2.1.0...chromemanagement-v2.2.0) (2022-08-19)
 
 

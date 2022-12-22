@@ -170,6 +170,10 @@ export namespace container_v1 {
      */
     gcpFilestoreCsiDriverConfig?: Schema$GcpFilestoreCsiDriverConfig;
     /**
+     * Configuration for the Backup for GKE agent addon.
+     */
+    gkeBackupAgentConfig?: Schema$GkeBackupAgentConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -242,7 +246,7 @@ export namespace container_v1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -293,7 +297,7 @@ export namespace container_v1 {
      */
     enabled?: boolean | null;
     /**
-     * Mode of operation for binauthz policy evaluation. Currently the only options are equivalent to enable/disable. If unspecified, defaults to DISABLED.
+     * Mode of operation for binauthz policy evaluation. If unspecified, defaults to DISABLED.
      */
     evaluationMode?: string | null;
   }
@@ -427,6 +431,10 @@ export namespace container_v1 {
      * Configuration of Confidential Nodes. All the nodes in the cluster will be Confidential VM once enabled.
      */
     confidentialNodes?: Schema$ConfidentialNodes;
+    /**
+     * Configuration for the fine-grained cost management feature.
+     */
+    costManagementConfig?: Schema$CostManagementConfig;
     /**
      * [Output only] The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
@@ -686,6 +694,10 @@ export namespace container_v1 {
      */
     desiredClusterAutoscaling?: Schema$ClusterAutoscaling;
     /**
+     * The desired configuration for the fine-grained cost management feature.
+     */
+    desiredCostManagementConfig?: Schema$CostManagementConfig;
+    /**
      * Configuration of etcd encryption.
      */
     desiredDatabaseEncryption?: Schema$DatabaseEncryption;
@@ -701,6 +713,14 @@ export namespace container_v1 {
      * DNSConfig contains clusterDNS config for this cluster.
      */
     desiredDnsConfig?: Schema$DNSConfig;
+    /**
+     * Enable/Disable private endpoint for the cluster's master.
+     */
+    desiredEnablePrivateEndpoint?: boolean | null;
+    /**
+     * The desired config of Gateway API on this cluster.
+     */
+    desiredGatewayApiConfig?: Schema$GatewayAPIConfig;
     /**
      * The desired GCFS config for the cluster
      */
@@ -766,6 +786,10 @@ export namespace container_v1 {
      */
     desiredNodePoolId?: string | null;
     /**
+     * The desired node pool logging configuration defaults for the cluster.
+     */
+    desiredNodePoolLoggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
      * The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the Kubernetes master version
      */
     desiredNodeVersion?: string | null;
@@ -797,6 +821,10 @@ export namespace container_v1 {
      * Configuration for Shielded Nodes.
      */
     desiredShieldedNodes?: Schema$ShieldedNodes;
+    /**
+     * The desired stack type of the cluster. If a stack type is provided and does not match the current stack type of the cluster, update will attempt to change the stack type to the new type.
+     */
+    desiredStackType?: string | null;
     /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
@@ -855,6 +883,15 @@ export namespace container_v1 {
   export interface Schema$ConsumptionMeteringConfig {
     /**
      * Whether to enable consumption metering for this cluster. If enabled, a second BigQuery table will be created to hold resource consumption records.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Configuration for fine-grained cost management feature.
+   */
+  export interface Schema$CostManagementConfig {
+    /**
+     * Whether the feature is enabled or not.
      */
     enabled?: boolean | null;
   }
@@ -970,6 +1007,15 @@ export namespace container_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Configuration of Fast Socket feature.
+   */
+  export interface Schema$FastSocket {
+    /**
+     * Whether Fast Socket features are enabled in the node pool.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Allows filtering to one or more specific event types. If event types are present, those and only those event types will be transmitted to the cluster. Other types will be skipped. If no filter is specified, or no event types are present, all event types will be sent
    */
   export interface Schema$Filter {
@@ -977,6 +1023,15 @@ export namespace container_v1 {
      * Event types to allowlist.
      */
     eventType?: string[] | null;
+  }
+  /**
+   * GatewayAPIConfig contains the desired config of Gateway API on this cluster.
+   */
+  export interface Schema$GatewayAPIConfig {
+    /**
+     * The Gateway API release channel to use for Gateway API.
+     */
+    channel?: string | null;
   }
   /**
    * Configuration for the Compute Engine PD CSI driver.
@@ -1054,6 +1109,15 @@ export namespace container_v1 {
      * Supported subject types.
      */
     subject_types_supported?: string[] | null;
+  }
+  /**
+   * Configuration for the Backup for GKE Agent.
+   */
+  export interface Schema$GkeBackupAgentConfig {
+    /**
+     * Whether the Backup for GKE agent is enabled for this cluster.
+     */
+    enabled?: boolean | null;
   }
   /**
    * GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.
@@ -1151,6 +1215,10 @@ export namespace container_v1 {
      */
     createSubnetwork?: boolean | null;
     /**
+     * The ipv6 access type (internal or external) when create_subnetwork is true
+     */
+    ipv6AccessType?: string | null;
+    /**
      * This field is deprecated, use node_ipv4_cidr_block.
      */
     nodeIpv4Cidr?: string | null;
@@ -1170,6 +1238,10 @@ export namespace container_v1 {
      * The name of the secondary range to be used as for the services CIDR block. The secondary range will be used for service ClusterIPs. This must be an existing secondary range associated with the cluster subnetwork. This field is only applicable with use_ip_aliases is true and create_subnetwork is false.
      */
     servicesSecondaryRangeName?: string | null;
+    /**
+     * The IP stack type of the cluster
+     */
+    stackType?: string | null;
     /**
      * A custom subnetwork name to be used if `create_subnetwork` is true. If this field is empty, then an automatic name will be chosen for the new subnetwork.
      */
@@ -1251,6 +1323,10 @@ export namespace container_v1 {
    */
   export interface Schema$LinuxNodeConfig {
     /**
+     * cgroup_mode specifies the cgroup mode to be used on the node.
+     */
+    cgroupMode?: string | null;
+    /**
      * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse
      */
     sysctls?: {[key: string]: string} | null;
@@ -1320,6 +1396,15 @@ export namespace container_v1 {
      * Logging components configuration
      */
     componentConfig?: Schema$LoggingComponentConfig;
+  }
+  /**
+   * LoggingVariantConfig specifies the behaviour of the logging component.
+   */
+  export interface Schema$LoggingVariantConfig {
+    /**
+     * Logging variant deployed on nodes.
+     */
+    variant?: string | null;
   }
   /**
    * Represents the Maintenance exclusion option.
@@ -1410,6 +1495,10 @@ export namespace container_v1 {
      * Whether or not master authorized networks is enabled.
      */
     enabled?: boolean | null;
+    /**
+     * Whether master is accessbile via Google Compute Engine Public IP addresses.
+     */
+    gcpPublicCidrsAccessEnabled?: boolean | null;
   }
   /**
    * Constraints applied to pods.
@@ -1497,6 +1586,10 @@ export namespace container_v1 {
      */
     enableL4ilbSubsetting?: boolean | null;
     /**
+     * GatewayAPIConfig contains the desired config of Gateway API on this cluster.
+     */
+    gatewayApiConfig?: Schema$GatewayAPIConfig;
+    /**
      * Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
     network?: string | null;
@@ -1582,6 +1675,10 @@ export namespace container_v1 {
      */
     diskType?: string | null;
     /**
+     * Enable or disable NCCL fast socket for the node pool.
+     */
+    fastSocket?: Schema$FastSocket;
+    /**
      * Google Container File System (image streaming) configs.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -1610,6 +1707,10 @@ export namespace container_v1 {
      */
     localSsdCount?: number | null;
     /**
+     * Logging configuration.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
      * The name of a Google Compute Engine [machine type](https://cloud.google.com/compute/docs/machine-types) If unspecified, the default machine type is `e2-medium`.
      */
     machineType?: string | null;
@@ -1637,6 +1738,10 @@ export namespace container_v1 {
      * The optional reservation affinity. Setting this field will apply the specified [Zonal Compute Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) to this node pool.
      */
     reservationAffinity?: Schema$ReservationAffinity;
+    /**
+     * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
+     */
+    resourceLabels?: {[key: string]: string} | null;
     /**
      * Sandbox configuration for this node.
      */
@@ -1674,6 +1779,10 @@ export namespace container_v1 {
      * GCFS (Google Container File System, also known as Riptide) options.
      */
     gcfsConfig?: Schema$GcfsConfig;
+    /**
+     * Logging configuration for node pools.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
   }
   /**
    * Node kubelet configs.
@@ -1731,6 +1840,10 @@ export namespace container_v1 {
      */
     createPodRange?: boolean | null;
     /**
+     * Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from cluster.privateClusterConfig.enablePrivateNodes
+     */
+    enablePrivateNodes?: boolean | null;
+    /**
      * Network bandwidth tier configuration.
      */
     networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
@@ -1787,6 +1900,10 @@ export namespace container_v1 {
      * Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults.
      */
     networkConfig?: Schema$NodeNetworkConfig;
+    /**
+     * Specifies the node placement policy.
+     */
+    placementPolicy?: Schema$PlacementPolicy;
     /**
      * [Output only] The pod CIDR block size per node in this node pool.
      */
@@ -1866,6 +1983,15 @@ export namespace container_v1 {
      * Subset of NodeConfig message that has defaults.
      */
     nodeConfigDefaults?: Schema$NodeConfigDefaults;
+  }
+  /**
+   * NodePoolLoggingConfig specifies logging configuration for nodepools.
+   */
+  export interface Schema$NodePoolLoggingConfig {
+    /**
+     * Logging variant configuration.
+     */
+    variantConfig?: Schema$LoggingVariantConfig;
   }
   /**
    * Kubernetes taint is comprised of three fields: key, value, and effect. Effect can only be one of three types: NoSchedule, PreferNoSchedule or NoExecute. See [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration) for more information, including usage and the valid values.
@@ -1989,6 +2115,15 @@ export namespace container_v1 {
     status?: string | null;
   }
   /**
+   * PlacementPolicy defines the placement policy used by the node pool.
+   */
+  export interface Schema$PlacementPolicy {
+    /**
+     * The type of placement.
+     */
+    type?: string | null;
+  }
+  /**
    * Configuration options for private clusters.
    */
   export interface Schema$PrivateClusterConfig {
@@ -2016,6 +2151,10 @@ export namespace container_v1 {
      * Output only. The internal IP address of this cluster's master endpoint.
      */
     privateEndpoint?: string | null;
+    /**
+     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format.
+     */
+    privateEndpointSubnetwork?: string | null;
     /**
      * Output only. The external IP address of this cluster's master endpoint.
      */
@@ -2095,13 +2234,22 @@ export namespace container_v1 {
      */
     consumeReservationType?: string | null;
     /**
-     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as the key and specify the name of your reservation as its value.
+     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify "compute.googleapis.com/reservation-name" as the key and specify the name of your reservation as its value.
      */
     key?: string | null;
     /**
      * Corresponds to the label value(s) of reservation resource(s).
      */
     values?: string[] | null;
+  }
+  /**
+   * Collection of [GCP labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).
+   */
+  export interface Schema$ResourceLabels {
+    /**
+     * Map of node label keys and node label values.
+     */
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Contains information about amount of some resource in the cluster. For memory, value should be in GB.
@@ -2609,7 +2757,7 @@ export namespace container_v1 {
      */
     batchNodeCount?: number | null;
     /**
-     * Percentage of the bool pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].
+     * Percentage of the blue pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].
      */
     batchPercentage?: number | null;
     /**
@@ -2765,6 +2913,10 @@ export namespace container_v1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Enable or disable NCCL fast socket for the node pool.
+     */
+    fastSocket?: Schema$FastSocket;
+    /**
      * GCFS config.
      */
     gcfsConfig?: Schema$GcfsConfig;
@@ -2793,6 +2945,10 @@ export namespace container_v1 {
      */
     locations?: string[] | null;
     /**
+     * Logging configuration.
+     */
+    loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
@@ -2812,6 +2968,10 @@ export namespace container_v1 {
      * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * The resource labels for the node pool to use to annotate any related Google Compute Engine resources.
+     */
+    resourceLabels?: Schema$ResourceLabels;
     /**
      * The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags.
      */
@@ -3862,6 +4022,7 @@ export namespace container_v1 {
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "conditions": [],
      *   //   "confidentialNodes": {},
+     *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
@@ -6875,6 +7036,7 @@ export namespace container_v1 {
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
+     *   //   "placementPolicy": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -7781,6 +7943,7 @@ export namespace container_v1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "fastSocket": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
@@ -7788,11 +7951,13 @@ export namespace container_v1 {
      *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
      *       //   "tags": {},
      *       //   "taints": {},
      *       //   "upgradeSettings": {},
@@ -9542,6 +9707,7 @@ export namespace container_v1 {
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "conditions": [],
      *   //   "confidentialNodes": {},
+     *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
@@ -12443,6 +12609,7 @@ export namespace container_v1 {
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
+     *   //   "placementPolicy": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -13215,6 +13382,7 @@ export namespace container_v1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "fastSocket": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
@@ -13222,11 +13390,13 @@ export namespace container_v1 {
      *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
      *       //   "tags": {},
      *       //   "taints": {},
      *       //   "upgradeSettings": {},

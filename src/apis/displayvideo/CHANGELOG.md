@@ -1,5 +1,29 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v5.0.3...displayvideo-v6.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+* **build:** update deps make Node 12 minimum (#3096)
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
+
+### Bug Fixes
+
+* **build:** update deps make Node 12 minimum ([#3096](https://github.com/googleapis/google-api-nodejs-client/issues/3096)) ([669a75c](https://github.com/googleapis/google-api-nodejs-client/commit/669a75c5c7958bc5a0eac3055ff34cf4618cdbd9))
+
+## [5.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v5.0.2...displayvideo-v5.0.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([e1422a3](https://github.com/googleapis/google-api-nodejs-client/commit/e1422a3d0df96e585e7cf47663aab6792c377f00))
+
 ## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v5.0.1...displayvideo-v5.0.2) (2022-08-19)
 
 

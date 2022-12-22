@@ -338,7 +338,7 @@ export namespace dns_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -524,6 +524,10 @@ export namespace dns_v1 {
      * IPv4 address of a target name server.
      */
     ipv4Address?: string | null;
+    /**
+     * IPv6 address of a target name server. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022.
+     */
+    ipv6Address?: string | null;
     kind?: string | null;
   }
   export interface Schema$ManagedZoneOperationsListResponse {
@@ -560,11 +564,22 @@ export namespace dns_v1 {
     networkUrl?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfig {
+    /**
+     * The list of Google Kubernetes Engine clusters that can see this zone.
+     */
+    gkeClusters?: Schema$ManagedZonePrivateVisibilityConfigGKECluster[];
     kind?: string | null;
     /**
      * The list of VPC networks that can see this zone.
      */
     networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfigGKECluster {
+    /**
+     * The resource name of the cluster to bind this ManagedZone to. This should be specified in the format like: projects/x/locations/x/clusters/x. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get
+     */
+    gkeClusterName?: string | null;
+    kind?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
     kind?: string | null;
@@ -736,9 +751,13 @@ export namespace dns_v1 {
      */
     forwardingPath?: string | null;
     /**
-     * IPv4 address to forward to.
+     * IPv4 address to forward queries to.
      */
     ipv4Address?: string | null;
+    /**
+     * IPv6 address to forward to. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022.
+     */
+    ipv6Address?: string | null;
     kind?: string | null;
   }
   export interface Schema$PolicyNetwork {
@@ -922,7 +941,7 @@ export namespace dns_v1 {
   export interface Schema$ResponsePoliciesListResponse {
     header?: Schema$ResponseHeader;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that more results exist following your last page of results in pagination order. To fetch them, make another list request by using this value as your page token. This lets you view the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -947,10 +966,18 @@ export namespace dns_v1 {
      */
     description?: string | null;
     /**
+     * The list of Google Kubernetes Engine clusters to which this response policy is applied.
+     */
+    gkeClusters?: Schema$ResponsePolicyGKECluster[];
+    /**
      * Unique identifier for the resource; defined by the server (output only).
      */
     id?: string | null;
     kind?: string | null;
+    /**
+     * User labels.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * List of network names specifying networks to which this policy is applied.
      */
@@ -959,6 +986,13 @@ export namespace dns_v1 {
      * User assigned name for this Response Policy.
      */
     responsePolicyName?: string | null;
+  }
+  export interface Schema$ResponsePolicyGKECluster {
+    /**
+     * The resource name of the cluster to bind this response policy to. This should be specified in the format like: projects/x/locations/x/clusters/x. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get
+     */
+    gkeClusterName?: string | null;
+    kind?: string | null;
   }
   export interface Schema$ResponsePolicyNetwork {
     kind?: string | null;
@@ -3424,7 +3458,7 @@ export namespace dns_v1 {
     }
 
     /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this returns an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
      * // Before running the sample:
@@ -5972,8 +6006,10 @@ export namespace dns_v1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "networks": [],
      *       //   "responsePolicyName": "my_responsePolicyName"
      *       // }
@@ -5984,8 +6020,10 @@ export namespace dns_v1 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labels": {},
      *   //   "networks": [],
      *   //   "responsePolicyName": "my_responsePolicyName"
      *   // }
@@ -6254,8 +6292,10 @@ export namespace dns_v1 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labels": {},
      *   //   "networks": [],
      *   //   "responsePolicyName": "my_responsePolicyName"
      *   // }
@@ -6534,7 +6574,7 @@ export namespace dns_v1 {
      *     clientOperationId: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
-     *     // User assigned name of the Respones Policy addressed by this request.
+     *     // User assigned name of the response policy addressed by this request.
      *     responsePolicy: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6542,8 +6582,10 @@ export namespace dns_v1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "networks": [],
      *       //   "responsePolicyName": "my_responsePolicyName"
      *       // }
@@ -6700,8 +6742,10 @@ export namespace dns_v1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labels": {},
      *       //   "networks": [],
      *       //   "responsePolicyName": "my_responsePolicyName"
      *       // }
@@ -6889,7 +6933,7 @@ export namespace dns_v1 {
      */
     project?: string;
     /**
-     * User assigned name of the Respones Policy addressed by this request.
+     * User assigned name of the response policy addressed by this request.
      */
     responsePolicy?: string;
 
