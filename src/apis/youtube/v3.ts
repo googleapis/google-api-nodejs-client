@@ -9094,7 +9094,11 @@ export namespace youtube_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtubepartner'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtubepartner',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
