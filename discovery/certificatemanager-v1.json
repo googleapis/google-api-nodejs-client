@@ -1108,7 +1108,7 @@
       }
     }
   },
-  "revision": "20220927",
+  "revision": "20221208",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1339,7 +1339,7 @@
           "type": "string"
         },
         "gclbTargets": {
-          "description": "Output only. A list of GCLB targets which use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule.",
+          "description": "Output only. A list of GCLB targets that use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule.",
           "items": {
             "$ref": "GclbTarget"
           },
@@ -1458,7 +1458,7 @@
           "readOnly": true
         },
         "domain": {
-          "description": "Required. Immutable. A domain which is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`.",
+          "description": "Required. Immutable. A domain that is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`.",
           "type": "string"
         },
         "labels": {
@@ -1510,7 +1510,7 @@
       "type": "object"
     },
     "GclbTarget": {
-      "description": "Describes a Target Proxy which uses this Certificate Map.",
+      "description": "Describes a Target Proxy that uses this Certificate Map.",
       "id": "GclbTarget",
       "properties": {
         "ipConfigs": {
