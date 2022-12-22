@@ -1676,7 +1676,7 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20221209",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2069,6 +2069,10 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
@@ -2096,6 +2100,10 @@
             "ECDSA on the NIST P-384 curve with a SHA384 digest.",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "readOnly": true,
@@ -2237,6 +2245,10 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
@@ -2264,6 +2276,10 @@
             "ECDSA on the NIST P-384 curve with a SHA384 digest.",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "type": "string"
@@ -2394,7 +2410,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "Optional. Etag of the currently stored EkmConnection.",
           "type": "string"
         },
         "name": {
@@ -2602,6 +2618,10 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
@@ -2629,6 +2649,10 @@
             "ECDSA on the NIST P-384 curve with a SHA384 digest.",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "type": "string"
@@ -3184,6 +3208,10 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
@@ -3211,6 +3239,10 @@
             "ECDSA on the NIST P-384 curve with a SHA384 digest.",
             "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "type": "string"
