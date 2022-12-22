@@ -350,7 +350,7 @@ export namespace androidmanagement_v1 {
      */
     installType?: string | null;
     /**
-     * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.
+     * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to configure a dedicated device.
      */
     lockTaskAllowed?: boolean | null;
     /**
@@ -373,6 +373,10 @@ export namespace androidmanagement_v1 {
      * Explicit permission grants or denials for the app. These values override the default_permission_policy and permission_grants which apply to all apps.
      */
     permissionGrants?: Schema$PermissionGrant[];
+    /**
+     * Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.
+     */
+    workProfileWidgets?: string | null;
   }
   /**
    * Information reported about an installed app.
@@ -387,7 +391,7 @@ export namespace androidmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * List of app events. The most recent 20 events are stored in the list.
+     * The list of app events which have occurred in the last 30 hours.
      */
     events?: Schema$ApplicationEvent[];
     /**
@@ -774,6 +778,10 @@ export namespace androidmanagement_v1 {
      * Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.
      */
     showWorkContactsInPersonalProfile?: string | null;
+    /**
+     * Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.
+     */
+    workProfileWidgetsDefault?: string | null;
   }
   /**
    * Validates whether Android’s built-in cryptographic library (BoringSSL) is valid. Should always succeed on device boot, if it fails, the device should be considered untrusted.
@@ -1128,7 +1136,7 @@ export namespace androidmanagement_v1 {
     termsAndConditions?: Schema$TermsAndConditions[];
   }
   /**
-   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.
+   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command (https://developer.android.com/management/reference/rest/v1/enterprises.devices/issueCommand#CommandType) on extension apps if needed for Android 13 and above.
    */
   export interface Schema$ExtensionConfig {
     /**
