@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20221207",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -814,7 +814,7 @@
           "type": "string"
         },
         "environment": {
-          "description": "Describe whether the function is gen1 or gen2.",
+          "description": "Describe whether the function is 1st Gen or 2nd Gen.",
           "enum": [
             "ENVIRONMENT_UNSPECIFIED",
             "GEN_1",
@@ -1753,12 +1753,16 @@
       "type": "object"
     },
     "ServiceConfig": {
-      "description": "Describes the Service being deployed. Currently Supported : Cloud Run (fully managed).",
+      "description": "Describes the Service being deployed. Currently Supported : Cloud Run (fully managed). Next tag: 23",
       "id": "ServiceConfig",
       "properties": {
         "allTrafficOnLatestRevision": {
           "description": "Whether 100% of traffic is routed to the latest revision. On CreateFunction and UpdateFunction, when set to true, the revision being deployed will serve 100% of traffic, ignoring any traffic split settings, if any. On GetFunction, true will be returned if the latest revision is serving 100% of traffic.",
           "type": "boolean"
+        },
+        "availableCpu": {
+          "description": "The number of CPUs used in a single container instance. Default value is calculated from available memory. Supports the same values as Cloud Run, see https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements Example: \"1\" indicates 1 vCPU",
+          "type": "string"
         },
         "availableMemory": {
           "description": "The amount of memory available for a function. Defaults to 256M. Supported units are k, M, G, Mi, Gi. If no unit is supplied the value is interpreted as bytes. See https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go a full description.",
@@ -1792,6 +1796,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "maxInstanceRequestConcurrency": {
+          "description": "Sets the maximum number of concurrent requests that each instance can receive. Defaults to 1.",
+          "format": "int32",
+          "type": "integer"
+        },
         "minInstanceCount": {
           "description": "The limit on the minimum number of function instances that may coexist at a given time. Function instances are kept in idle state for a short period after they finished executing the request to reduce cold start time for subsequent requests. Setting a minimum instance count will ensure that the given number of instances are kept running in idle state always. This can help with cold start times when jump in incoming request count occurs after the idle instance would have been stopped in the default case.",
           "format": "int32",
@@ -1817,7 +1826,7 @@
           "type": "array"
         },
         "securityLevel": {
-          "description": "Optional. Security level configure whether the function only accepts https. This configuration is only applicable to 1st Gen functions with Http trigger. By default https is optional for 1st Gen functions; 2nd Gen functions are https ONLY.",
+          "description": "Security level configure whether the function only accepts https. This configuration is only applicable to 1st Gen functions with Http trigger. By default https is optional for 1st Gen functions; 2nd Gen functions are https ONLY.",
           "enum": [
             "SECURITY_LEVEL_UNSPECIFIED",
             "SECURE_ALWAYS",
