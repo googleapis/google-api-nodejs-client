@@ -722,15 +722,15 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1Barcode {
     /**
-     * Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.
+     * Format of a barcode. The supported formats are: - `CODE_128`: Code 128 type. - `CODE_39`: Code 39 type. - `CODE_93`: Code 93 type. - `CODABAR`: Codabar type. - `DATA_MATRIX`: 2D Data Matrix type. - `ITF`: ITF type. - `EAN_13`: EAN-13 type. - `EAN_8`: EAN-8 type. - `QR_CODE`: 2D QR code type. - `UPC_A`: UPC-A type. - `UPC_E`: UPC-E type. - `PDF417`: PDF417 type. - `AZTEC`: 2D Aztec code type. - `DATABAR`: GS1 DataBar code type.
      */
     format?: string | null;
     /**
-     * Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.
+     * Raw value encoded in the barcode. For example: `'MEBKM:TITLE:Google;URL:https://www.google.com;;'`.
      */
     rawValue?: string | null;
     /**
-     * Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.
+     * Value format describes the format of the value that a barcode encodes. The supported formats are: - `CONTACT_INFO`: Contact information. - `EMAIL`: Email address. - `ISBN`: ISBN identifier. - `PHONE`: Phone number. - `PRODUCT`: Product. - `SMS`: SMS message. - `TEXT`: Text string. - `URL`: URL address. - `WIFI`: Wifi information. - `GEO`: Geo-localization. - `CALENDAR_EVENT`: Calendar event. - `DRIVER_LICENSE`: Driver's license.
      */
     valueFormat?: string | null;
   }
@@ -797,11 +797,11 @@ export namespace documentai_v1beta3 {
      */
     text?: string | null;
     /**
-     * Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     * Placeholder. A list of text corrections made to Document.text. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
      */
     textChanges?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextChange[];
     /**
-     * Placeholder. Styles for the Document.text.
+     * Styles for the Document.text.
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta1DocumentStyle[];
     /**
@@ -814,7 +814,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentEntity {
     /**
-     * Optional. Confidence of detected Schema entity. Range [0, 1].
+     * Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -891,7 +891,7 @@ export namespace documentai_v1beta3 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1003,7 +1003,7 @@ export namespace documentai_v1beta3 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
     /**
-     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -1015,7 +1015,7 @@ export namespace documentai_v1beta3 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
+     * Required. Index into the Document.pages element, for example using `Document.pages` to locate the related page element. This field is skipped when its value is the default `0`. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -1054,11 +1054,11 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage {
     /**
-     * Confidence of detected language. Range [0, 1].
+     * Confidence of detected language. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -1112,7 +1112,7 @@ export namespace documentai_v1beta3 {
      */
     valueDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage[];
     /**
-     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - "unfilled_checkbox" - "filled_checkbox"
+     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the `field_value` is normal text) - `unfilled_checkbox` - `filled_checkbox`
      */
     valueType?: string | null;
   }
@@ -1146,7 +1146,7 @@ export namespace documentai_v1beta3 {
      */
     detectedDefects?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScoresDetectedDefect[];
     /**
-     * The overall quality score. Range [0, 1] where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
      */
     qualityScore?: number | null;
   }
@@ -1155,11 +1155,11 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScoresDetectedDefect {
     /**
-     * Confidence of detected defect. Range [0, 1] where 1 indicates strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.
      */
     confidence?: number | null;
     /**
-     * Name of the defect type. Supported values are "quality/defect_blurry", "quality/defect_noisy", "quality/defect_dark", "quality/defect_faint", "quality/defect_text_too_small", "quality/defect_document_cutoff", "quality/defect_text_cutoff", "quality/defect_glare"
+     * Name of the defect type. Supported values are: - `quality/defect_blurry` - `quality/defect_noisy` - `quality/defect_dark` - `quality/defect_faint` - `quality/defect_text_too_small` - `quality/defect_document_cutoff` - `quality/defect_text_cutoff` - `quality/defect_glare`
      */
     type?: string | null;
   }
@@ -1172,7 +1172,7 @@ export namespace documentai_v1beta3 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
     /**
-     * Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range [0, 1].
+     * Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -1468,7 +1468,7 @@ export namespace documentai_v1beta3 {
      */
     color?: Schema$GoogleTypeColor;
     /**
-     * Font family such as "Arial", "Times New Roman". https://www.w3schools.com/cssref/pr_font_font-family.asp
+     * Font family such as `Arial`, `Times New Roman`. https://www.w3schools.com/cssref/pr_font_font-family.asp
      */
     fontFamily?: string | null;
     /**
@@ -1651,15 +1651,15 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2Barcode {
     /**
-     * Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.
+     * Format of a barcode. The supported formats are: - `CODE_128`: Code 128 type. - `CODE_39`: Code 39 type. - `CODE_93`: Code 93 type. - `CODABAR`: Codabar type. - `DATA_MATRIX`: 2D Data Matrix type. - `ITF`: ITF type. - `EAN_13`: EAN-13 type. - `EAN_8`: EAN-8 type. - `QR_CODE`: 2D QR code type. - `UPC_A`: UPC-A type. - `UPC_E`: UPC-E type. - `PDF417`: PDF417 type. - `AZTEC`: 2D Aztec code type. - `DATABAR`: GS1 DataBar code type.
      */
     format?: string | null;
     /**
-     * Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.
+     * Raw value encoded in the barcode. For example: `'MEBKM:TITLE:Google;URL:https://www.google.com;;'`.
      */
     rawValue?: string | null;
     /**
-     * Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.
+     * Value format describes the format of the value that a barcode encodes. The supported formats are: - `CONTACT_INFO`: Contact information. - `EMAIL`: Email address. - `ISBN`: ISBN identifier. - `PHONE`: Phone number. - `PRODUCT`: Product. - `SMS`: SMS message. - `TEXT`: Text string. - `URL`: URL address. - `WIFI`: Wifi information. - `GEO`: Geo-localization. - `CALENDAR_EVENT`: Calendar event. - `DRIVER_LICENSE`: Driver's license.
      */
     valueFormat?: string | null;
   }
@@ -1730,11 +1730,11 @@ export namespace documentai_v1beta3 {
      */
     text?: string | null;
     /**
-     * Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     * Placeholder. A list of text corrections made to Document.text. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
      */
     textChanges?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextChange[];
     /**
-     * Placeholder. Styles for the Document.text.
+     * Styles for the Document.text.
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta2DocumentStyle[];
     /**
@@ -1747,7 +1747,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentEntity {
     /**
-     * Optional. Confidence of detected Schema entity. Range [0, 1].
+     * Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -1824,7 +1824,7 @@ export namespace documentai_v1beta3 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1953,7 +1953,7 @@ export namespace documentai_v1beta3 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
     /**
-     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -1965,7 +1965,7 @@ export namespace documentai_v1beta3 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
+     * Required. Index into the Document.pages element, for example using `Document.pages` to locate the related page element. This field is skipped when its value is the default `0`. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -2004,11 +2004,11 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage {
     /**
-     * Confidence of detected language. Range [0, 1].
+     * Confidence of detected language. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -2062,7 +2062,7 @@ export namespace documentai_v1beta3 {
      */
     valueDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage[];
     /**
-     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - "unfilled_checkbox" - "filled_checkbox"
+     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the `field_value` is normal text) - `unfilled_checkbox` - `filled_checkbox`
      */
     valueType?: string | null;
   }
@@ -2096,7 +2096,7 @@ export namespace documentai_v1beta3 {
      */
     detectedDefects?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScoresDetectedDefect[];
     /**
-     * The overall quality score. Range [0, 1] where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
      */
     qualityScore?: number | null;
   }
@@ -2105,11 +2105,11 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScoresDetectedDefect {
     /**
-     * Confidence of detected defect. Range [0, 1] where 1 indicates strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.
      */
     confidence?: number | null;
     /**
-     * Name of the defect type. Supported values are "quality/defect_blurry", "quality/defect_noisy", "quality/defect_dark", "quality/defect_faint", "quality/defect_text_too_small", "quality/defect_document_cutoff", "quality/defect_text_cutoff", "quality/defect_glare"
+     * Name of the defect type. Supported values are: - `quality/defect_blurry` - `quality/defect_noisy` - `quality/defect_dark` - `quality/defect_faint` - `quality/defect_text_too_small` - `quality/defect_document_cutoff` - `quality/defect_text_cutoff` - `quality/defect_glare`
      */
     type?: string | null;
   }
@@ -2122,7 +2122,7 @@ export namespace documentai_v1beta3 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
     /**
-     * Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range [0, 1].
+     * Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -2418,7 +2418,7 @@ export namespace documentai_v1beta3 {
      */
     color?: Schema$GoogleTypeColor;
     /**
-     * Font family such as "Arial", "Times New Roman". https://www.w3schools.com/cssref/pr_font_font-family.asp
+     * Font family such as `Arial`, `Times New Roman`. https://www.w3schools.com/cssref/pr_font_font-family.asp
      */
     fontFamily?: string | null;
     /**
@@ -2605,15 +2605,15 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Barcode {
     /**
-     * Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.
+     * Format of a barcode. The supported formats are: - `CODE_128`: Code 128 type. - `CODE_39`: Code 39 type. - `CODE_93`: Code 93 type. - `CODABAR`: Codabar type. - `DATA_MATRIX`: 2D Data Matrix type. - `ITF`: ITF type. - `EAN_13`: EAN-13 type. - `EAN_8`: EAN-8 type. - `QR_CODE`: 2D QR code type. - `UPC_A`: UPC-A type. - `UPC_E`: UPC-E type. - `PDF417`: PDF417 type. - `AZTEC`: 2D Aztec code type. - `DATABAR`: GS1 DataBar code type.
      */
     format?: string | null;
     /**
-     * Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.
+     * Raw value encoded in the barcode. For example: `'MEBKM:TITLE:Google;URL:https://www.google.com;;'`.
      */
     rawValue?: string | null;
     /**
-     * Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.
+     * Value format describes the format of the value that a barcode encodes. The supported formats are: - `CONTACT_INFO`: Contact information. - `EMAIL`: Email address. - `ISBN`: ISBN identifier. - `PHONE`: Phone number. - `PRODUCT`: Product. - `SMS`: SMS message. - `TEXT`: Text string. - `URL`: URL address. - `WIFI`: Wifi information. - `GEO`: Geo-localization. - `CALENDAR_EVENT`: Calendar event. - `DRIVER_LICENSE`: Driver's license.
      */
     valueFormat?: string | null;
   }
@@ -2626,7 +2626,7 @@ export namespace documentai_v1beta3 {
      */
     gcsDocuments?: Schema$GoogleCloudDocumentaiV1beta3GcsDocuments;
     /**
-     * The set of documents that match the specified Cloud Storage [gcs_prefix].
+     * The set of documents that match the specified Cloud Storage `gcs_prefix`.
      */
     gcsPrefix?: Schema$GoogleCloudDocumentaiV1beta3GcsPrefix;
   }
@@ -2700,6 +2700,10 @@ export namespace documentai_v1beta3 {
      * The overall output config for batch process.
      */
     outputConfig?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchOutputConfig;
+    /**
+     * Inference-time options for the process API
+     */
+    processOptions?: Schema$GoogleCloudDocumentaiV1beta3ProcessOptions;
     /**
      * Whether Human Review feature should be skipped for this request. Default to false.
      */
@@ -2862,11 +2866,11 @@ export namespace documentai_v1beta3 {
      */
     text?: string | null;
     /**
-     * Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     * Placeholder. A list of text corrections made to Document.text. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
      */
     textChanges?: Schema$GoogleCloudDocumentaiV1beta3DocumentTextChange[];
     /**
-     * Placeholder. Styles for the Document.text.
+     * Styles for the Document.text.
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta3DocumentStyle[];
     /**
@@ -2879,7 +2883,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentEntity {
     /**
-     * Optional. Confidence of detected Schema entity. Range [0, 1].
+     * Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -2956,7 +2960,7 @@ export namespace documentai_v1beta3 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -2998,6 +3002,23 @@ export namespace documentai_v1beta3 {
      * The Cloud Storage uri (a directory) of the output.
      */
     gcsUri?: string | null;
+    /**
+     * Specifies the sharding config for the output document.
+     */
+    shardingConfig?: Schema$GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig;
+  }
+  /**
+   * The sharding config for the output document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig {
+    /**
+     * The number of overlapping pages between consecutive shards.
+     */
+    pagesOverlap?: number | null;
+    /**
+     * The number of pages per shard.
+     */
+    pagesPerShard?: number | null;
   }
   /**
    * A page in a Document.
@@ -3090,7 +3111,7 @@ export namespace documentai_v1beta3 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta3BoundingPoly;
     /**
-     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -3102,7 +3123,7 @@ export namespace documentai_v1beta3 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
+     * Required. Index into the Document.pages element, for example using `Document.pages` to locate the related page element. This field is skipped when its value is the default `0`. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -3141,11 +3162,11 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentPageDetectedLanguage {
     /**
-     * Confidence of detected language. Range [0, 1].
+     * Confidence of detected language. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -3199,7 +3220,7 @@ export namespace documentai_v1beta3 {
      */
     valueDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta3DocumentPageDetectedLanguage[];
     /**
-     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - "unfilled_checkbox" - "filled_checkbox"
+     * If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the `field_value` is normal text) - `unfilled_checkbox` - `filled_checkbox`
      */
     valueType?: string | null;
   }
@@ -3233,7 +3254,7 @@ export namespace documentai_v1beta3 {
      */
     detectedDefects?: Schema$GoogleCloudDocumentaiV1beta3DocumentPageImageQualityScoresDetectedDefect[];
     /**
-     * The overall quality score. Range [0, 1] where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
      */
     qualityScore?: number | null;
   }
@@ -3242,11 +3263,11 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentPageImageQualityScoresDetectedDefect {
     /**
-     * Confidence of detected defect. Range [0, 1] where 1 indicates strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.
      */
     confidence?: number | null;
     /**
-     * Name of the defect type. Supported values are "quality/defect_blurry", "quality/defect_noisy", "quality/defect_dark", "quality/defect_faint", "quality/defect_text_too_small", "quality/defect_document_cutoff", "quality/defect_text_cutoff", "quality/defect_glare"
+     * Name of the defect type. Supported values are: - `quality/defect_blurry` - `quality/defect_noisy` - `quality/defect_dark` - `quality/defect_faint` - `quality/defect_text_too_small` - `quality/defect_document_cutoff` - `quality/defect_text_cutoff` - `quality/defect_glare`
      */
     type?: string | null;
   }
@@ -3259,7 +3280,7 @@ export namespace documentai_v1beta3 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta3BoundingPoly;
     /**
-     * Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range [0, 1].
+     * Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -3559,15 +3580,11 @@ export namespace documentai_v1beta3 {
      */
     displayName?: string | null;
     /**
-     * Metadata for the entity type.
-     */
-    entityTypeMetadata?: Schema$GoogleCloudDocumentaiV1beta3EntityTypeMetadata;
-    /**
      * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
      */
     enumValues?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues;
     /**
-     * Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use snake_casing* - name matching is case-insensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The '/' is sometimes used to denote a property of a type. For example line_item/amount. This convention is deprecated, but will still be honored for backward compatibility.
+     * Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use `snake_casing`* - name matching is case-sensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
      */
     name?: string | null;
     /**
@@ -3596,10 +3613,6 @@ export namespace documentai_v1beta3 {
      * Occurrence type limits the number of instances an entity type appears in the document.
      */
     occurrenceType?: string | null;
-    /**
-     * Any additional metadata about the property can be added here.
-     */
-    propertyMetadata?: Schema$GoogleCloudDocumentaiV1beta3PropertyMetadata;
     /**
      * A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.
      */
@@ -3656,7 +3669,7 @@ export namespace documentai_v1beta3 {
      */
     color?: Schema$GoogleTypeColor;
     /**
-     * Font family such as "Arial", "Times New Roman". https://www.w3schools.com/cssref/pr_font_font-family.asp
+     * Font family such as `Arial`, `Times New Roman`. https://www.w3schools.com/cssref/pr_font_font-family.asp
      */
     fontFamily?: string | null;
     /**
@@ -3754,21 +3767,184 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorResponse {}
   /**
-   * Metadata about an entity type.
+   * Metadata of the EvaluateProcessorVersion method.
    */
-  export interface Schema$GoogleCloudDocumentaiV1beta3EntityTypeMetadata {
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionMetadata {
     /**
-     * Human review labeling config on the property.
+     * The basic metadata of the long running operation.
      */
-    humanReviewLabelingMetadata?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata;
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Evaluates the given ProcessorVersion against the supplied documents.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest {
     /**
-     * Human review config on the entity type.
+     * Optional. The documents used in the evaluation. If unspecified, use the processor's dataset as evaluation input.
      */
-    humanReviewMetadata?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata;
+    evaluationDocuments?: Schema$GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig;
+  }
+  /**
+   * Metadata of the EvaluateProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionResponse {
     /**
-     * Whether the entity type should be considered as "inactive".
+     * The resource name of the created evaluation.
      */
-    inactive?: boolean | null;
+    evaluation?: string | null;
+  }
+  /**
+   * An evaluation of a ProcessorVersion's performance.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3Evaluation {
+    /**
+     * Metrics for all the entities in aggregate.
+     */
+    allEntitiesMetrics?: Schema$GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics;
+    /**
+     * The time that the evaluation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Counters for the documents used in the evaluation.
+     */
+    documentCounters?: Schema$GoogleCloudDocumentaiV1beta3EvaluationCounters;
+    /**
+     * Metrics across confidence levels, for different entities.
+     */
+    entityMetrics?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics;
+    } | null;
+    /**
+     * The KMS key name used for encryption.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * The KMS key version with which data is encrypted.
+     */
+    kmsKeyVersionName?: string | null;
+    /**
+     * The resource name of the evaluation. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}/evaluations/{evaluation\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Evaluations metrics, at a specific confidence level.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationConfidenceLevelMetrics {
+    /**
+     * The confidence level.
+     */
+    confidenceLevel?: number | null;
+    /**
+     * The metrics at the specific confidence level.
+     */
+    metrics?: Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics;
+  }
+  /**
+   * Evaluation counters for the documents that were used.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationCounters {
+    /**
+     * How many documents were used in the evaluation.
+     */
+    evaluatedDocumentsCount?: number | null;
+    /**
+     * How many documents were not included in the evaluation as Document AI failed to process them.
+     */
+    failedDocumentsCount?: number | null;
+    /**
+     * How many documents were sent for evaluation.
+     */
+    inputDocumentsCount?: number | null;
+    /**
+     * How many documents were not included in the evaluation as they didn't pass validation.
+     */
+    invalidDocumentsCount?: number | null;
+  }
+  /**
+   * Evaluation metrics, either in aggregate or about a specific entity.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics {
+    /**
+     * The calculated f1 score.
+     */
+    f1Score?: number | null;
+    /**
+     * The amount of false negatives.
+     */
+    falseNegativesCount?: number | null;
+    /**
+     * The amount of false positives.
+     */
+    falsePositivesCount?: number | null;
+    /**
+     * The amount of documents with a ground truth occurrence.
+     */
+    groundTruthDocumentCount?: number | null;
+    /**
+     * The amount of occurrences in ground truth documents.
+     */
+    groundTruthOccurrencesCount?: number | null;
+    /**
+     * The calculated precision.
+     */
+    precision?: number | null;
+    /**
+     * The amount of documents with a predicted occurrence.
+     */
+    predictedDocumentCount?: number | null;
+    /**
+     * The amount of occurrences in predicted documents.
+     */
+    predictedOccurrencesCount?: number | null;
+    /**
+     * The calculated recall.
+     */
+    recall?: number | null;
+    /**
+     * The amount of documents that had an occurrence of this label.
+     */
+    totalDocumentsCount?: number | null;
+    /**
+     * The amount of true positives.
+     */
+    truePositivesCount?: number | null;
+  }
+  /**
+   * Metrics across multiple confidence levels.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics {
+    /**
+     * The calculated area under the precision recall curve (AUPRC), computed by integrating over all confidence thresholds.
+     */
+    auprc?: number | null;
+    /**
+     * The AUPRC for metrics with fuzzy matching disabled, i.e., exact matching only.
+     */
+    auprcExact?: number | null;
+    /**
+     * Metrics across confidence levels with fuzzy matching enabled.
+     */
+    confidenceLevelMetrics?: Schema$GoogleCloudDocumentaiV1beta3EvaluationConfidenceLevelMetrics[];
+    /**
+     * Metrics across confidence levels with only exact matching.
+     */
+    confidenceLevelMetricsExact?: Schema$GoogleCloudDocumentaiV1beta3EvaluationConfidenceLevelMetrics[];
+    /**
+     * The Estimated Calibration Error (ECE) of the confidence of the predicted entities.
+     */
+    estimatedCalibrationError?: number | null;
+    /**
+     * The ECE for the predicted entities with fuzzy matching disabled, i.e., exact matching only.
+     */
+    estimatedCalibrationErrorExact?: number | null;
+    /**
+     * The metrics type for the label.
+     */
+    metricsType?: string | null;
   }
   /**
    * Response message for fetch processor types.
@@ -3811,15 +3987,6 @@ export namespace documentai_v1beta3 {
     gcsUriPrefix?: string | null;
   }
   /**
-   * Metadata for human review labeling config.
-   */
-  export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata {
-    /**
-     * Whether to enable normalization editing.
-     */
-    enableNormalizationEditing?: boolean | null;
-  }
-  /**
    * The status of human review on a processed document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus {
@@ -3837,17 +4004,17 @@ export namespace documentai_v1beta3 {
     stateMessage?: string | null;
   }
   /**
-   * Metadata for Human Review config.
+   * The response from ListEvaluations.
    */
-  export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata {
+  export interface Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse {
     /**
-     * The confidence threshold if human review validation is enabled.
+     * The evaluations requested.
      */
-    confidenceThreshold?: number | null;
+    evaluations?: Schema$GoogleCloudDocumentaiV1beta3Evaluation[];
     /**
-     * Whether to enable human review validation.
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
-    enableValidation?: boolean | null;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for list processors.
@@ -3902,6 +4069,24 @@ export namespace documentai_v1beta3 {
     y?: number | null;
   }
   /**
+   * Config for Document OCR.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3OcrConfig {
+    /**
+     * Enables special handling for PDFs with existing text information. Results in better text extraction quality in such PDF inputs.
+     */
+    enableNativePdfParsing?: boolean | null;
+  }
+  /**
+   * Options for Process API
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessOptions {
+    /**
+     * Only applicable to "Document OCR Processor". Returns error if set on other processor types.
+     */
+    ocrConfig?: Schema$GoogleCloudDocumentaiV1beta3OcrConfig;
+  }
+  /**
    * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Processor {
@@ -3934,7 +4119,7 @@ export namespace documentai_v1beta3 {
      */
     state?: string | null;
     /**
-     * The processor type, e.g., OCR_PROCESSOR, INVOICE_PROCESSOR, etc. To get a list of processors types, see FetchProcessorTypes.
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc. To get a list of processors types, see FetchProcessorTypes.
      */
     type?: string | null;
   }
@@ -3959,11 +4144,15 @@ export namespace documentai_v1beta3 {
      */
     launchStage?: string | null;
     /**
-     * The resource name of the processor type. Format: projects/{project\}/processorTypes/{processor_type\}
+     * The resource name of the processor type. Format: `projects/{project\}/processorTypes/{processor_type\}`
      */
     name?: string | null;
     /**
-     * The type of the processor, e.g., "invoice_parsing".
+     * A set of Cloud Storage URIs of sample documents for this processor.
+     */
+    sampleDocumentUris?: string[] | null;
+    /**
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      */
     type?: string | null;
   }
@@ -3992,6 +4181,10 @@ export namespace documentai_v1beta3 {
      * The display name of the processor version.
      */
     displayName?: string | null;
+    /**
+     * The schema of the processor version. Describes the output.
+     */
+    documentSchema?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchema;
     /**
      * Denotes that this ProcessorVersion is managed by google.
      */
@@ -4043,6 +4236,10 @@ export namespace documentai_v1beta3 {
      */
     inlineDocument?: Schema$GoogleCloudDocumentaiV1beta3Document;
     /**
+     * Inference-time options for the process API
+     */
+    processOptions?: Schema$GoogleCloudDocumentaiV1beta3ProcessOptions;
+    /**
      * A raw document content (bytes).
      */
     rawDocument?: Schema$GoogleCloudDocumentaiV1beta3RawDocument;
@@ -4069,23 +4266,6 @@ export namespace documentai_v1beta3 {
     humanReviewStatus?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus;
   }
   /**
-   * Metadata about a property.
-   */
-  export interface Schema$GoogleCloudDocumentaiV1beta3PropertyMetadata {
-    /**
-     * Human review labeling config on the property.
-     */
-    humanReviewLabelingMetadata?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata;
-    /**
-     * Human review validation config on the property.
-     */
-    humanReviewMetadata?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata;
-    /**
-     * Whether the property should be considered as "inactive".
-     */
-    inactive?: boolean | null;
-  }
-  /**
    * Payload message of raw document content (bytes).
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3RawDocument {
@@ -4094,7 +4274,7 @@ export namespace documentai_v1beta3 {
      */
     content?: string | null;
     /**
-     * An IANA MIME type (RFC6838) indicating the nature and format of the [content].
+     * An IANA MIME type (RFC6838) indicating the nature and format of the content.
      */
     mimeType?: string | null;
   }
@@ -4191,6 +4371,87 @@ export namespace documentai_v1beta3 {
    * Response message for set default processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse {}
+  /**
+   * The metadata that represents a processor version being created.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+    /**
+     * The test dataset validation information.
+     */
+    testDatasetValidation?: Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation;
+    /**
+     * The training dataset validation information.
+     */
+    trainingDatasetValidation?: Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation;
+  }
+  /**
+   * The dataset validation information. This includes any and all errors with documents and the dataset.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation {
+    /**
+     * The total number of dataset errors.
+     */
+    datasetErrorCount?: number | null;
+    /**
+     * Error information for the dataset as a whole. A maximum of 10 dataset errors will be returned. A single dataset error is terminal for training.
+     */
+    datasetErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * The total number of document errors.
+     */
+    documentErrorCount?: number | null;
+    /**
+     * Error information pertaining to specific documents. A maximum of 10 document errors will be returned. Any document with errors will not be used throughout training.
+     */
+    documentErrors?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Request message for the create processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest {
+    /**
+     * Optional. The processor version to use as a base for training. This processor version must be a child of `parent`. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`.
+     */
+    baseProcessorVersion?: string | null;
+    /**
+     * Optional. The schema the processor version will be trained with.
+     */
+    documentSchema?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchema;
+    /**
+     * Optional. The input data used to train the `ProcessorVersion`.
+     */
+    inputData?: Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData;
+    /**
+     * Required. The processor version to be created.
+     */
+    processorVersion?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion;
+  }
+  /**
+   * The input data used to train a new `ProcessorVersion`.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData {
+    /**
+     * The documents used for testing the trained version.
+     */
+    testDocuments?: Schema$GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig;
+    /**
+     * The documents used for training the new version.
+     */
+    trainingDocuments?: Schema$GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig;
+  }
+  /**
+   * The response for the TrainProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionResponse {
+    /**
+     * The resource name of the processor version produced by training.
+     */
+    processorVersion?: string | null;
+  }
   /**
    * The long running operation metadata for the undeploy processor version method.
    */
@@ -5618,6 +5879,7 @@ export namespace documentai_v1beta3 {
      *       //   "inputConfigs": [],
      *       //   "inputDocuments": {},
      *       //   "outputConfig": {},
+     *       //   "processOptions": {},
      *       //   "skipHumanReview": false
      *       // }
      *     },
@@ -6644,6 +6906,7 @@ export namespace documentai_v1beta3 {
      *       //   "document": {},
      *       //   "fieldMask": "my_fieldMask",
      *       //   "inlineDocument": {},
+     *       //   "processOptions": {},
      *       //   "rawDocument": {},
      *       //   "skipHumanReview": false
      *       // }
@@ -7190,8 +7453,13 @@ export namespace documentai_v1beta3 {
 
   export class Resource$Projects$Locations$Processors$Processorversions {
     context: APIRequestContext;
+    evaluations: Resource$Projects$Locations$Processors$Processorversions$Evaluations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.evaluations =
+        new Resource$Projects$Locations$Processors$Processorversions$Evaluations(
+          this.context
+        );
     }
 
     /**
@@ -7234,6 +7502,7 @@ export namespace documentai_v1beta3 {
      *           //   "inputConfigs": [],
      *           //   "inputDocuments": {},
      *           //   "outputConfig": {},
+     *           //   "processOptions": {},
      *           //   "skipHumanReview": false
      *           // }
      *         },
@@ -7638,6 +7907,158 @@ export namespace documentai_v1beta3 {
     }
 
     /**
+     * Evaluates a ProcessorVersion against annotated documents, producing an Evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.evaluateProcessorVersion(
+     *       {
+     *         // Required. The resource name of the ProcessorVersion to evaluate. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     *         processorVersion:
+     *           'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "evaluationDocuments": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    evaluateProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    evaluateProcessorVersion(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    evaluateProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    evaluateProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    evaluateProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    evaluateProcessorVersion(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    evaluateProcessorVersion(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta3/{+processorVersion}:evaluateProcessorVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['processorVersion'],
+        pathParams: ['processorVersion'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Gets a processor version detail.
      * @example
      * ```js
@@ -7675,6 +8096,7 @@ export namespace documentai_v1beta3 {
      *   //   "createTime": "my_createTime",
      *   //   "deprecationInfo": {},
      *   //   "displayName": "my_displayName",
+     *   //   "documentSchema": {},
      *   //   "googleManaged": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
@@ -7965,6 +8387,7 @@ export namespace documentai_v1beta3 {
      *         //   "document": {},
      *         //   "fieldMask": "my_fieldMask",
      *         //   "inlineDocument": {},
+     *         //   "processOptions": {},
      *         //   "rawDocument": {},
      *         //   "skipHumanReview": false
      *         // }
@@ -8078,6 +8501,159 @@ export namespace documentai_v1beta3 {
         return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Trains a new processor version. Operation metadata is returned as cloud_documentai_core.TrainProcessorVersionMetadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.train({
+     *       // Required. The parent (project, location and processor) to create the new version for. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/processors/my-processor',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "baseProcessorVersion": "my_baseProcessorVersion",
+     *         //   "documentSchema": {},
+     *         //   "inputData": {},
+     *         //   "processorVersion": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    train(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Train,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    train(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Train,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    train(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Train,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    train(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Train,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    train(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Train,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    train(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    train(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Train
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Train;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Train;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta3/{+parent}/processorVersions:train'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -8261,6 +8837,18 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionRequest;
   }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ProcessorVersion to evaluate. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     */
+    processorVersion?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest;
+  }
   export interface Params$Resource$Projects$Locations$Processors$Processorversions$Get
     extends StandardParameters {
     /**
@@ -8295,6 +8883,18 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ProcessRequest;
   }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Train
+    extends StandardParameters {
+    /**
+     * Required. The parent (project, location and processor) to create the new version for. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest;
+  }
   export interface Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy
     extends StandardParameters {
     /**
@@ -8306,6 +8906,329 @@ export namespace documentai_v1beta3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionRequest;
+  }
+
+  export class Resource$Projects$Locations$Processors$Processorversions$Evaluations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a specific evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.evaluations.get(
+     *       {
+     *         // Required. The resource name of the Evaluation to get. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}/evaluations/{evaluation\}`
+     *         name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion/evaluations/my-evaluation',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allEntitiesMetrics": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "documentCounters": {},
+     *   //   "entityMetrics": {},
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3Evaluation>;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Evaluation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3Evaluation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3Evaluation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3Evaluation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves a set of evaluations for a given processor version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.evaluations.list(
+     *       {
+     *         // The standard list page size. If unspecified, at most 5 evaluations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListEvaluations` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the ProcessorVersion to list evaluations for. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "evaluations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+parent}/evaluations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ListEvaluationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Evaluation to get. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}/evaluations/{evaluation\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List
+    extends StandardParameters {
+    /**
+     * The standard list page size. If unspecified, at most 5 evaluations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEvaluations` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the ProcessorVersion to list evaluations for. `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Processortypes {

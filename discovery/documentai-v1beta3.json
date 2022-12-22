@@ -710,6 +710,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "evaluateProcessorVersion": {
+                      "description": "Evaluates a ProcessorVersion against annotated documents, producing an Evaluation.",
+                      "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions/{processorVersionsId}:evaluateProcessorVersion",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.processors.processorVersions.evaluateProcessorVersion",
+                      "parameterOrder": [
+                        "processorVersion"
+                      ],
+                      "parameters": {
+                        "processorVersion": {
+                          "description": "Required. The resource name of the ProcessorVersion to evaluate. `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/processorVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta3/{+processorVersion}:evaluateProcessorVersion",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets a processor version detail.",
                       "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions/{processorVersionsId}",
@@ -799,6 +827,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "train": {
+                      "description": "Trains a new processor version. Operation metadata is returned as cloud_documentai_core.TrainProcessorVersionMetadata.",
+                      "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions:train",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.processors.processorVersions.train",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent (project, location and processor) to create the new version for. Format: `projects/{project}/locations/{location}/processors/{processor}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta3/{+parent}/processorVersions:train",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "undeploy": {
                       "description": "Undeploys the processor version.",
                       "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions/{processorVersionsId}:undeploy",
@@ -827,6 +883,73 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
+                  },
+                  "resources": {
+                    "evaluations": {
+                      "methods": {
+                        "get": {
+                          "description": "Retrieves a specific evaluation.",
+                          "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions/{processorVersionsId}/evaluations/{evaluationsId}",
+                          "httpMethod": "GET",
+                          "id": "documentai.projects.locations.processors.processorVersions.evaluations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Evaluation to get. `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/processorVersions/[^/]+/evaluations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta3/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDocumentaiV1beta3Evaluation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Retrieves a set of evaluations for a given processor version.",
+                          "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions/{processorVersionsId}/evaluations",
+                          "httpMethod": "GET",
+                          "id": "documentai.projects.locations.processors.processorVersions.evaluations.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "The standard list page size. If unspecified, at most 5 evaluations will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListEvaluations` call. Provide this to retrieve the subsequent page.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name of the ProcessorVersion to list evaluations for. `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/processorVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta3/{+parent}/evaluations",
+                          "response": {
+                            "$ref": "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -836,7 +959,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221212",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1939,15 +2062,15 @@
       "id": "GoogleCloudDocumentaiV1beta1Barcode",
       "properties": {
         "format": {
-          "description": "Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.",
+          "description": "Format of a barcode. The supported formats are: - `CODE_128`: Code 128 type. - `CODE_39`: Code 39 type. - `CODE_93`: Code 93 type. - `CODABAR`: Codabar type. - `DATA_MATRIX`: 2D Data Matrix type. - `ITF`: ITF type. - `EAN_13`: EAN-13 type. - `EAN_8`: EAN-8 type. - `QR_CODE`: 2D QR code type. - `UPC_A`: UPC-A type. - `UPC_E`: UPC-E type. - `PDF417`: PDF417 type. - `AZTEC`: 2D Aztec code type. - `DATABAR`: GS1 DataBar code type.",
           "type": "string"
         },
         "rawValue": {
-          "description": "Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.",
+          "description": "Raw value encoded in the barcode. For example: `'MEBKM:TITLE:Google;URL:https://www.google.com;;'`.",
           "type": "string"
         },
         "valueFormat": {
-          "description": "Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.",
+          "description": "Value format describes the format of the value that a barcode encodes. The supported formats are: - `CONTACT_INFO`: Contact information. - `EMAIL`: Email address. - `ISBN`: ISBN identifier. - `PHONE`: Phone number. - `PRODUCT`: Product. - `SMS`: SMS message. - `TEXT`: Text string. - `URL`: URL address. - `WIFI`: Wifi information. - `GEO`: Geo-localization. - `CALENDAR_EVENT`: Calendar event. - `DRIVER_LICENSE`: Driver's license.",
           "type": "string"
         }
       },
@@ -2042,14 +2165,14 @@
           "type": "string"
         },
         "textChanges": {
-          "description": "Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.",
+          "description": "Placeholder. A list of text corrections made to Document.text. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1beta1DocumentTextChange"
           },
           "type": "array"
         },
         "textStyles": {
-          "description": "Placeholder. Styles for the Document.text.",
+          "description": "Styles for the Document.text.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1beta1DocumentStyle"
           },
@@ -2067,7 +2190,7 @@
       "id": "GoogleCloudDocumentaiV1beta1DocumentEntity",
       "properties": {
         "confidence": {
-          "description": "Optional. Confidence of detected Schema entity. Range [0, 1].",
+          "description": "Optional. Confidence of detected Schema entity. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -2152,7 +2275,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -2309,7 +2432,7 @@
           "description": "Optional. Identifies the bounding polygon of a layout element on the page."
         },
         "confidence": {
-          "description": "Optional. Confidence of detected page element, if applicable. Range [0, 1].",
+          "description": "Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -2342,7 +2465,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
+          "description": "Required. Index into the Document.pages element, for example using `Document.pages` to locate the related page element. This field is skipped when its value is the default `0`. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -2391,12 +2514,12 @@
       "id": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected language. Range [0, 1].",
+          "description": "Confidence of detected language. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
           "type": "string"
         }
       },
@@ -2462,7 +2585,7 @@
           "type": "array"
         },
         "valueType": {
-          "description": "If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - \"unfilled_checkbox\" - \"filled_checkbox\"",
+          "description": "If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the `field_value` is normal text) - `unfilled_checkbox` - `filled_checkbox`",
           "type": "string"
         }
       },
@@ -2506,7 +2629,7 @@
           "type": "array"
         },
         "qualityScore": {
-          "description": "The overall quality score. Range [0, 1] where 1 is perfect quality.",
+          "description": "The overall quality score. Range `[0, 1]` where 1 is perfect quality.",
           "format": "float",
           "type": "number"
         }
@@ -2518,12 +2641,12 @@
       "id": "GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScoresDetectedDefect",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected defect. Range [0, 1] where 1 indicates strong confidence of that the defect exists.",
+          "description": "Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.",
           "format": "float",
           "type": "number"
         },
         "type": {
-          "description": "Name of the defect type. Supported values are \"quality/defect_blurry\", \"quality/defect_noisy\", \"quality/defect_dark\", \"quality/defect_faint\", \"quality/defect_text_too_small\", \"quality/defect_document_cutoff\", \"quality/defect_text_cutoff\", \"quality/defect_glare\"",
+          "description": "Name of the defect type. Supported values are: - `quality/defect_blurry` - `quality/defect_noisy` - `quality/defect_dark` - `quality/defect_faint` - `quality/defect_text_too_small` - `quality/defect_document_cutoff` - `quality/defect_text_cutoff` - `quality/defect_glare`",
           "type": "string"
         }
       },
@@ -2538,7 +2661,7 @@
           "description": "The bounding polygon for the Layout."
         },
         "confidence": {
-          "description": "Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range [0, 1].",
+          "description": "Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -2966,7 +3089,7 @@
           "description": "Text color."
         },
         "fontFamily": {
-          "description": "Font family such as \"Arial\", \"Times New Roman\". https://www.w3schools.com/cssref/pr_font_font-family.asp",
+          "description": "Font family such as `Arial`, `Times New Roman`. https://www.w3schools.com/cssref/pr_font_font-family.asp",
           "type": "string"
         },
         "fontSize": {
@@ -3213,15 +3336,15 @@
       "id": "GoogleCloudDocumentaiV1beta2Barcode",
       "properties": {
         "format": {
-          "description": "Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.",
+          "description": "Format of a barcode. The supported formats are: - `CODE_128`: Code 128 type. - `CODE_39`: Code 39 type. - `CODE_93`: Code 93 type. - `CODABAR`: Codabar type. - `DATA_MATRIX`: 2D Data Matrix type. - `ITF`: ITF type. - `EAN_13`: EAN-13 type. - `EAN_8`: EAN-8 type. - `QR_CODE`: 2D QR code type. - `UPC_A`: UPC-A type. - `UPC_E`: UPC-E type. - `PDF417`: PDF417 type. - `AZTEC`: 2D Aztec code type. - `DATABAR`: GS1 DataBar code type.",
           "type": "string"
         },
         "rawValue": {
-          "description": "Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.",
+          "description": "Raw value encoded in the barcode. For example: `'MEBKM:TITLE:Google;URL:https://www.google.com;;'`.",
           "type": "string"
         },
         "valueFormat": {
-          "description": "Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.",
+          "description": "Value format describes the format of the value that a barcode encodes. The supported formats are: - `CONTACT_INFO`: Contact information. - `EMAIL`: Email address. - `ISBN`: ISBN identifier. - `PHONE`: Phone number. - `PRODUCT`: Product. - `SMS`: SMS message. - `TEXT`: Text string. - `URL`: URL address. - `WIFI`: Wifi information. - `GEO`: Geo-localization. - `CALENDAR_EVENT`: Calendar event. - `DRIVER_LICENSE`: Driver's license.",
           "type": "string"
         }
       },
@@ -3323,14 +3446,14 @@
           "type": "string"
         },
         "textChanges": {
-          "description": "Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.",
+          "description": "Placeholder. A list of text corrections made to Document.text. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1beta2DocumentTextChange"
           },
           "type": "array"
         },
         "textStyles": {
-          "description": "Placeholder. Styles for the Document.text.",
+          "description": "Styles for the Document.text.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1beta2DocumentStyle"
           },
@@ -3348,7 +3471,7 @@
       "id": "GoogleCloudDocumentaiV1beta2DocumentEntity",
       "properties": {
         "confidence": {
-          "description": "Optional. Confidence of detected Schema entity. Range [0, 1].",
+          "description": "Optional. Confidence of detected Schema entity. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -3433,7 +3556,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -3610,7 +3733,7 @@
           "description": "Optional. Identifies the bounding polygon of a layout element on the page."
         },
         "confidence": {
-          "description": "Optional. Confidence of detected page element, if applicable. Range [0, 1].",
+          "description": "Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -3643,7 +3766,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
+          "description": "Required. Index into the Document.pages element, for example using `Document.pages` to locate the related page element. This field is skipped when its value is the default `0`. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -3692,12 +3815,12 @@
       "id": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected language. Range [0, 1].",
+          "description": "Confidence of detected language. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
           "type": "string"
         }
       },
@@ -3763,7 +3886,7 @@
           "type": "array"
         },
         "valueType": {
-          "description": "If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - \"unfilled_checkbox\" - \"filled_checkbox\"",
+          "description": "If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the `field_value` is normal text) - `unfilled_checkbox` - `filled_checkbox`",
           "type": "string"
         }
       },
@@ -3807,7 +3930,7 @@
           "type": "array"
         },
         "qualityScore": {
-          "description": "The overall quality score. Range [0, 1] where 1 is perfect quality.",
+          "description": "The overall quality score. Range `[0, 1]` where 1 is perfect quality.",
           "format": "float",
           "type": "number"
         }
@@ -3819,12 +3942,12 @@
       "id": "GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScoresDetectedDefect",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected defect. Range [0, 1] where 1 indicates strong confidence of that the defect exists.",
+          "description": "Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.",
           "format": "float",
           "type": "number"
         },
         "type": {
-          "description": "Name of the defect type. Supported values are \"quality/defect_blurry\", \"quality/defect_noisy\", \"quality/defect_dark\", \"quality/defect_faint\", \"quality/defect_text_too_small\", \"quality/defect_document_cutoff\", \"quality/defect_text_cutoff\", \"quality/defect_glare\"",
+          "description": "Name of the defect type. Supported values are: - `quality/defect_blurry` - `quality/defect_noisy` - `quality/defect_dark` - `quality/defect_faint` - `quality/defect_text_too_small` - `quality/defect_document_cutoff` - `quality/defect_text_cutoff` - `quality/defect_glare`",
           "type": "string"
         }
       },
@@ -3839,7 +3962,7 @@
           "description": "The bounding polygon for the Layout."
         },
         "confidence": {
-          "description": "Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range [0, 1].",
+          "description": "Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -4267,7 +4390,7 @@
           "description": "Text color."
         },
         "fontFamily": {
-          "description": "Font family such as \"Arial\", \"Times New Roman\". https://www.w3schools.com/cssref/pr_font_font-family.asp",
+          "description": "Font family such as `Arial`, `Times New Roman`. https://www.w3schools.com/cssref/pr_font_font-family.asp",
           "type": "string"
         },
         "fontSize": {
@@ -4519,15 +4642,15 @@
       "id": "GoogleCloudDocumentaiV1beta3Barcode",
       "properties": {
         "format": {
-          "description": "Format of a barcode. The supported formats are: CODE_128: Code 128 type. CODE_39: Code 39 type. CODE_93: Code 93 type. CODABAR: Codabar type. DATA_MATRIX: 2D Data Matrix type. ITF: ITF type. EAN_13: EAN-13 type. EAN_8: EAN-8 type. QR_CODE: 2D QR code type. UPC_A: UPC-A type. UPC_E: UPC-E type. PDF417: PDF417 type. AZTEC: 2D Aztec code type. DATABAR: GS1 DataBar code type.",
+          "description": "Format of a barcode. The supported formats are: - `CODE_128`: Code 128 type. - `CODE_39`: Code 39 type. - `CODE_93`: Code 93 type. - `CODABAR`: Codabar type. - `DATA_MATRIX`: 2D Data Matrix type. - `ITF`: ITF type. - `EAN_13`: EAN-13 type. - `EAN_8`: EAN-8 type. - `QR_CODE`: 2D QR code type. - `UPC_A`: UPC-A type. - `UPC_E`: UPC-E type. - `PDF417`: PDF417 type. - `AZTEC`: 2D Aztec code type. - `DATABAR`: GS1 DataBar code type.",
           "type": "string"
         },
         "rawValue": {
-          "description": "Raw value encoded in the barcode. For example, 'MEBKM:TITLE:Google;URL:https://www.google.com;;'.",
+          "description": "Raw value encoded in the barcode. For example: `'MEBKM:TITLE:Google;URL:https://www.google.com;;'`.",
           "type": "string"
         },
         "valueFormat": {
-          "description": "Value format describes the format of the value that a barcode encodes. The supported formats are: CONTACT_INFO: Contact information. EMAIL: Email address. ISBN: ISBN identifier. PHONE: Phone number. PRODUCT: Product. SMS: SMS message. TEXT: Text string. URL: URL address. WIFI: Wifi information. GEO: Geo-localization. CALENDAR_EVENT: Calendar event. DRIVER_LICENSE: Driver's license.",
+          "description": "Value format describes the format of the value that a barcode encodes. The supported formats are: - `CONTACT_INFO`: Contact information. - `EMAIL`: Email address. - `ISBN`: ISBN identifier. - `PHONE`: Phone number. - `PRODUCT`: Product. - `SMS`: SMS message. - `TEXT`: Text string. - `URL`: URL address. - `WIFI`: Wifi information. - `GEO`: Geo-localization. - `CALENDAR_EVENT`: Calendar event. - `DRIVER_LICENSE`: Driver's license.",
           "type": "string"
         }
       },
@@ -4543,7 +4666,7 @@
         },
         "gcsPrefix": {
           "$ref": "GoogleCloudDocumentaiV1beta3GcsPrefix",
-          "description": "The set of documents that match the specified Cloud Storage [gcs_prefix]."
+          "description": "The set of documents that match the specified Cloud Storage `gcs_prefix`."
         }
       },
       "type": "object"
@@ -4647,6 +4770,10 @@
         "outputConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchOutputConfig",
           "description": "The overall output config for batch process."
+        },
+        "processOptions": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptions",
+          "description": "Inference-time options for the process API"
         },
         "skipHumanReview": {
           "description": "Whether Human Review feature should be skipped for this request. Default to false.",
@@ -4875,14 +5002,14 @@
           "type": "string"
         },
         "textChanges": {
-          "description": "Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.",
+          "description": "Placeholder. A list of text corrections made to Document.text. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1beta3DocumentTextChange"
           },
           "type": "array"
         },
         "textStyles": {
-          "description": "Placeholder. Styles for the Document.text.",
+          "description": "Styles for the Document.text.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1beta3DocumentStyle"
           },
@@ -4900,7 +5027,7 @@
       "id": "GoogleCloudDocumentaiV1beta3DocumentEntity",
       "properties": {
         "confidence": {
-          "description": "Optional. Confidence of detected Schema entity. Range [0, 1].",
+          "description": "Optional. Confidence of detected Schema entity. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -4985,7 +5112,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate `float` or `integer` normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -5033,6 +5160,27 @@
         "gcsUri": {
           "description": "The Cloud Storage uri (a directory) of the output.",
           "type": "string"
+        },
+        "shardingConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig",
+          "description": "Specifies the sharding config for the output document."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig": {
+      "description": "The sharding config for the output document.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig",
+      "properties": {
+        "pagesOverlap": {
+          "description": "The number of overlapping pages between consecutive shards.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pagesPerShard": {
+          "description": "The number of pages per shard.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5169,7 +5317,7 @@
           "description": "Optional. Identifies the bounding polygon of a layout element on the page."
         },
         "confidence": {
-          "description": "Optional. Confidence of detected page element, if applicable. Range [0, 1].",
+          "description": "Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -5202,7 +5350,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
+          "description": "Required. Index into the Document.pages element, for example using `Document.pages` to locate the related page element. This field is skipped when its value is the default `0`. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -5251,12 +5399,12 @@
       "id": "GoogleCloudDocumentaiV1beta3DocumentPageDetectedLanguage",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected language. Range [0, 1].",
+          "description": "Confidence of detected language. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
           "type": "string"
         }
       },
@@ -5322,7 +5470,7 @@
           "type": "array"
         },
         "valueType": {
-          "description": "If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the field_value is normal text) - \"unfilled_checkbox\" - \"filled_checkbox\"",
+          "description": "If the value is non-textual, this field represents the type. Current valid values are: - blank (this indicates the `field_value` is normal text) - `unfilled_checkbox` - `filled_checkbox`",
           "type": "string"
         }
       },
@@ -5366,7 +5514,7 @@
           "type": "array"
         },
         "qualityScore": {
-          "description": "The overall quality score. Range [0, 1] where 1 is perfect quality.",
+          "description": "The overall quality score. Range `[0, 1]` where 1 is perfect quality.",
           "format": "float",
           "type": "number"
         }
@@ -5378,12 +5526,12 @@
       "id": "GoogleCloudDocumentaiV1beta3DocumentPageImageQualityScoresDetectedDefect",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected defect. Range [0, 1] where 1 indicates strong confidence of that the defect exists.",
+          "description": "Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.",
           "format": "float",
           "type": "number"
         },
         "type": {
-          "description": "Name of the defect type. Supported values are \"quality/defect_blurry\", \"quality/defect_noisy\", \"quality/defect_dark\", \"quality/defect_faint\", \"quality/defect_text_too_small\", \"quality/defect_document_cutoff\", \"quality/defect_text_cutoff\", \"quality/defect_glare\"",
+          "description": "Name of the defect type. Supported values are: - `quality/defect_blurry` - `quality/defect_noisy` - `quality/defect_dark` - `quality/defect_faint` - `quality/defect_text_too_small` - `quality/defect_document_cutoff` - `quality/defect_text_cutoff` - `quality/defect_glare`",
           "type": "string"
         }
       },
@@ -5398,7 +5546,7 @@
           "description": "The bounding polygon for the Layout."
         },
         "confidence": {
-          "description": "Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range [0, 1].",
+          "description": "Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.",
           "format": "float",
           "type": "number"
         },
@@ -5832,16 +5980,12 @@
           "description": "User defined name for the type.",
           "type": "string"
         },
-        "entityTypeMetadata": {
-          "$ref": "GoogleCloudDocumentaiV1beta3EntityTypeMetadata",
-          "description": "Metadata for the entity type."
-        },
         "enumValues": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues",
           "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
         },
         "name": {
-          "description": "Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use snake_casing* - name matching is case-insensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The '/' is sometimes used to denote a property of a type. For example line_item/amount. This convention is deprecated, but will still be honored for backward compatibility.",
+          "description": "Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use `snake_casing`* - name matching is case-sensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
           "type": "string"
         },
         "properties": {
@@ -5893,10 +6037,6 @@
             "The entity type will appear once or more times."
           ],
           "type": "string"
-        },
-        "propertyMetadata": {
-          "$ref": "GoogleCloudDocumentaiV1beta3PropertyMetadata",
-          "description": "Any additional metadata about the property can be added here."
         },
         "valueType": {
           "description": "A reference to the value type of the property. This type is subject to the same conventions as the `Entity.base_types` field.",
@@ -5963,7 +6103,7 @@
           "description": "Text color."
         },
         "fontFamily": {
-          "description": "Font family such as \"Arial\", \"Times New Roman\". https://www.w3schools.com/cssref/pr_font_font-family.asp",
+          "description": "Font family such as `Arial`, `Times New Roman`. https://www.w3schools.com/cssref/pr_font_font-family.asp",
           "type": "string"
         },
         "fontSize": {
@@ -6085,21 +6225,232 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudDocumentaiV1beta3EntityTypeMetadata": {
-      "description": "Metadata about an entity type.",
-      "id": "GoogleCloudDocumentaiV1beta3EntityTypeMetadata",
+    "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionMetadata": {
+      "description": "Metadata of the EvaluateProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionMetadata",
       "properties": {
-        "humanReviewLabelingMetadata": {
-          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata",
-          "description": "Human review labeling config on the property."
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest": {
+      "description": "Evaluates the given ProcessorVersion against the supplied documents.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest",
+      "properties": {
+        "evaluationDocuments": {
+          "$ref": "GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig",
+          "description": "Optional. The documents used in the evaluation. If unspecified, use the processor's dataset as evaluation input."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionResponse": {
+      "description": "Metadata of the EvaluateProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionResponse",
+      "properties": {
+        "evaluation": {
+          "description": "The resource name of the created evaluation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3Evaluation": {
+      "description": "An evaluation of a ProcessorVersion's performance.",
+      "id": "GoogleCloudDocumentaiV1beta3Evaluation",
+      "properties": {
+        "allEntitiesMetrics": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics",
+          "description": "Metrics for all the entities in aggregate."
         },
-        "humanReviewMetadata": {
-          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata",
-          "description": "Human review config on the entity type."
+        "createTime": {
+          "description": "The time that the evaluation was created.",
+          "format": "google-datetime",
+          "type": "string"
         },
-        "inactive": {
-          "description": "Whether the entity type should be considered as \"inactive\".",
-          "type": "boolean"
+        "documentCounters": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EvaluationCounters",
+          "description": "Counters for the documents used in the evaluation."
+        },
+        "entityMetrics": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics"
+          },
+          "description": "Metrics across confidence levels, for different entities.",
+          "type": "object"
+        },
+        "kmsKeyName": {
+          "description": "The KMS key name used for encryption.",
+          "type": "string"
+        },
+        "kmsKeyVersionName": {
+          "description": "The KMS key version with which data is encrypted.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the evaluation. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}/evaluations/{evaluation}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluationConfidenceLevelMetrics": {
+      "description": "Evaluations metrics, at a specific confidence level.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluationConfidenceLevelMetrics",
+      "properties": {
+        "confidenceLevel": {
+          "description": "The confidence level.",
+          "format": "float",
+          "type": "number"
+        },
+        "metrics": {
+          "$ref": "GoogleCloudDocumentaiV1beta3EvaluationMetrics",
+          "description": "The metrics at the specific confidence level."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluationCounters": {
+      "description": "Evaluation counters for the documents that were used.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluationCounters",
+      "properties": {
+        "evaluatedDocumentsCount": {
+          "description": "How many documents were used in the evaluation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "failedDocumentsCount": {
+          "description": "How many documents were not included in the evaluation as Document AI failed to process them.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "inputDocumentsCount": {
+          "description": "How many documents were sent for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "invalidDocumentsCount": {
+          "description": "How many documents were not included in the evaluation as they didn't pass validation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluationMetrics": {
+      "description": "Evaluation metrics, either in aggregate or about a specific entity.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluationMetrics",
+      "properties": {
+        "f1Score": {
+          "description": "The calculated f1 score.",
+          "format": "float",
+          "type": "number"
+        },
+        "falseNegativesCount": {
+          "description": "The amount of false negatives.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "falsePositivesCount": {
+          "description": "The amount of false positives.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "groundTruthDocumentCount": {
+          "description": "The amount of documents with a ground truth occurrence.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "groundTruthOccurrencesCount": {
+          "description": "The amount of occurrences in ground truth documents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "precision": {
+          "description": "The calculated precision.",
+          "format": "float",
+          "type": "number"
+        },
+        "predictedDocumentCount": {
+          "description": "The amount of documents with a predicted occurrence.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "predictedOccurrencesCount": {
+          "description": "The amount of occurrences in predicted documents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "recall": {
+          "description": "The calculated recall.",
+          "format": "float",
+          "type": "number"
+        },
+        "totalDocumentsCount": {
+          "description": "The amount of documents that had an occurrence of this label.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "truePositivesCount": {
+          "description": "The amount of true positives.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics": {
+      "description": "Metrics across multiple confidence levels.",
+      "id": "GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics",
+      "properties": {
+        "auprc": {
+          "description": "The calculated area under the precision recall curve (AUPRC), computed by integrating over all confidence thresholds.",
+          "format": "float",
+          "type": "number"
+        },
+        "auprcExact": {
+          "description": "The AUPRC for metrics with fuzzy matching disabled, i.e., exact matching only.",
+          "format": "float",
+          "type": "number"
+        },
+        "confidenceLevelMetrics": {
+          "description": "Metrics across confidence levels with fuzzy matching enabled.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3EvaluationConfidenceLevelMetrics"
+          },
+          "type": "array"
+        },
+        "confidenceLevelMetricsExact": {
+          "description": "Metrics across confidence levels with only exact matching.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3EvaluationConfidenceLevelMetrics"
+          },
+          "type": "array"
+        },
+        "estimatedCalibrationError": {
+          "description": "The Estimated Calibration Error (ECE) of the confidence of the predicted entities.",
+          "format": "float",
+          "type": "number"
+        },
+        "estimatedCalibrationErrorExact": {
+          "description": "The ECE for the predicted entities with fuzzy matching disabled, i.e., exact matching only.",
+          "format": "float",
+          "type": "number"
+        },
+        "metricsType": {
+          "description": "The metrics type for the label.",
+          "enum": [
+            "METRICS_TYPE_UNSPECIFIED",
+            "AGGREGATE"
+          ],
+          "enumDescriptions": [
+            "The metrics type is unspecified. By default, metrics without a particular specification are for leaf entity types (i.e., top-level entity types without child types, or child types which are not parent types themselves).",
+            "Indicates whether metrics for this particular label type represent an aggregate of metrics for other types instead of being based on actual TP/FP/FN values for the label type. Metrics for parent (i.e., non-leaf) entity types are an aggregate of metrics for their children."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6158,17 +6509,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata": {
-      "description": "Metadata for human review labeling config.",
-      "id": "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata",
-      "properties": {
-        "enableNormalizationEditing": {
-          "description": "Whether to enable normalization editing.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDocumentaiV1beta3HumanReviewStatus": {
       "description": "The status of human review on a processed document.",
       "id": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
@@ -6202,18 +6542,20 @@
       },
       "type": "object"
     },
-    "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata": {
-      "description": "Metadata for Human Review config.",
-      "id": "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata",
+    "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse": {
+      "description": "The response from ListEvaluations.",
+      "id": "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse",
       "properties": {
-        "confidenceThreshold": {
-          "description": "The confidence threshold if human review validation is enabled.",
-          "format": "float",
-          "type": "number"
+        "evaluations": {
+          "description": "The evaluations requested.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3Evaluation"
+          },
+          "type": "array"
         },
-        "enableValidation": {
-          "description": "Whether to enable human review validation.",
-          "type": "boolean"
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6289,6 +6631,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3OcrConfig": {
+      "description": "Config for Document OCR.",
+      "id": "GoogleCloudDocumentaiV1beta3OcrConfig",
+      "properties": {
+        "enableNativePdfParsing": {
+          "description": "Enables special handling for PDFs with existing text information. Results in better text extraction quality in such PDF inputs.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessOptions": {
+      "description": "Options for Process API",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessOptions",
+      "properties": {
+        "ocrConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta3OcrConfig",
+          "description": "Only applicable to \"Document OCR Processor\". Returns error if set on other processor types."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3ProcessRequest": {
       "description": "Request message for the process document method.",
       "id": "GoogleCloudDocumentaiV1beta3ProcessRequest",
@@ -6305,6 +6669,10 @@
         "inlineDocument": {
           "$ref": "GoogleCloudDocumentaiV1beta3Document",
           "description": "An inline document proto."
+        },
+        "processOptions": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptions",
+          "description": "Inference-time options for the process API"
         },
         "rawDocument": {
           "$ref": "GoogleCloudDocumentaiV1beta3RawDocument",
@@ -6383,9 +6751,9 @@
             "The processor is in an unspecified state.",
             "The processor is enabled, i.e., has an enabled version which can currently serve processing requests and all the feature dependencies have been successfully initialized.",
             "The processor is disabled.",
-            "The processor is being enabled, will become ENABLED if successful.",
-            "The processor is being disabled, will become DISABLED if successful.",
-            "The processor is being created, will become either ENABLED (for successful creation) or FAILED (for failed ones). Once a processor is in this state, it can then be used for document processing, but the feature dependencies of the processor might not be fully created yet.",
+            "The processor is being enabled, will become `ENABLED` if successful.",
+            "The processor is being disabled, will become `DISABLED` if successful.",
+            "The processor is being created, will become either `ENABLED` (for successful creation) or `FAILED` (for failed ones). Once a processor is in this state, it can then be used for document processing, but the feature dependencies of the processor might not be fully created yet.",
             "The processor failed during creation or initialization of feature dependencies. The user should delete the processor and recreate one as all the functionalities of the processor are disabled.",
             "The processor is being deleted, will be removed if successful."
           ],
@@ -6393,7 +6761,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The processor type, e.g., OCR_PROCESSOR, INVOICE_PROCESSOR, etc. To get a list of processors types, see FetchProcessorTypes.",
+          "description": "The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc. To get a list of processors types, see FetchProcessorTypes.",
           "type": "string"
         }
       },
@@ -6443,11 +6811,18 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the processor type. Format: projects/{project}/processorTypes/{processor_type}",
+          "description": "The resource name of the processor type. Format: `projects/{project}/processorTypes/{processor_type}`",
           "type": "string"
         },
+        "sampleDocumentUris": {
+          "description": "A set of Cloud Storage URIs of sample documents for this processor.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "type": {
-          "description": "The type of the processor, e.g., \"invoice_parsing\".",
+          "description": "The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.",
           "type": "string"
         }
       },
@@ -6480,6 +6855,10 @@
         "displayName": {
           "description": "The display name of the processor version.",
           "type": "string"
+        },
+        "documentSchema": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
+          "description": "The schema of the processor version. Describes the output."
         },
         "googleManaged": {
           "description": "Denotes that this ProcessorVersion is managed by google.",
@@ -6540,25 +6919,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDocumentaiV1beta3PropertyMetadata": {
-      "description": "Metadata about a property.",
-      "id": "GoogleCloudDocumentaiV1beta3PropertyMetadata",
-      "properties": {
-        "humanReviewLabelingMetadata": {
-          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewLabelingMetadata",
-          "description": "Human review labeling config on the property."
-        },
-        "humanReviewMetadata": {
-          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewValidationMetadata",
-          "description": "Human review validation config on the property."
-        },
-        "inactive": {
-          "description": "Whether the property should be considered as \"inactive\".",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDocumentaiV1beta3RawDocument": {
       "description": "Payload message of raw document content (bytes).",
       "id": "GoogleCloudDocumentaiV1beta3RawDocument",
@@ -6569,7 +6929,7 @@
           "type": "string"
         },
         "mimeType": {
-          "description": "An IANA MIME type (RFC6838) indicating the nature and format of the [content].",
+          "description": "An IANA MIME type (RFC6838) indicating the nature and format of the content.",
           "type": "string"
         }
       },
@@ -6714,6 +7074,105 @@
       "description": "Response message for set default processor version method.",
       "id": "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata": {
+      "description": "The metadata that represents a processor version being created.",
+      "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        },
+        "testDatasetValidation": {
+          "$ref": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation",
+          "description": "The test dataset validation information."
+        },
+        "trainingDatasetValidation": {
+          "$ref": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation",
+          "description": "The training dataset validation information."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation": {
+      "description": "The dataset validation information. This includes any and all errors with documents and the dataset.",
+      "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation",
+      "properties": {
+        "datasetErrorCount": {
+          "description": "The total number of dataset errors.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "datasetErrors": {
+          "description": "Error information for the dataset as a whole. A maximum of 10 dataset errors will be returned. A single dataset error is terminal for training.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "documentErrorCount": {
+          "description": "The total number of document errors.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "documentErrors": {
+          "description": "Error information pertaining to specific documents. A maximum of 10 document errors will be returned. Any document with errors will not be used throughout training.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest": {
+      "description": "Request message for the create processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest",
+      "properties": {
+        "baseProcessorVersion": {
+          "description": "Optional. The processor version to use as a base for training. This processor version must be a child of `parent`. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.",
+          "type": "string"
+        },
+        "documentSchema": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
+          "description": "Optional. The schema the processor version will be trained with."
+        },
+        "inputData": {
+          "$ref": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData",
+          "description": "Optional. The input data used to train the `ProcessorVersion`."
+        },
+        "processorVersion": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersion",
+          "description": "Required. The processor version to be created."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData": {
+      "description": "The input data used to train a new `ProcessorVersion`.",
+      "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData",
+      "properties": {
+        "testDocuments": {
+          "$ref": "GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig",
+          "description": "The documents used for testing the trained version."
+        },
+        "trainingDocuments": {
+          "$ref": "GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig",
+          "description": "The documents used for training the new version."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3TrainProcessorVersionResponse": {
+      "description": "The response for the TrainProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionResponse",
+      "properties": {
+        "processorVersion": {
+          "description": "The resource name of the processor version produced by training.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata": {
