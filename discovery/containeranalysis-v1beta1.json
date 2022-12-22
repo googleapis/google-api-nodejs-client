@@ -751,109 +751,11 @@
               ]
             }
           }
-        },
-        "scanConfigs": {
-          "methods": {
-            "get": {
-              "description": "Gets the specified scan configuration.",
-              "flatPath": "v1beta1/projects/{projectsId}/scanConfigs/{scanConfigsId}",
-              "httpMethod": "GET",
-              "id": "containeranalysis.projects.scanConfigs.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/scanConfigs/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+name}",
-              "response": {
-                "$ref": "ScanConfig"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "list": {
-              "description": "Lists scan configurations for the specified project.",
-              "flatPath": "v1beta1/projects/{projectsId}/scanConfigs",
-              "httpMethod": "GET",
-              "id": "containeranalysis.projects.scanConfigs.list",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "filter": {
-                  "description": "Required. The filter expression.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "pageSize": {
-                  "description": "The number of scan configs to return in the list.",
-                  "format": "int32",
-                  "location": "query",
-                  "type": "integer"
-                },
-                "pageToken": {
-                  "description": "Token to provide to skip to a particular spot in the list.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "parent": {
-                  "description": "Required. The name of the project to list scan configurations for in the form of `projects/[PROJECT_ID]`.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+parent}/scanConfigs",
-              "response": {
-                "$ref": "ListScanConfigsResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "update": {
-              "description": "Updates the specified scan configuration.",
-              "flatPath": "v1beta1/projects/{projectsId}/scanConfigs/{scanConfigsId}",
-              "httpMethod": "PUT",
-              "id": "containeranalysis.projects.scanConfigs.update",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/scanConfigs/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+name}",
-              "request": {
-                "$ref": "ScanConfig"
-              },
-              "response": {
-                "$ref": "ScanConfig"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            }
-          }
         }
       }
     }
   },
-  "revision": "20221015",
+  "revision": "20221209",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2098,7 +2000,7 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions",
       "properties": {
         "diskSizeGb": {
-          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.",
+          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.",
           "format": "int64",
           "type": "string"
         },
@@ -3104,7 +3006,7 @@
       "type": "object"
     },
     "DocumentNote": {
-      "description": "DocumentNote represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/",
+      "description": "DocumentNote represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/v2.3/document-creation-information/",
       "id": "DocumentNote",
       "properties": {
         "dataLicence": {
@@ -3119,7 +3021,7 @@
       "type": "object"
     },
     "DocumentOccurrence": {
-      "description": "DocumentOccurrence represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/",
+      "description": "DocumentOccurrence represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/v2.3/document-creation-information/",
       "id": "DocumentOccurrence",
       "properties": {
         "createTime": {
@@ -4061,24 +3963,6 @@
       },
       "type": "object"
     },
-    "ListScanConfigsResponse": {
-      "description": "Response for listing scan configurations.",
-      "id": "ListScanConfigsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "The next pagination token in the list response. It should be used as `page_token` for the following request. An empty value means no more results.",
-          "type": "string"
-        },
-        "scanConfigs": {
-          "description": "The scan configurations requested.",
-          "items": {
-            "$ref": "ScanConfig"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Location": {
       "description": "An occurrence of a particular package installation found within a system's filesystem. E.g., glibc was found in `/var/lib/dpkg/status`.",
       "id": "Location",
@@ -4920,35 +4804,6 @@
         },
         "uri": {
           "description": "Required. The unique URI of the resource. For example, `https://gcr.io/project/image@sha256:foo` for a Docker image.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ScanConfig": {
-      "description": "A scan configuration specifies whether Cloud components in a project have a particular type of analysis being run. For example, it can configure whether vulnerability scanning is being done on Docker images or not.",
-      "id": "ScanConfig",
-      "properties": {
-        "createTime": {
-          "description": "Output only. The time this scan config was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "description": {
-          "description": "Output only. A human-readable description of what the scan configuration does.",
-          "type": "string"
-        },
-        "enabled": {
-          "description": "Whether the scan is enabled.",
-          "type": "boolean"
-        },
-        "name": {
-          "description": "Output only. The name of the scan configuration in the form of `projects/[PROJECT_ID]/scanConfigs/[SCAN_CONFIG_ID]`.",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. The time this scan config was last updated.",
-          "format": "google-datetime",
           "type": "string"
         }
       },
