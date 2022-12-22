@@ -2512,7 +2512,7 @@
       }
     }
   },
-  "revision": "20220927",
+  "revision": "20221114",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2738,7 +2738,7 @@
           "type": "boolean"
         },
         "evaluationMode": {
-          "description": "Mode of operation for binauthz policy evaluation. Currently the only options are equivalent to enable/disable. If unspecified, defaults to DISABLED.",
+          "description": "Mode of operation for binauthz policy evaluation. If unspecified, defaults to DISABLED.",
           "enum": [
             "EVALUATION_MODE_UNSPECIFIED",
             "DISABLED",
@@ -3345,6 +3345,14 @@
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
         },
+        "desiredEnablePrivateEndpoint": {
+          "description": "Enable/Disable private endpoint for the cluster's master.",
+          "type": "boolean"
+        },
+        "desiredGatewayApiConfig": {
+          "$ref": "GatewayAPIConfig",
+          "description": "The desired config of Gateway API on this cluster."
+        },
         "desiredGcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "The desired GCFS config for the cluster."
@@ -3471,6 +3479,20 @@
         "desiredShieldedNodes": {
           "$ref": "ShieldedNodes",
           "description": "Configuration for Shielded Nodes."
+        },
+        "desiredStackType": {
+          "description": "The desired stack type of the cluster. If a stack type is provided and does not match the current stack type of the cluster, update will attempt to change the stack type to the new type.",
+          "enum": [
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4",
+            "IPV4_IPV6"
+          ],
+          "enumDescriptions": [
+            "By default, the clusters will be IPV4 only",
+            "The value used if the cluster is a IPV4 only",
+            "The value used if the cluster is a dual stack cluster"
+          ],
+          "type": "string"
         },
         "desiredTpuConfig": {
           "$ref": "TpuConfig",
@@ -3759,6 +3781,17 @@
       },
       "type": "object"
     },
+    "FastSocket": {
+      "description": "Configuration of Fast Socket feature.",
+      "id": "FastSocket",
+      "properties": {
+        "enabled": {
+          "description": "Whether Fast Socket features are enabled in the node pool.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Filter": {
       "description": "Allows filtering to one or more specific event types. If event types are present, those and only those event types will be transmitted to the cluster. Other types will be skipped. If no filter is specified, or no event types are present, all event types will be sent",
       "id": "Filter",
@@ -3804,6 +3837,29 @@
         "maxSharedClientsPerGpu": {
           "description": "The max number of containers that can share a physical GPU.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GatewayAPIConfig": {
+      "description": "GatewayAPIConfig contains the desired config of Gateway API on this cluster.",
+      "id": "GatewayAPIConfig",
+      "properties": {
+        "channel": {
+          "description": "The Gateway API release channel to use for Gateway API.",
+          "enum": [
+            "CHANNEL_UNSPECIFIED",
+            "CHANNEL_DISABLED",
+            "CHANNEL_EXPERIMENTAL",
+            "CHANNEL_STANDARD"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Gateway API support is disabled",
+            "Gateway API support is enabled, experimental CRDs are installed",
+            "Gateway API support is enabled, standard CRDs are installed"
+          ],
           "type": "string"
         }
       },
@@ -4359,12 +4415,18 @@
             "enum": [
               "COMPONENT_UNSPECIFIED",
               "SYSTEM_COMPONENTS",
-              "WORKLOADS"
+              "WORKLOADS",
+              "APISERVER",
+              "SCHEDULER",
+              "CONTROLLER_MANAGER"
             ],
             "enumDescriptions": [
               "Default value. This shouldn't be used.",
               "system components",
-              "workloads"
+              "workloads",
+              "kube-apiserver",
+              "kube-scheduler",
+              "kube-controller-manager"
             ],
             "type": "string"
           },
@@ -4524,6 +4586,10 @@
         "enabled": {
           "description": "Whether or not master authorized networks is enabled.",
           "type": "boolean"
+        },
+        "gcpPublicCidrsAccessEnabled": {
+          "description": "Whether master is accessbile via Google Compute Engine Public IP addresses.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4654,6 +4720,10 @@
         "enableL4ilbSubsetting": {
           "description": "Whether L4ILB Subsetting is enabled for this cluster.",
           "type": "boolean"
+        },
+        "gatewayApiConfig": {
+          "$ref": "GatewayAPIConfig",
+          "description": "GatewayAPIConfig contains the desired config of Gateway API on this cluster."
         },
         "network": {
           "description": "Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
@@ -4801,6 +4871,10 @@
           "$ref": "EphemeralStorageConfig",
           "description": "Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk."
         },
+        "fastSocket": {
+          "$ref": "FastSocket",
+          "description": "Enable or disable NCCL fast socket for the node pool."
+        },
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "GCFS (Google Container File System) configs."
@@ -4870,6 +4944,13 @@
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
           "description": "The optional reservation affinity. Setting this field will apply the specified [Zonal Compute Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) to this node pool."
+        },
+        "resourceLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The resource labels for the node pool to use to annotate any related Google Compute Engine resources.",
+          "type": "object"
         },
         "sandboxConfig": {
           "$ref": "SandboxConfig",
@@ -4986,6 +5067,10 @@
       "properties": {
         "createPodRange": {
           "description": "Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
+          "type": "boolean"
+        },
+        "enablePrivateNodes": {
+          "description": "Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from cluster.privateClusterConfig.enablePrivateNodes",
           "type": "boolean"
         },
         "networkPerformanceConfig": {
@@ -5478,6 +5563,10 @@
           "description": "Output only. The internal IP address of this cluster's master endpoint.",
           "type": "string"
         },
+        "privateEndpointSubnetwork": {
+          "description": "Subnet to provision the master's private endpoint during cluster creation. Specified in projects/*/regions/*/subnetworks/* format.",
+          "type": "string"
+        },
         "publicEndpoint": {
           "description": "Output only. The external IP address of this cluster's master endpoint.",
           "type": "string"
@@ -5649,6 +5738,20 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceLabels": {
+      "description": "Collection of [GCP labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).",
+      "id": "ResourceLabels",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of node label keys and node label values.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -6263,7 +6366,7 @@
           "type": "integer"
         },
         "batchPercentage": {
-          "description": "Percentage of the bool pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].",
+          "description": "Percentage of the blue pool nodes to drain in a batch. The range of this field should be (0.0, 1.0].",
           "format": "float",
           "type": "number"
         },
@@ -6521,6 +6624,10 @@
           "$ref": "ConfidentialNodes",
           "description": "Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled."
         },
+        "fastSocket": {
+          "$ref": "FastSocket",
+          "description": "Enable or disable NCCL fast socket for the node pool."
+        },
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "GCFS config."
@@ -6575,6 +6682,10 @@
         "projectId": {
           "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
           "type": "string"
+        },
+        "resourceLabels": {
+          "$ref": "ResourceLabels",
+          "description": "The resource labels for the node pool to use to annotate any related Google Compute Engine resources."
         },
         "tags": {
           "$ref": "NetworkTags",
