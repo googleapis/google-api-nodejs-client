@@ -185,6 +185,15 @@ export namespace composer_v1beta1 {
     displayName?: string | null;
   }
   /**
+   * Configuration for Cloud Data Lineage integration.
+   */
+  export interface Schema$CloudDataLineageIntegration {
+    /**
+     * Optional. Whether or not Cloud Data Lineage integration is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software.
    */
   export interface Schema$DatabaseConfig {
@@ -305,6 +314,10 @@ export namespace composer_v1beta1 {
      */
     privateEnvironmentConfig?: Schema$PrivateEnvironmentConfig;
     /**
+     * Optional. The Recovery settings configuration of an environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    recoveryConfig?: Schema$RecoveryConfig;
+    /**
      * The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
@@ -320,6 +333,40 @@ export namespace composer_v1beta1 {
      * Optional. The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web server and workers workloads. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
      */
     workloadsConfig?: Schema$WorkloadsConfig;
+  }
+  /**
+   * Response to ExecuteAirflowCommandRequest.
+   */
+  export interface Schema$ExecuteAirflowCommandResponse {
+    /**
+     * Error message. Empty if there was no error.
+     */
+    error?: string | null;
+    /**
+     * The unique ID of the command execution for polling.
+     */
+    executionId?: string | null;
+    /**
+     * The name of the pod where the command is executed.
+     */
+    pod?: string | null;
+    /**
+     * The namespace of the pod where the command is executed.
+     */
+    podNamespace?: string | null;
+  }
+  /**
+   * Information about how a command ended.
+   */
+  export interface Schema$ExitInfo {
+    /**
+     * Error message. Empty if there was no error.
+     */
+    error?: string | null;
+    /**
+     * The exit code from the command execution.
+     */
+    exitCode?: number | null;
   }
   /**
    * Image Version information
@@ -376,6 +423,19 @@ export namespace composer_v1beta1 {
     useIpAliases?: boolean | null;
   }
   /**
+   * Contains information about a single line from logs.
+   */
+  export interface Schema$Line {
+    /**
+     * Text content of the log line.
+     */
+    content?: string | null;
+    /**
+     * Number of the line.
+     */
+    lineNumber?: number | null;
+  }
+  /**
    * The environments in a project and location.
    */
   export interface Schema$ListEnvironmentsResponse {
@@ -418,6 +478,18 @@ export namespace composer_v1beta1 {
    * Request to load a snapshot into a Cloud Composer environment.
    */
   export interface Schema$LoadSnapshotRequest {
+    /**
+     * Whether or not to skip setting Airflow overrides when loading the environment's state.
+     */
+    skipAirflowOverridesSetting?: boolean | null;
+    /**
+     * Whether or not to skip setting environment variables when loading the environment's state.
+     */
+    skipEnvironmentVariablesSetting?: boolean | null;
+    /**
+     * Whether or not to skip copying Cloud Storage data when loading the environment's state.
+     */
+    skipGcsDataCopying?: boolean | null;
     /**
      * Whether or not to skip installing Pypi packages when loading the environment's state.
      */
@@ -574,6 +646,23 @@ export namespace composer_v1beta1 {
     state?: string | null;
   }
   /**
+   * Response to PollAirflowCommandRequest.
+   */
+  export interface Schema$PollAirflowCommandResponse {
+    /**
+     * The result exit status of the command.
+     */
+    exitInfo?: Schema$ExitInfo;
+    /**
+     * Output from the command execution. It may not contain the full output and the caller may need to poll for more lines.
+     */
+    output?: Schema$Line[];
+    /**
+     * Whether the command execution has finished and there is no more output.
+     */
+    outputEnd?: boolean | null;
+  }
+  /**
    * Configuration options for the private GKE cluster in a Cloud Composer environment.
    */
   export interface Schema$PrivateClusterConfig {
@@ -636,6 +725,15 @@ export namespace composer_v1beta1 {
     webServerIpv4ReservedRange?: string | null;
   }
   /**
+   * The Recovery settings of an environment.
+   */
+  export interface Schema$RecoveryConfig {
+    /**
+     * Optional. The configuration for scheduled snapshot creation mechanism.
+     */
+    scheduledSnapshotsConfig?: Schema$ScheduledSnapshotsConfig;
+  }
+  /**
    * Restart Airflow web server.
    */
   export interface Schema$RestartWebServerRequest {}
@@ -656,6 +754,27 @@ export namespace composer_v1beta1 {
      * The fully-resolved Cloud Storage path of the created snapshot, e.g.: "gs://my-bucket/snapshots/project_location_environment_timestamp". This field is populated only if the snapshot creation was successful.
      */
     snapshotPath?: string | null;
+  }
+  /**
+   * The configuration for scheduled snapshot creation mechanism.
+   */
+  export interface Schema$ScheduledSnapshotsConfig {
+    /**
+     * Optional. Whether scheduled snapshots creation is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. The cron expression representing the time when snapshots creation mechanism runs. This field is subject to additional validation around frequency of execution.
+     */
+    snapshotCreationSchedule?: string | null;
+    /**
+     * Optional. The Cloud Storage location for storing automatically created snapshots.
+     */
+    snapshotLocation?: string | null;
+    /**
+     * Optional. Time zone that sets the context to interpret snapshot_creation_schedule.
+     */
+    timeZone?: string | null;
   }
   /**
    * Configuration for resources used by Airflow schedulers.
@@ -686,6 +805,10 @@ export namespace composer_v1beta1 {
      * Optional. Apache Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example "core-dags_are_paused_at_creation". Section names must not contain hyphens ("-"), opening square brackets ("["), or closing square brackets ("]"). The property name must not be empty and must not contain an equals sign ("=") or semicolon (";"). Section and property names must not contain a period ("."). Apache Airflow configuration property names must be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can contain any character, and can be written in any lower/upper case format. Certain Apache Airflow configuration property values are [blocked](/composer/docs/concepts/airflow-configurations), and cannot be overridden.
      */
     airflowConfigOverrides?: {[key: string]: string} | null;
+    /**
+     * Optional. The configuration for Cloud Data Lineage integration.
+     */
+    cloudDataLineageIntegration?: Schema$CloudDataLineageIntegration;
     /**
      * Optional. Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes. Environment variable names must match the regular expression `a-zA-Z_*`. They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names: * `AIRFLOW_HOME` * `C_FORCE_ROOT` * `CONTAINER_NAME` * `DAGS_FOLDER` * `GCP_PROJECT` * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
      */
@@ -723,6 +846,23 @@ export namespace composer_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Configuration for resources used by Airflow triggerers.
+   */
+  export interface Schema$TriggererResource {
+    /**
+     * Optional. The number of triggerers.
+     */
+    count?: number | null;
+    /**
+     * Optional. CPU request and limit for a single Airflow triggerer replica.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for a single Airflow triggerer replica.
+     */
+    memoryGb?: number | null;
   }
   /**
    * The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
@@ -792,6 +932,10 @@ export namespace composer_v1beta1 {
      * Optional. Resources used by Airflow schedulers.
      */
     scheduler?: Schema$SchedulerResource;
+    /**
+     * Optional. Resources used by Airflow triggerers.
+     */
+    triggerer?: Schema$TriggererResource;
     /**
      * Optional. Resources used by Airflow web server.
      */
@@ -1562,6 +1706,9 @@ export namespace composer_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "skipAirflowOverridesSetting": false,
+     *       //   "skipEnvironmentVariablesSetting": false,
+     *       //   "skipGcsDataCopying": false,
      *       //   "skipPypiPackagesInstallation": false,
      *       //   "snapshotPath": "my_snapshotPath"
      *       // }
