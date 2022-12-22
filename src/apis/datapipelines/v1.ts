@@ -593,169 +593,6 @@ export namespace datapipelines_v1 {
       this.context = context;
       this.pipelines = new Resource$Projects$Locations$Pipelines(this.context);
     }
-
-    /**
-     * Lists pipelines. Returns a "FORBIDDEN" error if the caller doesn't have permission to access it.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datapipelines.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datapipelines = google.datapipelines('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datapipelines.projects.locations.listPipelines({
-     *     // An expression for filtering the results of the request. If unspecified, all pipelines will be returned. Multiple filters can be applied and must be comma separated. Fields eligible for filtering are: + `type`: The type of the pipeline (streaming or batch). Allowed values are `ALL`, `BATCH`, and `STREAMING`. + `status`: The activity status of the pipeline. Allowed values are `ALL`, `ACTIVE`, `ARCHIVED`, and `PAUSED`. For example, to limit results to active batch processing pipelines: type:BATCH,status:ACTIVE
-     *     filter: 'placeholder-value',
-     *     // The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit is yet to be determined by the backend implementation.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListPipelines` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPipelines` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pipelines": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    listPipelines(
-      params: Params$Resource$Projects$Locations$Listpipelines,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    listPipelines(
-      params?: Params$Resource$Projects$Locations$Listpipelines,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>;
-    listPipelines(
-      params: Params$Resource$Projects$Locations$Listpipelines,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    listPipelines(
-      params: Params$Resource$Projects$Locations$Listpipelines,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-    ): void;
-    listPipelines(
-      params: Params$Resource$Projects$Locations$Listpipelines,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-    ): void;
-    listPipelines(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-    ): void;
-    listPipelines(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Listpipelines
-        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Listpipelines;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Listpipelines;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://datapipelines.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Listpipelines
-    extends StandardParameters {
-    /**
-     * An expression for filtering the results of the request. If unspecified, all pipelines will be returned. Multiple filters can be applied and must be comma separated. Fields eligible for filtering are: + `type`: The type of the pipeline (streaming or batch). Allowed values are `ALL`, `BATCH`, and `STREAMING`. + `status`: The activity status of the pipeline. Allowed values are `ALL`, `ACTIVE`, `ARCHIVED`, and `PAUSED`. For example, to limit results to active batch processing pipelines: type:BATCH,status:ACTIVE
-     */
-    filter?: string;
-    /**
-     * The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit is yet to be determined by the backend implementation.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous `ListPipelines` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPipelines` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
-     */
-    parent?: string;
   }
 
   export class Resource$Projects$Locations$Pipelines {
@@ -1202,6 +1039,152 @@ export namespace datapipelines_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatapipelinesV1Pipeline>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists pipelines. Returns a "FORBIDDEN" error if the caller doesn't have permission to access it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datapipelines.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datapipelines = google.datapipelines('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datapipelines.projects.locations.pipelines.list({
+     *     // An expression for filtering the results of the request. If unspecified, all pipelines will be returned. Multiple filters can be applied and must be comma separated. Fields eligible for filtering are: + `type`: The type of the pipeline (streaming or batch). Allowed values are `ALL`, `BATCH`, and `STREAMING`. + `status`: The activity status of the pipeline. Allowed values are `ALL`, `ACTIVE`, `ARCHIVED`, and `PAUSED`. For example, to limit results to active batch processing pipelines: type:BATCH,status:ACTIVE
+     *     filter: 'placeholder-value',
+     *     // The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit is yet to be determined by the backend implementation.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListPipelines` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPipelines` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pipelines": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Pipelines$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pipelines$List
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pipelines$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Pipelines$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datapipelines.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pipelines').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse>(
           parameters
         );
       }
@@ -1693,6 +1676,25 @@ export namespace datapipelines_v1 {
      * Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Pipelines$List
+    extends StandardParameters {
+    /**
+     * An expression for filtering the results of the request. If unspecified, all pipelines will be returned. Multiple filters can be applied and must be comma separated. Fields eligible for filtering are: + `type`: The type of the pipeline (streaming or batch). Allowed values are `ALL`, `BATCH`, and `STREAMING`. + `status`: The activity status of the pipeline. Allowed values are `ALL`, `ACTIVE`, `ARCHIVED`, and `PAUSED`. For example, to limit results to active batch processing pipelines: type:BATCH,status:ACTIVE
+     */
+    filter?: string;
+    /**
+     * The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit is yet to be determined by the backend implementation.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListPipelines` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPipelines` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Pipelines$Patch
     extends StandardParameters {
