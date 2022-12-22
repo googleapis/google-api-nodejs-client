@@ -2792,7 +2792,7 @@ export namespace dataflow_v1b3 {
     message?: string | null;
   }
   /**
-   * Defines a particular step within a Cloud Dataflow job. A job consists of multiple steps, each of which performs some specific operation as part of the overall job. Data is typically passed from one step to another as part of the job. Here's an example of a sequence of steps which together implement a Map-Reduce job: * Read a collection of data from some source, parsing the collection's elements. * Validate the elements. * Apply a user-defined function to map each element to some value and extract an element-specific key value. * Group elements with the same key into a single element with that key, transforming a multiply-keyed collection into a uniquely-keyed collection. * Write the elements out to some data sink. Note that the Cloud Dataflow service may be used to run many different types of jobs, not just Map-Reduce.
+   * Defines a particular step within a Cloud Dataflow job. A job consists of multiple steps, each of which performs some specific operation as part of the overall job. Data is typically passed from one step to another as part of the job. **Note:** The properties of this object are not stable and might change. Here's an example of a sequence of steps which together implement a Map-Reduce job: * Read a collection of data from some source, parsing the collection's elements. * Validate the elements. * Apply a user-defined function to map each element to some value and extract an element-specific key value. * Group elements with the same key into a single element with that key, transforming a multiply-keyed collection into a uniquely-keyed collection. * Write the elements out to some data sink. Note that the Cloud Dataflow service may be used to run many different types of jobs, not just Map-Reduce.
    */
   export interface Schema$Step {
     /**
@@ -3307,6 +3307,10 @@ export namespace dataflow_v1b3 {
      * Shutdown notice by workers.
      */
     workerShutdownNotice?: Schema$WorkerShutdownNotice;
+    /**
+     * Thread scaling information reported by workers.
+     */
+    workerThreadScalingReport?: Schema$WorkerThreadScalingReport;
   }
   /**
    * A message code is used to report status and error messages to the service. The message codes are intended to be machine readable. The service will take care of translating these into user understandable messages if necessary. Example use cases: 1. Worker processes reporting successful startup. 2. Worker processes reporting specific errors (e.g. package staging failure).
@@ -3337,6 +3341,10 @@ export namespace dataflow_v1b3 {
      * Service's response to shutdown notice (currently empty).
      */
     workerShutdownNoticeResponse?: Schema$WorkerShutdownNoticeResponse;
+    /**
+     * Service's thread scaling recommendation for workers.
+     */
+    workerThreadScalingReportResponse?: Schema$WorkerThreadScalingReportResponse;
   }
   /**
    * Describes one particular pool of Cloud Dataflow workers to be instantiated by the Cloud Dataflow service in order to perform the computations required by a job. Note that a workflow job may use multiple pools, in order to match the various computational requirements of the various stages of the job.
@@ -3473,6 +3481,24 @@ export namespace dataflow_v1b3 {
    * Service-side response to WorkerMessage issuing shutdown notice.
    */
   export interface Schema$WorkerShutdownNoticeResponse {}
+  /**
+   * Contains information about the thread scaling information of a worker.
+   */
+  export interface Schema$WorkerThreadScalingReport {
+    /**
+     * Current number of active threads in a worker.
+     */
+    currentThreadCount?: number | null;
+  }
+  /**
+   * Contains the thread scaling recommendation for a worker from the backend.
+   */
+  export interface Schema$WorkerThreadScalingReportResponse {
+    /**
+     * Recommended number of threads for a worker.
+     */
+    recommendedThreadCount?: number | null;
+  }
   /**
    * WorkItem represents basic information about a WorkItem to be executed in the cloud.
    */
