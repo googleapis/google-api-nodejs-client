@@ -1334,7 +1334,7 @@
       }
     }
   },
-  "revision": "20220922",
+  "revision": "20221208",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1509,8 +1509,7 @@
       "id": "Config",
       "properties": {
         "defaultSkaffoldVersion": {
-          "description": "Output only. Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.",
-          "readOnly": true,
+          "description": "Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.",
           "type": "string"
         },
         "name": {
@@ -1518,11 +1517,10 @@
           "type": "string"
         },
         "supportedVersions": {
-          "description": "Output only. All supported versions of Skaffold.",
+          "description": "All supported versions of Skaffold.",
           "items": {
             "$ref": "SkaffoldVersion"
           },
-          "readOnly": true,
           "type": "array"
         }
       },
@@ -1650,7 +1648,7 @@
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
-            "Release render status changed notification."
+            "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
         }
@@ -1990,7 +1988,7 @@
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
-            "Release render status changed notification."
+            "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
         }
@@ -2331,7 +2329,11 @@
         },
         "targetsPresentCondition": {
           "$ref": "TargetsPresentCondition",
-          "description": "Detalis around targets enumerated in the pipeline."
+          "description": "Details around targets enumerated in the pipeline."
+        },
+        "targetsTypeCondition": {
+          "$ref": "TargetsTypeCondition",
+          "description": "Details on the whether the targets enumerated in the pipeline are of the same type."
         }
       },
       "type": "object"
@@ -2550,7 +2552,7 @@
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
-            "Release render status changed notification."
+            "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
         }
@@ -2789,7 +2791,7 @@
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
-            "Release render status changed notification."
+            "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
         }
@@ -2832,7 +2834,7 @@
       "properties": {
         "supportEndDate": {
           "$ref": "Date",
-          "description": "Date when this version is expected to no longer be supported."
+          "description": "Date when this version is expected to no longer be supported. For a more precise time, use the `support_expiration_time` field."
         },
         "version": {
           "description": "Release version number. For example, \"1.20.3\".",
@@ -3034,7 +3036,7 @@
           "enumDescriptions": [
             "Type is unspecified.",
             "A Pub/Sub notification failed to be sent.",
-            "Release render status changed notification."
+            "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
         }
@@ -3095,7 +3097,7 @@
       "id": "TargetsPresentCondition",
       "properties": {
         "missingTargets": {
-          "description": "The list of Target names that are missing. For example, projects/{project_id}/locations/{location_name}/targets/{target_name}.",
+          "description": "The list of Target names that do not exist. For example, projects/{project_id}/locations/{location_name}/targets/{target_name}.",
           "items": {
             "type": "string"
           },
@@ -3109,6 +3111,21 @@
           "description": "Last time the condition was updated.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetsTypeCondition": {
+      "description": "TargetsTypeCondition contains information on whether the Targets defined in the Delivery Pipeline are of the same type.",
+      "id": "TargetsTypeCondition",
+      "properties": {
+        "errorDetails": {
+          "description": "Human readable error message.",
+          "type": "string"
+        },
+        "status": {
+          "description": "True if the targets are all a comparable type. For example this is true if all targets are GKE clusters. This is false if some targets are Cloud Run targets and others are GKE clusters.",
+          "type": "boolean"
         }
       },
       "type": "object"

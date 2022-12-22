@@ -245,7 +245,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Config {
     /**
-     * Output only. Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.
+     * Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.
      */
     defaultSkaffoldVersion?: string | null;
     /**
@@ -253,7 +253,7 @@ export namespace clouddeploy_v1 {
      */
     name?: string | null;
     /**
-     * Output only. All supported versions of Skaffold.
+     * All supported versions of Skaffold.
      */
     supportedVersions?: Schema$SkaffoldVersion[];
   }
@@ -807,9 +807,13 @@ export namespace clouddeploy_v1 {
      */
     pipelineReadyCondition?: Schema$PipelineReadyCondition;
     /**
-     * Detalis around targets enumerated in the pipeline.
+     * Details around targets enumerated in the pipeline.
      */
     targetsPresentCondition?: Schema$TargetsPresentCondition;
+    /**
+     * Details on the whether the targets enumerated in the pipeline are of the same type.
+     */
+    targetsTypeCondition?: Schema$TargetsTypeCondition;
   }
   /**
    * PipelineReadyCondition contains information around the status of the Pipeline.
@@ -1127,7 +1131,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$SkaffoldVersion {
     /**
-     * Date when this version is expected to no longer be supported.
+     * Date when this version is expected to no longer be supported. For a more precise time, use the `support_expiration_time` field.
      */
     supportEndDate?: Schema$Date;
     /**
@@ -1308,7 +1312,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TargetsPresentCondition {
     /**
-     * The list of Target names that are missing. For example, projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
+     * The list of Target names that do not exist. For example, projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
      */
     missingTargets?: string[] | null;
     /**
@@ -1319,6 +1323,19 @@ export namespace clouddeploy_v1 {
      * Last time the condition was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * TargetsTypeCondition contains information on whether the Targets defined in the Delivery Pipeline are of the same type.
+   */
+  export interface Schema$TargetsTypeCondition {
+    /**
+     * Human readable error message.
+     */
+    errorDetails?: string | null;
+    /**
+     * True if the targets are all a comparable type. For example this is true if all targets are GKE clusters. This is false if some targets are Cloud Run targets and others are GKE clusters.
+     */
+    status?: boolean | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
