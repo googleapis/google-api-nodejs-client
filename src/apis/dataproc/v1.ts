@@ -173,6 +173,19 @@ export namespace dataproc_v1 {
     workerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
   }
   /**
+   * Node group identification and configuration information.
+   */
+  export interface Schema$AuxiliaryNodeGroup {
+    /**
+     * Required. Node group configuration.
+     */
+    nodeGroup?: Schema$NodeGroup;
+    /**
+     * Optional. A node group ID. Generated if not specified.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of from 3 to 33 characters.
+     */
+    nodeGroupId?: string | null;
+  }
+  /**
    * Auxiliary services configuration for a Cluster.
    */
   export interface Schema$AuxiliaryServicesConfig {
@@ -407,6 +420,10 @@ export namespace dataproc_v1 {
      * Optional. Autoscaling config for the policy associated with the cluster. Cluster does not autoscale if this field is unset.
      */
     autoscalingConfig?: Schema$AutoscalingConfig;
+    /**
+     * Optional. The node group settings.
+     */
+    auxiliaryNodeGroups?: Schema$AuxiliaryNodeGroup[];
     /**
      * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
@@ -647,6 +664,19 @@ export namespace dataproc_v1 {
     numLocalSsds?: number | null;
   }
   /**
+   * Driver scheduling configuration.
+   */
+  export interface Schema$DriverSchedulingConfig {
+    /**
+     * Required. The amount of memory in MB the driver is requesting.
+     */
+    memoryMb?: number | null;
+    /**
+     * Required. The number of vCPUs the driver is requesting.
+     */
+    vcores?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -690,7 +720,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$ExecutionConfig {
     /**
-     * Optional. The duration to keep the session alive while it's idling. Passing this threshold will cause the session to be terminated. Minimum value is 30 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * Optional. The duration to keep the session alive while it's idling. Passing this threshold will cause the session to be terminated. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). Defaults to 4 hours if not set.
      */
     idleTtl?: string | null;
     /**
@@ -1133,6 +1163,10 @@ export namespace dataproc_v1 {
      */
     driverOutputResourceUri?: string | null;
     /**
+     * Optional. Driver scheduling configuration.
+     */
+    driverSchedulingConfig?: Schema$DriverSchedulingConfig;
+    /**
      * Optional. Job is a Hadoop job.
      */
     hadoopJob?: Schema$HadoopJob;
@@ -1257,11 +1291,11 @@ export namespace dataproc_v1 {
    */
   export interface Schema$JobScheduling {
     /**
-     * Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.Note: Currently, this restartable job option is not supported in Dataproc workflow template (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template) jobs.
+     * Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed.A job may be reported as thrashing if the driver exits with a non-zero code four times within a 10-minute window.Maximum value is 10.Note: This restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
      */
     maxFailuresPerHour?: number | null;
     /**
-     * Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240.Note: Currently, this restartable job option is not supported in Dataproc workflow template (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template) jobs.
+     * Optional. Maximum total number of times a driver may be restarted as a result of the driver exiting with a non-zero code. After the maximum number is reached, the job will be reported as failed.Maximum value is 240.Note: Currently, this restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
      */
     maxFailuresTotal?: number | null;
   }
@@ -1555,7 +1589,28 @@ export namespace dataproc_v1 {
     targetGkeCluster?: string | null;
   }
   /**
-   * Node Group Affinity for clusters using sole-tenant node groups.
+   * Dataproc Node Group. The Dataproc NodeGroup resource is not related to the Dataproc NodeGroupAffinity resource.
+   */
+  export interface Schema$NodeGroup {
+    /**
+     * Optional. Node group labels. Label keys must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values can be empty. If specified, they must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). The node group must have no more than 32 labelsn.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The Node group resource name (https://aip.dev/122).
+     */
+    name?: string | null;
+    /**
+     * Optional. The node group instance group configuration.
+     */
+    nodeGroupConfig?: Schema$InstanceGroupConfig;
+    /**
+     * Required. Node group roles.
+     */
+    roles?: string[] | null;
+  }
+  /**
+   * Node Group Affinity for clusters using sole-tenant node groups. The Dataproc NodeGroupAffinity resource is not related to the Dataproc NodeGroup resource.
    */
   export interface Schema$NodeGroupAffinity {
     /**
@@ -1948,6 +2003,23 @@ export namespace dataproc_v1 {
     values?: string[] | null;
   }
   /**
+   * A request to resize a node group.
+   */
+  export interface Schema$ResizeNodeGroupRequest {
+    /**
+     * Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning) allows the removal of nodes from the Compute Engine node group without interrupting jobs in progress. This timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.
+     */
+    gracefulDecommissionTimeout?: string | null;
+    /**
+     * Optional. A unique ID used to identify the request. If the server receives two ResizeNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.ResizeNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string | null;
+    /**
+     * Required. The number of running instances for the node group to maintain. The group adds or removes instances to maintain the number of instances specified by this parameter.
+     */
+    size?: number | null;
+  }
+  /**
    * Runtime configuration for a workload.
    */
   export interface Schema$RuntimeConfig {
@@ -1969,9 +2041,13 @@ export namespace dataproc_v1 {
    */
   export interface Schema$RuntimeInfo {
     /**
-     * Output only. Approximate workload resource usage calculated after workload finishes.
+     * Output only. Approximate workload resource usage calculated after workload finishes (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     approximateUsage?: Schema$UsageMetrics;
+    /**
+     * Output only. Snapshot of current workload resource usage.
+     */
+    currentUsage?: Schema$UsageSnapshot;
     /**
      * Output only. A URI pointing to the location of the diagnostics tarball.
      */
@@ -2420,17 +2496,34 @@ export namespace dataproc_v1 {
     queryList?: Schema$QueryList;
   }
   /**
-   * Usage metrics represent total resources consumed by a workload.
+   * Usage metrics represent approximate total resources consumed by a workload.
    */
   export interface Schema$UsageMetrics {
     /**
-     * Optional. DCU usage in milliDCU*seconds.
+     * Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     milliDcuSeconds?: string | null;
     /**
-     * Optional. Shuffle storage usage in GB*Seconds
+     * Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
     shuffleStorageGbSeconds?: string | null;
+  }
+  /**
+   * The usage snaphot represents the resources consumed by a workload at a specified time.
+   */
+  export interface Schema$UsageSnapshot {
+    /**
+     * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+     */
+    milliDcu?: string | null;
+    /**
+     * Optional. Shuffle Storage in gigabytes (GB). (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+     */
+    shuffleStorageGb?: string | null;
+    /**
+     * Optional. The timestamp of the usage snapshot.
+     */
+    snapshotTime?: string | null;
   }
   /**
    * Validation based on a list of allowed values.
@@ -7902,8 +7995,12 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects$Regions$Clusters {
     context: APIRequestContext;
+    nodeGroups: Resource$Projects$Regions$Clusters$Nodegroups;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.nodeGroups = new Resource$Projects$Regions$Clusters$Nodegroups(
+        this.context
+      );
     }
 
     /**
@@ -10051,6 +10148,472 @@ export namespace dataproc_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
+  export class Resource$Projects$Regions$Clusters$Nodegroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a node group in a cluster. The returned Operation.metadata is NodeGroupOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.nodeGroups.create({
+     *     // Optional. An optional node group ID. Generated if not specified.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of from 3 to 33 characters.
+     *     nodeGroupId: 'placeholder-value',
+     *     // Required. The parent resource where this node group will be created. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}
+     *     parent: 'projects/my-project/regions/my-region/clusters/my-cluster',
+     *     // Optional. A unique ID used to identify the request. If the server receives two CreateNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "nodeGroupConfig": {},
+     *       //   "roles": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Nodegroups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Nodegroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Regions$Clusters$Nodegroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/nodeGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the resource representation for a node group in a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.nodeGroups.get({
+     *     // Required. The name of the node group to retrieve. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}/nodeGroups/{nodeGroup\}
+     *     name: 'projects/my-project/regions/my-region/clusters/my-cluster/nodeGroups/my-nodeGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "nodeGroupConfig": {},
+     *   //   "roles": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NodeGroup>;
+    get(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NodeGroup>,
+      callback: BodyResponseCallback<Schema$NodeGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Get,
+      callback: BodyResponseCallback<Schema$NodeGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NodeGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Nodegroups$Get
+        | BodyResponseCallback<Schema$NodeGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NodeGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NodeGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$NodeGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Nodegroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Nodegroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NodeGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NodeGroup>(parameters);
+      }
+    }
+
+    /**
+     * Resizes a node group in a cluster. The returned Operation.metadata is NodeGroupOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.nodeGroups.resize({
+     *     // Required. The name of the node group to resize. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}/nodeGroups/{nodeGroup\}
+     *     name: 'projects/my-project/regions/my-region/clusters/my-cluster/nodeGroups/my-nodeGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gracefulDecommissionTimeout": "my_gracefulDecommissionTimeout",
+     *       //   "requestId": "my_requestId",
+     *       //   "size": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resize(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resize(
+      params?: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    resize(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resize(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resize(
+      params: Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:resize').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Create
+    extends StandardParameters {
+    /**
+     * Optional. An optional node group ID. Generated if not specified.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of from 3 to 33 characters.
+     */
+    nodeGroupId?: string;
+    /**
+     * Required. The parent resource where this node group will be created. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}
+     */
+    parent?: string;
+    /**
+     * Optional. A unique ID used to identify the request. If the server receives two CreateNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NodeGroup;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the node group to retrieve. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}/nodeGroups/{nodeGroup\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Nodegroups$Resize
+    extends StandardParameters {
+    /**
+     * Required. The name of the node group to resize. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}/nodeGroups/{nodeGroup\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResizeNodeGroupRequest;
+  }
+
   export class Resource$Projects$Regions$Jobs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -10104,6 +10667,7 @@ export namespace dataproc_v1 {
      *   //   "done": false,
      *   //   "driverControlFilesUri": "my_driverControlFilesUri",
      *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "driverSchedulingConfig": {},
      *   //   "hadoopJob": {},
      *   //   "hiveJob": {},
      *   //   "jobUuid": "my_jobUuid",
@@ -10386,6 +10950,7 @@ export namespace dataproc_v1 {
      *   //   "done": false,
      *   //   "driverControlFilesUri": "my_driverControlFilesUri",
      *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "driverSchedulingConfig": {},
      *   //   "hadoopJob": {},
      *   //   "hiveJob": {},
      *   //   "jobUuid": "my_jobUuid",
@@ -10819,6 +11384,7 @@ export namespace dataproc_v1 {
      *       //   "done": false,
      *       //   "driverControlFilesUri": "my_driverControlFilesUri",
      *       //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *       //   "driverSchedulingConfig": {},
      *       //   "hadoopJob": {},
      *       //   "hiveJob": {},
      *       //   "jobUuid": "my_jobUuid",
@@ -10846,6 +11412,7 @@ export namespace dataproc_v1 {
      *   //   "done": false,
      *   //   "driverControlFilesUri": "my_driverControlFilesUri",
      *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "driverSchedulingConfig": {},
      *   //   "hadoopJob": {},
      *   //   "hiveJob": {},
      *   //   "jobUuid": "my_jobUuid",
@@ -11143,6 +11710,7 @@ export namespace dataproc_v1 {
      *   //   "done": false,
      *   //   "driverControlFilesUri": "my_driverControlFilesUri",
      *   //   "driverOutputResourceUri": "my_driverOutputResourceUri",
+     *   //   "driverSchedulingConfig": {},
      *   //   "hadoopJob": {},
      *   //   "hiveJob": {},
      *   //   "jobUuid": "my_jobUuid",
