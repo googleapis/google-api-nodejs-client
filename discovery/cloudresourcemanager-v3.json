@@ -980,7 +980,8 @@
             "$ref": "SearchProjectsResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         },
         "setIamPolicy": {
@@ -1760,7 +1761,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20221113",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
