@@ -3199,6 +3199,10 @@ export namespace dialogflow_v2beta1 {
      */
     automatedAgentReplyType?: string | null;
     /**
+     * The unique identifier of the current Dialogflow CX conversation page. Format: `projects//locations//agents//flows//pages/`.
+     */
+    cxCurrentPage?: string | null;
+    /**
      * The collection of current Dialogflow CX agent session parameters at the time of this response. Deprecated: Use `parameters` instead.
      */
     cxSessionParameters?: {[key: string]: any} | null;
@@ -5873,7 +5877,7 @@ export namespace dialogflow_v2beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Sentiment {
     /**
@@ -5988,6 +5992,10 @@ export namespace dialogflow_v2beta1 {
    * Configures speech transcription for ConversationProfile.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig {
+    /**
+     * Which Speech model to select. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then a default model is used. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.
+     */
+    model?: string | null;
     /**
      * The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request. If enhanced model variant is specified and an enhanced version of the specified model for the language does not exist, then it would emit an error.
      */
@@ -7632,7 +7640,7 @@ export namespace dialogflow_v2beta1 {
     webhookSource?: string | null;
   }
   /**
-   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text.
+   * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
    */
   export interface Schema$GoogleCloudDialogflowV2Sentiment {
     /**
