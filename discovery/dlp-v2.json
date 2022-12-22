@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20221023",
+  "revision": "20221218",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -4743,7 +4743,7 @@
         },
         "item": {
           "$ref": "GooglePrivacyDlpV2ContentItem",
-          "description": "The item to de-identify. Will be treated as text."
+          "description": "The item to de-identify. Will be treated as text. This value must be of type Table if your deidentify_config is a RecordTransformations object."
         },
         "locationId": {
           "description": "Deprecated. This field has no effect.",
@@ -5044,6 +5044,21 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2ExcludeByHotword": {
+      "description": "The rule to exclude findings based on a hotword. For record inspection of tables, column names are considered hotwords. An example of this is to exclude a finding if it belongs to a BigQuery column that matches a specific pattern.",
+      "id": "GooglePrivacyDlpV2ExcludeByHotword",
+      "properties": {
+        "hotwordRegex": {
+          "$ref": "GooglePrivacyDlpV2Regex",
+          "description": "Regular expression pattern defining what qualifies as a hotword."
+        },
+        "proximity": {
+          "$ref": "GooglePrivacyDlpV2Proximity",
+          "description": "Range of characters within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. The windowBefore property in proximity should be set to 1 if the hotword needs to be included in a column header."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2ExcludeInfoTypes": {
       "description": "List of excluded infoTypes.",
       "id": "GooglePrivacyDlpV2ExcludeInfoTypes",
@@ -5065,6 +5080,10 @@
         "dictionary": {
           "$ref": "GooglePrivacyDlpV2Dictionary",
           "description": "Dictionary which defines the rule."
+        },
+        "excludeByHotword": {
+          "$ref": "GooglePrivacyDlpV2ExcludeByHotword",
+          "description": "Drop if the hotword rule is contained in the proximate context. For tabular data, the context includes the column name."
         },
         "excludeInfoTypes": {
           "$ref": "GooglePrivacyDlpV2ExcludeInfoTypes",
@@ -5601,7 +5620,8 @@
             "UNITED_STATES",
             "URUGUAY",
             "VENEZUELA",
-            "INTERNAL"
+            "INTERNAL",
+            "NEW_ZEALAND"
           ],
           "enumDescriptions": [
             "Unused location",
@@ -5644,7 +5664,8 @@
             "The infoType is typically used in the United States.",
             "The infoType is typically used in Uruguay.",
             "The infoType is typically used in Venezuela.",
-            "The infoType is typically used in Google internally."
+            "The infoType is typically used in Google internally.",
+            "The infoType is typically used in New Zealand."
           ],
           "type": "string"
         },
@@ -7026,7 +7047,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2PublishSummaryToCscc": {
-      "description": "Publish the result summary of a DlpJob to the Cloud Security Command Center (CSCC Alpha). This action is only available for projects which are parts of an organization and whitelisted for the alpha Cloud Security Command Center. The action will publish the count of finding instances and their info types. The summary of findings will be persisted in CSCC and are governed by CSCC service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified. Compatible with: Inspect",
+      "description": "Publish the result summary of a DlpJob to [Security Command Center](https://cloud.google.com/security-command-center). This action is available for only projects that belong to an organization. This action publishes the count of finding instances and their infoTypes. The summary of findings are persisted in Security Command Center and are governed by [service-specific policies for Security Command Center](https://cloud.google.com/terms/service-terms). Only a single instance of this action can be specified. Compatible with: Inspect",
       "id": "GooglePrivacyDlpV2PublishSummaryToCscc",
       "properties": {},
       "type": "object"
