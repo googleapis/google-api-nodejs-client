@@ -525,7 +525,7 @@ export namespace dns_v1beta2 {
      */
     ipv4Address?: string | null;
     /**
-     * IPv6 address of a target name server. Does not accept both fields (ipv4 & ipv6) being populated.
+     * IPv6 address of a target name server. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022.
      */
     ipv6Address?: string | null;
     kind?: string | null;
@@ -755,7 +755,7 @@ export namespace dns_v1beta2 {
      */
     ipv4Address?: string | null;
     /**
-     * IPv6 address to forward to. Does not accept both fields (ipv4 & ipv6) being populated.
+     * IPv6 address to forward to. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022.
      */
     ipv6Address?: string | null;
     kind?: string | null;

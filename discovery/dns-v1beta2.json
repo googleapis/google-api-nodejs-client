@@ -1821,7 +1821,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20221215",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -2448,7 +2448,7 @@
           "type": "string"
         },
         "ipv6Address": {
-          "description": "IPv6 address of a target name server. Does not accept both fields (ipv4 & ipv6) being populated.",
+          "description": "IPv6 address of a target name server. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022.",
           "type": "string"
         },
         "kind": {
@@ -2839,7 +2839,7 @@
           "type": "string"
         },
         "ipv6Address": {
-          "description": "IPv6 address to forward to. Does not accept both fields (ipv4 & ipv6) being populated.",
+          "description": "IPv6 address to forward to. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022.",
           "type": "string"
         },
         "kind": {
