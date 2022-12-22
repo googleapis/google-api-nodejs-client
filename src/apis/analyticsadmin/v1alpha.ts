@@ -530,7 +530,7 @@ export namespace analyticsadmin_v1alpha {
      */
     exclusionDurationMode?: string | null;
     /**
-     * Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed together.
+     * Required. Immutable. Unordered list. Filter clauses that define the Audience. All clauses will be AND’ed together.
      */
     filterClauses?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterClause[];
     /**
@@ -878,6 +878,43 @@ export namespace analyticsadmin_v1alpha {
     userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
   }
   /**
+   * A link between a GA4 Property and BigQuery project.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBigQueryLink {
+    /**
+     * Output only. Time when the link was created.
+     */
+    createTime?: string | null;
+    /**
+     * If set true, enables daily data export to the linked Google Cloud project.
+     */
+    dailyExportEnabled?: boolean | null;
+    /**
+     * The list of event names that will be excluded from exports.
+     */
+    excludedEvents?: string[] | null;
+    /**
+     * The list of streams under the parent property for which data will be exported. Format: properties/{property_id\}/dataStreams/{stream_id\} Example: ['properties/1000/dataStreams/2000']
+     */
+    exportStreams?: string[] | null;
+    /**
+     * If set true, exported data will include advertising identifiers for mobile app streams.
+     */
+    includeAdvertisingId?: boolean | null;
+    /**
+     * Output only. Resource name of this BigQuery link. Format: 'properties/{property_id\}/bigQueryLinks/{bigquery_link_id\}' Format: 'properties/1234/bigQueryLinks/abc567'
+     */
+    name?: string | null;
+    /**
+     * Immutable. The linked Google Cloud project. When creating a BigQueryLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, the returned project will always have a project that contains a project number. Format: 'projects/{project number\}' Example: 'projects/1234'
+     */
+    project?: string | null;
+    /**
+     * If set true, enables streaming export to the linked Google Cloud project.
+     */
+    streamingExportEnabled?: boolean | null;
+  }
+  /**
    * Request message for CancelDisplayVideo360AdvertiserLinkProposal RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest {}
@@ -914,6 +951,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of AttributionSettings resource in change history.
      */
     attributionSettings?: Schema$GoogleAnalyticsAdminV1alphaAttributionSettings;
+    /**
+     * A snapshot of a BigQuery link resource in change history.
+     */
+    bigqueryLink?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink;
     /**
      * A snapshot of a ConversionEvent resource in change history.
      */
@@ -1542,6 +1583,19 @@ export namespace analyticsadmin_v1alpha {
      * List of Audiences.
      */
     audiences?: Schema$GoogleAnalyticsAdminV1alphaAudience[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListBigQueryLinks RPC
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse {
+    /**
+     * List of BigQueryLinks.
+     */
+    bigqueryLinks?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -4845,6 +4899,7 @@ export namespace analyticsadmin_v1alpha {
   export class Resource$Properties {
     context: APIRequestContext;
     audiences: Resource$Properties$Audiences;
+    bigQueryLinks: Resource$Properties$Bigquerylinks;
     conversionEvents: Resource$Properties$Conversionevents;
     customDimensions: Resource$Properties$Customdimensions;
     customMetrics: Resource$Properties$Custommetrics;
@@ -4858,6 +4913,7 @@ export namespace analyticsadmin_v1alpha {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.audiences = new Resource$Properties$Audiences(this.context);
+      this.bigQueryLinks = new Resource$Properties$Bigquerylinks(this.context);
       this.conversionEvents = new Resource$Properties$Conversionevents(
         this.context
       );
@@ -5195,7 +5251,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an GA4 Property.
+     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.
      * @example
      * ```js
      * // Before running the sample:
@@ -7815,6 +7871,329 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaAudience;
+  }
+
+  export class Resource$Properties$Bigquerylinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lookup for a single BigQuery Link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.bigQueryLinks.get({
+     *     // Required. The name of the BigQuery link to lookup. Format: properties/{property_id\}/bigQueryLinks/{bigquery_link_id\} Example: properties/123/bigQueryLinks/456
+     *     name: 'properties/my-propertie/bigQueryLinks/my-bigQueryLink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dailyExportEnabled": false,
+     *   //   "excludedEvents": [],
+     *   //   "exportStreams": [],
+     *   //   "includeAdvertisingId": false,
+     *   //   "name": "my_name",
+     *   //   "project": "my_project",
+     *   //   "streamingExportEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Bigquerylinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>;
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Bigquerylinks$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Bigquerylinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Bigquerylinks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists BigQuery Links on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.bigQueryLinks.list({
+     *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListBigQueryLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryLinks` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the property to list BigQuery links under. Format: properties/{property_id\} Example: properties/1234
+     *     parent: 'properties/my-propertie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigqueryLinks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Bigquerylinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>;
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Bigquerylinks$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Bigquerylinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Bigquerylinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/bigQueryLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Bigquerylinks$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the BigQuery link to lookup. Format: properties/{property_id\}/bigQueryLinks/{bigquery_link_id\} Example: properties/123/bigQueryLinks/456
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Bigquerylinks$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBigQueryLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryLinks` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the property to list BigQuery links under. Format: properties/{property_id\} Example: properties/1234
+     */
+    parent?: string;
   }
 
   export class Resource$Properties$Conversionevents {
@@ -13919,7 +14298,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res = await analyticsadmin.properties.firebaseLinks.list({
      *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
+     *     // A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirebaseLinks` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. Format: properties/{property_id\} Example: properties/1234
      *     parent: 'properties/my-propertie',
@@ -14061,7 +14440,7 @@ export namespace analyticsadmin_v1alpha {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
+     * A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirebaseLinks` must match the call that provided the page token.
      */
     pageToken?: string;
     /**

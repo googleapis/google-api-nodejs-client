@@ -689,7 +689,7 @@
           ]
         },
         "delete": {
-          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an GA4 Property.",
+          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
           "httpMethod": "DELETE",
           "id": "analyticsadmin.properties.delete",
@@ -1175,6 +1175,73 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
+        "bigQueryLinks": {
+          "methods": {
+            "get": {
+              "description": "Lookup for a single BigQuery Link.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.bigQueryLinks.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the BigQuery link to lookup. Format: properties/{property_id}/bigQueryLinks/{bigquery_link_id} Example: properties/123/bigQueryLinks/456",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/bigQueryLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists BigQuery Links on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.bigQueryLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListBigQueryLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the property to list BigQuery links under. Format: properties/{property_id} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/bigQueryLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
               ]
             }
           }
@@ -2350,7 +2417,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.",
+                  "description": "A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirebaseLinks` must match the call that provided the page token.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2956,7 +3023,7 @@
       }
     }
   },
-  "revision": "20221027",
+  "revision": "20221214",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -3544,7 +3611,7 @@
           "type": "string"
         },
         "filterClauses": {
-          "description": "Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed together.",
+          "description": "Required. Immutable. Unordered list. Filter clauses that define the Audience. All clauses will be AND’ed together.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterClause"
           },
@@ -4070,6 +4137,54 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaBigQueryLink": {
+      "description": "A link between a GA4 Property and BigQuery project.",
+      "id": "GoogleAnalyticsAdminV1alphaBigQueryLink",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the link was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dailyExportEnabled": {
+          "description": "If set true, enables daily data export to the linked Google Cloud project.",
+          "type": "boolean"
+        },
+        "excludedEvents": {
+          "description": "The list of event names that will be excluded from exports.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "exportStreams": {
+          "description": "The list of streams under the parent property for which data will be exported. Format: properties/{property_id}/dataStreams/{stream_id} Example: ['properties/1000/dataStreams/2000']",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeAdvertisingId": {
+          "description": "If set true, exported data will include advertising identifiers for mobile app streams.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Resource name of this BigQuery link. Format: 'properties/{property_id}/bigQueryLinks/{bigquery_link_id}' Format: 'properties/1234/bigQueryLinks/abc567'",
+          "readOnly": true,
+          "type": "string"
+        },
+        "project": {
+          "description": "Immutable. The linked Google Cloud project. When creating a BigQueryLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, the returned project will always have a project that contains a project number. Format: 'projects/{project number}' Example: 'projects/1234'",
+          "type": "string"
+        },
+        "streamingExportEnabled": {
+          "description": "If set true, enables streaming export to the linked Google Cloud project.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest": {
       "description": "Request message for CancelDisplayVideo360AdvertiserLinkProposal RPC.",
       "id": "GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest",
@@ -4122,6 +4237,10 @@
         "attributionSettings": {
           "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings",
           "description": "A snapshot of AttributionSettings resource in change history."
+        },
+        "bigqueryLink": {
+          "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink",
+          "description": "A snapshot of a BigQuery link resource in change history."
         },
         "conversionEvent": {
           "$ref": "GoogleAnalyticsAdminV1alphaConversionEvent",
@@ -5036,6 +5155,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse": {
+      "description": "Response message for ListBigQueryLinks RPC",
+      "id": "GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse",
+      "properties": {
+        "bigqueryLinks": {
+          "description": "List of BigQueryLinks.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListConversionEventsResponse": {
       "description": "Response message for ListConversionEvents RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListConversionEventsResponse",
@@ -5709,7 +5846,7 @@
               "DATA_STREAM",
               "ATTRIBUTION_SETTINGS",
               "EXPANDED_DATA_SET",
-              "CHANNEL_GROUPING"
+              "CHANNEL_GROUP"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -5729,7 +5866,7 @@
               "DataStream resource",
               "AttributionSettings resource",
               "ExpandedDataSet resource",
-              "ChannelGrouping resource"
+              "ChannelGroup resource"
             ],
             "type": "string"
           },

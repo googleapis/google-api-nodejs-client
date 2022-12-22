@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {analyticsadmin_v1alpha} from './v1alpha';
+import {analyticsadmin_v1beta} from './v1beta';
 
 export const VERSIONS = {
   v1alpha: analyticsadmin_v1alpha.Analyticsadmin,
+  v1beta: analyticsadmin_v1beta.Analyticsadmin,
 };
 
 export function analyticsadmin(
@@ -26,9 +28,23 @@ export function analyticsadmin(
 export function analyticsadmin(
   options: analyticsadmin_v1alpha.Options
 ): analyticsadmin_v1alpha.Analyticsadmin;
-export function analyticsadmin<T = analyticsadmin_v1alpha.Analyticsadmin>(
+export function analyticsadmin(
+  version: 'v1beta'
+): analyticsadmin_v1beta.Analyticsadmin;
+export function analyticsadmin(
+  options: analyticsadmin_v1beta.Options
+): analyticsadmin_v1beta.Analyticsadmin;
+export function analyticsadmin<
+  T =
+    | analyticsadmin_v1alpha.Analyticsadmin
+    | analyticsadmin_v1beta.Analyticsadmin
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | analyticsadmin_v1alpha.Options
+  versionOrOptions:
+    | 'v1alpha'
+    | analyticsadmin_v1alpha.Options
+    | 'v1beta'
+    | analyticsadmin_v1beta.Options
 ) {
   return getAPI<T>('analyticsadmin', versionOrOptions, VERSIONS, this);
 }
@@ -36,6 +52,7 @@ export function analyticsadmin<T = analyticsadmin_v1alpha.Analyticsadmin>(
 const auth = new AuthPlus();
 export {auth};
 export {analyticsadmin_v1alpha};
+export {analyticsadmin_v1beta};
 export {
   AuthPlus,
   GlobalOptions,
