@@ -1026,6 +1026,10 @@ export namespace connectors_v1 {
     webAssetsLocation?: string | null;
   }
   /**
+   * Request message for ConnectorsService.RefreshConnectionSchemaMetadata.
+   */
+  export interface Schema$RefreshConnectionSchemaMetadataRequest {}
+  /**
    * Resource definition
    */
   export interface Schema$Resource {
@@ -1743,10 +1747,15 @@ export namespace connectors_v1 {
 
   export class Resource$Projects$Locations$Connections {
     context: APIRequestContext;
+    connectionSchemaMetadata: Resource$Projects$Locations$Connections$Connectionschemametadata;
     runtimeActionSchemas: Resource$Projects$Locations$Connections$Runtimeactionschemas;
     runtimeEntitySchemas: Resource$Projects$Locations$Connections$Runtimeentityschemas;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.connectionSchemaMetadata =
+        new Resource$Projects$Locations$Connections$Connectionschemametadata(
+          this.context
+        );
       this.runtimeActionSchemas =
         new Resource$Projects$Locations$Connections$Runtimeactionschemas(
           this.context
@@ -3179,6 +3188,169 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Connections$Connectionschemametadata {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Refresh runtime schema of a connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.connectionSchemaMetadata.refresh(
+     *       {
+     *         // Required. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
+     *         name: 'projects/my-project/locations/my-location/connections/my-connection/connectionSchemaMetadata',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    refresh(
+      params?: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    refresh(
+      params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    refresh(callback: BodyResponseCallback<Schema$Operation>): void;
+    refresh(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:refresh').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Refresh
+    extends StandardParameters {
+    /**
+     * Required. Resource name. Format: projects/{project\}/locations/{location\}/connections/{connection\}/connectionSchemaMetadata
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RefreshConnectionSchemaMetadataRequest;
   }
 
   export class Resource$Projects$Locations$Connections$Runtimeactionschemas {
