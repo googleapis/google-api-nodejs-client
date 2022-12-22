@@ -106,110 +106,6 @@
   "resources": {
     "conversion": {
       "methods": {
-        "GetCustomerId": {
-          "description": "Retrieves a list of conversions from a DoubleClick Search engine account.",
-          "flatPath": "doubleclicksearch/v2/customer/{customerId}/conversion",
-          "httpMethod": "GET",
-          "id": "doubleclicksearch.conversion.GetCustomerId",
-          "parameterOrder": [
-            "customerId",
-            "endDate",
-            "rowCount",
-            "startDate",
-            "startRow"
-          ],
-          "parameters": {
-            "adGroupId": {
-              "description": "Numeric ID of the ad group.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "adId": {
-              "description": "Numeric ID of the ad.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "advertiserId": {
-              "description": "Numeric ID of the advertiser.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "agencyId": {
-              "description": "Numeric ID of the agency.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "campaignId": {
-              "description": "Numeric ID of the campaign.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "criterionId": {
-              "description": "Numeric ID of the criterion.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "customerId": {
-              "description": "Customer ID of a client account in the new Search Ads 360 experience.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "endDate": {
-              "description": "Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
-              "format": "int32",
-              "location": "query",
-              "maximum": "99991231",
-              "minimum": "20091101",
-              "required": true,
-              "type": "integer"
-            },
-            "engineAccountId": {
-              "description": "Numeric ID of the engine account.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
-            "rowCount": {
-              "description": "The number of conversions to return per call.",
-              "format": "int32",
-              "location": "query",
-              "maximum": "1000",
-              "minimum": "1",
-              "required": true,
-              "type": "integer"
-            },
-            "startDate": {
-              "description": "First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
-              "format": "int32",
-              "location": "query",
-              "maximum": "99991231",
-              "minimum": "20091101",
-              "required": true,
-              "type": "integer"
-            },
-            "startRow": {
-              "description": "The 0-based starting index for retrieving conversions results.",
-              "format": "uint32",
-              "location": "query",
-              "required": true,
-              "type": "integer"
-            }
-          },
-          "path": "doubleclicksearch/v2/customer/{customerId}/conversion",
-          "response": {
-            "$ref": "ConversionList"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/doubleclicksearch"
-          ]
-        },
         "get": {
           "description": "Retrieves a list of conversions from a DoubleClick Search engine account.",
           "flatPath": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion",
@@ -311,6 +207,110 @@
             }
           },
           "path": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion",
+          "response": {
+            "$ref": "ConversionList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/doubleclicksearch"
+          ]
+        },
+        "getByCustomerId": {
+          "description": "Retrieves a list of conversions from a DoubleClick Search engine account.",
+          "flatPath": "doubleclicksearch/v2/customer/{customerId}/conversion",
+          "httpMethod": "GET",
+          "id": "doubleclicksearch.conversion.getByCustomerId",
+          "parameterOrder": [
+            "customerId",
+            "endDate",
+            "rowCount",
+            "startDate",
+            "startRow"
+          ],
+          "parameters": {
+            "adGroupId": {
+              "description": "Numeric ID of the ad group.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "adId": {
+              "description": "Numeric ID of the ad.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "advertiserId": {
+              "description": "Numeric ID of the advertiser.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "agencyId": {
+              "description": "Numeric ID of the agency.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "campaignId": {
+              "description": "Numeric ID of the campaign.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "criterionId": {
+              "description": "Numeric ID of the criterion.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "customerId": {
+              "description": "Customer ID of a client account in the new Search Ads 360 experience.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "endDate": {
+              "description": "Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "99991231",
+              "minimum": "20091101",
+              "required": true,
+              "type": "integer"
+            },
+            "engineAccountId": {
+              "description": "Numeric ID of the engine account.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "rowCount": {
+              "description": "The number of conversions to return per call.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "1000",
+              "minimum": "1",
+              "required": true,
+              "type": "integer"
+            },
+            "startDate": {
+              "description": "First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "99991231",
+              "minimum": "20091101",
+              "required": true,
+              "type": "integer"
+            },
+            "startRow": {
+              "description": "The 0-based starting index for retrieving conversions results.",
+              "format": "uint32",
+              "location": "query",
+              "required": true,
+              "type": "integer"
+            }
+          },
+          "path": "doubleclicksearch/v2/customer/{customerId}/conversion",
           "response": {
             "$ref": "ConversionList"
           },
@@ -543,7 +543,7 @@
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20221206",
   "rootUrl": "https://doubleclicksearch.googleapis.com/",
   "schemas": {
     "Availability": {
