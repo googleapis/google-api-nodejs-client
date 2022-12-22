@@ -1559,7 +1559,7 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20221206",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -1725,6 +1725,10 @@
           "$ref": "GoogleCloudIdentitytoolkitAdminV2ClientConfig",
           "description": "Options related to how clients making requests on behalf of a project should be configured."
         },
+        "emailPrivacyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+          "description": "Configuration for settings related to email privacy and public visibility."
+        },
         "mfa": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig",
           "description": "Configuration for this project's multi-factor authentication, including whether it is active and what factors can be used for the second factor"
@@ -1874,6 +1878,17 @@
         },
         "passwordRequired": {
           "description": "Whether a password is required for email auth or not. If true, both an email and password must be provided to sign in. If false, a user may sign in via either email/password or email link.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig": {
+      "description": "Configuration for settings related to email privacy and public visibility. Settings in this config protect against email enumeration, but may make some trade-offs in user-friendliness.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+      "properties": {
+        "enableImprovedEmailPrivacy": {
+          "description": "Migrates the project to a state of improved email privacy. For example certain error codes are more generic to avoid giving away information on whether the account exists. In addition, this disables certain features that as a side-effect allow user enumeration. Enabling this toggle disables the fetchSignInMethodsForEmail functionality and changing the user's email to an unverified email. It is recommended to remove dependence on this functionality and enable this toggle to improve user privacy.",
           "type": "boolean"
         }
       },
@@ -2629,6 +2644,10 @@
         "displayName": {
           "description": "Display name of the tenant.",
           "type": "string"
+        },
+        "emailPrivacyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+          "description": "Configuration for settings related to email privacy and public visibility."
         },
         "enableAnonymousUser": {
           "description": "Whether to enable anonymous user authentication.",

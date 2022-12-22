@@ -259,6 +259,10 @@ export namespace identitytoolkit_v2 {
      */
     client?: Schema$GoogleCloudIdentitytoolkitAdminV2ClientConfig;
     /**
+     * Configuration for settings related to email privacy and public visibility.
+     */
+    emailPrivacyConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig;
+    /**
      * Configuration for this project's multi-factor authentication, including whether it is active and what factors can be used for the second factor
      */
     mfa?: Schema$GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig;
@@ -370,6 +374,15 @@ export namespace identitytoolkit_v2 {
      * Whether a password is required for email auth or not. If true, both an email and password must be provided to sign in. If false, a user may sign in via either email/password or email link.
      */
     passwordRequired?: boolean | null;
+  }
+  /**
+   * Configuration for settings related to email privacy and public visibility. Settings in this config protect against email enumeration, but may make some trade-offs in user-friendliness.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig {
+    /**
+     * Migrates the project to a state of improved email privacy. For example certain error codes are more generic to avoid giving away information on whether the account exists. In addition, this disables certain features that as a side-effect allow user enumeration. Enabling this toggle disables the fetchSignInMethodsForEmail functionality and changing the user's email to an unverified email. It is recommended to remove dependence on this functionality and enable this toggle to improve user privacy.
+     */
+    enableImprovedEmailPrivacy?: boolean | null;
   }
   /**
    * Email template. The subject and body fields can contain the following placeholders which will be replaced with the appropriate values: %LINK% - The link to use to redeem the send OOB code. %EMAIL% - The email where the email is being sent. %NEW_EMAIL% - The new email being set for the account (when applicable). %APP_NAME% - The GCP project's display name. %DISPLAY_NAME% - The user's display name.
@@ -930,6 +943,10 @@ export namespace identitytoolkit_v2 {
      * Display name of the tenant.
      */
     displayName?: string | null;
+    /**
+     * Configuration for settings related to email privacy and public visibility.
+     */
+    emailPrivacyConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig;
     /**
      * Whether to enable anonymous user authentication.
      */
@@ -2386,6 +2403,7 @@ export namespace identitytoolkit_v2 {
      *   //   "autodeleteAnonymousUsers": false,
      *   //   "blockingFunctions": {},
      *   //   "client": {},
+     *   //   "emailPrivacyConfig": {},
      *   //   "mfa": {},
      *   //   "monitoring": {},
      *   //   "multiTenant": {},
@@ -2539,6 +2557,7 @@ export namespace identitytoolkit_v2 {
      *       //   "autodeleteAnonymousUsers": false,
      *       //   "blockingFunctions": {},
      *       //   "client": {},
+     *       //   "emailPrivacyConfig": {},
      *       //   "mfa": {},
      *       //   "monitoring": {},
      *       //   "multiTenant": {},
@@ -2559,6 +2578,7 @@ export namespace identitytoolkit_v2 {
      *   //   "autodeleteAnonymousUsers": false,
      *   //   "blockingFunctions": {},
      *   //   "client": {},
+     *   //   "emailPrivacyConfig": {},
      *   //   "mfa": {},
      *   //   "monitoring": {},
      *   //   "multiTenant": {},
@@ -5348,6 +5368,7 @@ export namespace identitytoolkit_v2 {
      *       //   "client": {},
      *       //   "disableAuth": false,
      *       //   "displayName": "my_displayName",
+     *       //   "emailPrivacyConfig": {},
      *       //   "enableAnonymousUser": false,
      *       //   "enableEmailLinkSignin": false,
      *       //   "hashConfig": {},
@@ -5369,6 +5390,7 @@ export namespace identitytoolkit_v2 {
      *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
+     *   //   "emailPrivacyConfig": {},
      *   //   "enableAnonymousUser": false,
      *   //   "enableEmailLinkSignin": false,
      *   //   "hashConfig": {},
@@ -5655,6 +5677,7 @@ export namespace identitytoolkit_v2 {
      *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
+     *   //   "emailPrivacyConfig": {},
      *   //   "enableAnonymousUser": false,
      *   //   "enableEmailLinkSignin": false,
      *   //   "hashConfig": {},
@@ -6105,6 +6128,7 @@ export namespace identitytoolkit_v2 {
      *       //   "client": {},
      *       //   "disableAuth": false,
      *       //   "displayName": "my_displayName",
+     *       //   "emailPrivacyConfig": {},
      *       //   "enableAnonymousUser": false,
      *       //   "enableEmailLinkSignin": false,
      *       //   "hashConfig": {},
@@ -6126,6 +6150,7 @@ export namespace identitytoolkit_v2 {
      *   //   "client": {},
      *   //   "disableAuth": false,
      *   //   "displayName": "my_displayName",
+     *   //   "emailPrivacyConfig": {},
      *   //   "enableAnonymousUser": false,
      *   //   "enableEmailLinkSignin": false,
      *   //   "hashConfig": {},
