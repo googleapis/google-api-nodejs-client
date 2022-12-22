@@ -539,11 +539,11 @@ export namespace iap_v1 {
    */
   export interface Schema$TunnelDestGroup {
     /**
-     * null List of CIDRs that this group applies to.
+     * Unordered list. List of CIDRs that this group applies to.
      */
     cidrs?: string[] | null;
     /**
-     * null List of FQDNs that this group applies to.
+     * Unordered list. List of FQDNs that this group applies to.
      */
     fqdns?: string[] | null;
     /**

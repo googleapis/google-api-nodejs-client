@@ -652,7 +652,7 @@
       }
     }
   },
-  "revision": "20220912",
+  "revision": "20221209",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -1100,12 +1100,14 @@
           "enum": [
             "METHOD_UNSPECIFIED",
             "LOGIN",
-            "SECURE_KEY"
+            "SECURE_KEY",
+            "ENROLLED_SECOND_FACTORS"
           ],
           "enumDescriptions": [
             "Reauthentication disabled.",
             "Prompts the user to log in again.",
-            "User must use their secure key 2nd factor device."
+            "User must use their secure key 2nd factor device.",
+            "User can use any enabled 2nd factor."
           ],
           "type": "string"
         },
@@ -1201,14 +1203,14 @@
       "id": "TunnelDestGroup",
       "properties": {
         "cidrs": {
-          "description": "null List of CIDRs that this group applies to.",
+          "description": "Unordered list. List of CIDRs that this group applies to.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "fqdns": {
-          "description": "null List of FQDNs that this group applies to.",
+          "description": "Unordered list. List of FQDNs that this group applies to.",
           "items": {
             "type": "string"
           },
