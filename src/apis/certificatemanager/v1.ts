@@ -270,7 +270,7 @@ export namespace certificatemanager_v1 {
      */
     description?: string | null;
     /**
-     * Output only. A list of GCLB targets which use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule.
+     * Output only. A list of GCLB targets that use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule.
      */
     gclbTargets?: Schema$GclbTarget[];
     /**
@@ -344,7 +344,7 @@ export namespace certificatemanager_v1 {
      */
     dnsResourceRecord?: Schema$DnsResourceRecord;
     /**
-     * Required. Immutable. A domain which is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`.
+     * Required. Immutable. A domain that is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`.
      */
     domain?: string | null;
     /**
@@ -382,7 +382,7 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Describes a Target Proxy which uses this Certificate Map.
+   * Describes a Target Proxy that uses this Certificate Map.
    */
   export interface Schema$GclbTarget {
     /**
