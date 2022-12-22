@@ -986,7 +986,7 @@ export namespace admin_reports_v1 {
      *   const res = await reports.customerUsageReports.get({
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
-     *     // Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     *     // Represents the date the usage occurred, based on PST time zone. The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
      *     date: '(d){4}-(d){2}-(d){2}',
      *     // Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. For your follow-on requests getting all of the report's pages, enter the `nextPageToken` value in the `pageToken` query string.
      *     pageToken: 'placeholder-value',
@@ -1105,7 +1105,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     * Represents the date the usage occurred, based on PST time zone. The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
      */
     date?: string;
     /**
@@ -1344,7 +1344,7 @@ export namespace admin_reports_v1 {
      *   const res = await reports.userUsageReport.get({
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
-     *     // Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     *     // Represents the date the usage occurred, based on GMT-7:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
      *     date: '(d){4}-(d){2}-(d){2}',
      *     // The `filters` query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The `filters` query string includes the name of the application whose usage is returned in the report. The application values for the Users Usage Report include `accounts`, `docs`, and `gmail`. Filters are in the form `[application name]:parameter name[parameter value],...`. In this example, the `<\>` 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03 ?parameters=accounts:last_login_time &filters=accounts:last_login_time%3C%3E2010-10-28T10:26:35.000Z The relational operators include: - `==` - 'equal to'. - `<\>` - 'not equal to'. It is URL-encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). - `<=` - 'less than or equal to'. It is URL-encoded (%3C=). - `\>` - 'greater than'. It is URL-encoded (%3E). - `\>=` - 'greater than or equal to'. It is URL-encoded (%3E=).
      *     filters:
@@ -1473,7 +1473,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     * Represents the date the usage occurred, based on GMT-7:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
      */
     date?: string;
     /**

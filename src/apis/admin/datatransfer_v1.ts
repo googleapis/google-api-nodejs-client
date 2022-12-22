@@ -127,7 +127,7 @@ export namespace admin_datatransfer_v1 {
   }
 
   /**
-   * Applications resources represent applications installed on the domain that support transferring ownership of user data.
+   * Application resources represent applications installed on the domain that support transferring ownership of user data.
    */
   export interface Schema$Application {
     /**
@@ -135,7 +135,7 @@ export namespace admin_datatransfer_v1 {
      */
     etag?: string | null;
     /**
-     * The application's ID.
+     * The application's ID. Retrievable by using the [`applications.list()`](/admin-sdk/data-transfer/reference/rest/v1/applications/list) method.
      */
     id?: string | null;
     /**
@@ -147,7 +147,7 @@ export namespace admin_datatransfer_v1 {
      */
     name?: string | null;
     /**
-     * The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transferred.
+     * The list of all possible transfer parameters for this application. These parameters select which categories of the user's data to transfer.
      */
     transferParams?: Schema$ApplicationTransferParam[];
   }
@@ -160,11 +160,11 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string | null;
     /**
-     * The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application.
+     * The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference.
      */
     applicationTransferParams?: Schema$ApplicationTransferParam[];
     /**
-     * Current status of transfer for this application. (Read-only)
+     * Read-only. Current status of transfer for this application.
      */
     applicationTransferStatus?: string | null;
   }
@@ -173,7 +173,7 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$ApplicationsListResponse {
     /**
-     * List of applications that support data transfer and are also installed for the customer.
+     * The list of applications that support data transfer and are also installed for the customer.
      */
     applications?: Schema$Application[];
     /**
@@ -185,7 +185,7 @@ export namespace admin_datatransfer_v1 {
      */
     kind?: string | null;
     /**
-     * Continuation token which will be used to specify next page in list API.
+     * Token to specify the next page in the list.
      */
     nextPageToken?: string | null;
   }
@@ -194,11 +194,11 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$ApplicationTransferParam {
     /**
-     * The type of the transfer parameter. eg: 'PRIVACY_LEVEL'
+     * The type of the transfer parameter, such as `PRIVACY_LEVEL`.
      */
     key?: string | null;
     /**
-     * The value of the corresponding transfer parameter. eg: 'PRIVATE' or 'SHARED'
+     * The value of the transfer parameter, such as `PRIVATE` or `SHARED`.
      */
     value?: string[] | null;
   }
@@ -207,7 +207,7 @@ export namespace admin_datatransfer_v1 {
    */
   export interface Schema$DataTransfer {
     /**
-     * List of per application data transfer resources. It contains data transfer details of the applications associated with this transfer resource. Note that this list is also used to specify the applications for which data transfer has to be done at the time of the transfer resource creation.
+     * The list of per-application data transfer resources. It contains details of the applications associated with this transfer resource, and also specifies the applications for which data transfer has to be done at the time of the transfer resource creation.
      */
     applicationDataTransfers?: Schema$ApplicationDataTransfer[];
     /**
@@ -215,7 +215,7 @@ export namespace admin_datatransfer_v1 {
      */
     etag?: string | null;
     /**
-     * The transfer's ID (Read-only).
+     * Read-only. The transfer's ID.
      */
     id?: string | null;
     /**
@@ -231,11 +231,11 @@ export namespace admin_datatransfer_v1 {
      */
     oldOwnerUserId?: string | null;
     /**
-     * Overall transfer status (Read-only).
+     * Read-only. Overall transfer status.
      */
     overallTransferStatusCode?: string | null;
     /**
-     * The time at which the data transfer was requested (Read-only).
+     * Read-only. The time at which the data transfer was requested.
      */
     requestTime?: string | null;
   }
@@ -256,7 +256,7 @@ export namespace admin_datatransfer_v1 {
      */
     kind?: string | null;
     /**
-     * Continuation token which will be used to specify next page in list API.
+     * Token to specify the next page in the list.
      */
     nextPageToken?: string | null;
   }
@@ -712,7 +712,7 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * Inserts a data transfer request.
+     * Inserts a data transfer request. See the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference for specific application requirements.
      * @example
      * ```js
      * // Before running the sample:
