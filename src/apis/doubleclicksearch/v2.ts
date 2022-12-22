@@ -757,7 +757,7 @@ export namespace doubleclicksearch_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await doubleclicksearch.conversion.GetCustomerId({
+     *   const res = await doubleclicksearch.conversion.getByCustomerId({
      *     // Numeric ID of the ad group.
      *     adGroupId: 'placeholder-value',
      *     // Numeric ID of the ad.
@@ -804,32 +804,34 @@ export namespace doubleclicksearch_v2 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    GetCustomerId(
-      params?: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params?: Params$Resource$Conversion$Getbycustomerid,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ConversionList>;
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
       callback: BodyResponseCallback<Schema$ConversionList>
     ): void;
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       callback: BodyResponseCallback<Schema$ConversionList>
     ): void;
-    GetCustomerId(callback: BodyResponseCallback<Schema$ConversionList>): void;
-    GetCustomerId(
+    getByCustomerId(
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    getByCustomerId(
       paramsOrCallback?:
-        | Params$Resource$Conversion$Getcustomerid
+        | Params$Resource$Conversion$Getbycustomerid
         | BodyResponseCallback<Schema$ConversionList>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -842,12 +844,12 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Conversion$Getcustomerid;
+        {}) as Params$Resource$Conversion$Getbycustomerid;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Conversion$Getcustomerid;
+        params = {} as Params$Resource$Conversion$Getbycustomerid;
         options = {};
       }
 
@@ -1355,7 +1357,7 @@ export namespace doubleclicksearch_v2 {
      */
     startRow?: number;
   }
-  export interface Params$Resource$Conversion$Getcustomerid
+  export interface Params$Resource$Conversion$Getbycustomerid
     extends StandardParameters {
     /**
      * Numeric ID of the ad group.
