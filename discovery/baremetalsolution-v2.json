@@ -1437,7 +1437,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221201",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1705,6 +1705,20 @@
             "$ref": "Volume"
           },
           "type": "array"
+        },
+        "workloadProfile": {
+          "description": "The workload profile for the instance.",
+          "enum": [
+            "WORKLOAD_PROFILE_UNSPECIFIED",
+            "WORKLOAD_PROFILE_GENERIC",
+            "WORKLOAD_PROFILE_HANA"
+          ],
+          "enumDescriptions": [
+            "The workload profile is in an unknown state.",
+            "The workload profile is generic.",
+            "The workload profile is hana."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3278,6 +3292,20 @@
             "The storage type for this volume is unknown.",
             "The storage type for this volume is SSD.",
             "This storage type for this volume is HDD."
+          ],
+          "type": "string"
+        },
+        "workloadProfile": {
+          "description": "The workload profile for the volume.",
+          "enum": [
+            "WORKLOAD_PROFILE_UNSPECIFIED",
+            "GENERIC",
+            "HANA"
+          ],
+          "enumDescriptions": [
+            "The workload profile is in an unknown state.",
+            "The workload profile is generic.",
+            "The workload profile is hana."
           ],
           "type": "string"
         }
