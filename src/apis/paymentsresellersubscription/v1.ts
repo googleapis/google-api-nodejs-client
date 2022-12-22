@@ -243,6 +243,27 @@ export namespace paymentsresellersubscription_v1 {
      */
     promotions?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Promotion[];
   }
+  /**
+   * Payload specific to Google One products.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload {
+    /**
+     * Campaign attributed to sales of this subscription.
+     */
+    campaigns?: string[] | null;
+    /**
+     * The type of offering the subscription was sold by the partner. e.g. VAS.
+     */
+    offering?: string | null;
+    /**
+     * The type of sales channel through which the subscription was sold.
+     */
+    salesChannel?: string | null;
+    /**
+     * The identifier for the partner store where the subscription was sold.
+     */
+    storeId?: string | null;
+  }
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
@@ -300,6 +321,19 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. Localized human readable name of the product.
      */
     titles?: Schema$GoogleTypeLocalizedText[];
+  }
+  /**
+   * Specifies product specific payload.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPayload {
+    /**
+     * Payload specific to Google One products.
+     */
+    googleOnePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload;
+    /**
+     * Payload specific to Youtube products.
+     */
+    youtubePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload;
   }
   /**
    * Configs the prices in an available region.
@@ -485,7 +519,7 @@ export namespace paymentsresellersubscription_v1 {
     reason?: string | null;
   }
   /**
-   * Individual line item definition of a subscription. Next id: 8
+   * Individual line item definition of a subscription.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem {
     /**
@@ -508,6 +542,10 @@ export namespace paymentsresellersubscription_v1 {
      * Required. Product resource name that identifies one the line item The format is 'partners/{partner_id\}/products/{product_id\}'.
      */
     product?: string | null;
+    /**
+     * Optional. Product specific payload for this line item.
+     */
+    productPayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPayload;
     /**
      * Output only. The recurrence type of the line item.
      */
@@ -572,6 +610,15 @@ export namespace paymentsresellersubscription_v1 {
      * The updated subscription resource.
      */
     subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+  }
+  /**
+   * Payload specific to Youtube products.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload {
+    /**
+     * The list of eligibility_ids which are applicable for the line item.
+     */
+    partnerEligibilityIds?: string[] | null;
   }
   /**
    * Localized variant of a text in a particular language.
@@ -1597,7 +1644,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
+     * [Deprecated] New partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
      * @example
      * ```js
      * // Before running the sample:
