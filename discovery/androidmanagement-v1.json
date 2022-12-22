@@ -1065,7 +1065,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221205",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1633,7 +1633,7 @@
           "type": "string"
         },
         "lockTaskAllowed": {
-          "description": "Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.",
+          "description": "Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to configure a dedicated device.",
           "type": "boolean"
         },
         "managedConfiguration": {
@@ -1663,6 +1663,20 @@
             "$ref": "PermissionGrant"
           },
           "type": "array"
+        },
+        "workProfileWidgets": {
+          "description": "Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.",
+          "enum": [
+            "WORK_PROFILE_WIDGETS_UNSPECIFIED",
+            "WORK_PROFILE_WIDGETS_ALLOWED",
+            "WORK_PROFILE_WIDGETS_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to work_profile_widgets_default",
+            "Work profile widgets are allowed. This means the application will be able to add widgets to the home screen.",
+            "Work profile widgets are disallowed. This means the application will not be able to add widgets to the home screen."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1692,7 +1706,7 @@
           "type": "string"
         },
         "events": {
-          "description": "List of app events. The most recent 20 events are stored in the list.",
+          "description": "The list of app events which have occurred in the last 30 hours.",
           "items": {
             "$ref": "ApplicationEvent"
           },
@@ -2177,6 +2191,20 @@
             "Unspecified. Defaults to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED.",
             "Prevents work profile contacts from appearing in personal profile contact searches and incoming calls",
             "Default. Allows work profile contacts to appear in personal profile contact searches and incoming calls"
+          ],
+          "type": "string"
+        },
+        "workProfileWidgetsDefault": {
+          "description": "Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.",
+          "enum": [
+            "WORK_PROFILE_WIDGETS_DEFAULT_UNSPECIFIED",
+            "WORK_PROFILE_WIDGETS_DEFAULT_ALLOWED",
+            "WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED.",
+            "Work profile widgets are allowed by default. This means that if the policy does not specify work_profile_widgets as WORK_PROFILE_WIDGETS_DISALLOWED for the application, it will be able to add widgets to the home screen.",
+            "Work profile widgets are disallowed by default. This means that if the policy does not specify work_profile_widgets as WORK_PROFILE_WIDGETS_ALLOWED for the application, it will be unable to add widgets to the home screen."
           ],
           "type": "string"
         }
@@ -2717,7 +2745,7 @@
       "type": "object"
     },
     "ExtensionConfig": {
-      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.",
+      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command (https://developer.android.com/management/reference/rest/v1/enterprises.devices/issueCommand#CommandType) on extension apps if needed for Android 13 and above.",
       "id": "ExtensionConfig",
       "properties": {
         "notificationReceiver": {
