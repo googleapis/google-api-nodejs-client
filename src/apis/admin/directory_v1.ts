@@ -2020,7 +2020,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$User {
     /**
-     * The list of the user's addresses. The maximum allowed data size for this field is 10Kb.
+     * The list of the user's addresses. The maximum allowed data size for this field is 10KB.
      */
     addresses?: any | null;
     /**
@@ -2053,7 +2053,7 @@ export namespace admin_directory_v1 {
     customSchemas?: {[key: string]: Schema$UserCustomProperties} | null;
     deletionTime?: string | null;
     /**
-     * The list of the user's email addresses. The maximum allowed data size for this field is 10Kb.
+     * The list of the user's email addresses. The maximum allowed data size for this field is 10KB.
      */
     emails?: any | null;
     /**
@@ -2061,11 +2061,11 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2Kb.
+     * The list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2KB.
      */
     externalIds?: any | null;
     /**
-     * The user's gender. The maximum allowed data size for this field is 1Kb.
+     * The user's gender. The maximum allowed data size for this field is 1KB.
      */
     gender?: any | null;
     /**
@@ -2077,7 +2077,7 @@ export namespace admin_directory_v1 {
      */
     id?: string | null;
     /**
-     * The list of the user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2Kb.
+     * The list of the user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2KB.
      */
     ims?: any | null;
     /**
@@ -2085,7 +2085,7 @@ export namespace admin_directory_v1 {
      */
     includeInGlobalAddressList?: boolean | null;
     /**
-     * If `true`, the user's IP address is [whitelisted](https://support.google.com/a/answer/60752).
+     * If `true`, the user's IP address is subject to a deprecated IP address [`allowlist`](https://support.google.com/a/answer/60752) configuration.
      */
     ipWhitelisted?: boolean | null;
     /**
@@ -2109,7 +2109,7 @@ export namespace admin_directory_v1 {
      */
     isMailboxSetup?: boolean | null;
     /**
-     * The list of the user's keywords. The maximum allowed data size for this field is 1Kb.
+     * The list of the user's keywords. The maximum allowed data size for this field is 1KB.
      */
     keywords?: any | null;
     /**
@@ -2117,7 +2117,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * The user's languages. The maximum allowed data size for this field is 1Kb.
+     * The user's languages. The maximum allowed data size for this field is 1KB.
      */
     languages?: any | null;
     /**
@@ -2125,11 +2125,11 @@ export namespace admin_directory_v1 {
      */
     lastLoginTime?: string | null;
     /**
-     * The user's locations. The maximum allowed data size for this field is 10Kb.
+     * The user's locations. The maximum allowed data size for this field is 10KB.
      */
     locations?: any | null;
     /**
-     * Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](https://support.google.com/a/answer/9193374). Maximum allowed data size for this field is 1Kb.
+     * Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](https://support.google.com/a/answer/9193374). Maximum allowed data size for this field is 1KB.
      */
     name?: Schema$UserName;
     /**
@@ -2141,7 +2141,7 @@ export namespace admin_directory_v1 {
      */
     notes?: any | null;
     /**
-     * The list of organizations the user belongs to. The maximum allowed data size for this field is 10Kb.
+     * The list of organizations the user belongs to. The maximum allowed data size for this field is 10KB.
      */
     organizations?: any | null;
     /**
@@ -2153,7 +2153,7 @@ export namespace admin_directory_v1 {
      */
     password?: string | null;
     /**
-     * The list of the user's phone numbers. The maximum allowed data size for this field is 1Kb.
+     * The list of the user's phone numbers. The maximum allowed data size for this field is 1KB.
      */
     phones?: any | null;
     /**
@@ -2173,7 +2173,7 @@ export namespace admin_directory_v1 {
      */
     recoveryPhone?: string | null;
     /**
-     * The list of the user's relationships to other users. The maximum allowed data size for this field is 2Kb.
+     * The list of the user's relationships to other users. The maximum allowed data size for this field is 2KB.
      */
     relations?: any | null;
     /**
@@ -2197,7 +2197,7 @@ export namespace admin_directory_v1 {
      */
     thumbnailPhotoUrl?: string | null;
     /**
-     * The user's websites. The maximum allowed data size for this field is 2Kb.
+     * The user's websites. The maximum allowed data size for this field is 2KB.
      */
     websites?: any | null;
   }
@@ -2455,6 +2455,10 @@ export namespace admin_directory_v1 {
     status?: boolean | null;
   }
   export interface Schema$UserName {
+    /**
+     * The user's display name. Limit: 256 characters.
+     */
+    displayName?: string | null;
     /**
      * The user's last name. Required when creating a user account.
      */
@@ -7910,7 +7914,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Name of domain alias to be retrieved.
      *     domainAliasName: 'placeholder-value',
@@ -8195,7 +8199,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Name of the parent domain for which domain aliases are to be fetched.
      *     parentDomainName: 'placeholder-value',
@@ -8315,7 +8319,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$Get
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -8338,7 +8342,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$List
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -8506,7 +8510,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Name of domain to be retrieved
      *     domainName: 'placeholder-value',
@@ -8792,7 +8796,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8907,7 +8911,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$Get extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -8928,7 +8932,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
   }
@@ -9383,7 +9387,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill in this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. Either the `customer` or the `domain` parameter must be provided.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      *     domain: 'placeholder-value',
@@ -9830,7 +9834,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill in this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. Either the `customer` or the `domain` parameter must be provided.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -10886,7 +10890,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieves a paginated list of all members in a group.
+     * Retrieves a paginated list of all members in a group. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).
      * @example
      * ```js
      * // Before running the sample:
@@ -11876,7 +11880,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead.
+     * Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).
      * @example
      * ```js
      * // Before running the sample:
@@ -13076,7 +13080,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.privileges.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -13182,7 +13186,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Privileges$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
   }
@@ -16431,7 +16435,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role assignment.
      *     roleAssignmentId: 'placeholder-value',
@@ -16720,7 +16724,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -16848,7 +16852,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$Get
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -16871,7 +16875,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$List
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -17050,7 +17054,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role.
      *     roleId: 'placeholder-value',
@@ -17338,7 +17342,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -17760,7 +17764,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Get extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -17781,7 +17785,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -17983,7 +17987,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -18266,7 +18270,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -18677,7 +18681,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$Get extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customerId?: string;
     /**
@@ -18698,7 +18702,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customerId?: string;
   }
@@ -19858,7 +19862,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      *     customFieldMask: 'placeholder-value',
@@ -20588,7 +20592,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates a user. This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared.
+     * Updates a user. This method supports patch semantics, meaning that you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared. For repeating fields that contain arrays, individual items in the array can't be patched piecemeal; they must be supplied in the request body with the desired values for all items. See the [user accounts guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-users#update_user) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -21026,7 +21030,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
