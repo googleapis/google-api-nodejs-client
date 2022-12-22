@@ -108,7 +108,7 @@
     "attachments": {
       "methods": {
         "create": {
-          "description": "Create a file attachment on a case or Cloud resource.",
+          "description": "Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/attachments",
           "httpMethod": "POST",
           "id": "cloudsupport.attachments.create",
@@ -117,7 +117,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. The resource name of the case to which attachment should be attached.",
+              "description": "Required. The resource name of the case (or case parent) to which the attachment should be attached.",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -204,7 +204,7 @@
           ]
         },
         "create": {
-          "description": "Create a new case and associate it with the given Cloud resource.",
+          "description": "Create a new case and associate it with the given Cloud resource. The case object must have the following fields set: display_name, description, classification, and severity.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases",
           "httpMethod": "POST",
           "id": "cloudsupport.cases.create",
@@ -326,7 +326,7 @@
           ]
         },
         "patch": {
-          "description": "Update the specified case. Only a subset of fields (display_name, description, time_zone, subscriber_email_addresses, related_resources, severity, priority, primary_contact, and labels) can be updated.",
+          "description": "Update the specified case. Only a subset of fields can be updated.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}",
           "httpMethod": "PATCH",
           "id": "cloudsupport.cases.patch",
@@ -436,7 +436,7 @@
         "comments": {
           "methods": {
             "create": {
-              "description": "Add a new comment to the specified Case.",
+              "description": "Add a new comment to the specified Case. The comment object must have the following fields set: body.",
               "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/comments",
               "httpMethod": "POST",
               "id": "cloudsupport.cases.comments.create",
@@ -533,7 +533,7 @@
           "useMediaDownloadService": true
         },
         "upload": {
-          "description": "Create a file attachment on a case or Cloud resource.",
+          "description": "Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/attachments",
           "httpMethod": "POST",
           "id": "cloudsupport.media.upload",
@@ -553,7 +553,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. The resource name of the case to which attachment should be attached.",
+              "description": "Required. The resource name of the case (or case parent) to which the attachment should be attached.",
               "location": "path",
               "pattern": "^[^/]+/[^/]+/cases/[^/]+$",
               "required": true,
@@ -575,7 +575,7 @@
       }
     }
   },
-  "revision": "20220919",
+  "revision": "20221213",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -695,6 +695,10 @@
         "escalated": {
           "description": "Whether the case is currently escalated.",
           "type": "boolean"
+        },
+        "languageCode": {
+          "description": "The language the user has requested to receive support in. This should be a BCP 47 language code (e.g., `\"en\"`, `\"zh-CN\"`, `\"zh-TW\"`, `\"ja\"`, `\"ko\"`). If no language or an unsupported language is specified, this field defaults to English (en). Language selection during case creation may affect your available support options. For a list of supported languages and their support working hours, see: https://cloud.google.com/support/docs/language-working-hours",
+          "type": "string"
         },
         "name": {
           "description": "The resource name for the case.",

@@ -230,6 +230,10 @@ export namespace cloudsupport_v2beta {
      */
     escalated?: boolean | null;
     /**
+     * The language the user has requested to receive support in. This should be a BCP 47 language code (e.g., `"en"`, `"zh-CN"`, `"zh-TW"`, `"ja"`, `"ko"`). If no language or an unsupported language is specified, this field defaults to English (en). Language selection during case creation may affect your available support options. For a list of supported languages and their support working hours, see: https://cloud.google.com/support/docs/language-working-hours
+     */
+    languageCode?: string | null;
+    /**
      * The resource name for the case.
      */
     name?: string | null;
@@ -731,7 +735,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a file attachment on a case or Cloud resource.
+     * Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.
      * @example
      * ```js
      * // Before running the sample:
@@ -757,7 +761,7 @@ export namespace cloudsupport_v2beta {
      *
      *   // Do the magic
      *   const res = await cloudsupport.attachments.create({
-     *     // Required. The resource name of the case to which attachment should be attached.
+     *     // Required. The resource name of the case (or case parent) to which the attachment should be attached.
      *     parent: '[^/]+/[^/]+',
      *
      *     // Request body metadata
@@ -876,7 +880,7 @@ export namespace cloudsupport_v2beta {
   export interface Params$Resource$Attachments$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of the case to which attachment should be attached.
+     * Required. The resource name of the case (or case parent) to which the attachment should be attached.
      */
     parent?: string;
 
@@ -1108,6 +1112,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1210,7 +1215,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a new case and associate it with the given Cloud resource.
+     * Create a new case and associate it with the given Cloud resource. The case object must have the following fields set: display_name, description, classification, and severity.
      * @example
      * ```js
      * // Before running the sample:
@@ -1249,6 +1254,7 @@ export namespace cloudsupport_v2beta {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "escalated": false,
+     *       //   "languageCode": "my_languageCode",
      *       //   "name": "my_name",
      *       //   "priority": "my_priority",
      *       //   "severity": "my_severity",
@@ -1270,6 +1276,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1419,6 +1426,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1560,6 +1568,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -1797,7 +1806,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Update the specified case. Only a subset of fields (display_name, description, time_zone, subscriber_email_addresses, related_resources, severity, priority, primary_contact, and labels) can be updated.
+     * Update the specified case. Only a subset of fields can be updated.
      * @example
      * ```js
      * // Before running the sample:
@@ -1838,6 +1847,7 @@ export namespace cloudsupport_v2beta {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "escalated": false,
+     *       //   "languageCode": "my_languageCode",
      *       //   "name": "my_name",
      *       //   "priority": "my_priority",
      *       //   "severity": "my_severity",
@@ -1859,6 +1869,7 @@ export namespace cloudsupport_v2beta {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "escalated": false,
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "priority": "my_priority",
      *   //   "severity": "my_severity",
@@ -2350,7 +2361,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Add a new comment to the specified Case.
+     * Add a new comment to the specified Case. The comment object must have the following fields set: body.
      * @example
      * ```js
      * // Before running the sample:
@@ -2826,7 +2837,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a file attachment on a case or Cloud resource.
+     * Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.
      * @example
      * ```js
      * // Before running the sample:
@@ -2852,7 +2863,7 @@ export namespace cloudsupport_v2beta {
      *
      *   // Do the magic
      *   const res = await cloudsupport.media.upload({
-     *     // Required. The resource name of the case to which attachment should be attached.
+     *     // Required. The resource name of the case (or case parent) to which the attachment should be attached.
      *     parent: '[^/]+/[^/]+/cases/my-case',
      *
      *     // Request body metadata
@@ -2983,7 +2994,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Required. The resource name of the case to which attachment should be attached.
+     * Required. The resource name of the case (or case parent) to which the attachment should be attached.
      */
     parent?: string;
 
