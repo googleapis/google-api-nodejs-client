@@ -102,7 +102,7 @@ export namespace mybusinessqanda_v1 {
   /**
    * My Business Q&amp;A API
    *
-   * The My Business Q&amp;A API allows questions and answers to be posted for specific listings.
+   * The My Business Q&amp;A API allows questions and answers to be posted for specific listings. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.
    *
    * @example
    * ```js
