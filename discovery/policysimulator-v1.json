@@ -166,6 +166,76 @@
                 }
               },
               "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/replays/{replaysId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.folders.locations.replays.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/replays/[^/]+/operations/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                      "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/replays/{replaysId}/operations",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.folders.locations.replays.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/replays/[^/]+/operations$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "results": {
                   "methods": {
                     "list": {
@@ -244,7 +314,9 @@
           "flatPath": "v1/operations",
           "httpMethod": "GET",
           "id": "policysimulator.operations.list",
-          "parameterOrder": [],
+          "parameterOrder": [
+            "name"
+          ],
           "parameters": {
             "filter": {
               "description": "The standard list filter.",
@@ -253,7 +325,9 @@
             },
             "name": {
               "description": "The name of the operation's parent resource.",
-              "location": "query",
+              "location": "path",
+              "pattern": "^operations$",
+              "required": true,
               "type": "string"
             },
             "pageSize": {
@@ -268,7 +342,7 @@
               "type": "string"
             }
           },
-          "path": "v1/operations",
+          "path": "v1/{+name}",
           "response": {
             "$ref": "GoogleLongrunningListOperationsResponse"
           },
@@ -339,6 +413,76 @@
                 }
               },
               "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/replays/{replaysId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.organizations.locations.replays.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/replays/[^/]+/operations/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                      "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/replays/{replaysId}/operations",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.organizations.locations.replays.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/replays/[^/]+/operations$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "results": {
                   "methods": {
                     "list": {
@@ -446,6 +590,76 @@
                 }
               },
               "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/replays/{replaysId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.projects.locations.replays.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/replays/[^/]+/operations/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/replays/{replaysId}/operations",
+                      "httpMethod": "GET",
+                      "id": "policysimulator.projects.locations.replays.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/replays/[^/]+/operations$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "results": {
                   "methods": {
                     "list": {
@@ -493,7 +707,7 @@
       }
     }
   },
-  "revision": "20220910",
+  "revision": "20221213",
   "rootUrl": "https://policysimulator.googleapis.com/",
   "schemas": {
     "GoogleCloudPolicysimulatorV1AccessStateDiff": {
