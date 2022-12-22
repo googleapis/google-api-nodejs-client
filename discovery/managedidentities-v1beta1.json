@@ -351,6 +351,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "domainJoinMachine": {
+                      "description": "DomainJoinMachine API joins a Compute Engine VM to the domain",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}:domainJoinMachine",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.domainJoinMachine",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: projects/{project_id}/locations/global/domains/{domain_name}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+domain}:domainJoinMachine",
+                      "request": {
+                        "$ref": "DomainJoinMachineRequest"
+                      },
+                      "response": {
+                        "$ref": "DomainJoinMachineResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "enableMigration": {
                       "description": "Enable Domain Migration",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/global/domains/{domainsId}:enableMigration",
@@ -1487,7 +1515,7 @@
       }
     }
   },
-  "revision": "20220826",
+  "revision": "20221027",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1841,6 +1869,32 @@
           "description": "Output only. The last update time.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainJoinMachineRequest": {
+      "description": "DomainJoinMachineRequest is the request message for DomainJoinMachine method",
+      "id": "DomainJoinMachineRequest",
+      "properties": {
+        "ouName": {
+          "description": "Optional. OU name to which the VM needs to be domain joined. If the field is not provided, the VM is joined to the default OU which is created. The default OU for the domain join api is created as GCE Instances under the Cloud OU. Example - OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com If the field is provided, then the custom OU is searched for under GCE Instances OU. Example - if ou_name=test_ou then the VM is domain joined to the following OU: OU=test_ou,OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com if present. If OU is not present under GCE Instances, then error is returned.",
+          "type": "string"
+        },
+        "vmIdToken": {
+          "description": "Required. Full instance id token of compute engine VM to verify instance identity. More about this: https://cloud.google.com/compute/docs/instances/verifying-instance-identity#request_signature",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainJoinMachineResponse": {
+      "description": "DomainJoinMachineResponse is the response message for DomainJoinMachine method",
+      "id": "DomainJoinMachineResponse",
+      "properties": {
+        "domainJoinBlob": {
+          "description": "The response is the offline domain join blob that is returned after running the djoin command. To correctly use the response of the API, please refer to the sample usage.",
           "type": "string"
         }
       },
