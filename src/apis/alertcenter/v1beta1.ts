@@ -379,7 +379,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$ApnsCertificateExpirationInfo {
     /**
-     * The Apple ID used for the certificate, may be blank if admins did not enter it.
+     * The Apple ID used for the certificate may be blank if admins didn't enter it.
      */
     appleId?: string | null;
     /**
@@ -1184,6 +1184,40 @@ export namespace alertcenter_v1beta1 {
     serialNumber?: string | null;
   }
   /**
+   * Details for an invalid transfer or forward.
+   */
+  export interface Schema$TransferError {
+    /**
+     * User's email address. This may be unavailable if the entity was deleted.
+     */
+    email?: string | null;
+    /**
+     * Type of entity being transferred to. For ring group members, this should always be USER.
+     */
+    entityType?: string | null;
+    /**
+     * Ring group or auto attendant ID. Not set for users.
+     */
+    id?: string | null;
+    /**
+     * Reason for the error.
+     */
+    invalidReason?: string | null;
+    /**
+     * User's full name, or the ring group / auto attendant name. This may be unavailable if the entity was deleted.
+     */
+    name?: string | null;
+  }
+  /**
+   * Error related to transferring or forwarding a phone call.
+   */
+  export interface Schema$TransferMisconfiguration {
+    /**
+     * Details for each invalid transfer or forward.
+     */
+    errors?: Schema$TransferError[];
+  }
+  /**
    * A request to undelete a specific alert that was marked for deletion.
    */
   export interface Schema$UndeleteAlertRequest {
@@ -1226,6 +1260,57 @@ export namespace alertcenter_v1beta1 {
      * Resource name that uniquely identifies the detector.
      */
     resourceName?: string | null;
+  }
+  /**
+   * Issue(s) with sending to voicemail.
+   */
+  export interface Schema$VoicemailMisconfiguration {
+    /**
+     * Issue(s) with voicemail recipients.
+     */
+    errors?: Schema$VoicemailRecipientError[];
+  }
+  /**
+   * Issue(s) with a voicemail recipient.
+   */
+  export interface Schema$VoicemailRecipientError {
+    /**
+     * Email address of the invalid recipient. This may be unavailable if the recipient was deleted.
+     */
+    email?: string | null;
+    /**
+     * Reason for the error.
+     */
+    invalidReason?: string | null;
+  }
+  /**
+   * An alert triggered when Google Voice configuration becomes invalid, generally due to an external entity being modified or deleted.
+   */
+  export interface Schema$VoiceMisconfiguration {
+    /**
+     * Name of the entity whose configuration is now invalid.
+     */
+    entityName?: string | null;
+    /**
+     * Type of the entity whose configuration is now invalid.
+     */
+    entityType?: string | null;
+    /**
+     * Link that the admin can follow to fix the issue.
+     */
+    fixUri?: string | null;
+    /**
+     * Issue(s) with members of a ring group.
+     */
+    membersMisconfiguration?: Schema$TransferMisconfiguration;
+    /**
+     * Issue(s) with transferring or forwarding to an external entity.
+     */
+    transferMisconfiguration?: Schema$TransferMisconfiguration;
+    /**
+     * Issue(s) with sending to voicemail.
+     */
+    voicemailMisconfiguration?: Schema$VoicemailMisconfiguration;
   }
 
   export class Resource$Alerts {
