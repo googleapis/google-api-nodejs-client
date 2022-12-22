@@ -319,7 +319,7 @@ export namespace run_v1 {
      */
     command?: string[] | null;
     /**
-     * List of environment variables to set in the container.
+     * List of environment variables to set in the container. EnvVar with duplicate names are generally allowed; if referencing a secret, the name must be unique for the container. For non-secret EnvVar names, the Container will only get the last-declared one.
      */
     env?: Schema$EnvVar[];
     /**
@@ -339,7 +339,7 @@ export namespace run_v1 {
      */
     livenessProbe?: Schema$Probe;
     /**
-     * Name of the container specified as a DNS_LABEL. Currently unused in Cloud Run. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names
+     * Name of the container specified as a DNS_LABEL (RFC 1123). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names
      */
     name?: string | null;
     /**
@@ -810,7 +810,7 @@ export namespace run_v1 {
    */
   export interface Schema$KeyToPath {
     /**
-     * The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version. The key to project.
+     * The Cloud Secret Manager secret version. Can be 'latest' for the latest value, or an integer or a secret alias for a specific version. The key to project.
      */
     key?: string | null;
     /**
@@ -1140,7 +1140,7 @@ export namespace run_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The name of the resource. In Cloud Run, name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created. More info: https://kubernetes.io/docs/user-guide/identifiers#names If ObjectMeta is part of a CreateServiceRequest, name must contain fewer than 50 characters.
+     * Required. The name of the resource. In Cloud Run, name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created. More info: https://kubernetes.io/docs/user-guide/identifiers#names
      */
     name?: string | null;
     /**
@@ -1425,7 +1425,7 @@ export namespace run_v1 {
      */
     conditions?: Schema$GoogleCloudRunV1Condition[];
     /**
-     * ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False. Note that providing a trafficTarget that only has a configurationName will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new "latest ready" revisions from the Configuration are processed without an update to the Route's spec.
+     * ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False. Note that providing a TrafficTarget that has latest_revision=True will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new "latest ready" revisions from the Configuration are processed without an update to the Route's spec.
      */
     observedGeneration?: number | null;
     /**
@@ -1463,7 +1463,7 @@ export namespace run_v1 {
    */
   export interface Schema$SecretKeySelector {
     /**
-     * Required. A Cloud Secret Manager secret version. Must be 'latest' for the latest version or an integer for a specific version. The key of the secret to select from. Must be a valid secret key.
+     * Required. A Cloud Secret Manager secret version. Must be 'latest' for the latest version, an integer for a specific version, or a version alias. The key of the secret to select from. Must be a valid secret key.
      */
     key?: string | null;
     /**
@@ -1813,11 +1813,11 @@ export namespace run_v1 {
    */
   export interface Schema$TrafficTarget {
     /**
-     * ConfigurationName of a configuration to whose latest revision which will be sent this portion of traffic. When the "status.latestReadyRevisionName" of the referenced configuration changes, traffic will automatically migrate from the prior "latest ready" revision to the new one. This field is never set in Route's status, only its spec. This is mutually exclusive with RevisionName. Cloud Run currently supports a single ConfigurationName.
+     * [Deprecated] Not supported in Cloud Run. It must be empty.
      */
     configurationName?: string | null;
     /**
-     * Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty in spec. When shown in status, this indicates that the RevisionName was resolved from a spec's ConfigurationName.
+     * Uses the "status.latestReadyRevisionName" of the Service to determine the traffic target. When it changes, traffic will automatically migrate from the prior "latest ready" revision to the new one. This field must be false if RevisionName is set. This field defaults to true otherwise. If the field is set to true on Status, this means that the Revision was resolved from the Service's latest ready revision.
      */
     latestRevision?: boolean | null;
     /**
@@ -1825,11 +1825,11 @@ export namespace run_v1 {
      */
     percent?: number | null;
     /**
-     * RevisionName of a specific revision to which to send this portion of traffic. This is mutually exclusive with ConfigurationName.
+     * Points this traffic target to a specific Revision. This field is mutually exclusive with latest_revision.
      */
     revisionName?: string | null;
     /**
-     * Optional. Tag is used to expose a dedicated url for referencing this target exclusively.
+     * Tag is used to expose a dedicated url for referencing this target exclusively.
      */
     tag?: string | null;
     /**
@@ -5683,7 +5683,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Not supported, and ignored by Cloud Run.
      *     kind: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      *     name: 'namespaces/my-namespace/services/my-service',
      *     // Not supported, and ignored by Cloud Run.
      *     propagationPolicy: 'placeholder-value',
@@ -5819,7 +5819,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.get({
-     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      *     name: 'namespaces/my-namespace/services/my-service',
      *   });
      *   console.log(res.data);
@@ -6105,7 +6105,7 @@ export namespace run_v1 {
      *   const res = await run.namespaces.services.replaceService({
      *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      *     dryRun: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      *     name: 'namespaces/my-namespace/services/my-service',
      *
      *     // Request body metadata
@@ -6255,7 +6255,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     * Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
     /**
@@ -6266,7 +6266,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Get
     extends StandardParameters {
     /**
-     * Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     * Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
   }
@@ -6312,7 +6312,7 @@ export namespace run_v1 {
      */
     dryRun?: string;
     /**
-     * Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     * Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
 
@@ -9653,7 +9653,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Not supported, and ignored by Cloud Run.
      *     kind: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     // Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Not supported, and ignored by Cloud Run.
      *     propagationPolicy: 'placeholder-value',
@@ -9786,7 +9786,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.get({
-     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     // Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -10204,7 +10204,7 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.services.replaceService({
      *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      *     dryRun: 'placeholder-value',
-     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     *     // Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -10638,7 +10638,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     * Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
     /**
@@ -10649,7 +10649,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     * Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
   }
@@ -10706,7 +10706,7 @@ export namespace run_v1 {
      */
     dryRun?: string;
     /**
-     * Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
+     * Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number\}/services/{service_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/services/{service_name\}` * `projects/{project_id_or_number\}/regions/{region\}/services/{service_name\}`
      */
     name?: string;
 
