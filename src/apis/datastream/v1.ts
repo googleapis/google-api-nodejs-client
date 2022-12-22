@@ -1171,6 +1171,9 @@ export namespace datastream_v1 {
    * A single target dataset to which all data will be streamed.
    */
   export interface Schema$SingleTargetDataset {
+    /**
+     * The dataset ID of the target dataset.
+     */
     datasetId?: string | null;
   }
   /**
@@ -3532,6 +3535,8 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.privateConnections.create({
+     *     // Optional. If set to true, will skip validations.
+     *     force: 'placeholder-value',
      *     // Required. The parent that owns the collection of PrivateConnections.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The private connectivity identifier.
@@ -4082,6 +4087,10 @@ export namespace datastream_v1 {
 
   export interface Params$Resource$Projects$Locations$Privateconnections$Create
     extends StandardParameters {
+    /**
+     * Optional. If set to true, will skip validations.
+     */
+    force?: boolean;
     /**
      * Required. The parent that owns the collection of PrivateConnections.
      */
