@@ -584,7 +584,7 @@
       }
     }
   },
-  "revision": "20220909",
+  "revision": "20221207",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1067,7 +1067,7 @@
           "type": "object"
         },
         "matchingCriteria": {
-          "description": "Required. null The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.",
+          "description": "Required. Unordered list. The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.",
           "items": {
             "$ref": "MatchingCriteria"
           },

@@ -473,7 +473,7 @@ export namespace eventarc_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. null The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.
+     * Required. Unordered list. The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.
      */
     matchingCriteria?: Schema$MatchingCriteria[];
     /**

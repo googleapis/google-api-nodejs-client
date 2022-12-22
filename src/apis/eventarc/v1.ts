@@ -259,7 +259,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$Destination {
     /**
-     * The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: `projects/{project\}/locations/{location\}/functions/{function\}`
+     * The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: `projects/{project\}/locations/{location\}/functions/{function\}` This is a read-only field. Creating Cloud Functions V2 triggers is only supported via the Cloud Functions product. An error will be returned if the user sets this value.
      */
     cloudFunction?: string | null;
     /**
@@ -728,7 +728,7 @@ export namespace eventarc_v1 {
      */
     etag?: string | null;
     /**
-     * Required. null The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.
+     * Required. Unordered list. The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.
      */
     eventFilters?: Schema$EventFilter[];
     /**

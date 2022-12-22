@@ -1197,7 +1197,7 @@
       }
     }
   },
-  "revision": "20221013",
+  "revision": "20221207",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1393,7 +1393,7 @@
       "id": "Destination",
       "properties": {
         "cloudFunction": {
-          "description": "The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: `projects/{project}/locations/{location}/functions/{function}`",
+          "description": "The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: `projects/{project}/locations/{location}/functions/{function}` This is a read-only field. Creating Cloud Functions V2 triggers is only supported via the Cloud Functions product. An error will be returned if the user sets this value.",
           "type": "string"
         },
         "cloudRun": {
@@ -2058,7 +2058,7 @@
           "type": "string"
         },
         "eventFilters": {
-          "description": "Required. null The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.",
+          "description": "Required. Unordered list. The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.",
           "items": {
             "$ref": "EventFilter"
           },
