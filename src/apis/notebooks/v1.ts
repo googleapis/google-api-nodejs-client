@@ -211,7 +211,7 @@ export namespace notebooks_v1 {
      */
     copyHomeFilesFlagEnabled?: boolean | null;
     /**
-     * Required. User Cloud Storage bucket location (REQUIRED) ## Must be formatted with path prefix (gs://$GCS_BUCKET) Permissions: User Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account attached to VM. Google Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account or ## user credentials attached to VM depending on authentication mode. Cloud Storage bucket Log file will be written to gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz
+     * Required. User Cloud Storage bucket location (REQUIRED). Must be formatted with path prefix (`gs://$GCS_BUCKET`). Permissions: User Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account attached to VM. Google Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account or user credentials attached to VM depending on authentication mode. Cloud Storage bucket Log file will be written to `gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz`
      */
     gcsBucket?: string | null;
     /**
@@ -219,7 +219,7 @@ export namespace notebooks_v1 {
      */
     packetCaptureFlagEnabled?: boolean | null;
     /**
-     * Optional. Defines the relative storage path in the Cloud Storage bucket where the diagnostic logs will be written: Default path will be the root directory of the Cloud Storage bucket (gs://$GCS_BUCKET/$DATE_$TIME.tar.gz) Example of full path where Log file will be written: gs://$GCS_BUCKET/$RELATIVE_PATH/
+     * Optional. Defines the relative storage path in the Cloud Storage bucket where the diagnostic logs will be written: Default path will be the root directory of the Cloud Storage bucket (`gs://$GCS_BUCKET/$DATE_$TIME.tar.gz`) Example of full path where Log file will be written: `gs://$GCS_BUCKET/$RELATIVE_PATH/`
      */
     relativePath?: string | null;
     /**
@@ -1218,6 +1218,10 @@ export namespace notebooks_v1 {
      * Output only. Bool indicating whether an newer image is available in an image family.
      */
     upgradeable?: boolean | null;
+    /**
+     * Output only. version of boot image such as M100, from release label of the image.
+     */
+    version?: string | null;
   }
   /**
    * The definition of a schedule.

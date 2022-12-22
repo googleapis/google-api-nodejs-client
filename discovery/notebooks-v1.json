@@ -1904,7 +1904,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20221213",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2042,7 +2042,7 @@
           "type": "boolean"
         },
         "gcsBucket": {
-          "description": "Required. User Cloud Storage bucket location (REQUIRED) ## Must be formatted with path prefix (gs://$GCS_BUCKET) Permissions: User Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account attached to VM. Google Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account or ## user credentials attached to VM depending on authentication mode. Cloud Storage bucket Log file will be written to gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz",
+          "description": "Required. User Cloud Storage bucket location (REQUIRED). Must be formatted with path prefix (`gs://$GCS_BUCKET`). Permissions: User Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account attached to VM. Google Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account or user credentials attached to VM depending on authentication mode. Cloud Storage bucket Log file will be written to `gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz`",
           "type": "string"
         },
         "packetCaptureFlagEnabled": {
@@ -2050,7 +2050,7 @@
           "type": "boolean"
         },
         "relativePath": {
-          "description": "Optional. Defines the relative storage path in the Cloud Storage bucket where the diagnostic logs will be written: Default path will be the root directory of the Cloud Storage bucket (gs://$GCS_BUCKET/$DATE_$TIME.tar.gz) Example of full path where Log file will be written: gs://$GCS_BUCKET/$RELATIVE_PATH/",
+          "description": "Optional. Defines the relative storage path in the Cloud Storage bucket where the diagnostic logs will be written: Default path will be the root directory of the Cloud Storage bucket (`gs://$GCS_BUCKET/$DATE_$TIME.tar.gz`) Example of full path where Log file will be written: `gs://$GCS_BUCKET/$RELATIVE_PATH/`",
           "type": "string"
         },
         "repairFlagEnabled": {
@@ -3564,6 +3564,11 @@
           "description": "Output only. Bool indicating whether an newer image is available in an image family.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "version": {
+          "description": "Output only. version of boot image such as M100, from release label of the image.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
