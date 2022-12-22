@@ -208,6 +208,10 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string | null;
     /**
+     * Billing related settings of the advertiser.
+     */
+    billingConfig?: Schema$AdvertiserBillingConfig;
+    /**
      * Required. Creative related settings of the advertiser.
      */
     creativeConfig?: Schema$AdvertiserCreativeConfig;
@@ -264,6 +268,15 @@ export namespace displayvideo_v2 {
      * The configuration for advertisers that use third-party ad servers only.
      */
     thirdPartyOnlyConfig?: Schema$ThirdPartyOnlyConfig;
+  }
+  /**
+   * Billing related settings of an advertiser.
+   */
+  export interface Schema$AdvertiserBillingConfig {
+    /**
+     * The ID of a billing profile assigned to the advertiser. This field will default to the default billing profile ID of the advertiser's parent partner if a value is not provided.
+     */
+    billingProfileId?: string | null;
   }
   /**
    * Creatives related settings of an advertiser.
@@ -479,6 +492,10 @@ export namespace displayvideo_v2 {
      * Output only. The unique ID of the assigned targeting option. The ID is only unique within a given resource and targeting type. It may be reused in other contexts.
      */
     assignedTargetingOptionId?: string | null;
+    /**
+     * Output only. An alias for the assigned_targeting_option_id. This value can be used in place of `assignedTargetingOptionId` when retrieving or deleting existing targeting. This field will only be supported for all assigned targeting options of the following targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` This field is also supported for line item assigned targeting options of the following targeting types: * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`
+     */
+    assignedTargetingOptionIdAlias?: string | null;
     /**
      * Audience targeting details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. You can only target one audience group option per resource.
      */
@@ -2335,16 +2352,13 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$DuplicateLineItemRequest {
     /**
-     * The display name of the resulting line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * The display name of the new line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     targetDisplayName?: string | null;
   }
-  /**
-   * Response message for LineItemService.DuplicateLineItem.
-   */
   export interface Schema$DuplicateLineItemResponse {
     /**
-     * The ID of the successfully created line item.
+     * The ID of the created line item.
      */
     duplicateLineItemId?: string | null;
   }
@@ -3067,7 +3081,7 @@ export namespace displayvideo_v2 {
      */
     dateRange?: Schema$DateRange;
     /**
-     * The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded with a length of no more than 80 characters.
+     * The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded.
      */
     description?: string | null;
   }
@@ -3561,7 +3575,7 @@ export namespace displayvideo_v2 {
      */
     reservationType?: string | null;
     /**
-     * The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item.
+     * The [targeting expansion](//support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item. Beginning November 7, 2022, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by November 9, 2022.
      */
     targetingExpansion?: Schema$TargetingExpansionConfig;
     /**
@@ -4825,7 +4839,7 @@ export namespace displayvideo_v2 {
      */
     geoRegionSearchTerms?: Schema$GeoRegionSearchTerms;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number | null;
     /**
@@ -4917,15 +4931,15 @@ export namespace displayvideo_v2 {
     displayName?: string | null;
   }
   /**
-   * Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level.
+   * Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level. Beginning November 7, 2022, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by November 9, 2022.
    */
   export interface Schema$TargetingExpansionConfig {
     /**
-     * Required. Whether to exclude first party audiences from targeting. Similar audiences of the excluded first party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.
+     * Required. Whether to exclude first-party audiences from use in targeting expansion or optimized targeting. Similar audiences of the excluded first-party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.
      */
     excludeFirstPartyAudience?: boolean | null;
     /**
-     * Required. Magnitude of expansion for applicable targeting under this line item.
+     * Required. Magnitude of expansion for applicable targeting under this line item. Beginning November 7, 2022, the behavior of this field will change in the following ways with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859): * This field will represent the optimized targeting checkbox, with a `NO_EXPANSION` value representing optimized targeting turned off and a `LEAST_EXPANSION` value representing optimized targeting turned on. * `NO_EXPANSION` will be the default value for the field and will be automatically assigned if you do not set the field. * If you set the field to any value other than `NO_EXPANSION`, it will automatically be set to `LEAST_EXPANSION`.
      */
     targetingExpansionLevel?: string | null;
   }
@@ -5612,6 +5626,7 @@ export namespace displayvideo_v2 {
      *       // {
      *       //   "adServerConfig": {},
      *       //   "advertiserId": "my_advertiserId",
+     *       //   "billingConfig": {},
      *       //   "creativeConfig": {},
      *       //   "dataAccessConfig": {},
      *       //   "displayName": "my_displayName",
@@ -5632,6 +5647,7 @@ export namespace displayvideo_v2 {
      *   // {
      *   //   "adServerConfig": {},
      *   //   "advertiserId": "my_advertiserId",
+     *   //   "billingConfig": {},
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
      *   //   "displayName": "my_displayName",
@@ -6044,6 +6060,7 @@ export namespace displayvideo_v2 {
      *   // {
      *   //   "adServerConfig": {},
      *   //   "advertiserId": "my_advertiserId",
+     *   //   "billingConfig": {},
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
      *   //   "displayName": "my_displayName",
@@ -6179,7 +6196,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertisers` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -6472,6 +6489,7 @@ export namespace displayvideo_v2 {
      *       // {
      *       //   "adServerConfig": {},
      *       //   "advertiserId": "my_advertiserId",
+     *       //   "billingConfig": {},
      *       //   "creativeConfig": {},
      *       //   "dataAccessConfig": {},
      *       //   "displayName": "my_displayName",
@@ -6492,6 +6510,7 @@ export namespace displayvideo_v2 {
      *   // {
      *   //   "adServerConfig": {},
      *   //   "advertiserId": "my_advertiserId",
+     *   //   "billingConfig": {},
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
      *   //   "displayName": "my_displayName",
@@ -6651,7 +6670,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -7363,7 +7382,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaigns` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -7835,7 +7854,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -7956,6 +7975,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -8648,7 +8668,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -8961,7 +8981,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -10397,7 +10417,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCreatives` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -10789,7 +10809,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -11909,6 +11929,7 @@ export namespace displayvideo_v2 {
      *           //   "appCategoryDetails": {},
      *           //   "appDetails": {},
      *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *           //   "audienceGroupDetails": {},
      *           //   "audioContentTypeDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
@@ -11966,6 +11987,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -12307,6 +12329,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -12750,7 +12773,7 @@ export namespace displayvideo_v2 {
      *     issueMonth: 'placeholder-value',
      *     // Select type of invoice to retrieve for Loi Sapin advertisers. Only applicable to Loi Sapin advertisers. Will be ignored otherwise.
      *     loiSapinInvoiceType: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInvoices` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -13020,7 +13043,7 @@ export namespace displayvideo_v2 {
      */
     loiSapinInvoiceType?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -13051,7 +13074,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests .
+     * Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -13354,7 +13377,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates multiple line items.
+     * Updates multiple line items. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -13380,7 +13403,8 @@ export namespace displayvideo_v2 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.lineItems.bulkUpdate({
-     *     advertisersId: 'placeholder-value',
+     *     // Required. The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13479,15 +13503,15 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{advertisersId}/lineItems:bulkUpdate'
+              rootUrl + '/v2/advertisers/{+advertiserId}/lineItems:bulkUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['advertisersId'],
-        pathParams: ['advertisersId'],
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
         context: this.context,
       };
       if (callback) {
@@ -13814,7 +13838,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Duplicates a line item. Returns the newly created line item id if successful.
+     * Duplicates a line item. Returns the ID of the created line item if successful.
      * @example
      * ```js
      * // Before running the sample:
@@ -14311,7 +14335,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `flight.dateRange.endDate` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -14421,7 +14445,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
+     * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -14652,9 +14676,9 @@ export namespace displayvideo_v2 {
   export interface Params$Resource$Advertisers$Lineitems$Bulkupdate
     extends StandardParameters {
     /**
-     *
+     * Required. The ID of the advertiser this line item belongs to.
      */
-    advertisersId?: string;
+    advertiserId?: string;
 
     /**
      * Request body metadata
@@ -14738,7 +14762,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -14786,7 +14810,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
+     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -14829,6 +14853,7 @@ export namespace displayvideo_v2 {
      *           //   "appCategoryDetails": {},
      *           //   "appDetails": {},
      *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *           //   "audienceGroupDetails": {},
      *           //   "audioContentTypeDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
@@ -14886,6 +14911,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -15034,7 +15060,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
+     * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -15227,6 +15253,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -15949,7 +15976,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -16248,7 +16275,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -16752,7 +16779,7 @@ export namespace displayvideo_v2 {
      *       locationListId: 'placeholder-value',
      *       // Field by which to sort the list. Acceptable values are: * `assignedLocationId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
      *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
@@ -16934,7 +16961,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -17553,7 +17580,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `state` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListManualTriggers` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -17888,7 +17915,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -18371,7 +18398,7 @@ export namespace displayvideo_v2 {
      *   const res = await displayvideo.advertisers.negativeKeywordLists.list({
      *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
      *     advertiserId: '[^/]+',
-     *     // Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -18678,7 +18705,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -19605,6 +19632,7 @@ export namespace displayvideo_v2 {
      *           //   "appCategoryDetails": {},
      *           //   "appDetails": {},
      *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *           //   "audienceGroupDetails": {},
      *           //   "audioContentTypeDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
@@ -19662,6 +19690,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -19995,6 +20024,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -20549,7 +20579,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCombinedAudiences` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -20696,7 +20726,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -21051,7 +21081,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -21505,7 +21535,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -21891,7 +21921,7 @@ export namespace displayvideo_v2 {
      *     customBiddingAlgorithmId: '[^/]+',
      *     // Field by which to sort the list. Acceptable values are: * `createTime desc` (default) The default sorting order is descending. To specify ascending order for a field, the suffix "desc" should be removed. Example: `createTime`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingScripts` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -22062,7 +22092,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -22246,7 +22276,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomLists` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -22377,7 +22407,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -22910,7 +22940,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFirstAndThirdPartyAudiences` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -23263,7 +23293,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -23799,7 +23829,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGoogleAudiences` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -23944,7 +23974,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -24458,7 +24488,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGuaranteedOrders` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -24801,7 +24831,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -25299,7 +25329,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -25628,7 +25658,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -26862,7 +26892,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -27213,7 +27243,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -27903,7 +27933,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartners` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -28038,7 +28068,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -28377,7 +28407,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -28690,7 +28720,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -29610,6 +29640,7 @@ export namespace displayvideo_v2 {
      *         //   "appCategoryDetails": {},
      *         //   "appDetails": {},
      *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *         //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *         //   "audienceGroupDetails": {},
      *         //   "audioContentTypeDetails": {},
      *         //   "authorizedSellerStatusDetails": {},
@@ -29666,6 +29697,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -29993,6 +30025,7 @@ export namespace displayvideo_v2 {
      *   //   "appCategoryDetails": {},
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "assignedTargetingOptionIdAlias": "my_assignedTargetingOptionIdAlias",
      *   //   "audienceGroupDetails": {},
      *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
@@ -30174,7 +30207,7 @@ export namespace displayvideo_v2 {
      *       filter: 'placeholder-value',
      *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
      *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartnerAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
@@ -30351,7 +30384,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -30894,7 +30927,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListTargetingOptions` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -31192,7 +31225,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -31796,7 +31829,7 @@ export namespace displayvideo_v2 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     // Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListUsers` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -32087,7 +32120,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
