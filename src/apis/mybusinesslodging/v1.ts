@@ -102,7 +102,7 @@ export namespace mybusinesslodging_v1 {
   /**
    * My Business Lodging API
    *
-   * The My Business Lodging API enables managing lodging business information on Google.
+   * The My Business Lodging API enables managing lodging business information on Google. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.
    *
    * @example
    * ```js
@@ -527,6 +527,14 @@ export namespace mybusinesslodging_v1 {
      * Kids club exception.
      */
     kidsClubException?: string | null;
+    /**
+     * Kids friendly. The hotel has one or more special features for families with children, such as reduced rates, child-sized beds, kids' club, babysitting service, or suitable place to play on premises.
+     */
+    kidsFriendly?: boolean | null;
+    /**
+     * Kids friendly exception.
+     */
+    kidsFriendlyException?: string | null;
   }
   /**
    * Meals, snacks, and beverages available at the property.
