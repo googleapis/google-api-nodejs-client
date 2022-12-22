@@ -263,6 +263,27 @@ export namespace pubsublite_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Configuration for a Pub/Sub Lite subscription that writes messages to a destination. User subscriber clients must not connect to this subscription.
+   */
+  export interface Schema$ExportConfig {
+    /**
+     * Output only. The current state of the export, which may be different to the desired state due to errors. This field is output only.
+     */
+    currentState?: string | null;
+    /**
+     * Optional. The name of an optional Pub/Sub Lite topic to publish messages that can not be exported to the destination. For example, the message can not be published to the Pub/Sub service because it does not satisfy the constraints documented at https://cloud.google.com/pubsub/docs/publisher. Structured like: projects/{project_number\}/locations/{location\}/topics/{topic_id\}. Must be within the same project and location as the subscription. The topic may be changed or removed.
+     */
+    deadLetterTopic?: string | null;
+    /**
+     * The desired state of this export. Setting this to values other than `ACTIVE` and `PAUSED` will result in an error.
+     */
+    desiredState?: string | null;
+    /**
+     * Messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a Pub/Sub topic.
+     */
+    pubsubConfig?: Schema$PubSubConfig;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -430,6 +451,15 @@ export namespace pubsublite_v1 {
     partition?: string | null;
   }
   /**
+   * Configuration for exporting to a Pub/Sub topic.
+   */
+  export interface Schema$PubSubConfig {
+    /**
+     * The name of the Pub/Sub topic. Structured like: projects/{project_number\}/topics/{topic_id\}. The topic may be changed.
+     */
+    topic?: string | null;
+  }
+  /**
    * Metadata about a reservation resource.
    */
   export interface Schema$Reservation {
@@ -506,6 +536,10 @@ export namespace pubsublite_v1 {
      * The settings for this subscription's message delivery.
      */
     deliveryConfig?: Schema$DeliveryConfig;
+    /**
+     * If present, messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a destination.
+     */
+    exportConfig?: Schema$ExportConfig;
     /**
      * The name of the subscription. Structured like: projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}
      */
@@ -2141,6 +2175,7 @@ export namespace pubsublite_v1 {
      *       // request body parameters
      *       // {
      *       //   "deliveryConfig": {},
+     *       //   "exportConfig": {},
      *       //   "name": "my_name",
      *       //   "topic": "my_topic"
      *       // }
@@ -2151,6 +2186,7 @@ export namespace pubsublite_v1 {
      *   // Example response
      *   // {
      *   //   "deliveryConfig": {},
+     *   //   "exportConfig": {},
      *   //   "name": "my_name",
      *   //   "topic": "my_topic"
      *   // }
@@ -2408,6 +2444,7 @@ export namespace pubsublite_v1 {
      *   // Example response
      *   // {
      *   //   "deliveryConfig": {},
+     *   //   "exportConfig": {},
      *   //   "name": "my_name",
      *   //   "topic": "my_topic"
      *   // }
@@ -2681,6 +2718,7 @@ export namespace pubsublite_v1 {
      *       // request body parameters
      *       // {
      *       //   "deliveryConfig": {},
+     *       //   "exportConfig": {},
      *       //   "name": "my_name",
      *       //   "topic": "my_topic"
      *       // }
@@ -2691,6 +2729,7 @@ export namespace pubsublite_v1 {
      *   // Example response
      *   // {
      *   //   "deliveryConfig": {},
+     *   //   "exportConfig": {},
      *   //   "name": "my_name",
      *   //   "topic": "my_topic"
      *   // }
