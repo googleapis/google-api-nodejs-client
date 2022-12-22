@@ -125,66 +125,6 @@ export namespace gkehub_v1 {
   }
 
   /**
-   * AnthosVMMembershipSpec contains the AnthosVM feature configuration for a membership/cluster.
-   */
-  export interface Schema$AnthosVMMembershipSpec {
-    /**
-     * List of configurations of the Anthos For VM subfeatures that are to be enabled
-     */
-    subfeaturesSpec?: Schema$AnthosVMSubFeatureSpec[];
-  }
-  /**
-   * AnthosVMFeatureState contains the state of the AnthosVM feature. It represents the actual state in the cluster, while the AnthosVMMembershipSpec represents the desired state.
-   */
-  export interface Schema$AnthosVMMembershipState {
-    /**
-     * State of the local PE-controller inside the cluster
-     */
-    localControllerState?: Schema$LocalControllerState;
-    /**
-     * List of AnthosVM subfeature states
-     */
-    subfeatureState?: Schema$AnthosVMSubFeatureState[];
-  }
-  /**
-   * AnthosVMSubFeatureSpec contains the subfeature configuration for a membership/cluster.
-   */
-  export interface Schema$AnthosVMSubFeatureSpec {
-    /**
-     * Indicates whether the subfeature should be enabled on the cluster or not. If set to true, the subfeature's control plane and resources will be installed in the cluster. If set to false, the oneof spec if present will be ignored and nothing will be installed in the cluster.
-     */
-    enabled?: boolean | null;
-    /**
-     * MigrateSpec repsents the configuration for Migrate subfeature.
-     */
-    migrateSpec?: Schema$MigrateSpec;
-    /**
-     * ServiceMeshSpec repsents the configuration for Service Mesh subfeature.
-     */
-    serviceMeshSpec?: Schema$ServiceMeshSpec;
-  }
-  /**
-   * AnthosVMSubFeatureState contains the state of the AnthosVM subfeatures.
-   */
-  export interface Schema$AnthosVMSubFeatureState {
-    /**
-     * Description represents human readable description of the subfeature state. If the deployment failed, this should also contain the reason for the failure.
-     */
-    description?: string | null;
-    /**
-     * InstallationState represents the state of installation of the subfeature in the cluster.
-     */
-    installationState?: string | null;
-    /**
-     * MigrateState represents the state of the Migrate subfeature.
-     */
-    migrateState?: Schema$MigrateState;
-    /**
-     * ServiceMeshState represents the state of the Service Mesh subfeature.
-     */
-    serviceMeshState?: Schema$ServiceMeshState;
-  }
-  /**
    * Spec for App Dev Experience Feature.
    */
   export interface Schema$AppDevExperienceFeatureSpec {}
@@ -283,6 +223,10 @@ export namespace gkehub_v1 {
      */
     appdevexperience?: Schema$AppDevExperienceFeatureSpec;
     /**
+     * FleetObservability feature spec.
+     */
+    fleetobservability?: Schema$FleetObservabilityFeatureSpec;
+    /**
      * Multicluster Ingress-specific spec.
      */
     multiclusteringress?: Schema$MultiClusterIngressFeatureSpec;
@@ -296,6 +240,10 @@ export namespace gkehub_v1 {
      */
     appdevexperience?: Schema$AppDevExperienceFeatureState;
     /**
+     * FleetObservability feature state.
+     */
+    fleetobservability?: Schema$FleetObservabilityFeatureState;
+    /**
      * Output only. The "running state" of the Feature in this Hub.
      */
     state?: Schema$FeatureState;
@@ -305,7 +253,7 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ConfigManagementConfigSync {
     /**
-     * Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling.
+     * Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling. This field is deprecated.
      */
     allowVerticalScale?: boolean | null;
     /**
@@ -859,6 +807,14 @@ export namespace gkehub_v1 {
      */
     resourceState?: Schema$FeatureResourceState;
     /**
+     * Optional. Scope-specific configuration for this Feature. If this Feature does not support any per-Scope configuration, this field may be unused. The keys indicate which Scope the configuration is for, in the form: `projects/{p\}/locations/global/scopes/{s\}` Where {p\} is the project, {s\} is a valid Scope in this project. {p\} WILL match the Feature's project. {p\} will always be returned as the project number, but the project ID is also accepted during input. If the same Scope is specified in the map twice (using the project ID form, and the project number form), exactly ONE of the entries will be saved, with no guarantees as to which. For this reason, it is recommended the same format be used for all entries when mutating a Feature.
+     */
+    scopeSpecs?: {[key: string]: Schema$ScopeFeatureSpec} | null;
+    /**
+     * Output only. Scope-specific Feature status. If this Feature does report any per-Scope status, this field may be unused. The keys indicate which Scope the state is for, in the form: `projects/{p\}/locations/global/scopes/{s\}` Where {p\} is the project, {s\} is a valid Scope in this project. {p\} WILL match the Feature's project.
+     */
+    scopeStates?: {[key: string]: Schema$ScopeFeatureState} | null;
+    /**
      * Optional. Hub-wide Feature configuration. If this Feature does not support any Hub-wide configuration, this field may be unused.
      */
     spec?: Schema$CommonFeatureSpec;
@@ -897,6 +853,22 @@ export namespace gkehub_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * **Fleet Observability**: The Hub-wide input for the FleetObservability feature.
+   */
+  export interface Schema$FleetObservabilityFeatureSpec {}
+  /**
+   * **FleetObservability**: An empty state left as an example Hub-wide Feature state.
+   */
+  export interface Schema$FleetObservabilityFeatureState {}
+  /**
+   * **FleetObservability**: The membership-specific input for FleetObservability feature.
+   */
+  export interface Schema$FleetObservabilityMembershipSpec {}
+  /**
+   * **FleetObservability**: An empty state left as an example membership-specific Feature state.
+   */
+  export interface Schema$FleetObservabilityMembershipState {}
   /**
    * GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.
    */
@@ -941,6 +913,10 @@ export namespace gkehub_v1 {
    */
   export interface Schema$IdentityServiceAuthMethod {
     /**
+     * AzureAD specific Configuration.
+     */
+    azureadConfig?: Schema$IdentityServiceAzureADConfig;
+    /**
      * GoogleConfig specific configuration
      */
     googleConfig?: Schema$IdentityServiceGoogleConfig;
@@ -956,6 +932,31 @@ export namespace gkehub_v1 {
      * Proxy server address to use for auth method.
      */
     proxy?: string | null;
+  }
+  /**
+   * Configuration for the AzureAD Auth flow.
+   */
+  export interface Schema$IdentityServiceAzureADConfig {
+    /**
+     * ID for the registered client application that makes authentication requests to the Azure AD identity provider.
+     */
+    clientId?: string | null;
+    /**
+     * Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub CLH.
+     */
+    clientSecret?: string | null;
+    /**
+     * Output only. Encrypted AzureAD client secret.
+     */
+    encryptedClientSecret?: string | null;
+    /**
+     * The redirect URL that kubectl uses for authorization.
+     */
+    kubectlRedirectUri?: string | null;
+    /**
+     * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
+     */
+    tenant?: string | null;
   }
   /**
    * Configuration for the Google Plugin Auth flow.
@@ -1164,19 +1165,6 @@ export namespace gkehub_v1 {
     operations?: Schema$Operation[];
   }
   /**
-   * LocalControllerState contains the state of the local controller deployed in the cluster.
-   */
-  export interface Schema$LocalControllerState {
-    /**
-     * Description represents the human readable description of the current state of the local PE controller
-     */
-    description?: string | null;
-    /**
-     * InstallationState represents the state of deployment of the local PE controller in the cluster.
-     */
-    installationState?: string | null;
-  }
-  /**
    * A resource that represents Google Cloud Platform location.
    */
   export interface Schema$Location {
@@ -1292,13 +1280,17 @@ export namespace gkehub_v1 {
    */
   export interface Schema$MembershipFeatureSpec {
     /**
-     * AnthosVM spec.
-     */
-    anthosvm?: Schema$AnthosVMMembershipSpec;
-    /**
      * Config Management-specific spec.
      */
     configmanagement?: Schema$ConfigManagementMembershipSpec;
+    /**
+     * True if value of `feature_spec` was inherited from a fleet-level default.
+     */
+    fleetInherited?: boolean | null;
+    /**
+     * Fleet observability membership spec
+     */
+    fleetobservability?: Schema$FleetObservabilityMembershipSpec;
     /**
      * Identity Service-specific spec.
      */
@@ -1313,10 +1305,6 @@ export namespace gkehub_v1 {
    */
   export interface Schema$MembershipFeatureState {
     /**
-     * AnthosVM state.
-     */
-    anthosvm?: Schema$AnthosVMMembershipState;
-    /**
      * Appdevexperience specific state.
      */
     appdevexperience?: Schema$AppDevExperienceFeatureState;
@@ -1324,6 +1312,10 @@ export namespace gkehub_v1 {
      * Config Management-specific state.
      */
     configmanagement?: Schema$ConfigManagementMembershipState;
+    /**
+     * Fleet observability membership state.
+     */
+    fleetobservability?: Schema$FleetObservabilityMembershipState;
     /**
      * Identity Service-specific state.
      */
@@ -1346,14 +1338,6 @@ export namespace gkehub_v1 {
      */
     code?: string | null;
   }
-  /**
-   * MigrateSpec contains the migrate subfeature configuration.
-   */
-  export interface Schema$MigrateSpec {}
-  /**
-   * MigrateState contains the state of Migrate subfeature
-   */
-  export interface Schema$MigrateState {}
   /**
    * MultiCloudCluster contains information specific to GKE Multi-Cloud clusters.
    */
@@ -1507,6 +1491,19 @@ export namespace gkehub_v1 {
     v1beta1Crd?: boolean | null;
   }
   /**
+   * ScopeFeatureSpec contains feature specs for a fleet scope.
+   */
+  export interface Schema$ScopeFeatureSpec {}
+  /**
+   * ScopeFeatureState contains Scope-wide Feature status information.
+   */
+  export interface Schema$ScopeFeatureState {
+    /**
+     * Output only. The "running state" of the Feature in this Scope.
+     */
+    state?: Schema$FeatureState;
+  }
+  /**
    * Status of control plane management.
    */
   export interface Schema$ServiceMeshControlPlaneManagement {
@@ -1558,14 +1555,6 @@ export namespace gkehub_v1 {
      */
     dataPlaneManagement?: Schema$ServiceMeshDataPlaneManagement;
   }
-  /**
-   * ServiceMeshSpec contains the serviceMesh subfeature configuration.
-   */
-  export interface Schema$ServiceMeshSpec {}
-  /**
-   * ServiceMeshState contains the state of Service Mesh subfeature
-   */
-  export interface Schema$ServiceMeshState {}
   /**
    * Structured and human-readable details for a status.
    */
@@ -2012,6 +2001,8 @@ export namespace gkehub_v1 {
      *       //   "membershipStates": {},
      *       //   "name": "my_name",
      *       //   "resourceState": {},
+     *       //   "scopeSpecs": {},
+     *       //   "scopeStates": {},
      *       //   "spec": {},
      *       //   "state": {},
      *       //   "updateTime": "my_updateTime"
@@ -2296,6 +2287,8 @@ export namespace gkehub_v1 {
      *   //   "membershipStates": {},
      *   //   "name": "my_name",
      *   //   "resourceState": {},
+     *   //   "scopeSpecs": {},
+     *   //   "scopeStates": {},
      *   //   "spec": {},
      *   //   "state": {},
      *   //   "updateTime": "my_updateTime"
@@ -2712,6 +2705,8 @@ export namespace gkehub_v1 {
      *       //   "membershipStates": {},
      *       //   "name": "my_name",
      *       //   "resourceState": {},
+     *       //   "scopeSpecs": {},
+     *       //   "scopeStates": {},
      *       //   "spec": {},
      *       //   "state": {},
      *       //   "updateTime": "my_updateTime"
