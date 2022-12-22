@@ -125,6 +125,47 @@ export namespace healthcare_v1beta1 {
   }
 
   /**
+   * Specifies a selection of tags and an `Action` to apply to each one.
+   */
+  export interface Schema$Action {
+    /**
+     * Inspect image and transform sensitive burnt-in text. Doesn't apply to elements nested in a sequence, which revert to `Keep`. Supported [tags](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part06/chapter_6.html): PixelData
+     */
+    cleanImageTag?: Schema$ImageConfig;
+    /**
+     * Inspect text and transform sensitive text. Configurable via TextConfig. Supported Value Representations: AE, LO, LT, PN, SH, ST, UC, UT, DA, DT, AS
+     */
+    cleanTextTag?: Schema$CleanTextTag;
+    /**
+     * Delete tag.
+     */
+    deleteTag?: Schema$DeleteTag;
+    /**
+     * Keep tag unchanged.
+     */
+    keepTag?: Schema$KeepTag;
+    /**
+     * Select all tags with the listed tag IDs, names, or Value Representations (VRs). Examples: ID: "00100010" Keyword: "PatientName" VR: "PN"
+     */
+    queries?: string[] | null;
+    /**
+     * Recursively apply DICOM de-id to tags nested in a sequence. Supported [Value Representation] (http://dicom.nema.org/medical/dicom/2018e/output/chtml/part05/sect_6.2.html#table_6.2-1): SQ
+     */
+    recurseTag?: Schema$RecurseTag;
+    /**
+     * Replace UID with a new generated UID. Supported [Value Representation] (http://dicom.nema.org/medical/dicom/2018e/output/chtml/part05/sect_6.2.html#table_6.2-1): UI
+     */
+    regenUidTag?: Schema$RegenUidTag;
+    /**
+     * Replace with empty tag.
+     */
+    removeTag?: Schema$RemoveTag;
+    /**
+     * Reset tag to a placeholder value.
+     */
+    resetTag?: Schema$ResetTag;
+  }
+  /**
    * Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given Consent is in the `ACTIVE` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.
    */
   export interface Schema$ActivateConsentRequest {
@@ -364,6 +405,10 @@ export namespace healthcare_v1beta1 {
     maskingCharacter?: string | null;
   }
   /**
+   * Replace field value with masking character. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml
+   */
+  export interface Schema$CharacterMaskField {}
+  /**
    * Checks if a particular data_id of a User data mapping in the given consent store is consented for a given use.
    */
   export interface Schema$CheckDataAccessRequest {
@@ -397,6 +442,18 @@ export namespace healthcare_v1beta1 {
      */
     consented?: boolean | null;
   }
+  /**
+   * This option is based on the DICOM Standard's [Clean Descriptors Option](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part15/sect_E.3.5.html), and the `CleanText` `Action` is applied to all the specified fields. When cleaning text, the process attempts to transform phrases matching any of the tags marked for removal (action codes D, Z, X, and U) in the [Basic Profile](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part15/chapter_E.html). These contextual phrases are replaced with the token "[CTX]". This option uses an additional `InfoType` during inspection.
+   */
+  export interface Schema$CleanDescriptorsOption {}
+  /**
+   * Inspect text and transform sensitive text. Configure using `TextConfig`. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml
+   */
+  export interface Schema$CleanTextField {}
+  /**
+   * Inspect text and transform sensitive text. Configurable using `TextConfig`. Supported [Value Representations] (http://dicom.nema.org/medical/dicom/2018e/output/chtml/part05/sect_6.2.html#table_6.2-1): AE, LO, LT, PN, SH, ST, UC, UT, DA, DT, AS
+   */
+  export interface Schema$CleanTextTag {}
   /**
    * Cloud Healthcare API resource.
    */
@@ -541,6 +598,10 @@ export namespace healthcare_v1beta1 {
     name?: string | null;
   }
   /**
+   * The fields that aren't marked `Keep` or `CleanText` in the `BASIC` profile are collected into a contextual phrase list. For fields marked `CleanText`, the process attempts to transform phrases matching these contextual entries. These contextual phrases are replaced with the token "[CTX]". This feature uses an additional InfoType during inspection.
+   */
+  export interface Schema$ContextualDeidConfig {}
+  /**
    * Creates a new message.
    */
   export interface Schema$CreateMessageRequest {
@@ -562,6 +623,10 @@ export namespace healthcare_v1beta1 {
      */
     kmsWrapped?: Schema$KmsWrappedCryptoKey;
   }
+  /**
+   * Replace field value with a hash of that value. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml
+   */
+  export interface Schema$CryptoHashField {}
   /**
    * A message representing a health dataset. A health dataset represents a collection of healthcare data pertaining to one or more patients. This may include multiple modalities of healthcare data, such as electronic medical records or medical imaging data.
    */
@@ -589,6 +654,10 @@ export namespace healthcare_v1beta1 {
     kmsWrapped?: Schema$KmsWrappedCryptoKey;
   }
   /**
+   * Shift the date by a randomized number of days. See [date shifting](https://cloud.google.com/dlp/docs/concepts-date-shifting) for more information. Supported [types](https://www.hl7.org/fhir/datatypes.html): Date, DateTime
+   */
+  export interface Schema$DateShiftField {}
+  /**
    * Contains configuration for streaming de-identified FHIR export.
    */
   export interface Schema$DeidentifiedStoreDestination {
@@ -614,9 +683,17 @@ export namespace healthcare_v1beta1 {
      */
     dicom?: Schema$DicomConfig;
     /**
+     * Configures de-id of application/DICOM content.
+     */
+    dicomTagConfig?: Schema$DicomTagConfig;
+    /**
      * Configures de-id of application/FHIR content. Deprecated. Use `fhir_field_config` instead.
      */
     fhir?: Schema$FhirConfig;
+    /**
+     * Configures de-id of application/FHIR content.
+     */
+    fhirFieldConfig?: Schema$FhirFieldConfig;
     /**
      * Configures the de-identification of image pixels in the source_dataset. Deprecated. Use `dicom_tag_config.options.clean_image` instead.
      */
@@ -707,6 +784,10 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$DeidentifySummary {}
   /**
+   * Delete tag.
+   */
+  export interface Schema$DeleteTag {}
+  /**
    * Contains multiple sensitive information findings for each resource slice.
    */
   export interface Schema$Detail {
@@ -764,6 +845,23 @@ export namespace healthcare_v1beta1 {
     streamConfigs?: Schema$GoogleCloudHealthcareV1beta1DicomStreamConfig[];
   }
   /**
+   * Specifies the parameters needed for the de-identification of DICOM stores.
+   */
+  export interface Schema$DicomTagConfig {
+    /**
+     * Specifies custom tag selections and `Actions` to apply to them. Overrides `options` and `profile`. Conflicting `Actions` are applied in the order given.
+     */
+    actions?: Schema$Action[];
+    /**
+     * Specifies additional options to apply, overriding the base `profile`.
+     */
+    options?: Schema$Options;
+    /**
+     * Base profile type for handling DICOM tags.
+     */
+    profileType?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -797,7 +895,7 @@ export namespace healthcare_v1beta1 {
      */
     confidence?: number | null;
     /**
-     * linked_entities are candidate ontological concepts that this entity mention may refer to. They are sorted by decreasing confidence.it
+     * linked_entities are candidate ontological concepts that this entity mention may refer to. They are sorted by decreasing confidence.
      */
     linkedEntities?: Schema$LinkedEntity[];
     /**
@@ -1033,6 +1131,23 @@ export namespace healthcare_v1beta1 {
      * Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata is passed through to the output dataset unmodified. All extensions will be processed according to `default_keep_extensions`. If a field can be matched by more than one FieldMetadata, the first FieldMetadata.Action is applied.
      */
     fieldMetadataList?: Schema$FieldMetadata[];
+  }
+  /**
+   * Specifies how to handle the de-identification of a FHIR store.
+   */
+  export interface Schema$FhirFieldConfig {
+    /**
+     * Specifies FHIR paths to match and how to transform them. Any field that is not matched by a `FieldMetadata` is passed through to the output dataset unmodified. All extensions will be processed according to `keep_extensions`. If a field can be matched by more than one `FieldMetadata`, the first `FieldMetadata.Action` is applied. Overrides `options` and `profile`.
+     */
+    fieldMetadataList?: Schema$GoogleCloudHealthcareV1beta1DeidentifyFieldMetadata[];
+    /**
+     * Specifies additional options, overriding the base `profile`.
+     */
+    options?: Schema$GoogleCloudHealthcareV1beta1DeidentifyOptions;
+    /**
+     * Base profile type for handling FHIR fields.
+     */
+    profileType?: string | null;
   }
   /**
    * Filter configuration.
@@ -1283,6 +1398,64 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DeidentifyDeidentifyFhirStoreSummary {}
   /**
+   * Specifies the FHIR paths to match and how to handle the de-identification of matching fields.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1DeidentifyFieldMetadata {
+    /**
+     * Replace the field's value with a masking character. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml
+     */
+    characterMaskField?: Schema$CharacterMaskField;
+    /**
+     * Inspect the field's text and transform sensitive text. Configure using `TextConfig`. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml
+     */
+    cleanTextField?: Schema$CleanTextField;
+    /**
+     * Replace field value with a hash of that value. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml
+     */
+    cryptoHashField?: Schema$CryptoHashField;
+    /**
+     * Shift the date by a randomized number of days. See [date shifting](https://cloud.google.com/dlp/docs/concepts-date-shifting) for more information. Supported [types](https://www.hl7.org/fhir/datatypes.html): Date, DateTime
+     */
+    dateShiftField?: Schema$DateShiftField;
+    /**
+     * Keep the field unchanged.
+     */
+    keepField?: Schema$KeepField;
+    /**
+     * List of paths to FHIR fields to redact. Each path is a period-separated list where each component is either a field name or FHIR type name. All types begin with an upper case letter. For example, the resource field "Patient.Address.city", which uses a string type, can be matched by "Patient.Address.String". Path also supports partialkk matching. For example, "Patient.Address.city" can be matched by "Address.city" (Patient omitted). Partial matching and type matching can be combined, for example "Patient.Address.city" can be matched by "Address.String". For "choice" types (those defined in the FHIR spec with the form: field[x]), use two separate components. For example, "deceasedAge.unit" is matched by "Deceased.Age.unit". Supported [types](https://www.hl7.org/fhir/datatypes.html) are: AdministrativeGenderCode, Base64Binary, Boolean, Code, Date, DateTime, Decimal, HumanName, Id, Instant, Integer, LanguageCode, Markdown, Oid, PositiveInt, String, UnsignedInt, Uri, Uuid, Xhtml. The sub-type for HumanName (for example HumanName.given, HumanName.family) can be omitted.
+     */
+    paths?: string[] | null;
+    /**
+     * Remove the field.
+     */
+    removeField?: Schema$RemoveField;
+  }
+  /**
+   * Specifies additional options to apply to the base `profile`.
+   */
+  export interface Schema$GoogleCloudHealthcareV1beta1DeidentifyOptions {
+    /**
+     * Character mask config for `CharacterMaskField` `FieldMetadatas`.
+     */
+    characterMaskConfig?: Schema$CharacterMaskConfig;
+    /**
+     * Configure contextual de-id.
+     */
+    contextualDeid?: Schema$ContextualDeidConfig;
+    /**
+     * Crypo hash config for `CharacterMaskField` `FieldMetadatas`.
+     */
+    cryptoHashConfig?: Schema$CryptoHashConfig;
+    /**
+     * Date shifting config for `CharacterMaskField` `FieldMetadatas`.
+     */
+    dateShiftConfig?: Schema$DateShiftConfig;
+    /**
+     * Configure keeping extensions by default.
+     */
+    keepExtensions?: Schema$KeepExtensionsConfig;
+  }
+  /**
    * The BigQuery table where the server writes output.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination {
@@ -1500,6 +1673,14 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ImageConfig {
     /**
+     * Additional InfoTypes to redact in the images in addition to those used by `text_redaction_mode`. Can only be used when `text_redaction_mode` is set to `REDACT_SENSITIVE_TEXT`, `REDACT_SENSITIVE_TEXT_CLEAN_DESCRIPTORS` or `TEXT_REDACTION_MODE_UNSPECIFIED`.
+     */
+    additionalInfoTypes?: string[] | null;
+    /**
+     * InfoTypes to skip redacting, overriding those used by `text_redaction_mode`. Can only be used when `text_redaction_mode` is set to `REDACT_SENSITIVE_TEXT` or `REDACT_SENSITIVE_TEXT_CLEAN_DESCRIPTORS`.
+     */
+    excludeInfoTypes?: string[] | null;
+    /**
      * Determines how to redact text from image.
      */
     textRedactionMode?: string | null;
@@ -1615,6 +1796,18 @@ export namespace healthcare_v1beta1 {
      */
     message?: Schema$Message;
   }
+  /**
+   * The behaviour for handling FHIR extensions that aren't otherwise specified for de-identification. If provided, all extensions are preserved during de-identification by default. If unspecified, all extensions are removed during de-identification by default.
+   */
+  export interface Schema$KeepExtensionsConfig {}
+  /**
+   * Keep field unchanged.
+   */
+  export interface Schema$KeepField {}
+  /**
+   * Keep tag unchanged.
+   */
+  export interface Schema$KeepTag {}
   /**
    * Include to use an existing data crypto key wrapped by KMS. The wrapped key must be a 128-, 192-, or 256-bit key. The key must grant the Cloud IAM permission `cloudkms.cryptoKeyVersions.useToDecrypt` to the project's Cloud Healthcare Service Agent service account. For more information, see [Creating a wrapped key] (https://cloud.google.com/dlp/docs/create-wrapped-key).
    */
@@ -1949,6 +2142,23 @@ export namespace healthcare_v1beta1 {
     logsUrl?: string | null;
   }
   /**
+   * Specifies additional options to apply to the base profile.
+   */
+  export interface Schema$Options {
+    /**
+     * Set Clean Descriptors Option.
+     */
+    cleanDescriptors?: Schema$CleanDescriptorsOption;
+    /**
+     * Apply `Action.clean_image` to [`PixelData`](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part06/chapter_6.html) as configured.
+     */
+    cleanImage?: Schema$ImageConfig;
+    /**
+     * Set `Action` for [`StudyInstanceUID`, `SeriesInstanceUID`, `SOPInstanceUID`, and `MediaStorageSOPInstanceUID`](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part06/chapter_6.html).
+     */
+    primaryIds?: string | null;
+  }
+  /**
    * The content of an HL7v2 message in a structured format.
    */
   export interface Schema$ParsedData {
@@ -2053,9 +2263,17 @@ export namespace healthcare_v1beta1 {
     gcsUris?: string[] | null;
   }
   /**
+   * Recursively apply DICOM de-id to tags nested in a sequence. Supported [Value Representation] (http://dicom.nema.org/medical/dicom/2018e/output/chtml/part05/sect_6.2.html#table_6.2-1): SQ
+   */
+  export interface Schema$RecurseTag {}
+  /**
    * Define how to redact sensitive values. Default behaviour is erase. For example, "My name is Jane." becomes "My name is ."
    */
   export interface Schema$RedactConfig {}
+  /**
+   * Replace UID with a new generated UID. Supported [Value Representation] (http://dicom.nema.org/medical/dicom/2018e/output/chtml/part05/sect_6.2.html#table_6.2-1): UI
+   */
+  export interface Schema$RegenUidTag {}
   /**
    * Rejects the latest revision of the specified Consent by committing a new revision with `state` updated to `REJECTED`. If the latest revision of the given Consent is in the `REJECTED` state, no new revision is committed.
    */
@@ -2066,9 +2284,21 @@ export namespace healthcare_v1beta1 {
     consentArtifact?: string | null;
   }
   /**
+   * Remove field.
+   */
+  export interface Schema$RemoveField {}
+  /**
+   * Replace with empty tag.
+   */
+  export interface Schema$RemoveTag {}
+  /**
    * When using the INSPECT_AND_TRANSFORM action, each match is replaced with the name of the info_type. For example, "My name is Jane" becomes "My name is [PERSON_NAME]." The TRANSFORM action is equivalent to redacting.
    */
   export interface Schema$ReplaceWithInfoTypeConfig {}
+  /**
+   * Reset tag to a placeholder value.
+   */
+  export interface Schema$ResetTag {}
   /**
    * Resource level annotation.
    */
@@ -2117,6 +2347,10 @@ export namespace healthcare_v1beta1 {
    * Configuration for the FHIR BigQuery schema. Determines how the server generates the schema.
    */
   export interface Schema$SchemaConfig {
+    /**
+     * The configuration for exported BigQuery tables to be partitioned by FHIR resource's last updated time column.
+     */
+    lastUpdatedPartitionConfig?: Schema$TimePartitioning;
     /**
      * The depth for all recursive structures in the output analytics schema. For example, `concept` in the CodeSystem resource is a recursive structure; when the depth is 2, the CodeSystem table will have a column called `concept.concept` but not `concept.concept.concept`. If not specified or set to 0, the server will use the default value 2. The maximum depth allowed is 5.
      */
@@ -2363,6 +2597,18 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$TextConfig {
     /**
+     * Additional transformations to apply to the detected data, overriding `profile`.
+     */
+    additionalTransformations?: Schema$InfoTypeTransformation[];
+    /**
+     * InfoTypes to skip transforming, overriding `profile`.
+     */
+    excludeInfoTypes?: string[] | null;
+    /**
+     * Base profile type for text transformation.
+     */
+    profileType?: string | null;
+    /**
      * The transformations to apply to the detected data. Deprecated. Use `additional_transformations` instead.
      */
     transformations?: Schema$InfoTypeTransformation[];
@@ -2379,6 +2625,19 @@ export namespace healthcare_v1beta1 {
      * The original text contained in this span.
      */
     content?: string | null;
+  }
+  /**
+   * Configuration for FHIR BigQuery time-partitioned tables.
+   */
+  export interface Schema$TimePartitioning {
+    /**
+     * Number of milliseconds for which to keep the storage for a partition.
+     */
+    expirationMs?: string | null;
+    /**
+     * Type of partitioning.
+     */
+    type?: string | null;
   }
   /**
    * A type definition for some HL7v2 type (incl. Segments and Datatypes).
@@ -21220,7 +21479,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`. Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains a link of `relation` "next", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).
+     * Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `recurse` (DSTU2 and STU3) or `:iterate` (R4). Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains a link of `relation` "next", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).
      * @example
      * ```js
      * // Before running the sample:
@@ -21362,7 +21621,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`. Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains a link of `relation` "next", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).
+     * Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `recurse` (DSTU2 and STU3) or `:iterate` (R4). Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains a link of `relation` "next", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).
      * @example
      * ```js
      * // Before running the sample:
