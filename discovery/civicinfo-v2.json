@@ -352,7 +352,7 @@
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20221220",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {
@@ -1638,7 +1638,7 @@
             "e.g. single family dwelling, office building.",
             "e.g. suite, room, hallway, cubicle.",
             "A terminal point represents a good location for a user to meet a taxi, ridesharing vehicle, or general driver.",
-            "An area controlled in some way by an authoritative source, such as a government-designated COVID containment zone. Features of this type should have one or more gcids corresponding to their specific regulation.",
+            "An area controlled in some way by an authoritative source, such as a government-designated COVID containment zone or an area under government sanctions. Features of this type should have one or more gcids corresponding to their specific regulation, and client handling of these features may vary based on the type of regulation.",
             "A grouping of TYPE_BORDER features (\"border segments\"), which together represent a border between two features of the same type.",
             "DEPRECATED",
             "A feature of completely unknown type. This should only be used when absolutely necessary. One example in which this type is useful is in the Chinese importer, which must heuristically segment addresses into components - it often does not know what types to make those components. Please note that the Oyster address formatter does not currently support address components of TYPE_UNKNOWN well."
