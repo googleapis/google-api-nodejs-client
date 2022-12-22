@@ -296,6 +296,10 @@ export namespace androidpublisher_v3 {
      * If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription
      */
     autoRenewEnabled?: boolean | null;
+    /**
+     * The information of the last price change for the item since subscription signup.
+     */
+    priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
   }
   /**
    * A single base plan for a subscription.
@@ -1237,6 +1241,23 @@ export namespace androidpublisher_v3 {
     units?: string | null;
   }
   /**
+   * Offer details information related to a purchase line item.
+   */
+  export interface Schema$OfferDetails {
+    /**
+     * The base plan ID. Present for all base plan and offers.
+     */
+    basePlanId?: string | null;
+    /**
+     * The offer ID. Only present for discounted offers.
+     */
+    offerId?: string | null;
+    /**
+     * The latest offer tags associated with the offer. It includes tags inherited from the base plan.
+     */
+    offerTags?: string[] | null;
+  }
+  /**
    * Represents a custom tag specified for base plans and subscription offers.
    */
   export interface Schema$OfferTag {
@@ -1505,7 +1526,7 @@ export namespace androidpublisher_v3 {
      */
     eligibleForStreamingServiceTaxRate?: boolean | null;
     /**
-     * To collect communications or amusement taxes in the United States, choose the appropriate tax category. By default Google will determine the collected rate based on the buyer ZIP code. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).
+     * To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).
      */
     streamingTaxType?: string | null;
     /**
@@ -1670,6 +1691,27 @@ export namespace androidpublisher_v3 {
      * The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.
      */
     expectedExpiryTimeMillis?: string | null;
+  }
+  /**
+   * Price change related information of a subscription item.
+   */
+  export interface Schema$SubscriptionItemPriceChangeDetails {
+    /**
+     * The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause.
+     */
+    expectedNewPriceChargeTime?: string | null;
+    /**
+     * New recurring price for the subscription item.
+     */
+    newPrice?: Schema$Money;
+    /**
+     * Price change mode specifies how the subscription item price is changing.
+     */
+    priceChangeMode?: string | null;
+    /**
+     * State the price change is currently in.
+     */
+    priceChangeState?: string | null;
   }
   /**
    * The consumer-visible metadata of a subscription.
@@ -1917,6 +1959,10 @@ export namespace androidpublisher_v3 {
      * Time at which the subscription expired or will expire unless the access is extended (ex. renews).
      */
     expiryTime?: string | null;
+    /**
+     * The offer details for this item.
+     */
+    offerDetails?: Schema$OfferDetails;
     /**
      * The item is prepaid.
      */
