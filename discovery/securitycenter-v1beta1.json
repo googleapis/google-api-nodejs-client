@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20221220",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1059,6 +1059,10 @@
         "findingCategory": {
           "description": "The additional taxonomy group within findings from a given source.",
           "type": "string"
+        },
+        "name": {
+          "description": "Full resource name of the finding.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1207,11 +1211,11 @@
       "type": "object"
     },
     "Contact": {
-      "description": "Representa a single contact's email address",
+      "description": "The email address of a contact.",
       "id": "Contact",
       "properties": {
         "email": {
-          "description": "An email address e.g. \"person123@company.com\"",
+          "description": "An email address. For example, \"`person123@company.com`\".",
           "type": "string"
         }
       },
@@ -1675,6 +1679,13 @@
           "description": "The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.",
           "type": "string"
         },
+        "files": {
+          "description": "File associated with the finding.",
+          "items": {
+            "$ref": "File"
+          },
+          "type": "array"
+        },
         "findingClass": {
           "description": "The class of the finding.",
           "enum": [
@@ -1705,6 +1716,10 @@
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
+        },
+        "kernelRootkit": {
+          "$ref": "KernelRootkit",
+          "description": "Kernel Rootkit signature."
         },
         "kubernetes": {
           "$ref": "Kubernetes",
@@ -1814,7 +1829,7 @@
         },
         "vulnerability": {
           "$ref": "Vulnerability",
-          "description": "Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
+          "description": "Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         }
       },
       "type": "object"
@@ -1873,7 +1888,7 @@
       "id": "GoogleCloudSecuritycenterV1BigQueryExport",
       "properties": {
         "createTime": {
-          "description": "Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.",
+          "description": "Output only. The time at which the BigQuery export was created. This field is set by the server and will be ignored if provided on export on creation.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1891,7 +1906,7 @@
           "type": "string"
         },
         "mostRecentEditor": {
-          "description": "Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.",
+          "description": "Output only. Email address of the user who last edited the BigQuery export. This field is set by the server and will be ignored if provided on export creation or update.",
           "readOnly": true,
           "type": "string"
         },
@@ -1900,12 +1915,12 @@
           "type": "string"
         },
         "principal": {
-          "description": "Output only. The service account that needs permission to create table, upload data to the big query dataset.",
+          "description": "Output only. The service account that needs permission to create table and upload data to the BigQuery dataset.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.",
+          "description": "Output only. The most recent time at which the BigQuery export was updated. This field is set by the server and will be ignored if provided on export creation or update.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1930,7 +1945,7 @@
           "description": "The Role or ClusterRole referenced by the binding."
         },
         "subjects": {
-          "description": "Represents the subjects(s) bound to the role. Not always available for PATCH requests.",
+          "description": "Represents one or more subjects that are bound to the role. Not always available for PATCH requests.",
           "items": {
             "$ref": "Subject"
           },
@@ -2041,7 +2056,7 @@
           "type": "string"
         },
         "name": {
-          "description": "External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`",
+          "description": "Full resource name of the external system, for example: \"organizations/1234/sources/5678/findings/123456/externalSystems/jira\", \"folders/1234/sources/5678/findings/123456/externalSystems/jira\", \"projects/1234/sources/5678/findings/123456/externalSystems/jira\"",
           "type": "string"
         },
         "status": {
@@ -2161,6 +2176,10 @@
           "description": "Name for the resource value config",
           "type": "string"
         },
+        "resourceType": {
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with \"AND\" of other resources. E.g. \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "type": "string"
+        },
         "resourceValue": {
           "description": "Required. Resource value level this expression represents",
           "enum": [
@@ -2177,6 +2196,10 @@
             "Low resource value",
             "No resource value, e.g. ignore these resources"
           ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
           "type": "string"
         },
         "tagValues": {
@@ -2688,7 +2711,7 @@
       "type": "object"
     },
     "Indicator": {
-      "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise",
+      "description": "Represents what's commonly known as an _indicator of compromise_ (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).",
       "id": "Indicator",
       "properties": {
         "domains": {
@@ -2699,7 +2722,7 @@
           "type": "array"
         },
         "ipAddresses": {
-          "description": "List of ip addresses associated to the Finding.",
+          "description": "The list of IP addresses that are associated with the finding.",
           "items": {
             "type": "string"
           },
@@ -2722,8 +2745,51 @@
       },
       "type": "object"
     },
+    "KernelRootkit": {
+      "description": "Kernel mode rootkit signatures.",
+      "id": "KernelRootkit",
+      "properties": {
+        "name": {
+          "description": "Rootkit name when available.",
+          "type": "string"
+        },
+        "unexpectedCodeModification": {
+          "description": "True when unexpected modifications of kernel code memory are present.",
+          "type": "boolean"
+        },
+        "unexpectedFtraceHandler": {
+          "description": "True when `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
+          "type": "boolean"
+        },
+        "unexpectedInterruptHandler": {
+          "description": "True when interrupt handlers that are are not in the expected kernel or module code regions are present.",
+          "type": "boolean"
+        },
+        "unexpectedKernelCodePages": {
+          "description": "True when kernel code pages that are not in the expected kernel or module code regions are present.",
+          "type": "boolean"
+        },
+        "unexpectedKprobeHandler": {
+          "description": "True when `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
+          "type": "boolean"
+        },
+        "unexpectedProcessesInRunqueue": {
+          "description": "True when unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.",
+          "type": "boolean"
+        },
+        "unexpectedReadOnlyDataModification": {
+          "description": "True when unexpected modifications of kernel read-only data memory are present.",
+          "type": "boolean"
+        },
+        "unexpectedSystemCallHandler": {
+          "description": "True when system call handlers that are are not in the expected kernel or module code regions are present.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Kubernetes": {
-      "description": "Kubernetes related attributes.",
+      "description": "Kubernetes-related attributes.",
       "id": "Kubernetes",
       "properties": {
         "accessReviews": {
@@ -3008,7 +3074,8 @@
               "IMPAIR_DEFENSES",
               "NETWORK_SERVICE_DISCOVERY",
               "ACCESS_TOKEN_MANIPULATION",
-              "ABUSE_ELEVATION_CONTROL_MECHANISM"
+              "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "DEFAULT_ACCOUNTS"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -3045,7 +3112,8 @@
               "T1562",
               "T1046",
               "T1134",
-              "T1548"
+              "T1548",
+              "T1078.001"
             ],
             "type": "string"
           },
@@ -3127,7 +3195,8 @@
               "IMPAIR_DEFENSES",
               "NETWORK_SERVICE_DISCOVERY",
               "ACCESS_TOKEN_MANIPULATION",
-              "ABUSE_ELEVATION_CONTROL_MECHANISM"
+              "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "DEFAULT_ACCOUNTS"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -3164,7 +3233,8 @@
               "T1562",
               "T1046",
               "T1134",
-              "T1548"
+              "T1548",
+              "T1078.001"
             ],
             "type": "string"
           },

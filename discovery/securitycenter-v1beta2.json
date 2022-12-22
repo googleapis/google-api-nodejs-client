@@ -108,7 +108,7 @@
     "folders": {
       "methods": {
         "getContainerThreatDetectionSettings": {
-          "description": "Get the ContainerThreatDetectionSettings resource.",
+          "description": "Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/folders/{foldersId}/containerThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.folders.getContainerThreatDetectionSettings",
@@ -133,7 +133,7 @@
           ]
         },
         "getEventThreatDetectionSettings": {
-          "description": "Get the EventThreatDetectionSettings resource.",
+          "description": "Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/folders/{foldersId}/eventThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.folders.getEventThreatDetectionSettings",
@@ -183,7 +183,7 @@
           ]
         },
         "getRapidVulnerabilityDetectionSettings": {
-          "description": "Get the RapidVulnerabilityDetectionSettings resource.",
+          "description": "Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.",
           "flatPath": "v1beta2/folders/{foldersId}/rapidVulnerabilityDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.folders.getRapidVulnerabilityDetectionSettings",
@@ -233,7 +233,7 @@
           ]
         },
         "getSecurityHealthAnalyticsSettings": {
-          "description": "Get the SecurityHealthAnalyticsSettings resource.",
+          "description": "Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.",
           "flatPath": "v1beta2/folders/{foldersId}/securityHealthAnalyticsSettings",
           "httpMethod": "GET",
           "id": "securitycenter.folders.getSecurityHealthAnalyticsSettings",
@@ -258,7 +258,7 @@
           ]
         },
         "getVirtualMachineThreatDetectionSettings": {
-          "description": "Get the VirtualMachineThreatDetectionSettings resource.",
+          "description": "Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/folders/{foldersId}/virtualMachineThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.folders.getVirtualMachineThreatDetectionSettings",
@@ -283,7 +283,7 @@
           ]
         },
         "getWebSecurityScannerSettings": {
-          "description": "Get the WebSecurityScannerSettings resource.",
+          "description": "Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.",
           "flatPath": "v1beta2/folders/{foldersId}/webSecurityScannerSettings",
           "httpMethod": "GET",
           "id": "securitycenter.folders.getWebSecurityScannerSettings",
@@ -516,7 +516,7 @@
         "containerThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/folders/{foldersId}/containerThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.folders.containerThreatDetectionSettings.calculate",
@@ -545,7 +545,7 @@
         "eventThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/folders/{foldersId}/eventThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.folders.eventThreatDetectionSettings.calculate",
@@ -574,7 +574,7 @@
         "rapidVulnerabilityDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/folders/{foldersId}/rapidVulnerabilityDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.folders.rapidVulnerabilityDetectionSettings.calculate",
@@ -603,7 +603,7 @@
         "securityHealthAnalyticsSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/folders/{foldersId}/securityHealthAnalyticsSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.folders.securityHealthAnalyticsSettings.calculate",
@@ -632,7 +632,7 @@
         "virtualMachineThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/folders/{foldersId}/virtualMachineThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.folders.virtualMachineThreatDetectionSettings.calculate",
@@ -661,7 +661,7 @@
         "webSecurityScannerSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/folders/{foldersId}/webSecurityScannerSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.folders.webSecurityScannerSettings.calculate",
@@ -692,7 +692,7 @@
     "organizations": {
       "methods": {
         "getContainerThreatDetectionSettings": {
-          "description": "Get the ContainerThreatDetectionSettings resource.",
+          "description": "Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/organizations/{organizationsId}/containerThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.organizations.getContainerThreatDetectionSettings",
@@ -717,7 +717,7 @@
           ]
         },
         "getEventThreatDetectionSettings": {
-          "description": "Get the EventThreatDetectionSettings resource.",
+          "description": "Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/organizations/{organizationsId}/eventThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.organizations.getEventThreatDetectionSettings",
@@ -767,7 +767,7 @@
           ]
         },
         "getRapidVulnerabilityDetectionSettings": {
-          "description": "Get the RapidVulnerabilityDetectionSettings resource.",
+          "description": "Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.",
           "flatPath": "v1beta2/organizations/{organizationsId}/rapidVulnerabilityDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.organizations.getRapidVulnerabilityDetectionSettings",
@@ -817,7 +817,7 @@
           ]
         },
         "getSecurityHealthAnalyticsSettings": {
-          "description": "Get the SecurityHealthAnalyticsSettings resource.",
+          "description": "Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.",
           "flatPath": "v1beta2/organizations/{organizationsId}/securityHealthAnalyticsSettings",
           "httpMethod": "GET",
           "id": "securitycenter.organizations.getSecurityHealthAnalyticsSettings",
@@ -867,7 +867,7 @@
           ]
         },
         "getVirtualMachineThreatDetectionSettings": {
-          "description": "Get the VirtualMachineThreatDetectionSettings resource.",
+          "description": "Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/organizations/{organizationsId}/virtualMachineThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.organizations.getVirtualMachineThreatDetectionSettings",
@@ -892,7 +892,7 @@
           ]
         },
         "getWebSecurityScannerSettings": {
-          "description": "Get the WebSecurityScannerSettings resource.",
+          "description": "Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.",
           "flatPath": "v1beta2/organizations/{organizationsId}/webSecurityScannerSettings",
           "httpMethod": "GET",
           "id": "securitycenter.organizations.getWebSecurityScannerSettings",
@@ -1125,7 +1125,7 @@
         "containerThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/organizations/{organizationsId}/containerThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.organizations.containerThreatDetectionSettings.calculate",
@@ -1154,7 +1154,7 @@
         "eventThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/organizations/{organizationsId}/eventThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.organizations.eventThreatDetectionSettings.calculate",
@@ -1183,7 +1183,7 @@
         "rapidVulnerabilityDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/organizations/{organizationsId}/rapidVulnerabilityDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.organizations.rapidVulnerabilityDetectionSettings.calculate",
@@ -1212,7 +1212,7 @@
         "securityHealthAnalyticsSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/organizations/{organizationsId}/securityHealthAnalyticsSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.organizations.securityHealthAnalyticsSettings.calculate",
@@ -1241,7 +1241,7 @@
         "virtualMachineThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/organizations/{organizationsId}/virtualMachineThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.organizations.virtualMachineThreatDetectionSettings.calculate",
@@ -1270,7 +1270,7 @@
         "webSecurityScannerSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/organizations/{organizationsId}/webSecurityScannerSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.organizations.webSecurityScannerSettings.calculate",
@@ -1301,7 +1301,7 @@
     "projects": {
       "methods": {
         "getContainerThreatDetectionSettings": {
-          "description": "Get the ContainerThreatDetectionSettings resource.",
+          "description": "Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/projects/{projectsId}/containerThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.projects.getContainerThreatDetectionSettings",
@@ -1326,7 +1326,7 @@
           ]
         },
         "getEventThreatDetectionSettings": {
-          "description": "Get the EventThreatDetectionSettings resource.",
+          "description": "Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/projects/{projectsId}/eventThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.projects.getEventThreatDetectionSettings",
@@ -1376,7 +1376,7 @@
           ]
         },
         "getRapidVulnerabilityDetectionSettings": {
-          "description": "Get the RapidVulnerabilityDetectionSettings resource.",
+          "description": "Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.",
           "flatPath": "v1beta2/projects/{projectsId}/rapidVulnerabilityDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.projects.getRapidVulnerabilityDetectionSettings",
@@ -1426,7 +1426,7 @@
           ]
         },
         "getSecurityHealthAnalyticsSettings": {
-          "description": "Get the SecurityHealthAnalyticsSettings resource.",
+          "description": "Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.",
           "flatPath": "v1beta2/projects/{projectsId}/securityHealthAnalyticsSettings",
           "httpMethod": "GET",
           "id": "securitycenter.projects.getSecurityHealthAnalyticsSettings",
@@ -1451,7 +1451,7 @@
           ]
         },
         "getVirtualMachineThreatDetectionSettings": {
-          "description": "Get the VirtualMachineThreatDetectionSettings resource.",
+          "description": "Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.",
           "flatPath": "v1beta2/projects/{projectsId}/virtualMachineThreatDetectionSettings",
           "httpMethod": "GET",
           "id": "securitycenter.projects.getVirtualMachineThreatDetectionSettings",
@@ -1476,7 +1476,7 @@
           ]
         },
         "getWebSecurityScannerSettings": {
-          "description": "Get the WebSecurityScannerSettings resource.",
+          "description": "Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.",
           "flatPath": "v1beta2/projects/{projectsId}/webSecurityScannerSettings",
           "httpMethod": "GET",
           "id": "securitycenter.projects.getWebSecurityScannerSettings",
@@ -1709,7 +1709,7 @@
         "containerThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/projects/{projectsId}/containerThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.projects.containerThreatDetectionSettings.calculate",
@@ -1738,7 +1738,7 @@
         "eventThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/projects/{projectsId}/eventThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.projects.eventThreatDetectionSettings.calculate",
@@ -1769,7 +1769,7 @@
             "clusters": {
               "methods": {
                 "getContainerThreatDetectionSettings": {
-                  "description": "Get the ContainerThreatDetectionSettings resource.",
+                  "description": "Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/containerThreatDetectionSettings",
                   "httpMethod": "GET",
                   "id": "securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings",
@@ -1832,7 +1832,7 @@
                 "containerThreatDetectionSettings": {
                   "methods": {
                     "calculate": {
-                      "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+                      "description": "Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
                       "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/containerThreatDetectionSettings:calculate",
                       "httpMethod": "GET",
                       "id": "securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate",
@@ -1865,7 +1865,7 @@
         "rapidVulnerabilityDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/projects/{projectsId}/rapidVulnerabilityDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.projects.rapidVulnerabilityDetectionSettings.calculate",
@@ -1894,7 +1894,7 @@
         "securityHealthAnalyticsSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/projects/{projectsId}/securityHealthAnalyticsSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.projects.securityHealthAnalyticsSettings.calculate",
@@ -1923,7 +1923,7 @@
         "virtualMachineThreatDetectionSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/projects/{projectsId}/virtualMachineThreatDetectionSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.projects.virtualMachineThreatDetectionSettings.calculate",
@@ -1952,7 +1952,7 @@
         "webSecurityScannerSettings": {
           "methods": {
             "calculate": {
-              "description": "Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.",
+              "description": "Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.",
               "flatPath": "v1beta2/projects/{projectsId}/webSecurityScannerSettings:calculate",
               "httpMethod": "GET",
               "id": "securitycenter.projects.webSecurityScannerSettings.calculate",
@@ -1981,7 +1981,7 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20221220",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2079,6 +2079,10 @@
         },
         "findingCategory": {
           "description": "The additional taxonomy group within findings from a given source.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Full resource name of the finding.",
           "type": "string"
         }
       },
@@ -2183,11 +2187,11 @@
       "type": "object"
     },
     "Contact": {
-      "description": "Representa a single contact's email address",
+      "description": "The email address of a contact.",
       "id": "Contact",
       "properties": {
         "email": {
-          "description": "An email address e.g. \"person123@company.com\"",
+          "description": "An email address. For example, \"`person123@company.com`\".",
           "type": "string"
         }
       },
@@ -2742,6 +2746,13 @@
           "description": "The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.",
           "type": "string"
         },
+        "files": {
+          "description": "File associated with the finding.",
+          "items": {
+            "$ref": "File"
+          },
+          "type": "array"
+        },
         "findingClass": {
           "description": "The class of the finding.",
           "enum": [
@@ -2772,6 +2783,10 @@
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
+        },
+        "kernelRootkit": {
+          "$ref": "KernelRootkit",
+          "description": "Kernel Rootkit signature."
         },
         "kubernetes": {
           "$ref": "Kubernetes",
@@ -2881,7 +2896,7 @@
         },
         "vulnerability": {
           "$ref": "Vulnerability",
-          "description": "Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
+          "description": "Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         }
       },
       "type": "object"
@@ -2917,7 +2932,7 @@
       "id": "GoogleCloudSecuritycenterV1BigQueryExport",
       "properties": {
         "createTime": {
-          "description": "Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.",
+          "description": "Output only. The time at which the BigQuery export was created. This field is set by the server and will be ignored if provided on export on creation.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2935,7 +2950,7 @@
           "type": "string"
         },
         "mostRecentEditor": {
-          "description": "Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.",
+          "description": "Output only. Email address of the user who last edited the BigQuery export. This field is set by the server and will be ignored if provided on export creation or update.",
           "readOnly": true,
           "type": "string"
         },
@@ -2944,12 +2959,12 @@
           "type": "string"
         },
         "principal": {
-          "description": "Output only. The service account that needs permission to create table, upload data to the big query dataset.",
+          "description": "Output only. The service account that needs permission to create table and upload data to the BigQuery dataset.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.",
+          "description": "Output only. The most recent time at which the BigQuery export was updated. This field is set by the server and will be ignored if provided on export creation or update.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2974,7 +2989,7 @@
           "description": "The Role or ClusterRole referenced by the binding."
         },
         "subjects": {
-          "description": "Represents the subjects(s) bound to the role. Not always available for PATCH requests.",
+          "description": "Represents one or more subjects that are bound to the role. Not always available for PATCH requests.",
           "items": {
             "$ref": "Subject"
           },
@@ -3085,7 +3100,7 @@
           "type": "string"
         },
         "name": {
-          "description": "External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`",
+          "description": "Full resource name of the external system, for example: \"organizations/1234/sources/5678/findings/123456/externalSystems/jira\", \"folders/1234/sources/5678/findings/123456/externalSystems/jira\", \"projects/1234/sources/5678/findings/123456/externalSystems/jira\"",
           "type": "string"
         },
         "status": {
@@ -3205,6 +3220,10 @@
           "description": "Name for the resource value config",
           "type": "string"
         },
+        "resourceType": {
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with \"AND\" of other resources. E.g. \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "type": "string"
+        },
         "resourceValue": {
           "description": "Required. Resource value level this expression represents",
           "enum": [
@@ -3221,6 +3240,10 @@
             "Low resource value",
             "No resource value, e.g. ignore these resources"
           ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
           "type": "string"
         },
         "tagValues": {
@@ -3523,7 +3546,7 @@
       "type": "object"
     },
     "Indicator": {
-      "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise",
+      "description": "Represents what's commonly known as an _indicator of compromise_ (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).",
       "id": "Indicator",
       "properties": {
         "domains": {
@@ -3534,7 +3557,7 @@
           "type": "array"
         },
         "ipAddresses": {
-          "description": "List of ip addresses associated to the Finding.",
+          "description": "The list of IP addresses that are associated with the finding.",
           "items": {
             "type": "string"
           },
@@ -3557,8 +3580,51 @@
       },
       "type": "object"
     },
+    "KernelRootkit": {
+      "description": "Kernel mode rootkit signatures.",
+      "id": "KernelRootkit",
+      "properties": {
+        "name": {
+          "description": "Rootkit name when available.",
+          "type": "string"
+        },
+        "unexpectedCodeModification": {
+          "description": "True when unexpected modifications of kernel code memory are present.",
+          "type": "boolean"
+        },
+        "unexpectedFtraceHandler": {
+          "description": "True when `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
+          "type": "boolean"
+        },
+        "unexpectedInterruptHandler": {
+          "description": "True when interrupt handlers that are are not in the expected kernel or module code regions are present.",
+          "type": "boolean"
+        },
+        "unexpectedKernelCodePages": {
+          "description": "True when kernel code pages that are not in the expected kernel or module code regions are present.",
+          "type": "boolean"
+        },
+        "unexpectedKprobeHandler": {
+          "description": "True when `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
+          "type": "boolean"
+        },
+        "unexpectedProcessesInRunqueue": {
+          "description": "True when unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.",
+          "type": "boolean"
+        },
+        "unexpectedReadOnlyDataModification": {
+          "description": "True when unexpected modifications of kernel read-only data memory are present.",
+          "type": "boolean"
+        },
+        "unexpectedSystemCallHandler": {
+          "description": "True when system call handlers that are are not in the expected kernel or module code regions are present.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Kubernetes": {
-      "description": "Kubernetes related attributes.",
+      "description": "Kubernetes-related attributes.",
       "id": "Kubernetes",
       "properties": {
         "accessReviews": {
@@ -3722,7 +3788,8 @@
               "IMPAIR_DEFENSES",
               "NETWORK_SERVICE_DISCOVERY",
               "ACCESS_TOKEN_MANIPULATION",
-              "ABUSE_ELEVATION_CONTROL_MECHANISM"
+              "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "DEFAULT_ACCOUNTS"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -3759,7 +3826,8 @@
               "T1562",
               "T1046",
               "T1134",
-              "T1548"
+              "T1548",
+              "T1078.001"
             ],
             "type": "string"
           },
@@ -3841,7 +3909,8 @@
               "IMPAIR_DEFENSES",
               "NETWORK_SERVICE_DISCOVERY",
               "ACCESS_TOKEN_MANIPULATION",
-              "ABUSE_ELEVATION_CONTROL_MECHANISM"
+              "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "DEFAULT_ACCOUNTS"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -3878,7 +3947,8 @@
               "T1562",
               "T1046",
               "T1134",
-              "T1548"
+              "T1548",
+              "T1078.001"
             ],
             "type": "string"
           },

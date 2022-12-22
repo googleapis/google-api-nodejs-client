@@ -218,6 +218,10 @@ export namespace securitycenter_v1beta2 {
      * The additional taxonomy group within findings from a given source.
      */
     findingCategory?: string | null;
+    /**
+     * Full resource name of the finding.
+     */
+    name?: string | null;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -275,11 +279,11 @@ export namespace securitycenter_v1beta2 {
     sourcePort?: number | null;
   }
   /**
-   * Representa a single contact's email address
+   * The email address of a contact.
    */
   export interface Schema$Contact {
     /**
-     * An email address e.g. "person123@company.com"
+     * An email address. For example, "`person123@company.com`".
      */
     email?: string | null;
   }
@@ -620,6 +624,10 @@ export namespace securitycenter_v1beta2 {
      */
     externalUri?: string | null;
     /**
+     * File associated with the finding.
+     */
+    files?: Schema$File[];
+    /**
      * The class of the finding.
      */
     findingClass?: string | null;
@@ -631,6 +639,10 @@ export namespace securitycenter_v1beta2 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * Kernel Rootkit signature.
+     */
+    kernelRootkit?: Schema$KernelRootkit;
     /**
      * Kubernetes resources associated with the finding.
      */
@@ -692,7 +704,7 @@ export namespace securitycenter_v1beta2 {
      */
     state?: string | null;
     /**
-     * Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     vulnerability?: Schema$Vulnerability;
   }
@@ -736,7 +748,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
     /**
-     * Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.
+     * Output only. The time at which the BigQuery export was created. This field is set by the server and will be ignored if provided on export on creation.
      */
     createTime?: string | null;
     /**
@@ -752,7 +764,7 @@ export namespace securitycenter_v1beta2 {
      */
     filter?: string | null;
     /**
-     * Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. Email address of the user who last edited the BigQuery export. This field is set by the server and will be ignored if provided on export creation or update.
      */
     mostRecentEditor?: string | null;
     /**
@@ -760,11 +772,11 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string | null;
     /**
-     * Output only. The service account that needs permission to create table, upload data to the big query dataset.
+     * Output only. The service account that needs permission to create table and upload data to the BigQuery dataset.
      */
     principal?: string | null;
     /**
-     * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. The most recent time at which the BigQuery export was updated. This field is set by the server and will be ignored if provided on export creation or update.
      */
     updateTime?: string | null;
   }
@@ -785,7 +797,7 @@ export namespace securitycenter_v1beta2 {
      */
     role?: Schema$Role;
     /**
-     * Represents the subjects(s) bound to the role. Not always available for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always available for PATCH requests.
      */
     subjects?: Schema$Subject[];
   }
@@ -860,7 +872,7 @@ export namespace securitycenter_v1beta2 {
      */
     externalUid?: string | null;
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
     name?: string | null;
     /**
@@ -1106,9 +1118,17 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string | null;
     /**
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     */
+    resourceType?: string | null;
+    /**
      * Required. Resource value level this expression represents
      */
     resourceValue?: string | null;
+    /**
+     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     */
+    scope?: string | null;
     /**
      * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
@@ -1145,7 +1165,7 @@ export namespace securitycenter_v1beta2 {
     role?: string | null;
   }
   /**
-   * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+   * Represents what's commonly known as an _indicator of compromise_ (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
    */
   export interface Schema$Indicator {
     /**
@@ -1153,7 +1173,7 @@ export namespace securitycenter_v1beta2 {
      */
     domains?: string[] | null;
     /**
-     * List of ip addresses associated to the Finding.
+     * The list of IP addresses that are associated with the finding.
      */
     ipAddresses?: string[] | null;
     /**
@@ -1166,7 +1186,48 @@ export namespace securitycenter_v1beta2 {
     uris?: string[] | null;
   }
   /**
-   * Kubernetes related attributes.
+   * Kernel mode rootkit signatures.
+   */
+  export interface Schema$KernelRootkit {
+    /**
+     * Rootkit name when available.
+     */
+    name?: string | null;
+    /**
+     * True when unexpected modifications of kernel code memory are present.
+     */
+    unexpectedCodeModification?: boolean | null;
+    /**
+     * True when `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedFtraceHandler?: boolean | null;
+    /**
+     * True when interrupt handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedInterruptHandler?: boolean | null;
+    /**
+     * True when kernel code pages that are not in the expected kernel or module code regions are present.
+     */
+    unexpectedKernelCodePages?: boolean | null;
+    /**
+     * True when `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedKprobeHandler?: boolean | null;
+    /**
+     * True when unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.
+     */
+    unexpectedProcessesInRunqueue?: boolean | null;
+    /**
+     * True when unexpected modifications of kernel read-only data memory are present.
+     */
+    unexpectedReadOnlyDataModification?: boolean | null;
+    /**
+     * True when system call handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedSystemCallHandler?: boolean | null;
+  }
+  /**
+   * Kubernetes-related attributes.
    */
   export interface Schema$Kubernetes {
     /**
@@ -1633,7 +1694,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -1774,7 +1835,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the EventThreatDetectionSettings resource.
+     * Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -2043,7 +2104,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the RapidVulnerabilityDetectionSettings resource.
+     * Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -2321,7 +2382,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the SecurityHealthAnalyticsSettings resource.
+     * Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -2462,7 +2523,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the VirtualMachineThreatDetectionSettings resource.
+     * Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -2604,7 +2665,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the WebSecurityScannerSettings resource.
+     * Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -3826,7 +3887,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -3986,7 +4047,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -4145,7 +4206,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -4304,7 +4365,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -4464,7 +4525,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -4626,7 +4687,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -4810,7 +4871,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -4952,7 +5013,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the EventThreatDetectionSettings resource.
+     * Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -5223,7 +5284,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the RapidVulnerabilityDetectionSettings resource.
+     * Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -5501,7 +5562,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the SecurityHealthAnalyticsSettings resource.
+     * Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -5772,7 +5833,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the VirtualMachineThreatDetectionSettings resource.
+     * Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -5916,7 +5977,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the WebSecurityScannerSettings resource.
+     * Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -7153,7 +7214,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -7315,7 +7376,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -7474,7 +7535,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -7635,7 +7696,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -7797,7 +7858,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -7959,7 +8020,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -8138,7 +8199,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -8281,7 +8342,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the EventThreatDetectionSettings resource.
+     * Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -8550,7 +8611,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the RapidVulnerabilityDetectionSettings resource.
+     * Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -8828,7 +8889,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the SecurityHealthAnalyticsSettings resource.
+     * Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -8969,7 +9030,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the VirtualMachineThreatDetectionSettings resource.
+     * Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -9111,7 +9172,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the WebSecurityScannerSettings resource.
+     * Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -10334,7 +10395,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -10494,7 +10555,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -10667,7 +10728,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      * @example
      * ```js
      * // Before running the sample:
@@ -11000,7 +11061,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -11162,7 +11223,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -11323,7 +11384,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -11483,7 +11544,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
@@ -11645,7 +11706,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      * @example
      * ```js
      * // Before running the sample:
