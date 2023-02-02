@@ -318,7 +318,7 @@
       }
     }
   },
-  "revision": "20221219",
+  "revision": "20230126",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -410,6 +410,23 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata": {
+      "description": "Metadata for response returned by the `SynthesizeLongAudio` method.",
+      "id": "GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata",
+      "properties": {
+        "progressPercentage": {
+          "description": "The progress of the most recent processing update in percentage, ie. 70.0%.",
+          "format": "double",
+          "type": "number"
+        },
+        "startTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ListOperationsResponse": {
@@ -516,6 +533,23 @@
         },
         "text": {
           "description": "The raw text to be synthesized.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SynthesizeLongAudioMetadata": {
+      "description": "Metadata for response returned by the `SynthesizeLongAudio` method.",
+      "id": "SynthesizeLongAudioMetadata",
+      "properties": {
+        "progressPercentage": {
+          "description": "The progress of the most recent processing update in percentage, ie. 70.0%.",
+          "format": "double",
+          "type": "number"
+        },
+        "startTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

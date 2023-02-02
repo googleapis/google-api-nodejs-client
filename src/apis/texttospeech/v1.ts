@@ -181,6 +181,19 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Metadata for response returned by the `SynthesizeLongAudio` method.
+   */
+  export interface Schema$GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata {
+    /**
+     * The progress of the most recent processing update in percentage, ie. 70.0%.
+     */
+    progressPercentage?: number | null;
+    /**
+     * Time when the request was received.
+     */
+    startTime?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -256,6 +269,19 @@ export namespace texttospeech_v1 {
      * The raw text to be synthesized.
      */
     text?: string | null;
+  }
+  /**
+   * Metadata for response returned by the `SynthesizeLongAudio` method.
+   */
+  export interface Schema$SynthesizeLongAudioMetadata {
+    /**
+     * The progress of the most recent processing update in percentage, ie. 70.0%.
+     */
+    progressPercentage?: number | null;
+    /**
+     * Time when the request was received.
+     */
+    startTime?: string | null;
   }
   /**
    * The top-level message sent by the client for the `SynthesizeLongAudio` method.
