@@ -1197,7 +1197,7 @@
       }
     }
   },
-  "revision": "20221207",
+  "revision": "20230120",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2081,7 +2081,7 @@
         },
         "transport": {
           "$ref": "Transport",
-          "description": "Optional. To deliver messages, Eventarc might use other GCP products as a transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes."
+          "description": "Optional. To deliver messages, Eventarc might use other Google Cloud products as a transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes."
         },
         "uid": {
           "description": "Output only. Server-assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",

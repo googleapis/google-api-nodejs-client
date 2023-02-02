@@ -184,7 +184,7 @@ export namespace eventarc_v1beta1 {
      */
     region?: string | null;
     /**
-     * Required. The name of the Cloud run service being addressed (see https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services). Only services located in the same project of the trigger object can be addressed.
+     * Required. The name of the Cloud run service being addressed. See https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services. Only services located in the same project of the trigger object can be addressed.
      */
     service?: string | null;
   }
@@ -485,7 +485,7 @@ export namespace eventarc_v1beta1 {
      */
     serviceAccount?: string | null;
     /**
-     * Output only. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.
+     * Output only. In order to deliver messages, Eventarc may use other Google Cloud products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.
      */
     transport?: Schema$Transport;
     /**
