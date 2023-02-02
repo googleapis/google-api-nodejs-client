@@ -1,4 +1,13 @@
 {
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/playdeveloperreporting": {
+          "description": "See metrics and data about the apps in your Google Play Developer account"
+        }
+      }
+    }
+  },
   "basePath": "",
   "baseUrl": "https://playdeveloperreporting.googleapis.com/",
   "batchPath": "batch",
@@ -134,7 +143,10 @@
           "path": "v1alpha1/{+parent}/anomalies",
           "response": {
             "$ref": "GooglePlayDeveloperReportingV1alpha1ListAnomaliesResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/playdeveloperreporting"
+          ]
         }
       }
     },
@@ -162,7 +174,10 @@
               "path": "v1alpha1/{+name}",
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1AnrRateMetricSet"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             },
             "query": {
               "description": "Queries the metrics in the metric set.",
@@ -187,7 +202,10 @@
               },
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             }
           }
         },
@@ -213,7 +231,10 @@
               "path": "v1alpha1/{+name}",
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1CrashRateMetricSet"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             },
             "query": {
               "description": "Queries the metrics in the metric set.",
@@ -238,7 +259,10 @@
               },
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             }
           }
         },
@@ -266,7 +290,10 @@
                   "path": "v1alpha1/{+name}",
                   "response": {
                     "$ref": "GooglePlayDeveloperReportingV1alpha1ErrorCountMetricSet"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/playdeveloperreporting"
+                  ]
                 },
                 "query": {
                   "description": "Queries the metrics in the metrics set.",
@@ -291,7 +318,10 @@
                   },
                   "response": {
                     "$ref": "GooglePlayDeveloperReportingV1alpha1QueryErrorCountMetricSetResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/playdeveloperreporting"
+                  ]
                 }
               }
             },
@@ -449,7 +479,10 @@
                   "path": "v1alpha1/{+parent}/errorIssues:search",
                   "response": {
                     "$ref": "GooglePlayDeveloperReportingV1alpha1SearchErrorIssuesResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/playdeveloperreporting"
+                  ]
                 }
               }
             },
@@ -607,7 +640,10 @@
                   "path": "v1alpha1/{+parent}/errorReports:search",
                   "response": {
                     "$ref": "GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/playdeveloperreporting"
+                  ]
                 }
               }
             }
@@ -635,7 +671,10 @@
               "path": "v1alpha1/{+name}",
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1ExcessiveWakeupRateMetricSet"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             },
             "query": {
               "description": "Queries the metrics in the metric set.",
@@ -660,7 +699,10 @@
               },
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             }
           }
         },
@@ -686,7 +728,10 @@
               "path": "v1alpha1/{+name}",
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1StuckBackgroundWakelockRateMetricSet"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             },
             "query": {
               "description": "Queries the metrics in the metric set.",
@@ -711,14 +756,17 @@
               },
               "response": {
                 "$ref": "GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/playdeveloperreporting"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20221214",
+  "revision": "20230129",
   "rootUrl": "https://playdeveloperreporting.googleapis.com/",
   "schemas": {
     "GooglePlayDeveloperReportingV1alpha1Anomaly": {
