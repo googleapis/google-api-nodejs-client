@@ -199,9 +199,13 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$RequestDetails {
     /**
-     * Required. Nonce that was provided in the request (which is base64 web-safe no-wrap).
+     * Nonce that was provided in the request (which is base64 web-safe no-wrap).
      */
     nonce?: string | null;
+    /**
+     * Request hash that was provided in the request.
+     */
+    requestHash?: string | null;
     /**
      * Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity. For details on application integrity, check application_integrity.
      */
