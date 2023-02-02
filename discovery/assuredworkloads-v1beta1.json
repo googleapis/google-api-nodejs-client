@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20221212",
+  "revision": "20230123",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -699,7 +699,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1Violation": {
-      "description": "Workload monitoring Violation.",
+      "description": "Workload monitoring Violation. Next Id: 22",
       "id": "GoogleCloudAssuredworkloadsV1beta1Violation",
       "properties": {
         "acknowledged": {
@@ -925,7 +925,8 @@
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
             "ASSURED_WORKLOADS_FOR_PARTNERS",
-            "ISR_REGIONS"
+            "ISR_REGIONS",
+            "CA_PROTECTED_B"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -941,7 +942,8 @@
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
             "Assured Workloads for Partners;",
-            "Assured Workloads for Israel"
+            "Assured Workloads for Israel",
+            "Assured Workloads for Canada Protected B regime"
           ],
           "type": "string"
         },
