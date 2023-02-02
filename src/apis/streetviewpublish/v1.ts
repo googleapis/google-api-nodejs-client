@@ -327,6 +327,27 @@ export namespace streetviewpublish_v1 {
     z?: number | null;
   }
   /**
+   * Details related to PhotoSequenceProcessingFailureReason#NO_OVERLAP_GPS.
+   */
+  export interface Schema$NoOverlapGpsFailureDetails {
+    /**
+     * Time of last recorded GPS point.
+     */
+    gpsEndTime?: string | null;
+    /**
+     * Time of first recorded GPS point.
+     */
+    gpsStartTime?: string | null;
+    /**
+     * End time of video.
+     */
+    videoEndTime?: string | null;
+    /**
+     * Start time of video.
+     */
+    videoStartTime?: string | null;
+  }
+  /**
    * Details related to ProcessingFailureReason#NOT_OUTDOORS. If there are multiple indoor frames found, the first frame is recorded here.
    */
   export interface Schema$NotOutdoorsFailureDetails {
@@ -574,6 +595,10 @@ export namespace streetviewpublish_v1 {
      * See InsufficientGpsFailureDetails.
      */
     insufficientGpsDetails?: Schema$InsufficientGpsFailureDetails;
+    /**
+     * See NoOverlapGpsFailureDetails.
+     */
+    noOverlapGpsDetails?: Schema$NoOverlapGpsFailureDetails;
     /**
      * See NotOutdoorsFailureDetails.
      */
