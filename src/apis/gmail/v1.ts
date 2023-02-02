@@ -162,7 +162,7 @@ export namespace gmail_v1 {
     removeLabelIds?: string[] | null;
   }
   /**
-   * [Beta](https://workspace.google.com/terms/service-terms/index.html). The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages.
+   * The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages.
    */
   export interface Schema$CseIdentity {
     /**
@@ -175,7 +175,7 @@ export namespace gmail_v1 {
     primaryKeyPairId?: string | null;
   }
   /**
-   * [Beta](https://workspace.google.com/terms/service-terms/index.html). A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.
+   * A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.
    */
   export interface Schema$CseKeyPair {
     /**
@@ -4768,7 +4768,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers.
+     * Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers. For example usage, see [Sending email](https://developers.google.com/gmail/api/guides/sending).
      * @example
      * ```js
      * // Before running the sample:
@@ -7135,7 +7135,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity.
      * @example
      * ```js
      * // Before running the sample:
@@ -7276,7 +7276,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -7403,7 +7403,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Retrieves a client-side encryption identity configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Retrieves a client-side encryption identity configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -7541,7 +7541,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Lists the client-side encrypted identities for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Lists the client-side encrypted identities for an authenticated user.
      * @example
      * ```js
      * // Before running the sample:
@@ -7687,7 +7687,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887). [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887).
      * @example
      * ```js
      * // Before running the sample:
@@ -7904,7 +7904,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user.
      * @example
      * ```js
      * // Before running the sample:
@@ -8055,7 +8055,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method.
      * @example
      * ```js
      * // Before running the sample:
@@ -8201,7 +8201,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities.
      * @example
      * ```js
      * // Before running the sample:
@@ -8347,7 +8347,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Retrieves an existing client-side encryption key pair. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Retrieves an existing client-side encryption key pair.
      * @example
      * ```js
      * // Before running the sample:
@@ -8490,7 +8490,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Lists client-side encryption key pairs for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Lists client-side encryption key pairs for an authenticated user.
      * @example
      * ```js
      * // Before running the sample:
@@ -8634,7 +8634,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages. [Beta](https://workspace.google.com/terms/service-terms/index.html).
+     * Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages.
      * @example
      * ```js
      * // Before running the sample:
