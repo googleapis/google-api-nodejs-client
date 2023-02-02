@@ -332,6 +332,10 @@ export namespace mybusinessverifications_v1 {
    */
   export interface Schema$Verification {
     /**
+     * Optional. Response announcement set only if the method is VETTED_PARTNER.
+     */
+    announcement?: string | null;
+    /**
      * The timestamp when the verification is requested.
      */
     createTime?: string | null;
@@ -356,6 +360,10 @@ export namespace mybusinessverifications_v1 {
      * Set only if the method is MAIL.
      */
     addressData?: Schema$AddressVerificationData;
+    /**
+     * Set only if the method is VETTED_PARTNER.
+     */
+    announcement?: string | null;
     /**
      * Set only if the method is EMAIL.
      */
