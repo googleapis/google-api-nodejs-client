@@ -805,7 +805,7 @@ export namespace managedidentities_v1 {
     name?: string | null;
   }
   /**
-   * Defines policies to service maintenance events.
+   * LINT.IfChange Defines policies to service maintenance events.
    */
   export interface Schema$MaintenancePolicy {
     /**
