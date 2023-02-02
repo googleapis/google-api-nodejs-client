@@ -201,9 +201,18 @@ export namespace workstations_v1beta {
     workingDir?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   * A customer-specified encryption key for the Compute Engine resources of this workstation configuration.
    */
-  export interface Schema$Empty {}
+  export interface Schema$CustomerEncryptionKey {
+    /**
+     * The name of the encryption key that is stored in Google Cloud KMS, for example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`.
+     */
+    kmsKey?: string | null;
+    /**
+     * The service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used. However, it is recommended to use a separate service account and to follow KMS best practices mentioned at https://cloud.google.com/kms/docs/separation-of-duties
+     */
+    kmsKeyServiceAccount?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -226,7 +235,7 @@ export namespace workstations_v1beta {
     title?: string | null;
   }
   /**
-   * A set of Confidential Google Compute Engine Instance option.
+   * A set of Compute Engine Confidential VM instance options.
    */
   export interface Schema$GceConfidentialInstanceConfig {
     /**
@@ -235,7 +244,7 @@ export namespace workstations_v1beta {
     enableConfidentialCompute?: boolean | null;
   }
   /**
-   * A runtime using a Google Compute Engine Instance.
+   * A runtime using a Compute Engine instance.
    */
   export interface Schema$GceInstance {
     /**
@@ -243,7 +252,7 @@ export namespace workstations_v1beta {
      */
     bootDiskSizeGb?: number | null;
     /**
-     * A set of Confidential Google Compute Engine Instance option.
+     * A set of Compute Engine Confidential VM instance options.
      */
     confidentialInstanceConfig?: Schema$GceConfidentialInstanceConfig;
     /**
@@ -251,11 +260,11 @@ export namespace workstations_v1beta {
      */
     disablePublicIpAddresses?: boolean | null;
     /**
-     * The name of a Google Compute Engine machine type.
+     * The name of a Compute Engine machine type.
      */
     machineType?: string | null;
     /**
-     * Number of instances to pool for faster Workstation starup.
+     * Number of instances to pool for faster workstation starup.
      */
     poolSize?: number | null;
     /**
@@ -263,11 +272,11 @@ export namespace workstations_v1beta {
      */
     serviceAccount?: string | null;
     /**
-     * A set of Shielded Google Compute Engine Instance options.
+     * A set of Compute Engine Shielded instance options.
      */
     shieldedInstanceConfig?: Schema$GceShieldedInstanceConfig;
     /**
-     * Network tags to add to the Google Compute Engine machines backing the Workstations.
+     * Network tags to add to the Compute Engine machines backing the Workstations.
      */
     tags?: string[] | null;
   }
@@ -280,11 +289,11 @@ export namespace workstations_v1beta {
      */
     diskType?: string | null;
     /**
-     * Type of file system that the disk should be formatted with. The Workstation image must support this file system type. Must be empty if source_snapshot is set.
+     * Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set.
      */
     fsType?: string | null;
     /**
-     * What should happen to the disk after the Workstation is deleted. Defaults to DELETE.
+     * What should happen to the disk after the workstation is deleted. Defaults to DELETE.
      */
     reclaimPolicy?: string | null;
     /**
@@ -293,7 +302,7 @@ export namespace workstations_v1beta {
     sizeGb?: number | null;
   }
   /**
-   * A set of Shielded Google Compute Engine Instance options.
+   * A set of Compute Engine Shielded instance options.
    */
   export interface Schema$GceShieldedInstanceConfig {
     /**
@@ -327,7 +336,7 @@ export namespace workstations_v1beta {
    */
   export interface Schema$GenerateAccessTokenResponse {
     /**
-     * The generated bearer access token. To use this token, include it in an Authorization header of an HTTP request sent to the associated workstation's hostname, e.g. "Authorization: Bearer ".
+     * The generated bearer access token. To use this token, include it in an Authorization header of an HTTP request sent to the associated workstation's hostname, for example, `Authorization: Bearer `.
      */
     accessToken?: string | null;
     /**
@@ -336,11 +345,15 @@ export namespace workstations_v1beta {
     expireTime?: string | null;
   }
   /**
-   * The system will attempt to keep enough computational resources on standby Runtime host for a Workstation.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$GoogleProtobufEmpty {}
+  /**
+   * Runtime host for a workstation.
    */
   export interface Schema$Host {
     /**
-     * Specifies a Google Compute Engine Instance as the host.
+     * Specifies a Compute Engine instance as the host.
      */
     gceInstance?: Schema$GceInstance;
   }
@@ -468,7 +481,7 @@ export namespace workstations_v1beta {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
+   * Metadata for long-running operations.
    */
   export interface Schema$OperationMetadata {
     /**
@@ -476,21 +489,21 @@ export namespace workstations_v1beta {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean | null;
-    /**
-     * Output only. The time the operation was created.
+     * Output only. Time that the operation was created.
      */
     createTime?: string | null;
     /**
-     * Output only. The time the operation finished running.
+     * Output only. Time that the operation finished running.
      */
     endTime?: string | null;
     /**
+     * Output only. Identifies whether the user has requested cancellation of the operation.
+     */
+    requestedCancellation?: boolean | null;
+    /**
      * Output only. Human-readable status of the operation, if any.
      */
-    statusDetail?: string | null;
+    statusMessage?: string | null;
     /**
      * Output only. Server-defined resource path for the target of the operation.
      */
@@ -501,7 +514,7 @@ export namespace workstations_v1beta {
     verb?: string | null;
   }
   /**
-   * A directory persisted across Workstation sessions.
+   * A directory to persist across workstation sessions.
    */
   export interface Schema$PersistentDirectory {
     /**
@@ -509,7 +522,7 @@ export namespace workstations_v1beta {
      */
     gcePd?: Schema$GceRegionalPersistentDisk;
     /**
-     * Location of this directory in the running Workstation.
+     * Location of this directory in the running workstation.
      */
     mountPath?: string | null;
   }
@@ -539,15 +552,15 @@ export namespace workstations_v1beta {
    */
   export interface Schema$PrivateClusterConfig {
     /**
-     * Output only. Hostname for the Workstation Cluster. This field will be populated only when private endpoint is enabled. To access workstations in the cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
+     * Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
      */
     clusterHostname?: string | null;
     /**
-     * Whether Workstations endpoint is private.
+     * Immutable. Whether Workstations endpoint is private.
      */
     enablePrivateEndpoint?: boolean | null;
     /**
-     * Output only. Service attachment URI for the Workstation Cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the cluster, configure access to the managed service using (Private Service Connect)[https://cloud.google.com/vpc/docs/configure-private-service-connect-services].
+     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
      */
     serviceAttachmentUri?: string | null;
   }
@@ -650,9 +663,13 @@ export namespace workstations_v1beta {
      */
     etag?: string | null;
     /**
-     * Output only. Host to which clients can send HTTPS traffic that will be received by the workstation. Authorized traffic will be received to the workstation as HTTP on port 80. To send traffic to a different port, clients may prefix the host with the destination port in the format "{port\}-{host\}".
+     * Output only. Host to which clients can send HTTPS traffic that will be received by the workstation. Authorized traffic will be received to the workstation as HTTP on port 80. To send traffic to a different port, clients may prefix the host with the destination port in the format `{port\}-{host\}`.
      */
     host?: string | null;
+    /**
+     * Client-specified labels that are applied to the resource and that are also propagated to the underlying Compute Engine resources.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Full name of this resource.
      */
@@ -675,7 +692,7 @@ export namespace workstations_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A grouping of WorkstationConfigs and their associated Workstations in a region.
+   * A grouping of workstation configurations and the associated workstations in that region.
    */
   export interface Schema$WorkstationCluster {
     /**
@@ -707,11 +724,15 @@ export namespace workstations_v1beta {
      */
     etag?: string | null;
     /**
+     * Client-specified labels that are applied to the resource and that are also propagated to the underlying Compute Engine resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Full name of this resource.
      */
     name?: string | null;
     /**
-     * Name of the Compute Engine network in which instances associated with this cluster will be created.
+     * Immutable. Name of the Compute Engine network in which instances associated with this cluster will be created.
      */
     network?: string | null;
     /**
@@ -723,7 +744,7 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
-     * Name of the Compute Engine subnetwork in which instances associated with this cluster will be created. Must be part of the subnetwork specified for this cluster.
+     * Immutable. Name of the Compute Engine subnetwork in which instances associated with this cluster will be created. Must be part of the subnetwork specified for this cluster.
      */
     subnetwork?: string | null;
     /**
@@ -736,7 +757,7 @@ export namespace workstations_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A set of configuration options describing how a workstation will be run. WorkstationConfigs are intended to be shared across multiple workstations.
+   * A set of configuration options describing how a workstation will be run. Workstation configurations are intended to be shared across multiple workstations.
    */
   export interface Schema$WorkstationConfig {
     /**
@@ -748,7 +769,7 @@ export namespace workstations_v1beta {
      */
     conditions?: Schema$Status[];
     /**
-     * Container that will be run for each Workstation using this config when that Workstation is started.
+     * Container that will be run for each workstation using this configuration when that workstation is started.
      */
     container?: Schema$Container;
     /**
@@ -768,11 +789,15 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
+     * Encrypts resources of this workstation configuration using a customer-specified encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk will be encrypted using this encryption key. If this field is not set, the disks will be encrypted using a generated key. Customer-specified encryption keys do not protect disk metadata. If the customer-specified encryption key is rotated, when the workstation instance is stopped, the system will attempt to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours.
+     */
+    encryptionKey?: Schema$CustomerEncryptionKey;
+    /**
      * Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * Runtime host for the Workstation.
+     * Runtime host for the workstation.
      */
     host?: Schema$Host;
     /**
@@ -780,11 +805,15 @@ export namespace workstations_v1beta {
      */
     idleTimeout?: string | null;
     /**
+     * Client-specified labels that are applied to the resource and that are also propagated to the underlying Compute Engine resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Full name of this resource.
      */
     name?: string | null;
     /**
-     * Directories to persist across Workstation sessions.
+     * Directories to persist across workstation sessions.
      */
     persistentDirectories?: Schema$PersistentDirectory[];
     /**
@@ -895,7 +924,7 @@ export namespace workstations_v1beta {
     cancel(
       params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -903,28 +932,31 @@ export namespace workstations_v1beta {
     ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
     cancel(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -958,12 +990,12 @@ export namespace workstations_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
     }
 
@@ -1022,7 +1054,7 @@ export namespace workstations_v1beta {
     delete(
       params?: Params$Resource$Projects$Locations$Operations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1030,28 +1062,31 @@ export namespace workstations_v1beta {
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Delete
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1082,12 +1117,12 @@ export namespace workstations_v1beta {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
     }
 
@@ -1421,7 +1456,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Creates a new WorkstationCluster.
+     * Creates a new workstation cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -1465,6 +1500,7 @@ export namespace workstations_v1beta {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "privateClusterConfig": {},
@@ -1580,7 +1616,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Deletes the specified WorkstationCluster.
+     * Deletes the specified workstation cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -1608,7 +1644,7 @@ export namespace workstations_v1beta {
      *   const res = await workstations.projects.locations.workstationClusters.delete({
      *     // If set, the request will be rejected if the latest version of the cluster on the server does not have this etag.
      *     etag: 'placeholder-value',
-     *     // If set, any WorkstationConfigs and Workstations in the cluster will also be deleted. Otherwise, the request will work only if the cluster has no configs or workstations.
+     *     // If set, any workstation configurations and workstations in the cluster will also be deleted. Otherwise, the request will work only if the cluster has no configurations or workstations.
      *     force: 'placeholder-value',
      *     // Required. Name of the cluster to delete.
      *     name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster',
@@ -1717,7 +1753,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns the requested WorkstationCluster.
+     * Returns the requested workstation cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -1757,6 +1793,7 @@ export namespace workstations_v1beta {
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "privateClusterConfig": {},
@@ -1860,7 +1897,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns all WorkstationClusters in the specified location.
+     * Returns all workstation clusters in the specified location.
      * @example
      * ```js
      * // Before running the sample:
@@ -2005,7 +2042,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Updates an existing WorkstationCluster.
+     * Updates an existing workstation cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -2051,6 +2088,7 @@ export namespace workstations_v1beta {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "privateClusterConfig": {},
@@ -2190,7 +2228,7 @@ export namespace workstations_v1beta {
      */
     etag?: string;
     /**
-     * If set, any WorkstationConfigs and Workstations in the cluster will also be deleted. Otherwise, the request will work only if the cluster has no configs or workstations.
+     * If set, any workstation configurations and workstations in the cluster will also be deleted. Otherwise, the request will work only if the cluster has no configurations or workstations.
      */
     force?: boolean;
     /**
@@ -2261,7 +2299,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Creates a new WorkstationConfig.
+     * Creates a new workstation configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -2308,9 +2346,11 @@ export namespace workstations_v1beta {
      *           //   "degraded": false,
      *           //   "deleteTime": "my_deleteTime",
      *           //   "displayName": "my_displayName",
+     *           //   "encryptionKey": {},
      *           //   "etag": "my_etag",
      *           //   "host": {},
      *           //   "idleTimeout": "my_idleTimeout",
+     *           //   "labels": {},
      *           //   "name": "my_name",
      *           //   "persistentDirectories": [],
      *           //   "reconciling": false,
@@ -2426,7 +2466,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Deletes the specified WorkstationConfig.
+     * Deletes the specified workstation configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -2566,7 +2606,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns the requested WorkstationConfig.
+     * Returns the requested workstation configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -2609,9 +2649,11 @@ export namespace workstations_v1beta {
      *   //   "degraded": false,
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "encryptionKey": {},
      *   //   "etag": "my_etag",
      *   //   "host": {},
      *   //   "idleTimeout": "my_idleTimeout",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "persistentDirectories": [],
      *   //   "reconciling": false,
@@ -2853,7 +2895,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns all WorkstationConfigs in the specified cluster.
+     * Returns all workstation configurations in the specified cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -3002,7 +3044,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns all WorkstationConfigs in the specified cluster on which the caller has the "workstations.workstation.create" permission.
+     * Returns all workstation configurations in the specified cluster on which the caller has the "workstations.workstation.create" permission.
      * @example
      * ```js
      * // Before running the sample:
@@ -3150,7 +3192,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Updates an existing WorkstationConfig.
+     * Updates an existing workstation configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -3198,9 +3240,11 @@ export namespace workstations_v1beta {
      *           //   "degraded": false,
      *           //   "deleteTime": "my_deleteTime",
      *           //   "displayName": "my_displayName",
+     *           //   "encryptionKey": {},
      *           //   "etag": "my_etag",
      *           //   "host": {},
      *           //   "idleTimeout": "my_idleTimeout",
+     *           //   "labels": {},
      *           //   "name": "my_name",
      *           //   "persistentDirectories": [],
      *           //   "reconciling": false,
@@ -3751,7 +3795,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Creates a new Workstation.
+     * Creates a new workstation.
      * @example
      * ```js
      * // Before running the sample:
@@ -3797,6 +3841,7 @@ export namespace workstations_v1beta {
      *           //   "displayName": "my_displayName",
      *           //   "etag": "my_etag",
      *           //   "host": "my_host",
+     *           //   "labels": {},
      *           //   "name": "my_name",
      *           //   "reconciling": false,
      *           //   "state": "my_state",
@@ -3911,7 +3956,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Deletes the specified Workstation.
+     * Deletes the specified workstation.
      * @example
      * ```js
      * // Before running the sample:
@@ -4199,7 +4244,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns the requested Workstation.
+     * Returns the requested workstation.
      * @example
      * ```js
      * // Before running the sample:
@@ -4241,6 +4286,7 @@ export namespace workstations_v1beta {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "host": "my_host",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
      *   //   "state": "my_state",
@@ -4771,7 +4817,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Updates an existing Workstation.
+     * Updates an existing workstation.
      * @example
      * ```js
      * // Before running the sample:
@@ -4818,6 +4864,7 @@ export namespace workstations_v1beta {
      *           //   "displayName": "my_displayName",
      *           //   "etag": "my_etag",
      *           //   "host": "my_host",
+     *           //   "labels": {},
      *           //   "name": "my_name",
      *           //   "reconciling": false,
      *           //   "state": "my_state",
