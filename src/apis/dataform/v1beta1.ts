@@ -300,7 +300,7 @@ export namespace dataform_v1beta1 {
      */
     releaseConfig?: string | null;
     /**
-     * Output only. The fully resolved Git commit SHA of the code that was compiled.
+     * Output only. The fully resolved Git commit SHA of the code that was compiled. Not set for compilation results whose source is a workspace.
      */
     resolvedGitCommitSha?: string | null;
     /**
@@ -479,27 +479,27 @@ export namespace dataform_v1beta1 {
     startTime?: string | null;
   }
   /**
-   * Includes various configuration options for this workflow invocation. If both `included_targets` and `included_tags` are unset, all actions will be included.
+   * Includes various configuration options for a workflow invocation. If both `included_targets` and `included_tags` are unset, all actions will be included.
    */
   export interface Schema$InvocationConfig {
     /**
-     * Immutable. When set to true, any incremental tables will be fully refreshed.
+     * Optional. When set to true, any incremental tables will be fully refreshed.
      */
     fullyRefreshIncrementalTablesEnabled?: boolean | null;
     /**
-     * Immutable. The set of tags to include.
+     * Optional. The set of tags to include.
      */
     includedTags?: string[] | null;
     /**
-     * Immutable. The set of action identifiers to include.
+     * Optional. The set of action identifiers to include.
      */
     includedTargets?: Schema$Target[];
     /**
-     * Immutable. When set to true, transitive dependencies of included actions will be executed.
+     * Optional. When set to true, transitive dependencies of included actions will be executed.
      */
     transitiveDependenciesIncluded?: boolean | null;
     /**
-     * Immutable. When set to true, transitive dependents of included actions will be executed.
+     * Optional. When set to true, transitive dependents of included actions will be executed.
      */
     transitiveDependentsIncluded?: boolean | null;
   }
@@ -566,6 +566,23 @@ export namespace dataform_v1beta1 {
      * Locations which could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * `ListWorkflowConfigs` response message.
+   */
+  export interface Schema$ListWorkflowConfigsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations which could not be reached.
+     */
+    unreachable?: string[] | null;
+    /**
+     * List of workflow configs.
+     */
+    workflowConfigs?: Schema$WorkflowConfig[];
   }
   /**
    * `ListWorkflowInvocations` response message.
@@ -888,7 +905,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$ReleaseConfig {
     /**
-     * Immutable. If set, fields of `code_compilation_config` override the default compilation settings that are specified in dataform.json.
+     * Optional. If set, fields of `code_compilation_config` override the default compilation settings that are specified in dataform.json.
      */
     codeCompilationConfig?: Schema$CodeCompilationConfig;
     /**
@@ -911,6 +928,10 @@ export namespace dataform_v1beta1 {
      * Optional. The name of the currently released compilation result for this release config. This value is updated when a compilation result is created from this release config, or when this resource is updated by API call (perhaps to roll back to an earlier release). The compilation result must have been created using this release config. Must be in the format `projects/x/locations/x/repositories/x/compilationResults/x`.
      */
     releaseCompilationResult?: string | null;
+    /**
+     * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.
+     */
+    timeZone?: string | null;
   }
   /**
    * `RemoveDirectory` request message.
@@ -946,6 +967,10 @@ export namespace dataform_v1beta1 {
      * Optional. The name of the Secret Manager secret version to be used to interpolate variables into the .npmrc file for package installation operations. Must be in the format `projects/x/secrets/x/versions/x`. The file itself must be in a JSON format.
      */
     npmrcEnvironmentVariablesSecretVersion?: string | null;
+    /**
+     * Optional. If set, fields of `workspace_compilation_overrides` override the default compilation settings that are specified in dataform.json when creating workspace-scoped compilation results. See documentation for `WorkspaceCompilationOverrides` for more information.
+     */
+    workspaceCompilationOverrides?: Schema$WorkspaceCompilationOverrides;
   }
   /**
    * `ResetWorkspaceChanges` request message.
@@ -959,6 +984,23 @@ export namespace dataform_v1beta1 {
      * Optional. Full file paths to reset back to their committed state including filename, rooted at workspace root. If left empty, all files will be reset.
      */
     paths?: string[] | null;
+  }
+  /**
+   * A record of an attempt to create a workflow invocation for this workflow config.
+   */
+  export interface Schema$ScheduledExecutionRecord {
+    /**
+     * The error status encountered upon this attempt to create the workflow invocation, if the attempt was unsuccessful.
+     */
+    errorStatus?: Schema$Status;
+    /**
+     * The timestamp of this execution attempt.
+     */
+    executionTime?: string | null;
+    /**
+     * The name of the created workflow invocation, if one was successfully created. Must be in the format `projects/x/locations/x/repositories/x/workflowInvocations/x`.
+     */
+    workflowInvocation?: string | null;
   }
   /**
    * A record of an attempt to create a compilation result for this release config.
@@ -1025,6 +1067,35 @@ export namespace dataform_v1beta1 {
     state?: string | null;
   }
   /**
+   * Represents a Dataform workflow configuration.
+   */
+  export interface Schema$WorkflowConfig {
+    /**
+     * Optional. Optional schedule (in cron format) for automatic execution of this workflow config.
+     */
+    cronSchedule?: string | null;
+    /**
+     * Optional. If left unset, a default InvocationConfig will be used.
+     */
+    invocationConfig?: Schema$InvocationConfig;
+    /**
+     * Output only. The workflow config's name.
+     */
+    name?: string | null;
+    /**
+     * Output only. Records of the 10 most recent scheduled execution attempts. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.
+     */
+    recentScheduledExecutionRecords?: Schema$ScheduledExecutionRecord[];
+    /**
+     * Required. The name of the release config whose release_compilation_result should be executed. Must be in the format `projects/x/locations/x/repositories/x/releaseConfigs/x`.
+     */
+    releaseConfig?: string | null;
+    /**
+     * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.
+     */
+    timeZone?: string | null;
+  }
+  /**
    * Represents a single invocation of a compilation result.
    */
   export interface Schema$WorkflowInvocation {
@@ -1048,6 +1119,10 @@ export namespace dataform_v1beta1 {
      * Output only. This workflow invocation's current state.
      */
     state?: string | null;
+    /**
+     * Immutable. The name of the workflow config to invoke. Must be in the format `projects/x/locations/x/repositories/x/workflowConfigs/x`.
+     */
+    workflowConfig?: string | null;
   }
   /**
    * Represents a single action in a workflow invocation.
@@ -1086,6 +1161,23 @@ export namespace dataform_v1beta1 {
      * Output only. The workspace's name.
      */
     name?: string | null;
+  }
+  /**
+   * Configures workspace compilation overrides for a repository. Primarily used by the UI (`console.cloud.google.com`). `schema_suffix` and `table_prefix` can have a special expression - `${workspaceName\}`, which refers to the workspace name from which the compilation results will be created. API callers are expected to resolve the expression in these overrides and provide them explicitly in `code_compilation_config` (https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories.compilationResults#codecompilationconfig) when creating workspace-scoped compilation results.
+   */
+  export interface Schema$WorkspaceCompilationOverrides {
+    /**
+     * Optional. The default database (Google Cloud project ID).
+     */
+    defaultDatabase?: string | null;
+    /**
+     * Optional. The suffix that should be appended to all schema (BigQuery dataset ID) names.
+     */
+    schemaSuffix?: string | null;
+    /**
+     * Optional. The prefix that should be prepended to all table names.
+     */
+    tablePrefix?: string | null;
   }
   /**
    * `WriteFile` request message.
@@ -1433,6 +1525,7 @@ export namespace dataform_v1beta1 {
     context: APIRequestContext;
     compilationResults: Resource$Projects$Locations$Repositories$Compilationresults;
     releaseConfigs: Resource$Projects$Locations$Repositories$Releaseconfigs;
+    workflowConfigs: Resource$Projects$Locations$Repositories$Workflowconfigs;
     workflowInvocations: Resource$Projects$Locations$Repositories$Workflowinvocations;
     workspaces: Resource$Projects$Locations$Repositories$Workspaces;
     constructor(context: APIRequestContext) {
@@ -1443,6 +1536,10 @@ export namespace dataform_v1beta1 {
         );
       this.releaseConfigs =
         new Resource$Projects$Locations$Repositories$Releaseconfigs(
+          this.context
+        );
+      this.workflowConfigs =
+        new Resource$Projects$Locations$Repositories$Workflowconfigs(
           this.context
         );
       this.workflowInvocations =
@@ -1492,7 +1589,8 @@ export namespace dataform_v1beta1 {
      *       // {
      *       //   "gitRemoteSettings": {},
      *       //   "name": "my_name",
-     *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion"
+     *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *       //   "workspaceCompilationOverrides": {}
      *       // }
      *     },
      *   });
@@ -1502,7 +1600,8 @@ export namespace dataform_v1beta1 {
      *   // {
      *   //   "gitRemoteSettings": {},
      *   //   "name": "my_name",
-     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion"
+     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
      *
@@ -1897,7 +1996,8 @@ export namespace dataform_v1beta1 {
      *   // {
      *   //   "gitRemoteSettings": {},
      *   //   "name": "my_name",
-     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion"
+     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
      *
@@ -2171,7 +2271,8 @@ export namespace dataform_v1beta1 {
      *       // {
      *       //   "gitRemoteSettings": {},
      *       //   "name": "my_name",
-     *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion"
+     *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *       //   "workspaceCompilationOverrides": {}
      *       // }
      *     },
      *   });
@@ -2181,7 +2282,8 @@ export namespace dataform_v1beta1 {
      *   // {
      *   //   "gitRemoteSettings": {},
      *   //   "name": "my_name",
-     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion"
+     *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
+     *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
      *
@@ -3054,7 +3156,8 @@ export namespace dataform_v1beta1 {
      *         //   "gitCommitish": "my_gitCommitish",
      *         //   "name": "my_name",
      *         //   "recentScheduledReleaseRecords": [],
-     *         //   "releaseCompilationResult": "my_releaseCompilationResult"
+     *         //   "releaseCompilationResult": "my_releaseCompilationResult",
+     *         //   "timeZone": "my_timeZone"
      *         // }
      *       },
      *     });
@@ -3067,7 +3170,8 @@ export namespace dataform_v1beta1 {
      *   //   "gitCommitish": "my_gitCommitish",
      *   //   "name": "my_name",
      *   //   "recentScheduledReleaseRecords": [],
-     *   //   "releaseCompilationResult": "my_releaseCompilationResult"
+     *   //   "releaseCompilationResult": "my_releaseCompilationResult",
+     *   //   "timeZone": "my_timeZone"
      *   // }
      * }
      *
@@ -3330,7 +3434,8 @@ export namespace dataform_v1beta1 {
      *   //   "gitCommitish": "my_gitCommitish",
      *   //   "name": "my_name",
      *   //   "recentScheduledReleaseRecords": [],
-     *   //   "releaseCompilationResult": "my_releaseCompilationResult"
+     *   //   "releaseCompilationResult": "my_releaseCompilationResult",
+     *   //   "timeZone": "my_timeZone"
      *   // }
      * }
      *
@@ -3610,7 +3715,8 @@ export namespace dataform_v1beta1 {
      *         //   "gitCommitish": "my_gitCommitish",
      *         //   "name": "my_name",
      *         //   "recentScheduledReleaseRecords": [],
-     *         //   "releaseCompilationResult": "my_releaseCompilationResult"
+     *         //   "releaseCompilationResult": "my_releaseCompilationResult",
+     *         //   "timeZone": "my_timeZone"
      *         // }
      *       },
      *     });
@@ -3623,7 +3729,8 @@ export namespace dataform_v1beta1 {
      *   //   "gitCommitish": "my_gitCommitish",
      *   //   "name": "my_name",
      *   //   "recentScheduledReleaseRecords": [],
-     *   //   "releaseCompilationResult": "my_releaseCompilationResult"
+     *   //   "releaseCompilationResult": "my_releaseCompilationResult",
+     *   //   "timeZone": "my_timeZone"
      *   // }
      * }
      *
@@ -3777,6 +3884,779 @@ export namespace dataform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$ReleaseConfig;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Workflowconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new WorkflowConfig in a given Repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workflowConfigs.create({
+     *       // Required. The repository in which to create the workflow config. Must be in the format `projects/x/locations/x/repositories/x`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *       // Required. The ID to use for the workflow config, which will become the final component of the workflow config's resource name.
+     *       workflowConfigId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cronSchedule": "my_cronSchedule",
+     *         //   "invocationConfig": {},
+     *         //   "name": "my_name",
+     *         //   "recentScheduledExecutionRecords": [],
+     *         //   "releaseConfig": "my_releaseConfig",
+     *         //   "timeZone": "my_timeZone"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cronSchedule": "my_cronSchedule",
+     *   //   "invocationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "recentScheduledExecutionRecords": [],
+     *   //   "releaseConfig": "my_releaseConfig",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowConfig>;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowConfig>,
+      callback: BodyResponseCallback<Schema$WorkflowConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create,
+      callback: BodyResponseCallback<Schema$WorkflowConfig>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$WorkflowConfig>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/workflowConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkflowConfig>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single WorkflowConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workflowConfigs.delete({
+     *       // Required. The workflow config's name.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowConfigs/my-workflowConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Fetches a single WorkflowConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workflowConfigs.get({
+     *       // Required. The workflow config's name.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowConfigs/my-workflowConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cronSchedule": "my_cronSchedule",
+     *   //   "invocationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "recentScheduledExecutionRecords": [],
+     *   //   "releaseConfig": "my_releaseConfig",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowConfig>,
+      callback: BodyResponseCallback<Schema$WorkflowConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get,
+      callback: BodyResponseCallback<Schema$WorkflowConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WorkflowConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkflowConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists WorkflowConfigs in a given Repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workflowConfigs.list({
+     *       // Optional. Maximum number of workflow configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The repository in which to list workflow configs. Must be in the format `projects/x/locations/x/repositories/x`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "workflowConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkflowConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkflowConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List,
+      callback: BodyResponseCallback<Schema$ListWorkflowConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWorkflowConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List
+        | BodyResponseCallback<Schema$ListWorkflowConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkflowConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkflowConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/workflowConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkflowConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkflowConfigsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a single WorkflowConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.workflowConfigs.patch({
+     *       // Output only. The workflow config's name.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/workflowConfigs/my-workflowConfig',
+     *       // Optional. Specifies the fields to be updated in the workflow config. If left unset, all fields will be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cronSchedule": "my_cronSchedule",
+     *         //   "invocationConfig": {},
+     *         //   "name": "my_name",
+     *         //   "recentScheduledExecutionRecords": [],
+     *         //   "releaseConfig": "my_releaseConfig",
+     *         //   "timeZone": "my_timeZone"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cronSchedule": "my_cronSchedule",
+     *   //   "invocationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "recentScheduledExecutionRecords": [],
+     *   //   "releaseConfig": "my_releaseConfig",
+     *   //   "timeZone": "my_timeZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkflowConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkflowConfig>,
+      callback: BodyResponseCallback<Schema$WorkflowConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch,
+      callback: BodyResponseCallback<Schema$WorkflowConfig>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$WorkflowConfig>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkflowConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkflowConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkflowConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkflowConfig>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. The repository in which to create the workflow config. Must be in the format `projects/x/locations/x/repositories/x`.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the workflow config, which will become the final component of the workflow config's resource name.
+     */
+    workflowConfigId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The workflow config's name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The workflow config's name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of workflow configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The repository in which to list workflow configs. Must be in the format `projects/x/locations/x/repositories/x`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Workflowconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The workflow config's name.
+     */
+    name?: string;
+    /**
+     * Optional. Specifies the fields to be updated in the workflow config. If left unset, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkflowConfig;
   }
 
   export class Resource$Projects$Locations$Repositories$Workflowinvocations {
@@ -3960,7 +4840,8 @@ export namespace dataform_v1beta1 {
      *         //   "invocationConfig": {},
      *         //   "invocationTiming": {},
      *         //   "name": "my_name",
-     *         //   "state": "my_state"
+     *         //   "state": "my_state",
+     *         //   "workflowConfig": "my_workflowConfig"
      *         // }
      *       },
      *     });
@@ -3972,7 +4853,8 @@ export namespace dataform_v1beta1 {
      *   //   "invocationConfig": {},
      *   //   "invocationTiming": {},
      *   //   "name": "my_name",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "workflowConfig": "my_workflowConfig"
      *   // }
      * }
      *
@@ -4236,7 +5118,8 @@ export namespace dataform_v1beta1 {
      *   //   "invocationConfig": {},
      *   //   "invocationTiming": {},
      *   //   "name": "my_name",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "workflowConfig": "my_workflowConfig"
      *   // }
      * }
      *
