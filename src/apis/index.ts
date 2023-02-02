@@ -44,6 +44,10 @@ import {VERSIONS as adminVersions, admin} from './admin';
 import {VERSIONS as admobVersions, admob} from './admob';
 import {VERSIONS as adsenseVersions, adsense} from './adsense';
 import {VERSIONS as adsensehostVersions, adsensehost} from './adsensehost';
+import {
+  VERSIONS as advisorynotificationsVersions,
+  advisorynotifications,
+} from './advisorynotifications';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
 import {VERSIONS as analyticsVersions, analytics} from './analytics';
 import {
@@ -197,6 +201,10 @@ import {VERSIONS as composerVersions, composer} from './composer';
 import {VERSIONS as computeVersions, compute} from './compute';
 import {VERSIONS as connectorsVersions, connectors} from './connectors';
 import {
+  VERSIONS as contactcenteraiplatformVersions,
+  contactcenteraiplatform,
+} from './contactcenteraiplatform';
+import {
   VERSIONS as contactcenterinsightsVersions,
   contactcenterinsights,
 } from './contactcenterinsights';
@@ -346,8 +354,10 @@ import {
 } from './identitytoolkit';
 import {VERSIONS as idsVersions, ids} from './ids';
 import {VERSIONS as indexingVersions, indexing} from './indexing';
+import {VERSIONS as integrationsVersions, integrations} from './integrations';
 import {VERSIONS as jobsVersions, jobs} from './jobs';
 import {VERSIONS as kgsearchVersions, kgsearch} from './kgsearch';
+import {VERSIONS as kmsinventoryVersions, kmsinventory} from './kmsinventory';
 import {VERSIONS as languageVersions, language} from './language';
 import {VERSIONS as libraryagentVersions, libraryagent} from './libraryagent';
 import {VERSIONS as licensingVersions, licensing} from './licensing';
@@ -504,6 +514,7 @@ import {
 import {VERSIONS as safebrowsingVersions, safebrowsing} from './safebrowsing';
 import {VERSIONS as sasportalVersions, sasportal} from './sasportal';
 import {VERSIONS as scriptVersions, script} from './script';
+import {VERSIONS as searchads360Versions, searchads360} from './searchads360';
 import {
   VERSIONS as searchconsoleVersions,
   searchconsole,
@@ -638,6 +649,7 @@ export const APIS: APIList = {
   admob: admobVersions,
   adsense: adsenseVersions,
   adsensehost: adsensehostVersions,
+  advisorynotifications: advisorynotificationsVersions,
   alertcenter: alertcenterVersions,
   analytics: analyticsVersions,
   analyticsadmin: analyticsadminVersions,
@@ -700,6 +712,7 @@ export const APIS: APIList = {
   composer: composerVersions,
   compute: computeVersions,
   connectors: connectorsVersions,
+  contactcenteraiplatform: contactcenteraiplatformVersions,
   contactcenterinsights: contactcenterinsightsVersions,
   container: containerVersions,
   containeranalysis: containeranalysisVersions,
@@ -772,8 +785,10 @@ export const APIS: APIList = {
   identitytoolkit: identitytoolkitVersions,
   ids: idsVersions,
   indexing: indexingVersions,
+  integrations: integrationsVersions,
   jobs: jobsVersions,
   kgsearch: kgsearchVersions,
+  kmsinventory: kmsinventoryVersions,
   language: languageVersions,
   libraryagent: libraryagentVersions,
   licensing: licensingVersions,
@@ -834,6 +849,7 @@ export const APIS: APIList = {
   safebrowsing: safebrowsingVersions,
   sasportal: sasportalVersions,
   script: scriptVersions,
+  searchads360: searchads360Versions,
   searchconsole: searchconsoleVersions,
   secretmanager: secretmanagerVersions,
   securitycenter: securitycenterVersions,
@@ -898,6 +914,7 @@ export class GeneratedAPIs {
   admob = admob;
   adsense = adsense;
   adsensehost = adsensehost;
+  advisorynotifications = advisorynotifications;
   alertcenter = alertcenter;
   analytics = analytics;
   analyticsadmin = analyticsadmin;
@@ -960,6 +977,7 @@ export class GeneratedAPIs {
   composer = composer;
   compute = compute;
   connectors = connectors;
+  contactcenteraiplatform = contactcenteraiplatform;
   contactcenterinsights = contactcenterinsights;
   container = container;
   containeranalysis = containeranalysis;
@@ -1032,8 +1050,10 @@ export class GeneratedAPIs {
   identitytoolkit = identitytoolkit;
   ids = ids;
   indexing = indexing;
+  integrations = integrations;
   jobs = jobs;
   kgsearch = kgsearch;
+  kmsinventory = kmsinventory;
   language = language;
   libraryagent = libraryagent;
   licensing = licensing;
@@ -1094,6 +1114,7 @@ export class GeneratedAPIs {
   safebrowsing = safebrowsing;
   sasportal = sasportal;
   script = script;
+  searchads360 = searchads360;
   searchconsole = searchconsole;
   secretmanager = secretmanager;
   securitycenter = securitycenter;

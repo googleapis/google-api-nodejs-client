@@ -1449,7 +1449,8 @@
                             "queryString",
                             "serverPageLocationUrl",
                             "serverPageLocationPath",
-                            "serverPageLocationHostname"
+                            "serverPageLocationHostname",
+                            "visitorRegion"
                           ],
                           "enumDescriptions": [
                             "",
@@ -1485,6 +1486,7 @@
                             "",
                             "For web or mobile.",
                             "For web or mobile.",
+                            "",
                             "",
                             "",
                             "",
@@ -1710,7 +1712,8 @@
                             "queryString",
                             "serverPageLocationUrl",
                             "serverPageLocationPath",
-                            "serverPageLocationHostname"
+                            "serverPageLocationHostname",
+                            "visitorRegion"
                           ],
                           "enumDescriptions": [
                             "",
@@ -1746,6 +1749,7 @@
                             "",
                             "For web or mobile.",
                             "For web or mobile.",
+                            "",
                             "",
                             "",
                             "",
@@ -1999,7 +2003,8 @@
                             "queryString",
                             "serverPageLocationUrl",
                             "serverPageLocationPath",
-                            "serverPageLocationHostname"
+                            "serverPageLocationHostname",
+                            "visitorRegion"
                           ],
                           "enumDescriptions": [
                             "",
@@ -2035,6 +2040,7 @@
                             "",
                             "For web or mobile.",
                             "For web or mobile.",
+                            "",
                             "",
                             "",
                             "",
@@ -3710,7 +3716,7 @@
       }
     }
   },
-  "revision": "20221130",
+  "revision": "20230130",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3920,7 +3926,8 @@
             "queryString",
             "serverPageLocationUrl",
             "serverPageLocationPath",
-            "serverPageLocationHostname"
+            "serverPageLocationHostname",
+            "visitorRegion"
           ],
           "enumDescriptions": [
             "",
@@ -3956,6 +3963,7 @@
             "",
             "For web or mobile.",
             "For web or mobile.",
+            "",
             "",
             "",
             "",

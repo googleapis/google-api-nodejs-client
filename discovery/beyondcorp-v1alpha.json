@@ -3081,7 +3081,7 @@
       }
     }
   },
-  "revision": "20221019",
+  "revision": "20230113",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5164,12 +5164,14 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
-            "INACTIVE"
+            "INACTIVE",
+            "COMPLETED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "Represents an active subscription.",
-            "Represents an upcomming subscription."
+            "Represents an upcomming subscription.",
+            "Represents a completed subscription."
           ],
           "readOnly": true,
           "type": "string"
