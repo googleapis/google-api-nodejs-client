@@ -415,6 +415,10 @@ export namespace contactcenterinsights_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. Statistics for IngestConversations operation.
+     */
+    ingestConversationsStats?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStats;
+    /**
      * Output only. Partial errors during ingest operation that might cause the operation output to be incomplete.
      */
     partialErrors?: Schema$GoogleRpcStatus[];
@@ -422,6 +426,27 @@ export namespace contactcenterinsights_v1 {
      * Output only. The original request for ingest.
      */
     request?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest;
+  }
+  /**
+   * Statistics for IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStats {
+    /**
+     * Output only. The number of objects skipped because another conversation with the same transcript uri had already been ingested.
+     */
+    duplicatesSkippedCount?: number | null;
+    /**
+     * Output only. The number of objects which were unable to be ingested due to errors. The errors are populated in the partial_errors field.
+     */
+    failedIngestCount?: number | null;
+    /**
+     * Output only. The number of objects processed during the ingest operation.
+     */
+    processedObjectCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this ingest operation.
+     */
+    successfulIngestCount?: number | null;
   }
   /**
    * The request to ingest conversations.
@@ -1504,6 +1529,10 @@ export namespace contactcenterinsights_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. Statistics for IngestConversations operation.
+     */
+    ingestConversationsStats?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStats;
+    /**
      * Output only. Partial errors during ingest operation that might cause the operation output to be incomplete.
      */
     partialErrors?: Schema$GoogleRpcStatus[];
@@ -1511,6 +1540,27 @@ export namespace contactcenterinsights_v1 {
      * Output only. The original request for ingest.
      */
     request?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequest;
+  }
+  /**
+   * Statistics for IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStats {
+    /**
+     * Output only. The number of objects skipped because another conversation with the same transcript uri had already been ingested.
+     */
+    duplicatesSkippedCount?: number | null;
+    /**
+     * Output only. The number of objects which were unable to be ingested due to errors. The errors are populated in the partial_errors field.
+     */
+    failedIngestCount?: number | null;
+    /**
+     * Output only. The number of objects processed during the ingest operation.
+     */
+    processedObjectCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this ingest operation.
+     */
+    successfulIngestCount?: number | null;
   }
   /**
    * The request to ingest conversations.
