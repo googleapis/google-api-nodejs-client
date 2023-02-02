@@ -1966,7 +1966,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230114",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2758,7 +2758,7 @@
       "id": "Instance",
       "properties": {
         "createTime": {
-          "description": "Output only. A server-assigned timestamp representing when this Instance was created. For instances created before this field was added (August 2021), this value is `seconds: 0, nanos: 1`.",
+          "description": "Output only. A commit timestamp representing when this Instance was created. For instances created before this field was added (August 2021), this value is `seconds: 0, nanos: 1`.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3397,7 +3397,7 @@
           "type": "object"
         },
         "deletionProtection": {
-          "description": "Set to true to make the table protected against data loss. i.e. deleting the following resources through Admin APIs are prohibited: - The table. - The column families in the table. - The instance containing the table. Note one can still delete the data stored in the table through Data APIs.",
+          "description": "Set to true to make the table protected against data loss. i.e. deleting the following resources through Admin APIs are prohibited: * The table. * The column families in the table. * The instance containing the table. Note one can still delete the data stored in the table through Data APIs.",
           "type": "boolean"
         },
         "granularity": {
