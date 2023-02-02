@@ -256,6 +256,10 @@ export namespace sts_v1 {
      */
     expires_in?: number | null;
     /**
+     * Google issued ID token in response to the OAuth token exchange request for ID token flow.
+     */
+    id_token?: string | null;
+    /**
      * A refresh token, issued by Google, in response to the OAuth token exchange request for refresh token flow
      */
     refresh_token?: string | null;
@@ -264,7 +268,7 @@ export namespace sts_v1 {
      */
     scope?: string | null;
     /**
-     * The type of token. Field reserved for RFC compliance. See https://www.rfc-editor.org/rfc/rfc6749#section-5.1 Note: No token_type is returned for current implementation
+     * The type of token. Field reserved for RFC compliance. See https://www.rfc-editor.org/rfc/rfc6749#section-5.1
      */
     token_type?: string | null;
   }
@@ -611,6 +615,7 @@ export namespace sts_v1 {
      *   // {
      *   //   "access_token": "my_access_token",
      *   //   "expires_in": 0,
+     *   //   "id_token": "my_id_token",
      *   //   "refresh_token": "my_refresh_token",
      *   //   "scope": "my_scope",
      *   //   "token_type": "my_token_type"
