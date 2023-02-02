@@ -154,7 +154,7 @@ export namespace sasportal_v1alpha1 {
      */
     frequencyRange?: Schema$SasPortalFrequencyRange;
     /**
-     * The channel score, normalized to be in [0,100].
+     * The channel score, normalized to be in the range [0,100].
      */
     score?: number | null;
   }
@@ -197,7 +197,7 @@ export namespace sasportal_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * Output only. The FRNs copied from its direct parent.
+     * Output only. The FCC Registration Numbers (FRNs) copied from its direct parent.
      */
     frns?: string[] | null;
     /**
@@ -231,7 +231,7 @@ export namespace sasportal_v1alpha1 {
      */
     fccId?: string | null;
     /**
-     * Only ranges within the allowlists are available for new grants.
+     * Only ranges that are within the allowlists are available for new grants.
      */
     grantRangeAllowlists?: Schema$SasPortalFrequencyRange[];
     /**
@@ -359,19 +359,19 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalDeviceMetadata {
     /**
-     * If populated, the Antenna Model Pattern to use. Format is: RecordCreatorId:PatternId
+     * If populated, the Antenna Model Pattern to use. Format is: `RecordCreatorId:PatternId`
      */
     antennaModel?: string | null;
     /**
-     * CCG. A group of CBSDs in the same ICG requesting a common primary channel assignment. See CBRSA-TS-2001 V3.0.0 for more details.
+     * Common Channel Group (CCG). A group of CBSDs in the same ICG requesting a common primary channel assignment. For more details, see [CBRSA-TS-2001 V3.0.0](https://ongoalliance.org/wp-content/uploads/2020/02/CBRSA-TS-2001-V3.0.0_Approved-for-publication.pdf).
      */
     commonChannelGroup?: string | null;
     /**
-     * ICG. A group of CBSDs that manage their own interference with the group. See CBRSA-TS-2001 V3.0.0 for more details.
+     * Interference Coordination Group (ICG). A group of CBSDs that manage their own interference with the group. For more details, see [CBRSA-TS-2001 V3.0.0](https://ongoalliance.org/wp-content/uploads/2020/02/CBRSA-TS-2001-V3.0.0_Approved-for-publication.pdf).
      */
     interferenceCoordinationGroup?: string | null;
     /**
-     * Output only. Whether a CPI has validated to have coordinated with the National Quiet Zone office.
+     * Output only. Set to `true` if a CPI has validated that they have coordinated with the National Quiet Zone office.
      */
     nrqzValidated?: boolean | null;
     /**
@@ -477,6 +477,10 @@ export namespace sasportal_v1alpha1 {
      */
     antennaGain?: number | null;
     /**
+     * As above, but as a DoubleValue.
+     */
+    antennaGainNewField?: number | null;
+    /**
      * If an external antenna is used, the antenna model is optionally provided in this field. The string has a maximum length of 128 octets.
      */
     antennaModel?: string | null;
@@ -488,6 +492,10 @@ export namespace sasportal_v1alpha1 {
      * This parameter is the maximum device EIRP in units of dBm/10MHz and is an integer with a value between -127 and +47 (dBm/10 MHz) inclusive. If not included, SAS interprets it as maximum allowable EIRP in units of dBm/10MHz for device category.
      */
     eirpCapability?: number | null;
+    /**
+     * As above, but as a DoubleValue.
+     */
+    eirpCapabilityNewField?: number | null;
     /**
      * Device antenna height in meters. When the `heightType` parameter value is "AGL", the antenna height should be given relative to ground level. When the `heightType` parameter value is "AMSL", it is given with respect to WGS84 datum.
      */
@@ -618,7 +626,7 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalNrqzValidation {
     /**
-     * Validation case id.
+     * Validation case ID.
      */
     caseId?: string | null;
     /**
@@ -626,11 +634,11 @@ export namespace sasportal_v1alpha1 {
      */
     cpiId?: string | null;
     /**
-     * Device latitude associated with the validation.
+     * Device latitude that's associated with the validation.
      */
     latitude?: number | null;
     /**
-     * Device longitude associated with the validation.
+     * Device longitude that's associated with the validation.
      */
     longitude?: number | null;
     /**
@@ -681,7 +689,7 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalSetPolicyRequest {
     /**
-     * Optional. Set the field as true when we would like to disable the onboarding notification.
+     * Optional. Set the field as `true` to disable the onboarding notification.
      */
     disableNotification?: boolean | null;
     /**
