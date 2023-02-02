@@ -2289,7 +2289,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230122",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2560,7 +2560,7 @@
           "type": "array"
         },
         "image": {
-          "description": "Required. URL of the Container image in Google Container Registry or Google Artifact Registry. More info: https://kubernetes.io/docs/concepts/containers/images",
+          "description": "Required. Name of the container image in Dockerhub, Google Artifact Registry, or Google Container Registry. If the host is not provided, Dockerhub is assumed. More info: https://kubernetes.io/docs/concepts/containers/images",
           "type": "string"
         },
         "imagePullPolicy": {

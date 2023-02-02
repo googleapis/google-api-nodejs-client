@@ -327,7 +327,7 @@ export namespace run_v1 {
      */
     envFrom?: Schema$EnvFromSource[];
     /**
-     * Required. URL of the Container image in Google Container Registry or Google Artifact Registry. More info: https://kubernetes.io/docs/concepts/containers/images
+     * Required. Name of the container image in Dockerhub, Google Artifact Registry, or Google Container Registry. If the host is not provided, Dockerhub is assumed. More info: https://kubernetes.io/docs/concepts/containers/images
      */
     image?: string | null;
     /**
