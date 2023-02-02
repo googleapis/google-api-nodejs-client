@@ -179,6 +179,99 @@
           "resources": {
             "dataAttributeBindings": {
               "methods": {
+                "create": {
+                  "description": "Create a DataAttributeBinding resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dataAttributeBindingId": {
+                      "description": "Required. DataAttributeBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Location.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the parent data taxonomy projects/{project_number}/locations/{location_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataAttributeBindings",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataAttributeBinding"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a DataAttributeBinding resource. All attributes within the DataAttributeBinding must be deleted before the DataAttributeBinding can be deleted.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Required. If the client provided etag value does not match the current etag value, the DeleteDataAttributeBindingRequest method returns an ABORTED error response. Etags must be used when calling the DeleteDataAttributeBinding.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the DataAttributeBinding: projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataAttributeBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a DataAttributeBinding resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the DataAttributeBinding: projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataAttributeBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1DataAttributeBinding"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}:getIamPolicy",
@@ -205,6 +298,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DataAttributeBinding resources in a project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request. Filter using resource: filter=resource:\"resource-name\" Filter using attribute: filter=attributes:\"attribute-name\" Filter using attribute in paths list: filter=paths.attributes:\"attribute-name\"",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields for the result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of DataAttributeBindings to return. The service may return fewer than this value. If unspecified, at most 10 DataAttributeBindings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListDataAttributeBindings call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributeBindings must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location: projects/{project_number}/locations/{location_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataAttributeBindings",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListDataAttributeBindingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a DataAttributeBinding resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataAttributeBindings/{dataAttributeBindingsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.dataAttributeBindings.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The relative resource name of the Data Attribute Binding, of the form: projects/{project_number}/locations/{location}/dataAttributeBindings/{data_attribute_binding_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataAttributeBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataAttributeBinding"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -271,7 +449,7 @@
             "dataScans": {
               "methods": {
                 "create": {
-                  "description": "Creates a dataScan resource.",
+                  "description": "Creates a DataScan resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans",
                   "httpMethod": "POST",
                   "id": "dataplex.projects.locations.dataScans.create",
@@ -280,12 +458,12 @@
                   ],
                   "parameters": {
                     "dataScanId": {
-                      "description": "Required. DataScan identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the customer project / location.",
+                      "description": "Required. DataScan identifier. Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the parent location: projects/{project}/locations/{location_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the parent location: projects/{project}/locations/{location_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -304,7 +482,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Delete the dataScan resource.",
+                  "description": "Deletes a DataScan resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}",
                   "httpMethod": "DELETE",
                   "id": "dataplex.projects.locations.dataScans.delete",
@@ -313,7 +491,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the dataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the dataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
                       "required": true,
@@ -329,7 +507,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Get dataScan resource.",
+                  "description": "Gets a DataScan resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.dataScans.get",
@@ -338,14 +516,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the dataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the dataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "view": {
-                      "description": "Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.",
+                      "description": "Optional. Select the DataScan view to return. Defaults to BASIC.",
                       "enum": [
                         "DATA_SCAN_VIEW_UNSPECIFIED",
                         "BASIC",
@@ -400,7 +578,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists dataScans.",
+                  "description": "Lists DataScans.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.dataScans.list",
@@ -430,7 +608,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. projects/{project}/locations/{location_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the parent location: projects/{project}/locations/{location_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -446,7 +624,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Update the dataScan resource.",
+                  "description": "Updates a DataScan resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}",
                   "httpMethod": "PATCH",
                   "id": "dataplex.projects.locations.dataScans.patch",
@@ -455,7 +633,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
                       "required": true,
@@ -480,7 +658,7 @@
                   ]
                 },
                 "run": {
-                  "description": "Run an on demand execution of a DataScan.",
+                  "description": "Runs an on-demand execution of a DataScan",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}:run",
                   "httpMethod": "POST",
                   "id": "dataplex.projects.locations.dataScans.run",
@@ -489,7 +667,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the DataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region. Only on-demand DataScans are allowed.",
+                      "description": "Required. The resource name of the DataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}. where project refers to a project_id or project_number and location_id refers to a GCP region.Only OnDemand data scans are allowed.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
                       "required": true,
@@ -568,7 +746,7 @@
                 "jobs": {
                   "methods": {
                     "get": {
-                      "description": "Get DataScanJob resource.",
+                      "description": "Gets a DataScanJob resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}/jobs/{jobsId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.dataScans.jobs.get",
@@ -577,14 +755,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the DataScanJob: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                          "description": "Required. The resource name of the DataScanJob: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+/jobs/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "view": {
-                          "description": "Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.",
+                          "description": "Optional. Select the DataScanJob view to return. Defaults to BASIC.",
                           "enum": [
                             "DATA_SCAN_JOB_VIEW_UNSPECIFIED",
                             "BASIC",
@@ -608,7 +786,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists DataScanJobs under the given dataScan.",
+                      "description": "Lists DataScanJobs under the given DataScan.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataScans/{dataScansId}/jobs",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.dataScans.jobs.list",
@@ -628,7 +806,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent environment: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+                          "description": "Required. The resource name of the parent environment: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
                           "required": true,
@@ -649,6 +827,99 @@
             },
             "dataTaxonomies": {
               "methods": {
+                "create": {
+                  "description": "Create a DataTaxonomy resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.dataTaxonomies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dataTaxonomyId": {
+                      "description": "Required. DataTaxonomy identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Project.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the data taxonomy location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataTaxonomies",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataTaxonomy"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a DataTaxonomy resource. All attributes within the DataTaxonomy must be deleted before the DataTaxonomy can be deleted.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.dataTaxonomies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. If the client provided etag value does not match the current etag value,the DeleteDataTaxonomy method returns an ABORTED error.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the DataTaxonomy: projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a DataTaxonomy resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataTaxonomies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the DataTaxonomy: projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1DataTaxonomy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}:getIamPolicy",
@@ -675,6 +946,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DataTaxonomy resources in a project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.dataTaxonomies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Order by fields for the result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of DataTaxonomies to return. The service may return fewer than this value. If unspecified, at most 10 DataTaxonomies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous ListDataTaxonomies call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataTaxonomies must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the DataTaxonomy location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dataTaxonomies",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListDataTaxonomiesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a DataTaxonomy resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.dataTaxonomies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The relative resource name of the DataTaxonomy, of the form: projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1DataTaxonomy"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -740,6 +1096,99 @@
               "resources": {
                 "attributes": {
                   "methods": {
+                    "create": {
+                      "description": "Create a DataAttribute resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "dataAttributeId": {
+                          "description": "Required. DataAttribute identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the DataTaxonomy.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the parent data taxonomy projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+parent}/attributes",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1DataAttribute"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Data Attribute resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}",
+                      "httpMethod": "DELETE",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "etag": {
+                          "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteDataAttribute method returns an ABORTED error response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The resource name of the DataAttribute: projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+/attributes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves a Data Attribute resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the dataAttribute: projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+/attributes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1DataAttribute"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}:getIamPolicy",
@@ -766,6 +1215,91 @@
                       "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Data Attribute resources in a DataTaxonomy.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Order by fields for the result.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Maximum number of DataAttributes to return. The service may return fewer than this value. If unspecified, at most 10 dataAttributes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page token received from a previous ListDataAttributes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributes must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the DataTaxonomy: projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/attributes",
+                      "response": {
+                        "$ref": "GoogleCloudDataplexV1ListDataAttributesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a DataAttribute resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataTaxonomies/{dataTaxonomiesId}/attributes/{attributesId}",
+                      "httpMethod": "PATCH",
+                      "id": "dataplex.projects.locations.dataTaxonomies.attributes.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. The relative resource name of the dataAttribute, of the form: projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataTaxonomies/[^/]+/attributes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask of fields to update.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudDataplexV1DataAttribute"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -3446,7 +3980,7 @@
       }
     }
   },
-  "revision": "20221212",
+  "revision": "20230120",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3781,7 +4315,7 @@
           "description": "Optional. Configuration for Json data."
         },
         "schedule": {
-          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\".",
+          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
           "type": "string"
         }
       },
@@ -4124,32 +4658,196 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataAccessSpec": {
+      "description": "DataAccessSpec holds the access control configuration to be enforced on data stored within resources (eg: rows, columns in BigQuery Tables). When associated with data,the data is only accessible to principals explicitly granted access through the DataAttribute. Principals with access to the containing resource are not implicitly granted access.",
+      "id": "GoogleCloudDataplexV1DataAccessSpec",
+      "properties": {
+        "readers": {
+          "description": "Optional. The format of strings follows the pattern followed by IAM in the bindings. user:{email}, serviceAccount:{email} group:{email}. The set of principals to be granted reader role on data stored within resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataAttribute": {
+      "description": "Denotes one dataAttribute in a dataTaxonomy, for example, PII. DataAttribute resources can be defined in a hierarchy. A single dataAttribute resource can contain specs of multiple types PII - ResourceAccessSpec : - readers :foo@bar.com - DataAccessSpec : - readers :bar@foo.com ",
+      "id": "GoogleCloudDataplexV1DataAttribute",
+      "properties": {
+        "attributeCount": {
+          "description": "Output only. The number of child attributes present for this attribute.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Output only. The time when the DataAttribute was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataAccessSpec": {
+          "$ref": "GoogleCloudDataplexV1DataAccessSpec",
+          "description": "Optional. Specified when applied to data stored on the resource (eg: rows, columns in BigQuery Tables)."
+        },
+        "description": {
+          "description": "Optional. Description of the DataAttribute.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the DataAttribute.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the dataAttribute, of the form: projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parentId": {
+          "description": "Optional. The ID of the parent DataAttribute resource, should belong to the same data taxonomy. Circular dependency in parent chain is not valid. Maximum depth of the hierarchy allowed is 4. a -> b -> c -> d -> e, depth = 4",
+          "type": "string"
+        },
+        "resourceAccessSpec": {
+          "$ref": "GoogleCloudDataplexV1ResourceAccessSpec",
+          "description": "Optional. Specified when applied to a resource (eg: Cloud Storage bucket, BigQuery dataset, BigQuery table)."
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the DataAttribute. This ID will be different if the DataAttribute is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the DataAttribute was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataAttributeBinding": {
+      "description": "DataAttributeBinding represents binding of attributes to resources. Eg: Bind 'CustomerInfo' entity with 'PII' attribute.",
+      "id": "GoogleCloudDataplexV1DataAttributeBinding",
+      "properties": {
+        "attributes": {
+          "description": "Optional. List of attributes to be associated with the resource, provided in the form: projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The time when the DataAttributeBinding was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the DataAttributeBinding.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. Etags must be used when calling the DeleteDataAttributeBinding and the UpdateDataAttributeBinding method.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the DataAttributeBinding.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the Data Attribute Binding, of the form: projects/{project_number}/locations/{location}/dataAttributeBindings/{data_attribute_binding_id}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paths": {
+          "description": "Optional. The list of paths for items within the associated resource (eg. columns within a table) along with attribute bindings.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataAttributeBindingPath"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "description": "Optional. Immutable. The resource name of the resource that is binded to attributes. Presently, only entity resource is supported in the form: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity_id} Must belong in the same project and region as the attribute binding, and there can only exist one active binding for a resource.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the DataAttributeBinding. This ID will be different if the DataAttributeBinding is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the DataAttributeBinding was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataAttributeBindingPath": {
+      "description": "Represents a subresource of a given resource, and associated bindings with it.",
+      "id": "GoogleCloudDataplexV1DataAttributeBindingPath",
+      "properties": {
+        "attributes": {
+          "description": "Optional. List of attributes to be associated with the path of the resource, provided in the form: projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. The name identifier of the path. Nested columns should be of the form: 'country.state.city'.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DataProfileResult": {
       "description": "DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.",
       "id": "GoogleCloudDataplexV1DataProfileResult",
       "properties": {
         "profile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfile",
-          "description": "This represents the profile information per field."
+          "description": "The profile information per field."
         },
         "rowCount": {
-          "description": "The count of all rows in the sampled data. Return 0, if zero rows.",
+          "description": "The count of rows scanned.",
           "format": "int64",
           "type": "string"
         },
         "scannedData": {
           "$ref": "GoogleCloudDataplexV1ScannedData",
-          "description": "The data scanned for this profile."
+          "description": "The data scanned for this result."
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResultProfile": {
-      "description": "Profile information describing the structure and layout of the data and contains the profile info.",
+      "description": "Contains name, type, mode and field type specific profile information.",
       "id": "GoogleCloudDataplexV1DataProfileResultProfile",
       "properties": {
         "fields": {
-          "description": "The sequence of fields describing data in table entities.",
+          "description": "List of fields with structural and profile information for each field.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataProfileResultProfileField"
           },
@@ -4159,11 +4857,11 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResultProfileField": {
-      "description": "Represents a column field within a table schema.",
+      "description": "A field within a table.",
       "id": "GoogleCloudDataplexV1DataProfileResultProfileField",
       "properties": {
         "mode": {
-          "description": "The mode of the field. Its value will be: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.",
+          "description": "The mode of the field. Possible values include: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.",
           "type": "string"
         },
         "name": {
@@ -4172,7 +4870,7 @@
         },
         "profile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo",
-          "description": "The profile information for the corresponding field."
+          "description": "Profile information for the corresponding field."
         },
         "type": {
           "description": "The field data type. Possible values include: STRING BYTE INT64 INT32 INT16 DOUBLE FLOAT DECIMAL BOOLEAN BINARY TIMESTAMP DATE TIME NULL RECORD",
@@ -4182,33 +4880,33 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo": {
-      "description": "ProfileInfo defines the profile information for each schema field type.",
+      "description": "The profile information for each field type.",
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo",
       "properties": {
         "distinctRatio": {
-          "description": "The ratio of rows that are distinct against the rows in the sampled data.",
+          "description": "Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.",
           "format": "double",
           "type": "number"
         },
         "doubleProfile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo",
-          "description": "The corresponding double field profile."
+          "description": "Double type field information."
         },
         "integerProfile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo",
-          "description": "The corresponding integer field profile."
+          "description": "Integer type field information."
         },
         "nullRatio": {
-          "description": "The ratio of null rows against the rows in the sampled data.",
+          "description": "Ratio of rows with null value against total scanned rows.",
           "format": "double",
           "type": "number"
         },
         "stringProfile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo",
-          "description": "The corresponding string field profile."
+          "description": "String type field information."
         },
         "topNValues": {
-          "description": "The array of top N values of the field in the sampled data. Currently N is set as 10 or equal to distinct values in the field, whichever is smaller. This will be optional for complex non-groupable data-types such as JSON, ARRAY, JSON, STRUCT.",
+          "description": "The list of top N non-null values and number of times they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue"
           },
@@ -4218,26 +4916,26 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo": {
-      "description": "DoubleFieldInfo defines output for any double type field.",
+      "description": "The profile information for a double type field.",
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo",
       "properties": {
         "average": {
-          "description": "The average of non-null values of double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Average of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
           "type": "number"
         },
         "max": {
-          "description": "The maximum value of a double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Maximum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
           "type": "number"
         },
         "min": {
-          "description": "The minimum value of a double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Minimum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
           "type": "number"
         },
         "quartiles": {
-          "description": "A quartile divide the numebr of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. So, here the quartiles is provided as an ordered list of quartile values, occurring in order Q1, median, Q3.",
+          "description": "A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.",
           "items": {
             "format": "double",
             "type": "number"
@@ -4245,7 +4943,7 @@
           "type": "array"
         },
         "standardDeviation": {
-          "description": "The standard deviation of non-null of double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
           "type": "number"
         }
@@ -4253,26 +4951,26 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo": {
-      "description": "IntegerFieldInfo defines output for any integer type field.",
+      "description": "The profile information for an integer type field.",
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo",
       "properties": {
         "average": {
-          "description": "The average of non-null values of integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Average of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
           "type": "number"
         },
         "max": {
-          "description": "The maximum value of an integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Maximum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "int64",
           "type": "string"
         },
         "min": {
-          "description": "The minimum value of an integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Minimum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "int64",
           "type": "string"
         },
         "quartiles": {
-          "description": "A quartile divide the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. So, here the quartiles is provided as an ordered list of quartile values, occurring in order Q1, median, Q3.",
+          "description": "A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -4280,7 +4978,7 @@
           "type": "array"
         },
         "standardDeviation": {
-          "description": "The standard deviation of non-null of integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.",
+          "description": "Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
           "type": "number"
         }
@@ -4288,21 +4986,21 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo": {
-      "description": "StringFieldInfo defines output info for any string type field.",
+      "description": "The profile information for a string type field.",
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo",
       "properties": {
         "averageLength": {
-          "description": "The average length of a string field in the sampled data. Optional if zero non-null rows.",
+          "description": "Average length of non-null values in the scanned data.",
           "format": "double",
           "type": "number"
         },
         "maxLength": {
-          "description": "The maximum length of a string field in the sampled data. Optional if zero non-null rows.",
+          "description": "Maximum length of non-null values in the scanned data.",
           "format": "int64",
           "type": "string"
         },
         "minLength": {
-          "description": "The minimum length of the string field in the sampled data. Optional if zero non-null rows.",
+          "description": "Minimum length of non-null values in the scanned data.",
           "format": "int64",
           "type": "string"
         }
@@ -4310,16 +5008,16 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue": {
-      "description": "The TopNValue defines the structure of output of top N values of a field.",
+      "description": "Top N non-null values in the scanned data.",
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue",
       "properties": {
         "count": {
-          "description": "The frequency count of the corresponding value in the field.",
+          "description": "Count of the corresponding value in the scanned data.",
           "format": "int64",
           "type": "string"
         },
         "value": {
-          "description": "The value is the string value of the actual value from the field.",
+          "description": "String value of a top N non-null value.",
           "type": "string"
         }
       },
@@ -4332,7 +5030,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityDimensionResult": {
-      "description": "DataQualityDimensionResult provides a more detailed, per-dimension level view of the results.",
+      "description": "DataQualityDimensionResult provides a more detailed, per-dimension view of the results.",
       "id": "GoogleCloudDataplexV1DataQualityDimensionResult",
       "properties": {
         "passed": {
@@ -4347,7 +5045,7 @@
       "id": "GoogleCloudDataplexV1DataQualityResult",
       "properties": {
         "dimensions": {
-          "description": "A list of results at the dimension-level.",
+          "description": "A list of results at the dimension level.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataQualityDimensionResult"
           },
@@ -4385,11 +5083,11 @@
           "type": "string"
         },
         "dimension": {
-          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension-level. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"INTEGRITY\"",
+          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"INTEGRITY\"",
           "type": "string"
         },
         "ignoreNull": {
-          "description": "Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing. Only applicable to ColumnMap rules.",
+          "description": "Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.Only applicable to ColumnMap rules.",
           "type": "boolean"
         },
         "nonNullExpectation": {
@@ -4421,7 +5119,7 @@
           "description": "Table rule which evaluates whether the provided expression is true."
         },
         "threshold": {
-          "description": "Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.00 indicates default value (i.e. 1.0)",
+          "description": "Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.0.0 indicates default value (i.e. 1.0).",
           "format": "double",
           "type": "number"
         },
@@ -4451,11 +5149,11 @@
           "type": "string"
         },
         "strictMaxEnabled": {
-          "description": "Optional. Whether each value needs to be strictly lesser than ('<') the maximum, or if equality is allowed. Only relevant if a max_value has been defined. Default = false.",
+          "description": "Optional. Whether each value needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.",
           "type": "boolean"
         },
         "strictMinEnabled": {
-          "description": "Optional. Whether each value needs to be strictly greater than ('>') the minimum, or if equality is allowed. Only relevant if a min_value has been defined. Default = false.",
+          "description": "Optional. Whether each value needs to be strictly greater than ('>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.",
           "type": "boolean"
         }
       },
@@ -4466,17 +5164,18 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleRegexExpectation",
       "properties": {
         "regex": {
+          "description": "A regular expression the column value is expected to match.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityRuleResult": {
-      "description": "DataQualityRuleResult provides a more detailed, per-rule level view of the results.",
+      "description": "DataQualityRuleResult provides a more detailed, per-rule view of the results.",
       "id": "GoogleCloudDataplexV1DataQualityRuleResult",
       "properties": {
         "evaluatedCount": {
-          "description": "The number of rows a rule was evaluated against. This field is only valid for ColumnMap type rules. Evaluated count can be configured to either (1) include all rows (default) - with null rows automatically failing rule evaluation OR (2) exclude null rows from the evaluated_count, by setting ignore_nulls = true",
+          "description": "The number of rows a rule was evaluated against. This field is only valid for ColumnMap type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.",
           "format": "int64",
           "type": "string"
         },
@@ -4511,10 +5210,11 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation": {
-      "description": "Evaluates whether each row passes the specified condition. The SQL expression needs to use BigQuery standard SQL syntax and should produce a boolean per row as the result. Example: col1 >= 0 AND col2 < 10",
+      "description": "Evaluates whether each row passes the specified condition.The SQL expression needs to use BigQuery standard SQL syntax and should produce a boolean value per row as the result.Example: col1 >= 0 AND col2 < 10",
       "id": "GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation",
       "properties": {
         "sqlExpression": {
+          "description": "The SQL expression.",
           "type": "string"
         }
       },
@@ -4525,6 +5225,7 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleSetExpectation",
       "properties": {
         "values": {
+          "description": "Expected values for the column value.",
           "items": {
             "type": "string"
           },
@@ -4538,11 +5239,11 @@
       "id": "GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation",
       "properties": {
         "maxValue": {
-          "description": "The maximum column statistic value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.",
+          "description": "The maximum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.",
           "type": "string"
         },
         "minValue": {
-          "description": "The minimum column statistic value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.",
+          "description": "The minimum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.",
           "type": "string"
         },
         "statistic": {
@@ -4561,21 +5262,22 @@
           "type": "string"
         },
         "strictMaxEnabled": {
-          "description": "Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed. Only relevant if a max_value has been defined. Default = false.",
+          "description": "Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.",
           "type": "boolean"
         },
         "strictMinEnabled": {
-          "description": "Whether column statistic needs to be strictly greater than ('>') the minimum, or if equality is allowed. Only relevant if a min_value has been defined. Default = false.",
+          "description": "Whether column statistic needs to be strictly greater than ('>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation": {
-      "description": "Evaluates whether the provided expression is true. The SQL expression needs to use BigQuery standard SQL syntax and should produce a scalar boolean result. Example: MIN(col1) >= 0",
+      "description": "Evaluates whether the provided expression is true.The SQL expression needs to use BigQuery standard SQL syntax and should produce a scalar boolean result.Example: MIN(col1) >= 0",
       "id": "GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation",
       "properties": {
         "sqlExpression": {
+          "description": "The SQL expression.",
           "type": "string"
         }
       },
@@ -4602,7 +5304,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataScan": {
-      "description": "Represents a user-visible job which provides the insights for the related data source. For examples: - Data Quality: generates queries based on the rules and run against the data to get data quality check results. - Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).",
+      "description": "Represents a user-visible job which provides the insights for the related data source.For example: Data Quality: generates queries based on the rules and runs against the data to get data quality check results. Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).",
       "id": "GoogleCloudDataplexV1DataScan",
       "properties": {
         "createTime": {
@@ -4634,16 +5336,16 @@
           "description": "DataQualityScan related setting."
         },
         "description": {
-          "description": "Optional. Description of the scan. * Must be between 1-1024 characters.",
+          "description": "Optional. Description of the scan. Must be between 1-1024 characters.",
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User friendly display name. * Must be between 1-256 characters.",
+          "description": "Optional. User friendly display name. Must be between 1-256 characters.",
           "type": "string"
         },
         "executionSpec": {
           "$ref": "GoogleCloudDataplexV1DataScanExecutionSpec",
-          "description": "Optional. DataScan execution settings. If not specified, the fields under it will use their default values."
+          "description": "Optional. DataScan execution settings.If not specified, the fields in it will use their default values."
         },
         "executionStatus": {
           "$ref": "GoogleCloudDataplexV1DataScanExecutionStatus",
@@ -4658,7 +5360,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+          "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
           "readOnly": true,
           "type": "string"
         },
@@ -4689,9 +5391,9 @@
             "DATA_PROFILE"
           ],
           "enumDescriptions": [
-            "The DataScan Type is unspecified.",
-            "Data Quality Scan.",
-            "Data Profile Scan."
+            "The DataScan type is unspecified.",
+            "Data Quality scan.",
+            "Data Profile scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -4851,12 +5553,12 @@
       "id": "GoogleCloudDataplexV1DataScanExecutionSpec",
       "properties": {
         "field": {
-          "description": "Immutable. The unnested field (Date or Timestamp) that contains values that monotonically increase over time.",
+          "description": "Immutable. The unnested field (of type Date or Timestamp) that contains values which monotonically increase over time.If not specified, a data scan will run for all data in the table.",
           "type": "string"
         },
         "trigger": {
           "$ref": "GoogleCloudDataplexV1Trigger",
-          "description": "Optional. Spec related to how often and when a scan should be triggered. If not specified, the default is OnDemand, which means the scan will not run until the user calls RunDataScan API."
+          "description": "Optional. Spec related to how often and when a scan should be triggered.If not specified, the default is OnDemand, which means the scan will not run until the user calls RunDataScan API."
         }
       },
       "type": "object"
@@ -4879,7 +5581,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataScanJob": {
-      "description": "A DataScanJob represents an instance of a data scan.",
+      "description": "A DataScanJob represents an instance of DataScan execution.",
       "id": "GoogleCloudDataplexV1DataScanJob",
       "properties": {
         "dataProfileResult": {
@@ -4914,7 +5616,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The relative resource name of the DataScanJob, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}. where {project} refers to a project_id or project_number and location_id refers to a GCP region.",
+          "description": "Output only. The relative resource name of the DataScanJob, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
           "readOnly": true,
           "type": "string"
         },
@@ -4955,9 +5657,9 @@
             "DATA_PROFILE"
           ],
           "enumDescriptions": [
-            "The DataScan Type is unspecified.",
-            "Data Quality Scan.",
-            "Data Profile Scan."
+            "The DataScan type is unspecified.",
+            "Data Quality scan.",
+            "Data Profile scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -4975,7 +5677,61 @@
       "id": "GoogleCloudDataplexV1DataSource",
       "properties": {
         "entity": {
-          "description": "Immutable. The dataplex entity that contains the data for DataScan, of the form: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}.",
+          "description": "Immutable. The Dataplex entity that represents the data source (e.g. BigQuery table) for DataScan, of the form: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataTaxonomy": {
+      "description": "DataTaxonomy represents a set of hierarchical DataAttributes resources, grouped with a common theme Eg: 'SensitiveDataTaxonomy' can have attributes to manage PII data. It is defined at project level.",
+      "id": "GoogleCloudDataplexV1DataTaxonomy",
+      "properties": {
+        "attributeCount": {
+          "description": "Output only. The number of attributes in the DataTaxonomy.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Output only. The time when the DataTaxonomy was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the DataTaxonomy.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User friendly display name.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels for the DataTaxonomy.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The relative resource name of the DataTaxonomy, of the form: projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated globally unique ID for the dataTaxonomy. This ID will be different if the DataTaxonomy is deleted and re-created with the same name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the DataTaxonomy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5226,6 +5982,11 @@
             "Structured and semi-structured data.",
             "Unstructured data."
           ],
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System generated unique ID for the Entity. This ID will be different if the Entity is deleted and re-created with the same name.",
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
@@ -5807,12 +6568,62 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ListDataAttributeBindingsResponse": {
+      "description": "List DataAttributeBindings response.",
+      "id": "GoogleCloudDataplexV1ListDataAttributeBindingsResponse",
+      "properties": {
+        "dataAttributeBindings": {
+          "description": "DataAttributeBindings under the given parent Location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataAttributeBinding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListDataAttributesResponse": {
+      "description": "List DataAttributes response.",
+      "id": "GoogleCloudDataplexV1ListDataAttributesResponse",
+      "properties": {
+        "dataAttributes": {
+          "description": "DataAttributes under the given parent DataTaxonomy.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataAttribute"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachableLocations": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1ListDataScanJobsResponse": {
       "description": "List DataScanJobs response.",
       "id": "GoogleCloudDataplexV1ListDataScanJobsResponse",
       "properties": {
         "dataScanJobs": {
-          "description": "DataScanJobs (metadata only) under a given dataScan.",
+          "description": "DataScanJobs (BASIC view only) under a given dataScan.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataScanJob"
           },
@@ -5830,7 +6641,7 @@
       "id": "GoogleCloudDataplexV1ListDataScansResponse",
       "properties": {
         "dataScans": {
-          "description": "DataScans (metadata only) under the given parent location.",
+          "description": "DataScans (BASIC view only) under the given parent location.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataScan"
           },
@@ -5841,6 +6652,31 @@
           "type": "string"
         },
         "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1ListDataTaxonomiesResponse": {
+      "description": "List DataTaxonomies response.",
+      "id": "GoogleCloudDataplexV1ListDataTaxonomiesResponse",
+      "properties": {
+        "dataTaxonomies": {
+          "description": "DataTaxonomies under the given parent location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataTaxonomy"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachableLocations": {
           "description": "Locations that could not be reached.",
           "items": {
             "type": "string"
@@ -6079,6 +6915,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ResourceAccessSpec": {
+      "description": "ResourceAccessSpec holds the access control configuration to be enforced on the resources, for example, Cloud Storage bucket, BigQuery dataset, BigQuery table.",
+      "id": "GoogleCloudDataplexV1ResourceAccessSpec",
+      "properties": {
+        "owners": {
+          "description": "Optional. The set of principals to be granted owner role on the resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "readers": {
+          "description": "Optional. The format of strings follows the pattern followed by IAM in the bindings. user:{email}, serviceAccount:{email} group:{email}. The set of principals to be granted reader role on the resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "writers": {
+          "description": "Optional. The set of principals to be granted writer role on the resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1RunDataScanRequest": {
       "description": "Run DataScan Request",
       "id": "GoogleCloudDataplexV1RunDataScanRequest",
@@ -6091,7 +6955,7 @@
       "properties": {
         "job": {
           "$ref": "GoogleCloudDataplexV1DataScanJob",
-          "description": "DataScanJob created by RunDataScan API."
+          "description": "DataScanJob created by RunDataScan request."
         }
       },
       "type": "object"
@@ -6127,15 +6991,15 @@
       "id": "GoogleCloudDataplexV1ScannedDataIncrementalField",
       "properties": {
         "end": {
-          "description": "Value that marks the end of the range",
+          "description": "Value that marks the end of the range.",
           "type": "string"
         },
         "field": {
-          "description": "The field that contains values which monotonically increases over time (e.g. timestamp).",
+          "description": "The field that contains values which monotonically increases over time (e.g. a timestamp column).",
           "type": "string"
         },
         "start": {
-          "description": "Value that marks the start of the range",
+          "description": "Value that marks the start of the range.",
           "type": "string"
         }
       },
@@ -6897,7 +7761,7 @@
           "type": "integer"
         },
         "schedule": {
-          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running tasks periodically. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\". This field is required for RECURRING tasks.",
+          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running tasks periodically. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *. This field is required for RECURRING tasks.",
           "type": "string"
         },
         "startTime": {
@@ -6928,7 +7792,7 @@
       "properties": {
         "onDemand": {
           "$ref": "GoogleCloudDataplexV1TriggerOnDemand",
-          "description": "The scan runs one-time shortly after DataScan Creation."
+          "description": "The scan runs once via RunDataScan API."
         },
         "schedule": {
           "$ref": "GoogleCloudDataplexV1TriggerSchedule",
@@ -6938,7 +7802,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1TriggerOnDemand": {
-      "description": "The scan runs one-time via RunDataScan API.",
+      "description": "The scan runs once via RunDataScan API.",
       "id": "GoogleCloudDataplexV1TriggerOnDemand",
       "properties": {},
       "type": "object"
@@ -6948,7 +7812,7 @@
       "id": "GoogleCloudDataplexV1TriggerSchedule",
       "properties": {
         "cron": {
-          "description": "Required. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running scans periodically. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\". This field is required for Schedule scans.",
+          "description": "Required. Cron (https://en.wikipedia.org/wiki/Cron) schedule for running scans periodically.To explicitly set a timezone in the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database (wikipedia (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)). For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.This field is required for Schedule scans.",
           "type": "string"
         }
       },
@@ -7075,7 +7939,7 @@
           "description": "Optional. Configuration for Json data."
         },
         "schedule": {
-          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\".",
+          "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.",
           "type": "string"
         }
       },
