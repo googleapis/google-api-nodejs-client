@@ -175,7 +175,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for approving the device to access user data.
    */
-  export interface Schema$ApproveDeviceUserRequest {}
+  export interface Schema$ApproveDeviceUserRequest {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string | null;
+  }
   /**
    * Response message for approving the device to access user data.
    */
@@ -188,7 +193,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for blocking account on device.
    */
-  export interface Schema$BlockDeviceUserRequest {}
+  export interface Schema$BlockDeviceUserRequest {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string | null;
+  }
   /**
    * Response message for blocking the device from accessing user data.
    */
@@ -205,7 +215,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for cancelling an unfinished device wipe.
    */
-  export interface Schema$CancelWipeDeviceRequest {}
+  export interface Schema$CancelWipeDeviceRequest {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string | null;
+  }
   /**
    * Response message for cancelling an unfinished device wipe.
    */
@@ -218,7 +233,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for cancelling an unfinished user account wipe.
    */
-  export interface Schema$CancelWipeDeviceUserRequest {}
+  export interface Schema$CancelWipeDeviceUserRequest {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string | null;
+  }
   /**
    * Response message for cancelling an unfinished user account wipe.
    */
@@ -352,6 +372,10 @@ export namespace cloudidentity_v1beta1 {
    * Request message for creating a Company Owned device.
    */
   export interface Schema$CreateDeviceRequest {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string | null;
     /**
      * Required. The device to be created. The name field within this device is ignored in the create method. A new name is created by the method, and returned within the response. Only the fields `device_type`, `serial_number` and `asset_tag` (if present) are used to create the device. All other fields are ignored. The `device_type` and `serial_number` fields are required.
      */
@@ -1061,7 +1085,7 @@ export namespace cloudidentity_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source\}` for external [identity-mapped groups](https://support.google.com/a/answer/9039510) or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793)
      */
     parent?: string | null;
     /**
@@ -1347,7 +1371,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$LookupSelfDeviceUsersResponse {
     /**
-     * The obfuscated customer Id that may be passed back to other Devices API methods such as List, Get, etc.
+     * The customer Id that may be passed back to other Devices API methods such as List, Get, etc.
      */
     customer?: string | null;
     /**
@@ -1775,6 +1799,10 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$WipeDeviceRequest {
     /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string | null;
+    /**
      * Optional. Specifies if a user is able to factory reset a device after a Device Wipe. On iOS, this is called "Activation Lock", while on Android, this is known as "Factory Reset Protection". If true, this protection will be removed from the device, so that a user can successfully factory reset. If false, the setting is untouched on the device.
      */
     removeResetLock?: boolean | null;
@@ -1791,7 +1819,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for starting an account wipe on device.
    */
-  export interface Schema$WipeDeviceUserRequest {}
+  export interface Schema$WipeDeviceUserRequest {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string | null;
+  }
   /**
    * Response message for wiping the user's account from the device.
    */
@@ -2617,7 +2650,9 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "customer": "my_customer"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -2755,6 +2790,7 @@ export namespace cloudidentity_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "customer": "my_customer",
      *       //   "device": {}
      *       // }
      *     },
@@ -2886,6 +2922,8 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.delete({
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
@@ -3019,6 +3057,8 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.get({
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
@@ -3179,6 +3219,8 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.list({
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer.
+     *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response. Only one of the following field names may be used to specify the order: `create_time`, `last_sync_time`, `model`, `os_version`, `device_type` and `serial_number`. `desc` may be specified optionally to specify results to be sorted in descending order. Default order is ascending.
@@ -3324,6 +3366,7 @@ export namespace cloudidentity_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "customer": "my_customer",
      *       //   "removeResetLock": false
      *       // }
      *     },
@@ -3452,17 +3495,29 @@ export namespace cloudidentity_v1beta1 {
   }
   export interface Params$Resource$Devices$Delete extends StandardParameters {
     /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string;
+    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Get extends StandardParameters {
     /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string;
+    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$List extends StandardParameters {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer.
+     */
+    customer?: string;
     /**
      * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
@@ -3539,7 +3594,9 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "customer": "my_customer"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -3679,7 +3736,9 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "customer": "my_customer"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -3819,7 +3878,9 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "customer": "my_customer"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -3953,6 +4014,8 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.delete({
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
@@ -4087,6 +4150,8 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.get({
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
@@ -4226,6 +4291,8 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.list({
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response.
@@ -4527,7 +4594,9 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "customer": "my_customer"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -4674,6 +4743,10 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Devices$Deviceusers$Delete
     extends StandardParameters {
     /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string;
+    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
@@ -4681,12 +4754,20 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Devices$Deviceusers$Get
     extends StandardParameters {
     /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string;
+    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$List
     extends StandardParameters {
+    /**
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     */
+    customer?: string;
     /**
      * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
@@ -5685,7 +5766,7 @@ export namespace cloudidentity_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     *     // Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793)
      *     parent: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -6115,11 +6196,13 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.search({
+     *     // The ordering of groups for the display name or email in the search groups response. The syntax for this field can be found at https://cloud.google.com/apis/design/design_patterns#sorting_order. Example: Sort by the ascending name: order_by="display_name" Sort by the descending group key email: order_by="group_key desc"
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`. Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous search request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     *     // Required. The search query. * Must be specified in [Common Expression Language](https://opensource.google/projects/cel). * Must contain equality operators on the parent, e.g. `parent == 'customers/{customer_id\}'`. The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793) * Can contain optional inclusion operators on `labels` such as `cloudidentity.googleapis.com/groups.discussion_forum' in labels`). * Can contain an optional equality operator on `domain_name` or `startsWith/contains/equality` operator on `group_key`, e.g. `domain_name == 'abc.com'`, `group_key.startsWith('dev')`, `group_key.contains('dev'), group_key == 'dev@abc.com'` * Can contain an optional `startsWith/contains/equality` operator on `display_name`, such as `display_name.startsWith('dev')` , `display_name.contains('dev')`, `display_name == 'dev'`
      *     query: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -6421,7 +6504,7 @@ export namespace cloudidentity_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     * Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793)
      */
     parent?: string;
     /**
@@ -6456,6 +6539,10 @@ export namespace cloudidentity_v1beta1 {
   }
   export interface Params$Resource$Groups$Search extends StandardParameters {
     /**
+     * The ordering of groups for the display name or email in the search groups response. The syntax for this field can be found at https://cloud.google.com/apis/design/design_patterns#sorting_order. Example: Sort by the ascending name: order_by="display_name" Sort by the descending group key email: order_by="group_key desc"
+     */
+    orderBy?: string;
+    /**
      * The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`. Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
      */
     pageSize?: number;
@@ -6464,7 +6551,7 @@ export namespace cloudidentity_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     * Required. The search query. * Must be specified in [Common Expression Language](https://opensource.google/projects/cel). * Must contain equality operators on the parent, e.g. `parent == 'customers/{customer_id\}'`. The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793) * Can contain optional inclusion operators on `labels` such as `cloudidentity.googleapis.com/groups.discussion_forum' in labels`). * Can contain an optional equality operator on `domain_name` or `startsWith/contains/equality` operator on `group_key`, e.g. `domain_name == 'abc.com'`, `group_key.startsWith('dev')`, `group_key.contains('dev'), group_key == 'dev@abc.com'` * Can contain an optional `startsWith/contains/equality` operator on `display_name`, such as `display_name.startsWith('dev')` , `display_name.contains('dev')`, `display_name == 'dev'`
      */
     query?: string;
     /**
