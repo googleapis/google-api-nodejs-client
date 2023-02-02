@@ -876,7 +876,7 @@
       }
     }
   },
-  "revision": "20221208",
+  "revision": "20230105",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {
@@ -1474,6 +1474,17 @@
       },
       "type": "object"
     },
+    "PathOverride": {
+      "description": "PathOverride. Path message defines path override for HTTP targets.",
+      "id": "PathOverride",
+      "properties": {
+        "path": {
+          "description": "The URI path (e.g., a/b/c). Default is Empty string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PauseQueueRequest": {
       "description": "Request message for PauseQueue.",
       "id": "PauseQueueRequest",
@@ -1530,6 +1541,17 @@
       "description": "Request message for PurgeQueue.",
       "id": "PurgeQueueRequest",
       "properties": {},
+      "type": "object"
+    },
+    "QueryOverride": {
+      "description": "QueryOverride. Query message defines query override for HTTP targets.",
+      "id": "QueryOverride",
+      "properties": {
+        "queryParams": {
+          "description": "The query parameters (e.g., qparam1=123&qparam2=456). Default is Empty string.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Queue": {
@@ -1899,24 +1921,24 @@
       "id": "UriOverride",
       "properties": {
         "host": {
-          "description": "Host override. When specified, the host part of url will be overridden. For example, if the original Uri is \"https://www.google.com\", and host is set to \"example.net\", the overridden Uri will be \"https://example.net\".",
+          "description": "Host override. When specified, will replace the host part of the task URL. For example, if the task URL is \"https://www.google.com\", and host value is set to \"example.net\", the overridden URI will be changed to \"https://example.net\". Host value cannot be an empty string.",
           "type": "string"
         },
-        "path": {
-          "description": "Uri path. Will be used as the path for the current Uri (replaces any existing path of the task url).",
-          "type": "string"
+        "pathOverride": {
+          "$ref": "PathOverride",
+          "description": "URI path. When specified, will replace the existing path of the task URL. Setting the path value to an empty string clears the URI path segment."
         },
         "port": {
-          "description": "Port override. When specified, the port part of Uri will be replaced by the provided value. For instance, for a Uri http://www.google.com/foo and port=123 the overridden Uri becomes http://www.google.com:123/foo.",
+          "description": "Port override. When specified, will replace the port part of the task URI. For instance, for a URI http://www.google.com/foo and port=123, the overridden URI becomes http://www.google.com:123/foo. Note that the port value must be a positive integer. Setting the port to 0 (Zero) clears the URI port.",
           "format": "int64",
           "type": "string"
         },
-        "query": {
-          "description": "Uri Query. Will replace the query part of the task uri.",
-          "type": "string"
+        "queryOverride": {
+          "$ref": "QueryOverride",
+          "description": "URI Query. When specified, will replace the query part of the task URI. Setting the query value to an empty string clears the URI query segment."
         },
         "scheme": {
-          "description": "Scheme override. When specified, the Uri scheme is replaced by the provided value.",
+          "description": "Scheme override. When specified, the task URI scheme is replaced by the provided value (HTTP or HTTPS).",
           "enum": [
             "SCHEME_UNSPECIFIED",
             "HTTP",
@@ -1930,7 +1952,7 @@
           "type": "string"
         },
         "uriOverrideEnforceMode": {
-          "description": "Uri Override Enforce Mode Determines the Target UriOverride mode.",
+          "description": "URI Override Enforce Mode When specified, determines the Target UriOverride mode. If not specified, it defaults to ALWAYS.",
           "enum": [
             "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED",
             "IF_NOT_EXISTS",

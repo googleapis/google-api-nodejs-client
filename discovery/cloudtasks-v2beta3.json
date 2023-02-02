@@ -516,6 +516,41 @@
               "resources": {
                 "tasks": {
                   "methods": {
+                    "buffer": {
+                      "description": "Creates and buffers a new task without the need to explicitly define a Task message. The queue must have HTTP target. To create the task with a custom ID, use the following format and set TASK_ID to your desired ID: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create the task with an automatically generated ID, use the following format: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer. Note: This feature is in its experimental stage. You must request access to the API through the [Cloud Tasks BufferTask Experiment Signup form](https://forms.gle/X8Zr5hiXH5tTGFqh8).",
+                      "flatPath": "v2beta3/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}/tasks/{taskId}:buffer",
+                      "httpMethod": "POST",
+                      "id": "cloudtasks.projects.locations.queues.tasks.buffer",
+                      "parameterOrder": [
+                        "queue",
+                        "taskId"
+                      ],
+                      "parameters": {
+                        "queue": {
+                          "description": "Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/queues/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "taskId": {
+                          "description": "Optional. Task ID for the task being created. If not provided, a random task ID is assigned to the task.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta3/{+queue}/tasks/{taskId}:buffer",
+                      "request": {
+                        "$ref": "BufferTaskRequest"
+                      },
+                      "response": {
+                        "$ref": "BufferTaskResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a task and adds it to a queue. Tasks cannot be updated after creation; there is no UpdateTask command. * The maximum task size is 100KB.",
                       "flatPath": "v2beta3/projects/{projectsId}/locations/{locationsId}/queues/{queuesId}/tasks",
@@ -697,7 +732,7 @@
       }
     }
   },
-  "revision": "20220909",
+  "revision": "20230105",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
@@ -833,6 +868,28 @@
       },
       "type": "object"
     },
+    "BufferTaskRequest": {
+      "description": "Request message for BufferTask.",
+      "id": "BufferTaskRequest",
+      "properties": {
+        "body": {
+          "$ref": "HttpBody",
+          "description": "Optional. Body of the HTTP request. The body can take any generic value. The value is written to the HttpRequest of the [Task]."
+        }
+      },
+      "type": "object"
+    },
+    "BufferTaskResponse": {
+      "description": "Response message for BufferTask.",
+      "id": "BufferTaskResponse",
+      "properties": {
+        "task": {
+          "$ref": "Task",
+          "description": "The created task."
+        }
+      },
+      "type": "object"
+    },
     "CreateTaskRequest": {
       "description": "Request message for CreateTask.",
       "id": "CreateTaskRequest",
@@ -910,6 +967,59 @@
       },
       "type": "object"
     },
+    "Header": {
+      "description": "Defines a header message. A header can have a key and a value.",
+      "id": "Header",
+      "properties": {
+        "key": {
+          "description": "The Key of the header.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The Value of the header.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HeaderOverride": {
+      "description": "Wraps the Header object.",
+      "id": "HeaderOverride",
+      "properties": {
+        "header": {
+          "$ref": "Header",
+          "description": "header embodying a key and a value."
+        }
+      },
+      "type": "object"
+    },
+    "HttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
+      "id": "HttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "HttpRequest": {
       "description": "HTTP request. The task will be pushed to the worker as an HTTP request. If the worker or the redirected worker acknowledges the task by returning a successful HTTP response code ([`200` - `299`]), the task will be removed from the queue. If any other HTTP response code is returned or no response is received, the task will be retried according to the following: * User-specified throttling: retry configuration, rate limits, and the queue's state. * System throttling: To prevent the worker from overloading, Cloud Tasks may temporarily reduce the queue's effective rate. User-specified settings will not be changed. System throttling happens because: * Cloud Tasks backs off on all errors. Normally the backoff specified in rate limits will be used. But if the worker returns `429` (Too Many Requests), `503` (Service Unavailable), or the rate of errors is high, Cloud Tasks will use a higher backoff rate. The retry specified in the `Retry-After` HTTP response header is considered. * To prevent traffic spikes and to smooth sudden increases in traffic, dispatches ramp up slowly when the queue is newly created or idle and if large numbers of tasks suddenly become available to dispatch (due to spikes in create task rates, the queue being unpaused, or many tasks that are scheduled at the same time).",
       "id": "HttpRequest",
@@ -961,6 +1071,48 @@
         "url": {
           "description": "Required. The full url path that the request will be sent to. This string must begin with either \"http://\" or \"https://\". Some examples are: `http://acme.com` and `https://acme.com/sales:8080`. Cloud Tasks will encode some characters for safety and compatibility. The maximum allowed URL length is 2083 characters after encoding. The `Location` header response from a redirect response [`300` - `399`] may be followed. The redirect is not counted as a separate attempt.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HttpTarget": {
+      "description": "HTTP target. When specified as a Queue, all the tasks with [HttpRequest] will be overridden according to the target.",
+      "id": "HttpTarget",
+      "properties": {
+        "headerOverrides": {
+          "description": "HTTP target headers. This map contains the header field names and values. Headers will be set when running the CreateTask and/or BufferTask. These headers represent a subset of the headers that will be configured for the task's HTTP request. Some HTTP request headers will be ignored or replaced. A partial list of headers that will be ignored or replaced is: * Several predefined headers, prefixed with \"X-Google-Cloud-Tasks-\", can be used to define properties of the task. * Host: This will be computed by Cloud Tasks and derived from HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. `Content-Type` won't be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the task is created. For example,`Content-Type` can be set to `\"application/octet-stream\"` or `\"application/json\"`. The default value is set to \"application/json\"`. * User-Agent: This will be set to `\"Google-Cloud-Tasks\"`. Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values. The size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue.",
+          "items": {
+            "$ref": "HeaderOverride"
+          },
+          "type": "array"
+        },
+        "httpMethod": {
+          "description": "The HTTP method to use for the request. When specified, it will override HttpRequest for the task. Note that if the value is set to HttpMethod the HttpRequest of the task will be ignored at execution time.",
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ],
+          "enumDescriptions": [
+            "HTTP method unspecified",
+            "HTTP POST",
+            "HTTP GET",
+            "HTTP HEAD",
+            "HTTP PUT",
+            "HTTP DELETE",
+            "HTTP PATCH",
+            "HTTP OPTIONS"
+          ],
+          "type": "string"
+        },
+        "uriOverride": {
+          "$ref": "UriOverride",
+          "description": "URI override. When specified, modifies the execution URI for all the tasks in the queue."
         }
       },
       "type": "object"
@@ -1083,6 +1235,17 @@
       },
       "type": "object"
     },
+    "PathOverride": {
+      "description": "PathOverride. Path message defines path override for HTTP targets.",
+      "id": "PathOverride",
+      "properties": {
+        "path": {
+          "description": "The URI path (e.g., a/b/c). Default is Empty string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PauseQueueRequest": {
       "description": "Request message for PauseQueue.",
       "id": "PauseQueueRequest",
@@ -1135,6 +1298,17 @@
       "properties": {},
       "type": "object"
     },
+    "QueryOverride": {
+      "description": "QueryOverride. Query message defines query override for HTTP targets.",
+      "id": "QueryOverride",
+      "properties": {
+        "queryParams": {
+          "description": "The query parameters (e.g., qparam1=123&qparam2=456). Default is Empty string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Queue": {
       "description": "A queue is a container of related tasks. Queues are configured to manage how those tasks are dispatched. Configurable properties include rate limits, retry options, queue types, and others.",
       "id": "Queue",
@@ -1142,6 +1316,10 @@
         "appEngineHttpQueue": {
           "$ref": "AppEngineHttpQueue",
           "description": "AppEngineHttpQueue settings apply only to App Engine tasks in this queue. Http tasks are not affected by this proto."
+        },
+        "httpTarget": {
+          "$ref": "HttpTarget",
+          "description": "Modifies HTTP target for HTTP tasks."
         },
         "name": {
           "description": "Caller-specified and required in CreateQueue, after which it becomes output only. The queue name. The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters.",
@@ -1474,6 +1652,58 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UriOverride": {
+      "description": "URI Override. When specified, all the HTTP tasks inside the queue will be partially or fully overridden depending on the configured values.",
+      "id": "UriOverride",
+      "properties": {
+        "host": {
+          "description": "Host override. When specified, will replace the host part of the task URL. For example, if the task URL is \"https://www.google.com\", and host value is set to \"example.net\", the overridden URI will be changed to \"https://example.net\". Host value cannot be an empty string.",
+          "type": "string"
+        },
+        "pathOverride": {
+          "$ref": "PathOverride",
+          "description": "URI path. When specified, will replace the existing path of the task URL. Setting the path value to an empty string clears the URI path segment."
+        },
+        "port": {
+          "description": "Port override. When specified, will replace the port part of the task URI. For instance, for a URI http://www.google.com/foo and port=123, the overridden URI becomes http://www.google.com:123/foo. Note that the port value must be a positive integer. Setting the port to 0 (Zero) clears the URI port.",
+          "format": "int64",
+          "type": "string"
+        },
+        "queryOverride": {
+          "$ref": "QueryOverride",
+          "description": "URI Query. When specified, will replace the query part of the task URI. Setting the query value to an empty string clears the URI query segment."
+        },
+        "scheme": {
+          "description": "Scheme override. When specified, the task URI scheme is replaced by the provided value (HTTP or HTTPS).",
+          "enum": [
+            "SCHEME_UNSPECIFIED",
+            "HTTP",
+            "HTTPS"
+          ],
+          "enumDescriptions": [
+            "Scheme unspecified. Defaults to HTTPS.",
+            "Convert the scheme to HTTP, e.g., https://www.google.ca will change to http://www.google.ca.",
+            "Convert the scheme to HTTPS, e.g., http://www.google.ca will change to https://www.google.ca."
+          ],
+          "type": "string"
+        },
+        "uriOverrideEnforceMode": {
+          "description": "URI Override Enforce Mode When specified, determines the Target UriOverride mode. If not specified, it defaults to ALWAYS.",
+          "enum": [
+            "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED",
+            "IF_NOT_EXISTS",
+            "ALWAYS"
+          ],
+          "enumDescriptions": [
+            "OverrideMode Unspecified. Defaults to ALWAYS.",
+            "In the IF_NOT_EXISTS mode, queue-level configuration is only applied where task-level configuration does not exist.",
+            "In the ALWAYS mode, queue-level configuration overrides all task-level configuration"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
