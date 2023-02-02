@@ -238,7 +238,7 @@ export namespace container_v1 {
      */
     diskType?: string | null;
     /**
-     * The image type to use for NAP created node.
+     * The image type to use for NAP created node. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
     /**
@@ -246,7 +246,7 @@ export namespace container_v1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using https://cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using `cloud.google.com/requested-min-cpu-platform` label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -475,6 +475,10 @@ export namespace container_v1 {
      * [Output only] The IP address of this cluster's master endpoint. The endpoint can be accessed from the internet at `https://username:password@endpoint/`. See the `masterAuth` property of this resource for username and password information.
      */
     endpoint?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of cluster fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
     /**
      * [Output only] The time the cluster will be automatically deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
@@ -833,6 +837,10 @@ export namespace container_v1 {
      * Configuration for Workload Identity.
      */
     desiredWorkloadIdentityConfig?: Schema$WorkloadIdentityConfig;
+    /**
+     * The current etag of the cluster. If an etag is provided and does not match the current etag of the cluster, update will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string | null;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
@@ -1006,6 +1014,15 @@ export namespace container_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSD.
+   */
+  export interface Schema$EphemeralStorageLocalSsdConfig {
+    /**
+     * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. Each local SSD is 375 GB in size. If zero, it means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
+     */
+    localSsdCount?: number | null;
+  }
   /**
    * Configuration of Fast Socket feature.
    */
@@ -1235,6 +1252,10 @@ export namespace container_v1 {
      */
     servicesIpv4CidrBlock?: string | null;
     /**
+     * Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     */
+    servicesIpv6CidrBlock?: string | null;
+    /**
      * The name of the secondary range to be used as for the services CIDR block. The secondary range will be used for service ClusterIPs. This must be an existing secondary range associated with the cluster subnetwork. This field is only applicable with use_ip_aliases is true and create_subnetwork is false.
      */
     servicesSecondaryRangeName?: string | null;
@@ -1242,6 +1263,10 @@ export namespace container_v1 {
      * The IP stack type of the cluster
      */
     stackType?: string | null;
+    /**
+     * Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and pods.
+     */
+    subnetIpv6CidrBlock?: string | null;
     /**
      * A custom subnetwork name to be used if `create_subnetwork` is true. If this field is empty, then an automatic name will be chosen for the new subnetwork.
      */
@@ -1378,6 +1403,15 @@ export namespace container_v1 {
      * A list of usable subnetworks in the specified network project.
      */
     subnetworks?: Schema$UsableSubnetwork[];
+  }
+  /**
+   * LocalNvmeSsdBlockConfig contains configuration for using raw-block local NVMe SSD.
+   */
+  export interface Schema$LocalNvmeSsdBlockConfig {
+    /**
+     * The number of raw-block local NVMe SSD disks to be attached to the node. Each local SSD is 375 GB in size. If zero, it means no raw-block local NVMe SSD disks to be attached to the node. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
+     */
+    localSsdCount?: number | null;
   }
   /**
    * LoggingComponentConfig is cluster logging component configuration.
@@ -1675,6 +1709,10 @@ export namespace container_v1 {
      */
     diskType?: string | null;
     /**
+     * Parameters for the node ephemeral storage using Local SSDs. If unspecified, ephemeral storage is backed by the boot disk.
+     */
+    ephemeralStorageLocalSsdConfig?: Schema$EphemeralStorageLocalSsdConfig;
+    /**
      * Enable or disable NCCL fast socket for the node pool.
      */
     fastSocket?: Schema$FastSocket;
@@ -1687,7 +1725,7 @@ export namespace container_v1 {
      */
     gvnic?: Schema$VirtualNIC;
     /**
-     * The image type to use for this node. Note that for a given image type, the latest version of it will be used.
+     * The image type to use for this node. Note that for a given image type, the latest version of it will be used. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
     /**
@@ -1702,6 +1740,10 @@ export namespace container_v1 {
      * Parameters that can be configured on Linux nodes.
      */
     linuxNodeConfig?: Schema$LinuxNodeConfig;
+    /**
+     * Parameters for using raw-block Local NVMe SSDs.
+     */
+    localNvmeSsdBlockConfig?: Schema$LocalNvmeSsdBlockConfig;
     /**
      * The number of local SSD disks to be attached to the node. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
      */
@@ -1766,6 +1808,10 @@ export namespace container_v1 {
      * List of kubernetes taints to be applied to each node. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      */
     taints?: Schema$NodeTaint[];
+    /**
+     * Parameters that can be configured on Windows nodes.
+     */
+    windowsNodeConfig?: Schema$WindowsNodeConfig;
     /**
      * The workload metadata configuration for this node.
      */
@@ -1873,6 +1919,10 @@ export namespace container_v1 {
      */
     config?: Schema$NodeConfig;
     /**
+     * This checksum is computed by the server based on the value of node pool fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
      * The initial node count for the pool. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota.
      */
     initialNodeCount?: number | null;
@@ -1929,7 +1979,7 @@ export namespace container_v1 {
      */
     upgradeSettings?: Schema$UpgradeSettings;
     /**
-     * The version of the Kubernetes of this node.
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified, it defaults as described [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      */
     version?: string | null;
   }
@@ -2913,6 +2963,10 @@ export namespace container_v1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * The current etag of the node pool. If an etag is provided and does not match the current etag of the node pool, update will be blocked and an ABORTED error will be returned.
+     */
+    etag?: string | null;
+    /**
      * Enable or disable NCCL fast socket for the node pool.
      */
     fastSocket?: Schema$FastSocket;
@@ -2925,7 +2979,7 @@ export namespace container_v1 {
      */
     gvnic?: Schema$VirtualNIC;
     /**
-     * Required. The desired image type for the node pool.
+     * Required. The desired image type for the node pool. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
     /**
@@ -2984,6 +3038,10 @@ export namespace container_v1 {
      * Upgrade settings control disruption and speed of the upgrade.
      */
     upgradeSettings?: Schema$UpgradeSettings;
+    /**
+     * Parameters that can be configured on Windows nodes.
+     */
+    windowsNodeConfig?: Schema$WindowsNodeConfig;
     /**
      * The desired workload metadata config for the node pool.
      */
@@ -3123,6 +3181,15 @@ export namespace container_v1 {
      * Whether gVNIC features are enabled in the node pool.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings
+   */
+  export interface Schema$WindowsNodeConfig {
+    /**
+     * OSVersion specifies the Windows node config to be used on the node
+     */
+    osVersion?: string | null;
   }
   /**
    * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
@@ -4033,6 +4100,7 @@ export namespace container_v1 {
      *   //   "enableKubernetesAlpha": false,
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
+     *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "id": "my_id",
      *   //   "identityServiceConfig": {},
@@ -7029,6 +7097,7 @@ export namespace container_v1 {
      *   //   "autoscaling": {},
      *   //   "conditions": [],
      *   //   "config": {},
+     *   //   "etag": "my_etag",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
      *   //   "locations": [],
@@ -7943,6 +8012,7 @@ export namespace container_v1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "etag": "my_etag",
      *       //   "fastSocket": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
@@ -7961,6 +8031,7 @@ export namespace container_v1 {
      *       //   "tags": {},
      *       //   "taints": {},
      *       //   "upgradeSettings": {},
+     *       //   "windowsNodeConfig": {},
      *       //   "workloadMetadataConfig": {},
      *       //   "zone": "my_zone"
      *       // }
@@ -9718,6 +9789,7 @@ export namespace container_v1 {
      *   //   "enableKubernetesAlpha": false,
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
+     *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "id": "my_id",
      *   //   "identityServiceConfig": {},
@@ -12602,6 +12674,7 @@ export namespace container_v1 {
      *   //   "autoscaling": {},
      *   //   "conditions": [],
      *   //   "config": {},
+     *   //   "etag": "my_etag",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
      *   //   "locations": [],
@@ -13382,6 +13455,7 @@ export namespace container_v1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "etag": "my_etag",
      *       //   "fastSocket": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
@@ -13400,6 +13474,7 @@ export namespace container_v1 {
      *       //   "tags": {},
      *       //   "taints": {},
      *       //   "upgradeSettings": {},
+     *       //   "windowsNodeConfig": {},
      *       //   "workloadMetadataConfig": {},
      *       //   "zone": "my_zone"
      *       // }
