@@ -268,7 +268,7 @@ export namespace alertcenter_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The unique identifier of the Google account of the customer.
+     * Output only. The unique identifier of the Google Workspace account of the customer.
      */
     customerId?: string | null;
     /**
@@ -325,7 +325,7 @@ export namespace alertcenter_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The unique identifier of the Google account of the customer.
+     * Output only. The unique identifier of the Google Workspace account of the customer.
      */
     customerId?: string | null;
     /**
@@ -354,7 +354,7 @@ export namespace alertcenter_v1beta1 {
      */
     assignee?: string | null;
     /**
-     * Output only. The unique identifier of the Google account of the customer.
+     * Output only. The unique identifier of the Google Workspace account of the customer.
      */
     customerId?: string | null;
     /**
@@ -481,11 +481,11 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchDeleteAlertsRequest {
     /**
-     * Required. list of alert IDs.
+     * Required. The list of alert IDs to delete.
      */
     alertId?: string[] | null;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string | null;
   }
@@ -494,7 +494,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchDeleteAlertsResponse {
     /**
-     * The status details for each failed alert_id.
+     * The status details for each failed `alert_id`.
      */
     failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
@@ -507,11 +507,11 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchUndeleteAlertsRequest {
     /**
-     * Required. list of alert IDs.
+     * Required. The list of alert IDs to undelete.
      */
     alertId?: string[] | null;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string | null;
   }
@@ -520,7 +520,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchUndeleteAlertsResponse {
     /**
-     * The status details for each failed alert_id.
+     * The status details for each failed `alert_id`.
      */
     failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
@@ -1222,7 +1222,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$UndeleteAlertRequest {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string | null;
   }
@@ -1636,7 +1636,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.delete({
      *     // Required. The identifier of the alert to delete.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1764,7 +1764,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.get({
      *     // Required. The identifier of the alert to retrieve.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1906,7 +1906,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.getMetadata({
      *     // Required. The identifier of the alert this metadata belongs to.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert metadata is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2041,7 +2041,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.list({
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *     // Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      *     filter: 'placeholder-value',
@@ -2320,7 +2320,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
@@ -2330,7 +2330,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
@@ -2341,13 +2341,13 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert metadata is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
   export interface Params$Resource$Alerts$List extends StandardParameters {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
     /**
@@ -2414,7 +2414,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.feedback.create({
      *     // Required. The identifier of the alert this feedback belongs to.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2563,7 +2563,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.feedback.list({
      *     // Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *     // Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      *     filter: 'placeholder-value',
@@ -2682,7 +2682,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
 
@@ -2698,7 +2698,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
     /**
@@ -2740,7 +2740,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.getSettings({
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must/ have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2866,7 +2866,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.updateSettings({
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2977,14 +2977,14 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$V1beta1$Getsettings
     extends StandardParameters {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must/ have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
   export interface Params$Resource$V1beta1$Updatesettings
     extends StandardParameters {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
 
