@@ -1213,7 +1213,7 @@ export namespace people_v1 {
      */
     residences?: Schema$Residence[];
     /**
-     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id\}`.
+     * The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id\}`.
      */
     resourceName?: string | null;
     /**
@@ -4952,7 +4952,7 @@ export namespace people_v1 {
      *   const res = await people.people.updateContact({
      *     // Optional. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Defaults to all fields if not set. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      *     personFields: 'placeholder-value',
-     *     // The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id\}`.
+     *     // The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id\}`.
      *     resourceName: 'people/[^/]+',
      *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
      *     sources: 'placeholder-value',
@@ -5467,7 +5467,7 @@ export namespace people_v1 {
      */
     personFields?: string;
     /**
-     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id\}`.
+     * The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id\}`.
      */
     resourceName?: string;
     /**
