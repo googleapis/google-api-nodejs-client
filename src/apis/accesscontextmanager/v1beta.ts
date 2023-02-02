@@ -102,7 +102,7 @@ export namespace accesscontextmanager_v1beta {
   /**
    * Access Context Manager API
    *
-   * An API for setting attribute based access control to requests to GCP services.
+   * An API for setting attribute based access control to requests to Google Cloud services.
    *
    * @example
    * ```js
