@@ -407,7 +407,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaBigQuerySource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: The schema is available here: https://support.google.com/analytics/answer/7029846. Supported values for auto-completion imports: * `suggestions` (default): One JSON completion suggestion per line. * `denylist`: One JSON deny suggestion per line. * `allowlist`: One JSON allow suggestion per line.
+     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: The schema is available here: https://support.google.com/analytics/answer/7029846. Supported values for autocomplete imports: * `suggestions` (default): One JSON completion suggestion per line. * `denylist`: One JSON deny suggestion per line. * `allowlist`: One JSON allow suggestion per line.
      */
     dataSchema?: string | null;
     /**
@@ -461,7 +461,7 @@ export namespace retail_v2alpha {
      */
     dynamicFacetableOption?: string | null;
     /**
-     * If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable. This property only applies to textual custom attributes and requires indexable set to enabled to enable exact-searchable.
+     * If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable. This property only applies to textual custom attributes and requires indexable set to enabled to enable exact-searchable. If unset, the server behavior defaults to EXACT_SEARCHABLE_DISABLED.
      */
     exactSearchableOption?: string | null;
     /**
@@ -473,7 +473,7 @@ export namespace retail_v2alpha {
      */
     inUse?: boolean | null;
     /**
-     * Required. Attribute name. For example: `color`, `brands`, `attributes.custom_attribute`, such as `attributes.xyz`. To be indexable, the attribute name can contain only alpha-numeric characters and underscores. For example, an attribute named `attributes.abc_xyz` can be indexed, but an attribute named `attributes.abc-xyz` cannot be indexed.
+     * Required. Attribute name. For example: `color`, `brands`, `attributes.custom_attribute`, such as `attributes.xyz`. To be indexable, the attribute name can contain only alpha-numeric characters and underscores. For example, an attribute named `attributes.abc_xyz` can be indexed, but an attribute named `attributes.abc-xyz` cannot be indexed. If the attribute key starts with `attributes.`, then the attribute is a custom attribute. Attributes such as `brands`, `patterns`, and `title` are built-in and called system attributes.
      */
     key?: string | null;
     /**
@@ -481,7 +481,7 @@ export namespace retail_v2alpha {
      */
     recommendationsFilteringOption?: string | null;
     /**
-     * If RETRIEVABLE_ENABLED, attribute values are retrievable in the search results.
+     * If RETRIEVABLE_ENABLED, attribute values are retrievable in the search results. If unset, the server behavior defaults to RETRIEVABLE_DISABLED.
      */
     retrievableOption?: string | null;
     /**
@@ -502,12 +502,12 @@ export namespace retail_v2alpha {
      */
     colorFamilies?: string[] | null;
     /**
-     * The color display names, which may be different from standard color family names, such as the color aliases used in the website frontend. Normally it is expected to have only 1 color. May consider using single "Mixed" instead of multiple values. A maximum of 25 colors are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
+     * The color display names, which may be different from standard color family names, such as the color aliases used in the website frontend. Normally it is expected to have only 1 color. May consider using single "Mixed" instead of multiple values. A maximum of 75 colors are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
      */
     colors?: string[] | null;
   }
   /**
-   * Response of the auto-complete query.
+   * Response of the autocomplete query.
    */
   export interface Schema$GoogleCloudRetailV2alphaCompleteQueryResponse {
     /**
@@ -740,6 +740,32 @@ export namespace retail_v2alpha {
      * The textual values of this custom attribute. For example, `["yellow", "green"]` when the key is "color". Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is returned. Exactly one of text or numbers should be set. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     text?: string[] | null;
+  }
+  /**
+   * Metadata for active A/B testing Experiments.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaExperimentInfo {
+    /**
+     * The fully qualified resource name of the experiment that provides the serving config under test, should an active experiment exist. For example: `projects/x/locations/global/catalogs/default_catalog/experiments/experiment_id`
+     */
+    experimentName?: string | null;
+    /**
+     * A/B test between existing Cloud Retail Search ServingConfigs.
+     */
+    servingConfigExperiment?: Schema$GoogleCloudRetailV2alphaExperimentInfoServingConfigExperiment;
+  }
+  /**
+   * Metadata for active serving config A/B tests.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaExperimentInfoServingConfigExperiment {
+    /**
+     * The fully qualified resource name of the serving config VariantArm.serving_config_id responsible for generating the search response. For example: `projects/x/locations/x/catalogs/x/servingConfigs/x`.
+     */
+    experimentServingConfig?: string | null;
+    /**
+     * The fully qualified resource name of the original SearchRequest.placement in the search request prior to reassignment by experiment API. For example: `projects/x/locations/x/catalogs/x/servingConfigs/x`.
+     */
+    originalServingConfig?: string | null;
   }
   /**
    * Configuration of destination for Export related errors.
@@ -2222,6 +2248,10 @@ export namespace retail_v2alpha {
      */
     correctedQuery?: string | null;
     /**
+     * Metadata related to A/B testing Experiment associated with this response. Only exists when an experiment is triggered.
+     */
+    experimentInfo?: Schema$GoogleCloudRetailV2alphaExperimentInfo[];
+    /**
      * Results of facets requested by user.
      */
     facets?: Schema$GoogleCloudRetailV2alphaSearchResponseFacet[];
@@ -2351,7 +2381,7 @@ export namespace retail_v2alpha {
      */
     diversityLevel?: string | null;
     /**
-     * What kind of diversity to use - data driven or rule based.
+     * What kind of diversity to use - data driven or rule based. If unset, the server behavior defaults to RULE_BASED_DIVERSITY.
      */
     diversityType?: string | null;
     /**
@@ -2395,7 +2425,7 @@ export namespace retail_v2alpha {
      */
     personalizationSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec;
     /**
-     * How much price ranking we want in serving results. Price reranking causes product items with a similar recommendation probability to be ordered by price, with the highest-priced items first. This setting could result in a decrease in click-through and conversion rates. Allowed values are: * `no-price-reranking` * `low-price-raranking` * `medium-price-reranking` * `high-price-reranking` If not specified, we choose default based on model type. Default value: `no-price-reranking`. Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.
+     * How much price ranking we want in serving results. Price reranking causes product items with a similar recommendation probability to be ordered by price, with the highest-priced items first. This setting could result in a decrease in click-through and conversion rates. Allowed values are: * `no-price-reranking` * `low-price-reranking` * `medium-price-reranking` * `high-price-reranking` If not specified, we choose default based on model type. Default value: `no-price-reranking`. Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.
      */
     priceRerankingLevel?: string | null;
     /**
@@ -2978,6 +3008,15 @@ export namespace retail_v2alpha {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Metadata associated with a create operation.
+   */
+  export interface Schema$GoogleCloudRetailV2CreateModelMetadata {
+    /**
+     * The resource name of the model that this create applies to. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
+     */
+    model?: string | null;
+  }
+  /**
    * Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
    */
   export interface Schema$GoogleCloudRetailV2ImportCompletionDataResponse {
@@ -3055,6 +3094,76 @@ export namespace retail_v2alpha {
     importSummary?: Schema$GoogleCloudRetailV2UserEventImportSummary;
   }
   /**
+   * Metadata that describes the training and serving parameters of a Model. A Model can be associated with a ServingConfig and then queried through the Predict API.
+   */
+  export interface Schema$GoogleCloudRetailV2Model {
+    /**
+     * Output only. Timestamp the Recommendation Model was created at.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The state of data requirements for this model: `DATA_OK` and `DATA_ERROR`. Recommendation model cannot be trained if the data is in `DATA_ERROR` state. Recommendation model can have `DATA_ERROR` state even if serving state is `ACTIVE`: models were trained successfully before, but cannot be refreshed because model no longer has sufficient data for training.
+     */
+    dataState?: string | null;
+    /**
+     * Required. The display name of the model. Should be human readable, used to display Recommendation Models in the Retail Cloud Console Dashboard. UTF-8 encoded string with limit of 1024 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. If `RECOMMENDATIONS_FILTERING_ENABLED`, recommendation filtering by attributes is enabled for the model.
+     */
+    filteringOption?: string | null;
+    /**
+     * Output only. The timestamp when the latest successful tune finished.
+     */
+    lastTuneTime?: string | null;
+    /**
+     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.
+     */
+    name?: string | null;
+    /**
+     * Optional. The optimization objective e.g. `cvr`. Currently supported values: `ctr`, `cvr`, `revenue-per-order`. If not specified, we choose default based on model type. Default depends on type of recommendation: `recommended-for-you` =\> `ctr` `others-you-may-like` =\> `ctr` `frequently-bought-together` =\> `revenue_per_order` This field together with optimization_objective describe model metadata to use to control model training and serving. See https://cloud.google.com/retail/docs/models for more details on what the model metadata control and which combination of parameters are valid. For invalid combinations of parameters (e.g. type = `frequently-bought-together` and optimization_objective = `ctr`), you receive an error 400 if you try to create/update a recommendation with this set of knobs.
+     */
+    optimizationObjective?: string | null;
+    /**
+     * Optional. The state of periodic tuning. The period we use is 3 months - to do a one-off tune earlier use the `TuneModel` method. Default value is `PERIODIC_TUNING_ENABLED`.
+     */
+    periodicTuningState?: string | null;
+    /**
+     * Output only. The list of valid serving configs associated with the PageOptimizationConfig.
+     */
+    servingConfigLists?: Schema$GoogleCloudRetailV2ModelServingConfigList[];
+    /**
+     * Output only. The serving state of the model: `ACTIVE`, `NOT_ACTIVE`.
+     */
+    servingState?: string | null;
+    /**
+     * Optional. The training state that the model is in (e.g. `TRAINING` or `PAUSED`). Since part of the cost of running the service is frequency of training - this can be used to determine when to train model in order to control cost. If not specified: the default value for `CreateModel` method is `TRAINING`. The default value for `UpdateModel` method is to keep the state the same as before.
+     */
+    trainingState?: string | null;
+    /**
+     * Output only. The tune operation associated with the model. Can be used to determine if there is an ongoing tune for this recommendation. Empty field implies no tune is goig on.
+     */
+    tuningOperation?: string | null;
+    /**
+     * Required. The type of model e.g. `home-page`. Currently supported values: `recommended-for-you`, `others-you-may-like`, `frequently-bought-together`, `page-optimization`, `similar-items`, `buy-it-again`, `on-sale-items`, and `recently-viewed`(readonly value). This field together with optimization_objective describe model metadata to use to control model training and serving. See https://cloud.google.com/retail/docs/models for more details on what the model metadata control and which combination of parameters are valid. For invalid combinations of parameters (e.g. type = `frequently-bought-together` and optimization_objective = `ctr`), you receive an error 400 if you try to create/update a recommendation with this set of knobs.
+     */
+    type?: string | null;
+    /**
+     * Output only. Timestamp the Recommendation Model was last updated. E.g. if a Recommendation Model was paused - this would be the time the pause was initiated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents an ordered combination of valid serving configs, which can be used for `PAGE_OPTIMIZATION` recommendations.
+   */
+  export interface Schema$GoogleCloudRetailV2ModelServingConfigList {
+    /**
+     * Optional. A set of valid serving configs that may be used for `PAGE_OPTIMIZATION`.
+     */
+    servingConfigIds?: string[] | null;
+  }
+  /**
    * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudRetailV2PurgeMetadata {}
@@ -3104,6 +3213,19 @@ export namespace retail_v2alpha {
    * Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.
    */
   export interface Schema$GoogleCloudRetailV2SetInventoryResponse {}
+  /**
+   * Metadata associated with a tune operation.
+   */
+  export interface Schema$GoogleCloudRetailV2TuneModelMetadata {
+    /**
+     * The resource name of the model that this tune applies to. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
+     */
+    model?: string | null;
+  }
+  /**
+   * Response associated with a tune operation.
+   */
+  export interface Schema$GoogleCloudRetailV2TuneModelResponse {}
   /**
    * A summary of import result. The UserEventImportSummary summarizes the import status for user events.
    */
@@ -5736,7 +5858,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
      * @example
      * ```js
      * // Before running the sample:
@@ -5892,7 +6014,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be modified using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be modified using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
      * @example
      * ```js
      * // Before running the sample:
@@ -6293,6 +6415,8 @@ export namespace retail_v2alpha {
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.branches.products.delete(
      *     {
+     *       // This value only applies to the case when the target product is of type PRIMARY. When deleting a product of VARIANT/COLLECTION type, this value will be ignored. When set to true, the subsequent variant products will be deleted. When set to false, if the primary product has active variant products, an error will be returned.
+     *       cascadeDelete: 'placeholder-value',
      *       // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to delete the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to delete does not exist, a NOT_FOUND error is returned. The Product to delete can neither be a Product.Type.COLLECTION Product member nor a Product.Type.PRIMARY Product with more than one variants. Otherwise, an INVALID_ARGUMENT error is returned. All inventory information for the named Product will be deleted.
      *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
      *     }
@@ -7240,7 +7364,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
      * @example
      * ```js
      * // Before running the sample:
@@ -7395,7 +7519,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be removed using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. Local inventory information can only be removed using this method. ProductService.CreateProduct and ProductService.UpdateProduct has no effect on local inventories. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
      * @example
      * ```js
      * // Before running the sample:
@@ -7549,7 +7673,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update is enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. When inventory is updated with ProductService.CreateProduct and ProductService.UpdateProduct, the specified inventory field value(s) overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update times for the specified inventory fields are overwritten by the times of the ProductService.CreateProduct or ProductService.UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product is used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information is preserved. Pre-existing inventory information can only be updated with ProductService.SetInventory, ProductService.AddFulfillmentPlaces, and ProductService.RemoveFulfillmentPlaces. The returned Operations is obsolete after one day, and the GetOperation API returns `NOT_FOUND` afterwards. If conflicting updates are issued, the Operations associated with the stale updates are not marked as done until they are obsolete. This feature is only available for users who have Retail Search enabled. Enable Retail Search on Cloud Console before using this feature.
+     * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update is enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. When inventory is updated with ProductService.CreateProduct and ProductService.UpdateProduct, the specified inventory field value(s) overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update times for the specified inventory fields are overwritten by the times of the ProductService.CreateProduct or ProductService.UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product is used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information is preserved. Pre-existing inventory information can only be updated with ProductService.SetInventory, ProductService.AddFulfillmentPlaces, and ProductService.RemoveFulfillmentPlaces. The returned Operations is obsolete after one day, and the GetOperation API returns `NOT_FOUND` afterwards. If conflicting updates are issued, the Operations associated with the stale updates are not marked as done until they are obsolete.
      * @example
      * ```js
      * // Before running the sample:
@@ -7744,6 +7868,10 @@ export namespace retail_v2alpha {
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete
     extends StandardParameters {
+    /**
+     * This value only applies to the case when the target product is of type PRIMARY. When deleting a product of VARIANT/COLLECTION type, this value will be ignored. When set to true, the subsequent variant products will be deleted. When set to false, if the primary product has active variant products, an error will be returned.
+     */
+    cascadeDelete?: boolean;
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to delete the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to delete does not exist, a NOT_FOUND error is returned. The Product to delete can neither be a Product.Type.COLLECTION Product member nor a Product.Type.PRIMARY Product with more than one variants. Otherwise, an INVALID_ARGUMENT error is returned. All inventory information for the named Product will be deleted.
      */
@@ -10558,6 +10686,7 @@ export namespace retail_v2alpha {
      *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "experimentInfo": [],
      *   //   "facets": [],
      *   //   "invalidConditionBoostSpecs": [],
      *   //   "nextPageToken": "my_nextPageToken",
@@ -12051,6 +12180,7 @@ export namespace retail_v2alpha {
      *   //   "appliedControls": [],
      *   //   "attributionToken": "my_attributionToken",
      *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "experimentInfo": [],
      *   //   "facets": [],
      *   //   "invalidConditionBoostSpecs": [],
      *   //   "nextPageToken": "my_nextPageToken",
@@ -12310,7 +12440,7 @@ export namespace retail_v2alpha {
      *     ets: 'placeholder-value',
      *     // Required. The parent catalog name, such as `projects/1234/locations/global/catalogs/default_catalog`.
      *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
-     *     // The prebuilt rule name that can convert a specific type of raw_json. For example: "default_schema/v1.0"
+     *     // The prebuilt rule name that can convert a specific type of raw_json. For example: "ga4_bq" rule for the GA4 user event schema.
      *     prebuiltRule: 'placeholder-value',
      *     // An arbitrary serialized JSON string that contains necessary information that can comprise a user event. When this field is specified, the user_event field will be ignored. Note: line-delimited JSON is not supported, a single JSON only.
      *     rawJson: 'placeholder-value',
@@ -13072,7 +13202,7 @@ export namespace retail_v2alpha {
      */
     parent?: string;
     /**
-     * The prebuilt rule name that can convert a specific type of raw_json. For example: "default_schema/v1.0"
+     * The prebuilt rule name that can convert a specific type of raw_json. For example: "ga4_bq" rule for the GA4 user event schema.
      */
     prebuiltRule?: string;
     /**
