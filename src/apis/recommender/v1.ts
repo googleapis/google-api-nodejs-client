@@ -338,6 +338,15 @@ export namespace recommender_v1 {
     stateMetadata?: {[key: string]: string} | null;
   }
   /**
+   * Request for the `MarkRecommendationDismissed` Method.
+   */
+  export interface Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest {
+    /**
+     * Fingerprint of the Recommendation. Provides optimistic locking.
+     */
+    etag?: string | null;
+  }
+  /**
    * Request for the `MarkRecommendationFailed` Method.
    */
   export interface Schema$GoogleCloudRecommenderV1MarkRecommendationFailedRequest {
@@ -2296,6 +2305,167 @@ export namespace recommender_v1 {
     }
 
     /**
+     * Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recommender.billingAccounts.locations.recommenders.recommendations.markDismissed(
+     *       {
+     *         // Name of the recommendation.
+     *         name: 'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {},
+     *   //   "xorGroupId": "my_xorGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markDismissed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markDismissed(
+      params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    markDismissed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:markDismissed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
      * ```js
@@ -2657,6 +2827,18 @@ export namespace recommender_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed
+    extends StandardParameters {
+    /**
+     * Name of the recommendation.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
   export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed
     extends StandardParameters {
@@ -3695,6 +3877,167 @@ export namespace recommender_v1 {
     }
 
     /**
+     * Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recommender.folders.locations.recommenders.recommendations.markDismissed(
+     *       {
+     *         // Name of the recommendation.
+     *         name: 'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {},
+     *   //   "xorGroupId": "my_xorGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markDismissed(
+      params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markDismissed(
+      params?: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    markDismissed(
+      params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:markDismissed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
      * ```js
@@ -4056,6 +4399,18 @@ export namespace recommender_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
+  }
+  export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed
+    extends StandardParameters {
+    /**
+     * Name of the recommendation.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
   export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed
     extends StandardParameters {
@@ -5763,6 +6118,167 @@ export namespace recommender_v1 {
     }
 
     /**
+     * Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recommender.organizations.locations.recommenders.recommendations.markDismissed(
+     *       {
+     *         // Name of the recommendation.
+     *         name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {},
+     *   //   "xorGroupId": "my_xorGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markDismissed(
+      params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markDismissed(
+      params?: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    markDismissed(
+      params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:markDismissed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
      * ```js
@@ -6124,6 +6640,18 @@ export namespace recommender_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed
+    extends StandardParameters {
+    /**
+     * Name of the recommendation.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
   export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed
     extends StandardParameters {
@@ -7822,6 +8350,167 @@ export namespace recommender_v1 {
     }
 
     /**
+     * Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recommender.projects.locations.recommenders.recommendations.markDismissed(
+     *       {
+     *         // Name of the recommendation.
+     *         name: 'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {},
+     *   //   "xorGroupId": "my_xorGroupId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markDismissed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markDismissed(
+      params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>;
+    markDismissed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+    ): void;
+    markDismissed(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:markDismissed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1Recommendation>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
      * ```js
@@ -8183,6 +8872,18 @@ export namespace recommender_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationClaimedRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed
+    extends StandardParameters {
+    /**
+     * Name of the recommendation.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1MarkRecommendationDismissedRequest;
   }
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed
     extends StandardParameters {
