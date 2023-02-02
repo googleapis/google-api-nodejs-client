@@ -137,13 +137,9 @@ export namespace safebrowsing_v4 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
-   */
-  export interface Schema$GoogleProtobufEmpty {}
-  /**
    * The expected state of a client's local database.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4Checksum {
+  export interface Schema$Checksum {
     /**
      * The SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database.
      */
@@ -152,7 +148,7 @@ export namespace safebrowsing_v4 {
   /**
    * The client metadata associated with Safe Browsing API requests.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4ClientInfo {
+  export interface Schema$ClientInfo {
     /**
      * A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.
      */
@@ -163,47 +159,9 @@ export namespace safebrowsing_v4 {
     clientVersion?: string | null;
   }
   /**
-   * Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. The server may not respond to all requests, if the server has no updates for that list. NOTE: Field index 2 is unused. NEXT: 5
-   */
-  export interface Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest {
-    /**
-     * The client metadata.
-     */
-    client?: Schema$GoogleSecuritySafebrowsingV4ClientInfo;
-    /**
-     * The requested threat list updates.
-     */
-    listUpdateRequests?: Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest[];
-  }
-  /**
-   * A single list update request.
-   */
-  export interface Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest {
-    /**
-     * The constraints associated with this request.
-     */
-    constraints?: Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints;
-    /**
-     * The type of platform at risk by entries present in the list.
-     */
-    platformType?: string | null;
-    /**
-     * The current state of the client for the requested list (the encrypted client state that was received from the last successful list update).
-     */
-    state?: string | null;
-    /**
-     * The types of entries present in the list.
-     */
-    threatEntryType?: string | null;
-    /**
-     * The type of threat posed by entries present in the list.
-     */
-    threatType?: string | null;
-  }
-  /**
    * The constraints for this update.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints {
+  export interface Schema$Constraints {
     /**
      * A client's physical location, expressed as a ISO 31166-1 alpha-2 region code.
      */
@@ -229,28 +187,130 @@ export namespace safebrowsing_v4 {
      */
     supportedCompressions?: string[] | null;
   }
-  export interface Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse {
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
+  /**
+   * Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. The server may not respond to all requests, if the server has no updates for that list. NOTE: Field index 2 is unused. NEXT: 5
+   */
+  export interface Schema$FetchThreatListUpdatesRequest {
+    /**
+     * The client metadata.
+     */
+    client?: Schema$ClientInfo;
+    /**
+     * The requested threat list updates.
+     */
+    listUpdateRequests?: Schema$ListUpdateRequest[];
+  }
+  export interface Schema$FetchThreatListUpdatesResponse {
     /**
      * The list updates requested by the clients. The number of responses here may be less than the number of requests sent by clients. This is the case, for example, if the server has no updates for a particular list.
      */
-    listUpdateResponses?: Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse[];
+    listUpdateResponses?: Schema$ListUpdateResponse[];
     /**
      * The minimum duration the client must wait before issuing any update request. If this field is not set clients may update as soon as they want.
      */
     minimumWaitDuration?: string | null;
   }
   /**
+   * Request to return full hashes matched by the provided hash prefixes.
+   */
+  export interface Schema$FindFullHashesRequest {
+    /**
+     * Client metadata associated with callers of higher-level APIs built on top of the client's implementation.
+     */
+    apiClient?: Schema$ClientInfo;
+    /**
+     * The client metadata.
+     */
+    client?: Schema$ClientInfo;
+    /**
+     * The current client states for each of the client's local threat lists.
+     */
+    clientStates?: string[] | null;
+    /**
+     * The lists and hashes to be checked.
+     */
+    threatInfo?: Schema$ThreatInfo;
+  }
+  export interface Schema$FindFullHashesResponse {
+    /**
+     * The full hashes that matched the requested prefixes.
+     */
+    matches?: Schema$ThreatMatch[];
+    /**
+     * The minimum duration the client must wait before issuing any find hashes request. If this field is not set, clients can issue a request as soon as they want.
+     */
+    minimumWaitDuration?: string | null;
+    /**
+     * For requested entities that did not match the threat list, how long to cache the response.
+     */
+    negativeCacheDuration?: string | null;
+  }
+  /**
+   * Request to check entries against lists.
+   */
+  export interface Schema$FindThreatMatchesRequest {
+    /**
+     * The client metadata.
+     */
+    client?: Schema$ClientInfo;
+    /**
+     * The lists and entries to be checked for matches.
+     */
+    threatInfo?: Schema$ThreatInfo;
+  }
+  export interface Schema$FindThreatMatchesResponse {
+    /**
+     * The threat list matches.
+     */
+    matches?: Schema$ThreatMatch[];
+  }
+  export interface Schema$ListThreatListsResponse {
+    /**
+     * The lists available for download by the client.
+     */
+    threatLists?: Schema$ThreatListDescriptor[];
+  }
+  /**
+   * A single list update request.
+   */
+  export interface Schema$ListUpdateRequest {
+    /**
+     * The constraints associated with this request.
+     */
+    constraints?: Schema$Constraints;
+    /**
+     * The type of platform at risk by entries present in the list.
+     */
+    platformType?: string | null;
+    /**
+     * The current state of the client for the requested list (the encrypted client state that was received from the last successful list update).
+     */
+    state?: string | null;
+    /**
+     * The types of entries present in the list.
+     */
+    threatEntryType?: string | null;
+    /**
+     * The type of threat posed by entries present in the list.
+     */
+    threatType?: string | null;
+  }
+  /**
    * An update to an individual list.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse {
+  export interface Schema$ListUpdateResponse {
     /**
      * A set of entries to add to a local threat type's list. Repeated to allow for a combination of compressed and raw data to be sent in a single response.
      */
-    additions?: Schema$GoogleSecuritySafebrowsingV4ThreatEntrySet[];
+    additions?: Schema$ThreatEntrySet[];
     /**
      * The expected SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database after applying the provided update. If the client state doesn't match the expected state, the client must disregard this update and retry later.
      */
-    checksum?: Schema$GoogleSecuritySafebrowsingV4Checksum;
+    checksum?: Schema$Checksum;
     /**
      * The new client state, in encrypted format. Opaque to clients.
      */
@@ -262,7 +322,7 @@ export namespace safebrowsing_v4 {
     /**
      * A set of entries to remove from a local threat type's list. In practice, this field is empty or contains exactly one ThreatEntrySet.
      */
-    removals?: Schema$GoogleSecuritySafebrowsingV4ThreatEntrySet[];
+    removals?: Schema$ThreatEntrySet[];
     /**
      * The type of response. This may indicate that an action is required by the client when the response is received.
      */
@@ -277,69 +337,22 @@ export namespace safebrowsing_v4 {
     threatType?: string | null;
   }
   /**
-   * Request to return full hashes matched by the provided hash prefixes.
+   * A single metadata entry.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4FindFullHashesRequest {
+  export interface Schema$MetadataEntry {
     /**
-     * Client metadata associated with callers of higher-level APIs built on top of the client's implementation.
+     * The metadata entry key. For JSON requests, the key is base64-encoded.
      */
-    apiClient?: Schema$GoogleSecuritySafebrowsingV4ClientInfo;
+    key?: string | null;
     /**
-     * The client metadata.
+     * The metadata entry value. For JSON requests, the value is base64-encoded.
      */
-    client?: Schema$GoogleSecuritySafebrowsingV4ClientInfo;
-    /**
-     * The current client states for each of the client's local threat lists.
-     */
-    clientStates?: string[] | null;
-    /**
-     * The lists and hashes to be checked.
-     */
-    threatInfo?: Schema$GoogleSecuritySafebrowsingV4ThreatInfo;
-  }
-  export interface Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse {
-    /**
-     * The full hashes that matched the requested prefixes.
-     */
-    matches?: Schema$GoogleSecuritySafebrowsingV4ThreatMatch[];
-    /**
-     * The minimum duration the client must wait before issuing any find hashes request. If this field is not set, clients can issue a request as soon as they want.
-     */
-    minimumWaitDuration?: string | null;
-    /**
-     * For requested entities that did not match the threat list, how long to cache the response.
-     */
-    negativeCacheDuration?: string | null;
-  }
-  /**
-   * Request to check entries against lists.
-   */
-  export interface Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesRequest {
-    /**
-     * The client metadata.
-     */
-    client?: Schema$GoogleSecuritySafebrowsingV4ClientInfo;
-    /**
-     * The lists and entries to be checked for matches.
-     */
-    threatInfo?: Schema$GoogleSecuritySafebrowsingV4ThreatInfo;
-  }
-  export interface Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse {
-    /**
-     * The threat list matches.
-     */
-    matches?: Schema$GoogleSecuritySafebrowsingV4ThreatMatch[];
-  }
-  export interface Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse {
-    /**
-     * The lists available for download by the client.
-     */
-    threatLists?: Schema$GoogleSecuritySafebrowsingV4ThreatListDescriptor[];
+    value?: string | null;
   }
   /**
    * The uncompressed threat entries in hash format of a particular prefix length. Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4 bytes, but some hashes are lengthened if they collide with the hash of a popular URL. Used for sending ThreatEntrySet to clients that do not support compression, or when sending non-4-byte hashes to clients that do support compression.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4RawHashes {
+  export interface Schema$RawHashes {
     /**
      * The number of bytes for each prefix encoded below. This field can be anywhere from 4 (shortest prefix) to 32 (full SHA256 hash).
      */
@@ -352,7 +365,7 @@ export namespace safebrowsing_v4 {
   /**
    * A set of raw indices to remove from a local list.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4RawIndices {
+  export interface Schema$RawIndices {
     /**
      * The indices to remove from a lexicographically-sorted local list.
      */
@@ -361,7 +374,7 @@ export namespace safebrowsing_v4 {
   /**
    * The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or compressed removal indices.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4RiceDeltaEncoding {
+  export interface Schema$RiceDeltaEncoding {
     /**
      * The encoded deltas that are encoded using the Golomb-Rice coder.
      */
@@ -382,7 +395,7 @@ export namespace safebrowsing_v4 {
   /**
    * An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatEntry {
+  export interface Schema$ThreatEntry {
     /**
      * The digest of an executable in SHA256 format. The API supports both binary and hex digests. For JSON requests, digests are base64-encoded.
      */
@@ -399,29 +412,16 @@ export namespace safebrowsing_v4 {
   /**
    * The metadata associated with a specific threat entry. The client is expected to know the metadata key/value pairs associated with each threat type.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatEntryMetadata {
+  export interface Schema$ThreatEntryMetadata {
     /**
      * The metadata entries.
      */
-    entries?: Schema$GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry[];
-  }
-  /**
-   * A single metadata entry.
-   */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry {
-    /**
-     * The metadata entry key. For JSON requests, the key is base64-encoded.
-     */
-    key?: string | null;
-    /**
-     * The metadata entry value. For JSON requests, the value is base64-encoded.
-     */
-    value?: string | null;
+    entries?: Schema$MetadataEntry[];
   }
   /**
    * A set of threats that should be added or removed from a client's local database.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatEntrySet {
+  export interface Schema$ThreatEntrySet {
     /**
      * The compression type for the entries in this set.
      */
@@ -429,29 +429,29 @@ export namespace safebrowsing_v4 {
     /**
      * The raw SHA256-formatted entries.
      */
-    rawHashes?: Schema$GoogleSecuritySafebrowsingV4RawHashes;
+    rawHashes?: Schema$RawHashes;
     /**
      * The raw removal indices for a local list.
      */
-    rawIndices?: Schema$GoogleSecuritySafebrowsingV4RawIndices;
+    rawIndices?: Schema$RawIndices;
     /**
      * The encoded 4-byte prefixes of SHA256-formatted entries, using a Golomb-Rice encoding. The hashes are converted to uint32, sorted in ascending order, then delta encoded and stored as encoded_data.
      */
-    riceHashes?: Schema$GoogleSecuritySafebrowsingV4RiceDeltaEncoding;
+    riceHashes?: Schema$RiceDeltaEncoding;
     /**
      * The encoded local, lexicographically-sorted list indices, using a Golomb-Rice encoding. Used for sending compressed removal indices. The removal indices (uint32) are sorted in ascending order, then delta encoded and stored as encoded_data.
      */
-    riceIndices?: Schema$GoogleSecuritySafebrowsingV4RiceDeltaEncoding;
+    riceIndices?: Schema$RiceDeltaEncoding;
   }
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatHit {
+  export interface Schema$ThreatHit {
     /**
      * Client-reported identification.
      */
-    clientInfo?: Schema$GoogleSecuritySafebrowsingV4ClientInfo;
+    clientInfo?: Schema$ClientInfo;
     /**
      * The threat entry responsible for the hit. Full hash should be reported for hash-based hits.
      */
-    entry?: Schema$GoogleSecuritySafebrowsingV4ThreatEntry;
+    entry?: Schema$ThreatEntry;
     /**
      * The platform type reported.
      */
@@ -459,7 +459,7 @@ export namespace safebrowsing_v4 {
     /**
      * The resources related to the threat hit.
      */
-    resources?: Schema$GoogleSecuritySafebrowsingV4ThreatHitThreatSource[];
+    resources?: Schema$ThreatSource[];
     /**
      * The threat type reported.
      */
@@ -467,12 +467,79 @@ export namespace safebrowsing_v4 {
     /**
      * Details about the user that encountered the threat.
      */
-    userInfo?: Schema$GoogleSecuritySafebrowsingV4ThreatHitUserInfo;
+    userInfo?: Schema$UserInfo;
+  }
+  /**
+   * The information regarding one or more threats that a client submits when checking for matches in threat lists.
+   */
+  export interface Schema$ThreatInfo {
+    /**
+     * The platform types to be checked.
+     */
+    platformTypes?: string[] | null;
+    /**
+     * The threat entries to be checked.
+     */
+    threatEntries?: Schema$ThreatEntry[];
+    /**
+     * The entry types to be checked.
+     */
+    threatEntryTypes?: string[] | null;
+    /**
+     * The threat types to be checked.
+     */
+    threatTypes?: string[] | null;
+  }
+  /**
+   * Describes an individual threat list. A list is defined by three parameters: the type of threat posed, the type of platform targeted by the threat, and the type of entries in the list.
+   */
+  export interface Schema$ThreatListDescriptor {
+    /**
+     * The platform type targeted by the list's entries.
+     */
+    platformType?: string | null;
+    /**
+     * The entry types contained in the list.
+     */
+    threatEntryType?: string | null;
+    /**
+     * The threat type posed by the list's entries.
+     */
+    threatType?: string | null;
+  }
+  /**
+   * A match when checking a threat entry in the Safe Browsing threat lists.
+   */
+  export interface Schema$ThreatMatch {
+    /**
+     * The cache lifetime for the returned match. Clients must not cache this response for more than this duration to avoid false positives.
+     */
+    cacheDuration?: string | null;
+    /**
+     * The platform type matching this threat.
+     */
+    platformType?: string | null;
+    /**
+     * The threat matching this threat.
+     */
+    threat?: Schema$ThreatEntry;
+    /**
+     * Optional metadata associated with this threat.
+     */
+    threatEntryMetadata?: Schema$ThreatEntryMetadata;
+    /**
+     * The threat entry type matching this threat.
+     */
+    threatEntryType?: string | null;
+    /**
+     * The threat type matching this threat.
+     */
+    threatType?: string | null;
   }
   /**
    * A single resource related to a threat hit.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatHitThreatSource {
+  export interface Schema$ThreatSource {
     /**
      * Referrer of the resource. Only set if the referrer is available.
      */
@@ -493,7 +560,7 @@ export namespace safebrowsing_v4 {
   /**
    * Details about the user that encountered the threat.
    */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatHitUserInfo {
+  export interface Schema$UserInfo {
     /**
      * The UN M.49 region code associated with the user's location.
      */
@@ -502,73 +569,6 @@ export namespace safebrowsing_v4 {
      * Unique user identifier defined by the client.
      */
     userId?: string | null;
-  }
-  /**
-   * The information regarding one or more threats that a client submits when checking for matches in threat lists.
-   */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatInfo {
-    /**
-     * The platform types to be checked.
-     */
-    platformTypes?: string[] | null;
-    /**
-     * The threat entries to be checked.
-     */
-    threatEntries?: Schema$GoogleSecuritySafebrowsingV4ThreatEntry[];
-    /**
-     * The entry types to be checked.
-     */
-    threatEntryTypes?: string[] | null;
-    /**
-     * The threat types to be checked.
-     */
-    threatTypes?: string[] | null;
-  }
-  /**
-   * Describes an individual threat list. A list is defined by three parameters: the type of threat posed, the type of platform targeted by the threat, and the type of entries in the list.
-   */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatListDescriptor {
-    /**
-     * The platform type targeted by the list's entries.
-     */
-    platformType?: string | null;
-    /**
-     * The entry types contained in the list.
-     */
-    threatEntryType?: string | null;
-    /**
-     * The threat type posed by the list's entries.
-     */
-    threatType?: string | null;
-  }
-  /**
-   * A match when checking a threat entry in the Safe Browsing threat lists.
-   */
-  export interface Schema$GoogleSecuritySafebrowsingV4ThreatMatch {
-    /**
-     * The cache lifetime for the returned match. Clients must not cache this response for more than this duration to avoid false positives.
-     */
-    cacheDuration?: string | null;
-    /**
-     * The platform type matching this threat.
-     */
-    platformType?: string | null;
-    /**
-     * The threat matching this threat.
-     */
-    threat?: Schema$GoogleSecuritySafebrowsingV4ThreatEntry;
-    /**
-     * Optional metadata associated with this threat.
-     */
-    threatEntryMetadata?: Schema$GoogleSecuritySafebrowsingV4ThreatEntryMetadata;
-    /**
-     * The threat entry type matching this threat.
-     */
-    threatEntryType?: string | null;
-    /**
-     * The threat type matching this threat.
-     */
-    threatType?: string | null;
   }
 
   export class Resource$Encodedfullhashes {
@@ -639,7 +639,7 @@ export namespace safebrowsing_v4 {
     get(
       params?: Params$Resource$Encodedfullhashes$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>;
+    ): GaxiosPromise<Schema$FindFullHashesResponse>;
     get(
       params: Params$Resource$Encodedfullhashes$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -649,32 +649,30 @@ export namespace safebrowsing_v4 {
       params: Params$Resource$Encodedfullhashes$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
     ): void;
     get(
       params: Params$Resource$Encodedfullhashes$Get,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
     ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
-    ): void;
+    get(callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Encodedfullhashes$Get
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+      | GaxiosPromise<Schema$FindFullHashesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedfullhashes$Get;
@@ -709,14 +707,12 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>(
+        createAPIRequest<Schema$FindFullHashesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
       }
     }
   }
@@ -804,7 +800,7 @@ export namespace safebrowsing_v4 {
     get(
       params?: Params$Resource$Encodedupdates$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>;
+    ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
     get(
       params: Params$Resource$Encodedupdates$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -814,32 +810,32 @@ export namespace safebrowsing_v4 {
       params: Params$Resource$Encodedupdates$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
     ): void;
     get(
       params: Params$Resource$Encodedupdates$Get,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Encodedupdates$Get
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      | GaxiosPromise<Schema$FetchThreatListUpdatesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Encodedupdates$Get;
@@ -874,12 +870,12 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>(
+        createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>(
+        return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters
         );
       }
@@ -975,7 +971,7 @@ export namespace safebrowsing_v4 {
     find(
       params?: Params$Resource$Fullhashes$Find,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>;
+    ): GaxiosPromise<Schema$FindFullHashesResponse>;
     find(
       params: Params$Resource$Fullhashes$Find,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -985,32 +981,30 @@ export namespace safebrowsing_v4 {
       params: Params$Resource$Fullhashes$Find,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>,
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
     ): void;
     find(
       params: Params$Resource$Fullhashes$Find,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+      callback: BodyResponseCallback<Schema$FindFullHashesResponse>
     ): void;
-    find(
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
-    ): void;
+    find(callback: BodyResponseCallback<Schema$FindFullHashesResponse>): void;
     find(
       paramsOrCallback?:
         | Params$Resource$Fullhashes$Find
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+        | BodyResponseCallback<Schema$FindFullHashesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>
+      | GaxiosPromise<Schema$FindFullHashesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Fullhashes$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1044,14 +1038,12 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>(
+        createAPIRequest<Schema$FindFullHashesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FindFullHashesResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
       }
     }
   }
@@ -1060,7 +1052,7 @@ export namespace safebrowsing_v4 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleSecuritySafebrowsingV4FindFullHashesRequest;
+    requestBody?: Schema$FindFullHashesRequest;
   }
 
   export class Resource$Threathits {
@@ -1134,7 +1126,7 @@ export namespace safebrowsing_v4 {
     create(
       params?: Params$Resource$Threathits$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosPromise<Schema$Empty>;
     create(
       params: Params$Resource$Threathits$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1142,31 +1134,28 @@ export namespace safebrowsing_v4 {
     ): void;
     create(
       params: Params$Resource$Threathits$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
     ): void;
     create(
       params: Params$Resource$Threathits$Create,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+      callback: BodyResponseCallback<Schema$Empty>
     ): void;
-    create(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    create(callback: BodyResponseCallback<Schema$Empty>): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Threathits$Create
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threathits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1197,12 +1186,12 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
+        createAPIRequest<Schema$Empty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+        return createAPIRequest<Schema$Empty>(parameters);
       }
     }
   }
@@ -1212,7 +1201,7 @@ export namespace safebrowsing_v4 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleSecuritySafebrowsingV4ThreatHit;
+    requestBody?: Schema$ThreatHit;
   }
 
   export class Resource$Threatlists {
@@ -1275,7 +1264,7 @@ export namespace safebrowsing_v4 {
     list(
       params?: Params$Resource$Threatlists$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>;
+    ): GaxiosPromise<Schema$ListThreatListsResponse>;
     list(
       params: Params$Resource$Threatlists$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1285,32 +1274,30 @@ export namespace safebrowsing_v4 {
       params: Params$Resource$Threatlists$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+        | BodyResponseCallback<Schema$ListThreatListsResponse>,
+      callback: BodyResponseCallback<Schema$ListThreatListsResponse>
     ): void;
     list(
       params: Params$Resource$Threatlists$List,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+      callback: BodyResponseCallback<Schema$ListThreatListsResponse>
     ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
-    ): void;
+    list(callback: BodyResponseCallback<Schema$ListThreatListsResponse>): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Threatlists$List
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+        | BodyResponseCallback<Schema$ListThreatListsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>
+      | GaxiosPromise<Schema$ListThreatListsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Threatlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1341,14 +1328,12 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>(
+        createAPIRequest<Schema$ListThreatListsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleSecuritySafebrowsingV4ListThreatListsResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$ListThreatListsResponse>(parameters);
       }
     }
   }
@@ -1426,7 +1411,7 @@ export namespace safebrowsing_v4 {
     fetch(
       params?: Params$Resource$Threatlistupdates$Fetch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>;
+    ): GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
     fetch(
       params: Params$Resource$Threatlistupdates$Fetch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1436,32 +1421,32 @@ export namespace safebrowsing_v4 {
       params: Params$Resource$Threatlistupdates$Fetch,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
     ): void;
     fetch(
       params: Params$Resource$Threatlistupdates$Fetch,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
     ): void;
     fetch(
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      callback: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
     ): void;
     fetch(
       paramsOrCallback?:
         | Params$Resource$Threatlistupdates$Fetch
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+        | BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>
+      | GaxiosPromise<Schema$FetchThreatListUpdatesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatlistupdates$Fetch;
@@ -1496,12 +1481,12 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>(
+        createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse>(
+        return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters
         );
       }
@@ -1513,7 +1498,7 @@ export namespace safebrowsing_v4 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest;
+    requestBody?: Schema$FetchThreatListUpdatesRequest;
   }
 
   export class Resource$Threatmatches {
@@ -1585,7 +1570,7 @@ export namespace safebrowsing_v4 {
     find(
       params?: Params$Resource$Threatmatches$Find,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>;
+    ): GaxiosPromise<Schema$FindThreatMatchesResponse>;
     find(
       params: Params$Resource$Threatmatches$Find,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1595,32 +1580,32 @@ export namespace safebrowsing_v4 {
       params: Params$Resource$Threatmatches$Find,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>,
+      callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>
     ): void;
     find(
       params: Params$Resource$Threatmatches$Find,
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+      callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>
     ): void;
     find(
-      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+      callback: BodyResponseCallback<Schema$FindThreatMatchesResponse>
     ): void;
     find(
       paramsOrCallback?:
         | Params$Resource$Threatmatches$Find
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+        | BodyResponseCallback<Schema$FindThreatMatchesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>
+      | GaxiosPromise<Schema$FindThreatMatchesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Threatmatches$Find;
@@ -1655,14 +1640,12 @@ export namespace safebrowsing_v4 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>(
+        createAPIRequest<Schema$FindThreatMatchesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$FindThreatMatchesResponse>(parameters);
       }
     }
   }
@@ -1672,6 +1655,6 @@ export namespace safebrowsing_v4 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleSecuritySafebrowsingV4FindThreatMatchesRequest;
+    requestBody?: Schema$FindThreatMatchesRequest;
   }
 }
