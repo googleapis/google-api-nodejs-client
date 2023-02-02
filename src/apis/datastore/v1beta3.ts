@@ -295,6 +295,10 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$EntityResult {
     /**
+     * The time at which the entity was created. This field is set for `FULL` entity results. If this entity is missing, this field will not be set.
+     */
+    createTime?: string | null;
+    /**
      * A cursor that points to the position after the result entity. Set only when the `EntityResult` is part of a `QueryResultBatch` message.
      */
     cursor?: string | null;
@@ -758,6 +762,10 @@ export namespace datastore_v1beta3 {
      * Whether a conflict was detected for this mutation. Always false when a conflict detection strategy field is not set in the mutation.
      */
     conflictDetected?: boolean | null;
+    /**
+     * The create time of the entity. This field will not be set after a 'delete'.
+     */
+    createTime?: string | null;
     /**
      * The automatically allocated key. Set only when the mutation allocated a key.
      */
