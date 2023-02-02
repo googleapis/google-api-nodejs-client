@@ -713,6 +713,25 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
+        "fetchAutomatedGa4ConfigurationOptOut": {
+          "description": "Fetches the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.",
+          "flatPath": "v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.fetchAutomatedGa4ConfigurationOptOut",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "get": {
           "description": "Lookup for a single \"GA4\" Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
@@ -916,6 +935,24 @@
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit",
             "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "setAutomatedGa4ConfigurationOptOut": {
+          "description": "Sets the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.",
+          "flatPath": "v1alpha/properties:setAutomatedGa4ConfigurationOptOut",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.setAutomatedGa4ConfigurationOptOut",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:setAutomatedGa4ConfigurationOptOut",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
         "updateAttributionSettings": {
@@ -3023,7 +3060,7 @@
       }
     }
   },
-  "revision": "20221214",
+  "revision": "20230201",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4930,6 +4967,28 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest": {
+      "description": "Request for fetching the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest",
+      "properties": {
+        "property": {
+          "description": "Required. The UA property to get the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId} Example: properties/1234",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse": {
+      "description": "Response message for fetching the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse",
+      "properties": {
+        "optOut": {
+          "description": "The opt out status for the UA property.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaFirebaseLink": {
       "description": "A link between a GA4 property and a Firebase project.",
       "id": "GoogleAnalyticsAdminV1alphaFirebaseLink",
@@ -5891,6 +5950,27 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest": {
+      "description": "Request for setting the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest",
+      "properties": {
+        "optOut": {
+          "description": "The status to set.",
+          "type": "boolean"
+        },
+        "property": {
+          "description": "Required. The UA property to set the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId} Example: properties/1234",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse": {
+      "description": "Response message for setting the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest": {

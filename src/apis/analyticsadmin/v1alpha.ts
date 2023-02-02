@@ -1453,6 +1453,24 @@ export namespace analyticsadmin_v1alpha {
     value?: string | null;
   }
   /**
+   * Request for fetching the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest {
+    /**
+     * Required. The UA property to get the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for fetching the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse {
+    /**
+     * The opt out status for the UA property.
+     */
+    optOut?: boolean | null;
+  }
+  /**
    * A link between a GA4 property and a Firebase project.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaFirebaseLink {
@@ -2040,6 +2058,23 @@ export namespace analyticsadmin_v1alpha {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * Request for setting the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest {
+    /**
+     * The status to set.
+     */
+    optOut?: boolean | null;
+    /**
+     * Required. The UA property to set the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for setting the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse {}
   /**
    * Request message for UpdateUserLink RPC.
    */
@@ -5399,6 +5434,155 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Fetches the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.fetchAutomatedGa4ConfigurationOptOut({
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "property": "my_property"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "optOut": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params?: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Fetchautomatedga4configurationoptout
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Fetchautomatedga4configurationoptout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Fetchautomatedga4configurationoptout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lookup for a single "GA4" Property.
      * @example
      * ```js
@@ -6453,6 +6637,150 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Sets the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.setAutomatedGa4ConfigurationOptOut({
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "optOut": false,
+     *         //   "property": "my_property"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setAutomatedGa4ConfigurationOptOut(
+      params?: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>;
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Setautomatedga4configurationoptout
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Setautomatedga4configurationoptout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Setautomatedga4configurationoptout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates attribution settings on a property.
      * @example
      * ```js
@@ -6931,6 +7259,13 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Properties$Fetchautomatedga4configurationoptout
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest;
+  }
   export interface Params$Resource$Properties$Get extends StandardParameters {
     /**
      * Required. The name of the property to lookup. Format: properties/{property_id\} Example: "properties/1000"
@@ -7002,6 +7337,13 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaRunAccessReportRequest;
+  }
+  export interface Params$Resource$Properties$Setautomatedga4configurationoptout
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest;
   }
   export interface Params$Resource$Properties$Updateattributionsettings
     extends StandardParameters {
