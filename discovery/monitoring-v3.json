@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20221219",
+  "revision": "20230123",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3334,7 +3334,7 @@
       "id": "Criteria",
       "properties": {
         "policies": {
-          "description": "The specific AlertPolicy names for the alert that should be snoozed. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID] There is a limit of 10 policies per snooze. This limit is checked during snooze creation.",
+          "description": "The specific AlertPolicy names for the alert that should be snoozed. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID] There is a limit of 100 policies per snooze. This limit is checked during snooze creation.",
           "items": {
             "type": "string"
           },
@@ -4629,7 +4629,7 @@
         },
         "forecastOptions": {
           "$ref": "ForecastOptions",
-          "description": "When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecast_horizion. When this field is not set, the MetricThreshold tests the current value of the timeseries against the threshold."
+          "description": "When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecast_horizon. When this field is not set, the MetricThreshold tests the current value of the timeseries against the threshold."
         },
         "thresholdValue": {
           "description": "A value against which to compare the time series.",
