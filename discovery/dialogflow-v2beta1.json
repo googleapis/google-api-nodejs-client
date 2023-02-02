@@ -7507,7 +7507,7 @@
       }
     }
   },
-  "revision": "20221216",
+  "revision": "20230130",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7587,6 +7587,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ConversationSignals": {
+      "description": "This message is used to hold all the Conversation Signals data, which will be converted to JSON and exported to BigQuery.",
+      "id": "GoogleCloudDialogflowCxV3ConversationSignals",
+      "properties": {
+        "turnSignals": {
+          "$ref": "GoogleCloudDialogflowCxV3TurnSignals",
+          "description": "Required. Turn signals for the current turn."
         }
       },
       "type": "object"
@@ -8551,6 +8562,10 @@
       "description": "Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.",
       "id": "GoogleCloudDialogflowCxV3ResponseMessage",
       "properties": {
+        "channel": {
+          "description": "The channel which the response is associated with. Clients can specify the channel via QueryParameters.channel, and only associated channel response will be returned.",
+          "type": "string"
+        },
         "conversationSuccess": {
           "$ref": "GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess",
           "description": "Indicates that the conversation succeeded."
@@ -9010,6 +9025,61 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3TurnSignals": {
+      "description": "Collection of all signals that were extracted for a single turn of the conversation.",
+      "id": "GoogleCloudDialogflowCxV3TurnSignals",
+      "properties": {
+        "agentEscalated": {
+          "description": "Whether agent responded with LiveAgentHandoff fulfillment.",
+          "type": "boolean"
+        },
+        "dtmfUsed": {
+          "description": "Whether user was using DTMF input.",
+          "type": "boolean"
+        },
+        "failureReasons": {
+          "description": "Failure reasons of the turn.",
+          "items": {
+            "enum": [
+              "FAILURE_REASON_UNSPECIFIED",
+              "FAILED_INTENT",
+              "FAILED_WEBHOOK"
+            ],
+            "enumDescriptions": [
+              "Failure reason is not assigned.",
+              "Whether NLU failed to recognize user intent.",
+              "Whether webhook failed during the turn."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "noMatch": {
+          "description": "Whether NLU predicted NO_MATCH.",
+          "type": "boolean"
+        },
+        "noUserInput": {
+          "description": "Whether user provided no input.",
+          "type": "boolean"
+        },
+        "reachedEndPage": {
+          "description": "Whether turn resulted in End Session page.",
+          "type": "boolean"
+        },
+        "userEscalated": {
+          "description": "Whether user was specifically asking for a live agent.",
+          "type": "boolean"
+        },
+        "webhookStatuses": {
+          "description": "Human-readable statuses of the webhooks triggered during this turn.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata": {
       "description": "Metadata for UpdateDocument operation.",
       "id": "GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata",
@@ -9378,6 +9448,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ConversationSignals": {
+      "description": "This message is used to hold all the Conversation Signals data, which will be converted to JSON and exported to BigQuery.",
+      "id": "GoogleCloudDialogflowCxV3beta1ConversationSignals",
+      "properties": {
+        "turnSignals": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1TurnSignals",
+          "description": "Required. Turn signals for the current turn."
         }
       },
       "type": "object"
@@ -10342,6 +10423,10 @@
       "description": "Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.",
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessage",
       "properties": {
+        "channel": {
+          "description": "The channel which the response is associated with. Clients can specify the channel via QueryParameters.channel, and only associated channel response will be returned.",
+          "type": "string"
+        },
         "conversationSuccess": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess",
           "description": "Indicates that the conversation succeeded."
@@ -10797,6 +10882,61 @@
         "triggerFulfillment": {
           "$ref": "GoogleCloudDialogflowCxV3beta1Fulfillment",
           "description": "The fulfillment to call when the condition is satisfied. At least one of `trigger_fulfillment` and `target` must be specified. When both are defined, `trigger_fulfillment` is executed first."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1TurnSignals": {
+      "description": "Collection of all signals that were extracted for a single turn of the conversation.",
+      "id": "GoogleCloudDialogflowCxV3beta1TurnSignals",
+      "properties": {
+        "agentEscalated": {
+          "description": "Whether agent responded with LiveAgentHandoff fulfillment.",
+          "type": "boolean"
+        },
+        "dtmfUsed": {
+          "description": "Whether user was using DTMF input.",
+          "type": "boolean"
+        },
+        "failureReasons": {
+          "description": "Failure reasons of the turn.",
+          "items": {
+            "enum": [
+              "FAILURE_REASON_UNSPECIFIED",
+              "FAILED_INTENT",
+              "FAILED_WEBHOOK"
+            ],
+            "enumDescriptions": [
+              "Failure reason is not assigned.",
+              "Whether NLU failed to recognize user intent.",
+              "Whether webhook failed during the turn."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "noMatch": {
+          "description": "Whether NLU predicted NO_MATCH.",
+          "type": "boolean"
+        },
+        "noUserInput": {
+          "description": "Whether user provided no input.",
+          "type": "boolean"
+        },
+        "reachedEndPage": {
+          "description": "Whether turn resulted in End Session page.",
+          "type": "boolean"
+        },
+        "userEscalated": {
+          "description": "Whether user was specifically asking for a live agent.",
+          "type": "boolean"
+        },
+        "webhookStatuses": {
+          "description": "Human-readable statuses of the webhooks triggered during this turn.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -18400,6 +18540,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV3alpha1ConversationSignals": {
+      "description": "This message is used to hold all the Conversation Signals data, which will be converted to JSON and exported to BigQuery.",
+      "id": "GoogleCloudDialogflowV3alpha1ConversationSignals",
+      "properties": {
+        "turnSignals": {
+          "$ref": "GoogleCloudDialogflowV3alpha1TurnSignals",
+          "description": "Required. Turn signals for the current turn."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata": {
       "description": "Metadata for CreateDocument operation.",
       "id": "GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata",
@@ -18478,6 +18629,65 @@
         "genericMetadata": {
           "$ref": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
           "description": "The generic information of the operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV3alpha1TurnSignals": {
+      "description": "Collection of all signals that were extracted for a single turn of the conversation.",
+      "id": "GoogleCloudDialogflowV3alpha1TurnSignals",
+      "properties": {
+        "agentEscalated": {
+          "description": "Whether agent responded with LiveAgentHandoff fulfillment.",
+          "type": "boolean"
+        },
+        "dtmfUsed": {
+          "description": "Whether user was using DTMF input.",
+          "type": "boolean"
+        },
+        "failureReasons": {
+          "description": "Failure reasons of the turn.",
+          "items": {
+            "enum": [
+              "FAILURE_REASON_UNSPECIFIED",
+              "FAILED_INTENT",
+              "FAILED_WEBHOOK"
+            ],
+            "enumDescriptions": [
+              "Failure reason is not assigned.",
+              "Whether NLU failed to recognize user intent.",
+              "Whether webhook failed during the turn."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "noMatch": {
+          "description": "Whether NLU predicted NO_MATCH.",
+          "type": "boolean"
+        },
+        "noUserInput": {
+          "description": "Whether user provided no input.",
+          "type": "boolean"
+        },
+        "reachedEndPage": {
+          "description": "Whether turn resulted in End Session page.",
+          "type": "boolean"
+        },
+        "triggeredAbandonmentEvent": {
+          "description": "Whether agent has triggered the event corresponding to user abandoning the conversation.",
+          "type": "boolean"
+        },
+        "userEscalated": {
+          "description": "Whether user was specifically asking for a live agent.",
+          "type": "boolean"
+        },
+        "webhookStatuses": {
+          "description": "Human-readable statuses of the webhooks triggered during this turn.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

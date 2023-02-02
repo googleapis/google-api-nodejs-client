@@ -410,6 +410,15 @@ export namespace dialogflow_v3beta1 {
     testCaseResults?: string[] | null;
   }
   /**
+   * This message is used to hold all the Conversation Signals data, which will be converted to JSON and exported to BigQuery.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationSignals {
+    /**
+     * Required. Turn signals for the current turn.
+     */
+    turnSignals?: Schema$GoogleCloudDialogflowCxV3beta1TurnSignals;
+  }
+  /**
    * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurn {
@@ -1970,6 +1979,10 @@ export namespace dialogflow_v3beta1 {
      */
     analyzeQueryTextSentiment?: boolean | null;
     /**
+     * The channel which this query is for. If specified, only the ResponseMessage associated with the channel will be returned. If no ResponseMessage is associated with the channel, it falls back to the ResponseMessage with unspecified channel. If unspecified, the ResponseMessage with unspecified channel will be returned.
+     */
+    channel?: string | null;
+    /**
      * The unique identifier of the page to override the current page in the session. Format: `projects//locations//agents//flows//pages/`. If `current_page` is specified, the previous state of the session will be ignored by Dialogflow, including the previous page and the previous session parameters. In most cases, current_page and parameters should be configured together to direct a session to a specific state.
      */
     currentPage?: string | null;
@@ -2101,6 +2114,10 @@ export namespace dialogflow_v3beta1 {
    * Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage {
+    /**
+     * The channel which the response is associated with. Clients can specify the channel via QueryParameters.channel, and only associated channel response will be returned.
+     */
+    channel?: string | null;
     /**
      * Indicates that the conversation succeeded.
      */
@@ -2790,6 +2807,43 @@ export namespace dialogflow_v3beta1 {
     transitionRoute?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute;
   }
   /**
+   * Collection of all signals that were extracted for a single turn of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1TurnSignals {
+    /**
+     * Whether agent responded with LiveAgentHandoff fulfillment.
+     */
+    agentEscalated?: boolean | null;
+    /**
+     * Whether user was using DTMF input.
+     */
+    dtmfUsed?: boolean | null;
+    /**
+     * Failure reasons of the turn.
+     */
+    failureReasons?: string[] | null;
+    /**
+     * Whether NLU predicted NO_MATCH.
+     */
+    noMatch?: boolean | null;
+    /**
+     * Whether user provided no input.
+     */
+    noUserInput?: boolean | null;
+    /**
+     * Whether turn resulted in End Session page.
+     */
+    reachedEndPage?: boolean | null;
+    /**
+     * Whether user was specifically asking for a live agent.
+     */
+    userEscalated?: boolean | null;
+    /**
+     * Human-readable statuses of the webhooks triggered during this turn.
+     */
+    webhookStatuses?: string[] | null;
+  }
+  /**
    * Metadata for UpdateDocument operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata {
@@ -3168,6 +3222,15 @@ export namespace dialogflow_v3beta1 {
      * A list of individual test case results names in this continuous test run.
      */
     testCaseResults?: string[] | null;
+  }
+  /**
+   * This message is used to hold all the Conversation Signals data, which will be converted to JSON and exported to BigQuery.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ConversationSignals {
+    /**
+     * Required. Turn signals for the current turn.
+     */
+    turnSignals?: Schema$GoogleCloudDialogflowCxV3TurnSignals;
   }
   /**
    * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
@@ -3886,6 +3949,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3ResponseMessage {
     /**
+     * The channel which the response is associated with. Clients can specify the channel via QueryParameters.channel, and only associated channel response will be returned.
+     */
+    channel?: string | null;
+    /**
      * Indicates that the conversation succeeded.
      */
     conversationSuccess?: Schema$GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess;
@@ -4225,6 +4292,43 @@ export namespace dialogflow_v3beta1 {
      * The fulfillment to call when the condition is satisfied. At least one of `trigger_fulfillment` and `target` must be specified. When both are defined, `trigger_fulfillment` is executed first.
      */
     triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
+  }
+  /**
+   * Collection of all signals that were extracted for a single turn of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3TurnSignals {
+    /**
+     * Whether agent responded with LiveAgentHandoff fulfillment.
+     */
+    agentEscalated?: boolean | null;
+    /**
+     * Whether user was using DTMF input.
+     */
+    dtmfUsed?: boolean | null;
+    /**
+     * Failure reasons of the turn.
+     */
+    failureReasons?: string[] | null;
+    /**
+     * Whether NLU predicted NO_MATCH.
+     */
+    noMatch?: boolean | null;
+    /**
+     * Whether user provided no input.
+     */
+    noUserInput?: boolean | null;
+    /**
+     * Whether turn resulted in End Session page.
+     */
+    reachedEndPage?: boolean | null;
+    /**
+     * Whether user was specifically asking for a live agent.
+     */
+    userEscalated?: boolean | null;
+    /**
+     * Human-readable statuses of the webhooks triggered during this turn.
+     */
+    webhookStatuses?: string[] | null;
   }
   /**
    * Metadata for UpdateDocument operation.
@@ -7459,6 +7563,15 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
+   * This message is used to hold all the Conversation Signals data, which will be converted to JSON and exported to BigQuery.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1ConversationSignals {
+    /**
+     * Required. Turn signals for the current turn.
+     */
+    turnSignals?: Schema$GoogleCloudDialogflowV3alpha1TurnSignals;
+  }
+  /**
    * Metadata for CreateDocument operation.
    */
   export interface Schema$GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata {
@@ -7511,6 +7624,47 @@ export namespace dialogflow_v3beta1 {
      * The generic information of the operation.
      */
     genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
+  }
+  /**
+   * Collection of all signals that were extracted for a single turn of the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV3alpha1TurnSignals {
+    /**
+     * Whether agent responded with LiveAgentHandoff fulfillment.
+     */
+    agentEscalated?: boolean | null;
+    /**
+     * Whether user was using DTMF input.
+     */
+    dtmfUsed?: boolean | null;
+    /**
+     * Failure reasons of the turn.
+     */
+    failureReasons?: string[] | null;
+    /**
+     * Whether NLU predicted NO_MATCH.
+     */
+    noMatch?: boolean | null;
+    /**
+     * Whether user provided no input.
+     */
+    noUserInput?: boolean | null;
+    /**
+     * Whether turn resulted in End Session page.
+     */
+    reachedEndPage?: boolean | null;
+    /**
+     * Whether agent has triggered the event corresponding to user abandoning the conversation.
+     */
+    triggeredAbandonmentEvent?: boolean | null;
+    /**
+     * Whether user was specifically asking for a live agent.
+     */
+    userEscalated?: boolean | null;
+    /**
+     * Human-readable statuses of the webhooks triggered during this turn.
+     */
+    webhookStatuses?: string[] | null;
   }
   /**
    * Metadata for UpdateDocument operation.
