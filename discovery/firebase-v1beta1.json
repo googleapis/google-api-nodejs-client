@@ -1320,7 +1320,7 @@
       }
     }
   },
-  "revision": "20221220",
+  "revision": "20230131",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1465,7 +1465,7 @@
           "enumDescriptions": [
             "Unspecified state.",
             "The App is active.",
-            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
+            "The App has been soft-deleted. After an App has been in the `DELETED` state for more than 30 days, it is considered expired and will be permanently deleted. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1584,7 +1584,7 @@
           "enumDescriptions": [
             "Unspecified state.",
             "The App is active.",
-            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
+            "The App has been soft-deleted. After an App has been in the `DELETED` state for more than 30 days, it is considered expired and will be permanently deleted. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1697,7 +1697,7 @@
           "enumDescriptions": [
             "Unspecified state.",
             "The App is active.",
-            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
+            "The App has been soft-deleted. After an App has been in the `DELETED` state for more than 30 days, it is considered expired and will be permanently deleted. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
@@ -1925,6 +1925,20 @@
       },
       "type": "object"
     },
+    "ProductMetadata": {
+      "description": "Metadata about a long-running Product operation.",
+      "id": "ProductMetadata",
+      "properties": {
+        "warningMessages": {
+          "description": "List of warnings related to the associated operation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ProjectInfo": {
       "description": "A reference to a Google Cloud Platform (GCP) `Project`.",
       "id": "ProjectInfo",
@@ -1966,7 +1980,7 @@
           "type": "string"
         },
         "immediate": {
-          "description": "Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteAndroidApp.",
+          "description": "Determines whether to _immediately_ delete the AndroidApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteAndroidApp.",
           "type": "boolean"
         },
         "validateOnly": {
@@ -1988,7 +2002,7 @@
           "type": "string"
         },
         "immediate": {
-          "description": "Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteIosApp",
+          "description": "Determines whether to _immediately_ delete the IosApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteIosApp",
           "type": "boolean"
         },
         "validateOnly": {
@@ -2010,7 +2024,7 @@
           "type": "string"
         },
         "immediate": {
-          "description": "Determines whether to _immediately_ delete the App. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means that the App may be restored to the Project within 30 days using UndeleteWebApp",
+          "description": "Determines whether to _immediately_ delete the WebApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteWebApp",
           "type": "boolean"
         },
         "validateOnly": {
@@ -2231,7 +2245,7 @@
           "enumDescriptions": [
             "Unspecified state.",
             "The App is active.",
-            "The App has been soft-deleted. Firebase permanantely deletes an App after it has been in the `DELETED` state for more than 30 days. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
+            "The App has been soft-deleted. After an App has been in the `DELETED` state for more than 30 days, it is considered expired and will be permanently deleted. Up until this time, you can restore the App by calling `Undelete` ([Android](projects.androidApps/undelete) | [iOS](projects.iosApps/undelete) | [web](projects.webApps/undelete))."
           ],
           "readOnly": true,
           "type": "string"
