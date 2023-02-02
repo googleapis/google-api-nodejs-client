@@ -2412,7 +2412,7 @@
               "type": "string"
             },
             "hl": {
-              "description": "Returen content in specified language",
+              "description": "Return content in specified language",
               "location": "query",
               "type": "string"
             },
@@ -3831,7 +3831,7 @@
       }
     }
   },
-  "revision": "20221220",
+  "revision": "20230131",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {

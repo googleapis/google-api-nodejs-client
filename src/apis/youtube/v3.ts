@@ -13152,7 +13152,7 @@ export namespace youtube_v3 {
      *   const res = await youtube.playlists.list({
      *     // Return the playlists owned by the specified channel ID.
      *     channelId: 'placeholder-value',
-     *     // Returen content in specified language
+     *     // Return content in specified language
      *     hl: 'placeholder-value',
      *     // Return the playlists with the given IDs for Stubby or Apiary.
      *     id: 'placeholder-value',
@@ -13472,7 +13472,7 @@ export namespace youtube_v3 {
      */
     channelId?: string;
     /**
-     * Returen content in specified language
+     * Return content in specified language
      */
     hl?: string;
     /**
