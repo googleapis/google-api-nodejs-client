@@ -313,7 +313,7 @@ export namespace driveactivity_v2 {
     suggestion?: Schema$Suggestion;
   }
   /**
-   * How the individual activities are consolidated. A set of activities may be consolidated into one combined activity if they are related in some way, such as one actor performing the same action on multiple targets, or multiple actors performing the same action on a single target. The strategy defines the rules for which activities are related.
+   * How the individual activities are consolidated. If a set of activities is related they can be consolidated into one combined activity, such as one actor performing the same action on multiple targets, or multiple actors performing the same action on a single target. The strategy defines the rules for which activities are related.
    */
   export interface Schema$ConsolidationStrategy {
     /**
@@ -674,7 +674,7 @@ export namespace driveactivity_v2 {
     personName?: string | null;
   }
   /**
-   * A strategy which consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action.
+   * A strategy that consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action.
    */
   export interface Schema$Legacy {}
   /**
@@ -695,7 +695,7 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$New {}
   /**
-   * A strategy which does no consolidation of individual activities.
+   * A strategy that does no consolidation of individual activities.
    */
   export interface Schema$NoConsolidation {}
   /**
@@ -775,15 +775,15 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$QueryDriveActivityRequest {
     /**
-     * Return activities for this Drive folder and all children and descendants. The format is `items/ITEM_ID`.
+     * Return activities for this Drive folder, plus all children and descendants. The format is `items/ITEM_ID`.
      */
     ancestorName?: string | null;
     /**
-     * Details on how to consolidate related actions that make up the activity. If not set, then related actions are not consolidated.
+     * Details on how to consolidate related actions that make up the activity. If not set, then related actions aren't consolidated.
      */
     consolidationStrategy?: Schema$ConsolidationStrategy;
     /**
-     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional "AND", where each expression is of the form "field operator value". Supported fields: - `time`: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - `time \> 1452409200000 AND time <= 1492812924310` - `time \>= "2016-01-10T01:02:03-05:00"` - `detail.action_detail_case`: Uses the "has" operator (:) and either a singular value or a list of allowed action types enclosed in parentheses. Examples: - `detail.action_detail_case: RENAME` - `detail.action_detail_case:(CREATE EDIT)` - `-detail.action_detail_case:MOVE`
+     * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional "AND", where each expression is of the form "field operator value". Supported fields: - `time`: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - `time \> 1452409200000 AND time <= 1492812924310` - `time \>= "2016-01-10T01:02:03-05:00"` - `detail.action_detail_case`: Uses the "has" operator (:) and either a singular value or a list of allowed action types enclosed in parentheses, separated by a space. To exclude a result from the response, prepend a hyphen (`-`) to the beginning of the filter string. Examples: - `detail.action_detail_case:RENAME` - `detail.action_detail_case:(CREATE RESTORE)` - `-detail.action_detail_case:MOVE`
      */
     filter?: string | null;
     /**
@@ -791,11 +791,11 @@ export namespace driveactivity_v2 {
      */
     itemName?: string | null;
     /**
-     * The miminum number of activities desired in the response; the server will attempt to return at least this quanitity. The server may also return fewer activities if it has a partial response ready before the request times out. If not set, a default value is used.
+     * The minimum number of activities desired in the response; the server attempts to return at least this quantity. The server may also return fewer activities if it has a partial response ready before the request times out. If not set, a default value is used.
      */
     pageSize?: number | null;
     /**
-     * The token identifying which page of results to return. Set this to the next_page_token value returned from a previous query to obtain the following page of results. If not set, the first page of results will be returned.
+     * The token identifies which page of results to return. Set this to the next_page_token value returned from a previous query to obtain the following page of results. If not set, the first page of results is returned.
      */
     pageToken?: string | null;
   }
@@ -906,7 +906,7 @@ export namespace driveactivity_v2 {
     type?: string | null;
   }
   /**
-   * Information about the target of activity.
+   * Information about the target of activity. For more information on how activity history is shared with users, see [Activity history visibility](https://developers.google.com/drive/activity/v2#activityhistory).
    */
   export interface Schema$Target {
     /**
