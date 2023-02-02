@@ -905,7 +905,7 @@
       }
     }
   },
-  "revision": "20221207",
+  "revision": "20230119",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -1075,6 +1075,12 @@
           "readOnly": true
         }
       },
+      "type": "object"
+    },
+    "CommonFleetDefaultMemberConfigSpec": {
+      "description": "CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet",
+      "id": "CommonFleetDefaultMemberConfigSpec",
+      "properties": {},
       "type": "object"
     },
     "ConfigManagementConfigSync": {
@@ -1877,6 +1883,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "fleetDefaultMemberConfig": {
+          "$ref": "CommonFleetDefaultMemberConfigSpec",
+          "description": "Optional. Feature configuration applicable to all memberships of the fleet."
         },
         "labels": {
           "additionalProperties": {
