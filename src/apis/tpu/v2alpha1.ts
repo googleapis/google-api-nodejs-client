@@ -551,7 +551,7 @@ export namespace tpu_v2alpha1 {
      */
     node?: Schema$Node;
     /**
-     * The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format. This is only specified when requesting a single node. In case of multi-node requests, multi_node_params must be populated instead. It's an error to specify both node_id and multi_node_params.
+     * The unqualified resource name. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. This is only specified when requesting a single node. In case of multi-node requests, multi_node_params must be populated instead. It's an error to specify both node_id and multi_node_params.
      */
     nodeId?: string | null;
     /**
@@ -2713,7 +2713,7 @@ export namespace tpu_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.start({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *
      *     // Request body metadata
@@ -2852,7 +2852,7 @@ export namespace tpu_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.stop({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *
      *     // Request body metadata
@@ -3061,7 +3061,7 @@ export namespace tpu_v2alpha1 {
   export interface Params$Resource$Projects$Locations$Nodes$Start
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
 
@@ -3073,7 +3073,7 @@ export namespace tpu_v2alpha1 {
   export interface Params$Resource$Projects$Locations$Nodes$Stop
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
 

@@ -2342,7 +2342,7 @@ export namespace tpu_v2 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.start({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *
      *     // Request body metadata
@@ -2478,7 +2478,7 @@ export namespace tpu_v2 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.stop({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *
      *     // Request body metadata
@@ -2664,7 +2664,7 @@ export namespace tpu_v2 {
   export interface Params$Resource$Projects$Locations$Nodes$Start
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
 
@@ -2676,7 +2676,7 @@ export namespace tpu_v2 {
   export interface Params$Resource$Projects$Locations$Nodes$Stop
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
 

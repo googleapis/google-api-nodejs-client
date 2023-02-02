@@ -511,7 +511,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
                       "required": true,
@@ -539,7 +539,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
                       "required": true,
@@ -892,7 +892,7 @@
       }
     }
   },
-  "revision": "20221130",
+  "revision": "20230105",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -1530,7 +1530,7 @@
           "description": "Required. The node."
         },
         "nodeId": {
-          "description": "The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format. This is only specified when requesting a single node. In case of multi-node requests, multi_node_params must be populated instead. It's an error to specify both node_id and multi_node_params.",
+          "description": "The unqualified resource name. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. This is only specified when requesting a single node. In case of multi-node requests, multi_node_params must be populated instead. It's an error to specify both node_id and multi_node_params.",
           "type": "string"
         },
         "parent": {
