@@ -351,6 +351,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "domainJoinMachine": {
+                      "description": "DomainJoinMachine API joins a Compute Engine VM to the domain",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}:domainJoinMachine",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.domainJoinMachine",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: projects/{project_id}/locations/global/domains/{domain_name}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+domain}:domainJoinMachine",
+                      "request": {
+                        "$ref": "DomainJoinMachineRequest"
+                      },
+                      "response": {
+                        "$ref": "DomainJoinMachineResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "enableMigration": {
                       "description": "Enable Domain Migration",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}:enableMigration",
@@ -1487,7 +1515,7 @@
       }
     }
   },
-  "revision": "20220926",
+  "revision": "20221227",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1832,6 +1860,32 @@
         "updateTime": {
           "description": "Output only. Last update time. Synthetic field is populated automatically by CCFE.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainJoinMachineRequest": {
+      "description": "DomainJoinMachineRequest is the request message for DomainJoinMachine method",
+      "id": "DomainJoinMachineRequest",
+      "properties": {
+        "ouName": {
+          "description": "Optional. OU name where the VM needs to be domain joined",
+          "type": "string"
+        },
+        "vmIdToken": {
+          "description": "Required. Full instance id token of compute engine VM to verify instance identity. More about this: https://cloud.google.com/compute/docs/instances/verifying-instance-identity#request_signature",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainJoinMachineResponse": {
+      "description": "DomainJoinMachineResponse is the response message for DomainJoinMachine method",
+      "id": "DomainJoinMachineResponse",
+      "properties": {
+        "domainJoinBlob": {
+          "description": "Offline domain join blob as the response",
           "type": "string"
         }
       },
@@ -2508,7 +2562,7 @@
       "type": "object"
     },
     "MaintenancePolicy": {
-      "description": "Defines policies to service maintenance events.",
+      "description": "LINT.IfChange Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
       "properties": {
         "createTime": {
