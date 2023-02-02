@@ -170,7 +170,7 @@
     "courses": {
       "methods": {
         "create": {
-          "description": "Creates a course. The user specified in `ownerId` is the owner of the created course and added as a teacher. A non-admin requesting user can only create a course with themselves as the owner. Domain admins can create courses owned by any user within their domain. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create courses or for access errors. * `NOT_FOUND` if the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the course owner's account is disabled or for the following request errors: * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was specified in the `id` and already exists.",
+          "description": "Creates a course. The user specified in `ownerId` is the owner of the created course and added as a teacher. A non-admin requesting user can only create a course with themselves as the owner. Domain admins can create courses owned by any user within their domain. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create courses or for access errors. * `NOT_FOUND` if the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the course owner's account is disabled or for the following request errors: * UserCannotOwnCourse * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was specified in the `id` and already exists.",
           "flatPath": "v1/courses",
           "httpMethod": "POST",
           "id": "classroom.courses.create",
@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20221220",
+  "revision": "20230129",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -4054,7 +4054,7 @@
       "id": "UserProfile",
       "properties": {
         "emailAddress": {
-          "description": "Email address of the user. Read-only.",
+          "description": "Email address of the user. Must request `https://www.googleapis.com/auth/classroom.profile.emails` scope for this field to be populated in a response body. Read-only.",
           "type": "string"
         },
         "id": {
@@ -4073,11 +4073,11 @@
           "type": "array"
         },
         "photoUrl": {
-          "description": "URL of user's profile photo. Read-only.",
+          "description": "URL of user's profile photo. Must request `https://www.googleapis.com/auth/classroom.profile.photos` scope for this field to be populated in a response body. Read-only.",
           "type": "string"
         },
         "verifiedTeacher": {
-          "description": "Represents whether a G Suite for Education user's domain administrator has explicitly verified them as being a teacher. If the user is not a member of a G Suite for Education domain, than this field is always false. Read-only",
+          "description": "Represents whether a Google Workspace for Education user's domain administrator has explicitly verified them as being a teacher. This field is always false if the user is not a member of a Google Workspace for Education domain. Read-only",
           "type": "boolean"
         }
       },
