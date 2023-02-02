@@ -401,6 +401,10 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Specifies which mode of BI Engine acceleration was performed (if any).
      */
+    accelerationMode?: string | null;
+    /**
+     * [Output-only] Specifies which mode of BI Engine acceleration was performed (if any).
+     */
     biEngineMode?: string | null;
     /**
      * In case of DISABLED or PARTIAL bi_engine_mode, these contain the explanatory reasons as to why BI Engine could not accelerate. In case the full query was accelerated, this field is not populated.
