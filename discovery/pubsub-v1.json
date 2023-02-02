@@ -111,6 +111,35 @@
       "resources": {
         "schemas": {
           "methods": {
+            "commit": {
+              "description": "Commits a new schema revision to an existing schema.",
+              "flatPath": "v1/projects/{projectsId}/schemas/{schemasId}:commit",
+              "httpMethod": "POST",
+              "id": "pubsub.projects.schemas.commit",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the schema we are revising. Format is `projects/{project}/schemas/{schema}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/schemas/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:commit",
+              "request": {
+                "$ref": "CommitSchemaRequest"
+              },
+              "response": {
+                "$ref": "Schema"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/pubsub"
+              ]
+            },
             "create": {
               "description": "Creates a schema.",
               "flatPath": "v1/projects/{projectsId}/schemas",
@@ -165,6 +194,37 @@
               "path": "v1/{+name}",
               "response": {
                 "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/pubsub"
+              ]
+            },
+            "deleteRevision": {
+              "description": "Deletes a specific schema revision.",
+              "flatPath": "v1/projects/{projectsId}/schemas/{schemasId}:deleteRevision",
+              "httpMethod": "DELETE",
+              "id": "pubsub.projects.schemas.deleteRevision",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the schema revision to be deleted, with a revision ID explicitly included. Example: projects/123/schemas/my-schema@c7cfa2a8",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/schemas/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "revisionId": {
+                  "description": "Required. The revision ID to roll back to. It must be a revision of the same schema. Example: c7cfa2a8",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:deleteRevision",
+              "response": {
+                "$ref": "Schema"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -290,6 +350,87 @@
               "path": "v1/{+parent}/schemas",
               "response": {
                 "$ref": "ListSchemasResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/pubsub"
+              ]
+            },
+            "listRevisions": {
+              "description": "Lists all schema revisions for the named schema.",
+              "flatPath": "v1/projects/{projectsId}/schemas/{schemasId}:listRevisions",
+              "httpMethod": "GET",
+              "id": "pubsub.projects.schemas.listRevisions",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the schema to list revisions for.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/schemas/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of revisions to return per page.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The page token, received from a previous ListSchemaRevisions call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "view": {
+                  "description": "The set of Schema fields to return in the response. If not set, returns Schemas with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.",
+                  "enum": [
+                    "SCHEMA_VIEW_UNSPECIFIED",
+                    "BASIC",
+                    "FULL"
+                  ],
+                  "enumDescriptions": [
+                    "The default / unset value. The API will default to the BASIC view.",
+                    "Include the name and type of the schema, but not the definition.",
+                    "Include all Schema object fields."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:listRevisions",
+              "response": {
+                "$ref": "ListSchemaRevisionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/pubsub"
+              ]
+            },
+            "rollback": {
+              "description": "Creates a new schema revision that is a copy of the provided revision_id.",
+              "flatPath": "v1/projects/{projectsId}/schemas/{schemasId}:rollback",
+              "httpMethod": "POST",
+              "id": "pubsub.projects.schemas.rollback",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The schema being rolled back with revision id.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/schemas/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:rollback",
+              "request": {
+                "$ref": "RollbackSchemaRequest"
+              },
+              "response": {
+                "$ref": "Schema"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1424,7 +1565,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20230119",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1461,7 +1602,7 @@
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The subscription can actively send messages to BigQuery",
-            "Cannot write to the BigQuery table because of permission denied errors.",
+            "Cannot write to the BigQuery table because of permission denied errors. This can happen if - Pub/Sub SA has not been granted the [appropriate BigQuery IAM permissions](https://cloud.google.com/pubsub/docs/create-subscription#assign_bigquery_service_account) - bigquery.googleapis.com API is not enabled for the project ([instructions](https://cloud.google.com/service-usage/docs/enable-disable))",
             "Cannot write to the BigQuery table because it does not exist.",
             "Cannot write to the BigQuery table due to a schema mismatch."
           ],
@@ -1501,6 +1642,17 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommitSchemaRequest": {
+      "description": "Request for CommitSchema method.",
+      "id": "CommitSchemaRequest",
+      "properties": {
+        "schema": {
+          "$ref": "Schema",
+          "description": "Required. The schema revision to commit."
         }
       },
       "type": "object"
@@ -1582,6 +1734,24 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListSchemaRevisionsResponse": {
+      "description": "Response for the `ListSchemaRevisions` method.",
+      "id": "ListSchemaRevisionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "schemas": {
+          "description": "The revisions of the schema.",
+          "items": {
+            "$ref": "Schema"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1920,6 +2090,17 @@
         "minimumBackoff": {
           "description": "The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackSchemaRequest": {
+      "description": "Request for the `RollbackSchema` method.",
+      "id": "RollbackSchemaRequest",
+      "properties": {
+        "revisionId": {
+          "description": "Required. The revision ID to roll back to. It must be a revision of the same schema. Example: c7cfa2a8",
           "type": "string"
         }
       },
