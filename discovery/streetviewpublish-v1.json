@@ -533,7 +533,7 @@
       }
     }
   },
-  "revision": "20221027",
+  "revision": "20230201",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {
@@ -804,6 +804,33 @@
           "description": "The sensor measurement in the z axis.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "NoOverlapGpsFailureDetails": {
+      "description": "Details related to PhotoSequenceProcessingFailureReason#NO_OVERLAP_GPS.",
+      "id": "NoOverlapGpsFailureDetails",
+      "properties": {
+        "gpsEndTime": {
+          "description": "Time of last recorded GPS point.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "gpsStartTime": {
+          "description": "Time of first recorded GPS point.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "videoEndTime": {
+          "description": "End time of video.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "videoStartTime": {
+          "description": "Start time of video.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1227,6 +1254,10 @@
         "insufficientGpsDetails": {
           "$ref": "InsufficientGpsFailureDetails",
           "description": "See InsufficientGpsFailureDetails."
+        },
+        "noOverlapGpsDetails": {
+          "$ref": "NoOverlapGpsFailureDetails",
+          "description": "See NoOverlapGpsFailureDetails."
         },
         "notOutdoorsDetails": {
           "$ref": "NotOutdoorsFailureDetails",
