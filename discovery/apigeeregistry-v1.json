@@ -915,6 +915,11 @@
                         "name"
                       ],
                       "parameters": {
+                        "filter": {
+                          "description": "An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "name": {
                           "description": "Required. The name of the deployment to list revisions for.",
                           "location": "path",
@@ -2046,6 +2051,11 @@
                             "name"
                           ],
                           "parameters": {
+                            "filter": {
+                              "description": "An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.",
+                              "location": "query",
+                              "type": "string"
+                            },
                             "name": {
                               "description": "Required. The name of the spec to list revisions for.",
                               "location": "path",
@@ -3171,7 +3181,7 @@
       }
     }
   },
-  "revision": "20221019",
+  "revision": "20230118",
   "rootUrl": "https://apigeeregistry.googleapis.com/",
   "schemas": {
     "Api": {
@@ -3247,7 +3257,7 @@
           "type": "object"
         },
         "apiSpecRevision": {
-          "description": "The full resource name (including revision ID) of the spec of the API being served by the deployment. Changes to this value will update the revision. Format: `apis/{api}/deployments/{deployment}`",
+          "description": "The full resource name (including revision ID) of the spec of the API being served by the deployment. Changes to this value will update the revision. Format: `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec@revision}`",
           "type": "string"
         },
         "createTime": {
@@ -3423,6 +3433,10 @@
           "description": "Resource name.",
           "type": "string"
         },
+        "primarySpec": {
+          "description": "The primary spec for this version. Format: projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}",
+          "type": "string"
+        },
         "state": {
           "description": "A user-definable description of the lifecycle phase of this API version. Format: free-form, but we expect single words that describe API maturity, e.g., \"CONCEPT\", \"DESIGN\", \"DEVELOPMENT\", \"STAGING\", \"PRODUCTION\", \"DEPRECATED\", \"RETIRED\".",
           "type": "string"
@@ -3440,6 +3454,13 @@
       "description": "Artifacts of resources. Artifacts are unique (single-value) per resource and are used to store metadata that is too large or numerous to be stored directly on the resource. Since artifacts are stored separately from parent resources, they should generally be used for metadata that is needed infrequently, i.e., not for display in primary views of the resource but perhaps displayed or downloaded upon request. The `ListArtifacts` method allows artifacts to be quickly enumerated and checked for presence without downloading their (potentially-large) contents.",
       "id": "Artifact",
       "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations attach non-identifying metadata to resources. Annotation keys and values are less restricted than those of labels, but should be generally used for small values of broad interest. Larger, topic- specific metadata should be stored in Artifacts.",
+          "type": "object"
+        },
         "contents": {
           "description": "Input only. The contents of the artifact. Provided by API callers when artifacts are created or replaced. To access the contents of an artifact, use GetArtifactContents.",
           "format": "byte",
@@ -3455,6 +3476,13 @@
           "description": "Output only. A SHA-256 hash of the artifact's contents. If the artifact is gzipped, this is the hash of the uncompressed artifact.",
           "readOnly": true,
           "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"registry.googleapis.com/\" and cannot be changed.",
+          "type": "object"
         },
         "mimeType": {
           "description": "A content type specifier for the artifact. Content type specifiers are Media Types (https://en.wikipedia.org/wiki/Media_type) with a possible \"schema\" parameter that specifies a schema for the stored information. Content types can specify compression. Currently only GZip compression is supported (indicated with \"+gzip\").",
