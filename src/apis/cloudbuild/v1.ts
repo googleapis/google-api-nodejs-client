@@ -555,7 +555,7 @@ export namespace cloudbuild_v1 {
      */
     tags?: string[] | null;
     /**
-     * Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`. `timeout` starts ticking from `startTime`. Default time is ten minutes.
+     * Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`. `timeout` starts ticking from `startTime`. Default time is 60 minutes.
      */
     timeout?: string | null;
     /**
@@ -1405,15 +1405,6 @@ export namespace cloudbuild_v1 {
     extensions?: Array<{[key: string]: any}> | null;
   }
   /**
-   * HTTPDelivery is the delivery configuration for an HTTP notification.
-   */
-  export interface Schema$HTTPDelivery {
-    /**
-     * The URI to which JSON-containing HTTP POST requests should be sent.
-     */
-    uri?: string | null;
-  }
-  /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
    */
   export interface Schema$InlineSecret {
@@ -1564,103 +1555,9 @@ export namespace cloudbuild_v1 {
      */
     peeredNetwork?: string | null;
     /**
-     * Immutable. Subnet IP range within the peered network. This is specified in CIDR notation. The IP and prefix size are both optional. If unspecified, the default value for IP is blank (will use an automatic value from the peered network), and the prefix size will default to 24 bits. e.g. `192.168.0.0/30` would specify a subnet mask of 192.168.0.0 with a prefix size of 30 bits. `192.168.0.0` would specify a subnet mask of 192.168.0.0 with a prefix size of 24 bits (the default prefix size). `/16` would specify a prefix size of 16 bits, with an unspecified IP.
+     * Immutable. Subnet IP range within the peered network. This is specified in CIDR notation with a slash and the subnet prefix size. You can optionally specify an IP address before the subnet prefix value. e.g. `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a prefix size of 29 bits. `/16` would specify a prefix size of 16 bits, with an automatically determined IP within the peered VPC. If unspecified, a value of `/24` will be used.
      */
     peeredNetworkIpRange?: string | null;
-  }
-  /**
-   * Notification is the container which holds the data that is relevant to this particular notification.
-   */
-  export interface Schema$Notification {
-    /**
-     * The filter string to use for notification filtering. Currently, this is assumed to be a CEL program. See https://opensource.google/projects/cel for more.
-     */
-    filter?: string | null;
-    /**
-     * Configuration for HTTP delivery.
-     */
-    httpDelivery?: Schema$HTTPDelivery;
-    /**
-     * Configuration for Slack delivery.
-     */
-    slackDelivery?: Schema$SlackDelivery;
-    /**
-     * Configuration for SMTP (email) delivery.
-     */
-    smtpDelivery?: Schema$SMTPDelivery;
-    /**
-     * Escape hatch for users to supply custom delivery configs.
-     */
-    structDelivery?: {[key: string]: any} | null;
-  }
-  /**
-   * NotifierConfig is the top-level configuration message.
-   */
-  export interface Schema$NotifierConfig {
-    /**
-     * The API version of this configuration format.
-     */
-    apiVersion?: string | null;
-    /**
-     * The type of notifier to use (e.g. SMTPNotifier).
-     */
-    kind?: string | null;
-    /**
-     * Metadata for referring to/handling/deploying this notifier.
-     */
-    metadata?: Schema$NotifierMetadata;
-    /**
-     * The actual configuration for this notifier.
-     */
-    spec?: Schema$NotifierSpec;
-  }
-  /**
-   * NotifierMetadata contains the data which can be used to reference or describe this notifier.
-   */
-  export interface Schema$NotifierMetadata {
-    /**
-     * The human-readable and user-given name for the notifier. For example: "repo-merge-email-notifier".
-     */
-    name?: string | null;
-    /**
-     * The string representing the name and version of notifier to deploy. Expected to be of the form of "/:". For example: "gcr.io/my-project/notifiers/smtp:1.2.34".
-     */
-    notifier?: string | null;
-  }
-  /**
-   * NotifierSecret is the container that maps a secret name (reference) to its Google Cloud Secret Manager resource path.
-   */
-  export interface Schema$NotifierSecret {
-    /**
-     * Name is the local name of the secret, such as the verbatim string "my-smtp-password".
-     */
-    name?: string | null;
-    /**
-     * Value is interpreted to be a resource path for fetching the actual (versioned) secret data for this secret. For example, this would be a Google Cloud Secret Manager secret version resource path like: "projects/my-project/secrets/my-secret/versions/latest".
-     */
-    value?: string | null;
-  }
-  /**
-   * NotifierSecretRef contains the reference to a secret stored in the corresponding NotifierSpec.
-   */
-  export interface Schema$NotifierSecretRef {
-    /**
-     * The value of `secret_ref` should be a `name` that is registered in a `Secret` in the `secrets` list of the `Spec`.
-     */
-    secretRef?: string | null;
-  }
-  /**
-   * NotifierSpec is the configuration container for notifications.
-   */
-  export interface Schema$NotifierSpec {
-    /**
-     * The configuration of this particular notifier.
-     */
-    notification?: Schema$Notification;
-    /**
-     * Configurations for secret resources used by this particular notifier.
-     */
-    secrets?: Schema$NotifierSecret[];
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2027,44 +1924,6 @@ export namespace cloudbuild_v1 {
     service?: string | null;
   }
   /**
-   * SlackDelivery is the delivery configuration for delivering Slack messages via webhooks. See Slack webhook documentation at: https://api.slack.com/messaging/webhooks.
-   */
-  export interface Schema$SlackDelivery {
-    /**
-     * The secret reference for the Slack webhook URI for sending messages to a channel.
-     */
-    webhookUri?: Schema$NotifierSecretRef;
-  }
-  /**
-   * SMTPDelivery is the delivery configuration for an SMTP (email) notification.
-   */
-  export interface Schema$SMTPDelivery {
-    /**
-     * This is the SMTP account/email that appears in the `From:` of the email. If empty, it is assumed to be sender.
-     */
-    fromAddress?: string | null;
-    /**
-     * The SMTP sender's password.
-     */
-    password?: Schema$NotifierSecretRef;
-    /**
-     * The SMTP port of the server.
-     */
-    port?: string | null;
-    /**
-     * This is the list of addresses to which we send the email (i.e. in the `To:` of the email).
-     */
-    recipientAddresses?: string[] | null;
-    /**
-     * This is the SMTP account/email that is used to send the message.
-     */
-    senderAddress?: string | null;
-    /**
-     * The address of the SMTP server.
-     */
-    server?: string | null;
-  }
-  /**
    * Location of the source in a supported storage service.
    */
   export interface Schema$Source {
@@ -2312,7 +2171,7 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$WorkerConfig {
     /**
-     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.
+     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). Specify a value of up to 2000. If `0` is specified, Cloud Build will use a standard disk size.
      */
     diskSizeGb?: string | null;
     /**
