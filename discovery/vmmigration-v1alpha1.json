@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230126",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2095,10 +2095,6 @@
           "$ref": "AccessKeyCredentials",
           "description": "AWS Credentials using access key id and secret."
         },
-        "accessKeyId": {
-          "description": "AWS access key ID.",
-          "type": "string"
-        },
         "awsRegion": {
           "description": "Immutable. The AWS region that the source VMs will be migrated from.",
           "type": "string"
@@ -2122,13 +2118,6 @@
           },
           "type": "array"
         },
-        "inventoryTags": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Deprecated: AWS resource tags to limit the scope of the source inventory. Use inventory_tag_list instead.",
-          "type": "object"
-        },
         "migrationResourcesUserTags": {
           "additionalProperties": {
             "type": "string"
@@ -2139,10 +2128,6 @@
         "publicIp": {
           "description": "Output only. The source's public IP. All communication initiated by this source will originate from this IP.",
           "readOnly": true,
-          "type": "string"
-        },
-        "secretAccessKey": {
-          "description": "Input only. AWS secret access key.",
           "type": "string"
         },
         "state": {
@@ -3493,7 +3478,7 @@
         },
         "currentSyncInfo": {
           "$ref": "ReplicationCycle",
-          "description": "Output only. The percentage progress of the current running replication cycle.",
+          "description": "Output only. Details of the current running replication cycle.",
           "readOnly": true
         },
         "description": {
@@ -4607,7 +4592,7 @@
     }
   },
   "servicePath": "",
-  "title": "Migrate to Virtual Machines API",
+  "title": "VM Migration API",
   "version": "v1alpha1",
   "version_module": true
 }
