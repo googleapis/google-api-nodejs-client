@@ -645,11 +645,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$DateShiftConfig {
     /**
-     * An AES 128/192/256 bit key. Causes the shift to be computed based on this key and the patient ID. A default key is generated for each de-identification operation and is used when neither `crypto_key` nor `kms_wrapped` is specified. Must not be set if `kms_wrapped` is set.
+     * An AES 128/192/256 bit key. The date shift is computed based on this key and the patient ID. If the patient ID is empty for a DICOM resource, the date shift is computed based on this key and the study instance UID. If `crypto_key` is not set, then `kms_wrapped` is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if `kms_wrapped` is set.
      */
     cryptoKey?: string | null;
     /**
-     * KMS wrapped key. Must not be set if `crypto_key` is set.
+     * KMS wrapped key. If `kms_wrapped` is not set, then `crypto_key` is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if `crypto_key` is set.
      */
     kmsWrapped?: Schema$KmsWrappedCryptoKey;
   }
@@ -1213,7 +1213,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string | null;
     /**
-     * If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource".
+     * If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource". Deprecated. Use `notification_configs` instead.
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
