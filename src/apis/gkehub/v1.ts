@@ -249,6 +249,10 @@ export namespace gkehub_v1 {
     state?: Schema$FeatureState;
   }
   /**
+   * CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet
+   */
+  export interface Schema$CommonFleetDefaultMemberConfigSpec {}
+  /**
    * Configuration for Config Sync
    */
   export interface Schema$ConfigManagementConfigSync {
@@ -786,6 +790,10 @@ export namespace gkehub_v1 {
      * Output only. When the Feature resource was deleted.
      */
     deleteTime?: string | null;
+    /**
+     * Optional. Feature configuration applicable to all memberships of the fleet.
+     */
+    fleetDefaultMemberConfig?: Schema$CommonFleetDefaultMemberConfigSpec;
     /**
      * GCP labels for this Feature.
      */
@@ -1996,6 +2004,7 @@ export namespace gkehub_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "fleetDefaultMemberConfig": {},
      *       //   "labels": {},
      *       //   "membershipSpecs": {},
      *       //   "membershipStates": {},
@@ -2282,6 +2291,7 @@ export namespace gkehub_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
+     *   //   "fleetDefaultMemberConfig": {},
      *   //   "labels": {},
      *   //   "membershipSpecs": {},
      *   //   "membershipStates": {},
@@ -2700,6 +2710,7 @@ export namespace gkehub_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "fleetDefaultMemberConfig": {},
      *       //   "labels": {},
      *       //   "membershipSpecs": {},
      *       //   "membershipStates": {},
