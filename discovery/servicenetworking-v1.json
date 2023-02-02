@@ -865,7 +865,7 @@
       }
     }
   },
-  "revision": "20221218",
+  "revision": "20230125",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1031,6 +1031,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "role": {
+          "description": "Optional. Defines the role field of the subnet, e.g. 'ACTIVE'. For information about the roles that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
+          "type": "string"
         },
         "secondaryIpRangeSpecs": {
           "description": "Optional. A list of secondary IP ranges to be created within the new subnetwork.",
