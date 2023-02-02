@@ -1079,7 +1079,7 @@
       }
     }
   },
-  "revision": "20221201",
+  "revision": "20230103",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1438,7 +1438,7 @@
         },
         "nodeConfig": {
           "$ref": "NodeConfig",
-          "description": "Optional. Configuration for the connection."
+          "description": "Optional. Node configuration for the connection."
         },
         "serviceAccount": {
           "description": "Optional. Service account needed for runtime plane to access GCP resources.",
@@ -2359,7 +2359,7 @@
       "type": "object"
     },
     "NodeConfig": {
-      "description": "Configuration for the connection.",
+      "description": "Node configuration for the connection.",
       "id": "NodeConfig",
       "properties": {
         "maxNodeCount": {

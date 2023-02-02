@@ -353,7 +353,7 @@ export namespace connectors_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Configuration for the connection.
+     * Optional. Node configuration for the connection.
      */
     nodeConfig?: Schema$NodeConfig;
     /**
@@ -863,7 +863,7 @@ export namespace connectors_v1 {
     reason?: string | null;
   }
   /**
-   * Configuration for the connection.
+   * Node configuration for the connection.
    */
   export interface Schema$NodeConfig {
     /**
