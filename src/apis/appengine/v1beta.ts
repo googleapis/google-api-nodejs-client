@@ -656,6 +656,19 @@ export namespace appengine_v1beta {
     sourceRange?: string | null;
   }
   /**
+   * Runtime settings for the App Engine flexible environment.
+   */
+  export interface Schema$FlexibleRuntimeSettings {
+    /**
+     * The operating system of the application runtime.
+     */
+    operatingSystem?: string | null;
+    /**
+     * The runtime version of an App Engine flexible application.
+     */
+    runtimeVersion?: string | null;
+  }
+  /**
    * Metadata for the given google.cloud.location.Location.
    */
   export interface Schema$GoogleAppengineV1betaLocationMetadata {
@@ -1639,6 +1652,10 @@ export namespace appengine_v1beta {
      * Custom static error pages. Limited to 10KB per page.Only returned in GET requests if view=FULL is set.
      */
     errorHandlers?: Schema$ErrorHandler[];
+    /**
+     * Settings for App Engine flexible runtimes.
+     */
+    flexibleRuntimeSettings?: Schema$FlexibleRuntimeSettings;
     /**
      * An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.Only returned in GET requests if view=FULL is set.
      */
@@ -6522,6 +6539,7 @@ export namespace appengine_v1beta {
      *       //   "env": "my_env",
      *       //   "envVariables": {},
      *       //   "errorHandlers": [],
+     *       //   "flexibleRuntimeSettings": {},
      *       //   "handlers": [],
      *       //   "healthCheck": {},
      *       //   "id": "my_id",
@@ -6848,6 +6866,7 @@ export namespace appengine_v1beta {
      *   //   "env": "my_env",
      *   //   "envVariables": {},
      *   //   "errorHandlers": [],
+     *   //   "flexibleRuntimeSettings": {},
      *   //   "handlers": [],
      *   //   "healthCheck": {},
      *   //   "id": "my_id",
@@ -7168,6 +7187,7 @@ export namespace appengine_v1beta {
      *       //   "env": "my_env",
      *       //   "envVariables": {},
      *       //   "errorHandlers": [],
+     *       //   "flexibleRuntimeSettings": {},
      *       //   "handlers": [],
      *       //   "healthCheck": {},
      *       //   "id": "my_id",
