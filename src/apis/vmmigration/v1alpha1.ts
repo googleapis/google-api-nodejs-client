@@ -100,7 +100,7 @@ export namespace vmmigration_v1alpha1 {
   }
 
   /**
-   * Migrate to Virtual Machines API
+   * VM Migration API
    *
    * Use the Migrate to Virtual Machines API to programmatically migrate workloads.
    *
@@ -219,10 +219,6 @@ export namespace vmmigration_v1alpha1 {
      */
     accessKeyCreds?: Schema$AccessKeyCredentials;
     /**
-     * AWS access key ID.
-     */
-    accessKeyId?: string | null;
-    /**
      * Immutable. The AWS region that the source VMs will be migrated from.
      */
     awsRegion?: string | null;
@@ -239,10 +235,6 @@ export namespace vmmigration_v1alpha1 {
      */
     inventoryTagList?: Schema$Tag[];
     /**
-     * Deprecated: AWS resource tags to limit the scope of the source inventory. Use inventory_tag_list instead.
-     */
-    inventoryTags?: {[key: string]: string} | null;
-    /**
      * User specified tags to add to every M2VM generated resource in AWS. These tags will be set in addition to the default tags that are set as part of the migration process. The tags must not begin with the reserved prefix `m2vm`.
      */
     migrationResourcesUserTags?: {[key: string]: string} | null;
@@ -250,10 +242,6 @@ export namespace vmmigration_v1alpha1 {
      * Output only. The source's public IP. All communication initiated by this source will originate from this IP.
      */
     publicIp?: string | null;
-    /**
-     * Input only. AWS secret access key.
-     */
-    secretAccessKey?: string | null;
     /**
      * Output only. State of the source as determined by the health check.
      */
@@ -1105,7 +1093,7 @@ export namespace vmmigration_v1alpha1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The percentage progress of the current running replication cycle.
+     * Output only. Details of the current running replication cycle.
      */
     currentSyncInfo?: Schema$ReplicationCycle;
     /**

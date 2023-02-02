@@ -325,34 +325,6 @@ export namespace cloudsearch_v1 {
     id?: string | null;
   }
   /**
-   * An action that describes the behavior when the form is submitted. For example, an Apps Script can be invoked to handle the form.
-   */
-  export interface Schema$AppsDynamiteSharedAction {
-    /**
-     * Apps Script function to invoke when the containing element is clicked/activated.
-     */
-    function?: string | null;
-    interaction?: string | null;
-    loadIndicator?: string | null;
-    /**
-     * List of action parameters.
-     */
-    parameters?: Schema$AppsDynamiteSharedActionActionParameter[];
-  }
-  /**
-   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
-   */
-  export interface Schema$AppsDynamiteSharedActionActionParameter {
-    /**
-     * The name of the parameter for the action script.
-     */
-    key?: string | null;
-    /**
-     * The value of the parameter.
-     */
-    value?: string | null;
-  }
-  /**
    * Next Id: 7
    */
   export interface Schema$AppsDynamiteSharedActivityFeedAnnotationData {
@@ -530,6 +502,10 @@ export namespace cloudsearch_v1 {
      */
     groupId?: Schema$GroupId;
     /**
+     * If the uploaded file is a video that has been transcoded on the client side Next tag: 18
+     */
+    isClientSideTranscodedVideo?: boolean | null;
+    /**
      * Original dimension of the content. Only set for image attachments.
      */
     originalDimension?: Schema$AppsDynamiteSharedDimension;
@@ -561,58 +537,6 @@ export namespace cloudsearch_v1 {
      * Result for a virus scan.
      */
     virusScanResult?: string | null;
-  }
-  /**
-   * Represents the complete border style applied to widgets.
-   */
-  export interface Schema$AppsDynamiteSharedBorderStyle {
-    /**
-     * The corner radius for the border.
-     */
-    cornerRadius?: number | null;
-    /**
-     * The colors to use when the type is `BORDER_TYPE_STROKE`.
-     */
-    strokeColor?: Schema$Color;
-    /**
-     * The border type.
-     */
-    type?: string | null;
-  }
-  /**
-   * A button. Can be a text button or an image button.
-   */
-  export interface Schema$AppsDynamiteSharedButton {
-    /**
-     * The alternative text used for accessibility. Has no effect when an icon is set; use `icon.alt_text` instead.
-     */
-    altText?: string | null;
-    /**
-     * If set, the button is filled with a solid background.
-     */
-    color?: Schema$Color;
-    /**
-     * If true, the button is displayed in a disabled state and doesn't respond to user actions.
-     */
-    disabled?: boolean | null;
-    /**
-     * The icon image.
-     */
-    icon?: Schema$AppsDynamiteSharedIcon;
-    /**
-     * The action to perform when the button is clicked.
-     */
-    onClick?: Schema$AppsDynamiteSharedOnClick;
-    /**
-     * The text of the button.
-     */
-    text?: string | null;
-  }
-  /**
-   * A list of buttons layed out horizontally.
-   */
-  export interface Schema$AppsDynamiteSharedButtonList {
-    buttons?: Schema$AppsDynamiteSharedButton[];
   }
   export interface Schema$AppsDynamiteSharedCalendarEventAnnotationData {
     calendarEvent?: Schema$AppsDynamiteSharedCalendarEventAnnotationDataCalendarEvent;
@@ -680,62 +604,6 @@ export namespace cloudsearch_v1 {
     meetMetadata?: Schema$AppsDynamiteSharedMeetMetadata;
   }
   /**
-   * A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { "header": { "title": "Heba Salam", "subtitle": "Software Engineer", "imageStyle": "ImageStyle.AVATAR", "imageUrl": "https://example.com/heba_salam.png", "imageAltText": "Avatar for Heba Salam" \}, "sections" : [ { "header": "Contact Info", "widgets": [ { "decorated_text": { "icon": { "knownIcon": "EMAIL" \}, "content": "heba.salam@example.com" \} \}, { "decoratedText": { "icon": { "knownIcon": "PERSON" \}, "content": "Online" \} \}, { "decoratedText": { "icon": { "knownIcon": "PHONE" \}, "content": "+1 (555) 555-1234" \} \}, { "buttons": [ { "textButton": { "text": "Share", \}, "onClick": { "openLink": { "url": "https://example.com/share" \} \} \}, { "textButton": { "text": "Edit", \}, "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \} ] \} ], "collapsible": true, "uncollapsibleWidgetsCount": 3 \} ], "cardActions": [ { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ], "name": "contact-card-K3wB6arF2H9L" \} ```
-   */
-  export interface Schema$AppsDynamiteSharedCard {
-    /**
-     * The actions of this card. They are added to a card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Setting", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
-     */
-    cardActions?: Schema$AppsDynamiteSharedCardCardAction[];
-    /**
-     * The header of the card. A header usually contains a title and an image.
-     */
-    header?: Schema$AppsDynamiteSharedCardCardHeader;
-    /**
-     * Name of the card, which is used as a identifier for the card in card navigation.
-     */
-    name?: string | null;
-    /**
-     * Sections are separated by a line divider.
-     */
-    sections?: Schema$AppsDynamiteSharedCardSection[];
-  }
-  /**
-   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser.
-   */
-  export interface Schema$AppsDynamiteSharedCardCardAction {
-    /**
-     * The label that displays as the action menu item.
-     */
-    actionLabel?: string | null;
-    /**
-     * The onclick action for this action item.
-     */
-    onClick?: Schema$AppsDynamiteSharedOnClick;
-  }
-  export interface Schema$AppsDynamiteSharedCardCardHeader {
-    /**
-     * The alternative text of this image which is used for accessibility.
-     */
-    imageAltText?: string | null;
-    /**
-     * The image's type.
-     */
-    imageType?: string | null;
-    /**
-     * The URL of the image in the card header.
-     */
-    imageUrl?: string | null;
-    /**
-     * The subtitle of the card header.
-     */
-    subtitle?: string | null;
-    /**
-     * The title of the card header. The title must be specified. The header has a fixed height: if both a title and subtitle are specified, each takes up one line. If only the title is specified, it takes up both lines.
-     */
-    title?: string | null;
-  }
-  /**
    * Card click which identifies one suggestion provided by the app/bot.
    */
   export interface Schema$AppsDynamiteSharedCardClickSuggestion {
@@ -747,27 +615,6 @@ export namespace cloudsearch_v1 {
      * The message_id for the message that was posted by the app/bot.
      */
     suggestionMessageId?: Schema$MessageId;
-  }
-  /**
-   * A section contains a collection of widgets that are rendered vertically in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there is currently no need for layout properties, for example, float.
-   */
-  export interface Schema$AppsDynamiteSharedCardSection {
-    /**
-     * Indicates whether this section is collapsible. If a section is collapsible, the description must be given.
-     */
-    collapsible?: boolean | null;
-    /**
-     * The header of the section. Formatted text is supported.
-     */
-    header?: string | null;
-    /**
-     * The number of uncollapsible widgets. For example, when a section contains five widgets and the `numUncollapsibleWidget` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `numUncollapsibleWidget` is taken into account only when collapsible is set to `true`.
-     */
-    uncollapsibleWidgetsCount?: number | null;
-    /**
-     * A section must contain at least 1 widget.
-     */
-    widgets?: Schema$AppsDynamiteSharedWidget[];
   }
   /**
    * Next Id: 5
@@ -842,73 +689,6 @@ export namespace cloudsearch_v1 {
     inlineThreadingEnabled?: boolean | null;
   }
   /**
-   * Represents a Columns widget that displays a single row of columns.
-   */
-  export interface Schema$AppsDynamiteSharedColumns {
-    /**
-     * Each card supports up to 2 columns.
-     */
-    columnItems?: Schema$AppsDynamiteSharedColumnsColumn[];
-    /**
-     * Controls how the column resizes based on screen width.
-     */
-    wrapStyle?: string | null;
-  }
-  /**
-   * Represents a Column that consists of widgets stacked vertically.
-   */
-  export interface Schema$AppsDynamiteSharedColumnsColumn {
-    /**
-     * The horizontal alignment of the column.
-     */
-    horizontalAlignment?: string | null;
-    /**
-     * Specifies how the column content is sized horizontally.
-     */
-    horizontalSizeStyle?: string | null;
-    /**
-     * The vertical alignment of the column.
-     */
-    verticalAlignment?: string | null;
-    /**
-     * LINT.ThenChange(//google/apps/card/v1/card.proto) Array of widgets included in the column.
-     */
-    widgets?: Schema$AppsDynamiteSharedColumnsColumnWidgets[];
-  }
-  /**
-   * LINT.IfChange The `column` widget can contain these widgets.
-   */
-  export interface Schema$AppsDynamiteSharedColumnsColumnWidgets {
-    /**
-     * ButtonList widget.
-     */
-    buttonList?: Schema$AppsDynamiteSharedButtonList;
-    /**
-     * DateTimePicker widget.
-     */
-    dateTimePicker?: Schema$AppsDynamiteSharedDateTimePicker;
-    /**
-     * DecoratedText widget.
-     */
-    decoratedText?: Schema$AppsDynamiteSharedDecoratedText;
-    /**
-     * Image widget.
-     */
-    image?: Schema$AppsDynamiteSharedImage;
-    /**
-     * SelectionInput widget.
-     */
-    selectionInput?: Schema$AppsDynamiteSharedSelectionInput;
-    /**
-     * TextInput widget.
-     */
-    textInput?: Schema$AppsDynamiteSharedTextInput;
-    /**
-     * Text paragraph widget.
-     */
-    textParagraph?: Schema$AppsDynamiteSharedTextParagraph;
-  }
-  /**
    * Denotes a type of content report a user can send.
    */
   export interface Schema$AppsDynamiteSharedContentReportType {
@@ -968,112 +748,12 @@ export namespace cloudsearch_v1 {
     uuid?: string | null;
   }
   /**
-   * The widget that lets users to specify a date and time.
-   */
-  export interface Schema$AppsDynamiteSharedDateTimePicker {
-    /**
-     * The label for the field that displays to the user.
-     */
-    label?: string | null;
-    /**
-     * The name of the text input that's used in formInput, and uniquely identifies this input.
-     */
-    name?: string | null;
-    /**
-     * Triggered when the user clicks Save or Clear from the date/time picker dialog. This is only triggered if the value changed as a result of the Save/Clear operation.
-     */
-    onChangeAction?: Schema$AppsDynamiteSharedAction;
-    /**
-     * The number representing the time zone offset from UTC, in minutes. If set, the `value_ms_epoch` is displayed in the specified time zone. If not set, it uses the user's time zone setting on the client side.
-     */
-    timezoneOffsetDate?: number | null;
-    /**
-     * The type of the date/time picker.
-     */
-    type?: string | null;
-    /**
-     * The value to display as the default value before user input or previous user input. It is represented in milliseconds (Epoch time). For `DATE_AND_TIME` type, the full epoch value is used. For `DATE_ONLY` type, only date of the epoch time is used. For `TIME_ONLY` type, only time of the epoch time is used. For example, you can set epoch time to `3 * 60 * 60 * 1000` to represent 3am.
-     */
-    valueMsEpoch?: string | null;
-  }
-  /**
-   * A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget or a button after the text.
-   */
-  export interface Schema$AppsDynamiteSharedDecoratedText {
-    /**
-     * The formatted text label that shows below the main text.
-     */
-    bottomLabel?: string | null;
-    /**
-     * A button that can be clicked to trigger an action.
-     */
-    button?: Schema$AppsDynamiteSharedButton;
-    /**
-     * An icon displayed after the text.
-     */
-    endIcon?: Schema$AppsDynamiteSharedIcon;
-    /**
-     * Deprecated in favor of start_icon.
-     */
-    icon?: Schema$AppsDynamiteSharedIcon;
-    /**
-     * Only the top and bottom label and content region are clickable.
-     */
-    onClick?: Schema$AppsDynamiteSharedOnClick;
-    /**
-     * The icon displayed in front of the text.
-     */
-    startIcon?: Schema$AppsDynamiteSharedIcon;
-    /**
-     * A switch widget can be clicked to change its state or trigger an action.
-     */
-    switchControl?: Schema$AppsDynamiteSharedDecoratedTextSwitchControl;
-    /**
-     * Required. The main widget formatted text. See Text formatting for details.
-     */
-    text?: string | null;
-    /**
-     * The formatted text label that shows above the main text.
-     */
-    topLabel?: string | null;
-    /**
-     * The wrap text setting. If `true`, the text is wrapped and displayed in multiline. Otherwise, the text is truncated.
-     */
-    wrapText?: boolean | null;
-  }
-  export interface Schema$AppsDynamiteSharedDecoratedTextSwitchControl {
-    /**
-     * The control type, either switch or checkbox.
-     */
-    controlType?: string | null;
-    /**
-     * The name of the switch widget that's used in formInput.
-     */
-    name?: string | null;
-    /**
-     * The action when the switch state is changed.
-     */
-    onChangeAction?: Schema$AppsDynamiteSharedAction;
-    /**
-     * If the switch is selected.
-     */
-    selected?: boolean | null;
-    /**
-     * The value is what is passed back in the callback.
-     */
-    value?: string | null;
-  }
-  /**
    * Dimension for the uploaded attachments.
    */
   export interface Schema$AppsDynamiteSharedDimension {
     height?: number | null;
     width?: number | null;
   }
-  /**
-   * A divider that appears in between widgets.
-   */
-  export interface Schema$AppsDynamiteSharedDivider {}
   /**
    * LINT.IfChange
    */
@@ -1136,60 +816,6 @@ export namespace cloudsearch_v1 {
     showActionButtons?: boolean | null;
   }
   /**
-   * Represents a Grid widget that displays items in a configurable grid layout.
-   */
-  export interface Schema$AppsDynamiteSharedGrid {
-    /**
-     * The border style to apply to each grid item.
-     */
-    borderStyle?: Schema$AppsDynamiteSharedBorderStyle;
-    /**
-     * The number of columns to display in the grid. A default value is used if this field isn't specified, and that default value is different depending on where the grid is shown (dialog versus companion).
-     */
-    columnCount?: number | null;
-    /**
-     * The items to display in the grid.
-     */
-    items?: Schema$AppsDynamiteSharedGridGridItem[];
-    /**
-     * This callback is reused by each individual grid item, but with the item's identifier and index in the items list added to the callback's parameters.
-     */
-    onClick?: Schema$AppsDynamiteSharedOnClick;
-    /**
-     * The text that displays in the grid header.
-     */
-    title?: string | null;
-  }
-  /**
-   * Represents a single item in the grid layout.
-   */
-  export interface Schema$AppsDynamiteSharedGridGridItem {
-    /**
-     * A user-specified identifier for this grid item. This identifier is returned in the parent Grid's onClick callback parameters.
-     */
-    id?: string | null;
-    /**
-     * The image that displays in the grid item.
-     */
-    image?: Schema$AppsDynamiteSharedImageComponent;
-    /**
-     * The layout to use for the grid item.
-     */
-    layout?: string | null;
-    /**
-     * The grid item's subtitle.
-     */
-    subtitle?: string | null;
-    /**
-     * The horizontal alignment of the grid item's text.
-     */
-    textAlignment?: string | null;
-    /**
-     * The grid item's title.
-     */
-    title?: string | null;
-  }
-  /**
    * NEXT TAG: 3 A GroupDetails proto will store the information pertaining to single Group.
    */
   export interface Schema$AppsDynamiteSharedGroupDetails {
@@ -1204,69 +830,6 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$AppsDynamiteSharedGroupVisibility {
     state?: string | null;
-  }
-  export interface Schema$AppsDynamiteSharedIcon {
-    /**
-     * The description of the icon, used for accessibility. The default value is provided if you don't specify one.
-     */
-    altText?: string | null;
-    /**
-     * The icon specified by a URL.
-     */
-    iconUrl?: string | null;
-    /**
-     * The crop style applied to the image. In some cases, applying a `CIRCLE` crop causes the image to be drawn larger than a standard icon.
-     */
-    imageType?: string | null;
-    /**
-     * The icon specified by the string name of a list of known icons
-     */
-    knownIcon?: string | null;
-  }
-  /**
-   * An image that is specified by a URL and can have an onClick action.
-   */
-  export interface Schema$AppsDynamiteSharedImage {
-    /**
-     * The alternative text of this image, used for accessibility.
-     */
-    altText?: string | null;
-    /**
-     * An image URL.
-     */
-    imageUrl?: string | null;
-    onClick?: Schema$AppsDynamiteSharedOnClick;
-  }
-  export interface Schema$AppsDynamiteSharedImageComponent {
-    /**
-     * The accessibility label for the image.
-     */
-    altText?: string | null;
-    /**
-     * The border style to apply to the image.
-     */
-    borderStyle?: Schema$AppsDynamiteSharedBorderStyle;
-    /**
-     * The crop style to apply to the image.
-     */
-    cropStyle?: Schema$AppsDynamiteSharedImageCropStyle;
-    /**
-     * The image URL.
-     */
-    imageUri?: string | null;
-  }
-  /**
-   * Represents the crop style applied to an image.
-   */
-  export interface Schema$AppsDynamiteSharedImageCropStyle {
-    /**
-     * The aspect ratio to use if the crop type is `RECTANGLE_CUSTOM`.
-     */
-    aspectRatio?: number | null;
-    /**
-     * The crop type.
-     */
-    type?: string | null;
   }
   /**
    * Data for rendering a justification for a document.
@@ -1346,79 +909,6 @@ export namespace cloudsearch_v1 {
      */
     type?: string | null;
   }
-  export interface Schema$AppsDynamiteSharedOnClick {
-    /**
-     * If specified, an action is triggered by this onClick.
-     */
-    action?: Schema$AppsDynamiteSharedAction;
-    /**
-     * Triggers host app action on click directly without invoking form actions. This is currently not available to end-users and is used internal only.
-     */
-    hostAppAction?: Schema$HostAppActionMarkup;
-    /**
-     * An add-on triggers this action when the action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
-     */
-    openDynamicLinkAction?: Schema$AppsDynamiteSharedAction;
-    /**
-     * If specified, this onClick triggers an open link action.
-     */
-    openLink?: Schema$AppsDynamiteSharedOpenLink;
-  }
-  export interface Schema$AppsDynamiteSharedOpenLink {
-    /**
-     * Represents the platform specific uri/intent to open on each client. For example: A companion_url will open in a companion window on the web. An iOS URL and android intent will open in the corresponding hosting apps. If these platform specific URLs can't be handled correctly, i.e. if the companion isn't supported on web and the hosting apps aren't available on the mobile platforms then the `uri` will open in a new browser window on all the platforms.
-     */
-    appUri?: Schema$AppsDynamiteSharedOpenLinkAppUri;
-    onClose?: string | null;
-    openAs?: string | null;
-    /**
-     * The URL to open.
-     */
-    url?: string | null;
-  }
-  /**
-   * Represents the platform specific uri/intent to open for each client.
-   */
-  export interface Schema$AppsDynamiteSharedOpenLinkAppUri {
-    /**
-     * An intent object to be opened in the corresponding android hosting app.
-     */
-    androidIntent?: Schema$AppsDynamiteSharedOpenLinkAppUriIntent;
-    /**
-     * A companion uri string to be opened in the chat companion window. on the web.
-     */
-    companionUri?: string | null;
-    /**
-     * A uri string to be opened in the corresponding iOS hosting app.
-     */
-    iosUri?: string | null;
-  }
-  /**
-   * Android intent.
-   */
-  export interface Schema$AppsDynamiteSharedOpenLinkAppUriIntent {
-    /**
-     * A list of extra data for the android intent. For example, for a calendar event edit intent, the event title information can be passed as extra data.
-     */
-    extraData?: Schema$AppsDynamiteSharedOpenLinkAppUriIntentExtraData[];
-    /**
-     * An android intent action string for the {@link android.content.Intent\} object. For example: for the view intent action type, a valid value will be android.content.Intent.ACTION_VIEW.
-     */
-    intentAction?: string | null;
-  }
-  /**
-   * Extra data for an android intent. Valid keys are defined in the hosting app contract.
-   */
-  export interface Schema$AppsDynamiteSharedOpenLinkAppUriIntentExtraData {
-    /**
-     * A key for the intent extra data.
-     */
-    key?: string | null;
-    /**
-     * Value for the given extra data key.
-     */
-    value?: string | null;
-  }
   /**
    * Contains info about the entity that something is, or is owned by.
    */
@@ -1493,42 +983,6 @@ export namespace cloudsearch_v1 {
     value?: Schema$AppsDynamiteSharedSegmentedMembershipCount[];
   }
   /**
-   * A widget that creates a UI item (for example, a drop-down list) with options for users to select.
-   */
-  export interface Schema$AppsDynamiteSharedSelectionInput {
-    items?: Schema$AppsDynamiteSharedSelectionInputSelectionItem[];
-    /**
-     * The label displayed ahead of the switch control.
-     */
-    label?: string | null;
-    /**
-     * The name of the text input which is used in formInput.
-     */
-    name?: string | null;
-    /**
-     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button.
-     */
-    onChangeAction?: Schema$AppsDynamiteSharedAction;
-    type?: string | null;
-  }
-  /**
-   * The item in the switch control. A radio button, at most one of the items is selected.
-   */
-  export interface Schema$AppsDynamiteSharedSelectionInputSelectionItem {
-    /**
-     * If more than one item is selected for `RADIO_BUTTON` and `DROPDOWN`, the first selected item is treated as selected and the ones after are ignored.
-     */
-    selected?: boolean | null;
-    /**
-     * The text to be displayed.
-     */
-    text?: string | null;
-    /**
-     * The value associated with this item. The client should use this as a form input value.
-     */
-    value?: string | null;
-  }
-  /**
    * Defines the representation of a single matching space.
    */
   export interface Schema$AppsDynamiteSharedSpaceInfo {
@@ -1550,21 +1004,6 @@ export namespace cloudsearch_v1 {
      * searching user's membership state in this space
      */
     userMembershipState?: string | null;
-  }
-  /**
-   * A container wrapping elements necessary for showing suggestion items used in text input autocomplete.
-   */
-  export interface Schema$AppsDynamiteSharedSuggestions {
-    /**
-     * A list of suggestions items which will be used in are used in autocomplete.
-     */
-    items?: Schema$AppsDynamiteSharedSuggestionsSuggestionItem[];
-  }
-  /**
-   * A suggestion item. Only supports text for now.
-   */
-  export interface Schema$AppsDynamiteSharedSuggestionsSuggestionItem {
-    text?: string | null;
   }
   /**
    * This is the internal version of the API proto at google3/google/chat/v1/gsuite_message_integration.proto
@@ -1635,52 +1074,6 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$AppsDynamiteSharedTasksMessageIntegrationPayload {}
   /**
-   * A text input is a UI item where users can input text. A text input can also have an onChange action and suggestions.
-   */
-  export interface Schema$AppsDynamiteSharedTextInput {
-    /**
-     * The refresh function that returns suggestions based on the user's input text. If the callback is not specified, autocomplete is done in client side based on the initial suggestion items.
-     */
-    autoCompleteAction?: Schema$AppsDynamiteSharedAction;
-    /**
-     * The hint text.
-     */
-    hintText?: string | null;
-    /**
-     * The initial suggestions made before any user input.
-     */
-    initialSuggestions?: Schema$AppsDynamiteSharedSuggestions;
-    /**
-     * At least one of label and hintText must be specified.
-     */
-    label?: string | null;
-    /**
-     * The name of the text input which is used in formInput.
-     */
-    name?: string | null;
-    /**
-     * The onChange action, for example, invoke a function.
-     */
-    onChangeAction?: Schema$AppsDynamiteSharedAction;
-    /**
-     * The style of the text, for example, a single line or multiple lines.
-     */
-    type?: string | null;
-    /**
-     * The default value when there is no input from the user.
-     */
-    value?: string | null;
-  }
-  /**
-   * A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting") for details.
-   */
-  export interface Schema$AppsDynamiteSharedTextParagraph {
-    /**
-     * The text that's shown in the widget.
-     */
-    text?: string | null;
-  }
-  /**
    * User-block relationship
    */
   export interface Schema$AppsDynamiteSharedUserBlockRelationship {
@@ -1701,33 +1094,644 @@ export namespace cloudsearch_v1 {
     status?: string | null;
   }
   /**
+   * An action that describes the behavior when the form is submitted. For example, an Apps Script can be invoked to handle the form.
+   */
+  export interface Schema$AppsDynamiteStorageAction {
+    /**
+     * Apps Script function to invoke when the containing element is clicked/activated.
+     */
+    function?: string | null;
+    interaction?: string | null;
+    loadIndicator?: string | null;
+    /**
+     * List of action parameters.
+     */
+    parameters?: Schema$AppsDynamiteStorageActionActionParameter[];
+  }
+  /**
+   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
+   */
+  export interface Schema$AppsDynamiteStorageActionActionParameter {
+    /**
+     * The name of the parameter for the action script.
+     */
+    key?: string | null;
+    /**
+     * The value of the parameter.
+     */
+    value?: string | null;
+  }
+  /**
+   * Represents the complete border style applied to widgets.
+   */
+  export interface Schema$AppsDynamiteStorageBorderStyle {
+    /**
+     * The corner radius for the border.
+     */
+    cornerRadius?: number | null;
+    /**
+     * The colors to use when the type is `BORDER_TYPE_STROKE`.
+     */
+    strokeColor?: Schema$Color;
+    /**
+     * The border type.
+     */
+    type?: string | null;
+  }
+  /**
+   * A button. Can be a text button or an image button.
+   */
+  export interface Schema$AppsDynamiteStorageButton {
+    /**
+     * The alternative text used for accessibility. Has no effect when an icon is set; use `icon.alt_text` instead.
+     */
+    altText?: string | null;
+    /**
+     * If set, the button is filled with a solid background.
+     */
+    color?: Schema$Color;
+    /**
+     * If true, the button is displayed in a disabled state and doesn't respond to user actions.
+     */
+    disabled?: boolean | null;
+    /**
+     * The icon image.
+     */
+    icon?: Schema$AppsDynamiteStorageIcon;
+    /**
+     * The action to perform when the button is clicked.
+     */
+    onClick?: Schema$AppsDynamiteStorageOnClick;
+    /**
+     * The text of the button.
+     */
+    text?: string | null;
+  }
+  /**
+   * A list of buttons layed out horizontally.
+   */
+  export interface Schema$AppsDynamiteStorageButtonList {
+    buttons?: Schema$AppsDynamiteStorageButton[];
+  }
+  /**
+   * A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { "header": { "title": "Heba Salam", "subtitle": "Software Engineer", "imageStyle": "ImageStyle.AVATAR", "imageUrl": "https://example.com/heba_salam.png", "imageAltText": "Avatar for Heba Salam" \}, "sections" : [ { "header": "Contact Info", "widgets": [ { "decorated_text": { "icon": { "knownIcon": "EMAIL" \}, "content": "heba.salam@example.com" \} \}, { "decoratedText": { "icon": { "knownIcon": "PERSON" \}, "content": "Online" \} \}, { "decoratedText": { "icon": { "knownIcon": "PHONE" \}, "content": "+1 (555) 555-1234" \} \}, { "buttons": [ { "textButton": { "text": "Share", \}, "onClick": { "openLink": { "url": "https://example.com/share" \} \} \}, { "textButton": { "text": "Edit", \}, "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \} ] \} ], "collapsible": true, "uncollapsibleWidgetsCount": 3 \} ], "cardActions": [ { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ], "name": "contact-card-K3wB6arF2H9L" \} ```
+   */
+  export interface Schema$AppsDynamiteStorageCard {
+    /**
+     * The actions of this card. They are added to a card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Setting", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
+     */
+    cardActions?: Schema$AppsDynamiteStorageCardCardAction[];
+    /**
+     * The header of the card. A header usually contains a title and an image.
+     */
+    header?: Schema$AppsDynamiteStorageCardCardHeader;
+    /**
+     * Name of the card, which is used as a identifier for the card in card navigation.
+     */
+    name?: string | null;
+    /**
+     * Sections are separated by a line divider.
+     */
+    sections?: Schema$AppsDynamiteStorageCardSection[];
+  }
+  /**
+   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser.
+   */
+  export interface Schema$AppsDynamiteStorageCardCardAction {
+    /**
+     * The label that displays as the action menu item.
+     */
+    actionLabel?: string | null;
+    /**
+     * The onclick action for this action item.
+     */
+    onClick?: Schema$AppsDynamiteStorageOnClick;
+  }
+  export interface Schema$AppsDynamiteStorageCardCardHeader {
+    /**
+     * The alternative text of this image which is used for accessibility.
+     */
+    imageAltText?: string | null;
+    /**
+     * The image's type.
+     */
+    imageType?: string | null;
+    /**
+     * The URL of the image in the card header.
+     */
+    imageUrl?: string | null;
+    /**
+     * The subtitle of the card header.
+     */
+    subtitle?: string | null;
+    /**
+     * The title of the card header. The title must be specified. The header has a fixed height: if both a title and subtitle are specified, each takes up one line. If only the title is specified, it takes up both lines.
+     */
+    title?: string | null;
+  }
+  /**
+   * A section contains a collection of widgets that are rendered vertically in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there is currently no need for layout properties, for example, float.
+   */
+  export interface Schema$AppsDynamiteStorageCardSection {
+    /**
+     * Indicates whether this section is collapsible. If a section is collapsible, the description must be given.
+     */
+    collapsible?: boolean | null;
+    /**
+     * The header of the section. Formatted text is supported.
+     */
+    header?: string | null;
+    /**
+     * The number of uncollapsible widgets. For example, when a section contains five widgets and the `numUncollapsibleWidget` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `numUncollapsibleWidget` is taken into account only when collapsible is set to `true`.
+     */
+    uncollapsibleWidgetsCount?: number | null;
+    /**
+     * A section must contain at least 1 widget.
+     */
+    widgets?: Schema$AppsDynamiteStorageWidget[];
+  }
+  /**
+   * Represents a Columns widget that displays a single row of columns.
+   */
+  export interface Schema$AppsDynamiteStorageColumns {
+    /**
+     * Each card supports up to 2 columns.
+     */
+    columnItems?: Schema$AppsDynamiteStorageColumnsColumn[];
+    /**
+     * Controls how the column resizes based on screen width.
+     */
+    wrapStyle?: string | null;
+  }
+  /**
+   * Represents a Column that consists of widgets stacked vertically.
+   */
+  export interface Schema$AppsDynamiteStorageColumnsColumn {
+    /**
+     * The horizontal alignment of the column.
+     */
+    horizontalAlignment?: string | null;
+    /**
+     * Specifies how the column content is sized horizontally.
+     */
+    horizontalSizeStyle?: string | null;
+    /**
+     * The vertical alignment of the column.
+     */
+    verticalAlignment?: string | null;
+    /**
+     * LINT.ThenChange(//depot/google3/google/apps/card/v1/card.proto) Array of widgets included in the column.
+     */
+    widgets?: Schema$AppsDynamiteStorageColumnsColumnWidgets[];
+  }
+  /**
+   * LINT.IfChange The `column` widget can contain these widgets.
+   */
+  export interface Schema$AppsDynamiteStorageColumnsColumnWidgets {
+    /**
+     * ButtonList widget.
+     */
+    buttonList?: Schema$AppsDynamiteStorageButtonList;
+    /**
+     * DateTimePicker widget.
+     */
+    dateTimePicker?: Schema$AppsDynamiteStorageDateTimePicker;
+    /**
+     * DecoratedText widget.
+     */
+    decoratedText?: Schema$AppsDynamiteStorageDecoratedText;
+    /**
+     * Image widget.
+     */
+    image?: Schema$AppsDynamiteStorageImage;
+    /**
+     * SelectionInput widget.
+     */
+    selectionInput?: Schema$AppsDynamiteStorageSelectionInput;
+    /**
+     * TextInput widget.
+     */
+    textInput?: Schema$AppsDynamiteStorageTextInput;
+    /**
+     * Text paragraph widget.
+     */
+    textParagraph?: Schema$AppsDynamiteStorageTextParagraph;
+  }
+  /**
+   * The widget that lets users to specify a date and time.
+   */
+  export interface Schema$AppsDynamiteStorageDateTimePicker {
+    /**
+     * The label for the field that displays to the user.
+     */
+    label?: string | null;
+    /**
+     * The name of the text input that's used in formInput, and uniquely identifies this input.
+     */
+    name?: string | null;
+    /**
+     * Triggered when the user clicks Save or Clear from the date/time picker dialog. This is only triggered if the value changed as a result of the Save/Clear operation.
+     */
+    onChangeAction?: Schema$AppsDynamiteStorageAction;
+    /**
+     * The number representing the time zone offset from UTC, in minutes. If set, the `value_ms_epoch` is displayed in the specified time zone. If not set, it uses the user's time zone setting on the client side.
+     */
+    timezoneOffsetDate?: number | null;
+    /**
+     * The type of the date/time picker.
+     */
+    type?: string | null;
+    /**
+     * The value to display as the default value before user input or previous user input. It is represented in milliseconds (Epoch time). For `DATE_AND_TIME` type, the full epoch value is used. For `DATE_ONLY` type, only date of the epoch time is used. For `TIME_ONLY` type, only time of the epoch time is used. For example, you can set epoch time to `3 * 60 * 60 * 1000` to represent 3am.
+     */
+    valueMsEpoch?: string | null;
+  }
+  /**
+   * A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget or a button after the text.
+   */
+  export interface Schema$AppsDynamiteStorageDecoratedText {
+    /**
+     * The formatted text label that shows below the main text.
+     */
+    bottomLabel?: string | null;
+    /**
+     * A button that can be clicked to trigger an action.
+     */
+    button?: Schema$AppsDynamiteStorageButton;
+    /**
+     * An icon displayed after the text.
+     */
+    endIcon?: Schema$AppsDynamiteStorageIcon;
+    /**
+     * Deprecated in favor of start_icon.
+     */
+    icon?: Schema$AppsDynamiteStorageIcon;
+    /**
+     * Only the top and bottom label and content region are clickable.
+     */
+    onClick?: Schema$AppsDynamiteStorageOnClick;
+    /**
+     * The icon displayed in front of the text.
+     */
+    startIcon?: Schema$AppsDynamiteStorageIcon;
+    /**
+     * A switch widget can be clicked to change its state or trigger an action.
+     */
+    switchControl?: Schema$AppsDynamiteStorageDecoratedTextSwitchControl;
+    /**
+     * Required. The main widget formatted text. See Text formatting for details.
+     */
+    text?: string | null;
+    /**
+     * The formatted text label that shows above the main text.
+     */
+    topLabel?: string | null;
+    /**
+     * The wrap text setting. If `true`, the text is wrapped and displayed in multiline. Otherwise, the text is truncated.
+     */
+    wrapText?: boolean | null;
+  }
+  export interface Schema$AppsDynamiteStorageDecoratedTextSwitchControl {
+    /**
+     * The control type, either switch or checkbox.
+     */
+    controlType?: string | null;
+    /**
+     * The name of the switch widget that's used in formInput.
+     */
+    name?: string | null;
+    /**
+     * The action when the switch state is changed.
+     */
+    onChangeAction?: Schema$AppsDynamiteStorageAction;
+    /**
+     * If the switch is selected.
+     */
+    selected?: boolean | null;
+    /**
+     * The value is what is passed back in the callback.
+     */
+    value?: string | null;
+  }
+  /**
+   * A divider that appears in between widgets.
+   */
+  export interface Schema$AppsDynamiteStorageDivider {}
+  /**
+   * Represents a Grid widget that displays items in a configurable grid layout.
+   */
+  export interface Schema$AppsDynamiteStorageGrid {
+    /**
+     * The border style to apply to each grid item.
+     */
+    borderStyle?: Schema$AppsDynamiteStorageBorderStyle;
+    /**
+     * The number of columns to display in the grid. A default value is used if this field isn't specified, and that default value is different depending on where the grid is shown (dialog versus companion).
+     */
+    columnCount?: number | null;
+    /**
+     * The items to display in the grid.
+     */
+    items?: Schema$AppsDynamiteStorageGridGridItem[];
+    /**
+     * This callback is reused by each individual grid item, but with the item's identifier and index in the items list added to the callback's parameters.
+     */
+    onClick?: Schema$AppsDynamiteStorageOnClick;
+    /**
+     * The text that displays in the grid header.
+     */
+    title?: string | null;
+  }
+  /**
+   * Represents a single item in the grid layout.
+   */
+  export interface Schema$AppsDynamiteStorageGridGridItem {
+    /**
+     * A user-specified identifier for this grid item. This identifier is returned in the parent Grid's onClick callback parameters.
+     */
+    id?: string | null;
+    /**
+     * The image that displays in the grid item.
+     */
+    image?: Schema$AppsDynamiteStorageImageComponent;
+    /**
+     * The layout to use for the grid item.
+     */
+    layout?: string | null;
+    /**
+     * The grid item's subtitle.
+     */
+    subtitle?: string | null;
+    /**
+     * The horizontal alignment of the grid item's text.
+     */
+    textAlignment?: string | null;
+    /**
+     * The grid item's title.
+     */
+    title?: string | null;
+  }
+  export interface Schema$AppsDynamiteStorageIcon {
+    /**
+     * The description of the icon, used for accessibility. The default value is provided if you don't specify one.
+     */
+    altText?: string | null;
+    /**
+     * The icon specified by a URL.
+     */
+    iconUrl?: string | null;
+    /**
+     * The crop style applied to the image. In some cases, applying a `CIRCLE` crop causes the image to be drawn larger than a standard icon.
+     */
+    imageType?: string | null;
+    /**
+     * The icon specified by the string name of a list of known icons
+     */
+    knownIcon?: string | null;
+  }
+  /**
+   * An image that is specified by a URL and can have an onClick action.
+   */
+  export interface Schema$AppsDynamiteStorageImage {
+    /**
+     * The alternative text of this image, used for accessibility.
+     */
+    altText?: string | null;
+    /**
+     * An image URL.
+     */
+    imageUrl?: string | null;
+    onClick?: Schema$AppsDynamiteStorageOnClick;
+  }
+  export interface Schema$AppsDynamiteStorageImageComponent {
+    /**
+     * The accessibility label for the image.
+     */
+    altText?: string | null;
+    /**
+     * The border style to apply to the image.
+     */
+    borderStyle?: Schema$AppsDynamiteStorageBorderStyle;
+    /**
+     * The crop style to apply to the image.
+     */
+    cropStyle?: Schema$AppsDynamiteStorageImageCropStyle;
+    /**
+     * The image URL.
+     */
+    imageUri?: string | null;
+  }
+  /**
+   * Represents the crop style applied to an image.
+   */
+  export interface Schema$AppsDynamiteStorageImageCropStyle {
+    /**
+     * The aspect ratio to use if the crop type is `RECTANGLE_CUSTOM`.
+     */
+    aspectRatio?: number | null;
+    /**
+     * The crop type.
+     */
+    type?: string | null;
+  }
+  export interface Schema$AppsDynamiteStorageOnClick {
+    /**
+     * If specified, an action is triggered by this onClick.
+     */
+    action?: Schema$AppsDynamiteStorageAction;
+    /**
+     * Triggers host app action on click directly without invoking form actions. This is currently not available to end-users and is used internal only.
+     */
+    hostAppAction?: Schema$HostAppActionMarkup;
+    /**
+     * An add-on triggers this action when the action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
+     */
+    openDynamicLinkAction?: Schema$AppsDynamiteStorageAction;
+    /**
+     * If specified, this onClick triggers an open link action.
+     */
+    openLink?: Schema$AppsDynamiteStorageOpenLink;
+  }
+  export interface Schema$AppsDynamiteStorageOpenLink {
+    /**
+     * Represents the platform specific uri/intent to open on each client. For example: A companion_url will open in a companion window on the web. An iOS URL and android intent will open in the corresponding hosting apps. If these platform specific URLs can't be handled correctly, i.e. if the companion isn't supported on web and the hosting apps aren't available on the mobile platforms then the `uri` will open in a new browser window on all the platforms.
+     */
+    appUri?: Schema$AppsDynamiteStorageOpenLinkAppUri;
+    onClose?: string | null;
+    openAs?: string | null;
+    /**
+     * The URL to open.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents the platform specific uri/intent to open for each client.
+   */
+  export interface Schema$AppsDynamiteStorageOpenLinkAppUri {
+    /**
+     * An intent object to be opened in the corresponding android hosting app.
+     */
+    androidIntent?: Schema$AppsDynamiteStorageOpenLinkAppUriIntent;
+    /**
+     * A companion uri string to be opened in the chat companion window. on the web.
+     */
+    companionUri?: string | null;
+    /**
+     * A uri string to be opened in the corresponding iOS hosting app.
+     */
+    iosUri?: string | null;
+  }
+  /**
+   * Android intent.
+   */
+  export interface Schema$AppsDynamiteStorageOpenLinkAppUriIntent {
+    /**
+     * A list of extra data for the android intent. For example, for a calendar event edit intent, the event title information can be passed as extra data.
+     */
+    extraData?: Schema$AppsDynamiteStorageOpenLinkAppUriIntentExtraData[];
+    /**
+     * An android intent action string for the {@link android.content.Intent\} object. For example: for the view intent action type, a valid value will be android.content.Intent.ACTION_VIEW.
+     */
+    intentAction?: string | null;
+  }
+  /**
+   * Extra data for an android intent. Valid keys are defined in the hosting app contract.
+   */
+  export interface Schema$AppsDynamiteStorageOpenLinkAppUriIntentExtraData {
+    /**
+     * A key for the intent extra data.
+     */
+    key?: string | null;
+    /**
+     * Value for the given extra data key.
+     */
+    value?: string | null;
+  }
+  /**
+   * A widget that creates a UI item (for example, a drop-down list) with options for users to select.
+   */
+  export interface Schema$AppsDynamiteStorageSelectionInput {
+    items?: Schema$AppsDynamiteStorageSelectionInputSelectionItem[];
+    /**
+     * The label displayed ahead of the switch control.
+     */
+    label?: string | null;
+    /**
+     * The name of the text input which is used in formInput.
+     */
+    name?: string | null;
+    /**
+     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button.
+     */
+    onChangeAction?: Schema$AppsDynamiteStorageAction;
+    type?: string | null;
+  }
+  /**
+   * The item in the switch control. A radio button, at most one of the items is selected.
+   */
+  export interface Schema$AppsDynamiteStorageSelectionInputSelectionItem {
+    /**
+     * If more than one item is selected for `RADIO_BUTTON` and `DROPDOWN`, the first selected item is treated as selected and the ones after are ignored.
+     */
+    selected?: boolean | null;
+    /**
+     * The text to be displayed.
+     */
+    text?: string | null;
+    /**
+     * The value associated with this item. The client should use this as a form input value.
+     */
+    value?: string | null;
+  }
+  /**
+   * A container wrapping elements necessary for showing suggestion items used in text input autocomplete.
+   */
+  export interface Schema$AppsDynamiteStorageSuggestions {
+    /**
+     * A list of suggestions items which will be used in are used in autocomplete.
+     */
+    items?: Schema$AppsDynamiteStorageSuggestionsSuggestionItem[];
+  }
+  /**
+   * A suggestion item. Only supports text for now.
+   */
+  export interface Schema$AppsDynamiteStorageSuggestionsSuggestionItem {
+    text?: string | null;
+  }
+  /**
+   * A text input is a UI item where users can input text. A text input can also have an onChange action and suggestions.
+   */
+  export interface Schema$AppsDynamiteStorageTextInput {
+    /**
+     * The refresh function that returns suggestions based on the user's input text. If the callback is not specified, autocomplete is done in client side based on the initial suggestion items.
+     */
+    autoCompleteAction?: Schema$AppsDynamiteStorageAction;
+    /**
+     * The hint text.
+     */
+    hintText?: string | null;
+    /**
+     * The initial suggestions made before any user input.
+     */
+    initialSuggestions?: Schema$AppsDynamiteStorageSuggestions;
+    /**
+     * At least one of label and hintText must be specified.
+     */
+    label?: string | null;
+    /**
+     * The name of the text input which is used in formInput.
+     */
+    name?: string | null;
+    /**
+     * The onChange action, for example, invoke a function.
+     */
+    onChangeAction?: Schema$AppsDynamiteStorageAction;
+    /**
+     * The style of the text, for example, a single line or multiple lines.
+     */
+    type?: string | null;
+    /**
+     * The default value when there is no input from the user.
+     */
+    value?: string | null;
+  }
+  /**
+   * A paragraph of text that supports formatting. See [Text formatting](workspace/add-ons/concepts/widgets#text_formatting") for details.
+   */
+  export interface Schema$AppsDynamiteStorageTextParagraph {
+    /**
+     * The text that's shown in the widget.
+     */
+    text?: string | null;
+  }
+  /**
    * A widget is a UI element that presents texts, images, etc.
    */
-  export interface Schema$AppsDynamiteSharedWidget {
+  export interface Schema$AppsDynamiteStorageWidget {
     /**
      * A list of buttons. For example, the following JSON creates two buttons. The first is a filled text button and the second is an image button that opens a link: ``` "buttonList": { "buttons": [ "button": { "text": "Edit", "Color": { "Red": 255 "Green": 255 "Blue": 255 \} "disabled": true \}, "button": { "icon": { "knownIcon": "INVITE" "altText": "check calendar" \}, "onClick": { "openLink": { "url": "https://example.com/calendar" \} \} \}, ] \} ```
      */
-    buttonList?: Schema$AppsDynamiteSharedButtonList;
+    buttonList?: Schema$AppsDynamiteStorageButtonList;
     /**
      * Displays a single row of columns with widgets stacked vertically in each column. For example, the following JSON creates a 2 column widget each containing a single item. ``` "columns": { "wrapStyle": "WRAP", "columnItems": [ { "horizontalSizeStyle": "FILL_AVAILABLE_SPACE", "horizontalAlignment": "CENTER", "verticalAlignment" : "CENTER", "widgets": [ { "textParagraph": { "text": "First column text paragraph", \} \} ] \}, { "horizontalSizeStyle": "FILL_AVAILABLE_SPACE", "horizontalAlignment": "CENTER", "verticalAlignment" : "CENTER", "widgets": [ { "textParagraph": { "text": "Second column text paragraph", \} \} ] \}, ] \} \} ```
      */
-    columns?: Schema$AppsDynamiteSharedColumns;
+    columns?: Schema$AppsDynamiteStorageColumns;
     /**
      * Displays a selection/input widget for date/time. For example, the following JSON creates a date/time picker for an appointment time: ``` "date_time_picker": { "name": "appointment_time", "label": "Book your appointment at:", "type": "DateTimePickerType.DATE_AND_TIME", "valueMsEpoch": "796435200000" \} ```
      */
-    dateTimePicker?: Schema$AppsDynamiteSharedDateTimePicker;
+    dateTimePicker?: Schema$AppsDynamiteStorageDateTimePicker;
     /**
      * Displays a decorated text item in this widget. For example, the following JSON creates a decorated text widget showing email address: ``` "decoratedText": { "icon": { "knownIcon": "EMAIL" \}, "topLabel": "Email Address", "content": "heba.salam@example.com", "bottomLabel": "This is a new Email address!", "switchWidget": { "name": "has_send_welcome_email_to_heba_salam", "selected": false, "controlType": "ControlType.CHECKBOX" \} \} ```
      */
-    decoratedText?: Schema$AppsDynamiteSharedDecoratedText;
+    decoratedText?: Schema$AppsDynamiteStorageDecoratedText;
     /**
      * Displays a divider. For example, the following JSON creates a divider: ``` "divider": { \} ```
      */
-    divider?: Schema$AppsDynamiteSharedDivider;
+    divider?: Schema$AppsDynamiteStorageDivider;
     /**
      * Displays a grid with a collection of items. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "numColumns": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4.0 \}, "items": [ "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" ], "onClick": { "openLink": { "url":"https://www.example.com" \} \} \} ```
      */
-    grid?: Schema$AppsDynamiteSharedGrid;
+    grid?: Schema$AppsDynamiteStorageGrid;
     /**
      * The horizontal alignment of this widget.
      */
@@ -1735,19 +1739,19 @@ export namespace cloudsearch_v1 {
     /**
      * Displays an image in this widget. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://example.com/heba_salam.png" "altText": "Avatar for Heba Salam" \} ```
      */
-    image?: Schema$AppsDynamiteSharedImage;
+    image?: Schema$AppsDynamiteStorageImage;
     /**
      * Displays a switch control in this widget. For example, the following JSON creates a dropdown selection for size: ``` "switchControl": { "name": "size", "label": "Size" "type": "SelectionType.DROPDOWN", "items": [ { "text": "S", "value": "small", "selected": false \}, { "text": "M", "value": "medium", "selected": true \}, { "text": "L", "value": "large", "selected": false \}, { "text": "XL", "value": "extra_large", "selected": false \} ] \} ```
      */
-    selectionInput?: Schema$AppsDynamiteSharedSelectionInput;
+    selectionInput?: Schema$AppsDynamiteStorageSelectionInput;
     /**
      * Displays a text input in this widget. For example, the following JSON creates a text input for mail address: ``` "textInput": { "name": "mailing_address", "label": "Mailing Address" \} ``` As another example, the following JSON creates a text input for programming language with static suggestions: ``` "textInput": { "name": "preferred_programing_language", "label": "Preferred Language", "initialSuggestions": { "items": [ { "text": "C++" \}, { "text": "Java" \}, { "text": "JavaScript" \}, { "text": "Python" \} ] \} \} ```
      */
-    textInput?: Schema$AppsDynamiteSharedTextInput;
+    textInput?: Schema$AppsDynamiteStorageTextInput;
     /**
      * Displays a text paragraph in this widget. For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
      */
-    textParagraph?: Schema$AppsDynamiteSharedTextParagraph;
+    textParagraph?: Schema$AppsDynamiteStorageTextParagraph;
   }
   /**
    * Interactive objects inside a message. Documentation: - https://api.slack.com/docs/message-buttons
@@ -2046,7 +2050,7 @@ export namespace cloudsearch_v1 {
     /**
      * Card AddOn attachment with the possibility for specifying editable widgets.
      */
-    cardAddOnData?: Schema$AppsDynamiteSharedCard;
+    cardAddOnData?: Schema$AppsDynamiteStorageCard;
     /**
      * Deprecated version of Gmail AddOn attachment.
      */
@@ -2338,6 +2342,10 @@ export namespace cloudsearch_v1 {
      * Output only. Documents attached to an ongoing conference.
      */
     attachedDocuments?: Schema$DocumentInfo[];
+    /**
+     * List of available access types of the conference.
+     */
+    availableAccessTypes?: string[] | null;
     /**
      * Output only. The set of reactions that clients are allowed to send and can expect to receive. Note that a device in the conference should have the MAY_SEND_REACTIONS privilege to be able to send reactions.
      */
@@ -3388,7 +3396,9 @@ export namespace cloudsearch_v1 {
     freshnessScore?: number | null;
     joinedSpaceAffinityScore?: number | null;
     messageAgeInDays?: number | null;
+    messageSenderAffinityScore?: number | null;
     topicalityScore?: number | null;
+    unjoinedSpaceAffinityScore?: number | null;
   }
   /**
    * This is the proto for holding space level scoring information. This data is used for logging in query-api server and for testing purposes.
@@ -6153,7 +6163,7 @@ export namespace cloudsearch_v1 {
     userResourceName?: string | null;
   }
   /**
-   * A Principal represents something to which permissions are assigned, often but not always a user or group of some kind. It is most appropriate for use in ACLs and authorization checks. Callers should prefer to use the wrapper classes in google3/security/credentials/public/principal.h google3/java/com/google/security/credentials/Principal.java google3/security/credentials/go/principal.go unless direct proto access is essential. If you update this protocol buffer, please update the wrapper classes as well.
+   * A Principal represents something to which permissions are assigned, often but not always a user or group of some kind. It is most appropriate for use in ACLs and authorization checks. Callers should prefer to use the wrapper classes in google3/security/credentials/public/principal.h google3/java/com/google/security/credentials/Principal.java google3/security/credentials/go/principal.go unless direct proto access is essential. If you update this protocol buffer, please update the wrapper classes as well. LINT.IfChange
    */
   export interface Schema$PrincipalProto {
     /**
@@ -6317,7 +6327,7 @@ export namespace cloudsearch_v1 {
     htmlPropertyOptions?: Schema$HtmlPropertyOptions;
     integerPropertyOptions?: Schema$IntegerPropertyOptions;
     /**
-     * Indicates that the property can be used for generating facets. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for boolean, enum, and text properties.
+     * Indicates that the property can be used for generating facets. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for boolean, enum, integer, and text properties.
      */
     isFacetable?: boolean | null;
     /**
@@ -6639,7 +6649,7 @@ export namespace cloudsearch_v1 {
     secondary?: string | null;
   }
   /**
-   * Principal associated with a given RBAC role. This principal is used by Sphinx Provisioning Service for RBAC (go/cedi-auth) provisionable (go/sphinx-rbacz-design).
+   * Principal associated with a given RBAC role. This principal is used by Sphinx Provisioning Service for RBAC provisionable (go/sphinx-rbacz).
    */
   export interface Schema$RbacRoleProto {
     name?: string | null;
@@ -6649,12 +6659,12 @@ export namespace cloudsearch_v1 {
      */
     rbacNamespace?: string | null;
     /**
-     * Format: "RbacNamespaceName.RbacRoleName(/field=value)*", e.g., "hr.v1.Reader", "hr.v1.Reader/language=EN_US/country=USA/room=NYC-9th-11A201".
+     * Format: "role/z?" - "role" is the Sphinx globally unique name of the Sphinx role that provisions the RBAC role. - "/z?" suffix indicates which Zanzibar environment stores the role membership data ("/zd": dev, "/zs": staging, "/zp": prod, "/zt": local test instance). Example: "mysystem_myrole/zp"
      */
     rbacRoleName?: string | null;
   }
   /**
-   * Principal associated with a given RBAC subject. This principal is used by Sphinx Provisioning Service for RBAC (go/cedi-auth) provisionable (go/sphinx-rbacz-design).
+   * Principal associated with a given RBAC subject. This principal is used by Sphinx Provisioning Service for RBAC provisionable (go/sphinx-rbacz).
    */
   export interface Schema$RbacSubjectProto {
     /**
@@ -8793,11 +8803,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$YouTubeLiveBroadcastEvent {
     /**
+     * Input only. If the channel_id is for a YouTube Channel owned by a Brand Account, client is required to populate this field with the obfuscated gaia id of the Brand account when starting the broadcast.
+     */
+    brandAccountGaiaId?: string | null;
+    /**
      * Input only. The broadcast id, used to control the lifecycle of the event on YouTube
      */
     broadcastId?: string | null;
     /**
-     * YouTube channel associated with the broadcast.
+     * YouTube Channel associated with the broadcast.
      */
     channelId?: string | null;
     /**

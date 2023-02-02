@@ -355,7 +355,7 @@ export namespace dataplex_v1 {
      */
     jsonOptions?: Schema$GoogleCloudDataplexV1AssetDiscoverySpecJsonOptions;
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *".
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
      */
     schedule?: string | null;
   }
@@ -579,37 +579,161 @@ export namespace dataplex_v1 {
     engine?: string | null;
   }
   /**
+   * DataAccessSpec holds the access control configuration to be enforced on data stored within resources (eg: rows, columns in BigQuery Tables). When associated with data,the data is only accessible to principals explicitly granted access through the DataAttribute. Principals with access to the containing resource are not implicitly granted access.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataAccessSpec {
+    /**
+     * Optional. The format of strings follows the pattern followed by IAM in the bindings. user:{email\}, serviceAccount:{email\} group:{email\}. The set of principals to be granted reader role on data stored within resources.
+     */
+    readers?: string[] | null;
+  }
+  /**
+   * Denotes one dataAttribute in a dataTaxonomy, for example, PII. DataAttribute resources can be defined in a hierarchy. A single dataAttribute resource can contain specs of multiple types PII - ResourceAccessSpec : - readers :foo@bar.com - DataAccessSpec : - readers :bar@foo.com
+   */
+  export interface Schema$GoogleCloudDataplexV1DataAttribute {
+    /**
+     * Output only. The number of child attributes present for this attribute.
+     */
+    attributeCount?: number | null;
+    /**
+     * Output only. The time when the DataAttribute was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Specified when applied to data stored on the resource (eg: rows, columns in BigQuery Tables).
+     */
+    dataAccessSpec?: Schema$GoogleCloudDataplexV1DataAccessSpec;
+    /**
+     * Optional. Description of the DataAttribute.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name.
+     */
+    displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels for the DataAttribute.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The relative resource name of the dataAttribute, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}.
+     */
+    name?: string | null;
+    /**
+     * Optional. The ID of the parent DataAttribute resource, should belong to the same data taxonomy. Circular dependency in parent chain is not valid. Maximum depth of the hierarchy allowed is 4. a -\> b -\> c -\> d -\> e, depth = 4
+     */
+    parentId?: string | null;
+    /**
+     * Optional. Specified when applied to a resource (eg: Cloud Storage bucket, BigQuery dataset, BigQuery table).
+     */
+    resourceAccessSpec?: Schema$GoogleCloudDataplexV1ResourceAccessSpec;
+    /**
+     * Output only. System generated globally unique ID for the DataAttribute. This ID will be different if the DataAttribute is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the DataAttribute was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * DataAttributeBinding represents binding of attributes to resources. Eg: Bind 'CustomerInfo' entity with 'PII' attribute.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataAttributeBinding {
+    /**
+     * Optional. List of attributes to be associated with the resource, provided in the form: projects/{project\}/locations/{location\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     */
+    attributes?: string[] | null;
+    /**
+     * Output only. The time when the DataAttributeBinding was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the DataAttributeBinding.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name.
+     */
+    displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. Etags must be used when calling the DeleteDataAttributeBinding and the UpdateDataAttributeBinding method.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels for the DataAttributeBinding.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The relative resource name of the Data Attribute Binding, of the form: projects/{project_number\}/locations/{location\}/dataAttributeBindings/{data_attribute_binding_id\}
+     */
+    name?: string | null;
+    /**
+     * Optional. The list of paths for items within the associated resource (eg. columns within a table) along with attribute bindings.
+     */
+    paths?: Schema$GoogleCloudDataplexV1DataAttributeBindingPath[];
+    /**
+     * Optional. Immutable. The resource name of the resource that is binded to attributes. Presently, only entity resource is supported in the form: projects/{project\}/locations/{location\}/lakes/{lake\}/zones/{zone\}/entities/{entity_id\} Must belong in the same project and region as the attribute binding, and there can only exist one active binding for a resource.
+     */
+    resource?: string | null;
+    /**
+     * Output only. System generated globally unique ID for the DataAttributeBinding. This ID will be different if the DataAttributeBinding is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the DataAttributeBinding was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a subresource of a given resource, and associated bindings with it.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataAttributeBindingPath {
+    /**
+     * Optional. List of attributes to be associated with the path of the resource, provided in the form: projects/{project\}/locations/{location\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     */
+    attributes?: string[] | null;
+    /**
+     * Required. The name identifier of the path. Nested columns should be of the form: 'country.state.city'.
+     */
+    name?: string | null;
+  }
+  /**
    * DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResult {
     /**
-     * This represents the profile information per field.
+     * The profile information per field.
      */
     profile?: Schema$GoogleCloudDataplexV1DataProfileResultProfile;
     /**
-     * The count of all rows in the sampled data. Return 0, if zero rows.
+     * The count of rows scanned.
      */
     rowCount?: string | null;
     /**
-     * The data scanned for this profile.
+     * The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
   }
   /**
-   * Profile information describing the structure and layout of the data and contains the profile info.
+   * Contains name, type, mode and field type specific profile information.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfile {
     /**
-     * The sequence of fields describing data in table entities.
+     * List of fields with structural and profile information for each field.
      */
     fields?: Schema$GoogleCloudDataplexV1DataProfileResultProfileField[];
   }
   /**
-   * Represents a column field within a table schema.
+   * A field within a table.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileField {
     /**
-     * The mode of the field. Its value will be: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.
+     * The mode of the field. Possible values include: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.
      */
     mode?: string | null;
     /**
@@ -617,7 +741,7 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * The profile information for the corresponding field.
+     * Profile information for the corresponding field.
      */
     profile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo;
     /**
@@ -626,111 +750,111 @@ export namespace dataplex_v1 {
     type?: string | null;
   }
   /**
-   * ProfileInfo defines the profile information for each schema field type.
+   * The profile information for each field type.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo {
     /**
-     * The ratio of rows that are distinct against the rows in the sampled data.
+     * Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.
      */
     distinctRatio?: number | null;
     /**
-     * The corresponding double field profile.
+     * Double type field information.
      */
     doubleProfile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo;
     /**
-     * The corresponding integer field profile.
+     * Integer type field information.
      */
     integerProfile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo;
     /**
-     * The ratio of null rows against the rows in the sampled data.
+     * Ratio of rows with null value against total scanned rows.
      */
     nullRatio?: number | null;
     /**
-     * The corresponding string field profile.
+     * String type field information.
      */
     stringProfile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo;
     /**
-     * The array of top N values of the field in the sampled data. Currently N is set as 10 or equal to distinct values in the field, whichever is smaller. This will be optional for complex non-groupable data-types such as JSON, ARRAY, JSON, STRUCT.
+     * The list of top N non-null values and number of times they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.
      */
     topNValues?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue[];
   }
   /**
-   * DoubleFieldInfo defines output for any double type field.
+   * The profile information for a double type field.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo {
     /**
-     * The average of non-null values of double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Average of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     average?: number | null;
     /**
-     * The maximum value of a double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Maximum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     max?: number | null;
     /**
-     * The minimum value of a double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Minimum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     min?: number | null;
     /**
-     * A quartile divide the numebr of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. So, here the quartiles is provided as an ordered list of quartile values, occurring in order Q1, median, Q3.
+     * A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.
      */
     quartiles?: number[] | null;
     /**
-     * The standard deviation of non-null of double field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     standardDeviation?: number | null;
   }
   /**
-   * IntegerFieldInfo defines output for any integer type field.
+   * The profile information for an integer type field.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo {
     /**
-     * The average of non-null values of integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Average of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     average?: number | null;
     /**
-     * The maximum value of an integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Maximum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     max?: string | null;
     /**
-     * The minimum value of an integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Minimum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     min?: string | null;
     /**
-     * A quartile divide the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. So, here the quartiles is provided as an ordered list of quartile values, occurring in order Q1, median, Q3.
+     * A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.
      */
     quartiles?: string[] | null;
     /**
-     * The standard deviation of non-null of integer field in the sampled data. Return NaN, if the field has a NaN. Optional if zero non-null rows.
+     * Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     standardDeviation?: number | null;
   }
   /**
-   * StringFieldInfo defines output info for any string type field.
+   * The profile information for a string type field.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo {
     /**
-     * The average length of a string field in the sampled data. Optional if zero non-null rows.
+     * Average length of non-null values in the scanned data.
      */
     averageLength?: number | null;
     /**
-     * The maximum length of a string field in the sampled data. Optional if zero non-null rows.
+     * Maximum length of non-null values in the scanned data.
      */
     maxLength?: string | null;
     /**
-     * The minimum length of the string field in the sampled data. Optional if zero non-null rows.
+     * Minimum length of non-null values in the scanned data.
      */
     minLength?: string | null;
   }
   /**
-   * The TopNValue defines the structure of output of top N values of a field.
+   * Top N non-null values in the scanned data.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue {
     /**
-     * The frequency count of the corresponding value in the field.
+     * Count of the corresponding value in the scanned data.
      */
     count?: string | null;
     /**
-     * The value is the string value of the actual value from the field.
+     * String value of a top N non-null value.
      */
     value?: string | null;
   }
@@ -739,7 +863,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileSpec {}
   /**
-   * DataQualityDimensionResult provides a more detailed, per-dimension level view of the results.
+   * DataQualityDimensionResult provides a more detailed, per-dimension view of the results.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimensionResult {
     /**
@@ -752,7 +876,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityResult {
     /**
-     * A list of results at the dimension-level.
+     * A list of results at the dimension level.
      */
     dimensions?: Schema$GoogleCloudDataplexV1DataQualityDimensionResult[];
     /**
@@ -781,11 +905,11 @@ export namespace dataplex_v1 {
      */
     column?: string | null;
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension-level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
+     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
      */
     dimension?: string | null;
     /**
-     * Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing. Only applicable to ColumnMap rules.
+     * Optional. Rows with null values will automatically fail a rule, unless ignore_null is true. In that case, such null rows are trivially considered passing.Only applicable to ColumnMap rules.
      */
     ignoreNull?: boolean | null;
     /**
@@ -817,7 +941,7 @@ export namespace dataplex_v1 {
      */
     tableConditionExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation;
     /**
-     * Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.00 indicates default value (i.e. 1.0)
+     * Optional. The minimum ratio of passing_rows / total_rows required to pass this rule, with a range of 0.0, 1.0.0 indicates default value (i.e. 1.0).
      */
     threshold?: number | null;
     /**
@@ -842,11 +966,11 @@ export namespace dataplex_v1 {
      */
     minValue?: string | null;
     /**
-     * Optional. Whether each value needs to be strictly lesser than ('<') the maximum, or if equality is allowed. Only relevant if a max_value has been defined. Default = false.
+     * Optional. Whether each value needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.
      */
     strictMaxEnabled?: boolean | null;
     /**
-     * Optional. Whether each value needs to be strictly greater than ('\>') the minimum, or if equality is allowed. Only relevant if a min_value has been defined. Default = false.
+     * Optional. Whether each value needs to be strictly greater than ('\>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.
      */
     strictMinEnabled?: boolean | null;
   }
@@ -854,14 +978,17 @@ export namespace dataplex_v1 {
    * Evaluates whether each column value matches a specified regex.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleRegexExpectation {
+    /**
+     * A regular expression the column value is expected to match.
+     */
     regex?: string | null;
   }
   /**
-   * DataQualityRuleResult provides a more detailed, per-rule level view of the results.
+   * DataQualityRuleResult provides a more detailed, per-rule view of the results.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleResult {
     /**
-     * The number of rows a rule was evaluated against. This field is only valid for ColumnMap type rules. Evaluated count can be configured to either (1) include all rows (default) - with null rows automatically failing rule evaluation OR (2) exclude null rows from the evaluated_count, by setting ignore_nulls = true
+     * The number of rows a rule was evaluated against. This field is only valid for ColumnMap type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.
      */
     evaluatedCount?: string | null;
     /**
@@ -890,15 +1017,21 @@ export namespace dataplex_v1 {
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule;
   }
   /**
-   * Evaluates whether each row passes the specified condition. The SQL expression needs to use BigQuery standard SQL syntax and should produce a boolean per row as the result. Example: col1 \>= 0 AND col2 < 10
+   * Evaluates whether each row passes the specified condition.The SQL expression needs to use BigQuery standard SQL syntax and should produce a boolean value per row as the result.Example: col1 \>= 0 AND col2 < 10
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation {
+    /**
+     * The SQL expression.
+     */
     sqlExpression?: string | null;
   }
   /**
    * Evaluates whether each column value is contained by a specified set.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleSetExpectation {
+    /**
+     * Expected values for the column value.
+     */
     values?: string[] | null;
   }
   /**
@@ -906,27 +1039,30 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation {
     /**
-     * The maximum column statistic value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.
+     * The maximum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.
      */
     maxValue?: string | null;
     /**
-     * The minimum column statistic value allowed for a row to pass this validation. At least one of min_value and max_value need to be provided.
+     * The minimum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.
      */
     minValue?: string | null;
     statistic?: string | null;
     /**
-     * Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed. Only relevant if a max_value has been defined. Default = false.
+     * Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.
      */
     strictMaxEnabled?: boolean | null;
     /**
-     * Whether column statistic needs to be strictly greater than ('\>') the minimum, or if equality is allowed. Only relevant if a min_value has been defined. Default = false.
+     * Whether column statistic needs to be strictly greater than ('\>') the minimum, or if equality is allowed.Only relevant if a min_value has been defined. Default = false.
      */
     strictMinEnabled?: boolean | null;
   }
   /**
-   * Evaluates whether the provided expression is true. The SQL expression needs to use BigQuery standard SQL syntax and should produce a scalar boolean result. Example: MIN(col1) \>= 0
+   * Evaluates whether the provided expression is true.The SQL expression needs to use BigQuery standard SQL syntax and should produce a scalar boolean result.Example: MIN(col1) \>= 0
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation {
+    /**
+     * The SQL expression.
+     */
     sqlExpression?: string | null;
   }
   /**
@@ -943,7 +1079,7 @@ export namespace dataplex_v1 {
     rules?: Schema$GoogleCloudDataplexV1DataQualityRule[];
   }
   /**
-   * Represents a user-visible job which provides the insights for the related data source. For examples: - Data Quality: generates queries based on the rules and run against the data to get data quality check results. - Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).
+   * Represents a user-visible job which provides the insights for the related data source.For example: Data Quality: generates queries based on the rules and runs against the data to get data quality check results. Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).
    */
   export interface Schema$GoogleCloudDataplexV1DataScan {
     /**
@@ -971,15 +1107,15 @@ export namespace dataplex_v1 {
      */
     dataQualitySpec?: Schema$GoogleCloudDataplexV1DataQualitySpec;
     /**
-     * Optional. Description of the scan. * Must be between 1-1024 characters.
+     * Optional. Description of the scan. Must be between 1-1024 characters.
      */
     description?: string | null;
     /**
-     * Optional. User friendly display name. * Must be between 1-256 characters.
+     * Optional. User friendly display name. Must be between 1-256 characters.
      */
     displayName?: string | null;
     /**
-     * Optional. DataScan execution settings. If not specified, the fields under it will use their default values.
+     * Optional. DataScan execution settings.If not specified, the fields in it will use their default values.
      */
     executionSpec?: Schema$GoogleCloudDataplexV1DataScanExecutionSpec;
     /**
@@ -991,7 +1127,7 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}. where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string | null;
     /**
@@ -1095,11 +1231,11 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataScanExecutionSpec {
     /**
-     * Immutable. The unnested field (Date or Timestamp) that contains values that monotonically increase over time.
+     * Immutable. The unnested field (of type Date or Timestamp) that contains values which monotonically increase over time.If not specified, a data scan will run for all data in the table.
      */
     field?: string | null;
     /**
-     * Optional. Spec related to how often and when a scan should be triggered. If not specified, the default is OnDemand, which means the scan will not run until the user calls RunDataScan API.
+     * Optional. Spec related to how often and when a scan should be triggered.If not specified, the default is OnDemand, which means the scan will not run until the user calls RunDataScan API.
      */
     trigger?: Schema$GoogleCloudDataplexV1Trigger;
   }
@@ -1117,7 +1253,7 @@ export namespace dataplex_v1 {
     latestJobStartTime?: string | null;
   }
   /**
-   * A DataScanJob represents an instance of a data scan.
+   * A DataScanJob represents an instance of DataScan execution.
    */
   export interface Schema$GoogleCloudDataplexV1DataScanJob {
     /**
@@ -1145,7 +1281,7 @@ export namespace dataplex_v1 {
      */
     message?: string | null;
     /**
-     * Output only. The relative resource name of the DataScanJob, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}/jobs/{job_id\}. where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Output only. The relative resource name of the DataScanJob, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}/jobs/{job_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string | null;
     /**
@@ -1170,9 +1306,50 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataSource {
     /**
-     * Immutable. The dataplex entity that contains the data for DataScan, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
+     * Immutable. The Dataplex entity that represents the data source (e.g. BigQuery table) for DataScan, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
      */
     entity?: string | null;
+  }
+  /**
+   * DataTaxonomy represents a set of hierarchical DataAttributes resources, grouped with a common theme Eg: 'SensitiveDataTaxonomy' can have attributes to manage PII data. It is defined at project level.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataTaxonomy {
+    /**
+     * Output only. The number of attributes in the DataTaxonomy.
+     */
+    attributeCount?: number | null;
+    /**
+     * Output only. The time when the DataTaxonomy was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the DataTaxonomy.
+     */
+    description?: string | null;
+    /**
+     * Optional. User friendly display name.
+     */
+    displayName?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels for the DataTaxonomy.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The relative resource name of the DataTaxonomy, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. System generated globally unique ID for the dataTaxonomy. This ID will be different if the DataTaxonomy is deleted and re-created with the same name.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the DataTaxonomy was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * The payload associated with Discovery data processing.
@@ -1339,6 +1516,10 @@ export namespace dataplex_v1 {
      * Required. Immutable. The type of entity.
      */
     type?: string | null;
+    /**
+     * Output only. System generated unique ID for the Entity. This ID will be different if the Entity is deleted and re-created with the same name.
+     */
+    uid?: string | null;
     /**
      * Output only. The time when the entity was last updated.
      */
@@ -1705,11 +1886,45 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * List DataAttributeBindings response.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse {
+    /**
+     * DataAttributeBindings under the given parent Location.
+     */
+    dataAttributeBindings?: Schema$GoogleCloudDataplexV1DataAttributeBinding[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
+   * List DataAttributes response.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListDataAttributesResponse {
+    /**
+     * DataAttributes under the given parent DataTaxonomy.
+     */
+    dataAttributes?: Schema$GoogleCloudDataplexV1DataAttribute[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
    * List DataScanJobs response.
    */
   export interface Schema$GoogleCloudDataplexV1ListDataScanJobsResponse {
     /**
-     * DataScanJobs (metadata only) under a given dataScan.
+     * DataScanJobs (BASIC view only) under a given dataScan.
      */
     dataScanJobs?: Schema$GoogleCloudDataplexV1DataScanJob[];
     /**
@@ -1722,7 +1937,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ListDataScansResponse {
     /**
-     * DataScans (metadata only) under the given parent location.
+     * DataScans (BASIC view only) under the given parent location.
      */
     dataScans?: Schema$GoogleCloudDataplexV1DataScan[];
     /**
@@ -1733,6 +1948,23 @@ export namespace dataplex_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * List DataTaxonomies response.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse {
+    /**
+     * DataTaxonomies under the given parent location.
+     */
+    dataTaxonomies?: Schema$GoogleCloudDataplexV1DataTaxonomy[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
   }
   /**
    * List metadata entities response.
@@ -1901,6 +2133,23 @@ export namespace dataplex_v1 {
     values?: string[] | null;
   }
   /**
+   * ResourceAccessSpec holds the access control configuration to be enforced on the resources, for example, Cloud Storage bucket, BigQuery dataset, BigQuery table.
+   */
+  export interface Schema$GoogleCloudDataplexV1ResourceAccessSpec {
+    /**
+     * Optional. The set of principals to be granted owner role on the resource.
+     */
+    owners?: string[] | null;
+    /**
+     * Optional. The format of strings follows the pattern followed by IAM in the bindings. user:{email\}, serviceAccount:{email\} group:{email\}. The set of principals to be granted reader role on the resource.
+     */
+    readers?: string[] | null;
+    /**
+     * Optional. The set of principals to be granted writer role on the resource.
+     */
+    writers?: string[] | null;
+  }
+  /**
    * Run DataScan Request
    */
   export interface Schema$GoogleCloudDataplexV1RunDataScanRequest {}
@@ -1909,7 +2158,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1RunDataScanResponse {
     /**
-     * DataScanJob created by RunDataScan API.
+     * DataScanJob created by RunDataScan request.
      */
     job?: Schema$GoogleCloudDataplexV1DataScanJob;
   }
@@ -1934,15 +2183,15 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ScannedDataIncrementalField {
     /**
-     * Value that marks the end of the range
+     * Value that marks the end of the range.
      */
     end?: string | null;
     /**
-     * The field that contains values which monotonically increases over time (e.g. timestamp).
+     * The field that contains values which monotonically increases over time (e.g. a timestamp column).
      */
     field?: string | null;
     /**
-     * Value that marks the start of the range
+     * Value that marks the start of the range.
      */
     start?: string | null;
   }
@@ -2400,7 +2649,7 @@ export namespace dataplex_v1 {
      */
     maxRetries?: number | null;
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running tasks periodically. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *". This field is required for RECURRING tasks.
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running tasks periodically. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *. This field is required for RECURRING tasks.
      */
     schedule?: string | null;
     /**
@@ -2417,7 +2666,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1Trigger {
     /**
-     * The scan runs one-time shortly after DataScan Creation.
+     * The scan runs once via RunDataScan API.
      */
     onDemand?: Schema$GoogleCloudDataplexV1TriggerOnDemand;
     /**
@@ -2426,7 +2675,7 @@ export namespace dataplex_v1 {
     schedule?: Schema$GoogleCloudDataplexV1TriggerSchedule;
   }
   /**
-   * The scan runs one-time via RunDataScan API.
+   * The scan runs once via RunDataScan API.
    */
   export interface Schema$GoogleCloudDataplexV1TriggerOnDemand {}
   /**
@@ -2434,7 +2683,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1TriggerSchedule {
     /**
-     * Required. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running scans periodically. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *". This field is required for Schedule scans.
+     * Required. Cron (https://en.wikipedia.org/wiki/Cron) schedule for running scans periodically.To explicitly set a timezone in the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database (wikipedia (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)). For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.This field is required for Schedule scans.
      */
     cron?: string | null;
   }
@@ -2516,7 +2765,7 @@ export namespace dataplex_v1 {
      */
     jsonOptions?: Schema$GoogleCloudDataplexV1ZoneDiscoverySpecJsonOptions;
     /**
-     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *".
+     * Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database. For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.
      */
     schedule?: string | null;
   }
@@ -3124,6 +3373,455 @@ export namespace dataplex_v1 {
     }
 
     /**
+     * Create a DataAttributeBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.create({
+     *     // Required. DataAttributeBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Location.
+     *     dataAttributeBindingId: 'placeholder-value',
+     *     // Required. The resource name of the parent data taxonomy projects/{project_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "paths": [],
+     *       //   "resource": "my_resource",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Dataattributebindings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataattributebindings$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataattributebindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataattributebindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataAttributeBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a DataAttributeBinding resource. All attributes within the DataAttributeBinding must be deleted before the DataAttributeBinding can be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.delete({
+     *     // Required. If the client provided etag value does not match the current etag value, the DeleteDataAttributeBindingRequest method returns an ABORTED error response. Etags must be used when calling the DeleteDataAttributeBinding.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the DataAttributeBinding: projects/{project_number\}/locations/{location_id\}/dataAttributeBindings/{data_attribute_binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataattributebindings$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataattributebindings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataattributebindings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a DataAttributeBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.get({
+     *     // Required. The resource name of the DataAttributeBinding: projects/{project_number\}/locations/{location_id\}/dataAttributeBindings/{data_attribute_binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "paths": [],
+     *   //   "resource": "my_resource",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Dataattributebindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttributeBinding>;
+    get(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttributeBinding>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataattributebindings$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttributeBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataattributebindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataattributebindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1DataAttributeBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1DataAttributeBinding>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
@@ -3262,6 +3960,315 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists DataAttributeBinding resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.list({
+     *     // Optional. Filter request. Filter using resource: filter=resource:"resource-name" Filter using attribute: filter=attributes:"attribute-name" Filter using attribute in paths list: filter=paths.attributes:"attribute-name"
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataAttributeBindings to return. The service may return fewer than this value. If unspecified, at most 10 DataAttributeBindings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataAttributeBindings call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributeBindings must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the Location: projects/{project_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataAttributeBindings": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dataattributebindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataattributebindings$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataattributebindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataattributebindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataAttributeBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListDataAttributeBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a DataAttributeBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.patch({
+     *     // Output only. The relative resource name of the Data Attribute Binding, of the form: projects/{project_number\}/locations/{location\}/dataAttributeBindings/{data_attribute_binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "paths": [],
+     *       //   "resource": "my_resource",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dataattributebindings$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataattributebindings$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataattributebindings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataattributebindings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -3564,6 +4571,44 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Create
+    extends StandardParameters {
+    /**
+     * Required. DataAttributeBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Location.
+     */
+    dataAttributeBindingId?: string;
+    /**
+     * Required. The resource name of the parent data taxonomy projects/{project_number\}/locations/{location_id\}
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataAttributeBinding;
+  }
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Delete
+    extends StandardParameters {
+    /**
+     * Required. If the client provided etag value does not match the current etag value, the DeleteDataAttributeBindingRequest method returns an ABORTED error response. Etags must be used when calling the DeleteDataAttributeBinding.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the DataAttributeBinding: projects/{project_number\}/locations/{location_id\}/dataAttributeBindings/{data_attribute_binding_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the DataAttributeBinding: projects/{project_number\}/locations/{location_id\}/dataAttributeBindings/{data_attribute_binding_id\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Dataattributebindings$Getiampolicy
     extends StandardParameters {
     /**
@@ -3574,6 +4619,49 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter request. Filter using resource: filter=resource:"resource-name" Filter using attribute: filter=attributes:"attribute-name" Filter using attribute in paths list: filter=paths.attributes:"attribute-name"
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of DataAttributeBindings to return. The service may return fewer than this value. If unspecified, at most 10 DataAttributeBindings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListDataAttributeBindings call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributeBindings must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Location: projects/{project_number\}/locations/{location_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dataattributebindings$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The relative resource name of the Data Attribute Binding, of the form: projects/{project_number\}/locations/{location\}/dataAttributeBindings/{data_attribute_binding_id\}
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataAttributeBinding;
   }
   export interface Params$Resource$Projects$Locations$Dataattributebindings$Setiampolicy
     extends StandardParameters {
@@ -3609,7 +4697,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates a dataScan resource.
+     * Creates a DataScan resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -3635,9 +4723,9 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.create({
-     *     // Required. DataScan identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the customer project / location.
+     *     // Required. DataScan identifier. Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
      *     dataScanId: 'placeholder-value',
-     *     // Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -3774,7 +4862,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Delete the dataScan resource.
+     * Deletes a DataScan resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -3800,7 +4888,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.delete({
-     *     // Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
      *   });
      *   console.log(res.data);
@@ -3911,7 +4999,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Get dataScan resource.
+     * Gets a DataScan resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -3937,9 +5025,9 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.get({
-     *     // Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
-     *     // Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.
+     *     // Optional. Select the DataScan view to return. Defaults to BASIC.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4203,7 +5291,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists dataScans.
+     * Lists DataScans.
      * @example
      * ```js
      * // Before running the sample:
@@ -4237,7 +5325,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListDataScans call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataScans must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. projects/{project\}/locations/{location_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -4351,7 +5439,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Update the dataScan resource.
+     * Updates a DataScan resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -4377,7 +5465,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.patch({
-     *     // Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}. where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
      *     // Required. Mask of fields to update.
      *     updateMask: 'placeholder-value',
@@ -4513,7 +5601,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Run an on demand execution of a DataScan.
+     * Runs an on-demand execution of a DataScan
      * @example
      * ```js
      * // Before running the sample:
@@ -4539,7 +5627,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.run({
-     *     // Required. The resource name of the DataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}. where {project\} refers to a project_id or project_number and location_id refers to a GCP region. Only on-demand DataScans are allowed.
+     *     // Required. The resource name of the DataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}. where project refers to a project_id or project_number and location_id refers to a GCP region.Only OnDemand data scans are allowed.
      *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
      *
      *     // Request body metadata
@@ -4951,11 +6039,11 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Create
     extends StandardParameters {
     /**
-     * Required. DataScan identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the customer project / location.
+     * Required. DataScan identifier. Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
      */
     dataScanId?: string;
     /**
-     * Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     parent?: string;
 
@@ -4967,18 +6055,18 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datascans$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string;
     /**
-     * Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.
+     * Optional. Select the DataScan view to return. Defaults to BASIC.
      */
     view?: string;
   }
@@ -5012,14 +6100,14 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. projects/{project\}/locations/{location_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datascans$Patch
     extends StandardParameters {
     /**
-     * Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}. where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string;
     /**
@@ -5035,7 +6123,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Run
     extends StandardParameters {
     /**
-     * Required. The resource name of the DataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}. where {project\} refers to a project_id or project_number and location_id refers to a GCP region. Only on-demand DataScans are allowed.
+     * Required. The resource name of the DataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}. where project refers to a project_id or project_number and location_id refers to a GCP region.Only OnDemand data scans are allowed.
      */
     name?: string;
 
@@ -5076,7 +6164,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Get DataScanJob resource.
+     * Gets a DataScanJob resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -5102,9 +6190,9 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.jobs.get({
-     *     // Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/dataScanJobs/{data_scan_job_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/dataScanJobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan/jobs/my-job',
-     *     // Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.
+     *     // Optional. Select the DataScanJob view to return. Defaults to BASIC.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5223,7 +6311,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists DataScanJobs under the given dataScan.
+     * Lists DataScanJobs under the given DataScan.
      * @example
      * ```js
      * // Before running the sample:
@@ -5253,7 +6341,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListDataScanJobs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataScanJobs must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent environment: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Required. The resource name of the parent environment: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     parent: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
      *   });
      *   console.log(res.data);
@@ -5366,11 +6454,11 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Jobs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/dataScanJobs/{data_scan_job_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/dataScanJobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string;
     /**
-     * Optional. Used to select the subset of DataScan information to return. Defaults to BASIC.
+     * Optional. Select the DataScanJob view to return. Defaults to BASIC.
      */
     view?: string;
   }
@@ -5385,7 +6473,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent environment: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where {project\} refers to a project_id or project_number and location_id refers to a GCP region.
+     * Required. The resource name of the parent environment: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     parent?: string;
   }
@@ -5397,6 +6485,448 @@ export namespace dataplex_v1 {
       this.context = context;
       this.attributes =
         new Resource$Projects$Locations$Datataxonomies$Attributes(this.context);
+    }
+
+    /**
+     * Create a DataTaxonomy resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.create({
+     *     // Required. DataTaxonomy identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Project.
+     *     dataTaxonomyId: 'placeholder-value',
+     *     // Required. The resource name of the data taxonomy location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeCount": 0,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datataxonomies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataTaxonomies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a DataTaxonomy resource. All attributes within the DataTaxonomy must be deleted before the DataTaxonomy can be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.delete({
+     *     // Optional. If the client provided etag value does not match the current etag value,the DeleteDataTaxonomy method returns an ABORTED error.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datataxonomies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a DataTaxonomy resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.get({
+     *     // Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeCount": 0,
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataTaxonomy>;
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataTaxonomy>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataTaxonomy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataTaxonomy>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataTaxonomy>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataTaxonomy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataTaxonomy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataTaxonomy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataTaxonomy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datataxonomies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1DataTaxonomy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1DataTaxonomy>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -5537,6 +7067,311 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists DataTaxonomy resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataTaxonomies to return. The service may return fewer than this value. If unspecified, at most 10 DataTaxonomies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataTaxonomies call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataTaxonomies must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the DataTaxonomy location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataTaxonomies": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datataxonomies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataTaxonomies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListDataTaxonomiesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a DataTaxonomy resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.patch({
+     *     // Output only. The relative resource name of the DataTaxonomy, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}.
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeCount": 0,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datataxonomies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -5838,6 +7673,44 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Create
+    extends StandardParameters {
+    /**
+     * Required. DataTaxonomy identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Project.
+     */
+    dataTaxonomyId?: string;
+    /**
+     * Required. The resource name of the data taxonomy location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataTaxonomy;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If the client provided etag value does not match the current etag value,the DeleteDataTaxonomy method returns an ABORTED error.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datataxonomies$Getiampolicy
     extends StandardParameters {
     /**
@@ -5848,6 +7721,49 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter request.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of DataTaxonomies to return. The service may return fewer than this value. If unspecified, at most 10 DataTaxonomies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListDataTaxonomies call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataTaxonomies must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the DataTaxonomy location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The relative resource name of the DataTaxonomy, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataTaxonomy;
   }
   export interface Params$Resource$Projects$Locations$Datataxonomies$Setiampolicy
     extends StandardParameters {
@@ -5878,6 +7794,460 @@ export namespace dataplex_v1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Create a DataAttribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.attributes.create({
+     *       // Required. DataAttribute identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the DataTaxonomy.
+     *       dataAttributeId: 'placeholder-value',
+     *       // Required. The resource name of the parent data taxonomy projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *       // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attributeCount": 0,
+     *         //   "createTime": "my_createTime",
+     *         //   "dataAccessSpec": {},
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "parentId": "my_parentId",
+     *         //   "resourceAccessSpec": {},
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attributes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Data Attribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.attributes.delete({
+     *       // Optional. If the client provided etag value does not match the current etag value, the DeleteDataAttribute method returns an ABORTED error response.
+     *       etag: 'placeholder-value',
+     *       // Required. The resource name of the DataAttribute: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     *       name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a Data Attribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.attributes.get({
+     *     // Required. The resource name of the dataAttribute: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeCount": 0,
+     *   //   "createTime": "my_createTime",
+     *   //   "dataAccessSpec": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parentId": "my_parentId",
+     *   //   "resourceAccessSpec": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttribute>;
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttribute>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttribute>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttribute>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttribute>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttribute>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttribute>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1DataAttribute>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1DataAttribute>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1DataAttribute>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1DataAttribute>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -6019,6 +8389,319 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists Data Attribute resources in a DataTaxonomy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.attributes.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataAttributes to return. The service may return fewer than this value. If unspecified, at most 10 dataAttributes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataAttributes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributes must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataAttributes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Attributes$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datataxonomies$Attributes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attributes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListDataAttributesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a DataAttribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.attributes.patch(
+     *     {
+     *       // Output only. The relative resource name of the dataAttribute, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}.
+     *       name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *       // Required. Mask of fields to update.
+     *       updateMask: 'placeholder-value',
+     *       // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attributeCount": 0,
+     *         //   "createTime": "my_createTime",
+     *         //   "dataAccessSpec": {},
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "parentId": "my_parentId",
+     *         //   "resourceAccessSpec": {},
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -6323,6 +9006,44 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Create
+    extends StandardParameters {
+    /**
+     * Required. DataAttribute identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the DataTaxonomy.
+     */
+    dataAttributeId?: string;
+    /**
+     * Required. The resource name of the parent data taxonomy projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     */
+    parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataAttribute;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteDataAttribute method returns an ABORTED error response.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the DataAttribute: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the dataAttribute: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Getiampolicy
     extends StandardParameters {
     /**
@@ -6333,6 +9054,49 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter request.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of DataAttributes to return. The service may return fewer than this value. If unspecified, at most 10 dataAttributes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListDataAttributes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributes must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The relative resource name of the dataAttribute, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1DataAttribute;
   }
   export interface Params$Resource$Projects$Locations$Datataxonomies$Attributes$Setiampolicy
     extends StandardParameters {
@@ -16923,6 +19687,7 @@ export namespace dataplex_v1 {
      *       //   "schema": {},
      *       //   "system": "my_system",
      *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -16947,6 +19712,7 @@ export namespace dataplex_v1 {
      *   //   "schema": {},
      *   //   "system": "my_system",
      *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -17229,6 +19995,7 @@ export namespace dataplex_v1 {
      *   //   "schema": {},
      *   //   "system": "my_system",
      *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -17530,6 +20297,7 @@ export namespace dataplex_v1 {
      *       //   "schema": {},
      *       //   "system": "my_system",
      *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -17554,6 +20322,7 @@ export namespace dataplex_v1 {
      *   //   "schema": {},
      *   //   "system": "my_system",
      *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }

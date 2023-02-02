@@ -170,6 +170,10 @@ export namespace workflowexecutions_v1 {
      */
     error?: Schema$Error;
     /**
+     * Labels associated with this execution. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Output only. The resource name of the execution. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
     name?: string | null;
@@ -396,6 +400,7 @@ export namespace workflowexecutions_v1 {
      *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
@@ -566,6 +571,7 @@ export namespace workflowexecutions_v1 {
      *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
@@ -705,6 +711,7 @@ export namespace workflowexecutions_v1 {
      *         //   "duration": "my_duration",
      *         //   "endTime": "my_endTime",
      *         //   "error": {},
+     *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "result": "my_result",
      *         //   "startTime": "my_startTime",
@@ -723,6 +730,7 @@ export namespace workflowexecutions_v1 {
      *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
@@ -867,6 +875,7 @@ export namespace workflowexecutions_v1 {
      *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
@@ -994,6 +1003,10 @@ export namespace workflowexecutions_v1 {
      *   // Do the magic
      *   const res =
      *     await workflowexecutions.projects.locations.workflows.executions.list({
+     *       // Optional. Filters applied to the [Executions.ListExecutions] results. The following fields are supported for filtering: executionID, state, startTime, endTime, duration, workflowRevisionID, stepName, and label.
+     *       filter: 'placeholder-value',
+     *       // Optional. The orderding applied to the [Executions.ListExecutions] results. By default the ordering is based on descending start time. The following fields are supported for order by: executionID, startTime, endTime, duration, state, and workflowRevisionID.
+     *       orderBy: 'placeholder-value',
      *       // Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
@@ -1148,6 +1161,14 @@ export namespace workflowexecutions_v1 {
   }
   export interface Params$Resource$Projects$Locations$Workflows$Executions$List
     extends StandardParameters {
+    /**
+     * Optional. Filters applied to the [Executions.ListExecutions] results. The following fields are supported for filtering: executionID, state, startTime, endTime, duration, workflowRevisionID, stepName, and label.
+     */
+    filter?: string;
+    /**
+     * Optional. The orderding applied to the [Executions.ListExecutions] results. By default the ordering is based on descending start time. The following fields are supported for order by: executionID, startTime, endTime, duration, state, and workflowRevisionID.
+     */
+    orderBy?: string;
     /**
      * Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
      */

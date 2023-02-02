@@ -12,10 +12,6 @@
     "package": "@google-cloud/notebooks"
   },
   {
-    "api": "notebooks",
-    "package": "@google-cloud/notebooks"
-  },
-  {
     "api": "apigateway",
     "package": "@google-cloud/api-gateway"
   },
@@ -62,10 +58,6 @@
   {
     "api": "binaryauthorization",
     "package": "@google-cloud/binary-authorization"
-  },
-  {
-    "api": "cloudbuild",
-    "package": "@google-cloud/cloudbuild"
   },
   {
     "api": "cloudbuild",
@@ -148,16 +140,8 @@
     "package": "@google-cloud/dialogflow-cx"
   },
   {
-    "api": "dialogflow",
-    "package": "@google-cloud/dialogflow-cx"
-  },
-  {
     "api": "dns",
     "package": "@google-cloud/dns"
-  },
-  {
-    "api": "documentai",
-    "package": "@google-cloud/documentai"
   },
   {
     "api": "documentai",
@@ -204,10 +188,6 @@
     "package": "@google-cloud/game-servers"
   },
   {
-    "api": "gameservices",
-    "package": "@google-cloud/game-servers"
-  },
-  {
     "api": "gkehub",
     "package": "@google-cloud/gke-hub"
   },
@@ -230,10 +210,6 @@
   {
     "api": "bigquerystorage",
     "package": "@google-cloud/bigquery-storage"
-  },
-  {
-    "api": "compute",
-    "package": "@google-cloud/compute"
   },
   {
     "api": "compute",
@@ -268,24 +244,12 @@
     "package": "@google-cloud/iot"
   },
   {
-    "api": "cloudiot",
-    "package": "@google-cloud/iot"
-  },
-  {
     "api": "kms",
     "package": "@google-cloud/kms"
   },
   {
     "api": "container",
     "package": "@google-cloud/container"
-  },
-  {
-    "api": "container",
-    "package": "@google-cloud/container"
-  },
-  {
-    "api": "livestream",
-    "package": "@google-cloud/livestream"
   },
   {
     "api": "livestream",
@@ -384,24 +348,12 @@
     "package": "@google-cloud/retail"
   },
   {
-    "api": "retail",
-    "package": "@google-cloud/retail"
-  },
-  {
-    "api": "cloudscheduler",
-    "package": "@google-cloud/scheduler"
-  },
-  {
     "api": "cloudscheduler",
     "package": "@google-cloud/scheduler"
   },
   {
     "api": "secretmanager",
     "package": "@google-cloud/secret-manager"
-  },
-  {
-    "api": "securitycenter",
-    "package": "@google-cloud/security-center"
   },
   {
     "api": "securitycenter",
@@ -468,10 +420,6 @@
     "package": "@google-cloud/text-to-speech"
   },
   {
-    "api": "texttospeech",
-    "package": "@google-cloud/text-to-speech"
-  },
-  {
     "api": "tpu",
     "package": "@google-cloud/tpu"
   },
@@ -480,24 +428,12 @@
     "package": "@google-cloud/video-transcoder"
   },
   {
-    "api": "transcoder",
-    "package": "@google-cloud/video-transcoder"
-  },
-  {
-    "api": "translate",
-    "package": "@google-cloud/translate"
-  },
-  {
     "api": "translate",
     "package": "@google-cloud/translate"
   },
   {
     "api": "aiplatform",
     "package": "@google-cloud/aiplatform"
-  },
-  {
-    "api": "videointelligence",
-    "package": "@google-cloud/video-intelligence"
   },
   {
     "api": "videointelligence",
@@ -518,10 +454,6 @@
   {
     "api": "websecurityscanner",
     "package": "@google-cloud/web-security-scanner"
-  },
-  {
-    "api": "workflows",
-    "package": "@google-cloud/workflows"
   },
   {
     "api": "workflows",

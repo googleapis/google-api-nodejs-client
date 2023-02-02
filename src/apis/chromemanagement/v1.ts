@@ -449,6 +449,10 @@ export namespace chromemanagement_v1 {
      * Output only. The app developer has enabled support for their app. Version-specific field that will only be set when the requested app version is found.
      */
     supportEnabled?: boolean | null;
+    /**
+     * Output only. Types of an item in the Chrome Web Store
+     */
+    type?: string | null;
   }
   /**
    * Permission requested by a Chrome app or extension.
@@ -851,7 +855,7 @@ export namespace chromemanagement_v1 {
     adapterInfo?: Schema$GoogleChromeManagementV1GraphicsAdapterInfo;
   }
   /**
-   * Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
+   * Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: 3 hours. * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1GraphicsStatusReport {
     /**
@@ -947,6 +951,19 @@ export namespace chromemanagement_v1 {
      * Telemetry events returned in the response.
      */
     telemetryEvents?: Schema$GoogleChromeManagementV1TelemetryEvent[];
+  }
+  /**
+   * Response message for listing telemetry users for a customer.
+   */
+  export interface Schema$GoogleChromeManagementV1ListTelemetryUsersResponse {
+    /**
+     * Token to specify next page in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Telemetry users returned in the response.
+     */
+    telemetryUsers?: Schema$GoogleChromeManagementV1TelemetryUser[];
   }
   /**
    * Memory information of a device. * This field has both telemetry and device information: - `totalRamBytes` - Device information - `availableRamBytes` - Telemetry information - `totalMemoryEncryption` - Device information * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: - `totalRamBytes` - Only at upload - `availableRamBytes` - Every 10 minutes - `totalMemoryEncryption` - at device startup * Default Data Reporting Frequency: - `totalRamBytes` - 3 hours - `availableRamBytes` - 3 hours - `totalMemoryEncryption` - at device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: only for `totalMemoryEncryption` * Reported for affiliated users only: N/A
@@ -1126,6 +1143,19 @@ export namespace chromemanagement_v1 {
      * Output only. Current state of the os update.
      */
     updateState?: string | null;
+  }
+  /**
+   * Peripherals report.
+   */
+  export interface Schema$GoogleChromeManagementV1PeripheralsReport {
+    /**
+     * Output only. Timestamp of when the report was collected.
+     */
+    reportTime?: string | null;
+    /**
+     * Reports of all usb connected devices.
+     */
+    usbPeripheralReport?: Schema$GoogleChromeManagementV1UsbPeripheralReport[];
   }
   /**
    * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
@@ -1309,13 +1339,13 @@ export namespace chromemanagement_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Payload for network connection state change event. Present only when `event_type` is `NETWORK_CONNECTION_STATE_CHANGE`.
-     */
-    networkConnectionStateChangeEvent?: Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent;
-    /**
      * Timestamp that represents when the event was reported.
      */
     reportTime?: string | null;
+    /**
+     * Output only. Payload for usb peripherals event. Present only when the `event_type` field is either `USB_ADDED` or `USB_REMOVED`.
+     */
+    usbPeripheralsEvent?: Schema$GoogleChromeManagementV1TelemetryUsbPeripheralsEvent;
     /**
      * Output only. Information about the user associated with the event.
      */
@@ -1335,17 +1365,59 @@ export namespace chromemanagement_v1 {
     httpsLatencyState?: string | null;
   }
   /**
-   * `TelemetryNetworkConnectionStateChangeEvent` is triggered on network connection state changes.
+   * `TelemetryUsbPeripheralsEvent` is triggered USB devices are either added or removed.
    */
-  export interface Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent {
+  export interface Schema$GoogleChromeManagementV1TelemetryUsbPeripheralsEvent {
     /**
-     * Current connection state of the network.
+     * List of usb devices that were either added or removed.
      */
-    connectionState?: string | null;
+    usbPeripheralReport?: Schema$GoogleChromeManagementV1UsbPeripheralReport[];
+  }
+  /**
+   * Telemetry data collected from a managed user.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryUser {
     /**
-     * Unique identifier of the network.
+     * G Suite Customer whose enterprise enrolled the device.
      */
-    guid?: string | null;
+    customer?: string | null;
+    /**
+     * Resource name of the user.
+     */
+    name?: string | null;
+    /**
+     * Organization unit of the user.
+     */
+    orgUnitId?: string | null;
+    /**
+     * Telemetry data collected from a managed user and device.
+     */
+    userDevice?: Schema$GoogleChromeManagementV1TelemetryUserDevice[];
+    /**
+     * Email address of the user.
+     */
+    userEmail?: string | null;
+    /**
+     * Directory ID of the user.
+     */
+    userId?: string | null;
+  }
+  /**
+   * Telemetry data collected for a managed user and device.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryUserDevice {
+    /**
+     * Output only. Audio reports collected periodically sorted in a decreasing order of report_time.
+     */
+    audioStatusReport?: Schema$GoogleChromeManagementV1AudioStatusReport[];
+    /**
+     * The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.
+     */
+    deviceId?: string | null;
+    /**
+     * Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.
+     */
+    peripheralsReport?: Schema$GoogleChromeManagementV1PeripheralsReport[];
   }
   /**
    * Information about a user associated with telemetry data.
@@ -1389,6 +1461,43 @@ export namespace chromemanagement_v1 {
      * The maximum number of keys that can be used for encryption.
      */
     maxKeys?: string | null;
+  }
+  /**
+   * USB connected peripheral report.
+   */
+  export interface Schema$GoogleChromeManagementV1UsbPeripheralReport {
+    /**
+     * Output only. Categories the device belongs to https://www.usb.org/defined-class-codes
+     */
+    categories?: string[] | null;
+    /**
+     * Output only. Class ID https://www.usb.org/defined-class-codes
+     */
+    classId?: number | null;
+    /**
+     * Output only. Firmware version
+     */
+    firmwareVersion?: string | null;
+    /**
+     * Output only. Device name, model name, or product name
+     */
+    name?: string | null;
+    /**
+     * Output only. Product ID
+     */
+    pid?: number | null;
+    /**
+     * Output only. Subclass ID https://www.usb.org/defined-class-codes
+     */
+    subclassId?: number | null;
+    /**
+     * Output only. Vendor name
+     */
+    vendor?: string | null;
+    /**
+     * Output only. Vendor ID
+     */
+    vid?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -2779,9 +2888,9 @@ export namespace chromemanagement_v1 {
      *   const res = await chromemanagement.customers.reports.countInstalledApps({
      *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
      *     customer: 'customers/my-customer',
-     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id
      *     filter: 'placeholder-value',
-     *     // Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count
+     *     // Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id
      *     orderBy: 'placeholder-value',
      *     // The ID of the organizational unit.
      *     orgUnitId: 'placeholder-value',
@@ -3137,11 +3246,11 @@ export namespace chromemanagement_v1 {
      */
     customer?: string;
     /**
-     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name
+     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id
      */
     filter?: string;
     /**
-     * Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count
+     * Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id
      */
     orderBy?: string;
     /**
@@ -3197,10 +3306,12 @@ export namespace chromemanagement_v1 {
     context: APIRequestContext;
     devices: Resource$Customers$Telemetry$Devices;
     events: Resource$Customers$Telemetry$Events;
+    users: Resource$Customers$Telemetry$Users;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.devices = new Resource$Customers$Telemetry$Devices(this.context);
       this.events = new Resource$Customers$Telemetry$Events(this.context);
+      this.users = new Resource$Customers$Telemetry$Users(this.context);
     }
   }
 
@@ -3592,7 +3703,7 @@ export namespace chromemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await chromemanagement.customers.telemetry.events.list({
-     *     // Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type
+     *     // Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either Epoch milliseconds or RFC 3339 formatted time surrounded by simple double quotes.
      *     filter: 'placeholder-value',
      *     // Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.
      *     pageSize: 'placeholder-value',
@@ -3717,7 +3828,7 @@ export namespace chromemanagement_v1 {
   export interface Params$Resource$Customers$Telemetry$Events$List
     extends StandardParameters {
     /**
-     * Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type
+     * Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either Epoch milliseconds or RFC 3339 formatted time surrounded by simple double quotes.
      */
     filter?: string;
     /**
@@ -3734,6 +3845,343 @@ export namespace chromemanagement_v1 {
     parent?: string;
     /**
      * Required. Read mask to specify which fields to return.
+     */
+    readMask?: string;
+  }
+
+  export class Resource$Customers$Telemetry$Users {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get telemetry user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.users.get({
+     *     // Required. Name of the `TelemetryUser` to return.
+     *     name: 'customers/my-customer/telemetry/users/my-user',
+     *     // Read mask to specify which fields to return.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customer": "my_customer",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "userDevice": [],
+     *   //   "userEmail": "my_userEmail",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Telemetry$Users$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Telemetry$Users$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1TelemetryUser>;
+    get(
+      params: Params$Resource$Customers$Telemetry$Users$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Telemetry$Users$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryUser>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryUser>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Telemetry$Users$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryUser>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryUser>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Telemetry$Users$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryUser>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryUser>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1TelemetryUser>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1TelemetryUser>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Telemetry$Users$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Telemetry$Users$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1TelemetryUser>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1TelemetryUser>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List all telemetry users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.users.list({
+     *     // Only include resources that match the filter. Supported filter fields: - user_id - user_org_unit_id
+     *     filter: 'placeholder-value',
+     *     // Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     parent: 'customers/my-customer',
+     *     // Read mask to specify which fields to return.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "telemetryUsers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Telemetry$Users$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Telemetry$Users$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>;
+    list(
+      params: Params$Resource$Customers$Telemetry$Users$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Users$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Users$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Telemetry$Users$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Telemetry$Users$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Telemetry$Users$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/telemetry/users').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryUsersResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Telemetry$Users$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the `TelemetryUser` to return.
+     */
+    name?: string;
+    /**
+     * Read mask to specify which fields to return.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Customers$Telemetry$Users$List
+    extends StandardParameters {
+    /**
+     * Only include resources that match the filter. Supported filter fields: - user_id - user_org_unit_id
+     */
+    filter?: string;
+    /**
+     * Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Token to specify next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    parent?: string;
+    /**
+     * Read mask to specify which fields to return.
      */
     readMask?: string;
   }

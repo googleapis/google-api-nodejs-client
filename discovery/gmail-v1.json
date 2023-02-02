@@ -1184,7 +1184,7 @@
               ]
             },
             "send": {
-              "description": "Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers.",
+              "description": "Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers. For example usage, see [Sending email](https://developers.google.com/gmail/api/guides/sending).",
               "flatPath": "gmail/v1/users/{userId}/messages/send",
               "httpMethod": "POST",
               "id": "gmail.users.messages.send",
@@ -1638,7 +1638,7 @@
                 "identities": {
                   "methods": {
                     "create": {
-                      "description": "Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Creates and configures a client-side encryption identity that's authorized to send mail from the user account. Google publishes the S/MIME certificate to a shared domain-wide directory so that people within a Google Workspace organization can encrypt and send mail to the identity.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/identities",
                       "httpMethod": "POST",
                       "id": "gmail.users.settings.cse.identities.create",
@@ -1667,7 +1667,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Deletes a client-side encryption identity. The authenticated user can no longer use the identity to send encrypted messages. You cannot restore the identity after you delete it. Instead, use the CreateCseIdentity method to create another identity with the same configuration.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}",
                       "httpMethod": "DELETE",
                       "id": "gmail.users.settings.cse.identities.delete",
@@ -1697,7 +1697,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Retrieves a client-side encryption identity configuration. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Retrieves a client-side encryption identity configuration.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}",
                       "httpMethod": "GET",
                       "id": "gmail.users.settings.cse.identities.get",
@@ -1733,7 +1733,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists the client-side encrypted identities for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Lists the client-side encrypted identities for an authenticated user.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/identities",
                       "httpMethod": "GET",
                       "id": "gmail.users.settings.cse.identities.list",
@@ -1774,7 +1774,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887). [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Associates a different key pair with an existing client-side encryption identity. The updated key pair must validate against Google's [S/MIME certificate profiles](https://support.google.com/a/answer/7300887).",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}",
                       "httpMethod": "PATCH",
                       "id": "gmail.users.settings.cse.identities.patch",
@@ -1814,7 +1814,7 @@
                 "keypairs": {
                   "methods": {
                     "create": {
-                      "description": "Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Creates and uploads a client-side encryption S/MIME public key certificate chain and private key metadata for the authenticated user.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs",
                       "httpMethod": "POST",
                       "id": "gmail.users.settings.cse.keypairs.create",
@@ -1843,7 +1843,7 @@
                       ]
                     },
                     "disable": {
-                      "description": "Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Turns off a client-side encryption key pair. The authenticated user can no longer use the key pair to decrypt incoming CSE message texts or sign outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the key pair. After 30 days, you can permanently delete the key pair by using the ObliterateCseKeyPair method.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:disable",
                       "httpMethod": "POST",
                       "id": "gmail.users.settings.cse.keypairs.disable",
@@ -1879,7 +1879,7 @@
                       ]
                     },
                     "enable": {
-                      "description": "Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Turns on a client-side encryption key pair that was turned off. The key pair becomes active again for any associated client-side encryption identities.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:enable",
                       "httpMethod": "POST",
                       "id": "gmail.users.settings.cse.keypairs.enable",
@@ -1915,7 +1915,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Retrieves an existing client-side encryption key pair. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Retrieves an existing client-side encryption key pair.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}",
                       "httpMethod": "GET",
                       "id": "gmail.users.settings.cse.keypairs.get",
@@ -1951,7 +1951,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists client-side encryption key pairs for an authenticated user. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Lists client-side encryption key pairs for an authenticated user.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs",
                       "httpMethod": "GET",
                       "id": "gmail.users.settings.cse.keypairs.list",
@@ -1992,7 +1992,7 @@
                       ]
                     },
                     "obliterate": {
-                      "description": "Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages. [Beta](https://workspace.google.com/terms/service-terms/index.html).",
+                      "description": "Deletes a client-side encryption key pair permanently and immediately. You can only permanently delete key pairs that have been turned off for more than 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail can't restore or decrypt any messages that were encrypted by an obliterated key. Authenticated users and Google Workspace administrators lose access to reading the encrypted messages.",
                       "flatPath": "gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}:obliterate",
                       "httpMethod": "POST",
                       "id": "gmail.users.settings.cse.keypairs.obliterate",
@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20221219",
+  "revision": "20230123",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -3154,7 +3154,7 @@
       "type": "object"
     },
     "CseIdentity": {
-      "description": "[Beta](https://workspace.google.com/terms/service-terms/index.html). The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages.",
+      "description": "The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages.",
       "id": "CseIdentity",
       "properties": {
         "emailAddress": {
@@ -3169,7 +3169,7 @@
       "type": "object"
     },
     "CseKeyPair": {
-      "description": "[Beta](https://workspace.google.com/terms/service-terms/index.html). A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.",
+      "description": "A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages.",
       "id": "CseKeyPair",
       "properties": {
         "disableTime": {

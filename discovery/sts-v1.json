@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20221215",
+  "revision": "20230121",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -255,6 +255,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "id_token": {
+          "description": "Google issued ID token in response to the OAuth token exchange request for ID token flow.",
+          "type": "string"
+        },
         "refresh_token": {
           "description": "A refresh token, issued by Google, in response to the OAuth token exchange request for refresh token flow",
           "type": "string"
@@ -264,7 +268,7 @@
           "type": "string"
         },
         "token_type": {
-          "description": "The type of token. Field reserved for RFC compliance. See https://www.rfc-editor.org/rfc/rfc6749#section-5.1 Note: No token_type is returned for current implementation",
+          "description": "The type of token. Field reserved for RFC compliance. See https://www.rfc-editor.org/rfc/rfc6749#section-5.1",
           "type": "string"
         }
       },

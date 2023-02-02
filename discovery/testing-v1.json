@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20221214",
+  "revision": "20230127",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -508,6 +508,13 @@
         "name": {
           "description": "The human-readable marketing name for this device model. Examples: \"Nexus 5\", \"Galaxy S5\".",
           "type": "string"
+        },
+        "perVersionInfo": {
+          "description": "Version-specific information of an Android model.",
+          "items": {
+            "$ref": "PerAndroidVersionInfo"
+          },
+          "type": "array"
         },
         "screenDensity": {
           "description": "Screen density in DPI. This corresponds to ro.sf.lcd_density",
@@ -1218,6 +1225,13 @@
           "description": "The human-readable name for this device model. Examples: \"iPhone 4s\", \"iPad Mini 2\".",
           "type": "string"
         },
+        "perVersionInfo": {
+          "description": "Version-specific information of an iOS model.",
+          "items": {
+            "$ref": "PerIosVersionInfo"
+          },
+          "type": "array"
+        },
         "screenDensity": {
           "description": "Screen density in DPI.",
           "format": "int32",
@@ -1425,7 +1439,7 @@
       "id": "ManualSharding",
       "properties": {
         "testTargetsForShard": {
-          "description": "Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.",
+          "description": "Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.",
           "items": {
             "$ref": "TestTargetsForShard"
           },
@@ -1512,6 +1526,64 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PerAndroidVersionInfo": {
+      "description": "A version-specific information of an Android model.",
+      "id": "PerAndroidVersionInfo",
+      "properties": {
+        "deviceCapacity": {
+          "description": "The number of online devices for an Android version.",
+          "enum": [
+            "DEVICE_CAPACITY_UNSPECIFIED",
+            "DEVICE_CAPACITY_HIGH",
+            "DEVICE_CAPACITY_MEDIUM",
+            "DEVICE_CAPACITY_LOW",
+            "DEVICE_CAPACITY_NONE"
+          ],
+          "enumDescriptions": [
+            "The value of device capacity is unknown or unset.",
+            "Devices that are high in capacity (The lab has a large number of these devices). These devices are generally suggested for running a large number of simultaneous tests (e.g. more than 100 tests). Please note that high capacity devices do not guarantee short wait times due to several factors: 1. Traffic (how heavily they are used at any given moment) 2. High capacity devices are prioritized for certain usages, which may cause user tests to be slower than selecting other similar device types.",
+            "Devices that are medium in capacity (The lab has a decent number of these devices, though not as many as high capacity devices). These devices are suitable for fewer test runs (e.g. fewer than 100 tests) and only for low shard counts (e.g. less than 10 shards).",
+            "Devices that are low in capacity (The lab has a small number of these devices). These devices may be used if users need to test on this specific device model and version. Please note that due to low capacity, the tests may take much longer to finish, especially if a large number of tests are invoked at once. These devices are not suitable for test sharding.",
+            "Devices that are completely missing from the lab. These devices are unavailable either temporarily or permanently and should not be requested. If the device is also marked as deprecated, this state is very likely permanent."
+          ],
+          "type": "string"
+        },
+        "versionId": {
+          "description": "An Android version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PerIosVersionInfo": {
+      "description": "A version-specific information of an iOS model.",
+      "id": "PerIosVersionInfo",
+      "properties": {
+        "deviceCapacity": {
+          "description": "The number of online devices for an iOS version.",
+          "enum": [
+            "DEVICE_CAPACITY_UNSPECIFIED",
+            "DEVICE_CAPACITY_HIGH",
+            "DEVICE_CAPACITY_MEDIUM",
+            "DEVICE_CAPACITY_LOW",
+            "DEVICE_CAPACITY_NONE"
+          ],
+          "enumDescriptions": [
+            "The value of device capacity is unknown or unset.",
+            "Devices that are high in capacity (The lab has a large number of these devices). These devices are generally suggested for running a large number of simultaneous tests (e.g. more than 100 tests). Please note that high capacity devices do not guarantee short wait times due to several factors: 1. Traffic (how heavily they are used at any given moment) 2. High capacity devices are prioritized for certain usages, which may cause user tests to be slower than selecting other similar device types.",
+            "Devices that are medium in capacity (The lab has a decent number of these devices, though not as many as high capacity devices). These devices are suitable for fewer test runs (e.g. fewer than 100 tests) and only for low shard counts (e.g. less than 10 shards).",
+            "Devices that are low in capacity (The lab has a small number of these devices). These devices may be used if users need to test on this specific device model and version. Please note that due to low capacity, the tests may take much longer to finish, especially if a large number of tests are invoked at once. These devices are not suitable for test sharding.",
+            "Devices that are completely missing from the lab. These devices are unavailable either temporarily or permanently and should not be requested. If the device is also marked as deprecated, this state is very likely permanent."
+          ],
+          "type": "string"
+        },
+        "versionId": {
+          "description": "An iOS version.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2201,7 +2273,7 @@
       "id": "UniformSharding",
       "properties": {
         "numShards": {
-          "description": "Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.",
+          "description": "Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.",
           "format": "int32",
           "type": "integer"
         }

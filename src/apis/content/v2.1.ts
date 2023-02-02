@@ -207,7 +207,7 @@ export namespace content_v2_1 {
      */
     accountManagement?: string | null;
     /**
-     * Linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected either in the Ads interface or through the AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
+     * Linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected either in the Ads interface or through the Google Ads API. To delete an active link, or to cancel a link request, remove it from the list.
      */
     adsLinks?: Schema$AccountAdsLink[];
     /**
@@ -5224,7 +5224,7 @@ export namespace content_v2_1 {
     suggestedPriceMicros?: string | null;
   }
   /**
-   *  Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
+   *  Required product attributes are primarily defined by the product data specification. See the Product Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
    */
   export interface Schema$Product {
     /**
@@ -5404,6 +5404,10 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
+     * Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the Help Center article for more information.
+     */
+    lifestyleImageLinks?: string[] | null;
+    /**
      * URL directly linking to your item's page on your website.
      */
     link?: string | null;
@@ -5492,7 +5496,7 @@ export namespace content_v2_1 {
      */
     productLength?: Schema$ProductDimension;
     /**
-     * Categories of the item (formatted as in products data specification).
+     * Categories of the item (formatted as in product data specification).
      */
     productTypes?: string[] | null;
     /**
@@ -5512,7 +5516,7 @@ export namespace content_v2_1 {
      */
     salePrice?: Schema$Price;
     /**
-     * Date range during which the item is on sale (see products data specification ).
+     * Date range during which the item is on sale (see product data specification ).
      */
     salePriceEffectiveDate?: string | null;
     /**
@@ -5815,7 +5819,7 @@ export namespace content_v2_1 {
      */
     locationGroupName?: string | null;
     /**
-     * The numeric ID of a location that the shipping rate applies to as defined in the AdWords API.
+     * The numeric ID of a location that the shipping rate applies to as defined in the Google Ads API.
      */
     locationId?: string | null;
     /**
@@ -6080,7 +6084,7 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * The numeric ID of a location that the tax rate applies to as defined in the AdWords API.
+     * The numeric ID of a location that the tax rate applies to as defined in the Google Ads API.
      */
     locationId?: string | null;
     /**
@@ -6436,6 +6440,10 @@ export namespace content_v2_1 {
      */
     promotionId?: string | null;
     /**
+     * Output only. The current status of the promotion.
+     */
+    promotionStatus?: Schema$PromotionPromotionStatus;
+    /**
      * URL to the page on the merchant's site where the promotion shows. Local Inventory ads promotions throw an error if no promo url is included. URL is used to confirm that the promotion is valid and can be redeemed.
      */
     promotionUrl?: string | null;
@@ -6463,6 +6471,53 @@ export namespace content_v2_1 {
      * Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN` or `US`.
      */
     targetCountry?: string | null;
+  }
+  /**
+   * The status of the promotion.
+   */
+  export interface Schema$PromotionPromotionStatus {
+    /**
+     * Date on which the promotion has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
+     */
+    creationDate?: string | null;
+    /**
+     * The intended destinations for the promotion.
+     */
+    destinationStatuses?: Schema$PromotionPromotionStatusDestinationStatus[];
+    /**
+     * Date on which the promotion status has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
+     */
+    lastUpdateDate?: string | null;
+    /**
+     * A list of issues associated with the promotion.
+     */
+    promotionIssue?: Schema$PromotionPromotionStatusPromotionIssue[];
+  }
+  /**
+   * The destination status of the promotion.
+   */
+  export interface Schema$PromotionPromotionStatusDestinationStatus {
+    /**
+     * The name of the destination.
+     */
+    destination?: string | null;
+    /**
+     * The status for the specified destination.
+     */
+    status?: string | null;
+  }
+  /**
+   * The issue associated with the promotion.
+   */
+  export interface Schema$PromotionPromotionStatusPromotionIssue {
+    /**
+     * Code of the issue.
+     */
+    code?: string | null;
+    /**
+     * Explanation of the issue.
+     */
+    detail?: string | null;
   }
   /**
    * Settings for Pub/Sub notifications, all methods require that the caller is a direct user of the merchant center account.
@@ -6772,7 +6827,7 @@ export namespace content_v2_1 {
     buyboxWinsCount?: number | null;
   }
   /**
-   * Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met. Next ID: 24
+   * Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met.
    */
   export interface Schema$RepricingRule {
     /**
@@ -26662,6 +26717,7 @@ export namespace content_v2_1 {
      *   //   "isBundle": false,
      *   //   "itemGroupId": "my_itemGroupId",
      *   //   "kind": "my_kind",
+     *   //   "lifestyleImageLinks": [],
      *   //   "link": "my_link",
      *   //   "linkTemplate": "my_linkTemplate",
      *   //   "loyaltyPoints": {},
@@ -26883,6 +26939,7 @@ export namespace content_v2_1 {
      *       //   "isBundle": false,
      *       //   "itemGroupId": "my_itemGroupId",
      *       //   "kind": "my_kind",
+     *       //   "lifestyleImageLinks": [],
      *       //   "link": "my_link",
      *       //   "linkTemplate": "my_linkTemplate",
      *       //   "loyaltyPoints": {},
@@ -26982,6 +27039,7 @@ export namespace content_v2_1 {
      *   //   "isBundle": false,
      *   //   "itemGroupId": "my_itemGroupId",
      *   //   "kind": "my_kind",
+     *   //   "lifestyleImageLinks": [],
      *   //   "link": "my_link",
      *   //   "linkTemplate": "my_linkTemplate",
      *   //   "loyaltyPoints": {},
@@ -27346,6 +27404,7 @@ export namespace content_v2_1 {
      *       //   "isBundle": false,
      *       //   "itemGroupId": "my_itemGroupId",
      *       //   "kind": "my_kind",
+     *       //   "lifestyleImageLinks": [],
      *       //   "link": "my_link",
      *       //   "linkTemplate": "my_linkTemplate",
      *       //   "loyaltyPoints": {},
@@ -27445,6 +27504,7 @@ export namespace content_v2_1 {
      *   //   "isBundle": false,
      *   //   "itemGroupId": "my_itemGroupId",
      *   //   "kind": "my_kind",
+     *   //   "lifestyleImageLinks": [],
      *   //   "link": "my_link",
      *   //   "linkTemplate": "my_linkTemplate",
      *   //   "loyaltyPoints": {},
@@ -28414,6 +28474,7 @@ export namespace content_v2_1 {
      *       //   "promotionEffectiveDates": "my_promotionEffectiveDates",
      *       //   "promotionEffectiveTimePeriod": {},
      *       //   "promotionId": "my_promotionId",
+     *       //   "promotionStatus": {},
      *       //   "promotionUrl": "my_promotionUrl",
      *       //   "redemptionChannel": [],
      *       //   "shippingServiceNames": [],
@@ -28461,6 +28522,7 @@ export namespace content_v2_1 {
      *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
      *   //   "promotionEffectiveTimePeriod": {},
      *   //   "promotionId": "my_promotionId",
+     *   //   "promotionStatus": {},
      *   //   "promotionUrl": "my_promotionUrl",
      *   //   "redemptionChannel": [],
      *   //   "shippingServiceNames": [],
@@ -28632,6 +28694,7 @@ export namespace content_v2_1 {
      *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
      *   //   "promotionEffectiveTimePeriod": {},
      *   //   "promotionId": "my_promotionId",
+     *   //   "promotionStatus": {},
      *   //   "promotionUrl": "my_promotionUrl",
      *   //   "redemptionChannel": [],
      *   //   "shippingServiceNames": [],

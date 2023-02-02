@@ -2,7 +2,7 @@
 
 # accesscontextmanager
 
-> An API for setting attribute based access control to requests to GCP services.
+> An API for setting attribute based access control to requests to Google Cloud services.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

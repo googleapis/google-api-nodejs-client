@@ -287,6 +287,10 @@ export namespace testing_v1 {
      */
     name?: string | null;
     /**
+     * Version-specific information of an Android model.
+     */
+    perVersionInfo?: Schema$PerAndroidVersionInfo[];
+    /**
      * Screen density in DPI. This corresponds to ro.sf.lcd_density
      */
     screenDensity?: number | null;
@@ -789,6 +793,10 @@ export namespace testing_v1 {
      */
     name?: string | null;
     /**
+     * Version-specific information of an iOS model.
+     */
+    perVersionInfo?: Schema$PerIosVersionInfo[];
+    /**
      * Screen density in DPI.
      */
     screenDensity?: number | null;
@@ -940,7 +948,7 @@ export namespace testing_v1 {
    */
   export interface Schema$ManualSharding {
     /**
-     * Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.
+     * Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
   }
@@ -1003,6 +1011,32 @@ export namespace testing_v1 {
      * Tags for this dimension. Example: "default".
      */
     tags?: string[] | null;
+  }
+  /**
+   * A version-specific information of an Android model.
+   */
+  export interface Schema$PerAndroidVersionInfo {
+    /**
+     * The number of online devices for an Android version.
+     */
+    deviceCapacity?: string | null;
+    /**
+     * An Android version.
+     */
+    versionId?: string | null;
+  }
+  /**
+   * A version-specific information of an iOS model.
+   */
+  export interface Schema$PerIosVersionInfo {
+    /**
+     * The number of online devices for an iOS version.
+     */
+    deviceCapacity?: string | null;
+    /**
+     * An iOS version.
+     */
+    versionId?: string | null;
   }
   /**
    * The currently provided software environment on the devices under test.
@@ -1450,7 +1484,7 @@ export namespace testing_v1 {
    */
   export interface Schema$UniformSharding {
     /**
-     * Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.
+     * Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.
      */
     numShards?: number | null;
   }

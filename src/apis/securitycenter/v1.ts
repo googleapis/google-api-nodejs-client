@@ -165,11 +165,11 @@ export namespace securitycenter_v1 {
      */
     serviceName?: string | null;
     /**
-     * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
+     * What kind of user agent is associated, for example operating system shells, embedded or stand-alone applications, etc.
      */
     userAgentFamily?: string | null;
     /**
-     * A string representing a username. This is likely not an IAM principal. For instance, this may be the system user name if the finding is VM-related, or this may be some type of application login user name, depending on the type of finding.
+     * A string that represents the username of a user, user account, or other entity involved in the access event. What the entity is and what its role in the access event is depends on the finding that this field appears in. The entity is likely not an IAM principal, but could be a user that is logged into an operating system, if the finding is VM-related, or a user that is logged into some type of application that is involved in the access event.
      */
     userName?: string | null;
   }
@@ -312,7 +312,7 @@ export namespace securitycenter_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -2345,7 +2345,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
      *     // Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      *     readTime: 'placeholder-value',
@@ -2641,7 +2641,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
     /**
@@ -5240,7 +5240,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -5359,7 +5359,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
   }
@@ -7190,7 +7190,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *     // Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      *     readTime: 'placeholder-value',
@@ -7626,7 +7626,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
     /**
@@ -11220,7 +11220,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -11800,7 +11800,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
   }
@@ -13586,7 +13586,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
      *     // Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      *     readTime: 'placeholder-value',
@@ -13882,7 +13882,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent that the listed assets belong to. Its format is "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
     /**
@@ -16481,7 +16481,7 @@ export namespace securitycenter_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     *     // Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -16600,7 +16600,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id], "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      */
     parent?: string;
   }

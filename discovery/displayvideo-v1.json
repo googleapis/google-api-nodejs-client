@@ -8146,7 +8146,7 @@
       }
     }
   },
-  "revision": "20221208",
+  "revision": "20230126",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -12577,7 +12577,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -12648,7 +12652,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },
@@ -12745,7 +12753,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -12816,7 +12828,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },
@@ -12914,7 +12930,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -12985,7 +13005,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "readOnly": true,
           "type": "string"
@@ -13824,7 +13848,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -13895,7 +13923,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },
@@ -14665,7 +14697,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14736,7 +14772,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },

@@ -249,6 +249,15 @@ export namespace gkehub_v1beta {
     state?: Schema$FeatureState;
   }
   /**
+   * CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet
+   */
+  export interface Schema$CommonFleetDefaultMemberConfigSpec {
+    /**
+     * Identity Service-specific spec.
+     */
+    identityservice?: Schema$IdentityServiceMembershipSpec;
+  }
+  /**
    * Configuration for Binauthz
    */
   export interface Schema$ConfigManagementBinauthzConfig {
@@ -804,6 +813,10 @@ export namespace gkehub_v1beta {
      */
     deleteTime?: string | null;
     /**
+     * Optional. Feature configuration applicable to all memberships of the fleet.
+     */
+    fleetDefaultMemberConfig?: Schema$CommonFleetDefaultMemberConfigSpec;
+    /**
      * GCP labels for this Feature.
      */
     labels?: {[key: string]: string} | null;
@@ -1310,6 +1323,19 @@ export namespace gkehub_v1beta {
     version?: number | null;
   }
   /**
+   * BundleInstallSpec is the specification configuration for a single managed bundle.
+   */
+  export interface Schema$PolicyControllerBundleInstallSpec {
+    /**
+     * the set of namespaces to be exempted from the bundle
+     */
+    exemptedNamespaces?: string[] | null;
+    /**
+     * Management specifies how the bundle will be managed by the controller.
+     */
+    management?: string | null;
+  }
+  /**
    * Configuration for Policy Controller
    */
   export interface Schema$PolicyControllerHubConfig {
@@ -1338,6 +1364,10 @@ export namespace gkehub_v1beta {
      */
     mutationEnabled?: boolean | null;
     /**
+     * Specifies the desired policy content on the cluster
+     */
+    policyContent?: Schema$PolicyControllerPolicyContentSpec;
+    /**
      * Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
      */
     referentialRulesEnabled?: boolean | null;
@@ -1364,9 +1394,15 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$PolicyControllerMembershipState {
     /**
-     * Currently these include (also serving as map keys): 1. "admission" 2. "audit" 3. "mutation" 4. "constraint template library"
+     * Currently these include (also serving as map keys): 1. "admission" 2. "audit" 3. "mutation"
      */
     componentStates?: {
+      [key: string]: Schema$PolicyControllerOnClusterState;
+    } | null;
+    /**
+     * The state of the template library and any bundles included in the chosen version of the manifest
+     */
+    contentStates?: {
       [key: string]: Schema$PolicyControllerOnClusterState;
     } | null;
     /**
@@ -1395,6 +1431,15 @@ export namespace gkehub_v1beta {
      * The lifecycle state of this component.
      */
     state?: string | null;
+  }
+  /**
+   * PolicyContentSpec defines the user's desired content configuration on the cluster.
+   */
+  export interface Schema$PolicyControllerPolicyContentSpec {
+    /**
+     * map of bundle name to BundleInstallSpec. The bundle name maps to the `bundleName` key in the `policycontroller.gke.io/constraintData` annotation on a constraint.
+     */
+    bundles?: {[key: string]: Schema$PolicyControllerBundleInstallSpec} | null;
   }
   /**
    * The config specifying which default library templates to install.
@@ -1898,6 +1943,7 @@ export namespace gkehub_v1beta {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "fleetDefaultMemberConfig": {},
      *       //   "labels": {},
      *       //   "membershipSpecs": {},
      *       //   "membershipStates": {},
@@ -2184,6 +2230,7 @@ export namespace gkehub_v1beta {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
+     *   //   "fleetDefaultMemberConfig": {},
      *   //   "labels": {},
      *   //   "membershipSpecs": {},
      *   //   "membershipStates": {},
@@ -2602,6 +2649,7 @@ export namespace gkehub_v1beta {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "fleetDefaultMemberConfig": {},
      *       //   "labels": {},
      *       //   "membershipSpecs": {},
      *       //   "membershipStates": {},

@@ -689,7 +689,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -880,7 +880,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1017,7 +1017,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1197,7 +1197,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1334,7 +1334,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1527,7 +1527,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1664,7 +1664,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1844,7 +1844,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2137,7 +2137,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2430,7 +2430,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2567,7 +2567,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2747,7 +2747,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2885,7 +2885,7 @@ export namespace playdeveloperreporting_v1alpha1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/playdeveloperreporting'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

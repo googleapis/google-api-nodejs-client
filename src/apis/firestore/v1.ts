@@ -561,11 +561,15 @@ export namespace firestore_v1 {
      */
     endTime?: string | null;
     /**
+     * Which namespace ids are being exported.
+     */
+    namespaceIds?: string[] | null;
+    /**
      * The state of the export operation.
      */
     operationState?: string | null;
     /**
-     * Where the entities are being exported to.
+     * Where the documents are being exported to.
      */
     outputUriPrefix?: string | null;
     /**
@@ -589,6 +593,10 @@ export namespace firestore_v1 {
      * Which collection ids to export. Unspecified means all collections.
      */
     collectionIds?: string[] | null;
+    /**
+     * An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.
+     */
+    namespaceIds?: string[] | null;
     /**
      * The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time.
      */
@@ -674,6 +682,10 @@ export namespace firestore_v1 {
      */
     inputUriPrefix?: string | null;
     /**
+     * Which namespace ids are being imported.
+     */
+    namespaceIds?: string[] | null;
+    /**
      * The state of the import operation.
      */
     operationState?: string | null;
@@ -702,6 +714,10 @@ export namespace firestore_v1 {
      * Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix.
      */
     inputUriPrefix?: string | null;
+    /**
+     * An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.
+     */
+    namespaceIds?: string[] | null;
   }
   /**
    * Cloud Firestore indexes enable simple and complex queries against documents in a database.
@@ -1767,6 +1783,8 @@ export namespace firestore_v1 {
      *     allowMissing: 'placeholder-value',
      *     // The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
      *     etag: 'placeholder-value',
+     *     // If set, will free the database_id associated with this database. uid will be used as the resource id to identify this deleted database.
+     *     freeId: 'placeholder-value',
      *     // Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
      *     name: 'projects/my-project/databases/my-database',
      *     // If set, validate the request and preview the response, but do not actually delete the database.
@@ -1917,6 +1935,7 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "collectionIds": [],
+     *       //   "namespaceIds": [],
      *       //   "outputUriPrefix": "my_outputUriPrefix"
      *       // }
      *     },
@@ -2213,7 +2232,8 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "collectionIds": [],
-     *       //   "inputUriPrefix": "my_inputUriPrefix"
+     *       //   "inputUriPrefix": "my_inputUriPrefix",
+     *       //   "namespaceIds": []
      *       // }
      *     },
      *   });
@@ -2651,6 +2671,10 @@ export namespace firestore_v1 {
      * The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
      */
     etag?: string;
+    /**
+     * If set, will free the database_id associated with this database. uid will be used as the resource id to identify this deleted database.
+     */
+    freeId?: boolean;
     /**
      * Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
      */

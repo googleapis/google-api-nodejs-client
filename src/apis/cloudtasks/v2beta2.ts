@@ -529,6 +529,15 @@ export namespace cloudtasks_v2beta2 {
     serviceAccountEmail?: string | null;
   }
   /**
+   * PathOverride. Path message defines path override for HTTP targets.
+   */
+  export interface Schema$PathOverride {
+    /**
+     * The URI path (e.g., a/b/c). Default is Empty string.
+     */
+    path?: string | null;
+  }
+  /**
    * Request message for PauseQueue.
    */
   export interface Schema$PauseQueueRequest {}
@@ -570,6 +579,15 @@ export namespace cloudtasks_v2beta2 {
    * Request message for PurgeQueue.
    */
   export interface Schema$PurgeQueueRequest {}
+  /**
+   * QueryOverride. Query message defines query override for HTTP targets.
+   */
+  export interface Schema$QueryOverride {
+    /**
+     * The query parameters (e.g., qparam1=123&qparam2=456). Default is Empty string.
+     */
+    queryParams?: string | null;
+  }
   /**
    * A queue is a container of related tasks. Queues are configured to manage how those tasks are dispatched. Configurable properties include rate limits, retry options, target types, and others.
    */
@@ -827,27 +845,27 @@ export namespace cloudtasks_v2beta2 {
    */
   export interface Schema$UriOverride {
     /**
-     * Host override. When specified, the host part of url will be overridden. For example, if the original Uri is "https://www.google.com", and host is set to "example.net", the overridden Uri will be "https://example.net".
+     * Host override. When specified, will replace the host part of the task URL. For example, if the task URL is "https://www.google.com", and host value is set to "example.net", the overridden URI will be changed to "https://example.net". Host value cannot be an empty string.
      */
     host?: string | null;
     /**
-     * Uri path. Will be used as the path for the current Uri (replaces any existing path of the task url).
+     * URI path. When specified, will replace the existing path of the task URL. Setting the path value to an empty string clears the URI path segment.
      */
-    path?: string | null;
+    pathOverride?: Schema$PathOverride;
     /**
-     * Port override. When specified, the port part of Uri will be replaced by the provided value. For instance, for a Uri http://www.google.com/foo and port=123 the overridden Uri becomes http://www.google.com:123/foo.
+     * Port override. When specified, will replace the port part of the task URI. For instance, for a URI http://www.google.com/foo and port=123, the overridden URI becomes http://www.google.com:123/foo. Note that the port value must be a positive integer. Setting the port to 0 (Zero) clears the URI port.
      */
     port?: string | null;
     /**
-     * Uri Query. Will replace the query part of the task uri.
+     * URI Query. When specified, will replace the query part of the task URI. Setting the query value to an empty string clears the URI query segment.
      */
-    query?: string | null;
+    queryOverride?: Schema$QueryOverride;
     /**
-     * Scheme override. When specified, the Uri scheme is replaced by the provided value.
+     * Scheme override. When specified, the task URI scheme is replaced by the provided value (HTTP or HTTPS).
      */
     scheme?: string | null;
     /**
-     * Uri Override Enforce Mode Determines the Target UriOverride mode.
+     * URI Override Enforce Mode When specified, determines the Target UriOverride mode. If not specified, it defaults to ALWAYS.
      */
     uriOverrideEnforceMode?: string | null;
   }

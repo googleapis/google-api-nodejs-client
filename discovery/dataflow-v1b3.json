@@ -1829,47 +1829,6 @@
                 }
               }
             },
-            "sql": {
-              "methods": {
-                "validate": {
-                  "description": "Validates a GoogleSQL query for Cloud Dataflow syntax. Will always confirm the given query parses correctly, and if able to look up schema information from DataCatalog, will validate that the query analyzes properly as well.",
-                  "flatPath": "v1b3/projects/{projectId}/locations/{location}/sql:validate",
-                  "httpMethod": "GET",
-                  "id": "dataflow.projects.locations.sql.validate",
-                  "parameterOrder": [
-                    "projectId",
-                    "location"
-                  ],
-                  "parameters": {
-                    "location": {
-                      "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "projectId": {
-                      "description": "Required. The ID of the Cloud Platform project that the job belongs to.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "query": {
-                      "description": "The sql query to validate.",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1b3/projects/{projectId}/locations/{location}/sql:validate",
-                  "response": {
-                    "$ref": "ValidateResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/userinfo.email"
-                  ]
-                }
-              }
-            },
             "templates": {
               "methods": {
                 "create": {
@@ -2240,7 +2199,7 @@
       }
     }
   },
-  "revision": "20221214",
+  "revision": "20230119",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4065,7 +4024,7 @@
       "type": "object"
     },
     "JobMetrics": {
-      "description": "JobMetrics contains a collection of metrics describing the detailed progress of a Dataflow job. Metrics correspond to user-defined and system-defined metrics in the job. This resource captures only the most recent values of each metric; time-series data can be queried for them (under the same metric names) from Cloud Monitoring.",
+      "description": "JobMetrics contains a collection of metrics describing the detailed progress of a Dataflow job. Metrics correspond to user-defined and system-defined metrics in the job. For more information, see [Dataflow job metrics] (https://cloud.google.com/dataflow/docs/guides/using-monitoring-intf). This resource captures only the most recent values of each metric; time-series data can be queried for them (under the same metric names) from Cloud Monitoring.",
       "id": "JobMetrics",
       "properties": {
         "metricTime": {
@@ -4986,28 +4945,6 @@
       },
       "type": "object"
     },
-    "QueryInfo": {
-      "description": "Information about a validated query.",
-      "id": "QueryInfo",
-      "properties": {
-        "queryProperty": {
-          "description": "Includes an entry for each satisfied QueryProperty.",
-          "items": {
-            "enum": [
-              "QUERY_PROPERTY_UNSPECIFIED",
-              "HAS_UNBOUNDED_SOURCE"
-            ],
-            "enumDescriptions": [
-              "The query property is unknown or unspecified.",
-              "Indicates this query reads from >= 1 unbounded source."
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ReadInstruction": {
       "description": "An instruction that reads records. Takes no inputs, produces one output.",
       "id": "ReadInstruction",
@@ -5131,7 +5068,7 @@
       "id": "RuntimeEnvironment",
       "properties": {
         "additionalExperiments": {
-          "description": "Additional experiment flags for the job, specified with the `--experiments` option.",
+          "description": "Optional. Additional experiment flags for the job, specified with the `--experiments` option.",
           "items": {
             "type": "string"
           },
@@ -5141,19 +5078,19 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }.",
+          "description": "Optional. Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }.",
           "type": "object"
         },
         "bypassTempDirValidation": {
-          "description": "Whether to bypass the safety checks for the job's temporary directory. Use with caution.",
+          "description": "Optional. Whether to bypass the safety checks for the job's temporary directory. Use with caution.",
           "type": "boolean"
         },
         "enableStreamingEngine": {
-          "description": "Whether to enable Streaming Engine for the job.",
+          "description": "Optional. Whether to enable Streaming Engine for the job.",
           "type": "boolean"
         },
         "ipConfiguration": {
-          "description": "Configuration for VM IPs.",
+          "description": "Optional. Configuration for VM IPs.",
           "enum": [
             "WORKER_IP_UNSPECIFIED",
             "WORKER_IP_PUBLIC",
@@ -5167,49 +5104,49 @@
           "type": "string"
         },
         "kmsKeyName": {
-          "description": "Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/",
+          "description": "Optional. Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/",
           "type": "string"
         },
         "machineType": {
-          "description": "The machine type to use for the job. Defaults to the value from the template if not specified.",
+          "description": "Optional. The machine type to use for the job. Defaults to the value from the template if not specified.",
           "type": "string"
         },
         "maxWorkers": {
-          "description": "The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.",
+          "description": "Optional. The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000. The default value is 1.",
           "format": "int32",
           "type": "integer"
         },
         "network": {
-          "description": "Network to which VMs will be assigned. If empty or unspecified, the service will use the network \"default\".",
+          "description": "Optional. Network to which VMs will be assigned. If empty or unspecified, the service will use the network \"default\".",
           "type": "string"
         },
         "numWorkers": {
-          "description": "The initial number of Google Compute Engine instances for the job.",
+          "description": "Optional. The initial number of Google Compute Engine instances for the job. The default value is 11.",
           "format": "int32",
           "type": "integer"
         },
         "serviceAccountEmail": {
-          "description": "The email address of the service account to run the job as.",
+          "description": "Optional. The email address of the service account to run the job as.",
           "type": "string"
         },
         "subnetwork": {
-          "description": "Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form \"https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK\" or \"regions/REGION/subnetworks/SUBNETWORK\". If the subnetwork is located in a Shared VPC network, you must use the complete URL.",
+          "description": "Optional. Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form \"https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK\" or \"regions/REGION/subnetworks/SUBNETWORK\". If the subnetwork is located in a Shared VPC network, you must use the complete URL.",
           "type": "string"
         },
         "tempLocation": {
-          "description": "The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.",
+          "description": "Required. The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.",
           "type": "string"
         },
         "workerRegion": {
-          "description": "The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1\". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.",
+          "description": "Required. The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1\". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.",
           "type": "string"
         },
         "workerZone": {
-          "description": "The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.",
+          "description": "Optional. The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.",
           "type": "string"
         },
         "zone": {
-          "description": "The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.",
+          "description": "Optional. The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.",
           "type": "string"
         }
       },
@@ -6058,6 +5995,21 @@
       },
       "type": "object"
     },
+    "Straggler": {
+      "description": "Information for a straggler.",
+      "id": "Straggler",
+      "properties": {
+        "batchStraggler": {
+          "$ref": "StragglerInfo",
+          "description": "Batch straggler identification and debugging information."
+        },
+        "streamingStraggler": {
+          "$ref": "StreamingStragglerInfo",
+          "description": "Streaming straggler identification and debugging information."
+        }
+      },
+      "type": "object"
+    },
     "StragglerDebuggingInfo": {
       "description": "Information useful for debugging a straggler. Each type will provide specialized debugging information relevant for a particular cause. The StragglerDebuggingInfo will be 1:1 mapping to the StragglerCause enum.",
       "id": "StragglerDebuggingInfo",
@@ -6092,6 +6044,13 @@
       "description": "Summarized straggler identification details.",
       "id": "StragglerSummary",
       "properties": {
+        "recentStragglers": {
+          "description": "The most recent stragglers.",
+          "items": {
+            "$ref": "Straggler"
+          },
+          "type": "array"
+        },
         "stragglerCauseCount": {
           "additionalProperties": {
             "format": "int64",
@@ -6327,6 +6286,37 @@
       "properties": {
         "streamId": {
           "description": "Identifies the particular stream within the streaming Dataflow job.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StreamingStragglerInfo": {
+      "description": "Information useful for streaming straggler identification and debugging.",
+      "id": "StreamingStragglerInfo",
+      "properties": {
+        "dataWatermarkLag": {
+          "description": "The event-time watermark lag at the time of the straggler detection.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "End time of this straggler.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Start time of this straggler.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "systemWatermarkLag": {
+          "description": "The system watermark lag at the time of the straggler detection.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "workerName": {
+          "description": "Name of the worker where the straggler was detected.",
           "type": "string"
         }
       },
@@ -6572,21 +6562,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ValidateResponse": {
-      "description": "Response to the validation request.",
-      "id": "ValidateResponse",
-      "properties": {
-        "errorMessage": {
-          "description": "Will be empty if validation succeeds.",
-          "type": "string"
-        },
-        "queryInfo": {
-          "$ref": "QueryInfo",
-          "description": "Information about the validated query. Not defined if validation fails."
         }
       },
       "type": "object"

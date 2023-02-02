@@ -264,6 +264,10 @@ export namespace servicenetworking_v1 {
      */
     requestedRanges?: string[] | null;
     /**
+     * Optional. Defines the role field of the subnet, e.g. 'ACTIVE'. For information about the roles that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.
+     */
+    role?: string | null;
+    /**
      * Optional. A list of secondary IP ranges to be created within the new subnetwork.
      */
     secondaryIpRangeSpecs?: Schema$SecondaryIpRangeSpec[];
@@ -2814,6 +2818,7 @@ export namespace servicenetworking_v1 {
      *       //   "region": "my_region",
      *       //   "requestedAddress": "my_requestedAddress",
      *       //   "requestedRanges": [],
+     *       //   "role": "my_role",
      *       //   "secondaryIpRangeSpecs": [],
      *       //   "subnetwork": "my_subnetwork",
      *       //   "subnetworkUsers": [],

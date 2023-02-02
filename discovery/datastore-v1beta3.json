@@ -336,7 +336,7 @@
       }
     }
   },
-  "revision": "20221018",
+  "revision": "20230126",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -605,6 +605,11 @@
       "description": "The result of fetching an entity from Datastore.",
       "id": "EntityResult",
       "properties": {
+        "createTime": {
+          "description": "The time at which the entity was created. This field is set for `FULL` entity results. If this entity is missing, this field will not be set.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "cursor": {
           "description": "A cursor that points to the position after the result entity. Set only when the `EntityResult` is part of a `QueryResultBatch` message.",
           "format": "byte",
@@ -1333,6 +1338,11 @@
           "description": "Whether a conflict was detected for this mutation. Always false when a conflict detection strategy field is not set in the mutation.",
           "type": "boolean"
         },
+        "createTime": {
+          "description": "The create time of the entity. This field will not be set after a 'delete'.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "key": {
           "$ref": "Key",
           "description": "The automatically allocated key. Set only when the mutation allocated a key."
@@ -1423,7 +1433,7 @@
             "The given `property` is equal to the given `value`.",
             "The given `property` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `NOT_IN` is in the same query.",
             "The given `property` is not equal to the given `value`. Requires: * No other `NOT_EQUAL` or `NOT_IN` is in the same query. * That `property` comes first in the `order_by`.",
-            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key.",
+            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key. * No other `HAS_ANCESTOR` is in the same query.",
             "The value of the `property` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query. * That `field` comes first in the `order_by`."
           ],
           "type": "string"

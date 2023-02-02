@@ -182,7 +182,7 @@ export namespace apigeeregistry_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * The full resource name (including revision ID) of the spec of the API being served by the deployment. Changes to this value will update the revision. Format: `apis/{api\}/deployments/{deployment\}`
+     * The full resource name (including revision ID) of the spec of the API being served by the deployment. Changes to this value will update the revision. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec@revision\}`
      */
     apiSpecRevision?: string | null;
     /**
@@ -320,6 +320,10 @@ export namespace apigeeregistry_v1 {
      */
     name?: string | null;
     /**
+     * The primary spec for this version. Format: projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}
+     */
+    primarySpec?: string | null;
+    /**
      * A user-definable description of the lifecycle phase of this API version. Format: free-form, but we expect single words that describe API maturity, e.g., "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION", "DEPRECATED", "RETIRED".
      */
     state?: string | null;
@@ -333,6 +337,10 @@ export namespace apigeeregistry_v1 {
    */
   export interface Schema$Artifact {
     /**
+     * Annotations attach non-identifying metadata to resources. Annotation keys and values are less restricted than those of labels, but should be generally used for small values of broad interest. Larger, topic- specific metadata should be stored in Artifacts.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
      * Input only. The contents of the artifact. Provided by API callers when artifacts are created or replaced. To access the contents of an artifact, use GetArtifactContents.
      */
     contents?: string | null;
@@ -344,6 +352,10 @@ export namespace apigeeregistry_v1 {
      * Output only. A SHA-256 hash of the artifact's contents. If the artifact is gzipped, this is the hash of the uncompressed artifact.
      */
     hash?: string | null;
+    /**
+     * Labels attach identifying metadata to resources. Identifying metadata can be used to filter list operations. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one resource (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "registry.googleapis.com/" and cannot be changed.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * A content type specifier for the artifact. Content type specifiers are Media Types (https://en.wikipedia.org/wiki/Media_type) with a possible "schema" parameter that specifies a schema for the stored information. Content types can specify compression. Currently only GZip compression is supported (indicated with "+gzip").
      */
@@ -2397,9 +2409,11 @@ export namespace apigeeregistry_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "annotations": {},
      *       //   "contents": "my_contents",
      *       //   "createTime": "my_createTime",
      *       //   "hash": "my_hash",
+     *       //   "labels": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
      *       //   "sizeBytes": 0,
@@ -2411,9 +2425,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -2672,9 +2688,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -3221,9 +3239,11 @@ export namespace apigeeregistry_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "annotations": {},
      *         //   "contents": "my_contents",
      *         //   "createTime": "my_createTime",
      *         //   "hash": "my_hash",
+     *         //   "labels": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
      *         //   "sizeBytes": 0,
@@ -3235,9 +3255,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -4637,6 +4659,8 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.deployments.listRevisions({
+     *       // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
+     *       filter: 'placeholder-value',
      *       // Required. The name of the deployment to list revisions for.
      *       name: 'projects/my-project/locations/my-location/apis/my-api/deployments/my-deployment',
      *       // The maximum number of revisions to return per page.
@@ -5600,6 +5624,10 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Apis$Deployments$Listrevisions
     extends StandardParameters {
     /**
+     * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
+     */
+    filter?: string;
+    /**
      * Required. The name of the deployment to list revisions for.
      */
     name?: string;
@@ -5725,9 +5753,11 @@ export namespace apigeeregistry_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "annotations": {},
      *         //   "contents": "my_contents",
      *         //   "createTime": "my_createTime",
      *         //   "hash": "my_hash",
+     *         //   "labels": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
      *         //   "sizeBytes": 0,
@@ -5739,9 +5769,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -6004,9 +6036,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -6423,9 +6457,11 @@ export namespace apigeeregistry_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "annotations": {},
      *           //   "contents": "my_contents",
      *           //   "createTime": "my_createTime",
      *           //   "hash": "my_hash",
+     *           //   "labels": {},
      *           //   "mimeType": "my_mimeType",
      *           //   "name": "my_name",
      *           //   "sizeBytes": 0,
@@ -6438,9 +6474,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -6668,6 +6706,7 @@ export namespace apigeeregistry_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "primarySpec": "my_primarySpec",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -6683,6 +6722,7 @@ export namespace apigeeregistry_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "primarySpec": "my_primarySpec",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -6947,6 +6987,7 @@ export namespace apigeeregistry_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "primarySpec": "my_primarySpec",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -7366,6 +7407,7 @@ export namespace apigeeregistry_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "primarySpec": "my_primarySpec",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -7381,6 +7423,7 @@ export namespace apigeeregistry_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "primarySpec": "my_primarySpec",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -7924,9 +7967,11 @@ export namespace apigeeregistry_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "annotations": {},
      *         //   "contents": "my_contents",
      *         //   "createTime": "my_createTime",
      *         //   "hash": "my_hash",
+     *         //   "labels": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
      *         //   "sizeBytes": 0,
@@ -7938,9 +7983,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -8203,9 +8250,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -8761,9 +8810,11 @@ export namespace apigeeregistry_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "annotations": {},
      *           //   "contents": "my_contents",
      *           //   "createTime": "my_createTime",
      *           //   "hash": "my_hash",
+     *           //   "labels": {},
      *           //   "mimeType": "my_mimeType",
      *           //   "name": "my_name",
      *           //   "sizeBytes": 0,
@@ -8776,9 +8827,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -10320,6 +10373,8 @@ export namespace apigeeregistry_v1 {
      *   // Do the magic
      *   const res =
      *     await apigeeregistry.projects.locations.apis.versions.specs.listRevisions({
+     *       // An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
+     *       filter: 'placeholder-value',
      *       // Required. The name of the spec to list revisions for.
      *       name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
      *       // The maximum number of revisions to return per page.
@@ -11291,6 +11346,10 @@ export namespace apigeeregistry_v1 {
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Listrevisions
     extends StandardParameters {
     /**
+     * An expression that can be used to filter the list. Filters use the Common Expression Language and can refer to all message fields.
+     */
+    filter?: string;
+    /**
      * Required. The name of the spec to list revisions for.
      */
     name?: string;
@@ -11417,9 +11476,11 @@ export namespace apigeeregistry_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "annotations": {},
      *           //   "contents": "my_contents",
      *           //   "createTime": "my_createTime",
      *           //   "hash": "my_hash",
+     *           //   "labels": {},
      *           //   "mimeType": "my_mimeType",
      *           //   "name": "my_name",
      *           //   "sizeBytes": 0,
@@ -11432,9 +11493,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -11699,9 +11762,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -12257,9 +12322,11 @@ export namespace apigeeregistry_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "annotations": {},
      *           //   "contents": "my_contents",
      *           //   "createTime": "my_createTime",
      *           //   "hash": "my_hash",
+     *           //   "labels": {},
      *           //   "mimeType": "my_mimeType",
      *           //   "name": "my_name",
      *           //   "sizeBytes": 0,
@@ -12272,9 +12339,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -12818,9 +12887,11 @@ export namespace apigeeregistry_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "annotations": {},
      *       //   "contents": "my_contents",
      *       //   "createTime": "my_createTime",
      *       //   "hash": "my_hash",
+     *       //   "labels": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
      *       //   "sizeBytes": 0,
@@ -12832,9 +12903,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -13093,9 +13166,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,
@@ -13638,9 +13713,11 @@ export namespace apigeeregistry_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "annotations": {},
      *         //   "contents": "my_contents",
      *         //   "createTime": "my_createTime",
      *         //   "hash": "my_hash",
+     *         //   "labels": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
      *         //   "sizeBytes": 0,
@@ -13653,9 +13730,11 @@ export namespace apigeeregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "contents": "my_contents",
      *   //   "createTime": "my_createTime",
      *   //   "hash": "my_hash",
+     *   //   "labels": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "sizeBytes": 0,

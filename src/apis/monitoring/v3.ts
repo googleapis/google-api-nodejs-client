@@ -534,7 +534,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Criteria {
     /**
-     * The specific AlertPolicy names for the alert that should be snoozed. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID] There is a limit of 10 policies per snooze. This limit is checked during snooze creation.
+     * The specific AlertPolicy names for the alert that should be snoozed. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID] There is a limit of 100 policies per snooze. This limit is checked during snooze creation.
      */
     policies?: string[] | null;
   }
@@ -1400,7 +1400,7 @@ export namespace monitoring_v3 {
      */
     filter?: string | null;
     /**
-     * When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecast_horizion. When this field is not set, the MetricThreshold tests the current value of the timeseries against the threshold.
+     * When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecast_horizon. When this field is not set, the MetricThreshold tests the current value of the timeseries against the threshold.
      */
     forecastOptions?: Schema$ForecastOptions;
     /**

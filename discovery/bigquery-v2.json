@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20221209",
+  "revision": "20230121",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2178,12 +2178,12 @@
       "id": "BiEngineReason",
       "properties": {
         "code": {
-          "default": "$(reason.code)",
+          "default": "",
           "description": "[Output-only] High-level BI Engine reason for partial or disabled acceleration.",
           "type": "string"
         },
         "message": {
-          "default": "$(reason.message)",
+          "default": "",
           "description": "[Output-only] Free form human-readable reason for partial or disabled acceleration.",
           "type": "string"
         }
@@ -2193,8 +2193,13 @@
     "BiEngineStatistics": {
       "id": "BiEngineStatistics",
       "properties": {
+        "accelerationMode": {
+          "default": "",
+          "description": "[Output-only] Specifies which mode of BI Engine acceleration was performed (if any).",
+          "type": "string"
+        },
         "biEngineMode": {
-          "default": "$(stats.bi_engine_mode)",
+          "default": "",
           "description": "[Output-only] Specifies which mode of BI Engine acceleration was performed (if any).",
           "type": "string"
         },

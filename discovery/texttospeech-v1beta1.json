@@ -261,7 +261,7 @@
       }
     }
   },
-  "revision": "20221219",
+  "revision": "20230126",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -340,6 +340,23 @@
             "For scenarios where the synthesized audio is not downloadable and can only be used once. For example, real-time request in IVR system.",
             "For scenarios where the synthesized audio is downloadable and can be reused. For example, the synthesized audio is downloaded, stored in customer service system and played repeatedly."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudTexttospeechV1beta1SynthesizeLongAudioMetadata": {
+      "description": "Metadata for response returned by the `SynthesizeLongAudio` method.",
+      "id": "GoogleCloudTexttospeechV1beta1SynthesizeLongAudioMetadata",
+      "properties": {
+        "progressPercentage": {
+          "description": "The progress of the most recent processing update in percentage, ie. 70.0%.",
+          "format": "double",
+          "type": "number"
+        },
+        "startTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -449,6 +466,23 @@
         },
         "text": {
           "description": "The raw text to be synthesized.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SynthesizeLongAudioMetadata": {
+      "description": "Metadata for response returned by the `SynthesizeLongAudio` method.",
+      "id": "SynthesizeLongAudioMetadata",
+      "properties": {
+        "progressPercentage": {
+          "description": "The progress of the most recent processing update in percentage, ie. 70.0%.",
+          "format": "double",
+          "type": "number"
+        },
+        "startTime": {
+          "description": "Time when the request was received.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

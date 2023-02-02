@@ -219,7 +219,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation.
+   * Workload monitoring Violation. Next Id: 22
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1Violation {
     /**

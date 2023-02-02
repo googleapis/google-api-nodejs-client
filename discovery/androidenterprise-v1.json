@@ -2649,7 +2649,7 @@
       }
     }
   },
-  "revision": "20221214",
+  "revision": "20230131",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3265,6 +3265,11 @@
           },
           "type": "array"
         },
+        "googleAuthenticationSettings": {
+          "$ref": "GoogleAuthenticationSettings",
+          "description": "Output only. Settings for Google-provided user authentication.",
+          "readOnly": true
+        },
         "id": {
           "description": "The unique ID for the enterprise.",
           "type": "string"
@@ -3363,6 +3368,41 @@
             "$ref": "Entitlement"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAuthenticationSettings": {
+      "description": "Contains settings for Google-provided user authentication.",
+      "id": "GoogleAuthenticationSettings",
+      "properties": {
+        "dedicatedDevicesAllowed": {
+          "description": "Whether dedicated devices are allowed.",
+          "enum": [
+            "dedicatedDevicesAllowedUnspecified",
+            "disallowed",
+            "allowed"
+          ],
+          "enumDescriptions": [
+            "This value is unused.",
+            "Dedicated devices are not allowed.",
+            "Dedicated devices are allowed."
+          ],
+          "type": "string"
+        },
+        "googleAuthenticationRequired": {
+          "description": "Whether Google authentication is required.",
+          "enum": [
+            "googleAuthenticationRequiredUnspecified",
+            "notRequired",
+            "required"
+          ],
+          "enumDescriptions": [
+            "This value is unused.",
+            "Google authentication is not required.",
+            "User is required to be successfully authenticated by Google."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

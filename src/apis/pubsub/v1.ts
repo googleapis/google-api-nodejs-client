@@ -176,6 +176,15 @@ export namespace pubsub_v1 {
     role?: string | null;
   }
   /**
+   * Request for CommitSchema method.
+   */
+  export interface Schema$CommitSchemaRequest {
+    /**
+     * Required. The schema revision to commit.
+     */
+    schema?: Schema$Schema;
+  }
+  /**
    * Request for the `CreateSnapshot` method.
    */
   export interface Schema$CreateSnapshotRequest {
@@ -238,6 +247,19 @@ export namespace pubsub_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Response for the `ListSchemaRevisions` method.
+   */
+  export interface Schema$ListSchemaRevisionsResponse {
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The revisions of the schema.
+     */
+    schemas?: Schema$Schema[];
   }
   /**
    * Response for the `ListSchemas` method.
@@ -486,6 +508,15 @@ export namespace pubsub_v1 {
      * The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
      */
     minimumBackoff?: string | null;
+  }
+  /**
+   * Request for the `RollbackSchema` method.
+   */
+  export interface Schema$RollbackSchemaRequest {
+    /**
+     * Required. The revision ID to roll back to. It must be a revision of the same schema. Example: c7cfa2a8
+     */
+    revisionId?: string | null;
   }
   /**
    * A schema resource.
@@ -804,6 +835,147 @@ export namespace pubsub_v1 {
     }
 
     /**
+     * Commits a new schema revision to an existing schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.commit({
+     *     // Required. The name of the schema we are revising. Format is `projects/{project\}/schemas/{schema\}`.
+     *     name: 'projects/my-project/schemas/my-schema',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "schema": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "definition": "my_definition",
+     *   //   "name": "my_name",
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    commit(
+      params: Params$Resource$Projects$Schemas$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
+      params?: Params$Resource$Projects$Schemas$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Schema>;
+    commit(
+      params: Params$Resource$Projects$Schemas$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Schemas$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$Schema>,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Schemas$Commit,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    commit(callback: BodyResponseCallback<Schema$Schema>): void;
+    commit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Commit
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Commit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:commit').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Schema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Schema>(parameters);
+      }
+    }
+
+    /**
      * Creates a schema.
      * @example
      * ```js
@@ -1077,6 +1249,144 @@ export namespace pubsub_v1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a specific schema revision.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.deleteRevision({
+     *     // Required. The name of the schema revision to be deleted, with a revision ID explicitly included. Example: projects/123/schemas/my-schema@c7cfa2a8
+     *     name: 'projects/my-project/schemas/my-schema',
+     *     // Required. The revision ID to roll back to. It must be a revision of the same schema. Example: c7cfa2a8
+     *     revisionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "definition": "my_definition",
+     *   //   "name": "my_name",
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteRevision(
+      params: Params$Resource$Projects$Schemas$Deleterevision,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteRevision(
+      params?: Params$Resource$Projects$Schemas$Deleterevision,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Schema>;
+    deleteRevision(
+      params: Params$Resource$Projects$Schemas$Deleterevision,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteRevision(
+      params: Params$Resource$Projects$Schemas$Deleterevision,
+      options: MethodOptions | BodyResponseCallback<Schema$Schema>,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    deleteRevision(
+      params: Params$Resource$Projects$Schemas$Deleterevision,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    deleteRevision(callback: BodyResponseCallback<Schema$Schema>): void;
+    deleteRevision(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Deleterevision
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Deleterevision;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Deleterevision;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:deleteRevision').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Schema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Schema>(parameters);
       }
     }
 
@@ -1490,6 +1800,296 @@ export namespace pubsub_v1 {
         );
       } else {
         return createAPIRequest<Schema$ListSchemasResponse>(parameters);
+      }
+    }
+
+    /**
+     * Lists all schema revisions for the named schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.listRevisions({
+     *     // Required. The name of the schema to list revisions for.
+     *     name: 'projects/my-project/schemas/my-schema',
+     *     // The maximum number of revisions to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // The page token, received from a previous ListSchemaRevisions call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // The set of Schema fields to return in the response. If not set, returns Schemas with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "schemas": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listRevisions(
+      params: Params$Resource$Projects$Schemas$Listrevisions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listRevisions(
+      params?: Params$Resource$Projects$Schemas$Listrevisions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSchemaRevisionsResponse>;
+    listRevisions(
+      params: Params$Resource$Projects$Schemas$Listrevisions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Schemas$Listrevisions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSchemaRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSchemaRevisionsResponse>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Schemas$Listrevisions,
+      callback: BodyResponseCallback<Schema$ListSchemaRevisionsResponse>
+    ): void;
+    listRevisions(
+      callback: BodyResponseCallback<Schema$ListSchemaRevisionsResponse>
+    ): void;
+    listRevisions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Listrevisions
+        | BodyResponseCallback<Schema$ListSchemaRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSchemaRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSchemaRevisionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSchemaRevisionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Listrevisions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Listrevisions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:listRevisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSchemaRevisionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSchemaRevisionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new schema revision that is a copy of the provided revision_id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.rollback({
+     *     // Required. The schema being rolled back with revision id.
+     *     name: 'projects/my-project/schemas/my-schema',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "revisionId": "my_revisionId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "definition": "my_definition",
+     *   //   "name": "my_name",
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollback(
+      params: Params$Resource$Projects$Schemas$Rollback,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollback(
+      params?: Params$Resource$Projects$Schemas$Rollback,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Schema>;
+    rollback(
+      params: Params$Resource$Projects$Schemas$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Schemas$Rollback,
+      options: MethodOptions | BodyResponseCallback<Schema$Schema>,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Schemas$Rollback,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    rollback(callback: BodyResponseCallback<Schema$Schema>): void;
+    rollback(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Rollback
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Rollback;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Schema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Schema>(parameters);
       }
     }
 
@@ -2076,6 +2676,18 @@ export namespace pubsub_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Schemas$Commit
+    extends StandardParameters {
+    /**
+     * Required. The name of the schema we are revising. Format is `projects/{project\}/schemas/{schema\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitSchemaRequest;
+  }
   export interface Params$Resource$Projects$Schemas$Create
     extends StandardParameters {
     /**
@@ -2098,6 +2710,17 @@ export namespace pubsub_v1 {
      * Required. Name of the schema to delete. Format is `projects/{project\}/schemas/{schema\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Schemas$Deleterevision
+    extends StandardParameters {
+    /**
+     * Required. The name of the schema revision to be deleted, with a revision ID explicitly included. Example: projects/123/schemas/my-schema@c7cfa2a8
+     */
+    name?: string;
+    /**
+     * Required. The revision ID to roll back to. It must be a revision of the same schema. Example: c7cfa2a8
+     */
+    revisionId?: string;
   }
   export interface Params$Resource$Projects$Schemas$Get
     extends StandardParameters {
@@ -2139,6 +2762,37 @@ export namespace pubsub_v1 {
      * The set of Schema fields to return in the response. If not set, returns Schemas with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Schemas$Listrevisions
+    extends StandardParameters {
+    /**
+     * Required. The name of the schema to list revisions for.
+     */
+    name?: string;
+    /**
+     * The maximum number of revisions to return per page.
+     */
+    pageSize?: number;
+    /**
+     * The page token, received from a previous ListSchemaRevisions call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * The set of Schema fields to return in the response. If not set, returns Schemas with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Schemas$Rollback
+    extends StandardParameters {
+    /**
+     * Required. The schema being rolled back with revision id.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackSchemaRequest;
   }
   export interface Params$Resource$Projects$Schemas$Setiampolicy
     extends StandardParameters {

@@ -473,7 +473,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
                       "required": true,
@@ -501,7 +501,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name.",
+                      "description": "Required. The resource name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/nodes/[^/]+$",
                       "required": true,
@@ -721,7 +721,7 @@
       }
     }
   },
-  "revision": "20221004",
+  "revision": "20230105",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {

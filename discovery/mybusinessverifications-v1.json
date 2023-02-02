@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20230201",
   "rootUrl": "https://mybusinessverifications.googleapis.com/",
   "schemas": {
     "AddressVerificationData": {
@@ -516,6 +516,10 @@
       "description": "A verification represents a verification attempt on a location.",
       "id": "Verification",
       "properties": {
+        "announcement": {
+          "description": "Optional. Response announcement set only if the method is VETTED_PARTNER.",
+          "type": "string"
+        },
         "createTime": {
           "description": "The timestamp when the verification is requested.",
           "format": "google-datetime",
@@ -573,6 +577,10 @@
         "addressData": {
           "$ref": "AddressVerificationData",
           "description": "Set only if the method is MAIL."
+        },
+        "announcement": {
+          "description": "Set only if the method is VETTED_PARTNER.",
+          "type": "string"
         },
         "emailData": {
           "$ref": "EmailVerificationData",

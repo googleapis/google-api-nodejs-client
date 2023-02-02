@@ -1375,7 +1375,7 @@ export namespace dataflow_v1b3 {
     spannerDetails?: Schema$SpannerIODetails[];
   }
   /**
-   * JobMetrics contains a collection of metrics describing the detailed progress of a Dataflow job. Metrics correspond to user-defined and system-defined metrics in the job. This resource captures only the most recent values of each metric; time-series data can be queried for them (under the same metric names) from Cloud Monitoring.
+   * JobMetrics contains a collection of metrics describing the detailed progress of a Dataflow job. Metrics correspond to user-defined and system-defined metrics in the job. For more information, see [Dataflow job metrics] (https://cloud.google.com/dataflow/docs/guides/using-monitoring-intf). This resource captures only the most recent values of each metric; time-series data can be queried for them (under the same metric names) from Cloud Monitoring.
    */
   export interface Schema$JobMetrics {
     /**
@@ -2061,15 +2061,6 @@ export namespace dataflow_v1b3 {
     topicName?: string | null;
   }
   /**
-   * Information about a validated query.
-   */
-  export interface Schema$QueryInfo {
-    /**
-     * Includes an entry for each satisfied QueryProperty.
-     */
-    queryProperty?: string[] | null;
-  }
-  /**
    * An instruction that reads records. Takes no inputs, produces one output.
    */
   export interface Schema$ReadInstruction {
@@ -2155,67 +2146,67 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$RuntimeEnvironment {
     /**
-     * Additional experiment flags for the job, specified with the `--experiments` option.
+     * Optional. Additional experiment flags for the job, specified with the `--experiments` option.
      */
     additionalExperiments?: string[] | null;
     /**
-     * Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1kg", "count": "3" \}.
+     * Optional. Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1kg", "count": "3" \}.
      */
     additionalUserLabels?: {[key: string]: string} | null;
     /**
-     * Whether to bypass the safety checks for the job's temporary directory. Use with caution.
+     * Optional. Whether to bypass the safety checks for the job's temporary directory. Use with caution.
      */
     bypassTempDirValidation?: boolean | null;
     /**
-     * Whether to enable Streaming Engine for the job.
+     * Optional. Whether to enable Streaming Engine for the job.
      */
     enableStreamingEngine?: boolean | null;
     /**
-     * Configuration for VM IPs.
+     * Optional. Configuration for VM IPs.
      */
     ipConfiguration?: string | null;
     /**
-     * Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/
+     * Optional. Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/
      */
     kmsKeyName?: string | null;
     /**
-     * The machine type to use for the job. Defaults to the value from the template if not specified.
+     * Optional. The machine type to use for the job. Defaults to the value from the template if not specified.
      */
     machineType?: string | null;
     /**
-     * The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.
+     * Optional. The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000. The default value is 1.
      */
     maxWorkers?: number | null;
     /**
-     * Network to which VMs will be assigned. If empty or unspecified, the service will use the network "default".
+     * Optional. Network to which VMs will be assigned. If empty or unspecified, the service will use the network "default".
      */
     network?: string | null;
     /**
-     * The initial number of Google Compute Engine instances for the job.
+     * Optional. The initial number of Google Compute Engine instances for the job. The default value is 11.
      */
     numWorkers?: number | null;
     /**
-     * The email address of the service account to run the job as.
+     * Optional. The email address of the service account to run the job as.
      */
     serviceAccountEmail?: string | null;
     /**
-     * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK" or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in a Shared VPC network, you must use the complete URL.
+     * Optional. Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK" or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in a Shared VPC network, you must use the complete URL.
      */
     subnetwork?: string | null;
     /**
-     * The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     * Required. The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`.
      */
     tempLocation?: string | null;
     /**
-     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.
+     * Required. The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.
      */
     workerRegion?: string | null;
     /**
-     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1-a". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
+     * Optional. The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1-a". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
      */
     workerZone?: string | null;
     /**
-     * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.
+     * Optional. The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.
      */
     zone?: string | null;
   }
@@ -2809,6 +2800,19 @@ export namespace dataflow_v1b3 {
     properties?: {[key: string]: any} | null;
   }
   /**
+   * Information for a straggler.
+   */
+  export interface Schema$Straggler {
+    /**
+     * Batch straggler identification and debugging information.
+     */
+    batchStraggler?: Schema$StragglerInfo;
+    /**
+     * Streaming straggler identification and debugging information.
+     */
+    streamingStraggler?: Schema$StreamingStragglerInfo;
+  }
+  /**
    * Information useful for debugging a straggler. Each type will provide specialized debugging information relevant for a particular cause. The StragglerDebuggingInfo will be 1:1 mapping to the StragglerCause enum.
    */
   export interface Schema$StragglerDebuggingInfo {
@@ -2834,6 +2838,10 @@ export namespace dataflow_v1b3 {
    * Summarized straggler identification details.
    */
   export interface Schema$StragglerSummary {
+    /**
+     * The most recent stragglers.
+     */
+    recentStragglers?: Schema$Straggler[];
     /**
      * Aggregated counts of straggler causes, keyed by the string representation of the StragglerCause enum.
      */
@@ -2990,6 +2998,31 @@ export namespace dataflow_v1b3 {
      * Identifies the particular stream within the streaming Dataflow job.
      */
     streamId?: string | null;
+  }
+  /**
+   * Information useful for streaming straggler identification and debugging.
+   */
+  export interface Schema$StreamingStragglerInfo {
+    /**
+     * The event-time watermark lag at the time of the straggler detection.
+     */
+    dataWatermarkLag?: string | null;
+    /**
+     * End time of this straggler.
+     */
+    endTime?: string | null;
+    /**
+     * Start time of this straggler.
+     */
+    startTime?: string | null;
+    /**
+     * The system watermark lag at the time of the straggler detection.
+     */
+    systemWatermarkLag?: string | null;
+    /**
+     * Name of the worker where the straggler was detected.
+     */
+    workerName?: string | null;
   }
   /**
    * Describes a stream of data, either as input to be processed or as output of a streaming Dataflow job.
@@ -3189,19 +3222,6 @@ export namespace dataflow_v1b3 {
      * User names for all collection outputs to this transform.
      */
     outputCollectionName?: string[] | null;
-  }
-  /**
-   * Response to the validation request.
-   */
-  export interface Schema$ValidateResponse {
-    /**
-     * Will be empty if validation succeeds.
-     */
-    errorMessage?: string | null;
-    /**
-     * Information about the validated query. Not defined if validation fails.
-     */
-    queryInfo?: Schema$QueryInfo;
   }
   /**
    * Information about a worker
@@ -6276,7 +6296,6 @@ export namespace dataflow_v1b3 {
     flexTemplates: Resource$Projects$Locations$Flextemplates;
     jobs: Resource$Projects$Locations$Jobs;
     snapshots: Resource$Projects$Locations$Snapshots;
-    sql: Resource$Projects$Locations$Sql;
     templates: Resource$Projects$Locations$Templates;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -6285,7 +6304,6 @@ export namespace dataflow_v1b3 {
       );
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
       this.snapshots = new Resource$Projects$Locations$Snapshots(this.context);
-      this.sql = new Resource$Projects$Locations$Sql(this.context);
       this.templates = new Resource$Projects$Locations$Templates(this.context);
     }
 
@@ -9737,166 +9755,6 @@ export namespace dataflow_v1b3 {
      * The project ID to list snapshots for.
      */
     projectId?: string;
-  }
-
-  export class Resource$Projects$Locations$Sql {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Validates a GoogleSQL query for Cloud Dataflow syntax. Will always confirm the given query parses correctly, and if able to look up schema information from DataCatalog, will validate that the query analyzes properly as well.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.locations.sql.validate({
-     *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     *     location: 'placeholder-value',
-     *     // Required. The ID of the Cloud Platform project that the job belongs to.
-     *     projectId: 'placeholder-value',
-     *     // The sql query to validate.
-     *     query: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "errorMessage": "my_errorMessage",
-     *   //   "queryInfo": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    validate(
-      params: Params$Resource$Projects$Locations$Sql$Validate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    validate(
-      params?: Params$Resource$Projects$Locations$Sql$Validate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ValidateResponse>;
-    validate(
-      params: Params$Resource$Projects$Locations$Sql$Validate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Sql$Validate,
-      options: MethodOptions | BodyResponseCallback<Schema$ValidateResponse>,
-      callback: BodyResponseCallback<Schema$ValidateResponse>
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Sql$Validate,
-      callback: BodyResponseCallback<Schema$ValidateResponse>
-    ): void;
-    validate(callback: BodyResponseCallback<Schema$ValidateResponse>): void;
-    validate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Sql$Validate
-        | BodyResponseCallback<Schema$ValidateResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ValidateResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ValidateResponse>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$ValidateResponse> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Sql$Validate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Sql$Validate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1b3/projects/{projectId}/locations/{location}/sql:validate'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'location'],
-        pathParams: ['location', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ValidateResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ValidateResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Sql$Validate
-    extends StandardParameters {
-    /**
-     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
-     */
-    location?: string;
-    /**
-     * Required. The ID of the Cloud Platform project that the job belongs to.
-     */
-    projectId?: string;
-    /**
-     * The sql query to validate.
-     */
-    query?: string;
   }
 
   export class Resource$Projects$Locations$Templates {

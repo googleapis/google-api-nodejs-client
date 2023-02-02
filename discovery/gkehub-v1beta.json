@@ -670,7 +670,7 @@
       }
     }
   },
-  "revision": "20221207",
+  "revision": "20230119",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -835,6 +835,17 @@
           "$ref": "FeatureState",
           "description": "Output only. The \"running state\" of the Feature in this Hub.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "CommonFleetDefaultMemberConfigSpec": {
+      "description": "CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet",
+      "id": "CommonFleetDefaultMemberConfigSpec",
+      "properties": {
+        "identityservice": {
+          "$ref": "IdentityServiceMembershipSpec",
+          "description": "Identity Service-specific spec."
         }
       },
       "type": "object"
@@ -1671,6 +1682,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "fleetDefaultMemberConfig": {
+          "$ref": "CommonFleetDefaultMemberConfigSpec",
+          "description": "Optional. Feature configuration applicable to all memberships of the fleet."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2368,6 +2383,32 @@
       },
       "type": "object"
     },
+    "PolicyControllerBundleInstallSpec": {
+      "description": "BundleInstallSpec is the specification configuration for a single managed bundle.",
+      "id": "PolicyControllerBundleInstallSpec",
+      "properties": {
+        "exemptedNamespaces": {
+          "description": "the set of namespaces to be exempted from the bundle",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "management": {
+          "description": "Management specifies how the bundle will be managed by the controller.",
+          "enum": [
+            "MANAGEMENT_UNSPECIFIED",
+            "INSTALLED"
+          ],
+          "enumDescriptions": [
+            "No Management strategy has been specified.",
+            "The entity should be insistently reconciled by the Hub controller"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PolicyControllerHubConfig": {
       "description": "Configuration for Policy Controller",
       "id": "PolicyControllerHubConfig",
@@ -2412,6 +2453,10 @@
           "description": "Enables the ability to mutate resources using Policy Controller.",
           "type": "boolean"
         },
+        "policyContent": {
+          "$ref": "PolicyControllerPolicyContentSpec",
+          "description": "Specifies the desired policy content on the cluster"
+        },
         "referentialRulesEnabled": {
           "description": "Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.",
           "type": "boolean"
@@ -2446,7 +2491,14 @@
           "additionalProperties": {
             "$ref": "PolicyControllerOnClusterState"
           },
-          "description": "Currently these include (also serving as map keys): 1. \"admission\" 2. \"audit\" 3. \"mutation\" 4. \"constraint template library\"",
+          "description": "Currently these include (also serving as map keys): 1. \"admission\" 2. \"audit\" 3. \"mutation\"",
+          "type": "object"
+        },
+        "contentStates": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerOnClusterState"
+          },
+          "description": "The state of the template library and any bundles included in the chosen version of the manifest",
           "type": "object"
         },
         "state": {
@@ -2457,7 +2509,7 @@
             "INSTALLING",
             "ACTIVE",
             "UPDATING",
-            "DECOMISSIONING",
+            "DECOMMISSIONING",
             "CLUSTER_ERROR",
             "HUB_ERROR",
             "SUSPENDED"
@@ -2518,7 +2570,7 @@
             "INSTALLING",
             "ACTIVE",
             "UPDATING",
-            "DECOMISSIONING",
+            "DECOMMISSIONING",
             "CLUSTER_ERROR",
             "HUB_ERROR",
             "SUSPENDED"
@@ -2535,6 +2587,20 @@
             "Policy Controller (PC) is installed but suspended. This means that the policies are not enforced, but violations are still recorded (through audit)."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyControllerPolicyContentSpec": {
+      "description": "PolicyContentSpec defines the user's desired content configuration on the cluster.",
+      "id": "PolicyControllerPolicyContentSpec",
+      "properties": {
+        "bundles": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerBundleInstallSpec"
+          },
+          "description": "map of bundle name to BundleInstallSpec. The bundle name maps to the `bundleName` key in the `policycontroller.gke.io/constraintData` annotation on a constraint.",
+          "type": "object"
         }
       },
       "type": "object"

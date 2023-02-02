@@ -246,6 +246,10 @@ export namespace datastore_v1 {
      */
     mutations?: Schema$Mutation[];
     /**
+     * Options for beginning a new transaction for this request. The transaction is committed when the request completes. If specified, TransactionOptions.mode must be TransactionOptions.ReadWrite.
+     */
+    singleUseTransaction?: Schema$TransactionOptions;
+    /**
      * The identifier of the transaction associated with the commit. A transaction identifier is returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string | null;
@@ -310,6 +314,10 @@ export namespace datastore_v1 {
    * The result of fetching an entity from Datastore.
    */
   export interface Schema$EntityResult {
+    /**
+     * The time at which the entity was created. This field is set for `FULL` entity results. If this entity is missing, this field will not be set.
+     */
+    createTime?: string | null;
     /**
      * A cursor that points to the position after the result entity. Set only when the `EntityResult` is part of a `QueryResultBatch` message.
      */
@@ -867,6 +875,10 @@ export namespace datastore_v1 {
      * The time at which these entities were read or found missing.
      */
     readTime?: string | null;
+    /**
+     * The identifier of the transaction that was started as part of this Lookup request. Set only when ReadOptions.new_transaction was set in LookupRequest.read_options.
+     */
+    transaction?: string | null;
   }
   /**
    * A mutation to apply to an entity.
@@ -905,6 +917,10 @@ export namespace datastore_v1 {
      * Whether a conflict was detected for this mutation. Always false when a conflict detection strategy field is not set in the mutation.
      */
     conflictDetected?: boolean | null;
+    /**
+     * The create time of the entity. This field will not be set after a 'delete'.
+     */
+    createTime?: string | null;
     /**
      * The automatically allocated key. Set only when the mutation allocated a key.
      */
@@ -1092,6 +1108,10 @@ export namespace datastore_v1 {
    */
   export interface Schema$ReadOptions {
     /**
+     * Options for beginning a new transaction for this request. The new transaction identifier will be returned in the corresponding response as either LookupResponse.transaction or RunQueryResponse.transaction.
+     */
+    newTransaction?: Schema$TransactionOptions;
+    /**
      * The non-transactional read consistency to use.
      */
     readConsistency?: string | null;
@@ -1184,6 +1204,10 @@ export namespace datastore_v1 {
      * The parsed form of the `GqlQuery` from the request, if it was set.
      */
     query?: Schema$AggregationQuery;
+    /**
+     * The identifier of the transaction that was started as part of this RunAggregationQuery request. Set only when ReadOptions.new_transaction was set in RunAggregationQueryRequest.read_options.
+     */
+    transaction?: string | null;
   }
   /**
    * The request for Datastore.RunQuery.
@@ -1222,6 +1246,10 @@ export namespace datastore_v1 {
      * The parsed form of the `GqlQuery` from the request, if it was set.
      */
     query?: Schema$Query;
+    /**
+     * The identifier of the transaction that was started as part of this RunQuery request. Set only when ReadOptions.new_transaction was set in RunQueryRequest.read_options.
+     */
+    transaction?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1654,6 +1682,7 @@ export namespace datastore_v1 {
      *       //   "databaseId": "my_databaseId",
      *       //   "mode": "my_mode",
      *       //   "mutations": [],
+     *       //   "singleUseTransaction": {},
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -2112,7 +2141,8 @@ export namespace datastore_v1 {
      *   //   "deferred": [],
      *   //   "found": [],
      *   //   "missing": [],
-     *   //   "readTime": "my_readTime"
+     *   //   "readTime": "my_readTime",
+     *   //   "transaction": "my_transaction"
      *   // }
      * }
      *
@@ -2537,7 +2567,8 @@ export namespace datastore_v1 {
      *   // Example response
      *   // {
      *   //   "batch": {},
-     *   //   "query": {}
+     *   //   "query": {},
+     *   //   "transaction": "my_transaction"
      *   // }
      * }
      *
@@ -2688,7 +2719,8 @@ export namespace datastore_v1 {
      *   // Example response
      *   // {
      *   //   "batch": {},
-     *   //   "query": {}
+     *   //   "query": {},
+     *   //   "transaction": "my_transaction"
      *   // }
      * }
      *

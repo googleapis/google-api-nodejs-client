@@ -1063,7 +1063,7 @@ export namespace osconfig_v1alpha {
      */
     outputFilePath?: string | null;
     /**
-     * An inline script. The size of the script is limited to 1024 characters.
+     * An inline script. The size of the script is limited to 32KiB.
      */
     script?: string | null;
   }
@@ -1123,7 +1123,7 @@ export namespace osconfig_v1alpha {
    */
   export interface Schema$OSPolicyResourceFileResource {
     /**
-     * A a file with this content. The size of the content is limited to 1024 characters.
+     * A a file with this content. The size of the content is limited to 32KiB.
      */
     content?: string | null;
     /**

@@ -4865,7 +4865,7 @@
       }
     }
   },
-  "revision": "20221122",
+  "revision": "20230126",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "Action": {
@@ -5616,13 +5616,13 @@
       "id": "DateShiftConfig",
       "properties": {
         "cryptoKey": {
-          "description": "An AES 128/192/256 bit key. Causes the shift to be computed based on this key and the patient ID. A default key is generated for each de-identification operation and is used when neither `crypto_key` nor `kms_wrapped` is specified. Must not be set if `kms_wrapped` is set.",
+          "description": "An AES 128/192/256 bit key. The date shift is computed based on this key and the patient ID. If the patient ID is empty for a DICOM resource, the date shift is computed based on this key and the study instance UID. If `crypto_key` is not set, then `kms_wrapped` is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if `kms_wrapped` is set.",
           "format": "byte",
           "type": "string"
         },
         "kmsWrapped": {
           "$ref": "KmsWrappedCryptoKey",
-          "description": "KMS wrapped key. Must not be set if `crypto_key` is set."
+          "description": "KMS wrapped key. If `kms_wrapped` is not set, then `crypto_key` is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if `crypto_key` is set."
         }
       },
       "type": "object"
@@ -6374,7 +6374,7 @@
         },
         "notificationConfig": {
           "$ref": "NotificationConfig",
-          "description": "If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, \"action\":\"CreateResource\"."
+          "description": "If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, \"action\":\"CreateResource\". Deprecated. Use `notification_configs` instead."
         },
         "notificationConfigs": {
           "description": "Specifies where and whether to send notifications upon changes to a Fhir store.",

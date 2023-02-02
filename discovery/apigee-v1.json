@@ -148,7 +148,7 @@
           "parameterOrder": [],
           "parameters": {
             "parent": {
-              "description": "Required. Name of the GCP project in which to associate the Apigee organization. Pass the information as a query parameter using the following structure in your request: `projects/`",
+              "description": "Required. Name of the Google Cloud project in which to associate the Apigee organization. Pass the information as a query parameter using the following structure in your request: `projects/`",
               "location": "query",
               "type": "string"
             }
@@ -346,7 +346,7 @@
           ]
         },
         "list": {
-          "description": "Lists the Apigee organizations and associated GCP projects that you have permission to access. See [Understanding organizations](https://cloud.google.com/apigee/docs/api-platform/fundamentals/organization-structure).",
+          "description": "Lists the Apigee organizations and associated Google Cloud projects that you have permission to access. See [Understanding organizations](https://cloud.google.com/apigee/docs/api-platform/fundamentals/organization-structure).",
           "flatPath": "v1/organizations",
           "httpMethod": "GET",
           "id": "apigee.organizations.list",
@@ -8674,7 +8674,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230104",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -12312,7 +12312,7 @@
       "id": "GoogleCloudApigeeV1ListOrganizationsResponse",
       "properties": {
         "organizations": {
-          "description": "List of Apigee organizations and associated GCP projects.",
+          "description": "List of Apigee organizations and associated Google Cloud projects.",
           "items": {
             "$ref": "GoogleCloudApigeeV1OrganizationProjectMapping"
           },
@@ -12792,7 +12792,7 @@
           "description": "Addon configurations of the Apigee organization."
         },
         "analyticsRegion": {
-          "description": "Required. DEPRECATED: This field will be deprecated once Apigee supports DRZ. Primary GCP region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
+          "description": "Required. DEPRECATED: This field will be deprecated once Apigee supports DRZ. Primary Google Cloud region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
           "type": "string"
         },
         "apigeeProjectId": {
@@ -12973,7 +12973,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "GCP project associated with the Apigee organization",
+          "description": "Google Cloud project associated with the Apigee organization",
           "type": "string"
         },
         "projectIds": {

@@ -289,11 +289,11 @@ export namespace networkconnectivity_v1alpha1 {
     updateTime?: string | null;
   }
   /**
-   * The InternalRange resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (it's usage and peering behavior). Networking resources can link to this range if they are created as belonging to it. Next id: 14
+   * The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.
    */
   export interface Schema$InternalRange {
     /**
-     * Time when the InternalRange was created.
+     * Time when the internal range was created.
      */
     createTime?: string | null;
     /**
@@ -301,7 +301,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     description?: string | null;
     /**
-     * IP range that this InternalRange defines.
+     * IP range that this internal range defines.
      */
     ipCidrRange?: string | null;
     /**
@@ -309,23 +309,23 @@ export namespace networkconnectivity_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. The name of a InternalRange. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     * Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      */
     name?: string | null;
     /**
-     * The URL or resource ID of the network in which to reserve the Internal Range. The network cannot be deleted if there are any reserved Internal Ranges referring to it. Legacy network is not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project\}/global/networks/{resourceId\} - ID: network123
+     * The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project\}/global/networks/{resourceId\} - ID: network123
      */
     network?: string | null;
     /**
-     * Optional. Types of resources that are allowed to overlap with the current InternalRange.
+     * Optional. Types of resources that are allowed to overlap with the current internal range.
      */
     overlaps?: string[] | null;
     /**
-     * The type of peering set for this InternalRange.
+     * The type of peering set for this internal range.
      */
     peering?: string | null;
     /**
-     * An alternate to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, it's an error if the range sizes don't match. Can also be used during updates to change the range size.
+     * An alternative to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size.
      */
     prefixLength?: number | null;
     /**
@@ -333,15 +333,15 @@ export namespace networkconnectivity_v1alpha1 {
      */
     targetCidrRange?: string[] | null;
     /**
-     * Time when the InternalRange was updated.
+     * Time when the internal range was updated.
      */
     updateTime?: string | null;
     /**
-     * The type of usage set for this InternalRange.
+     * The type of usage set for this internal range.
      */
     usage?: string | null;
     /**
-     * Output only. The list of resources that refer to this internal range. Resources that use the InternalRange for their range allocation are referred to as users of the range. Other resources mark themselves as users while doing so by creating a reference to this InternalRange. Having a user, based on this reference, prevents deletion of the InternalRange referred to. Can be empty.
+     * Output only. The list of resources that refer to this internal range. Resources that use the internal range for their range allocation are referred to as users of the range. Other resources mark themselves as users while doing so by creating a reference to this internal range. Having a user, based on this reference, prevents deletion of the internal range that is referred to. Can be empty.
      */
     users?: string[] | null;
   }
@@ -367,7 +367,7 @@ export namespace networkconnectivity_v1alpha1 {
    */
   export interface Schema$ListInternalRangesResponse {
     /**
-     * InternalRanges to be returned.
+     * Internal range to be returned.
      */
     internalRanges?: Schema$InternalRange[];
     /**
@@ -2212,7 +2212,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
 
     /**
-     * Creates a new InternalRange in a given project and location.
+     * Creates a new internal range in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -2243,7 +2243,7 @@ export namespace networkconnectivity_v1alpha1 {
      *       internalRangeId: 'placeholder-value',
      *       // Required. The parent resource's name of the InternalRange.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2378,7 +2378,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
 
     /**
-     * Deletes a single InternalRange.
+     * Deletes a single internal range.
      * @example
      * ```js
      * // Before running the sample:
@@ -2407,7 +2407,7 @@ export namespace networkconnectivity_v1alpha1 {
      *     await networkconnectivity.projects.locations.internalRanges.delete({
      *       // Required. The name of the InternalRange to delete.
      *       name: 'projects/my-project/locations/my-location/internalRanges/my-internalRange',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -2519,7 +2519,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
 
     /**
-     * Gets details of a single InternalRange.
+     * Gets details of a single internal range.
      * @example
      * ```js
      * // Before running the sample:
@@ -2796,7 +2796,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
 
     /**
-     * Lists InternalRanges in a given project and location.
+     * Lists internal ranges in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -2943,7 +2943,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
 
     /**
-     * Updates the parameters of a single InternalRange.
+     * Updates the parameters of a single internal range.
      * @example
      * ```js
      * // Before running the sample:
@@ -2970,11 +2970,11 @@ export namespace networkconnectivity_v1alpha1 {
      *   // Do the magic
      *   const res = await networkconnectivity.projects.locations.internalRanges.patch(
      *     {
-     *       // Immutable. The name of a InternalRange. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     *       // Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      *       name: 'projects/my-project/locations/my-location/internalRanges/my-internalRange',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
-     *       // Optional. Field mask is used to specify the fields to be overwritten in the InternalRange resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *       // Optional. Field mask is used to specify the fields to be overwritten in the internal range resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3413,7 +3413,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -3429,7 +3429,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -3477,15 +3477,15 @@ export namespace networkconnectivity_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Internalranges$Patch
     extends StandardParameters {
     /**
-     * Immutable. The name of a InternalRange. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     * Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the InternalRange resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. Field mask is used to specify the fields to be overwritten in the internal range resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
 

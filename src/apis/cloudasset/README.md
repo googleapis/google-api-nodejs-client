@@ -2,7 +2,7 @@
 
 # cloudasset
 
-> The cloud asset API manages the history and inventory of cloud resources.
+> The Cloud Asset API manages the history and inventory of Google Cloud resources.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

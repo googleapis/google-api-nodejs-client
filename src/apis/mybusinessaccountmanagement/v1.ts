@@ -155,7 +155,7 @@ export namespace mybusinessaccountmanagement_v1 {
      */
     permissionLevel?: string | null;
     /**
-     * Required. Input only. The resource name of the account which will be the primary owner of the account being created. It should be of the form `accounts/{account_id\}/`.
+     * Required. Input only. The resource name of the account which will be the primary owner of the account being created. It should be of the form `accounts/{account_id\}`.
      */
     primaryOwner?: string | null;
     /**

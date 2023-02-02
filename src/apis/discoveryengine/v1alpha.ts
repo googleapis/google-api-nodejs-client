@@ -142,6 +142,104 @@ export namespace discoveryengine_v1alpha {
     extensions?: Array<{[key: string]: any}> | null;
   }
   /**
+   * A description of the context in which an error occurred.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineLoggingErrorContext {
+    /**
+     * The HTTP request which was processed when the error was triggered.
+     */
+    httpRequest?: Schema$GoogleCloudDiscoveryengineLoggingHttpRequestContext;
+    /**
+     * The location in the source code where the decision was made to report the error, usually the place where it was logged.
+     */
+    reportLocation?: Schema$GoogleCloudDiscoveryengineLoggingSourceLocation;
+  }
+  /**
+   * An error log which is reported to the Error Reporting system.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineLoggingErrorLog {
+    /**
+     * A description of the context in which the error occurred.
+     */
+    context?: Schema$GoogleCloudDiscoveryengineLoggingErrorContext;
+    /**
+     * The error payload that is populated on LRO import APIs.
+     */
+    importPayload?: Schema$GoogleCloudDiscoveryengineLoggingImportErrorContext;
+    /**
+     * A message describing the error.
+     */
+    message?: string | null;
+    /**
+     * The API request payload, represented as a protocol buffer. Most API request types are supported. For example: "type.googleapis.com/google.cloud.discoveryengine.v1alpha.DocumentService.CreateDocumentRequest" "type.googleapis.com/google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEventRequest"
+     */
+    requestPayload?: {[key: string]: any} | null;
+    /**
+     * The API response payload, represented as a protocol buffer. This is used to log some "soft errors", where the response is valid but we consider there are some quality issues like unjoined events. The following API responses are supported and no PII is included: "google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend" "google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEvent" "google.cloud.discoveryengine.v1alpha.UserEventService.CollectUserEvent"
+     */
+    responsePayload?: {[key: string]: any} | null;
+    /**
+     * The service context in which this error has occurred.
+     */
+    serviceContext?: Schema$GoogleCloudDiscoveryengineLoggingServiceContext;
+    /**
+     * The RPC status associated with the error log.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * HTTP request data that is related to a reported error.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineLoggingHttpRequestContext {
+    /**
+     * The HTTP response status code for the request.
+     */
+    responseStatusCode?: number | null;
+  }
+  /**
+   * The error payload that is populated on LRO import APIs. Including: "google.cloud.discoveryengine.v1alpha.DocumentService.ImportDocuments" "google.cloud.discoveryengine.v1alpha.UserEventService.ImportUserEvents"
+   */
+  export interface Schema$GoogleCloudDiscoveryengineLoggingImportErrorContext {
+    /**
+     * The detailed content which caused the error on importing a document.
+     */
+    document?: string | null;
+    /**
+     * Google Cloud Storage file path of the import source. Can be set for batch operation error.
+     */
+    gcsPath?: string | null;
+    /**
+     * Line number of the content in file. Should be empty for permission or batch operation error.
+     */
+    lineNumber?: string | null;
+    /**
+     * The operation resource name of the LRO.
+     */
+    operation?: string | null;
+    /**
+     * The detailed content which caused the error on importing a user event.
+     */
+    userEvent?: string | null;
+  }
+  /**
+   * Describes a running service that sends errors.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineLoggingServiceContext {
+    /**
+     * An identifier of the service. For example, "discoveryengine.googleapis.com".
+     */
+    service?: string | null;
+  }
+  /**
+   * Indicates a location in the source code of the service for which errors are reported.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineLoggingSourceLocation {
+    /**
+     * Human-readable name of a function or method. For example, " google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend".
+     */
+    functionName?: string | null;
+  }
+  /**
    * BigQuery source import data from.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBigQuerySource {

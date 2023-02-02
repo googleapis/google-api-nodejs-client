@@ -2483,7 +2483,7 @@
       }
     }
   },
-  "revision": "20221013",
+  "revision": "20230131",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2513,7 +2513,7 @@
           "description": "The frequency range of the channel."
         },
         "score": {
-          "description": "The channel score, normalized to be in [0,100].",
+          "description": "The channel score, normalized to be in the range [0,100].",
           "format": "double",
           "type": "number"
         }
@@ -2567,7 +2567,7 @@
           "type": "string"
         },
         "frns": {
-          "description": "Output only. The FRNs copied from its direct parent.",
+          "description": "Output only. The FCC Registration Numbers (FRNs) copied from its direct parent.",
           "items": {
             "type": "string"
           },
@@ -2617,7 +2617,7 @@
           "type": "string"
         },
         "grantRangeAllowlists": {
-          "description": "Only ranges within the allowlists are available for new grants.",
+          "description": "Only ranges that are within the allowlists are available for new grants.",
           "items": {
             "$ref": "SasPortalFrequencyRange"
           },
@@ -2862,19 +2862,19 @@
       "id": "SasPortalDeviceMetadata",
       "properties": {
         "antennaModel": {
-          "description": "If populated, the Antenna Model Pattern to use. Format is: RecordCreatorId:PatternId",
+          "description": "If populated, the Antenna Model Pattern to use. Format is: `RecordCreatorId:PatternId`",
           "type": "string"
         },
         "commonChannelGroup": {
-          "description": "CCG. A group of CBSDs in the same ICG requesting a common primary channel assignment. See CBRSA-TS-2001 V3.0.0 for more details.",
+          "description": "Common Channel Group (CCG). A group of CBSDs in the same ICG requesting a common primary channel assignment. For more details, see [CBRSA-TS-2001 V3.0.0](https://ongoalliance.org/wp-content/uploads/2020/02/CBRSA-TS-2001-V3.0.0_Approved-for-publication.pdf).",
           "type": "string"
         },
         "interferenceCoordinationGroup": {
-          "description": "ICG. A group of CBSDs that manage their own interference with the group. See CBRSA-TS-2001 V3.0.0 for more details.",
+          "description": "Interference Coordination Group (ICG). A group of CBSDs that manage their own interference with the group. For more details, see [CBRSA-TS-2001 V3.0.0](https://ongoalliance.org/wp-content/uploads/2020/02/CBRSA-TS-2001-V3.0.0_Approved-for-publication.pdf).",
           "type": "string"
         },
         "nrqzValidated": {
-          "description": "Output only. Whether a CPI has validated to have coordinated with the National Quiet Zone office.",
+          "description": "Output only. Set to `true` if a CPI has validated that they have coordinated with the National Quiet Zone office.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3003,6 +3003,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "antennaGainNewField": {
+          "description": "As above, but as a DoubleValue.",
+          "format": "double",
+          "type": "number"
+        },
         "antennaModel": {
           "description": "If an external antenna is used, the antenna model is optionally provided in this field. The string has a maximum length of 128 octets.",
           "type": "string"
@@ -3015,6 +3020,11 @@
           "description": "This parameter is the maximum device EIRP in units of dBm/10MHz and is an integer with a value between -127 and +47 (dBm/10 MHz) inclusive. If not included, SAS interprets it as maximum allowable EIRP in units of dBm/10MHz for device category.",
           "format": "int32",
           "type": "integer"
+        },
+        "eirpCapabilityNewField": {
+          "description": "As above, but as a DoubleValue.",
+          "format": "double",
+          "type": "number"
         },
         "height": {
           "description": "Device antenna height in meters. When the `heightType` parameter value is \"AGL\", the antenna height should be given relative to ground level. When the `heightType` parameter value is \"AMSL\", it is given with respect to WGS84 datum.",
@@ -3194,7 +3204,7 @@
       "id": "SasPortalNrqzValidation",
       "properties": {
         "caseId": {
-          "description": "Validation case id.",
+          "description": "Validation case ID.",
           "type": "string"
         },
         "cpiId": {
@@ -3202,12 +3212,12 @@
           "type": "string"
         },
         "latitude": {
-          "description": "Device latitude associated with the validation.",
+          "description": "Device latitude that's associated with the validation.",
           "format": "double",
           "type": "number"
         },
         "longitude": {
-          "description": "Device longitude associated with the validation.",
+          "description": "Device longitude that's associated with the validation.",
           "format": "double",
           "type": "number"
         },
@@ -3287,7 +3297,7 @@
       "id": "SasPortalSetPolicyRequest",
       "properties": {
         "disableNotification": {
-          "description": "Optional. Set the field as true when we would like to disable the onboarding notification.",
+          "description": "Optional. Set the field as `true` to disable the onboarding notification.",
           "type": "boolean"
         },
         "policy": {

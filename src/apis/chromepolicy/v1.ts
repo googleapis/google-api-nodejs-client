@@ -288,6 +288,15 @@ export namespace chromepolicy_v1 {
     policyTargetKey?: Schema$GoogleChromePolicyVersionsV1PolicyTargetKey;
   }
   /**
+   * Information about any range constraints.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1FieldConstraints {
+    /**
+     * The allowed range for numeric fields.
+     */
+    numericRangeConstraint?: Schema$GoogleChromePolicyVersionsV1NumericRangeConstraint;
+  }
+  /**
    * Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit.
    */
   export interface Schema$GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest {
@@ -391,6 +400,19 @@ export namespace chromepolicy_v1 {
     value?: {[key: string]: any} | null;
   }
   /**
+   * A constraint on upper and/or lower bounds, with at least one being set.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1NumericRangeConstraint {
+    /**
+     * Maximum value.
+     */
+    maximum?: string | null;
+    /**
+     * Minimum value.
+     */
+    minimum?: string | null;
+  }
+  /**
    * Error information for a modification request of a specific field on a specific policy.
    */
   export interface Schema$GoogleChromePolicyVersionsV1PolicyModificationFieldError {
@@ -489,6 +511,10 @@ export namespace chromepolicy_v1 {
      * Output only. The name of the field for associated with this description.
      */
     field?: string | null;
+    /**
+     * Output only. Information on any input constraints associated on the values for the field.
+     */
+    fieldConstraints?: Schema$GoogleChromePolicyVersionsV1FieldConstraints;
     /**
      * Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set.
      */

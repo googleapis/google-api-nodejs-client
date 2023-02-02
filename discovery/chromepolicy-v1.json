@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20221212",
+  "revision": "20230201",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -787,6 +787,17 @@
       },
       "type": "object"
     },
+    "GoogleChromePolicyVersionsV1FieldConstraints": {
+      "description": "Information about any range constraints.",
+      "id": "GoogleChromePolicyVersionsV1FieldConstraints",
+      "properties": {
+        "numericRangeConstraint": {
+          "$ref": "GoogleChromePolicyVersionsV1NumericRangeConstraint",
+          "description": "The allowed range for numeric fields."
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest": {
       "description": "Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit.",
       "id": "GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest",
@@ -915,6 +926,23 @@
           },
           "description": "The value of the network setting.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyVersionsV1NumericRangeConstraint": {
+      "description": "A constraint on upper and/or lower bounds, with at least one being set.",
+      "id": "GoogleChromePolicyVersionsV1NumericRangeConstraint",
+      "properties": {
+        "maximum": {
+          "description": "Maximum value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minimum": {
+          "description": "Minimum value.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1061,6 +1089,11 @@
           "description": "Output only. The name of the field for associated with this description.",
           "readOnly": true,
           "type": "string"
+        },
+        "fieldConstraints": {
+          "$ref": "GoogleChromePolicyVersionsV1FieldConstraints",
+          "description": "Output only. Information on any input constraints associated on the values for the field.",
+          "readOnly": true
         },
         "fieldDependencies": {
           "description": "Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set.",

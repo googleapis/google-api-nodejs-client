@@ -249,7 +249,7 @@ export namespace cloudtrace_v2 {
     module?: Schema$TruncatableString;
   }
   /**
-   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there might be gaps or overlaps between spans in a trace.
+   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous. There might be gaps or overlaps between spans in a trace.
    */
   export interface Schema$Span {
     /**
@@ -334,7 +334,7 @@ export namespace cloudtrace_v2 {
      */
     loadModule?: Schema$Module;
     /**
-     * An un-mangled function name, if `function_name` is [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is mangled. To get information about name mangling, run [this search](https://www.google.com/search?q=cxx+name+mangling). The name can be fully-qualified (up to 1024 bytes).
      */
     originalFunctionName?: Schema$TruncatableString;
     /**

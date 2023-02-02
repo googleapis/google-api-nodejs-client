@@ -999,7 +999,7 @@
               "type": "string"
             },
             "resourceName": {
-              "description": "The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.",
+              "description": "The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id}`.",
               "location": "path",
               "pattern": "^people/[^/]+$",
               "required": true,
@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20230131",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -2677,7 +2677,7 @@
           "type": "array"
         },
         "resourceName": {
-          "description": "The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.",
+          "description": "The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id}`.",
           "type": "string"
         },
         "sipAddresses": {

@@ -137,7 +137,7 @@ export namespace datacatalog_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -829,9 +829,26 @@ export namespace datacatalog_v1beta1 {
      */
     policyTagCount?: number | null;
     /**
+     * Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a GCP service. Currently only 'DATAPLEX' is supported.
+     */
+    service?: Schema$GoogleCloudDatacatalogV1beta1TaxonomyService;
+    /**
      * Output only. Timestamps about this taxonomy. Only create_time and update_time are used.
      */
     taxonomyTimestamps?: Schema$GoogleCloudDatacatalogV1beta1SystemTimestamps;
+  }
+  /**
+   * The source system of the Taxonomy.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1beta1TaxonomyService {
+    /**
+     * P4SA Identity of the service.
+     */
+    identity?: string | null;
+    /**
+     * The GCP service name.
+     */
+    name?: string | null;
   }
   /**
    * The set of all usage signals that we store in Data Catalog.
@@ -879,6 +896,62 @@ export namespace datacatalog_v1beta1 {
     viewQuery?: string | null;
   }
   /**
+   * Metadata message for long-running operation returned by the ImportEntries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ImportEntriesMetadata {
+    /**
+     * Partial errors that are encountered during the ImportEntries operation. There is no guarantee that all the encountered errors are reported. However, if no errors are reported, it means that no errors were encountered.
+     */
+    errors?: Schema$Status[];
+    /**
+     * State of the import operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Response message for long-running operation returned by the ImportEntries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ImportEntriesResponse {
+    /**
+     * Number of entries deleted as a result of import operation.
+     */
+    deletedEntriesCount?: string | null;
+    /**
+     * Cumulative number of entries created and entries updated as a result of import operation.
+     */
+    upsertedEntriesCount?: string | null;
+  }
+  /**
+   * Metadata message for long-running operation returned by the ReconcileTags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsMetadata {
+    /**
+     * Map that maps name of each tagged column (or empty string in case of sole entry) to tagging operation status.
+     */
+    errors?: {[key: string]: Schema$Status} | null;
+    /**
+     * State of the reconciliation operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Request message for long-running operation returned by the ReconcileTags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsResponse {
+    /**
+     * Number of tags created in the request.
+     */
+    createdTagsCount?: string | null;
+    /**
+     * Number of tags deleted in the request.
+     */
+    deletedTagsCount?: string | null;
+    /**
+     * Number of tags updated in the request.
+     */
+    updatedTagsCount?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -903,6 +976,23 @@ export namespace datacatalog_v1beta1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -6963,6 +7053,7 @@ export namespace datacatalog_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "policyTagCount": 0,
+     *       //   "service": {},
      *       //   "taxonomyTimestamps": {}
      *       // }
      *     },
@@ -6976,6 +7067,7 @@ export namespace datacatalog_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "policyTagCount": 0,
+     *   //   "service": {},
      *   //   "taxonomyTimestamps": {}
      *   // }
      * }
@@ -7385,6 +7477,7 @@ export namespace datacatalog_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "policyTagCount": 0,
+     *   //   "service": {},
      *   //   "taxonomyTimestamps": {}
      *   // }
      * }
@@ -7800,6 +7893,8 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.list({
+     *     // Supported field for filter is 'service' and value is 'dataplex'. Eg: service=dataplex.
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request, if any. If not set, defaults to an empty string.
@@ -7957,6 +8052,7 @@ export namespace datacatalog_v1beta1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "policyTagCount": 0,
+     *       //   "service": {},
      *       //   "taxonomyTimestamps": {}
      *       // }
      *     },
@@ -7970,6 +8066,7 @@ export namespace datacatalog_v1beta1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "policyTagCount": 0,
+     *   //   "service": {},
      *   //   "taxonomyTimestamps": {}
      *   // }
      * }
@@ -8427,6 +8524,10 @@ export namespace datacatalog_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$List
     extends StandardParameters {
+    /**
+     * Supported field for filter is 'service' and value is 'dataplex'. Eg: service=dataplex.
+     */
+    filter?: string;
     /**
      * The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
      */

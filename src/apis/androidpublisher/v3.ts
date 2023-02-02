@@ -1539,7 +1539,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$RegionsVersion {
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      */
     version?: string | null;
   }
@@ -11286,7 +11286,7 @@ export namespace androidpublisher_v3 {
      *     packageName: 'placeholder-value',
      *     // Required. The ID to use for the subscription. For the requirements on this format, see the documentation of the product_id field on the Subscription resource.
      *     productId: 'placeholder-value',
-     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      *     'regionsVersion.version': 'placeholder-value',
      *
      *     // Request body metadata
@@ -11844,7 +11844,7 @@ export namespace androidpublisher_v3 {
      *     packageName: 'placeholder-value',
      *     // Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.
      *     productId: 'placeholder-value',
-     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      *     'regionsVersion.version': 'placeholder-value',
      *     // Required. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -11995,7 +11995,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      */
     'regionsVersion.version'?: string;
 
@@ -12056,7 +12056,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      */
     'regionsVersion.version'?: string;
     /**
@@ -12932,7 +12932,7 @@ export namespace androidpublisher_v3 {
      *       packageName: 'placeholder-value',
      *       // Required. The parent subscription (ID) for which the offer should be created. Must be equal to the product_id field on the SubscriptionOffer resource.
      *       productId: 'placeholder-value',
-     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      *       'regionsVersion.version': 'placeholder-value',
      *
      *       // Request body metadata
@@ -13690,7 +13690,7 @@ export namespace androidpublisher_v3 {
      *       packageName: 'placeholder-value',
      *       // Required. Immutable. The ID of the parent subscription this offer belongs to.
      *       productId: 'placeholder-value',
-     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      *       'regionsVersion.version': 'placeholder-value',
      *       // Required. The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -13869,7 +13869,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      */
     'regionsVersion.version'?: string;
 
@@ -13982,7 +13982,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.
+     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
      */
     'regionsVersion.version'?: string;
     /**

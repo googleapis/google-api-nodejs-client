@@ -12,7 +12,7 @@
   "baseUrl": "https://accesscontextmanager.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Access Context Manager",
-  "description": "An API for setting attribute based access control to requests to GCP services.",
+  "description": "An API for setting attribute based access control to requests to Google Cloud services.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/access-context-manager/docs/reference/rest/",
   "fullyEncodeReservedExpansion": true,
@@ -609,7 +609,7 @@
       }
     }
   },
-  "revision": "20221218",
+  "revision": "20230130",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
