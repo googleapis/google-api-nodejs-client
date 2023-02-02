@@ -2,7 +2,7 @@
 
 # ideahub
 
-> This is an invitation-only API.
+> 
 
 ## Installation
 
