@@ -116,7 +116,7 @@
       }
     }
   },
-  "revision": "20220919",
+  "revision": "20230117",
   "rootUrl": "https://chromeuxreport.googleapis.com/",
   "schemas": {
     "Bin": {
@@ -224,7 +224,7 @@
         },
         "percentiles": {
           "$ref": "Percentiles",
-          "description": "Common useful percentiles of the Metric. The value type for the percentiles will be the same as the value types given for the Histogram bins."
+          "description": "Commonly useful percentiles of the Metric. The value type for the percentiles will be the same as the value types given for the Histogram bins."
         }
       },
       "type": "object"
@@ -313,7 +313,7 @@
           "additionalProperties": {
             "$ref": "Metric"
           },
-          "description": "Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\"]",
+          "description": "Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\", \"experimental_time_to_first_byte\", \"experimental_interaction_to_next_paint\"]",
           "type": "object"
         }
       },

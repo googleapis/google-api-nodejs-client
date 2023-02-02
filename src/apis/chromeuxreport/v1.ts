@@ -201,7 +201,7 @@ export namespace chromeuxreport_v1 {
      */
     histogram?: Schema$Bin[];
     /**
-     * Common useful percentiles of the Metric. The value type for the percentiles will be the same as the value types given for the Histogram bins.
+     * Commonly useful percentiles of the Metric. The value type for the percentiles will be the same as the value types given for the Histogram bins.
      */
     percentiles?: Schema$Percentiles;
   }
@@ -265,7 +265,7 @@ export namespace chromeuxreport_v1 {
      */
     key?: Schema$Key;
     /**
-     * Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: ["first_contentful_paint", "first_input_delay", "largest_contentful_paint", "cumulative_layout_shift"]
+     * Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: ["first_contentful_paint", "first_input_delay", "largest_contentful_paint", "cumulative_layout_shift", "experimental_time_to_first_byte", "experimental_interaction_to_next_paint"]
      */
     metrics?: {[key: string]: Schema$Metric} | null;
   }
