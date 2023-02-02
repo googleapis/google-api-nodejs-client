@@ -584,7 +584,7 @@
       }
     }
   },
-  "revision": "20221207",
+  "revision": "20230120",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -676,7 +676,7 @@
           "type": "string"
         },
         "service": {
-          "description": "Required. The name of the Cloud run service being addressed (see https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services). Only services located in the same project of the trigger object can be addressed.",
+          "description": "Required. The name of the Cloud run service being addressed. See https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services. Only services located in the same project of the trigger object can be addressed.",
           "type": "string"
         }
       },
@@ -1083,7 +1083,7 @@
         },
         "transport": {
           "$ref": "Transport",
-          "description": "Output only. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.",
+          "description": "Output only. In order to deliver messages, Eventarc may use other Google Cloud products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.",
           "readOnly": true
         },
         "updateTime": {
