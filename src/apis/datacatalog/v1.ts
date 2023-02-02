@@ -291,6 +291,10 @@ export namespace datacatalog_v1 {
      */
     column?: string | null;
     /**
+     * Optional. Default value for the column.
+     */
+    defaultValue?: string | null;
+    /**
      * Optional. Description of the column. Default value is an empty string. The description must be a UTF-8 string with the maximum size of 2000 bytes.
      */
     description?: string | null;
@@ -299,9 +303,21 @@ export namespace datacatalog_v1 {
      */
     gcRule?: string | null;
     /**
+     * Optional. Most important inclusion of this column.
+     */
+    highestIndexingType?: string | null;
+    /**
+     * Looker specific column info of this column.
+     */
+    lookerColumnSpec?: Schema$GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec;
+    /**
      * Optional. A column's mode indicates whether values in this column are required, nullable, or repeated. Only `NULLABLE`, `REQUIRED`, and `REPEATED` values are supported. Default mode is `NULLABLE`.
      */
     mode?: string | null;
+    /**
+     * Optional. Ordinal position
+     */
+    ordinalPosition?: number | null;
     /**
      * Optional. Schema of sub-columns. A column can have zero or more sub-columns.
      */
@@ -310,6 +326,24 @@ export namespace datacatalog_v1 {
      * Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.
      */
     type?: string | null;
+  }
+  /**
+   * Column info specific to Looker System.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec {
+    /**
+     * Looker specific column type of this column.
+     */
+    type?: string | null;
+  }
+  /**
+   * Common statistics on the entry's usage. They can be set on any system.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CommonUsageStats {
+    /**
+     * View count in source system.
+     */
+    viewCount?: string | null;
   }
   /**
    * Contact people for the entry.
@@ -347,6 +381,10 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1DatabaseTableSpec {
     /**
+     * Spec what aplies to tables that are actually views. Not set for "real" tables.
+     */
+    databaseViewSpec?: Schema$GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec;
+    /**
      * Output only. Fields specific to a Dataplex table and present only in the Dataplex table entries.
      */
     dataplexTable?: Schema$GoogleCloudDatacatalogV1DataplexTableSpec;
@@ -354,6 +392,23 @@ export namespace datacatalog_v1 {
      * Type of this table.
      */
     type?: string | null;
+  }
+  /**
+   * Specification that applies to database view.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec {
+    /**
+     * Name of a singular table this view reflects one to one.
+     */
+    baseTable?: string | null;
+    /**
+     * SQL query used to generate this view.
+     */
+    sqlQuery?: string | null;
+    /**
+     * Type of this view.
+     */
+    viewType?: string | null;
   }
   /**
    * External table registered by Dataplex. Dataplex publishes data discovered from an asset into multiple other systems (BigQuery, DPMS) in form of tables. We call them "external tables". External tables are also synced into the Data Catalog. This message contains pointers to those external tables (fully qualified name, resource name et cetera) within the Data Catalog.
@@ -470,7 +525,7 @@ export namespace datacatalog_v1 {
      */
     businessContext?: Schema$GoogleCloudDatacatalogV1BusinessContext;
     /**
-     * Specification that applies to a table resource. Valid only for entries with the `TABLE` type.
+     * Specification that applies to a table resource. Valid only for entries with the `TABLE` or `EXPLORE` type.
      */
     databaseTableSpec?: Schema$GoogleCloudDatacatalogV1DatabaseTableSpec;
     /**
@@ -486,7 +541,7 @@ export namespace datacatalog_v1 {
      */
     description?: string | null;
     /**
-     * Display name of an entry. The name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), and can't start or end with spaces. The maximum size is 200 bytes when encoded in UTF-8. Default value is an empty string.
+     * Display name of an entry. The maximum size is 500 bytes when encoded in UTF-8. Default value is an empty string.
      */
     displayName?: string | null;
     /**
@@ -514,6 +569,10 @@ export namespace datacatalog_v1 {
      */
     linkedResource?: string | null;
     /**
+     * Specification that applies to Looker sysstem. Only settable when `user_specified_system` is equal to `LOOKER`
+     */
+    lookerSystemSpec?: Schema$GoogleCloudDatacatalogV1LookerSystemSpec;
+    /**
      * Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
@@ -533,6 +592,10 @@ export namespace datacatalog_v1 {
      * Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a system listed in the `IntegratedSystem` enum. For entries with `user_specified_system`, this field is optional and defaults to an empty timestamp.
      */
     sourceSystemTimestamps?: Schema$GoogleCloudDatacatalogV1SystemTimestamps;
+    /**
+     * Specification that applies to a relational database system. Only settable when `user_specified_system` is equal to `SQL_DATABASE`
+     */
+    sqlDatabaseSystemSpec?: Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec;
     /**
      * The type of the entry. Only used for entries with types listed in the `EntryType` enum. Currently, only `FILESET` enum value is allowed. All other entries created in Data Catalog must use the `user_specified_type`.
      */
@@ -651,6 +714,41 @@ export namespace datacatalog_v1 {
     sizeBytes?: string | null;
   }
   /**
+   * Metadata message for long-running operation returned by the ImportEntries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ImportEntriesMetadata {
+    /**
+     * Partial errors that are encountered during the ImportEntries operation. There is no guarantee that all the encountered errors are reported. However, if no errors are reported, it means that no errors were encountered.
+     */
+    errors?: Schema$Status[];
+    /**
+     * State of the import operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Request message for ImportEntries method.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ImportEntriesRequest {
+    /**
+     * Path to a Cloud Storage bucket that contains a dump ready for ingestion.
+     */
+    gcsBucketPath?: string | null;
+  }
+  /**
+   * Response message for long-running operation returned by the ImportEntries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ImportEntriesResponse {
+    /**
+     * Number of entries deleted as a result of import operation.
+     */
+    deletedEntriesCount?: string | null;
+    /**
+     * Cumulative number of entries created and entries updated as a result of import operation.
+     */
+    upsertedEntriesCount?: string | null;
+  }
+  /**
    * Request message for ImportTaxonomies.
    */
   export interface Schema$GoogleCloudDatacatalogV1ImportTaxonomiesRequest {
@@ -745,6 +843,35 @@ export namespace datacatalog_v1 {
      * Taxonomies that the project contains.
      */
     taxonomies?: Schema$GoogleCloudDatacatalogV1Taxonomy[];
+  }
+  /**
+   * Specification that applies to entries that are part `LOOKER` system (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1LookerSystemSpec {
+    /**
+     * Name of the parent Looker Instance. Empty if it does not exist.
+     */
+    parentInstanceDisplayName?: string | null;
+    /**
+     * ID of the parent Looker Instance. Empty if it does not exist. Example value: `someinstance.looker.com`
+     */
+    parentInstanceId?: string | null;
+    /**
+     * Name of the parent Model. Empty if it does not exist.
+     */
+    parentModelDisplayName?: string | null;
+    /**
+     * ID of the parent Model. Empty if it does not exist.
+     */
+    parentModelId?: string | null;
+    /**
+     * Name of the parent View. Empty if it does not exist.
+     */
+    parentViewDisplayName?: string | null;
+    /**
+     * ID of the parent View. Empty if it does not exist.
+     */
+    parentViewId?: string | null;
   }
   /**
    * Request message for ModifyEntryContacts.
@@ -1111,6 +1238,23 @@ export namespace datacatalog_v1 {
     policyTags?: Schema$GoogleCloudDatacatalogV1SerializedPolicyTag[];
   }
   /**
+   * Specification that applies to entries that are part `SQL_DATABASE` system (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec {
+    /**
+     * Version of the database engine.
+     */
+    databaseVersion?: string | null;
+    /**
+     * Host of the SQL database enum InstanceHost { UNDEFINED = 0; SELF_HOSTED = 1; CLOUD_SQL = 2; AMAZON_RDS = 3; AZURE_SQL = 4; \} Host of the enclousing database instance.
+     */
+    instanceHost?: string | null;
+    /**
+     * SQL Database Engine. enum SqlEngine { UNDEFINED = 0; MY_SQL = 1; POSTGRE_SQL = 2; SQL_SERVER = 3; \} Engine of the enclosing database instance.
+     */
+    sqlEngine?: string | null;
+  }
+  /**
    * Request message for StarEntry.
    */
   export interface Schema$GoogleCloudDatacatalogV1StarEntryRequest {}
@@ -1305,9 +1449,26 @@ export namespace datacatalog_v1 {
      */
     policyTagCount?: number | null;
     /**
+     * Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a GCP service. Currently only 'DATAPLEX' is supported.
+     */
+    service?: Schema$GoogleCloudDatacatalogV1TaxonomyService;
+    /**
      * Output only. Creation and modification timestamps of this taxonomy.
      */
     taxonomyTimestamps?: Schema$GoogleCloudDatacatalogV1SystemTimestamps;
+  }
+  /**
+   * The source system of the Taxonomy.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1TaxonomyService {
+    /**
+     * P4SA Identity of the service.
+     */
+    identity?: string | null;
+    /**
+     * The GCP service name.
+     */
+    name?: string | null;
   }
   /**
    * Request message for UnstarEntry.
@@ -1321,6 +1482,16 @@ export namespace datacatalog_v1 {
    * The set of all usage signals that Data Catalog stores. Note: Usually, these signals are updated daily. In rare cases, an update may fail but will be performed again on the next day.
    */
   export interface Schema$GoogleCloudDatacatalogV1UsageSignal {
+    /**
+     * Common usage statistics over each of the predefined time ranges. Supported time ranges are `{"24H", "7D", "30D", "Lifetime"\}`.
+     */
+    commonUsageWithinTimeRange?: {
+      [key: string]: Schema$GoogleCloudDatacatalogV1CommonUsageStats;
+    } | null;
+    /**
+     * Favorite count in the source system.
+     */
+    favoriteCount?: string | null;
     /**
      * The end timestamp of the duration of usage statistics.
      */
@@ -1363,6 +1534,44 @@ export namespace datacatalog_v1 {
     viewQuery?: string | null;
   }
   /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$ListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$Operation[];
+  }
+  /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -1387,6 +1596,23 @@ export namespace datacatalog_v1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1624,11 +1850,13 @@ export namespace datacatalog_v1 {
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
+     *   //   "lookerSystemSpec": {},
      *   //   "name": "my_name",
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
+     *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
      *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
@@ -1760,11 +1988,15 @@ export namespace datacatalog_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     entryGroups: Resource$Projects$Locations$Entrygroups;
+    operations: Resource$Projects$Locations$Operations;
     tagTemplates: Resource$Projects$Locations$Tagtemplates;
     taxonomies: Resource$Projects$Locations$Taxonomies;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.entryGroups = new Resource$Projects$Locations$Entrygroups(
+        this.context
+      );
+      this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
       this.tagTemplates = new Resource$Projects$Locations$Tagtemplates(
@@ -3101,11 +3333,13 @@ export namespace datacatalog_v1 {
      *       //   "integratedSystem": "my_integratedSystem",
      *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
+     *       //   "lookerSystemSpec": {},
      *       //   "name": "my_name",
      *       //   "personalDetails": {},
      *       //   "routineSpec": {},
      *       //   "schema": {},
      *       //   "sourceSystemTimestamps": {},
+     *       //   "sqlDatabaseSystemSpec": {},
      *       //   "type": "my_type",
      *       //   "usageSignal": {},
      *       //   "userSpecifiedSystem": "my_userSpecifiedSystem",
@@ -3131,11 +3365,13 @@ export namespace datacatalog_v1 {
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
+     *   //   "lookerSystemSpec": {},
      *   //   "name": "my_name",
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
+     *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
      *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
@@ -3417,11 +3653,13 @@ export namespace datacatalog_v1 {
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
+     *   //   "lookerSystemSpec": {},
      *   //   "name": "my_name",
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
+     *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
      *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
@@ -3666,6 +3904,149 @@ export namespace datacatalog_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Imports entries from some source (e.g. dump in a Cloud Storage bucket) to the Data Catalog. Dump here is a snapshot of the third-party system state, that needs to be ingested in the Data Catalog. Import of entries is a sync operation that reconciles state of the third-party system and Data Catalog. ImportEntries is a long-running operation done in the background, so this method returns long-running operation resource. The resource can be queried with Operations.GetOperation which contains metadata and response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.entryGroups.entries.import({
+     *     // Required. Target entry group for ingested entries.
+     *     parent:
+     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gcsBucketPath": "my_gcsBucketPath"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/entries:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -4166,11 +4547,13 @@ export namespace datacatalog_v1 {
      *       //   "integratedSystem": "my_integratedSystem",
      *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
+     *       //   "lookerSystemSpec": {},
      *       //   "name": "my_name",
      *       //   "personalDetails": {},
      *       //   "routineSpec": {},
      *       //   "schema": {},
      *       //   "sourceSystemTimestamps": {},
+     *       //   "sqlDatabaseSystemSpec": {},
      *       //   "type": "my_type",
      *       //   "usageSignal": {},
      *       //   "userSpecifiedSystem": "my_userSpecifiedSystem",
@@ -4196,11 +4579,13 @@ export namespace datacatalog_v1 {
      *   //   "integratedSystem": "my_integratedSystem",
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
+     *   //   "lookerSystemSpec": {},
      *   //   "name": "my_name",
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
+     *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
      *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
@@ -4777,6 +5162,18 @@ export namespace datacatalog_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Import
+    extends StandardParameters {
+    /**
+     * Required. Target entry group for ingested entries.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1ImportEntriesRequest;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
     extends StandardParameters {
@@ -6131,6 +6528,573 @@ export namespace datacatalog_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Tag;
+  }
+
+  export class Resource$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Locations$Tagtemplates {
@@ -8108,6 +9072,7 @@ export namespace datacatalog_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "policyTagCount": 0,
+     *       //   "service": {},
      *       //   "taxonomyTimestamps": {}
      *       // }
      *     },
@@ -8121,6 +9086,7 @@ export namespace datacatalog_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "policyTagCount": 0,
+     *   //   "service": {},
      *   //   "taxonomyTimestamps": {}
      *   // }
      * }
@@ -8530,6 +9496,7 @@ export namespace datacatalog_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "policyTagCount": 0,
+     *   //   "service": {},
      *   //   "taxonomyTimestamps": {}
      *   // }
      * }
@@ -8946,6 +9913,8 @@ export namespace datacatalog_v1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.list({
+     *     // Supported field for filter is 'service' and value is 'dataplex'. Eg: service=dataplex.
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return. Must be a value between 1 and 1000 inclusively. If not set, defaults to 50.
      *     pageSize: 'placeholder-value',
      *     // The pagination token of the next results page. If not set, the first page is returned. The token is returned in the response to a previous list request.
@@ -9103,6 +10072,7 @@ export namespace datacatalog_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "policyTagCount": 0,
+     *       //   "service": {},
      *       //   "taxonomyTimestamps": {}
      *       // }
      *     },
@@ -9116,6 +10086,7 @@ export namespace datacatalog_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "policyTagCount": 0,
+     *   //   "service": {},
      *   //   "taxonomyTimestamps": {}
      *   // }
      * }
@@ -9264,6 +10235,7 @@ export namespace datacatalog_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "policyTagCount": 0,
+     *   //   "service": {},
      *   //   "taxonomyTimestamps": {}
      *   // }
      * }
@@ -9724,6 +10696,10 @@ export namespace datacatalog_v1 {
   }
   export interface Params$Resource$Projects$Locations$Taxonomies$List
     extends StandardParameters {
+    /**
+     * Supported field for filter is 'service' and value is 'dataplex'. Eg: service=dataplex.
+     */
+    filter?: string;
     /**
      * The maximum number of items to return. Must be a value between 1 and 1000 inclusively. If not set, defaults to 50.
      */
