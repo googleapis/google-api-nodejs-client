@@ -113,6 +113,7 @@ export namespace appengine_v1 {
   export class Appengine {
     context: APIRequestContext;
     apps: Resource$Apps;
+    projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -121,6 +122,7 @@ export namespace appengine_v1 {
       };
 
       this.apps = new Resource$Apps(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -8021,5 +8023,199 @@ export namespace appengine_v1 {
      * Part of `parent`. See documentation of `appsId`.
      */
     versionsId?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    applications: Resource$Projects$Locations$Applications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.applications = new Resource$Projects$Locations$Applications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Applications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets information about an application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.projects.locations.applications.get({
+     *     // Part of `name`. See documentation of `projectsId`.
+     *     applicationsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `projectsId`.
+     *     locationsId: 'placeholder-value',
+     *     // Part of `name`. Name of the Application resource to get. Example: apps/myapp.
+     *     projectsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authDomain": "my_authDomain",
+     *   //   "codeBucket": "my_codeBucket",
+     *   //   "databaseType": "my_databaseType",
+     *   //   "defaultBucket": "my_defaultBucket",
+     *   //   "defaultCookieExpiration": "my_defaultCookieExpiration",
+     *   //   "defaultHostname": "my_defaultHostname",
+     *   //   "dispatchRules": [],
+     *   //   "featureSettings": {},
+     *   //   "gcrDomain": "my_gcrDomain",
+     *   //   "iap": {},
+     *   //   "id": "my_id",
+     *   //   "locationId": "my_locationId",
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "servingStatus": "my_servingStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Applications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Application>;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Application>,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Get,
+      callback: BodyResponseCallback<Schema$Application>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Application>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Get
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Application>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Applications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectsId', 'locationsId', 'applicationsId'],
+        pathParams: ['applicationsId', 'locationsId', 'projectsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Application>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Application>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Get
+    extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Name of the Application resource to get. Example: apps/myapp.
+     */
+    projectsId?: string;
   }
 }

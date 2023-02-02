@@ -1593,9 +1593,61 @@
           }
         }
       }
+    },
+    "projects": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "applications": {
+              "methods": {
+                "get": {
+                  "description": "Gets information about an application.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}",
+                  "httpMethod": "GET",
+                  "id": "appengine.projects.locations.applications.get",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId",
+                    "applicationsId"
+                  ],
+                  "parameters": {
+                    "applicationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. Name of the Application resource to get. Example: apps/myapp.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}",
+                  "response": {
+                    "$ref": "Application"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/appengine.admin",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20221212",
+  "revision": "20230123",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
