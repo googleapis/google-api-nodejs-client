@@ -359,7 +359,7 @@
       }
     }
   },
-  "revision": "20221027",
+  "revision": "20230201",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -419,6 +419,23 @@
       "description": "Describes an AdMob app for a specific platform (For example: Android or iOS).",
       "id": "App",
       "properties": {
+        "appApprovalState": {
+          "description": "Output only. The approval state for the app.",
+          "enum": [
+            "APP_APPROVAL_STATE_UNSPECIFIED",
+            "ACTION_REQUIRED",
+            "IN_REVIEW",
+            "APPROVED"
+          ],
+          "enumDescriptions": [
+            "Default value for an unset field. Do not use.",
+            "The app requires additional user action to be approved. Please refer to https://support.google.com/admob/answer/10564477 for details and next steps.",
+            "The app is pending review.",
+            "The app is approved and can serve ads."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "appId": {
           "description": "The externally visible ID of the app which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789",
           "type": "string"
