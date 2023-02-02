@@ -684,7 +684,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20230129",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -2100,7 +2100,7 @@
           "type": "string"
         },
         "script": {
-          "description": "An inline script. The size of the script is limited to 1024 characters.",
+          "description": "An inline script. The size of the script is limited to 32KiB.",
           "type": "string"
         }
       },
@@ -2169,7 +2169,7 @@
       "id": "OSPolicyResourceFileResource",
       "properties": {
         "content": {
-          "description": "A a file with this content. The size of the content is limited to 1024 characters.",
+          "description": "A a file with this content. The size of the content is limited to 32KiB.",
           "type": "string"
         },
         "file": {
