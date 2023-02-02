@@ -941,39 +941,6 @@ export namespace baremetalsolution_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Represents the metadata from a long-running operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * Output only. API version used with the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Identifies whether the user requested the cancellation of the operation. Operations that have been successfully cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusMessage?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the action executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
    * Operation System image.
    */
   export interface Schema$OSImage {
@@ -1338,6 +1305,10 @@ export namespace baremetalsolution_v2 {
      */
     state?: string | null;
     /**
+     * Input only. Name of the storage aggregate pool to allocate the volume in. Can be used only for VOLUME_PERFORMANCE_TIER_ASSIGNED volumes.
+     */
+    storageAggregatePool?: string | null;
+    /**
      * The storage type for this volume.
      */
     storageType?: string | null;
@@ -1390,6 +1361,10 @@ export namespace baremetalsolution_v2 {
      * Whether snapshots should be enabled.
      */
     snapshotsEnabled?: boolean | null;
+    /**
+     * Input only. Name of the storage aggregate pool to allocate the volume in. Can be used only for VOLUME_PERFORMANCE_TIER_ASSIGNED volumes.
+     */
+    storageAggregatePool?: string | null;
     /**
      * The type of this Volume.
      */
@@ -6474,6 +6449,7 @@ export namespace baremetalsolution_v2 {
      *   //   "snapshotReservationDetail": {},
      *   //   "snapshotSchedulePolicy": "my_snapshotSchedulePolicy",
      *   //   "state": "my_state",
+     *   //   "storageAggregatePool": "my_storageAggregatePool",
      *   //   "storageType": "my_storageType",
      *   //   "workloadProfile": "my_workloadProfile"
      *   // }
@@ -6765,6 +6741,7 @@ export namespace baremetalsolution_v2 {
      *       //   "snapshotReservationDetail": {},
      *       //   "snapshotSchedulePolicy": "my_snapshotSchedulePolicy",
      *       //   "state": "my_state",
+     *       //   "storageAggregatePool": "my_storageAggregatePool",
      *       //   "storageType": "my_storageType",
      *       //   "workloadProfile": "my_workloadProfile"
      *       // }
