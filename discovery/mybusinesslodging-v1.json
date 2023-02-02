@@ -171,7 +171,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Google identifier for this location in the form: `accounts/{account_id}/locations/{location_id}/lodging`",
+                  "description": "Required. Google identifier for this location in the form: `locations/{location_id}/lodging`",
                   "location": "path",
                   "pattern": "^locations/[^/]+/lodging$",
                   "required": true,
@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230201",
   "rootUrl": "https://mybusinesslodging.googleapis.com/",
   "schemas": {
     "Accessibility": {

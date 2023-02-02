@@ -3106,7 +3106,7 @@ export namespace mybusinesslodging_v1 {
      *
      *   // Do the magic
      *   const res = await mybusinesslodging.locations.lodging.getGoogleUpdated({
-     *     // Required. Google identifier for this location in the form: `accounts/{account_id\}/locations/{location_id\}/lodging`
+     *     // Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
      *     name: 'locations/my-location/lodging',
      *     // Required. The specific fields to return. Use "*" to include all fields. Repeated field items cannot be individually specified.
      *     readMask: 'placeholder-value',
@@ -3225,7 +3225,7 @@ export namespace mybusinesslodging_v1 {
   export interface Params$Resource$Locations$Lodging$Getgoogleupdated
     extends StandardParameters {
     /**
-     * Required. Google identifier for this location in the form: `accounts/{account_id\}/locations/{location_id\}/lodging`
+     * Required. Google identifier for this location in the form: `locations/{location_id\}/lodging`
      */
     name?: string;
     /**
