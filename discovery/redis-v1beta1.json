@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20221007",
+  "revision": "20230124",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -1292,7 +1292,7 @@
             "Snapshot every 1 hour.",
             "Snapshot every 6 hours.",
             "Snapshot every 12 hours.",
-            "Snapshot every 24 horus."
+            "Snapshot every 24 hours."
           ],
           "type": "string"
         },

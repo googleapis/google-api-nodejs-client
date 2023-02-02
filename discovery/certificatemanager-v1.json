@@ -1108,7 +1108,7 @@
       }
     }
   },
-  "revision": "20221208",
+  "revision": "20230123",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1133,7 +1133,7 @@
             "RATE_LIMITED"
           ],
           "enumDescriptions": [
-            "",
+            "FailureReason is unspecified.",
             "There was a problem with the user's DNS or load balancer configuration for this domain.",
             "Certificate issuance forbidden by an explicit CAA record for the domain or a failure to check CAA records for the domain.",
             "Reached a CA or internal rate-limit for the domain, e.g. for certificates per top-level private domain."
@@ -1150,7 +1150,7 @@
             "FAILED"
           ],
           "enumDescriptions": [
-            "",
+            "State is unspecified.",
             "Certificate provisioning for this domain is under way. GCP will attempt to authorize the domain.",
             "A managed certificate can be provisioned, no issues for this domain.",
             "Attempt to authorize the domain failed. This prevents the Managed Certificate from being issued. See `failure_reason` and `details` fields for more information."
@@ -1794,7 +1794,7 @@
             "ACTIVE"
           ],
           "enumDescriptions": [
-            "",
+            "State is unspecified.",
             "Certificate Manager attempts to provision or renew the certificate. If the process takes longer than expected, consult the `provisioning_issue` field.",
             "Multiple certificate provisioning attempts failed and Certificate Manager gave up. To try again, delete and create a new managed Certificate resource. For details see the `provisioning_issue` field.",
             "The certificate management is working, and a certificate has been provisioned."
@@ -1894,7 +1894,7 @@
             "RATE_LIMITED"
           ],
           "enumDescriptions": [
-            "",
+            "Reason is unspecified.",
             "Certificate provisioning failed due to an issue with one or more of the domains on the certificate. For details of which domains failed, consult the `authorization_attempt_info` field.",
             "Exceeded Certificate Authority quotas or internal rate limits of the system. Provisioning may take longer to complete."
           ],

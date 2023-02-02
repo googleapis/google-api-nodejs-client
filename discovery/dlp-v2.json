@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20221218",
+  "revision": "20230129",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -4390,11 +4390,11 @@
           ],
           "enumDescriptions": [
             "Default value; same as POSSIBLE.",
-            "Few matching elements.",
-            "",
-            "Some matching elements.",
-            "",
-            "Many matching elements."
+            "Highest chance of a false positive.",
+            "High chance of a false positive.",
+            "Some matching signals. The default value.",
+            "Low chance of a false positive.",
+            "Confidence level is high. Lowest chance of a false positive."
           ],
           "type": "string"
         },
@@ -5243,11 +5243,11 @@
           ],
           "enumDescriptions": [
             "Default value; same as POSSIBLE.",
-            "Few matching elements.",
-            "",
-            "Some matching elements.",
-            "",
-            "Many matching elements."
+            "Highest chance of a false positive.",
+            "High chance of a false positive.",
+            "Some matching signals. The default value.",
+            "Low chance of a false positive.",
+            "Confidence level is high. Lowest chance of a false positive."
           ],
           "type": "string"
         },
@@ -5889,11 +5889,11 @@
           ],
           "enumDescriptions": [
             "Default value; same as POSSIBLE.",
-            "Few matching elements.",
-            "",
-            "Some matching elements.",
-            "",
-            "Many matching elements."
+            "Highest chance of a false positive.",
+            "High chance of a false positive.",
+            "Some matching signals. The default value.",
+            "Low chance of a false positive.",
+            "Confidence level is high. Lowest chance of a false positive."
           ],
           "type": "string"
         },
@@ -6522,11 +6522,11 @@
           ],
           "enumDescriptions": [
             "Default value; same as POSSIBLE.",
-            "Few matching elements.",
-            "",
-            "Some matching elements.",
-            "",
-            "Many matching elements."
+            "Highest chance of a false positive.",
+            "High chance of a false positive.",
+            "Some matching signals. The default value.",
+            "Low chance of a false positive.",
+            "Confidence level is high. Lowest chance of a false positive."
           ],
           "type": "string"
         },
