@@ -165,6 +165,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "freeId": {
+                  "description": "If set, will free the database_id associated with this database. uid will be used as the resource id to identify this deleted database.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "name": {
                   "description": "Required. A name of the form `projects/{project_id}/databases/{database_id}`",
                   "location": "path",
@@ -1423,7 +1428,7 @@
       }
     }
   },
-  "revision": "20221210",
+  "revision": "20230126",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2074,6 +2079,13 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "namespaceIds": {
+          "description": "Which namespace ids are being exported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "operationState": {
           "description": "The state of the export operation.",
           "enum": [
@@ -2099,7 +2111,7 @@
           "type": "string"
         },
         "outputUriPrefix": {
-          "description": "Where the entities are being exported to.",
+          "description": "Where the documents are being exported to.",
           "type": "string"
         },
         "progressBytes": {
@@ -2124,6 +2136,13 @@
       "properties": {
         "collectionIds": {
           "description": "Which collection ids to export. Unspecified means all collections.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "namespaceIds": {
+          "description": "An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.",
           "items": {
             "type": "string"
           },
@@ -2250,6 +2269,13 @@
           "description": "The location of the documents being imported.",
           "type": "string"
         },
+        "namespaceIds": {
+          "description": "Which namespace ids are being imported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "operationState": {
           "description": "The state of the import operation.",
           "enum": [
@@ -2304,6 +2330,13 @@
         "inputUriPrefix": {
           "description": "Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix.",
           "type": "string"
+        },
+        "namespaceIds": {
+          "description": "An empty list represents all namespaces. This is the preferred usage for databases that don't use namespaces. An empty string element represents the default namespace. This should be used if the database has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
