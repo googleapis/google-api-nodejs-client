@@ -429,12 +429,12 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name",
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count",
+                  "description": "Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id",
                   "location": "query",
                   "type": "string"
                 },
@@ -638,7 +638,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Only include resources that match the filter. Supported filter fields: * device_id * user_id * device_org_unit_id * user_org_unit_id * timestamp * event_type",
+                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The \"timestamp\" filter accepts either Epoch milliseconds or RFC 3339 formatted time surrounded by simple double quotes.",
                       "location": "query",
                       "type": "string"
                     },
@@ -676,13 +676,95 @@
                   ]
                 }
               }
+            },
+            "users": {
+              "methods": {
+                "get": {
+                  "description": "Get telemetry user.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/users/{usersId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.users.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the `TelemetryUser` to return.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/telemetry/users/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Read mask to specify which fields to return.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1TelemetryUser"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "List all telemetry users.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/users",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.users.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Only include resources that match the filter. Supported filter fields: - user_id - user_org_unit_id ",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of results to return. Default value is 100. Maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token to specify next page in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Read mask to specify which fields to return.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/telemetry/users",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1ListTelemetryUsersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20221208",
+  "revision": "20230201",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1200,6 +1282,21 @@
           "description": "Output only. The app developer has enabled support for their app. Version-specific field that will only be set when the requested app version is found.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "type": {
+          "description": "Output only. Types of an item in the Chrome Web Store",
+          "enum": [
+            "ITEM_TYPE_UNSPECIFIED",
+            "EXTENSION",
+            "OTHERS"
+          ],
+          "enumDescriptions": [
+            "Unspecified ItemType.",
+            "Chrome Extensions.",
+            "Any other type than extension."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1793,7 +1890,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1GraphicsStatusReport": {
-      "description": "Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: 3 hours. * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
       "id": "GoogleChromeManagementV1GraphicsStatusReport",
       "properties": {
         "displays": {
@@ -1985,6 +2082,24 @@
           "description": "Telemetry events returned in the response.",
           "items": {
             "$ref": "GoogleChromeManagementV1TelemetryEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1ListTelemetryUsersResponse": {
+      "description": "Response message for listing telemetry users for a customer.",
+      "id": "GoogleChromeManagementV1ListTelemetryUsersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify next page in the list.",
+          "type": "string"
+        },
+        "telemetryUsers": {
+          "description": "Telemetry users returned in the response.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryUser"
           },
           "type": "array"
         }
@@ -2296,6 +2411,26 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1PeripheralsReport": {
+      "description": "Peripherals report.",
+      "id": "GoogleChromeManagementV1PeripheralsReport",
+      "properties": {
+        "reportTime": {
+          "description": "Output only. Timestamp of when the report was collected.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "usbPeripheralReport": {
+          "description": "Reports of all usb connected devices.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1UsbPeripheralReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1StorageInfo": {
       "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
       "id": "GoogleChromeManagementV1StorageInfo",
@@ -2560,7 +2695,6 @@
           "enum": [
             "EVENT_TYPE_UNSPECIFIED",
             "AUDIO_SEVERE_UNDERRUN",
-            "NETWORK_CONNECTION_STATE_CHANGE",
             "USB_ADDED",
             "USB_REMOVED",
             "NETWORK_HTTPS_LATENCY_CHANGE"
@@ -2568,7 +2702,6 @@
           "enumDescriptions": [
             "Event type unknown.",
             "Triggered when a audio devices run out of buffer data for more than 5 seconds.",
-            "Triggered immediately on any changes to a network connection.",
             "Triggered when USB devices are added.",
             "Triggered when USB devices are removed.",
             "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem."
@@ -2585,15 +2718,15 @@
           "readOnly": true,
           "type": "string"
         },
-        "networkConnectionStateChangeEvent": {
-          "$ref": "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent",
-          "description": "Output only. Payload for network connection state change event. Present only when `event_type` is `NETWORK_CONNECTION_STATE_CHANGE`.",
-          "readOnly": true
-        },
         "reportTime": {
           "description": "Timestamp that represents when the event was reported.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "usbPeripheralsEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryUsbPeripheralsEvent",
+          "description": "Output only. Payload for usb peripherals event. Present only when the `event_type` field is either `USB_ADDED` or `USB_REMOVED`.",
+          "readOnly": true
         },
         "user": {
           "$ref": "GoogleChromeManagementV1TelemetryUserInfo",
@@ -2628,33 +2761,77 @@
       },
       "type": "object"
     },
-    "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent": {
-      "description": "`TelemetryNetworkConnectionStateChangeEvent` is triggered on network connection state changes.",
-      "id": "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent",
+    "GoogleChromeManagementV1TelemetryUsbPeripheralsEvent": {
+      "description": "`TelemetryUsbPeripheralsEvent` is triggered USB devices are either added or removed.",
+      "id": "GoogleChromeManagementV1TelemetryUsbPeripheralsEvent",
       "properties": {
-        "connectionState": {
-          "description": "Current connection state of the network.",
-          "enum": [
-            "NETWORK_CONNECTION_STATE_UNSPECIFIED",
-            "ONLINE",
-            "CONNECTED",
-            "PORTAL",
-            "CONNECTING",
-            "NOT_CONNECTED"
-          ],
-          "enumDescriptions": [
-            "Network connection state unspecified.",
-            "The network is connected and internet connectivity is available.",
-            "The network is connected and not in a detected portal state, but internet connectivity may not be available.",
-            "The network is connected but a portal state was detected. Internet connectivity may be limited.",
-            "The network is in the process of connecting.",
-            "The network is not connected."
-          ],
+        "usbPeripheralReport": {
+          "description": "List of usb devices that were either added or removed.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1UsbPeripheralReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryUser": {
+      "description": "Telemetry data collected from a managed user.",
+      "id": "GoogleChromeManagementV1TelemetryUser",
+      "properties": {
+        "customer": {
+          "description": "G Suite Customer whose enterprise enrolled the device.",
           "type": "string"
         },
-        "guid": {
-          "description": "Unique identifier of the network.",
+        "name": {
+          "description": "Resource name of the user.",
           "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Organization unit of the user.",
+          "type": "string"
+        },
+        "userDevice": {
+          "description": "Telemetry data collected from a managed user and device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryUserDevice"
+          },
+          "type": "array"
+        },
+        "userEmail": {
+          "description": "Email address of the user.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "Directory ID of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryUserDevice": {
+      "description": "Telemetry data collected for a managed user and device.",
+      "id": "GoogleChromeManagementV1TelemetryUserDevice",
+      "properties": {
+        "audioStatusReport": {
+          "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AudioStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deviceId": {
+          "description": "The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.",
+          "type": "string"
+        },
+        "peripheralsReport": {
+          "description": "Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1PeripheralsReport"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -2752,6 +2929,60 @@
           "description": "The maximum number of keys that can be used for encryption.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1UsbPeripheralReport": {
+      "description": "USB connected peripheral report.",
+      "id": "GoogleChromeManagementV1UsbPeripheralReport",
+      "properties": {
+        "categories": {
+          "description": "Output only. Categories the device belongs to https://www.usb.org/defined-class-codes",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "classId": {
+          "description": "Output only. Class ID https://www.usb.org/defined-class-codes",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "firmwareVersion": {
+          "description": "Output only. Firmware version",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Device name, model name, or product name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pid": {
+          "description": "Output only. Product ID",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "subclassId": {
+          "description": "Output only. Subclass ID https://www.usb.org/defined-class-codes",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "vendor": {
+          "description": "Output only. Vendor name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vid": {
+          "description": "Output only. Vendor ID",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
