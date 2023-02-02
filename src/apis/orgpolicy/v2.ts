@@ -272,6 +272,10 @@ export namespace orgpolicy_v2 {
      */
     alternate?: Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec;
     /**
+     * dry-run policy. Audit-only policy, can be used to monitor how the policy would have impacted the existing and future resources if it's enforced.
+     */
+    dryRunSpec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
+    /**
      * Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string | null;
@@ -587,6 +591,7 @@ export namespace orgpolicy_v2 {
      *       // request body parameters
      *       // {
      *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -597,6 +602,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -864,6 +870,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -1001,6 +1008,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -1278,12 +1286,15 @@ export namespace orgpolicy_v2 {
      *   const res = await orgpolicy.folders.policies.patch({
      *     // Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'folders/my-folder/policies/my-policie',
+     *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
      *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -1294,6 +1305,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -1451,6 +1463,10 @@ export namespace orgpolicy_v2 {
      * Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
+    /**
+     * Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -2470,6 +2486,7 @@ export namespace orgpolicy_v2 {
      *       // request body parameters
      *       // {
      *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -2480,6 +2497,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -2747,6 +2765,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -2884,6 +2903,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -3162,12 +3182,15 @@ export namespace orgpolicy_v2 {
      *   const res = await orgpolicy.organizations.policies.patch({
      *     // Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'organizations/my-organization/policies/my-policie',
+     *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
      *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -3178,6 +3201,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -3335,6 +3359,10 @@ export namespace orgpolicy_v2 {
      * Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
+    /**
+     * Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -3560,6 +3588,7 @@ export namespace orgpolicy_v2 {
      *       // request body parameters
      *       // {
      *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -3570,6 +3599,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -3837,6 +3867,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -3974,6 +4005,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -4251,12 +4283,15 @@ export namespace orgpolicy_v2 {
      *   const res = await orgpolicy.projects.policies.patch({
      *     // Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'projects/my-project/policies/my-policie',
+     *     // Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
      *       //   "alternate": {},
+     *       //   "dryRunSpec": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -4267,6 +4302,7 @@ export namespace orgpolicy_v2 {
      *   // Example response
      *   // {
      *   //   "alternate": {},
+     *   //   "dryRunSpec": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -4424,6 +4460,10 @@ export namespace orgpolicy_v2 {
      * Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
+    /**
+     * Field mask used to specify the fields to be overwritten in the policy by the set. The fields specified in the update_mask are relative to the policy, not the full request.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
