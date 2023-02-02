@@ -170,7 +170,7 @@ export namespace analyticshub_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -367,6 +367,10 @@ export namespace analyticshub_v1 {
      */
     requestAccess?: string | null;
     /**
+     * Optional. If set, restricted export configuration will be propagated and enforced on the linked dataset.
+     */
+    restrictedExportConfig?: Schema$RestrictedExportConfig;
+    /**
      * Output only. Current state of the listing.
      */
     state?: string | null;
@@ -463,6 +467,19 @@ export namespace analyticshub_v1 {
      * Optional. Email or URL of the listing publisher. Max Length: 1000 bytes.
      */
     primaryContact?: string | null;
+  }
+  /**
+   * Restricted export config, used to configure restricted export on linked dataset.
+   */
+  export interface Schema$RestrictedExportConfig {
+    /**
+     * If true, restrict direct table access(read api/tabledata.list) on linked table.
+     */
+    restrictDirectTableAccess?: boolean | null;
+    /**
+     * If true, restrict export of query result derived from restricted linked dataset table.
+     */
+    restrictQueryResult?: boolean | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -2038,6 +2055,7 @@ export namespace analyticshub_v1 {
      *         //   "primaryContact": "my_primaryContact",
      *         //   "publisher": {},
      *         //   "requestAccess": "my_requestAccess",
+     *         //   "restrictedExportConfig": {},
      *         //   "state": "my_state"
      *         // }
      *       },
@@ -2057,6 +2075,7 @@ export namespace analyticshub_v1 {
      *   //   "primaryContact": "my_primaryContact",
      *   //   "publisher": {},
      *   //   "requestAccess": "my_requestAccess",
+     *   //   "restrictedExportConfig": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2330,6 +2349,7 @@ export namespace analyticshub_v1 {
      *   //   "primaryContact": "my_primaryContact",
      *   //   "publisher": {},
      *   //   "requestAccess": "my_requestAccess",
+     *   //   "restrictedExportConfig": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2766,6 +2786,7 @@ export namespace analyticshub_v1 {
      *         //   "primaryContact": "my_primaryContact",
      *         //   "publisher": {},
      *         //   "requestAccess": "my_requestAccess",
+     *         //   "restrictedExportConfig": {},
      *         //   "state": "my_state"
      *         // }
      *       },
@@ -2785,6 +2806,7 @@ export namespace analyticshub_v1 {
      *   //   "primaryContact": "my_primaryContact",
      *   //   "publisher": {},
      *   //   "requestAccess": "my_requestAccess",
+     *   //   "restrictedExportConfig": {},
      *   //   "state": "my_state"
      *   // }
      * }
