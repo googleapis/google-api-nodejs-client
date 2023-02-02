@@ -823,7 +823,7 @@
       }
     }
   },
-  "revision": "20221202",
+  "revision": "20230121",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -875,6 +875,24 @@
       },
       "type": "object"
     },
+    "Autoscale": {
+      "description": "Auto scaling settings. max_slots and budget are mutually exclusive. If max_slots is set: * The system will create a dedicated `FLEX` capacity commitment to hold the slots for auto-scale. Users won't be able to manage it, to avoid conflicts. * Scale-up will happen if there are always pending tasks for the past 10 minutes. * Scale-down will happen, if the system detects that scale-up won't be triggered again. If budget is set: * The system will try to use more slots immediately. * At a particular moment, the number of slots scaled is determined by the sytsem, based on the remaining budget and system limit. But overall the usage will conform to the budget if there is enough traffic. * The system will round the slot usage every minute. **Note** this is an alpha feature.",
+      "id": "Autoscale",
+      "properties": {
+        "currentSlots": {
+          "description": "Output only. The slot capacity added to this reservation when autoscale happens. Will be between [0, max_slots].",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxSlots": {
+          "description": "Number of slots to be scaled when needed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BiReservation": {
       "description": "Represents a BI Reservation.",
       "id": "BiReservation",
@@ -920,6 +938,18 @@
           "readOnly": true,
           "type": "string"
         },
+        "edition": {
+          "description": "Edition of the capacity commitment.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Default value, only for legacy reservations and capacity commitments.",
+            "Enterprise edition."
+          ],
+          "type": "string"
+        },
         "failureStatus": {
           "$ref": "Status",
           "description": "Output only. For FAILED commitment plan, provides the reason of failure.",
@@ -941,14 +971,16 @@
             "FLEX",
             "TRIAL",
             "MONTHLY",
-            "ANNUAL"
+            "ANNUAL",
+            "NONE"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
-            "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan."
+            "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
+            "Should only be used for `renewal_plan` and is only meaningful if edition is specified to values other than EDITION_UNSPECIFIED. Otherwise CreateCapacityCommitmentRequest or UpdateCapacityCommitmentRequest will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. If the renewal_plan is NONE, capacity commitment will be removed at the end of its commitment period."
           ],
           "type": "string"
         },
@@ -959,14 +991,16 @@
             "FLEX",
             "TRIAL",
             "MONTHLY",
-            "ANNUAL"
+            "ANNUAL",
+            "NONE"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
-            "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan."
+            "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
+            "Should only be used for `renewal_plan` and is only meaningful if edition is specified to values other than EDITION_UNSPECIFIED. Otherwise CreateCapacityCommitmentRequest or UpdateCapacityCommitmentRequest will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. If the renewal_plan is NONE, capacity commitment will be removed at the end of its commitment period."
           ],
           "type": "string"
         },
@@ -1084,6 +1118,10 @@
       "description": "A reservation is a mechanism used to guarantee slots to users.",
       "id": "Reservation",
       "properties": {
+        "autoscale": {
+          "$ref": "Autoscale",
+          "description": "The configuration parameters for the auto scaling feature. Note this is an alpha feature."
+        },
         "concurrency": {
           "description": "Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as `target_job_concurrency` in the Information Schema, DDL and BQ CLI.",
           "format": "int64",
@@ -1093,6 +1131,18 @@
           "description": "Output only. Creation time of the reservation.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "edition": {
+          "description": "Edition of the reservation.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "Default value, only for legacy reservations and capacity commitments.",
+            "Enterprise edition."
+          ],
           "type": "string"
         },
         "ignoreIdleSlots": {

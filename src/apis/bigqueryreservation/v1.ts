@@ -146,6 +146,19 @@ export namespace bigqueryreservation_v1 {
     state?: string | null;
   }
   /**
+   * Auto scaling settings. max_slots and budget are mutually exclusive. If max_slots is set: * The system will create a dedicated `FLEX` capacity commitment to hold the slots for auto-scale. Users won't be able to manage it, to avoid conflicts. * Scale-up will happen if there are always pending tasks for the past 10 minutes. * Scale-down will happen, if the system detects that scale-up won't be triggered again. If budget is set: * The system will try to use more slots immediately. * At a particular moment, the number of slots scaled is determined by the sytsem, based on the remaining budget and system limit. But overall the usage will conform to the budget if there is enough traffic. * The system will round the slot usage every minute. **Note** this is an alpha feature.
+   */
+  export interface Schema$Autoscale {
+    /**
+     * Output only. The slot capacity added to this reservation when autoscale happens. Will be between [0, max_slots].
+     */
+    currentSlots?: string | null;
+    /**
+     * Number of slots to be scaled when needed.
+     */
+    maxSlots?: string | null;
+  }
+  /**
    * Represents a BI Reservation.
    */
   export interface Schema$BiReservation {
@@ -178,6 +191,10 @@ export namespace bigqueryreservation_v1 {
      * Output only. The start of the current commitment period. It is applicable only for ACTIVE capacity commitments.
      */
     commitmentStartTime?: string | null;
+    /**
+     * Edition of the capacity commitment.
+     */
+    edition?: string | null;
     /**
      * Output only. For FAILED commitment plan, provides the reason of failure.
      */
@@ -273,6 +290,10 @@ export namespace bigqueryreservation_v1 {
    */
   export interface Schema$Reservation {
     /**
+     * The configuration parameters for the auto scaling feature. Note this is an alpha feature.
+     */
+    autoscale?: Schema$Autoscale;
+    /**
      * Job concurrency target which sets a soft upper bound on the number of jobs that can run concurrently in this reservation. This is a soft target due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency target will be automatically computed by the system. NOTE: this field is exposed as `target_job_concurrency` in the Information Schema, DDL and BQ CLI.
      */
     concurrency?: string | null;
@@ -280,6 +301,10 @@ export namespace bigqueryreservation_v1 {
      * Output only. Creation time of the reservation.
      */
     creationTime?: string | null;
+    /**
+     * Edition of the reservation.
+     */
+    edition?: string | null;
     /**
      * If false, any query or pipeline job using this reservation will use idle slots from other reservations within the same admin project. If true, a query or pipeline job using this reservation will execute with the slot capacity specified in the slot_capacity field at most.
      */
@@ -1100,6 +1125,7 @@ export namespace bigqueryreservation_v1 {
      *         // {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
      *         //   "commitmentStartTime": "my_commitmentStartTime",
+     *         //   "edition": "my_edition",
      *         //   "failureStatus": {},
      *         //   "multiRegionAuxiliary": false,
      *         //   "name": "my_name",
@@ -1116,6 +1142,7 @@ export namespace bigqueryreservation_v1 {
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
+     *   //   "edition": "my_edition",
      *   //   "failureStatus": {},
      *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
@@ -1394,6 +1421,7 @@ export namespace bigqueryreservation_v1 {
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
+     *   //   "edition": "my_edition",
      *   //   "failureStatus": {},
      *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
@@ -1694,6 +1722,7 @@ export namespace bigqueryreservation_v1 {
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
+     *   //   "edition": "my_edition",
      *   //   "failureStatus": {},
      *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
@@ -1842,6 +1871,7 @@ export namespace bigqueryreservation_v1 {
      *         // {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
      *         //   "commitmentStartTime": "my_commitmentStartTime",
+     *         //   "edition": "my_edition",
      *         //   "failureStatus": {},
      *         //   "multiRegionAuxiliary": false,
      *         //   "name": "my_name",
@@ -1858,6 +1888,7 @@ export namespace bigqueryreservation_v1 {
      *   // {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
+     *   //   "edition": "my_edition",
      *   //   "failureStatus": {},
      *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
@@ -2254,8 +2285,10 @@ export namespace bigqueryreservation_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoscale": {},
      *       //   "concurrency": "my_concurrency",
      *       //   "creationTime": "my_creationTime",
+     *       //   "edition": "my_edition",
      *       //   "ignoreIdleSlots": false,
      *       //   "multiRegionAuxiliary": false,
      *       //   "name": "my_name",
@@ -2268,8 +2301,10 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autoscale": {},
      *   //   "concurrency": "my_concurrency",
      *   //   "creationTime": "my_creationTime",
+     *   //   "edition": "my_edition",
      *   //   "ignoreIdleSlots": false,
      *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
@@ -2535,8 +2570,10 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autoscale": {},
      *   //   "concurrency": "my_concurrency",
      *   //   "creationTime": "my_creationTime",
+     *   //   "edition": "my_edition",
      *   //   "ignoreIdleSlots": false,
      *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
@@ -2816,8 +2853,10 @@ export namespace bigqueryreservation_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autoscale": {},
      *       //   "concurrency": "my_concurrency",
      *       //   "creationTime": "my_creationTime",
+     *       //   "edition": "my_edition",
      *       //   "ignoreIdleSlots": false,
      *       //   "multiRegionAuxiliary": false,
      *       //   "name": "my_name",
@@ -2830,8 +2869,10 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autoscale": {},
      *   //   "concurrency": "my_concurrency",
      *   //   "creationTime": "my_creationTime",
+     *   //   "edition": "my_edition",
      *   //   "ignoreIdleSlots": false,
      *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
