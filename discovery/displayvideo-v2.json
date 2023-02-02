@@ -761,7 +761,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -809,7 +812,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -921,7 +927,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -969,7 +978,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1929,7 +1941,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1977,7 +1992,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2079,7 +2097,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2127,7 +2148,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2226,7 +2250,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2274,7 +2301,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2386,7 +2416,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2434,7 +2467,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3002,7 +3038,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3050,7 +3089,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3152,7 +3194,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3200,7 +3245,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3299,7 +3347,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3347,7 +3398,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3459,7 +3513,10 @@
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                            "TARGETING_TYPE_CONTENT_GENRE"
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3507,7 +3564,10 @@
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
                             "Target ads to a specific audio content type.",
-                            "Target ads to a specific content genre."
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -4565,7 +4625,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4613,7 +4676,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4706,7 +4772,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4754,7 +4823,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4844,7 +4916,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4892,7 +4967,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4995,7 +5073,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -5043,7 +5124,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -5058,6 +5142,561 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/display-video"
                   ]
+                }
+              }
+            }
+          }
+        },
+        "youtubeAdGroupAds": {
+          "methods": {
+            "get": {
+              "description": "Gets a YouTube ad group ad.",
+              "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroupAds/{youtubeAdGroupAdsId}",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.youtubeAdGroupAds.get",
+              "parameterOrder": [
+                "advertiserId",
+                "youtubeAdGroupAdId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this ad group ad belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "youtubeAdGroupAdId": {
+                  "description": "Required. The ID of the ad group ad to fetch.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/advertisers/{+advertiserId}/youtubeAdGroupAds/{+youtubeAdGroupAdId}",
+              "response": {
+                "$ref": "YoutubeAdGroupAd"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "list": {
+              "description": "Lists YouTube ad group ads.",
+              "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroupAds",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.youtubeAdGroupAds.list",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser the ad groups belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Allows filtering by custom YouTube ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. Only the restrictions for * the same field can be combined by `OR`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported properties: - `adGroupId` - `displayName` - `entityStatus` - `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId=\"1234\"` and its * entityStatus is `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND adGroupId=\"12345\"` The length of this field should be no more than 500 characters.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAds` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/advertisers/{+advertiserId}/youtubeAdGroupAds",
+              "response": {
+                "$ref": "ListYoutubeAdGroupAdsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          }
+        },
+        "youtubeAdGroups": {
+          "methods": {
+            "bulkListAdGroupAssignedTargetingOptions": {
+              "description": "Lists assigned targeting options for multiple YouTube ad groups across targeting types.",
+              "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroups:bulkListAdGroupAssignedTargetingOptions",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.youtubeAdGroups.bulkListAdGroupAssignedTargetingOptions",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser the line items belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_YOUTUBE_VIDEO or TARGETING_TYPE_YOUTUBE_CHANNEL `targetingType=\"TARGETING_TYPE_YOUTUBE_VIDEO\" OR targetingType=\"TARGETING_TYPE_YOUTUBE_CHANNEL\"` The length of this field should be no more than 500 characters.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field by which to sort the list. Acceptable values are: * `youtubeAdGroupId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `targetingType desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "youtubeAdGroupIds": {
+                  "description": "Required. The IDs of the youtube ad groups to list assigned targeting options for.",
+                  "format": "int64",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/advertisers/{+advertiserId}/youtubeAdGroups:bulkListAdGroupAssignedTargetingOptions",
+              "response": {
+                "$ref": "BulkListAdGroupAssignedTargetingOptionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "get": {
+              "description": "Gets a YouTube ad group.",
+              "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroups/{youtubeAdGroupsId}",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.youtubeAdGroups.get",
+              "parameterOrder": [
+                "advertiserId",
+                "youtubeAdGroupId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this ad group belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "youtubeAdGroupId": {
+                  "description": "Required. The ID of the ad group to fetch.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}",
+              "response": {
+                "$ref": "YoutubeAdGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "list": {
+              "description": "Lists YouTube ad groups.",
+              "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroups",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.youtubeAdGroups.list",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser the ad groups belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Allows filtering by custom YouTube ad group fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. Only the restrictions for * the same field can be combined by `OR`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported properties: - `adGroupId` - `displayName` - `entityStatus` - `lineItemId` - `adGroupFormat` Examples: * All ad groups under an line item: `lineItemId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM` ad groups under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND adGroupFormat=\"YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM\"` The length of this field should be no more than 500 characters.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroups` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/advertisers/{+advertiserId}/youtubeAdGroups",
+              "response": {
+                "$ref": "ListYoutubeAdGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          },
+          "resources": {
+            "targetingTypes": {
+              "resources": {
+                "assignedTargetingOptions": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets a single targeting option assigned to a YouTube ad group. Inherited targeting is not included.",
+                      "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroups/{youtubeAdGroupsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions/{assignedTargetingOptionsId}",
+                      "httpMethod": "GET",
+                      "id": "displayvideo.advertisers.youtubeAdGroups.targetingTypes.assignedTargetingOptions.get",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "youtubeAdGroupId",
+                        "targetingType",
+                        "assignedTargetingOptionId"
+                      ],
+                      "parameters": {
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser the ad group belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "assignedTargetingOptionId": {
+                          "description": "Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "targetingType": {
+                          "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+                          "enum": [
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_POI",
+                            "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
+                          ],
+                          "enumDescriptions": [
+                            "Default value when type is not specified or is unknown in this version.",
+                            "Target a channel (a custom group of related websites or apps).",
+                            "Target an app category (for example, education or puzzle games).",
+                            "Target a specific app (for example, Angry Birds).",
+                            "Target a specific url (for example, quora.com).",
+                            "Target ads during a chosen time period on a specific day.",
+                            "Target ads to a specific age range (for example, 18-24).",
+                            "Target ads to the specified regions on a regional location list.",
+                            "Target ads to the specified points of interest on a proximity location list.",
+                            "Target ads to a specific gender (for example, female or male).",
+                            "Target a specific video player size for video ads.",
+                            "Target user rewarded content for video ads.",
+                            "Target ads to a specific parental status (for example, parent or not a parent).",
+                            "Target video or audio ads in a specific content instream position (for example, pre-roll, mid-roll, or post-roll).",
+                            "Target ads in a specific content outstream position.",
+                            "Target ads to a specific device type (for example, tablet or connected TV).",
+                            "Target ads to an audience or groups of audiences. Singleton field, at most one can exist on a single Lineitem at a time.",
+                            "Target ads to specific web browsers (for example, Chrome).",
+                            "Target ads to a specific household income range (for example, top 10%).",
+                            "Target ads in a specific on screen position.",
+                            "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
+                            "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
+                            "Target ads to a specific environment (for example, web or app).",
+                            "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
+                            "Target ads to a specific operating system (for example, macOS).",
+                            "Target ads to a specific device make or model (for example, Roku or Samsung).",
+                            "Target ads to a specific keyword (for example, dog or retriever).",
+                            "Target ads to a specific negative keyword list.",
+                            "Target ads to a specific viewability (for example, 80% viewable).",
+                            "Target ads to a specific content category (for example, arts & entertainment).",
+                            "Purchase impressions from specific deals and auction packages.",
+                            "Target ads to a specific language (for example, English or Japanese).",
+                            "Target ads to ads.txt authorized sellers.",
+                            "Target ads to a specific regional location (for example, a city or state).",
+                            "Purchase impressions from a group of deals and auction packages.",
+                            "Purchase impressions from specific exchanges.",
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
+                            "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
+                            "Target ads to a specific native content position.",
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "youtubeAdGroupId": {
+                          "description": "Required. The ID of the ad group the assigned targeting option belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}",
+                      "response": {
+                        "$ref": "AssignedTargetingOption"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the targeting options assigned to a YouTube ad group. Inherited targeting is not included.",
+                      "flatPath": "v2/advertisers/{advertisersId}/youtubeAdGroups/{youtubeAdGroupsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions",
+                      "httpMethod": "GET",
+                      "id": "displayvideo.advertisers.youtubeAdGroups.targetingTypes.assignedTargetingOptions.list",
+                      "parameterOrder": [
+                        "advertiserId",
+                        "youtubeAdGroupId",
+                        "targetingType"
+                      ],
+                      "parameters": {
+                        "advertiserId": {
+                          "description": "Required. The ID of the advertiser the ad group belongs to.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "filter": {
+                          "description": "Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId=\"1\" OR assignedTargetingOptionId=\"2\"` The length of this field should be no more than 500 characters.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `assignedTargetingOptionId desc`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "targetingType": {
+                          "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`",
+                          "enum": [
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_POI",
+                            "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION"
+                          ],
+                          "enumDescriptions": [
+                            "Default value when type is not specified or is unknown in this version.",
+                            "Target a channel (a custom group of related websites or apps).",
+                            "Target an app category (for example, education or puzzle games).",
+                            "Target a specific app (for example, Angry Birds).",
+                            "Target a specific url (for example, quora.com).",
+                            "Target ads during a chosen time period on a specific day.",
+                            "Target ads to a specific age range (for example, 18-24).",
+                            "Target ads to the specified regions on a regional location list.",
+                            "Target ads to the specified points of interest on a proximity location list.",
+                            "Target ads to a specific gender (for example, female or male).",
+                            "Target a specific video player size for video ads.",
+                            "Target user rewarded content for video ads.",
+                            "Target ads to a specific parental status (for example, parent or not a parent).",
+                            "Target video or audio ads in a specific content instream position (for example, pre-roll, mid-roll, or post-roll).",
+                            "Target ads in a specific content outstream position.",
+                            "Target ads to a specific device type (for example, tablet or connected TV).",
+                            "Target ads to an audience or groups of audiences. Singleton field, at most one can exist on a single Lineitem at a time.",
+                            "Target ads to specific web browsers (for example, Chrome).",
+                            "Target ads to a specific household income range (for example, top 10%).",
+                            "Target ads in a specific on screen position.",
+                            "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
+                            "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                            "Filter website content by sensitive categories (for example, adult).",
+                            "Target ads to a specific environment (for example, web or app).",
+                            "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
+                            "Target ads to a specific operating system (for example, macOS).",
+                            "Target ads to a specific device make or model (for example, Roku or Samsung).",
+                            "Target ads to a specific keyword (for example, dog or retriever).",
+                            "Target ads to a specific negative keyword list.",
+                            "Target ads to a specific viewability (for example, 80% viewable).",
+                            "Target ads to a specific content category (for example, arts & entertainment).",
+                            "Purchase impressions from specific deals and auction packages.",
+                            "Target ads to a specific language (for example, English or Japanese).",
+                            "Target ads to ads.txt authorized sellers.",
+                            "Target ads to a specific regional location (for example, a city or state).",
+                            "Purchase impressions from a group of deals and auction packages.",
+                            "Purchase impressions from specific exchanges.",
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
+                            "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
+                            "Target ads to a specific native content position.",
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre.",
+                            "Target ads to a specific YouTube video.",
+                            "Target ads to a specific YouTube channel.",
+                            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
+                          ],
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "youtubeAdGroupId": {
+                          "description": "Required. The ID of the ad group to list assigned targeting options for.",
+                          "format": "int64",
+                          "location": "path",
+                          "pattern": "^[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions",
+                      "response": {
+                        "$ref": "ListYoutubeAdGroupAssignedTargetingOptionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/display-video"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -7346,7 +7985,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -7394,7 +8036,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -7487,7 +8132,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -7535,7 +8183,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -7625,7 +8276,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -7673,7 +8327,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -7776,7 +8433,10 @@
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                        "TARGETING_TYPE_CONTENT_GENRE"
+                        "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -7824,7 +8484,10 @@
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
                         "Target ads to a specific audio content type.",
-                        "Target ads to a specific content genre."
+                        "Target ads to a specific content genre.",
+                        "Target ads to a specific YouTube video.",
+                        "Target ads to a specific YouTube channel.",
+                        "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -7975,7 +8638,10 @@
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
                     "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                    "TARGETING_TYPE_CONTENT_GENRE"
+                    "TARGETING_TYPE_CONTENT_GENRE",
+                    "TARGETING_TYPE_YOUTUBE_VIDEO",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                    "TARGETING_TYPE_SESSION_POSITION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -8023,7 +8689,10 @@
                     "Target ads to a specific native content position.",
                     "Target ads in an Open Measurement enabled inventory.",
                     "Target ads to a specific audio content type.",
-                    "Target ads to a specific content genre."
+                    "Target ads to a specific content genre.",
+                    "Target ads to a specific YouTube video.",
+                    "Target ads to a specific YouTube channel.",
+                    "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -8123,7 +8792,10 @@
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
                     "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                    "TARGETING_TYPE_CONTENT_GENRE"
+                    "TARGETING_TYPE_CONTENT_GENRE",
+                    "TARGETING_TYPE_YOUTUBE_VIDEO",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                    "TARGETING_TYPE_SESSION_POSITION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -8171,7 +8843,10 @@
                     "Target ads to a specific native content position.",
                     "Target ads in an Open Measurement enabled inventory.",
                     "Target ads to a specific audio content type.",
-                    "Target ads to a specific content genre."
+                    "Target ads to a specific content genre.",
+                    "Target ads to a specific YouTube video.",
+                    "Target ads to a specific YouTube channel.",
+                    "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -8244,7 +8919,10 @@
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
                     "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-                    "TARGETING_TYPE_CONTENT_GENRE"
+                    "TARGETING_TYPE_CONTENT_GENRE",
+                    "TARGETING_TYPE_YOUTUBE_VIDEO",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                    "TARGETING_TYPE_SESSION_POSITION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -8292,7 +8970,10 @@
                     "Target ads to a specific native content position.",
                     "Target ads in an Open Measurement enabled inventory.",
                     "Target ads to a specific audio content type.",
-                    "Target ads to a specific content genre."
+                    "Target ads to a specific content genre.",
+                    "Target ads to a specific YouTube video.",
+                    "Target ads to a specific YouTube channel.",
+                    "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -8491,7 +9172,7 @@
       }
     }
   },
-  "revision": "20221208",
+  "revision": "20230126",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8610,6 +9291,35 @@
             "0% volume.",
             "10% volume."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdUrl": {
+      "description": "Additional URLs related to the ad, including beacons.",
+      "id": "AdUrl",
+      "properties": {
+        "type": {
+          "description": "The type of the AD url.",
+          "enum": [
+            "AD_URL_TYPE_UNSPECIFIED",
+            "AD_URL_TYPE_BEACON_IMPRESSION",
+            "AD_URL_TYPE_BEACON_EXPANDABLE_DCM_IMPRESSION",
+            "AD_URL_TYPE_BEACON_CLICK",
+            "AD_URL_TYPE_BEACON_SKIP"
+          ],
+          "enumDescriptions": [
+            "Unknown or unspecified.",
+            "A 1x1 tracking pixel to ping when an impression of a creative is delivered.",
+            "Expandable DCM impression beacon. At serving time, it is expanded to several beacons.",
+            "Tracking url to ping when the click event is triggered.",
+            "Tracking url to ping when the skip event is triggered."
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "The url value of the ad url.",
           "type": "string"
         }
       },
@@ -9334,6 +10044,10 @@
           "$ref": "SensitiveCategoryAssignedTargetingOptionDetails",
           "description": "Sensitive category details. This field will be populated when the targeting_type is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. Sensitive categories are targeting exclusions. Advertiser level sensitive category exclusions, if set, are always applied in serving (even though they aren't visible in resource settings). Resource settings can exclude sensitive categories in addition to advertiser exclusions, but can't override them."
         },
+        "sessionPositionDetails": {
+          "$ref": "SessionPositionAssignedTargetingOptionDetails",
+          "description": "Session position details. This field will be populated when the targeting_type is `TARGETING_TYPE_SESSION_POSITION`."
+        },
         "subExchangeDetails": {
           "$ref": "SubExchangeAssignedTargetingOptionDetails",
           "description": "Sub-exchange details. This field will be populated when the targeting_type is `TARGETING_TYPE_SUB_EXCHANGE`."
@@ -9386,7 +10100,10 @@
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-            "TARGETING_TYPE_CONTENT_GENRE"
+            "TARGETING_TYPE_CONTENT_GENRE",
+            "TARGETING_TYPE_YOUTUBE_VIDEO",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+            "TARGETING_TYPE_SESSION_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -9434,7 +10151,10 @@
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
             "Target ads to a specific audio content type.",
-            "Target ads to a specific content genre."
+            "Target ads to a specific content genre.",
+            "Target ads to a specific YouTube video.",
+            "Target ads to a specific YouTube channel.",
+            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
           ],
           "readOnly": true,
           "type": "string"
@@ -9458,6 +10178,14 @@
         "viewabilityDetails": {
           "$ref": "ViewabilityAssignedTargetingOptionDetails",
           "description": "Viewability details. This field will be populated when the targeting_type is `TARGETING_TYPE_VIEWABILITY`. You can only target one viewability option per resource."
+        },
+        "youtubeChannelDetails": {
+          "$ref": "YoutubeChannelAssignedTargetingOptionDetails",
+          "description": "YouTube channel details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`."
+        },
+        "youtubeVideoDetails": {
+          "$ref": "YoutubeVideoAssignedTargetingOptionDetails",
+          "description": "YouTube video details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_VIDEO`."
         }
       },
       "type": "object"
@@ -9546,6 +10274,29 @@
         "includedGoogleAudienceGroup": {
           "$ref": "GoogleAudienceGroup",
           "description": "The Google audience ids of the included Google audience group. Contains Google audience ids only."
+        }
+      },
+      "type": "object"
+    },
+    "AudioAd": {
+      "description": "The details for audio ad.",
+      "id": "AudioAd",
+      "properties": {
+        "displayUrl": {
+          "description": "The webpage address that appears with the ad.",
+          "type": "string"
+        },
+        "finalUrl": {
+          "description": "The URL address of the webpage that people reach after they click the ad.",
+          "type": "string"
+        },
+        "trackingUrl": {
+          "description": "The URL address which is loaded in background for tracking purpose.",
+          "type": "string"
+        },
+        "video": {
+          "$ref": "YoutubeVideoDetails",
+          "description": "The YouTube video of the ad."
         }
       },
       "type": "object"
@@ -10118,6 +10869,23 @@
       },
       "type": "object"
     },
+    "BulkListAdGroupAssignedTargetingOptionsResponse": {
+      "id": "BulkListAdGroupAssignedTargetingOptionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more youtube_ad_group_assigned_targeting_options to return.",
+          "type": "string"
+        },
+        "youtubeAdGroupAssignedTargetingOptions": {
+          "description": "The list of wrapper objects, each providing an assigned targeting option and the youtube ad group it is assigned to. This list will be absent if empty.",
+          "items": {
+            "$ref": "YoutubeAdGroupAssignedTargetingOption"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BulkListAdvertiserAssignedTargetingOptionsResponse": {
       "id": "BulkListAdvertiserAssignedTargetingOptionsResponse",
       "properties": {
@@ -10246,6 +11014,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BumperAd": {
+      "description": "Ad details for BumperAd.",
+      "id": "BumperAd",
+      "properties": {
+        "commonInStreamAttribute": {
+          "$ref": "CommonInStreamAttribute",
+          "description": "Common attributes data model."
         }
       },
       "type": "object"
@@ -10814,6 +11593,41 @@
       },
       "type": "object"
     },
+    "CommonInStreamAttribute": {
+      "description": "The common attributes for InStreamAd, NonSkippableAd and BumperAd.",
+      "id": "CommonInStreamAttribute",
+      "properties": {
+        "actionButtonLabel": {
+          "description": "The text on the call-to-action button.",
+          "type": "string"
+        },
+        "actionHeadline": {
+          "description": "The headline of the call-to-action banner.",
+          "type": "string"
+        },
+        "companionBanner": {
+          "$ref": "ImageAsset",
+          "description": "The image which shows next to the video Ad."
+        },
+        "displayUrl": {
+          "description": "The webpage address that appears with the ad.",
+          "type": "string"
+        },
+        "finalUrl": {
+          "description": "The URL address of the webpage that people reach after they click the ad.",
+          "type": "string"
+        },
+        "trackingUrl": {
+          "description": "The URL address which is loaded in background for tracking purpose.",
+          "type": "string"
+        },
+        "video": {
+          "$ref": "YoutubeVideoDetails",
+          "description": "The YouTube video of the ad."
+        }
+      },
+      "type": "object"
+    },
     "ContactInfo": {
       "description": "Contact information defining a Customer Match audience member.",
       "id": "ContactInfo",
@@ -11271,7 +12085,10 @@
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-            "TARGETING_TYPE_CONTENT_GENRE"
+            "TARGETING_TYPE_CONTENT_GENRE",
+            "TARGETING_TYPE_YOUTUBE_VIDEO",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+            "TARGETING_TYPE_SESSION_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -11319,7 +12136,10 @@
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
             "Target ads to a specific audio content type.",
-            "Target ads to a specific content genre."
+            "Target ads to a specific content genre.",
+            "Target ads to a specific YouTube video.",
+            "Target ads to a specific YouTube channel.",
+            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
           ],
           "type": "string"
         }
@@ -12002,6 +12822,37 @@
       },
       "type": "object"
     },
+    "CustomLabel": {
+      "description": "The key and value of a custom label.",
+      "id": "CustomLabel",
+      "properties": {
+        "key": {
+          "description": "The key of the label.",
+          "enum": [
+            "CUSTOM_LABEL_KEY_UNSPECIFIED",
+            "CUSTOM_LABEL_KEY_0",
+            "CUSTOM_LABEL_KEY_1",
+            "CUSTOM_LABEL_KEY_2",
+            "CUSTOM_LABEL_KEY_3",
+            "CUSTOM_LABEL_KEY_4"
+          ],
+          "enumDescriptions": [
+            "Not specified or unknown.",
+            "index 0.",
+            "index 1.",
+            "index 2.",
+            "index 3.",
+            "index 4."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomList": {
       "description": "Describes a custom list entity, such as a custom affinity or custom intent audience list.",
       "id": "CustomList",
@@ -12208,7 +13059,10 @@
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-            "TARGETING_TYPE_CONTENT_GENRE"
+            "TARGETING_TYPE_CONTENT_GENRE",
+            "TARGETING_TYPE_YOUTUBE_VIDEO",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+            "TARGETING_TYPE_SESSION_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -12256,7 +13110,10 @@
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
             "Target ads to a specific audio content type.",
-            "Target ads to a specific content genre."
+            "Target ads to a specific content genre.",
+            "Target ads to a specific YouTube video.",
+            "Target ads to a specific YouTube channel.",
+            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
           ],
           "type": "string"
         }
@@ -12424,6 +13281,18 @@
           "description": "The width in pixels.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DisplayVideoSourceAd": {
+      "description": "The ad of which source is DV360 creative.",
+      "id": "DisplayVideoSourceAd",
+      "properties": {
+        "creativeId": {
+          "description": "The ID of the source creative.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13049,7 +13918,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -13120,7 +13993,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         }
@@ -13216,7 +14093,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -13287,7 +14168,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },
@@ -13384,7 +14269,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -13455,7 +14344,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },
@@ -13553,7 +14446,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -13624,7 +14521,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "readOnly": true,
           "type": "string"
@@ -14101,7 +15002,8 @@
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
-            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP"
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
@@ -14121,7 +15023,8 @@
             "Default YouTube video ads. Line items of this type and their targeting cannot be created or updated using the API.",
             "Connected TV youTube video ads (up to 15 seconds) that cannot be skipped. Line items of this type and their targeting cannot be created or updated using the API.",
             "Connected TV youTube video ads that optimize reaching more unique users at lower cost. May include bumper ads, skippable in-stream ads, or a mix of types. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API."
+            "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API.",
+            "The goal of this line item type is to show the YouTube ads target number of times to the same person in a certain period of time. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -14482,7 +15385,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14553,7 +15460,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },
@@ -14771,6 +15682,44 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImageAsset": {
+      "description": "The meta data of an image asset.",
+      "id": "ImageAsset",
+      "properties": {
+        "fileSize": {
+          "description": "File size of the image asset in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fullSize": {
+          "$ref": "Dimensions",
+          "description": "Metadata for this image at its original size."
+        },
+        "mimeType": {
+          "description": "MIME type of the image asset.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InStreamAd": {
+      "description": "Ad details for InStreamAd",
+      "id": "InStreamAd",
+      "properties": {
+        "commonInStreamAttribute": {
+          "$ref": "CommonInStreamAttribute",
+          "description": "Common attributes data model."
+        },
+        "customParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The custom parameters to pass custom values to tracking url template.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -15323,7 +16272,11 @@
             "EXCHANGE_MEDIANET",
             "EXCHANGE_TAPJOY",
             "EXCHANGE_VISTAR",
-            "EXCHANGE_DAX"
+            "EXCHANGE_DAX",
+            "EXCHANGE_JCD",
+            "EXCHANGE_PLACE_EXCHANGE",
+            "EXCHANGE_APPLOVIN",
+            "EXCHANGE_CONNATIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15394,7 +16347,11 @@
             "Media.net.",
             "Tapjoy.",
             "Vistar.",
-            "DAX."
+            "DAX.",
+            "JCD.",
+            "Place Exchange.",
+            "AppLovin.",
+            "Connatix."
           ],
           "type": "string"
         },
@@ -15967,7 +16924,8 @@
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
             "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
-            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP"
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
@@ -15987,7 +16945,8 @@
             "Default YouTube video ads. Line items of this type and their targeting cannot be created or updated using the API.",
             "Connected TV youTube video ads (up to 15 seconds) that cannot be skipped. Line items of this type and their targeting cannot be created or updated using the API.",
             "Connected TV youTube video ads that optimize reaching more unique users at lower cost. May include bumper ads, skippable in-stream ads, or a mix of types. Line items of this type and their targeting cannot be created or updated using the API.",
-            "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API."
+            "Connected TV default YouTube video ads. Only include in-stream ad-format. Line items of this type and their targeting cannot be created or updated using the API.",
+            "The goal of this line item type is to show the YouTube ads target number of times to the same person in a certain period of time. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -16710,6 +17669,59 @@
       },
       "type": "object"
     },
+    "ListYoutubeAdGroupAdsResponse": {
+      "description": "Response message for YoutubeAdGroupAdService.ListYoutubeAdGroupAds.",
+      "id": "ListYoutubeAdGroupAdsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAdGroupAds` method to retrieve the next page of results.",
+          "type": "string"
+        },
+        "youtubeAdGroupAds": {
+          "description": "The list of ad group ads. This list will be absent if empty.",
+          "items": {
+            "$ref": "YoutubeAdGroupAd"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListYoutubeAdGroupAssignedTargetingOptionsResponse": {
+      "description": "Response message for ListYoutubeAdGroupAssignedTargetingOptions.",
+      "id": "ListYoutubeAdGroupAssignedTargetingOptionsResponse",
+      "properties": {
+        "assignedTargetingOptions": {
+          "description": "The list of assigned targeting options. This list will be absent if empty.",
+          "items": {
+            "$ref": "AssignedTargetingOption"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListYoutubeAdGroupAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListYoutubeAdGroupsResponse": {
+      "id": "ListYoutubeAdGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAdGroups` method to retrieve the next page of results.",
+          "type": "string"
+        },
+        "youtubeAdGroups": {
+          "description": "The list of ad groups. This list will be absent if empty.",
+          "items": {
+            "$ref": "YoutubeAdGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "LocationList": {
       "description": "A list of locations used for targeting.",
       "id": "LocationList",
@@ -16826,6 +17838,72 @@
           "description": "Output only. The unique ID of the manual trigger.",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MastheadAd": {
+      "description": "The details for masthead ad.",
+      "id": "MastheadAd",
+      "properties": {
+        "autoplayVideoDuration": {
+          "description": "Video will autoplay for certain period of time.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "autoplayVideoStartMillisecond": {
+          "description": "Video will start to play after certain period of time in millisecond.",
+          "format": "int64",
+          "type": "string"
+        },
+        "callToActionButtonLabel": {
+          "description": "The text on the call-to-action button.",
+          "type": "string"
+        },
+        "callToActionFinalUrl": {
+          "description": "The destination URL for the call-to-action button.",
+          "type": "string"
+        },
+        "callToActionTrackingUrl": {
+          "description": "The tracking URL for the call-to-action button.",
+          "type": "string"
+        },
+        "companionYoutubeVideos": {
+          "description": "The videos (up to 2) that appear next to the Masthead ad on desktop.",
+          "items": {
+            "$ref": "YoutubeVideoDetails"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "The description of the ad.",
+          "type": "string"
+        },
+        "headline": {
+          "description": "The headline of the ad.",
+          "type": "string"
+        },
+        "showChannelArt": {
+          "description": "Whether to show a background or banner that appears at the top of a YouTube page.",
+          "type": "boolean"
+        },
+        "video": {
+          "$ref": "YoutubeVideoDetails",
+          "description": "The YouTube video of the ad."
+        },
+        "videoAspectRatio": {
+          "description": "Aspect ratio of the autoplaying YouTube video on the Masthead.",
+          "enum": [
+            "VIDEO_ASPECT_RATIO_UNSPECIFIED",
+            "VIDEO_ASPECT_RATIO_WIDESCREEN",
+            "VIDEO_ASPECT_RATIO_FIXED_16_9"
+          ],
+          "enumDescriptions": [
+            "Not specified or unknown.",
+            "The video is stretched and the top and bottom are cropped.",
+            "The video uses a fixed 16:9 aspect ratio."
+          ],
           "type": "string"
         }
       },
@@ -17075,6 +18153,24 @@
           "description": "Required. ID of the negative keyword list. Should refer to the negative_keyword_list_id field of a NegativeKeywordList resource.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NonSkippableAd": {
+      "description": "Ad details for NonSkippableAd",
+      "id": "NonSkippableAd",
+      "properties": {
+        "commonInStreamAttribute": {
+          "$ref": "CommonInStreamAttribute",
+          "description": "Common attributes data model."
+        },
+        "customParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The custom parameters to pass custom values to tracking url template.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -17949,6 +19045,55 @@
       },
       "type": "object"
     },
+    "ProductFeedData": {
+      "description": "The details of product feed.",
+      "id": "ProductFeedData",
+      "properties": {
+        "isFeedDisabled": {
+          "description": "True if opt out of showing products.",
+          "type": "boolean"
+        },
+        "productMatchDimensions": {
+          "description": "A list of dimensions which are used to match products.",
+          "items": {
+            "$ref": "ProductMatchDimension"
+          },
+          "type": "array"
+        },
+        "productMatchType": {
+          "description": "The type of the way to select the products.",
+          "enum": [
+            "PRODUCT_MATCH_TYPE_UNSPECIFIED",
+            "PRODUCT_MATCH_TYPE_ALL_PRODUCTS",
+            "PRODUCT_MATCH_TYPE_SPECIFIC_PRODUCTS",
+            "PRODUCT_MATCH_TYPE_CUSTOM_LABEL"
+          ],
+          "enumDescriptions": [
+            "Not specified or unknown.",
+            "All the products are matched.",
+            "Specific products are selected.",
+            "Match products by their custom labels."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductMatchDimension": {
+      "description": "The dimension which are used to match products.",
+      "id": "ProductMatchDimension",
+      "properties": {
+        "customLabel": {
+          "$ref": "CustomLabel",
+          "description": "The custom label to match all the products with the label."
+        },
+        "productOfferId": {
+          "description": "The ID of the product offer to match the product with the same offer ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProximityLocationListAssignedTargetingOptionDetails": {
       "description": "Targeting details for proximity location list. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.",
       "id": "ProximityLocationListAssignedTargetingOptionDetails",
@@ -18497,6 +19642,25 @@
       },
       "type": "object"
     },
+    "SessionPositionAssignedTargetingOptionDetails": {
+      "description": "Details for session position assigned targeting option. This will be populated in the session_position_details field when targeting_type is `TARGETING_TYPE_SESSION_POSITION`.",
+      "id": "SessionPositionAssignedTargetingOptionDetails",
+      "properties": {
+        "sessionPosition": {
+          "description": "The position where the ad will show in a session.",
+          "enum": [
+            "SESSION_POSITION_UNSPECIFIED",
+            "SESSION_POSITION_FIRST_IMPRESSION"
+          ],
+          "enumDescriptions": [
+            "This is a placeholder, does not indicate any positions.",
+            "The first impression of the session."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Site": {
       "description": "A single site. Sites are apps or websites belonging to a channel.",
       "id": "Site",
@@ -18559,6 +19723,45 @@
           "description": "Output only. The display name of the sub-exchange.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetFrequency": {
+      "description": "Setting that controls the average number of times the ads will show to the same person over a certain period of time.",
+      "id": "TargetFrequency",
+      "properties": {
+        "targetCount": {
+          "description": "The target number of times, on average, the ads will be shown to the same person in the timespan dictated by time_unit and time_unit_count.",
+          "format": "int64",
+          "type": "string"
+        },
+        "timeUnit": {
+          "description": "The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS`",
+          "enum": [
+            "TIME_UNIT_UNSPECIFIED",
+            "TIME_UNIT_LIFETIME",
+            "TIME_UNIT_MONTHS",
+            "TIME_UNIT_WEEKS",
+            "TIME_UNIT_DAYS",
+            "TIME_UNIT_HOURS",
+            "TIME_UNIT_MINUTES"
+          ],
+          "enumDescriptions": [
+            "Time unit value is not specified or is unknown in this version.",
+            "The frequency cap will be applied to the whole life time of the line item.",
+            "The frequency cap will be applied to a number of months.",
+            "The frequency cap will be applied to a number of weeks.",
+            "The frequency cap will be applied to a number of days.",
+            "The frequency cap will be applied to a number of hours.",
+            "The frequency cap will be applied to a number of minutes."
+          ],
+          "type": "string"
+        },
+        "timeUnitCount": {
+          "description": "The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -18778,7 +19981,10 @@
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
-            "TARGETING_TYPE_CONTENT_GENRE"
+            "TARGETING_TYPE_CONTENT_GENRE",
+            "TARGETING_TYPE_YOUTUBE_VIDEO",
+            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+            "TARGETING_TYPE_SESSION_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -18826,7 +20032,10 @@
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
             "Target ads to a specific audio content type.",
-            "Target ads to a specific content genre."
+            "Target ads to a specific content genre.",
+            "Target ads to a specific YouTube video.",
+            "Target ads to a specific YouTube channel.",
+            "Target ads to a serve it in a certain position of a session. Only supported for the AdGroup of YouTube Programmatic Reservation line item."
           ],
           "readOnly": true,
           "type": "string"
@@ -19197,6 +20406,191 @@
       },
       "type": "object"
     },
+    "VideoAdSequenceSettings": {
+      "description": "Settings related to VideoAdSequence.",
+      "id": "VideoAdSequenceSettings",
+      "properties": {
+        "minimumDuration": {
+          "description": "The minimum time interval before the same user sees this sequence again.",
+          "enum": [
+            "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_UNSPECIFIED",
+            "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_WEEK",
+            "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_MONTH"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown.",
+            "7 days.",
+            "30 days."
+          ],
+          "type": "string"
+        },
+        "steps": {
+          "description": "The steps of which the sequence consists.",
+          "items": {
+            "$ref": "VideoAdSequenceStep"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VideoAdSequenceStep": {
+      "description": "The detail of a single step in a VideoAdSequence.",
+      "id": "VideoAdSequenceStep",
+      "properties": {
+        "adGroupId": {
+          "description": "The ID of the corresponding ad group of the step.",
+          "format": "int64",
+          "type": "string"
+        },
+        "interactionType": {
+          "description": "The interaction on the previous step that will lead the viewer to this step. The first step does not have interaction_type.",
+          "enum": [
+            "INTERACTION_TYPE_UNSPECIFIED",
+            "INTERACTION_TYPE_PAID_VIEW",
+            "INTERACTION_TYPE_SKIP",
+            "INTERACTION_TYPE_IMPRESSION",
+            "INTERACTION_TYPE_ENGAGED_IMPRESSION"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown",
+            "A paid view.",
+            "Skipped by the viewer.",
+            "A (viewed) ad impression.",
+            "An ad impression that was not immediately skipped by the viewer, but didn't reach the billable event either."
+          ],
+          "type": "string"
+        },
+        "previousStepId": {
+          "description": "The ID of the previous step. The first step does not have previous step.",
+          "format": "int64",
+          "type": "string"
+        },
+        "stepId": {
+          "description": "The ID of the step.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VideoDiscoveryAd": {
+      "description": "The details for video discovery ad.",
+      "id": "VideoDiscoveryAd",
+      "properties": {
+        "description1": {
+          "description": "First text line for the ad.",
+          "type": "string"
+        },
+        "description2": {
+          "description": "Second text line for the ad.",
+          "type": "string"
+        },
+        "headline": {
+          "description": "The headline of the video discovery ad.",
+          "type": "string"
+        },
+        "thumbnail": {
+          "description": "Thumbnail image to use in the ad.",
+          "enum": [
+            "THUMBNAIL_UNSPECIFIED",
+            "THUMBNAIL_DEFAULT",
+            "THUMBNAIL_1",
+            "THUMBNAIL_2",
+            "THUMBNAIL_3"
+          ],
+          "enumDescriptions": [
+            "Unknown or unspecified.",
+            "The default thumbnail, can be auto-generated or user-uploaded.",
+            "Thumbnail 1, generated from the video.",
+            "Thumbnail 2, generated from the video.",
+            "Thumbnail 3, generated from the video."
+          ],
+          "type": "string"
+        },
+        "video": {
+          "$ref": "YoutubeVideoDetails",
+          "description": "The YouTube video which the ad wants to promote."
+        }
+      },
+      "type": "object"
+    },
+    "VideoPerformanceAd": {
+      "description": "The details for video performance ad.",
+      "id": "VideoPerformanceAd",
+      "properties": {
+        "actionButtonLabels": {
+          "description": "The list of text assets which show on the call-to-action button.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "companionBanners": {
+          "description": "The list of companion banners of this ad.",
+          "items": {
+            "$ref": "ImageAsset"
+          },
+          "type": "array"
+        },
+        "customParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The custom parameters to pass custom values to tracking url template.",
+          "type": "object"
+        },
+        "descriptions": {
+          "description": "The list of descriptions which show on the call-to-action banner.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayUrlBreadcrumb1": {
+          "description": "The first piece after the domain in the display url.",
+          "type": "string"
+        },
+        "displayUrlBreadcrumb2": {
+          "description": "The second piece after the domain in the display url.",
+          "type": "string"
+        },
+        "domain": {
+          "description": "The domain of the display url",
+          "type": "string"
+        },
+        "finalUrl": {
+          "description": "The URL address of the webpage that people reach after they click the ad.",
+          "type": "string"
+        },
+        "headlines": {
+          "description": "The list of headlines which show on the call-to-action banner.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "longHeadlines": {
+          "description": "The list of lone headlines which show on the call-to-action banner.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "trackingUrl": {
+          "description": "The URL address which is loaded in background for tracking purpose.",
+          "type": "string"
+        },
+        "videos": {
+          "description": "The list of YouTube video assets in this ad.",
+          "items": {
+            "$ref": "YoutubeVideoDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "VideoPlayerSizeAssignedTargetingOptionDetails": {
       "description": "Video player size targeting option details. This will be populated in the video_player_size_details field when targeting_type is `TARGETING_TYPE_VIDEO_PLAYER_SIZE`. Explicitly targeting all options is not supported. Remove all video player size targeting options to achieve this effect.",
       "id": "VideoPlayerSizeAssignedTargetingOptionDetails",
@@ -19319,10 +20713,232 @@
       },
       "type": "object"
     },
+    "YoutubeAdGroup": {
+      "description": "A single YouTube ad group associated with a YouTube and Partners line item.",
+      "id": "YoutubeAdGroup",
+      "properties": {
+        "adGroupFormat": {
+          "description": "The format of the ad group.",
+          "enum": [
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_UNSPECIFIED",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_VIDEO_DISCOVERY",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_BUMPER",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_NON_SKIPPABLE_IN_STREAM",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_AUDIO",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_ACTION",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_REACH",
+            "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_MASTHEAD"
+          ],
+          "enumDescriptions": [
+            "Format value is not specified or is unknown in this version.",
+            "In-stream ads.",
+            "In-feed ads.",
+            "Bumper ads.",
+            "Non-skippable in-stream ads.",
+            "Non-skippable in-stream audio ads.",
+            "[Responsive ads for video action campaigns] (https://support.google.com/displayvideo/answer/9065351).",
+            "[Effective reach ad groups] (https://support.google.com/displayvideo/answer/9173684), including in-stream and bumper ads.",
+            "Video Masthead that is surfaced on the top slot on the YouTube homepage."
+          ],
+          "type": "string"
+        },
+        "adGroupId": {
+          "description": "The unique ID of the ad group. Assigned by the system.",
+          "format": "int64",
+          "type": "string"
+        },
+        "advertiserId": {
+          "description": "The unique ID of the advertiser the ad group belongs to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "biddingStrategy": {
+          "$ref": "YoutubeAndPartnersBiddingStrategy",
+          "description": "The bidding strategy of the ad group."
+        },
+        "displayName": {
+          "description": "The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.",
+          "type": "string"
+        },
+        "entityStatus": {
+          "description": "Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.",
+          "enum": [
+            "ENTITY_STATUS_UNSPECIFIED",
+            "ENTITY_STATUS_ACTIVE",
+            "ENTITY_STATUS_ARCHIVED",
+            "ENTITY_STATUS_DRAFT",
+            "ENTITY_STATUS_PAUSED",
+            "ENTITY_STATUS_SCHEDULED_FOR_DELETION"
+          ],
+          "enumDescriptions": [
+            "Default value when status is not specified or is unknown in this version.",
+            "The entity is enabled to bid and spend budget.",
+            "The entity is archived. Bidding and budget spending are disabled. An entity can be deleted after archived. Deleted entities cannot be retrieved.",
+            "The entity is under draft. Bidding and budget spending are disabled.",
+            "Bidding and budget spending are paused for the entity.",
+            "The entity is scheduled for deletion."
+          ],
+          "type": "string"
+        },
+        "lineItemId": {
+          "description": "The unique ID of the line item that the ad group belongs to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the ad group.",
+          "type": "string"
+        },
+        "productFeedData": {
+          "$ref": "ProductFeedData",
+          "description": "The data to represent the product feed in this ad group."
+        },
+        "targetingExpansion": {
+          "$ref": "TargetingExpansionConfig",
+          "description": "The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the ad group. This config is only applicable when eligible audience list targeting is assigned to the ad group."
+        },
+        "youtubeAdIds": {
+          "description": "The IDs of the YouTubeAds associated with the ad group.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAdGroupAd": {
+      "description": "A single YouTube ad group ad associated with a YouTube ad group.",
+      "id": "YoutubeAdGroupAd",
+      "properties": {
+        "adGroupAdId": {
+          "description": "The unique ID of the ad group ad. Assigned by the system.",
+          "format": "int64",
+          "type": "string"
+        },
+        "adGroupId": {
+          "description": "The unique ID of the ad group that the ad group ad belongs to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "adUrls": {
+          "description": "The list of ad urls.",
+          "items": {
+            "$ref": "AdUrl"
+          },
+          "type": "array"
+        },
+        "advertiserId": {
+          "description": "The unique ID of the advertiser the ad group ad belongs to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "audioAd": {
+          "$ref": "AudioAd",
+          "description": "Audio ad for reach purpose. [details](https://support.google.com/displayvideo/answer/6274216)"
+        },
+        "bumperAd": {
+          "$ref": "BumperAd",
+          "description": "Non-skippable short video ad for reach purpose and video length equal to or less than 6 seconds. [details](https://support.google.com/displayvideo/answer/6274216)"
+        },
+        "displayName": {
+          "description": "The display name of the ad group ad. Must be UTF-8 encoded with a maximum size of 255 bytes.",
+          "type": "string"
+        },
+        "displayVideoSourceAd": {
+          "$ref": "DisplayVideoSourceAd",
+          "description": "The ad sourcing DV360 creative."
+        },
+        "entityStatus": {
+          "description": "The entity status of the ad group ad.",
+          "enum": [
+            "ENTITY_STATUS_UNSPECIFIED",
+            "ENTITY_STATUS_ACTIVE",
+            "ENTITY_STATUS_ARCHIVED",
+            "ENTITY_STATUS_DRAFT",
+            "ENTITY_STATUS_PAUSED",
+            "ENTITY_STATUS_SCHEDULED_FOR_DELETION"
+          ],
+          "enumDescriptions": [
+            "Default value when status is not specified or is unknown in this version.",
+            "The entity is enabled to bid and spend budget.",
+            "The entity is archived. Bidding and budget spending are disabled. An entity can be deleted after archived. Deleted entities cannot be retrieved.",
+            "The entity is under draft. Bidding and budget spending are disabled.",
+            "Bidding and budget spending are paused for the entity.",
+            "The entity is scheduled for deletion."
+          ],
+          "type": "string"
+        },
+        "inStreamAd": {
+          "$ref": "InStreamAd",
+          "description": "Skippable in-stream ad after 5 seconds for brand awareness or reach marketing objectives. [details](https://support.google.com/displayvideo/answer/6274216)"
+        },
+        "mastheadAd": {
+          "$ref": "MastheadAd",
+          "description": "The ad which shows on YouTube homepage. [details](https://support.google.com/google-ads/answer/9709826)"
+        },
+        "name": {
+          "description": "The resource name of the ad group ad.",
+          "type": "string"
+        },
+        "nonSkippableAd": {
+          "$ref": "NonSkippableAd",
+          "description": "Non-skippable short in-stream ad for reach marketing objectives, and video length is between 6 and 15 seconds. [details](https://support.google.com/displayvideo/answer/6274216)"
+        },
+        "videoDiscoverAd": {
+          "$ref": "VideoDiscoveryAd",
+          "description": "An ad which shows in places of discovery to promote a video. [details](https://support.google.com/displayvideo/answer/6274216)"
+        },
+        "videoPerformanceAd": {
+          "$ref": "VideoPerformanceAd",
+          "description": "The ad to drive actions to the business, service or product. [details](https://support.google.com/google-ads/answer/10147229)"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeAdGroupAssignedTargetingOption": {
+      "description": "Wrapper object associating an assigned_targeting_option resource and the youtube ad group it is assigned to.",
+      "id": "YoutubeAdGroupAssignedTargetingOption",
+      "properties": {
+        "assignedTargetingOption": {
+          "$ref": "AssignedTargetingOption",
+          "description": "The assigned targeting option resource."
+        },
+        "youtubeAdGroupId": {
+          "description": "The ID of the youtube ad group the assigned targeting option is assigned to.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "YoutubeAndPartnersBiddingStrategy": {
       "description": "Settings that control the bid strategy for YouTube and Partners resources.",
       "id": "YoutubeAndPartnersBiddingStrategy",
       "properties": {
+        "adGroupEffectiveTargetCpaSource": {
+          "description": "Output only. Source of the effective targetCpa value for AdGroup.",
+          "enum": [
+            "BIDDING_SOURCE_UNSPECIFIED",
+            "BIDDING_SOURCE_LINE_ITEM",
+            "BIDDING_SOURCE_AD_GROUP"
+          ],
+          "enumDescriptions": [
+            "Bidding source is not specified or unknown.",
+            "Bidding value is inherited from the line item.",
+            "Bidding value is defined on the ad group."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "adGroupEffectiveTargetCpaValue": {
+          "description": "Output only. The effective targetCpa for AdGroup, in micros of advertiser's currency.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "type": {
           "description": "The type of the bidding strategy.",
           "enum": [
@@ -19400,9 +21016,34 @@
           "$ref": "YoutubeAndPartnersInventorySourceConfig",
           "description": "Settings that control what YouTube and Partners inventories the line item will target."
         },
+        "leadFormId": {
+          "description": "The ID of the form to generate leads.",
+          "format": "int64",
+          "type": "string"
+        },
+        "linkedMerchantId": {
+          "description": "The ID of the merchant which is linked to the line item for product feed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "relatedVideoIds": {
+          "description": "The IDs of the videos appear below the primary video ad when the ad is playing in the YouTube app on mobile devices.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetFrequency": {
+          "$ref": "TargetFrequency",
+          "description": "The average number of times you want ads from this line item to show to the same person over a certain period of time."
+        },
         "thirdPartyMeasurementSettings": {
           "$ref": "YoutubeAndPartnersThirdPartyMeasurementSettings",
           "description": "The third-party measurement settings of the line item."
+        },
+        "videoAdSequenceSettings": {
+          "$ref": "VideoAdSequenceSettings",
+          "description": "The settings related to VideoAdSequence."
         },
         "viewFrequencyCap": {
           "$ref": "FrequencyCap",
@@ -19442,6 +21083,61 @@
             "$ref": "ThirdPartyVendorConfig"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeChannelAssignedTargetingOptionDetails": {
+      "description": "Details for YouTube channel assigned targeting option. This will be populated in the youtube_channel_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`.",
+      "id": "YoutubeChannelAssignedTargetingOptionDetails",
+      "properties": {
+        "channelId": {
+          "description": "The YouTube uploader channel id or the channel code of a YouTube channel.",
+          "type": "string"
+        },
+        "negative": {
+          "description": "Indicates if this option is being negatively targeted.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeVideoAssignedTargetingOptionDetails": {
+      "description": "Details for YouTube video assigned targeting option. This will be populated in the youtube_video_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_VIDEO`.",
+      "id": "YoutubeVideoAssignedTargetingOptionDetails",
+      "properties": {
+        "negative": {
+          "description": "Indicates if this option is being negatively targeted.",
+          "type": "boolean"
+        },
+        "videoId": {
+          "description": "YouTube video id as it appears on the YouTube watch page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeVideoDetails": {
+      "description": "Details of the YouTube video.",
+      "id": "YoutubeVideoDetails",
+      "properties": {
+        "id": {
+          "description": "The ID which can be searched on YouTube webpage.",
+          "type": "string"
+        },
+        "unavailableReason": {
+          "description": "The reason why the video data is not available.",
+          "enum": [
+            "VIDEO_UNAVAILABLE_REASON_UNSPECIFIED",
+            "VIDEO_UNAVAILABLE_REASON_PRIVATE",
+            "VIDEO_UNAVAILABLE_REASON_DELETED"
+          ],
+          "enumDescriptions": [
+            "Unknown or unspecified.",
+            "The video is private.",
+            "The video is deleted."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
