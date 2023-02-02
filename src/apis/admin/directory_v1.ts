@@ -612,6 +612,10 @@ export namespace admin_directory_v1 {
       reportTime?: string;
     }> | null;
     /**
+     * (Read-only) Deprovision reason.
+     */
+    deprovisionReason?: string | null;
+    /**
      * A list of device files to download (Read-only)
      */
     deviceFiles?: Array<{
@@ -662,6 +666,10 @@ export namespace admin_directory_v1 {
      * The type of resource. For the Chromeosdevices resource, the value is `admin#directory#chromeosdevice`.
      */
     kind?: string | null;
+    /**
+     * (Read-only) Date and time for the last deprovision of the device.
+     */
+    lastDeprovisionTimestamp?: string | null;
     /**
      * Date and time the device was last enrolled (Read-only)
      */
@@ -950,6 +958,10 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$DirectoryChromeosdevicesCommandResult {
     /**
+     * The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { "url": url \}. The URL provides a link to the Chrome Remote Desktop session.
+     */
+    commandResultPayload?: string | null;
+    /**
      * The error message with a short explanation as to why the command failed. Only present if the command failed.
      */
     errorMessage?: string | null;
@@ -971,7 +983,7 @@ export namespace admin_directory_v1 {
      */
     commandType?: string | null;
     /**
-     * The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a stringified JSON object in the form: { "volume": 50 \}. The volume has to be an integer in the range [0,100].
+     * The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { "volume": 50 \}. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { "ackedUserPresence": true \}. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`.
      */
     payload?: string | null;
   }
@@ -1147,7 +1159,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-groups).
+   * Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-groups). For information about other types of groups, see the [Cloud Identity Groups API documentation](https://cloud.google.com/identity/docs/groups). Note: The user calling the API (or being impersonated by a service account) must have an assigned [role](https://developers.google.com/admin-sdk/directory/v1/guides/manage-roles) that includes Admin API Groups permissions, such as Super Admin or Groups Admin.
    */
   export interface Schema$Group {
     /**
@@ -3511,6 +3523,7 @@ export namespace admin_directory_v1 {
      *   //   "bootMode": "my_bootMode",
      *   //   "cpuInfo": [],
      *   //   "cpuStatusReports": [],
+     *   //   "deprovisionReason": "my_deprovisionReason",
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
      *   //   "diskVolumeReports": [],
@@ -3521,6 +3534,7 @@ export namespace admin_directory_v1 {
      *   //   "firmwareVersion": "my_firmwareVersion",
      *   //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *   //   "kind": "my_kind",
+     *   //   "lastDeprovisionTimestamp": "my_lastDeprovisionTimestamp",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *   //   "lastKnownNetwork": [],
      *   //   "lastSync": "my_lastSync",
@@ -3967,6 +3981,7 @@ export namespace admin_directory_v1 {
      *       //   "bootMode": "my_bootMode",
      *       //   "cpuInfo": [],
      *       //   "cpuStatusReports": [],
+     *       //   "deprovisionReason": "my_deprovisionReason",
      *       //   "deviceFiles": [],
      *       //   "deviceId": "my_deviceId",
      *       //   "diskVolumeReports": [],
@@ -3977,6 +3992,7 @@ export namespace admin_directory_v1 {
      *       //   "firmwareVersion": "my_firmwareVersion",
      *       //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *       //   "kind": "my_kind",
+     *       //   "lastDeprovisionTimestamp": "my_lastDeprovisionTimestamp",
      *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *       //   "lastKnownNetwork": [],
      *       //   "lastSync": "my_lastSync",
@@ -4015,6 +4031,7 @@ export namespace admin_directory_v1 {
      *   //   "bootMode": "my_bootMode",
      *   //   "cpuInfo": [],
      *   //   "cpuStatusReports": [],
+     *   //   "deprovisionReason": "my_deprovisionReason",
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
      *   //   "diskVolumeReports": [],
@@ -4025,6 +4042,7 @@ export namespace admin_directory_v1 {
      *   //   "firmwareVersion": "my_firmwareVersion",
      *   //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *   //   "kind": "my_kind",
+     *   //   "lastDeprovisionTimestamp": "my_lastDeprovisionTimestamp",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *   //   "lastKnownNetwork": [],
      *   //   "lastSync": "my_lastSync",
@@ -4188,6 +4206,7 @@ export namespace admin_directory_v1 {
      *       //   "bootMode": "my_bootMode",
      *       //   "cpuInfo": [],
      *       //   "cpuStatusReports": [],
+     *       //   "deprovisionReason": "my_deprovisionReason",
      *       //   "deviceFiles": [],
      *       //   "deviceId": "my_deviceId",
      *       //   "diskVolumeReports": [],
@@ -4198,6 +4217,7 @@ export namespace admin_directory_v1 {
      *       //   "firmwareVersion": "my_firmwareVersion",
      *       //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *       //   "kind": "my_kind",
+     *       //   "lastDeprovisionTimestamp": "my_lastDeprovisionTimestamp",
      *       //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *       //   "lastKnownNetwork": [],
      *       //   "lastSync": "my_lastSync",
@@ -4236,6 +4256,7 @@ export namespace admin_directory_v1 {
      *   //   "bootMode": "my_bootMode",
      *   //   "cpuInfo": [],
      *   //   "cpuStatusReports": [],
+     *   //   "deprovisionReason": "my_deprovisionReason",
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
      *   //   "diskVolumeReports": [],
@@ -4246,6 +4267,7 @@ export namespace admin_directory_v1 {
      *   //   "firmwareVersion": "my_firmwareVersion",
      *   //   "firstEnrollmentTime": "my_firstEnrollmentTime",
      *   //   "kind": "my_kind",
+     *   //   "lastDeprovisionTimestamp": "my_lastDeprovisionTimestamp",
      *   //   "lastEnrollmentTime": "my_lastEnrollmentTime",
      *   //   "lastKnownNetwork": [],
      *   //   "lastSync": "my_lastSync",
@@ -20118,7 +20140,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates a user using patch semantics. The update method should be used instead, since it also supports patch semantics and has better performance. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.
+     * Updates a user using patch semantics. The update method should be used instead, because it also supports patch semantics and has better performance. If you're mapping an external identity to a Google identity, use the [`update`](https://developers.google.com/admin-sdk/directory/v1/reference/users/update) method instead of the `patch` method. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.
      * @example
      * ```js
      * // Before running the sample:

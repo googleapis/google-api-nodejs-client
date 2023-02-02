@@ -4072,7 +4072,7 @@
           ]
         },
         "patch": {
-          "description": "Updates a user using patch semantics. The update method should be used instead, since it also supports patch semantics and has better performance. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.",
+          "description": "Updates a user using patch semantics. The update method should be used instead, because it also supports patch semantics and has better performance. If you're mapping an external identity to a Google identity, use the [`update`](https://developers.google.com/admin-sdk/directory/v1/reference/users/update) method instead of the `patch` method. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "PATCH",
           "id": "directory.users.patch",
@@ -4630,7 +4630,7 @@
       }
     }
   },
-  "revision": "20221205",
+  "revision": "20230131",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5340,6 +5340,36 @@
           },
           "type": "array"
         },
+        "deprovisionReason": {
+          "description": "(Read-only) Deprovision reason.",
+          "enum": [
+            "deprovisionReasonUnspecified",
+            "deprovisionReasonSameModelReplacement",
+            "deprovisionReasonUpgrade",
+            "deprovisionReasonDomainMove",
+            "deprovisionReasonServiceExpiration",
+            "deprovisionReasonOther",
+            "deprovisionReasonDifferentModelReplacement",
+            "deprovisionReasonRetiringDevice",
+            "deprovisionReasonUpgradeTransfer",
+            "deprovisionReasonNotRequired",
+            "deprovisionReasonRepairCenter"
+          ],
+          "enumDescriptions": [
+            "The deprovision reason is unknown.",
+            "The device was replaced by a device with the same model.",
+            "The device was upgraded.",
+            "The device's domain was changed.",
+            "Service expired for the device.",
+            "The device was deprovisioned for a legacy reason that is no longer supported.",
+            "The device was replaced by a device with a different model.",
+            "The device was retired.",
+            "The device's perpetual upgrade was transferred to a new device.",
+            "A reason was not required. For example, the licenses were returned to the customer's license pool.",
+            "The device was deprovisioned by a repair service center."
+          ],
+          "type": "string"
+        },
         "deviceFiles": {
           "description": "A list of device files to download (Read-only)",
           "items": {
@@ -5429,6 +5459,10 @@
         "kind": {
           "default": "admin#directory#chromeosdevice",
           "description": "The type of resource. For the Chromeosdevices resource, the value is `admin#directory#chromeosdevice`.",
+          "type": "string"
+        },
+        "lastDeprovisionTimestamp": {
+          "description": "(Read-only) Date and time for the last deprovision of the device.",
           "type": "string"
         },
         "lastEnrollmentTime": {
@@ -5860,7 +5894,8 @@
             "TAKE_A_SCREENSHOT",
             "SET_VOLUME",
             "WIPE_USERS",
-            "REMOTE_POWERWASH"
+            "REMOTE_POWERWASH",
+            "DEVICE_START_CRD_SESSION"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -5868,7 +5903,8 @@
             "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
-            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!"
+            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
+            "Starts a Chrome Remote Desktop session."
           ],
           "type": "string"
         }
@@ -5879,6 +5915,10 @@
       "description": "The result of executing a command.",
       "id": "DirectoryChromeosdevicesCommandResult",
       "properties": {
+        "commandResultPayload": {
+          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The URL provides a link to the Chrome Remote Desktop session.",
+          "type": "string"
+        },
         "errorMessage": {
           "description": "The error message with a short explanation as to why the command failed. Only present if the command failed.",
           "type": "string"
@@ -5919,7 +5959,8 @@
             "TAKE_A_SCREENSHOT",
             "SET_VOLUME",
             "WIPE_USERS",
-            "REMOTE_POWERWASH"
+            "REMOTE_POWERWASH",
+            "DEVICE_START_CRD_SESSION"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -5927,12 +5968,13 @@
             "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
-            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!"
+            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
+            "Starts a Chrome Remote Desktop session."
           ],
           "type": "string"
         },
         "payload": {
-          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100].",
+          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`.",
           "type": "string"
         }
       },
@@ -6221,7 +6263,7 @@
       "type": "object"
     },
     "Group": {
-      "description": "Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-groups).",
+      "description": "Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-groups). For information about other types of groups, see the [Cloud Identity Groups API documentation](https://cloud.google.com/identity/docs/groups). Note: The user calling the API (or being impersonated by a service account) must have an assigned [role](https://developers.google.com/admin-sdk/directory/v1/guides/manage-roles) that includes Admin API Groups permissions, such as Super Admin or Groups Admin.",
       "id": "Group",
       "properties": {
         "adminCreated": {
