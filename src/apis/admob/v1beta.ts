@@ -175,6 +175,10 @@ export namespace admob_v1beta {
    */
   export interface Schema$App {
     /**
+     * Output only. The approval state for the app.
+     */
+    appApprovalState?: string | null;
+    /**
      * The externally visible ID of the app which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789
      */
     appId?: string | null;
