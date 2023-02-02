@@ -183,13 +183,17 @@ export namespace recaptchaenterprise_v1 {
      * Optional. Optional reasons for the annotation that will be assigned to the Event.
      */
     reasons?: string[] | null;
+    /**
+     * Optional. If the Assessment is part of a Payment Transaction, provide details on Payment Lifecycle Events that occur in the Transaction.
+     */
+    transactionEvent?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionEvent;
   }
   /**
    * Empty response for AnnotateAssessment.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse {}
   /**
-   * A recaptcha assessment resource.
+   * A reCAPTCHA Enterprise assessment resource.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Assessment {
     /**
@@ -273,11 +277,11 @@ export namespace recaptchaenterprise_v1 {
      */
     hashedAccountId?: string | null;
     /**
-     * Optional. The site key that was used to invoke reCAPTCHA on your site and generate the token.
+     * Optional. The site key that was used to invoke reCAPTCHA Enterprise on your site and generate the token.
      */
     siteKey?: string | null;
     /**
-     * Optional. The user response token provided by the reCAPTCHA client-side integration on your site.
+     * Optional. The user response token provided by the reCAPTCHA Enterprise client-side integration on your site.
      */
     token?: string | null;
     /**
@@ -575,6 +579,27 @@ export namespace recaptchaenterprise_v1 {
     valid?: boolean | null;
   }
   /**
+   * Describes an event in the lifecycle of a payment transaction.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionEvent {
+    /**
+     * Optional. Timestamp when this transaction event occurred; otherwise assumed to be the time of the API call.
+     */
+    eventTime?: string | null;
+    /**
+     * Optional. The type of this transaction event.
+     */
+    eventType?: string | null;
+    /**
+     * Optional. The reason or standardized code which corresponds with this transaction event, if one exists. E.g. a CHARGEBACK Event with code 4553.
+     */
+    reason?: string | null;
+    /**
+     * Optional. The value that corresponds with this transaction event, if one exists. E.g. A refund event where $5.00 was refunded. Currency is obtained from the original transaction data.
+     */
+    value?: number | null;
+  }
+  /**
    * Settings specific to keys that can be used for WAF (Web Application Firewall).
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1WafSettings {
@@ -677,7 +702,8 @@ export namespace recaptchaenterprise_v1 {
      *       // {
      *       //   "annotation": "my_annotation",
      *       //   "hashedAccountId": "my_hashedAccountId",
-     *       //   "reasons": []
+     *       //   "reasons": [],
+     *       //   "transactionEvent": {}
      *       // }
      *     },
      *   });
