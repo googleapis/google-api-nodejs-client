@@ -530,7 +530,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230201",
   "rootUrl": "https://mybusinessaccountmanagement.googleapis.com/",
   "schemas": {
     "AcceptInvitationRequest": {
@@ -577,7 +577,7 @@
           "type": "string"
         },
         "primaryOwner": {
-          "description": "Required. Input only. The resource name of the account which will be the primary owner of the account being created. It should be of the form `accounts/{account_id}/`.",
+          "description": "Required. Input only. The resource name of the account which will be the primary owner of the account being created. It should be of the form `accounts/{account_id}`.",
           "type": "string"
         },
         "role": {
