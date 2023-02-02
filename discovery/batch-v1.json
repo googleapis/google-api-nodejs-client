@@ -643,7 +643,7 @@
       }
     }
   },
-  "revision": "20221212",
+  "revision": "20230118",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1068,11 +1068,11 @@
           "type": "string"
         },
         "image": {
-          "description": "Name of a public or custom image used as the data source.",
+          "description": "Name of a public or custom image used as the data source. For example, the following are all valid URLs: (1) Specify the image by its family name: projects/{project}/global/images/family/{image_family} (2) Specify the image version: projects/{project}/global/images/{image_version} You can also use Batch customized image in short names. The following image values are supported for a boot disk: \"batch-debian\": use Batch Debian images. \"batch-centos\": use Batch CentOS images. \"batch-cos\": use Batch Container-Optimized images.",
           "type": "string"
         },
         "sizeGb": {
-          "description": "Disk size in GB. This field is ignored if `data_source` is `disk` or `image`. If `type` is `local-ssd`, size_gb should be a multiple of 375GB, otherwise, the final size will be the next greater multiple of 375 GB.",
+          "description": "Disk size in GB. For persistent disk, this field is ignored if `data_source` is `image` or `snapshot`. For local SSD, size_gb should be a multiple of 375GB, otherwise, the final size will be the next greater multiple of 375 GB. For boot disk, Batch will calculate the boot disk size based on source image and task requirements if you do not speicify the size. If both this field and the boot_disk_mib field in task spec's compute_resource are defined, Batch will only honor this field.",
           "format": "int64",
           "type": "string"
         },
@@ -1081,7 +1081,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Disk type as shown in `gcloud compute disk-types list` For example, \"pd-ssd\", \"pd-standard\", \"pd-balanced\", \"local-ssd\".",
+          "description": "Disk type as shown in `gcloud compute disk-types list`. For example, local SSD uses type \"local-ssd\". Persistent disks and boot disks use \"pd-balanced\", \"pd-extreme\", \"pd-ssd\" or \"pd-standard\".",
           "type": "string"
         }
       },
@@ -1163,6 +1163,10 @@
           },
           "type": "array"
         },
+        "bootDisk": {
+          "$ref": "Disk",
+          "description": "Book disk to be created and attached to each VM by this InstancePolicy. Boot disk will be deleted when the VM is deleted."
+        },
         "disks": {
           "description": "Non-boot disks to be attached for each VM created by this InstancePolicy. New disks will be deleted when the VM is deleted.",
           "items": {
@@ -1220,6 +1224,10 @@
       "description": "VM instance status.",
       "id": "InstanceStatus",
       "properties": {
+        "bootDisk": {
+          "$ref": "Disk",
+          "description": "The VM boot disk."
+        },
         "machineType": {
           "description": "The Compute Engine machine type.",
           "type": "string"
@@ -1902,6 +1910,13 @@
         "email": {
           "description": "Email address of the service account. If not specified, the default Compute Engine service account for the project will be used. If instance template is being used, the service account has to be specified in the instance template and it has to match the email field here.",
           "type": "string"
+        },
+        "scopes": {
+          "description": "List of scopes to be enabled for this service account on the VM, in addition to the cloud-platform API scope that will be added by default.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
