@@ -1320,7 +1320,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230207",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1426,6 +1426,12 @@
         },
         "etag": {
           "description": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -1547,6 +1553,12 @@
         },
         "displayName": {
           "description": "The user-assigned display name of the Firebase App.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -1676,6 +1688,12 @@
         },
         "etag": {
           "description": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
@@ -2224,6 +2242,12 @@
         },
         "etag": {
           "description": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
