@@ -137,7 +137,7 @@ export namespace datacatalog_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -996,6 +996,53 @@ export namespace datacatalog_v1 {
      * Resource name of this policy tag's parent policy tag. If empty, this is a top level tag. If not set, defaults to an empty string. For example, for the "LatLong" policy tag in the example above, this field contains the resource name of the "Geolocation" policy tag, and, for "Geolocation", this field is empty.
      */
     parentPolicyTag?: string | null;
+  }
+  /**
+   * Metadata message for long-running operation returned by the ReconcileTags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsMetadata {
+    /**
+     * Map that maps name of each tagged column (or empty string in case of sole entry) to tagging operation status.
+     */
+    errors?: {[key: string]: Schema$Status} | null;
+    /**
+     * State of the reconciliation operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Request message for ReconcileTags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsRequest {
+    /**
+     * If set to true deletes from the entry tags related to given tag template and not mentioned in the tags source. If set to false only creates and updates of the tags mentioned in the source will take place. Other tags in that entry using the same tag template will be retained instead of being deleted.
+     */
+    forceDeleteMissing?: boolean | null;
+    /**
+     * A list of tags to be applied on a given entry. Individual tags may specify tag template, but it must be the same as the one in the ReconcileTagsRequest. The sole entry and each of its columns must be mentioned at most once.
+     */
+    tags?: Schema$GoogleCloudDatacatalogV1Tag[];
+    /**
+     * Required. The name of the tag template, that will be used for reconciliation.
+     */
+    tagTemplate?: string | null;
+  }
+  /**
+   * Request message for long-running operation returned by the ReconcileTags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsResponse {
+    /**
+     * Number of tags created in the request.
+     */
+    createdTagsCount?: string | null;
+    /**
+     * Number of tags deleted in the request.
+     */
+    deletedTagsCount?: string | null;
+    /**
+     * Number of tags updated in the request.
+     */
+    updatedTagsCount?: string | null;
   }
   /**
    * Request message for RenameTagTemplateFieldEnumValue.
@@ -5850,6 +5897,152 @@ export namespace datacatalog_v1 {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1Tag>(parameters);
       }
     }
+
+    /**
+     * Reconciles tags created with a given tag template on a given Entry. Reconciliation is an operation that given a list of tags creates or updates them on the entry. Additionally, the operation is also able to delete tags not mentioned in the tag list. It can be achieved by setting force_delete_missing parameter. Reconciliation is a long-running operation done in the background, so this method returns long-running operation resource. The resource can be queried with Operations.GetOperation which contains metadata and response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.tags.reconcile({
+     *       // Required. Name of Entry to be tagged.
+     *       parent:
+     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "forceDeleteMissing": false,
+     *         //   "tagTemplate": "my_tagTemplate",
+     *         //   "tags": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reconcile(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reconcile(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    reconcile(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reconcile(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reconcile(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reconcile(callback: BodyResponseCallback<Schema$Operation>): void;
+    reconcile(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/tags:reconcile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create
@@ -5901,6 +6094,18 @@ export namespace datacatalog_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Tag;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Reconcile
+    extends StandardParameters {
+    /**
+     * Required. Name of Entry to be tagged.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1ReconcileTagsRequest;
   }
 
   export class Resource$Projects$Locations$Entrygroups$Tags {
