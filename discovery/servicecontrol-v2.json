@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20221204",
+  "revision": "20230127",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -460,6 +460,10 @@
       "description": "Response message for the Check method.",
       "id": "CheckResponse",
       "properties": {
+        "esfMigrationServerOverride": {
+          "$ref": "EsfMigrationServerOverride",
+          "description": "Esf migration server override during check v2 migration. This is temporary and Chemist internal only."
+        },
         "headers": {
           "additionalProperties": {
             "type": "string"
@@ -470,6 +474,27 @@
         "status": {
           "$ref": "Status",
           "description": "Operation is allowed when this field is not set. Any non-'OK' status indicates a denial; google.rpc.Status.details would contain additional details about the denial."
+        }
+      },
+      "type": "object"
+    },
+    "EsfMigrationServerOverride": {
+      "description": "Esf migration server override during chemist check v2 migration",
+      "id": "EsfMigrationServerOverride",
+      "properties": {
+        "overrideMode": {
+          "description": "Esf migration override mode",
+          "enum": [
+            "ESF_MIGRATION_OVERRIDE_MODE_UNSPECIFIED",
+            "DRY_RUN",
+            "NO_OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "Default, ESF should use the mode that is determined by the configuration.",
+            "ESF should send 95% v1 request and 5% dry run request.",
+            "Same as ESF_MIGRATION_OVERRIDE_MODE_UNSPECIFIED, remove the override mode. This is used for safe unpush."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
