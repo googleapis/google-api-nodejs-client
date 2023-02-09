@@ -3920,7 +3920,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230208",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "AcquisitionTargetingRule": {
@@ -4646,6 +4646,13 @@
         "deviceTierSet": {
           "$ref": "DeviceTierSet",
           "description": "Definition of the set of device tiers for the app."
+        },
+        "userCountrySets": {
+          "description": "Definition of user country sets for the app.",
+          "items": {
+            "$ref": "UserCountrySet"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6901,6 +6908,24 @@
           "description": "Number of users who have given this review a thumbs up.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "UserCountrySet": {
+      "description": "A set of user countries. A country set determines what variation of app content gets served to a specific location.",
+      "id": "UserCountrySet",
+      "properties": {
+        "countryCodes": {
+          "description": "List of country codes representing countries. A Country code is represented in ISO 3166 alpha-2 format. For Example:- \"IT\" for Italy, \"GE\" for Georgia.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Country set name.",
+          "type": "string"
         }
       },
       "type": "object"
