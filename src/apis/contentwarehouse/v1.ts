@@ -1068,11 +1068,17 @@ export namespace contentwarehouse_v1 {
    * IMPORTANT NOTES: - Requesting person.birthday requires membership in the purpose limited data ACL group sgbe-ac-d-birthday-(read|mutate). Contact people-api-eng@ for assistance with initial setup. - The birthday field should not be used to calculate the requester's age! To determine the requester's age, use person.age_range_repeated. - For more details about age see go/peopleapi-howto/age Birthday value may not be present: - Consumer users generally required to have account birthday set (required at account creation), though some users created via legacy flows may not have birthday present. - Dasher users generally don't require birthday, but could optionally have it set by users. - Any other types of accounts (e.g. robot, service) do not have birthdays. - Account Birthday field may be present but without birthday value set for grace period birthday (provisional new birthday). For users that do have birthday data: - "Profile Birthday" (person.birthday.metadata.container is PROFILE) may not have a year set if user "hides" the year. - "Account Birthday" (see api-specific notes below) will only be returned for the requester's own profile. - People API (go/peopleapi): * Account birthday is only supported in GetPeople for PeopleAPI. * If account birthday is needed, use a request mask with: `include_field { paths: "person.birthday" \}` `include_container: ACCOUNT` - People API++ (go/peopleapi++): * Account birthday is supported for most apis in PeopleAPI++. * If account birthday is needed, use a request mask with: `include_field { paths: "person.account_birthday" \}` `include_container: PROFILE` (note: it will also need `include_container: DOMAIN_PROFILE` because they must be requested together: go/people-api-masks#profile-domain_profile) - See go/papi-vs-papi++#birthday for more details.
    */
   export interface Schema$AppsPeopleOzExternalMergedpeopleapiBirthday {
+    /**
+     * Only supported for PROFILE/DOMAIN_PROFILE/ACCOUNT container.
+     */
     ageDisableGracePeriod?: Schema$AppsPeopleOzExternalMergedpeopleapiBirthdayAgeDisableGracePeriod;
     /**
-     * Whether the user has opted in to display their birthday via photo decorations.
+     * Whether the user has opted in to display their birthday via photo decorations. Only supported for PROFILE/DOMAIN_PROFILE container.
      */
     birthdayDecoration?: Schema$SocialGraphApiProtoBirthdayDecoration;
+    /**
+     * Only supported for PROFILE/DOMAIN_PROFILE/ACCOUNT container.
+     */
     birthdayResolution?: string | null;
     /**
      * Birthdays are more accurately represented as a calendar day that does not depend on a timestamp representation at all. When given a timestamp, there are lots of opportunities to make mistakes, so a CalendarDay proto is replacing timestamps. Currently this is always returned by PeopleApi on reads that include birthday fields. New clients should write using calendar_day. Clients that were already writing via date_ms are allowlisted such that writes use that field. Old callers should migrate to writing BOTH date_ms and calendar_day values. If those are consistent, they may be removed from the 'legacy_timestamp_event_write_behavior_enabled' capability.
@@ -1088,7 +1094,7 @@ export namespace contentwarehouse_v1 {
     dateMsAsNumber?: string | null;
     metadata?: Schema$AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata;
     /**
-     * People Prompts settings for contact birthday data.
+     * People Prompts settings for contact birthday data. Only supported for CONTACT container.
      */
     prompt?: Schema$SocialGraphApiProtoPrompt;
     /**
@@ -7587,6 +7593,27 @@ export namespace contentwarehouse_v1 {
   export interface Schema$AssistantDeviceTargetingDeviceTargetingError {
     type?: string | null;
   }
+  export interface Schema$AssistantGroundingRankerAssistantInteractionFeatures {
+    timeDecayed14dHalfLife?: number | null;
+    /**
+     * Frequency features.
+     */
+    timeDecayed1dHalfLife?: number | null;
+    timeDecayed7dHalfLife?: number | null;
+    timeDecayedAccepted14dHalfLife?: number | null;
+    timeDecayedAuis14dHalfLife?: number | null;
+    timeDecayedCanceled14dHalfLife?: number | null;
+    timeDecayedDeclined14dHalfLife?: number | null;
+    timeSinceLastButOneCanceledActionSecs?: number | null;
+    timeSinceLastButOneCompletedActionSecs?: number | null;
+    timeSinceLastButTwoCanceledActionSecs?: number | null;
+    timeSinceLastButTwoCompletedActionSecs?: number | null;
+    timeSinceLastCanceledActionSecs?: number | null;
+    /**
+     * Recency features.
+     */
+    timeSinceLastCompletedActionSecs?: number | null;
+  }
   /**
    * Features to be passed from Contact GP to HGR. Next ID: 13
    */
@@ -7632,12 +7659,39 @@ export namespace contentwarehouse_v1 {
     recognitionAlternateSource?: string | null;
   }
   /**
+   * Device contact affinity from android call logs.
+   */
+  export interface Schema$AssistantGroundingRankerDeviceContactAffinityFeatures {
+    aggregateAffinity?: number | null;
+    callAffinity?: number | null;
+    messageAffinity?: number | null;
+  }
+  /**
    * Next ID: 4
    */
   export interface Schema$AssistantGroundingRankerGroundingProviderFeatures {
     contactGroundingProviderFeatures?: Schema$AssistantGroundingRankerContactGroundingProviderFeatures;
     mediaGroundingProviderFeatures?: Schema$AssistantGroundingRankerMediaGroundingProviderFeatures;
     providerGroundingProviderFeatures?: Schema$AssistantGroundingRankerProviderGroundingProviderFeatures;
+  }
+  export interface Schema$AssistantGroundingRankerLaaFeatures {
+    bindingSet?: Schema$AssistantGroundingRankerLaaFeaturesBindingSet;
+    communicationEndpoint?: Schema$AssistantGroundingRankerLaaFeaturesCommunicationEndpoint;
+    contact?: Schema$AssistantGroundingRankerLaaFeaturesContact;
+    provider?: Schema$AssistantGroundingRankerLaaFeaturesProvider;
+  }
+  export interface Schema$AssistantGroundingRankerLaaFeaturesBindingSet {
+    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
+  }
+  export interface Schema$AssistantGroundingRankerLaaFeaturesCommunicationEndpoint {
+    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
+  }
+  export interface Schema$AssistantGroundingRankerLaaFeaturesContact {
+    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
+    deviceContactAffinityFeatures?: Schema$AssistantGroundingRankerDeviceContactAffinityFeatures;
+  }
+  export interface Schema$AssistantGroundingRankerLaaFeaturesProvider {
+    assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
    * Features to be passed from Media GP to HGR. Next ID: 6
@@ -8333,7 +8387,7 @@ export namespace contentwarehouse_v1 {
     resultConfidenceLevel?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 36
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 39
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -8349,6 +8403,10 @@ export namespace contentwarehouse_v1 {
      */
     calibratedParsingScore?: number | null;
     /**
+     * Whether the intent is dominant according to NSP deep-media.
+     */
+    deepMediaDominant?: boolean | null;
+    /**
      * Indicates interpretation dominance predicted by KScorer
      */
     dominant?: boolean | null;
@@ -8356,6 +8414,10 @@ export namespace contentwarehouse_v1 {
      * The total effective length of the spans for the arguments used to construct the parse. May include vertical specific adjustments. Eg: For the query [delete my 7 p.m. alarm called chicken] and intent Delete_alarm(alarm_object=RD(category=AlarmObject( label="chicken", trigger_time_datetime=<< 7 PM \>\>))), the effective argument span is "7 p.m." + "chicken" (total length of 13).
      */
     effectiveArgSpanLength?: number | null;
+    /**
+     * Whether this is a fulfillable, dominant Media intent.
+     */
+    fulfillableDominantMedia?: boolean | null;
     /**
      * Grounding Signals. Score indicating how grounded the intent is, populated by the Grounding Box.
      */
@@ -8388,6 +8450,10 @@ export namespace contentwarehouse_v1 {
      * The rank order of the interpretation as determined by kscorer. The kscorer-determined dominant interpretation, if any, gets a rank of 0. The remaining N interpretations get a rank of 1 through N.
      */
     kscorerRank?: number | null;
+    /**
+     * Learn and adapt(go/laa) related features. Design doc: go/laa-profile-signal-for-grounding.
+     */
+    laaFeatures?: Schema$AssistantGroundingRankerLaaFeatures;
     /**
      * This feature is always false / no-op in serving time. In training time, this feature may be set true on specific examples for weighted training where when this signal is true, only cross-intent level features are used for training and other candidate level features are masked (set as missing).
      */
@@ -13190,6 +13256,19 @@ export namespace contentwarehouse_v1 {
     prominence?: string | null;
   }
   /**
+   * Encapsulates all the features which, together, define the geometry of a feature. This happens by: 1. taking the union of all polygons of features referenced in includes_geometry_of 2. subtracting the polygons of all the features referenced in excludes_geometry_of
+   */
+  export interface Schema$GeostoreGeometryComposition {
+    /**
+     * Features whose geometry to exclude while composing the geometry of this feature.
+     */
+    excludesGeometryOf?: Schema$GeostoreFeatureIdProto[];
+    /**
+     * Features whose geometry to include while composing the geometry of this feature.
+     */
+    includesGeometryOf?: Schema$GeostoreFeatureIdProto[];
+  }
+  /**
    * Geopolitical (unsimplified) polygons for a feature for different geopolitical use cases. See go/unsimplified-poly.
    */
   export interface Schema$GeostoreGeopoliticalGeometryProto {
@@ -13226,7 +13305,7 @@ export namespace contentwarehouse_v1 {
     type?: string | null;
   }
   /**
-   * The inferred geometry of a feature contains all the features which, together, define the geometry of a feature. This happens by: 1. Taking the union of all polygons of features referenced in "includes_geometry_of". 2. Subtract the geometries of all the features referenced in "excludes_geometry_of". See: go/inferred-geometry for more information.
+   * Inferred geometry defines the geometry of a feature through the geometry of other features. For instance, the geometry of a timezone can be specified as the union of all the countries it applies to. See: go/inferred-geometry and go/geo-schema:composite-geometry-editor for more details.
    */
   export interface Schema$GeostoreInferredGeometryProto {
     /**
@@ -13234,13 +13313,9 @@ export namespace contentwarehouse_v1 {
      */
     definesGeometryFor?: Schema$GeostoreFeatureIdProto[];
     /**
-     * Features whose geometry to exclude while inferring geometry.
+     * Features whose geometry defines the geometry of this feature.
      */
-    excludesGeometryOf?: Schema$GeostoreFeatureIdProto[];
-    /**
-     * Features whose geometry to include while inferring geometry.
-     */
-    includesGeometryOf?: Schema$GeostoreFeatureIdProto[];
+    geometryComposition?: Schema$GeostoreGeometryComposition;
   }
   /**
    * Main proto for all internal fields to be stored at the feature level.
@@ -16924,6 +16999,23 @@ export namespace contentwarehouse_v1 {
     value?: string | null;
   }
   /**
+   * The configuration of exporting documents from the Document Warehouse to CDW pipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1ExportToCdwPipeline {
+    /**
+     * The list of all the documents to be processed.
+     */
+    documentIds?: string[] | null;
+    /**
+     * The Cloud Storage folder path used to store the exported documents before being sent to CDW. Format: gs:///.
+     */
+    exportFolderPath?: string | null;
+    /**
+     * The CDW processor information.
+     */
+    processorInfo?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
+  }
+  /**
    * Request message for DocumentService.FetchAcl
    */
   export interface Schema$GoogleCloudContentwarehouseV1FetchAclRequest {
@@ -16971,6 +17063,40 @@ export namespace contentwarehouse_v1 {
    * Configurations for a float property.
    */
   export interface Schema$GoogleCloudContentwarehouseV1FloatTypeOptions {}
+  /**
+   * The configuration of the Cloud Storage ingestion pipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1GcsIngestPipeline {
+    /**
+     * The input Cloud Storage folder. All files under this folder will be imported to Document Warehouse. Format: gs:///.
+     */
+    inputPath?: string | null;
+    /**
+     * The Document Warehouse schema resource name. All documents processed by this pipeline will use this schema. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
+     */
+    schemaName?: string | null;
+  }
+  /**
+   * The configuration of the document classify/split and entity/kvp extraction pipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline {
+    /**
+     * The classify or split processor information.
+     */
+    classifySplitProcessorInfos?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
+    /**
+     * The entity or key-value pair extracting processor information.
+     */
+    extractProcessorInfos?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo[];
+    /**
+     * The input Cloud Storage folder. All files under this folder will be imported to Document Warehouse. Format: gs:///.
+     */
+    inputPath?: string | null;
+    /**
+     * The Cloud Storage folder path used to store the raw results from processors. Format: gs:///.
+     */
+    processorResultsFolderPath?: string | null;
+  }
   /**
    * Request message for DocumentService.GetDocument.
    */
@@ -17202,6 +17328,23 @@ export namespace contentwarehouse_v1 {
     replaceRepeatedFields?: boolean | null;
   }
   /**
+   * The DocAI processor information.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1ProcessorInfo {
+    /**
+     * The processor will process the documents with this document type.
+     */
+    documentType?: string | null;
+    /**
+     * The processor resource name. Format is `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
+     */
+    processorName?: string | null;
+    /**
+     * The Document schema resource name. All documents processed by this processor will use this schema. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
+     */
+    schemaName?: string | null;
+  }
+  /**
    * Property of a document.
    */
   export interface Schema$GoogleCloudContentwarehouseV1Property {
@@ -17312,6 +17455,10 @@ export namespace contentwarehouse_v1 {
      */
     retrievalImportance?: string | null;
     /**
+     * The mapping information between this property to another schema source.
+     */
+    schemaSources?: Schema$GoogleCloudContentwarehouseV1PropertyDefinitionSchemaSource[];
+    /**
      * Text/string property.
      */
     textTypeOptions?: Schema$GoogleCloudContentwarehouseV1TextTypeOptions;
@@ -17319,6 +17466,19 @@ export namespace contentwarehouse_v1 {
      * Timestamp property. It is not supported by CMEK compliant deployment.
      */
     timestampTypeOptions?: Schema$GoogleCloudContentwarehouseV1TimestampTypeOptions;
+  }
+  /**
+   * The schema source information.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1PropertyDefinitionSchemaSource {
+    /**
+     * The schema name in the source.
+     */
+    name?: string | null;
+    /**
+     * The Doc AI processor type name.
+     */
+    processorType?: string | null;
   }
   export interface Schema$GoogleCloudContentwarehouseV1PropertyFilter {
     /**
@@ -17501,6 +17661,23 @@ export namespace contentwarehouse_v1 {
      * Source of the rules i.e., customer name.
      */
     source?: string | null;
+  }
+  /**
+   * Request message for DocumentService.RunPipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1RunPipelineRequest {
+    /**
+     * Export docuemnts from Document Warehouseing to CDW for training purpose.
+     */
+    exportCdwPipeline?: Schema$GoogleCloudContentwarehouseV1ExportToCdwPipeline;
+    /**
+     * Cloud Storage ingestion pipeline.
+     */
+    gcsIngestPipeline?: Schema$GoogleCloudContentwarehouseV1GcsIngestPipeline;
+    /**
+     * Use DocAI processors to process documents in Cloud Storage and ingest them to Document Warehouse.
+     */
+    gcsIngestWithDocAiProcessorsPipeline?: Schema$GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline;
   }
   /**
    * Request message for DocumentService.SearchDocuments.
@@ -18505,7 +18682,7 @@ export namespace contentwarehouse_v1 {
      */
     agent?: string | null;
     /**
-     * The time that the revision was created.
+     * The time that the revision was created, internally generated by doc proto storage at the time of create.
      */
     createTime?: string | null;
     /**
@@ -18513,7 +18690,7 @@ export namespace contentwarehouse_v1 {
      */
     humanReview?: Schema$GoogleCloudDocumentaiV1DocumentRevisionHumanReview;
     /**
-     * Id of the revision. Unique within the context of the document.
+     * Id of the revision, internally generated by doc proto storage. Unique within the context of the document.
      */
     id?: string | null;
     /**
@@ -18713,7 +18890,7 @@ export namespace contentwarehouse_v1 {
      */
     condition?: Schema$GoogleTypeExpr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -18764,11 +18941,11 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleInternalAppsWaldoV1alphaCalendarBusy {
     /**
-     * The time when the user will stop being committed, i.e., when their status will be neither of InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh. Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh).
+     * The time when the user will either stop being committed or change commitment type (i.e. InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh). Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh).
      */
     committedUntil?: string | null;
     /**
-     * Whether the status of the user from this status's start to committed_until has more than one status type (e.g. DoNotDisturb + InMeeting).
+     * TODO(b/265939748) To be removed, always false from User Status Service.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -18806,11 +18983,11 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleInternalAppsWaldoV1alphaDoNotDisturb {
     /**
-     * The time when the user will stop being committed, i.e., when their status will be neither of InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh.
+     * The time when the user will either stop being committed or change commitment type (i.e. InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh). Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh).
      */
     committedUntil?: string | null;
     /**
-     * Whether the status of the user from this status's start to committed_until has more than one status type (e.g. DoNotDisturb + InMeeting).
+     * TODO(b/265939748) To be removed, always false from User Status Service.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -18835,11 +19012,11 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleInternalAppsWaldoV1alphaInMeeting {
     /**
-     * The time when the user will stop being committed, i.e., when their status will be neither of InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh. Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh).
+     * The time when the user will either stop being committed or change commitment type (i.e. InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh). Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh).
      */
     committedUntil?: string | null;
     /**
-     * Whether the status of the user from this status's start to committed_until has more than one status type (e.g. DoNotDisturb + InMeeting).
+     * TODO(b/265939748) To be removed, always false from User Status Service.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -18894,11 +19071,11 @@ export namespace contentwarehouse_v1 {
      */
     comeBackTime?: string | null;
     /**
-     * The time when the user will stop being committed, i.e., when their status will be neither of InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh. Note that if this OOO block is large (\>=Xh), committed_until is not set.
+     * The time when the user will either stop being committed or change commitment type (i.e. InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh). Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh). Note that if this OOO block is large (\>=Xh), committed_until is not set.
      */
     committedUntil?: string | null;
     /**
-     * Whether the status of the user from this status's start to committed_until has more than one status type (e.g. DoNotDisturb + InMeeting). Only set if committed_until is set.
+     * TODO(b/265939748) To be removed, always false from User Status Service.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -20414,7 +20591,7 @@ export namespace contentwarehouse_v1 {
     version?: number | null;
   }
   /**
-   * This defines the per-doc data which is extracted from thumbnails and propagated over to indexing. It contains all information that can be used for restricts. Next tag id: 128
+   * This defines the per-doc data which is extracted from thumbnails and propagated over to indexing. It contains all information that can be used for restricts. Next tag id: 129
    */
   export interface Schema$ImageData {
     /**
@@ -20448,6 +20625,10 @@ export namespace contentwarehouse_v1 {
      */
     clipartDetectorScore?: number | null;
     clipartDetectorVersion?: number | null;
+    /**
+     * Superlabels generated cluster id.
+     */
+    clusterId?: string | null;
     /**
      * Like is_visible, this is a property of the (web-doc, img_url) pair not just the image. A high codomain_strength indicates high confidence based on collected stats that the image is hosted on a companion domain. If not enough stats are available for codomain strength, this field may be absent in ImageData, and hence the CompositeDoc. Do not place negative values here. Permitted values range between 0 and image_quality_codomain::kMaxCodomainStrength defined in //image/quality/codomain/codomain-stats-utils.h.
      */
@@ -23696,6 +23877,12 @@ export namespace contentwarehouse_v1 {
      */
     splittingFeatureScore?: number | null;
   }
+  /**
+   * This proto captures the output of analyses that ran on Automatic Speech Recogntion produced by the recognizer.
+   */
+  export interface Schema$IndexingVideosAsrTranscriptRepairAnnotation {
+    gibberishResult?: string | null;
+  }
   export interface Schema$KaltixPerDocData {
     /**
      * approx. 2 bytes for top 1B
@@ -24897,13 +25084,21 @@ export namespace contentwarehouse_v1 {
     provenance?: string | null;
   }
   /**
-   * Parsing-related signals. Only horizontal signals should appear directly as fields on this message. Each domain should create their own extension for anything that they need to propagate down stream from AQUA. Note that this proto is not the same as the Superroot proto ParsingSignals (http://google3/knowledge/proto/scoring-signals.proto), which is a Superroot-specific signal used in Scoring. Next ID: 5
+   * Parsing-related signals. Only horizontal signals should appear directly as fields on this message. Each domain should create their own extension for anything that they need to propagate down stream from AQUA. Note that this proto is not the same as the Superroot proto ParsingSignals (http://google3/knowledge/proto/scoring-signals.proto), which is a Superroot-specific signal used in Scoring. Next ID: 7
    */
   export interface Schema$KnowledgeAnswersIntentQueryParsingSignals {
     /**
      * A parsing score that is independently calibrated by each parser/IG, used by pre-fulfillment ranker, see http://go/prefulfillment-ranker.
      */
     calibratedParsingScore?: number | null;
+    /**
+     * The total effective length of the spans for the arguments used to construct the parse. May include vertical specific adjustments. Eg: For the query [delete my 7 p.m. alarm called chicken] and intent Delete_alarm(alarm_object=RD(category=AlarmObject( label="chicken", trigger_time_datetime=<< 7 PM \>\>))), the effective argument span is "7 p.m." + "chicken" (total length of 13).
+     */
+    effectiveArgSpanLength?: number | null;
+    /**
+     * This is a cross-intent feature which is calculated by iterating all intent candidates. This feature should be populated in post-IG stage (before GB).
+     */
+    inQueryMaxEffectiveArgSpanLength?: number | null;
     /**
      * This proto holds the complete call path info of the QRewrite client (e.g. the QUS's phase like "RBT","QBT"; the QUS's candidate type like "Identity"; and the ACE's candidate type like "FuzzyMatcher").
      */
@@ -25599,7 +25794,7 @@ export namespace contentwarehouse_v1 {
     compoundType?: Schema$KnowledgeAnswersCompoundType;
     dateType?: Schema$KnowledgeAnswersDateType;
     /**
-     * Work in progress: Used for configuring dynamic types to allow for type transparency. See: go/type-dependencies
+     * Used for configuring dynamic types to allow for type transparency. See: go/type-dependencies
      */
     dependencyType?: Schema$KnowledgeAnswersDependencyType;
     durationType?: Schema$KnowledgeAnswersDurationType;
@@ -25619,10 +25814,6 @@ export namespace contentwarehouse_v1 {
     pluralityType?: string | null;
     polarQuestionType?: Schema$KnowledgeAnswersPolarQuestionType;
     semanticType?: Schema$KnowledgeAnswersSemanticType;
-    /**
-     * DEPRECATED: see go/type-dependencies. Please reach out to suwu@, dqwang@ if usage is required.
-     */
-    slotName?: string | null;
     stateOfAffairsType?: Schema$KnowledgeAnswersStateOfAffairsType;
     stringType?: Schema$KnowledgeAnswersStringType;
     timezoneType?: Schema$KnowledgeAnswersTimeZoneType;
@@ -34488,7 +34679,7 @@ export namespace contentwarehouse_v1 {
     startTimestampMillis?: string | null;
   }
   /**
-   * Contains the format information for a single LiveOp/LiveEvent. Next ID: 10
+   * Contains the format information for a single LiveOp/LiveEvent. Next ID: 11
    */
   export interface Schema$QualityCalypsoAppsUniversalAuLiveOpFormat {
     deeplink?: string | null;
@@ -34498,6 +34689,7 @@ export namespace contentwarehouse_v1 {
      */
     eyebrow?: string | null;
     imageUrl?: string | null;
+    originalImageUrl?: string | null;
     squareImageUrl?: string | null;
     /**
      * iOS only, sort of start schedule
@@ -36311,7 +36503,7 @@ export namespace contentwarehouse_v1 {
     nonDisplayableBrandMerchantRelationship?: string | null;
     nonDisplayableCurrency?: string | null;
     /**
-     * Normalized riskiness score for Organic destinations. It's in range [0,1000] with 0 being the worst score and 1000 being the best.
+     * Normalized riskiness score for Organic destinations. It's in range [1,1000] with 1 being the worst score and 1000 being the best.
      */
     nonDisplayableOrganicScoreMillis?: number | null;
     offerDocid?: string | null;
@@ -36738,6 +36930,10 @@ export namespace contentwarehouse_v1 {
      * Should precisely match the amarna_docid in ContentBasedVideoMetadata.
      */
     amarnaDocid?: string | null;
+    /**
+     * The results of ASR transcript quality analysis.
+     */
+    asrRepair?: Schema$IndexingVideosAsrTranscriptRepairAnnotation;
     /**
      * The language of the transcript as recorded in Amarna.
      */
@@ -40800,10 +40996,14 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$ResearchScienceSearchSourceUrlDocjoinInfoWebrefEntityInfo {
     /**
+     * DEPRECATED. See entity_type instead.
+     */
+    deprecatedEntityType?: string | null;
+    /**
      * The English description of the mid from the KG.
      */
     description?: string | null;
-    entityType?: string | null;
+    entityCollectionType?: string[] | null;
     /**
      * HRID of the KG collections
      */
@@ -45140,7 +45340,7 @@ export namespace contentwarehouse_v1 {
     MaxAllowedRate?: number | null;
   }
   /**
-   * This is an optional container of arbitrary data that can be added to a FetchReplyData. This data is meant to be logged, but not sent back in a fetch reply (it should be added *after* the reply is prepared). Use FetchResponsePreparatorImpl::AddTrawlerPrivateDataToFetchReplyData to add. See also the comment in fetch_response_preparator_impl.cc. Next Tag: 43
+   * This is an optional container of arbitrary data that can be added to a FetchReplyData. This data is meant to be logged, but not sent back in a fetch reply (it should be added *after* the reply is prepared). Use FetchResponsePreparatorImpl::AddTrawlerPrivateDataToFetchReplyData to add. See also the comment in fetch_response_preparator_impl.cc. Next Tag: 44
    */
   export interface Schema$TrawlerTrawlerPrivateFetchReplyData {
     /**
@@ -45155,6 +45355,10 @@ export namespace contentwarehouse_v1 {
      * This is the HOPE server that we sent the url to. We log the HOPE backend cell and hope server shard number (e.g., 'qf:6'). This allows us to understand how we are balancing our load to the HOPE servers.
      */
     BotHostname?: string | null;
+    /**
+     * Cache hit for this url, bypassed host_overfull error.
+     */
+    bypassedHostOverfull?: boolean | null;
     /**
      * Corresponds to AcceptableAfterDate field in FetchParams.
      */
@@ -50187,7 +50391,7 @@ export namespace contentwarehouse_v1 {
     version?: string | null;
   }
   /**
-   * Intended to be simpler to work with than the ExportedStanza it's derived from See documentation: https://g3doc.corp.google.com/company/teams/youtube/community_intelligence/eng_resources/data_sources.md#ministanza Next available: 76
+   * Intended to be simpler to work with than the ExportedStanza it's derived from See documentation: https://g3doc.corp.google.com/company/teams/youtube/community_intelligence/eng_resources/data_sources.md#ministanza Next available: 77
    */
   export interface Schema$YoutubeCommentsClusteringMiniStanza {
     /**
@@ -50374,6 +50578,10 @@ export namespace contentwarehouse_v1 {
      * Sentiment. This omits entity_sentiment and keeps only the polarity, magnitude, and score. Sentiment as currently implemented is not debiased and has limited language coverage. Please read go/comments-sentiment-access before using.
      */
     sentiment?: Schema$YoutubeCommentsSentimentSentiment;
+    /**
+     * Associated Short Reply video ID if the comment represents a Short Reply. See go/yt-comment-sticker-m2.
+     */
+    shortReplyVideoId?: string | null;
     /**
      * Smart replies for this comment. Keyed by model names.
      */
@@ -51183,6 +51391,157 @@ export namespace contentwarehouse_v1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Run a predefined pipeline.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contentwarehouse.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contentwarehouse = google.contentwarehouse('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contentwarehouse.projects.locations.runPipeline({
+     *     // Required. The resource name which owns the resources of the pipeline. Format: projects/{project_number\}/locations/{location\}.
+     *     name: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exportCdwPipeline": {},
+     *       //   "gcsIngestPipeline": {},
+     *       //   "gcsIngestWithDocAiProcessorsPipeline": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runPipeline(
+      params: Params$Resource$Projects$Locations$Runpipeline,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runPipeline(
+      params?: Params$Resource$Projects$Locations$Runpipeline,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    runPipeline(
+      params: Params$Resource$Projects$Locations$Runpipeline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runPipeline(
+      params: Params$Resource$Projects$Locations$Runpipeline,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    runPipeline(
+      params: Params$Resource$Projects$Locations$Runpipeline,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    runPipeline(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    runPipeline(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runpipeline
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runpipeline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runpipeline;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contentwarehouse.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:runPipeline').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Initialize
@@ -51196,6 +51555,18 @@ export namespace contentwarehouse_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1InitializeProjectRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Runpipeline
+    extends StandardParameters {
+    /**
+     * Required. The resource name which owns the resources of the pipeline. Format: projects/{project_number\}/locations/{location\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContentwarehouseV1RunPipelineRequest;
   }
 
   export class Resource$Projects$Locations$Documents {

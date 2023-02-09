@@ -406,6 +406,10 @@ export namespace servicecontrol_v1 {
      */
     checkInfo?: Schema$CheckInfo;
     /**
+     * Esf migration server override during check v2 migration. This is temporary and Chemist internal only.
+     */
+    esfMigrationServerOverride?: Schema$EsfMigrationServerOverride;
+    /**
      * The same operation_id value used in the CheckRequest. Used for logging and diagnostics purposes.
      */
     operationId?: string | null;
@@ -483,6 +487,15 @@ export namespace servicecontrol_v1 {
      * The sum of squared deviations from the mean: Sum[i=1..count]((x_i - mean)^2) where each x_i is a sample values. If `count` is zero then this field must be zero, otherwise validation of the request fails.
      */
     sumOfSquaredDeviation?: number | null;
+  }
+  /**
+   * Esf migration server override during chemist check v2 migration
+   */
+  export interface Schema$EsfMigrationServerOverride {
+    /**
+     * Esf migration override mode
+     */
+    overrideMode?: string | null;
   }
   /**
    * Exemplars are example points that may be used to annotate aggregated distribution values. They are metadata that gives information about a particular value added to a Distribution bucket, such as a trace ID that was active when a value was added. They may contain further information, such as a example values and timestamps, origin, etc.
@@ -1685,6 +1698,7 @@ export namespace servicecontrol_v1 {
      *   // {
      *   //   "checkErrors": [],
      *   //   "checkInfo": {},
+     *   //   "esfMigrationServerOverride": {},
      *   //   "operationId": "my_operationId",
      *   //   "quotaInfo": {},
      *   //   "serviceConfigId": "my_serviceConfigId",

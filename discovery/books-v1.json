@@ -14,6 +14,7 @@
   "description": "The Google Books API allows clients to access the Google Books repository.",
   "discoveryVersion": "v1",
   "documentationLink": "https://code.google.com/apis/books/docs/v1/getting_started.html",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -2671,7 +2672,7 @@
       }
     }
   },
-  "revision": "20220318",
+  "revision": "20230203",
   "rootUrl": "https://books.googleapis.com/",
   "schemas": {
     "Annotation": {

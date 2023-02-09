@@ -1285,6 +1285,10 @@ export namespace chromemanagement_v1 {
      */
     osUpdateStatus?: Schema$GoogleChromeManagementV1OsUpdateStatus[];
     /**
+     * Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.
+     */
+    peripheralsReport?: Schema$GoogleChromeManagementV1PeripheralsReport[];
+    /**
      * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.
      */
     serialNumber?: string | null;
@@ -3377,6 +3381,7 @@ export namespace chromemanagement_v1 {
      *   //   "networkStatusReport": [],
      *   //   "orgUnitId": "my_orgUnitId",
      *   //   "osUpdateStatus": [],
+     *   //   "peripheralsReport": [],
      *   //   "serialNumber": "my_serialNumber",
      *   //   "storageInfo": {},
      *   //   "storageStatusReport": [],

@@ -770,7 +770,7 @@ export namespace drive_v3 {
       targetResourceKey?: string;
     } | null;
     /**
-     * The size of the file's content in bytes. This is applicable to binary files in Google Drive and Google Docs files.
+     * The size of the file's content in bytes. This field is populated for files with binary content stored in Google Drive and for Docs Editors files; it is not populated for shortcuts or folders.
      */
     size?: string | null;
     /**

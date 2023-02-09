@@ -140,7 +140,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * Parameters that a Chat app can use to configure how it's response is posted.
+   * Parameters that a Chat app can use to configure how its response is posted.
    */
   export interface Schema$ActionResponse {
     /**
@@ -170,7 +170,7 @@ export namespace chat_v1 {
     userFacingMessage?: string | null;
   }
   /**
-   * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/107946847022116401880", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
+   * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/{user\}", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
    */
   export interface Schema$Annotation {
     /**
@@ -307,7 +307,7 @@ export namespace chat_v1 {
    */
   export interface Schema$CardWithId {
     /**
-     * Card proto that allows Chat apps to specify UI elements and editable widgets.
+     * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use this card to present detailed information, gather information from users, and guide users to take a next step.
      */
     card?: Schema$GoogleAppsCardV1Card;
     /**
@@ -425,7 +425,7 @@ export namespace chat_v1 {
      */
     common?: Schema$CommonEventObject;
     /**
-     * The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.
+     * The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. For more information, see [Connect a Chat app with other services & tools](https://developers.google.com/chat/how-tos/connect-web-services-tools).
      */
     configCompleteRedirectUrl?: string | null;
     /**
@@ -1264,11 +1264,11 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
-     * A Google Chat user or app. Format: `users/{user\}` or `users/app` When `users/{user\}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. When `users/app`, represents a Chat app creating membership for itself.
+     * The Google Chat user or app the membership corresponds to.
      */
     member?: Schema$User;
     /**
-     * Resource name of the membership. Format: spaces/{space\}/members/{member\}
+     * Resource name of the membership, assigned by the server. Format: spaces/{space\}/members/{member\}
      */
     name?: string | null;
     /**
@@ -1297,7 +1297,7 @@ export namespace chat_v1 {
      */
     argumentText?: string | null;
     /**
-     * User uploaded attachment.
+     * User-uploaded attachment.
      */
     attachment?: Schema$Attachment[];
     /**
@@ -1305,7 +1305,7 @@ export namespace chat_v1 {
      */
     cards?: Schema$Card[];
     /**
-     * Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider`
+     * Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider`
      */
     cardsV2?: Schema$CardWithId[];
     /**
@@ -1349,7 +1349,7 @@ export namespace chat_v1 {
      */
     text?: string | null;
     /**
-     * The thread the message belongs to. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     * The thread the message belongs to. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     thread?: Schema$Thread;
     /**
@@ -1431,7 +1431,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Space {
     /**
-     * The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). For direct messages, this field may be empty.
+     * The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). For direct messages, this field may be empty. Supports up to 128 characters.
      */
     displayName?: string | null;
     /**
@@ -1464,11 +1464,11 @@ export namespace chat_v1 {
    */
   export interface Schema$SpaceDetails {
     /**
-     * Optional. A description of the space. It could describe the space's discussion topic, functional purpose, or participants.
+     * Optional. A description of the space. It could describe the space's discussion topic, functional purpose, or participants. Supports up to 150 characters.
      */
     description?: string | null;
     /**
-     * Optional. The space's rules, expectations, and etiquette.
+     * Optional. The space's rules, expectations, and etiquette. Supports up to 5,000 characters.
      */
     guidelines?: string | null;
   }
@@ -1526,7 +1526,7 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.
+     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.
      */
     threadKey?: string | null;
   }
@@ -1573,7 +1573,7 @@ export namespace chat_v1 {
      */
     isAnonymous?: boolean | null;
     /**
-     * Resource name for a Google Chat user. For human users, represents a person in the People API or a user in the Admin SDK Directory API. Format: `users/{user\}`
+     * Resource name for a Google Chat user. Format: `users/{user\}`. `users/app` can be used as an alias for the calling app bot user. For human users, `{user\}` is the same user identifier as: - the `{person_id`\} for the [Person](https://developers.google.com/people/api/rest/v1/people) in the People API, where the Person `resource_name` is `people/{person_id\}`. For example, `users/123456789` in Chat API represents the same person as `people/123456789` in People API. - the `id` for a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API.
      */
     name?: string | null;
     /**
@@ -2408,7 +2408,7 @@ export namespace chat_v1 {
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3186,7 +3186,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -3257,7 +3257,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Gets the metadata of a message attachment. The attachment data is fetched using the media API. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * Gets the metadata of a message attachment. The attachment data is fetched using the [media API](https://developers.google.com/chat/api/reference/rest/v1/media/download). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      * @example
      * ```js
      * // Before running the sample:

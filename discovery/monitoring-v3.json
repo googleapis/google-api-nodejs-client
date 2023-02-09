@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20230123",
+  "revision": "20230206",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3334,7 +3334,7 @@
       "id": "Criteria",
       "properties": {
         "policies": {
-          "description": "The specific AlertPolicy names for the alert that should be snoozed. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID] There is a limit of 100 policies per snooze. This limit is checked during snooze creation.",
+          "description": "The specific AlertPolicy names for the alert that should be snoozed. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID] There is a limit of 16 policies per snooze. This limit is checked during snooze creation.",
           "items": {
             "type": "string"
           },
@@ -5760,14 +5760,20 @@
               "USA",
               "EUROPE",
               "SOUTH_AMERICA",
-              "ASIA_PACIFIC"
+              "ASIA_PACIFIC",
+              "USA_OREGON",
+              "USA_IOWA",
+              "USA_VIRGINIA"
             ],
             "enumDescriptions": [
               "Default value if no region is specified. Will result in Uptime checks running from all regions.",
               "Allows checks to run from locations within the United States of America.",
               "Allows checks to run from locations within the continent of Europe.",
               "Allows checks to run from locations within the continent of South America.",
-              "Allows checks to run from locations within the Asia Pacific area (ex: Singapore)."
+              "Allows checks to run from locations within the Asia Pacific area (ex: Singapore).",
+              "Allows checks to run from locations within the western United States of America",
+              "Allows checks to run from locations within the central United States of America",
+              "Allows checks to run from locations within the eastern United States of America"
             ],
             "type": "string"
           },
@@ -5811,14 +5817,20 @@
             "USA",
             "EUROPE",
             "SOUTH_AMERICA",
-            "ASIA_PACIFIC"
+            "ASIA_PACIFIC",
+            "USA_OREGON",
+            "USA_IOWA",
+            "USA_VIRGINIA"
           ],
           "enumDescriptions": [
             "Default value if no region is specified. Will result in Uptime checks running from all regions.",
             "Allows checks to run from locations within the United States of America.",
             "Allows checks to run from locations within the continent of Europe.",
             "Allows checks to run from locations within the continent of South America.",
-            "Allows checks to run from locations within the Asia Pacific area (ex: Singapore)."
+            "Allows checks to run from locations within the Asia Pacific area (ex: Singapore).",
+            "Allows checks to run from locations within the western United States of America",
+            "Allows checks to run from locations within the central United States of America",
+            "Allows checks to run from locations within the eastern United States of America"
           ],
           "type": "string"
         }

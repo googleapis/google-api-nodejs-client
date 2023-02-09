@@ -213,6 +213,10 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
+     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     */
+    expireTime?: string | null;
+    /**
      * The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)).
      */
     name?: string | null;
@@ -298,6 +302,10 @@ export namespace firebase_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     */
+    expireTime?: string | null;
+    /**
      * The resource name of the Firebase App, in the format: projects/PROJECT_ID /iosApps/APP_ID or projects/PROJECT_ID/androidApps/APP_ID or projects/ PROJECT_ID/webApps/APP_ID
      */
     name?: string | null;
@@ -379,6 +387,10 @@ export namespace firebase_v1beta1 {
      * This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.
      */
     etag?: string | null;
+    /**
+     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     */
+    expireTime?: string | null;
     /**
      * The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id)).
      */
@@ -747,6 +759,10 @@ export namespace firebase_v1beta1 {
      * This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated.
      */
     etag?: string | null;
+    /**
+     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     */
+    expireTime?: string | null;
     /**
      * The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).
      */
@@ -2578,6 +2594,7 @@ export namespace firebase_v1beta1 {
      *       //   "appId": "my_appId",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "packageName": "my_packageName",
      *       //   "projectId": "my_projectId",
@@ -2733,6 +2750,7 @@ export namespace firebase_v1beta1 {
      *   //   "appId": "my_appId",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "packageName": "my_packageName",
      *   //   "projectId": "my_projectId",
@@ -3151,6 +3169,7 @@ export namespace firebase_v1beta1 {
      *       //   "appId": "my_appId",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "packageName": "my_packageName",
      *       //   "projectId": "my_projectId",
@@ -3168,6 +3187,7 @@ export namespace firebase_v1beta1 {
      *   //   "appId": "my_appId",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "packageName": "my_packageName",
      *   //   "projectId": "my_projectId",
@@ -4473,6 +4493,7 @@ export namespace firebase_v1beta1 {
      *       //   "bundleId": "my_bundleId",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -4628,6 +4649,7 @@ export namespace firebase_v1beta1 {
      *   //   "bundleId": "my_bundleId",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -5044,6 +5066,7 @@ export namespace firebase_v1beta1 {
      *       //   "bundleId": "my_bundleId",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -5061,6 +5084,7 @@ export namespace firebase_v1beta1 {
      *   //   "bundleId": "my_bundleId",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -5583,6 +5607,7 @@ export namespace firebase_v1beta1 {
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -5737,6 +5762,7 @@ export namespace firebase_v1beta1 {
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
@@ -6159,6 +6185,7 @@ export namespace firebase_v1beta1 {
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
      *       //   "projectId": "my_projectId",
      *       //   "state": "my_state",
@@ -6175,6 +6202,7 @@ export namespace firebase_v1beta1 {
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
      *   //   "projectId": "my_projectId",
      *   //   "state": "my_state",
