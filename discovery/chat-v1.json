@@ -323,7 +323,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
+                  "description": "Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).",
                   "location": "query",
                   "type": "string"
                 }
@@ -474,7 +474,7 @@
             "attachments": {
               "methods": {
                 "get": {
-                  "description": "Gets the metadata of a message attachment. The attachment data is fetched using the media API. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
+                  "description": "Gets the metadata of a message attachment. The attachment data is fetched using the [media API](https://developers.google.com/chat/api/reference/rest/v1/media/download). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).",
                   "flatPath": "v1/spaces/{spacesId}/messages/{messagesId}/attachments/{attachmentsId}",
                   "httpMethod": "GET",
                   "id": "chat.spaces.messages.attachments.get",
@@ -502,7 +502,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230205",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -521,7 +521,7 @@
       "type": "object"
     },
     "ActionResponse": {
-      "description": "Parameters that a Chat app can use to configure how it's response is posted.",
+      "description": "Parameters that a Chat app can use to configure how its response is posted.",
       "id": "ActionResponse",
       "properties": {
         "dialogAction": {
@@ -609,7 +609,7 @@
       "type": "object"
     },
     "Annotation": {
-      "description": "Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/107946847022116401880\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
+      "description": "Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/{user}\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
       "id": "Annotation",
       "properties": {
         "length": {
@@ -805,7 +805,7 @@
       "properties": {
         "card": {
           "$ref": "GoogleAppsCardV1Card",
-          "description": "Card proto that allows Chat apps to specify UI elements and editable widgets."
+          "description": "Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use this card to present detailed information, gather information from users, and guide users to take a next step."
         },
         "cardId": {
           "description": "Required for `cardsV2` messages. Chat app-specified identifier for this widget. Scoped within a message.",
@@ -984,7 +984,7 @@
           "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/chat/how-tos/dialogs), like data entered on a card."
         },
         "configCompleteRedirectUrl": {
-          "description": "The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.",
+          "description": "The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. For more information, see [Connect a Chat app with other services & tools](https://developers.google.com/chat/how-tos/connect-web-services-tools).",
           "type": "string"
         },
         "dialogEventType": {
@@ -2248,10 +2248,10 @@
         },
         "member": {
           "$ref": "User",
-          "description": "A Google Chat user or app. Format: `users/{user}` or `users/app` When `users/{user}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. When `users/app`, represents a Chat app creating membership for itself."
+          "description": "The Google Chat user or app the membership corresponds to."
         },
         "name": {
-          "description": "Resource name of the membership. Format: spaces/{space}/members/{member}",
+          "description": "Resource name of the membership, assigned by the server. Format: spaces/{space}/members/{member}",
           "type": "string"
         },
         "role": {
@@ -2264,7 +2264,7 @@
           "enumDescriptions": [
             "Default value. The user isn't a member of the space, but might be invited.",
             "A member of the space. The user has basic permissions, like sending messages to the space. In 1:1 and unnamed group conversations, everyone has this role.",
-            "A space manager. The user has all basic permissions plus administrative permissions that allow them to manage the space, like adding or removing members. Only supports SpaceType.SPACE."
+            "A space manager. The user has all basic permissions plus administrative permissions that allow them to manage the space, like adding or removing members. Only supported in SpaceType.SPACE."
           ],
           "readOnly": true,
           "type": "string"
@@ -2310,7 +2310,7 @@
           "type": "string"
         },
         "attachment": {
-          "description": "User uploaded attachment.",
+          "description": "User-uploaded attachment.",
           "items": {
             "$ref": "Attachment"
           },
@@ -2324,7 +2324,7 @@
           "type": "array"
         },
         "cardsV2": {
-          "description": "Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider`",
+          "description": "Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider`",
           "items": {
             "$ref": "CardWithId"
           },
@@ -2379,7 +2379,7 @@
         },
         "thread": {
           "$ref": "Thread",
-          "description": "The thread the message belongs to. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread)."
+          "description": "The thread the message belongs to. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread)."
         },
         "threadReply": {
           "description": "Output only. When `true`, the message is a response in a reply thread. When `false`, the message is visible in the space's top-level conversation as either the first message of a thread or a message with no threaded replies. If the space doesn't support reply in threads, this field is always `false`.",
@@ -2488,7 +2488,7 @@
       "id": "Space",
       "properties": {
         "displayName": {
-          "description": "The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). For direct messages, this field may be empty.",
+          "description": "The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). For direct messages, this field may be empty. Supports up to 128 characters.",
           "type": "string"
         },
         "name": {
@@ -2548,11 +2548,11 @@
       "id": "SpaceDetails",
       "properties": {
         "description": {
-          "description": "Optional. A description of the space. It could describe the space's discussion topic, functional purpose, or participants.",
+          "description": "Optional. A description of the space. It could describe the space's discussion topic, functional purpose, or participants. Supports up to 150 characters.",
           "type": "string"
         },
         "guidelines": {
-          "description": "Optional. The space's rules, expectations, and etiquette.",
+          "description": "Optional. The space's rules, expectations, and etiquette. Supports up to 5,000 characters.",
           "type": "string"
         }
       },
@@ -2633,7 +2633,7 @@
           "type": "string"
         },
         "threadKey": {
-          "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.",
+          "description": "Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.",
           "type": "string"
         }
       },
@@ -2691,7 +2691,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Resource name for a Google Chat user. For human users, represents a person in the People API or a user in the Admin SDK Directory API. Format: `users/{user}`",
+          "description": "Resource name for a Google Chat user. Format: `users/{user}`. `users/app` can be used as an alias for the calling app bot user. For human users, `{user}` is the same user identifier as: - the `{person_id`} for the [Person](https://developers.google.com/people/api/rest/v1/people) in the People API, where the Person `resource_name` is `people/{person_id}`. For example, `users/123456789` in Chat API represents the same person as `people/123456789` in People API. - the `id` for a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API.",
           "type": "string"
         },
         "type": {
