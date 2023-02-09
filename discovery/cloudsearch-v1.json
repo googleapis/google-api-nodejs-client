@@ -2077,7 +2077,7 @@
       }
     }
   },
-  "revision": "20230117",
+  "revision": "20230124",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -2396,7 +2396,7 @@
         },
         "requiredMessageFeaturesMetadata": {
           "$ref": "RequiredMessageFeaturesMetadata",
-          "description": "Metadata that defines all of the required features that must be rendered in the message. Clients can use this to see whether they support the entire message, or show a fallback chip otherwise. See go/message-quoting-client-to-server for details. LINT.ThenChange( //depot/google3/java/com/google/apps/dynamite/v1/allshared/parser/AnnotationSanitizer.java, //depot/google3/java/com/google/apps/dynamite/v1/backend/action/common/SystemMessageHelper.java, //depot/google3/java/com/google/caribou/eli/mediation/chat/AnnotationTranslator.java )"
+          "description": "Metadata that defines all of the required features that must be rendered in the message. Clients can use this to see whether they support the entire message, or show a fallback chip otherwise. See go/message-quoting-client-to-server for details. LINT.ThenChange( //depot/google3/java/com/google/apps/dynamite/v1/allshared/parser/AnnotationSanitizer.java, //depot/google3/java/com/google/apps/dynamite/v1/backend/action/common/SystemMessageHelper.java, //depot/google3/java/com/google/caribou/eli/mediation/chat/AnnotationConverter.java )"
         },
         "roomUpdated": {
           "$ref": "RoomUpdatedMetadata"
@@ -2830,6 +2830,7 @@
             "SCAN_SKIPPED_NO_MESSAGE",
             "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
             "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
+            "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
@@ -2858,6 +2859,7 @@
             "Rule fetch and evaluation are skipped because there is no message to scan. Deprecated: this should not happen since there must be message or attachment for DLP scan.",
             "Rule fetch and evaluation are skipped because the user has acknowledged the warning on the message that triggered the Warn violation and sent the message anyway.",
             "Scanning was skipped because the message originated from Interop or Babel.",
+            "Scanning was skipped because the message was sent while the space is in migration mode. See go/migration-mode for details.",
             "Rule fetch happened, but rule evaluation is skipped because no rules were found.",
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given action params.",
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given trigger.",
@@ -7161,6 +7163,7 @@
             "SCAN_SKIPPED_NO_MESSAGE",
             "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
             "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
+            "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
@@ -7189,6 +7192,7 @@
             "Rule fetch and evaluation are skipped because there is no message to scan. Deprecated: this should not happen since there must be message or attachment for DLP scan.",
             "Rule fetch and evaluation are skipped because the user has acknowledged the warning on the message that triggered the Warn violation and sent the message anyway.",
             "Scanning was skipped because the message originated from Interop or Babel.",
+            "Scanning was skipped because the message was sent while the space is in migration mode. See go/migration-mode for details.",
             "Rule fetch happened, but rule evaluation is skipped because no rules were found.",
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given action params.",
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given trigger.",
@@ -7520,6 +7524,29 @@
       "description": "This is the proto for holding message level scoring information. This data is used for logging in query-api server and for testing purposes.",
       "id": "DynamiteMessagesScoringInfo",
       "properties": {
+        "commonContactCount": {
+          "format": "int64",
+          "type": "string"
+        },
+        "commonCountToContactListCountRatio": {
+          "format": "double",
+          "type": "number"
+        },
+        "commonCountToMembershipCountRatio": {
+          "format": "double",
+          "type": "number"
+        },
+        "creatorGaiaId": {
+          "format": "int64",
+          "type": "string"
+        },
+        "creatorInSearcherContactList": {
+          "type": "boolean"
+        },
+        "dasContactCount": {
+          "format": "int64",
+          "type": "string"
+        },
         "finalScore": {
           "format": "double",
           "type": "number"
@@ -7539,6 +7566,14 @@
         "messageSenderAffinityScore": {
           "format": "double",
           "type": "number"
+        },
+        "spaceId": {
+          "format": "int64",
+          "type": "string"
+        },
+        "spaceMembershipCount": {
+          "format": "int64",
+          "type": "string"
         },
         "topicalityScore": {
           "format": "double",
@@ -12725,6 +12760,7 @@
             "SCAN_SKIPPED_NO_MESSAGE",
             "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
             "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
+            "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
             "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
@@ -12753,6 +12789,7 @@
             "Rule fetch and evaluation are skipped because there is no message to scan. Deprecated: this should not happen since there must be message or attachment for DLP scan.",
             "Rule fetch and evaluation are skipped because the user has acknowledged the warning on the message that triggered the Warn violation and sent the message anyway.",
             "Scanning was skipped because the message originated from Interop or Babel.",
+            "Scanning was skipped because the message was sent while the space is in migration mode. See go/migration-mode for details.",
             "Rule fetch happened, but rule evaluation is skipped because no rules were found.",
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given action params.",
             "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given trigger.",
