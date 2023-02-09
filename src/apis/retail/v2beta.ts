@@ -1696,7 +1696,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaPredictRequest {
     /**
-     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of "EXPIRED" or "DELETED" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones")) * (availability: ANY("IN_STOCK")) AND (colors: ANY("Red") OR categories: ANY("Phones"))
+     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of "EXPIRED" or "DELETED" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones")) * (brands: ANY("Pixel")) AND (colors: ANY("Red") OR categories: ANY("Phones")) For more information, see [Filter recommendations](https://cloud.google.com/retail/docs/filter-recs).
      */
     filter?: string | null;
     /**
@@ -8872,6 +8872,154 @@ export namespace retail_v2beta {
     }
 
     /**
+     * Gets a model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.models.get({
+     *     // Required. The resource name of the Model to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog\}/models/{model_id\}`
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/models/my-model',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataState": "my_dataState",
+     *   //   "displayName": "my_displayName",
+     *   //   "filteringOption": "my_filteringOption",
+     *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "name": "my_name",
+     *   //   "optimizationObjective": "my_optimizationObjective",
+     *   //   "periodicTuningState": "my_periodicTuningState",
+     *   //   "servingConfigLists": [],
+     *   //   "servingState": "my_servingState",
+     *   //   "trainingState": "my_trainingState",
+     *   //   "tuningOperation": "my_tuningOperation",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Models$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Catalogs$Models$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Models$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Models$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaModel>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2betaModel>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Models$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2betaModel>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2betaModel>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Models$Get
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaModel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaModel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaModel>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2betaModel>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Models$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Catalogs$Models$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2betaModel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2betaModel>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists all the models linked to this event store.
      * @example
      * ```js
@@ -9667,6 +9815,13 @@ export namespace retail_v2beta {
     extends StandardParameters {
     /**
      * Required. The resource name of the Model to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Model to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog\}/models/{model_id\}`
      */
     name?: string;
   }

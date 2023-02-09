@@ -1231,6 +1231,31 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "get": {
+                      "description": "Gets a model.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models/{modelsId}",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.models.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Model to get. Format: `projects/{project_number}/locations/{location_id}/catalogs/{catalog}/models/{model_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/models/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaModel"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists all the models linked to this event store.",
                       "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/models",
@@ -2105,7 +2130,7 @@
       }
     }
   },
-  "revision": "20230126",
+  "revision": "20230202",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4200,7 +4225,7 @@
       "id": "GoogleCloudRetailV2alphaPredictRequest",
       "properties": {
         "filter": {
-          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (availability: ANY(\"IN_STOCK\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\"))",
+          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY(\"Red\", \"Blue\")) AND NOT (categories: ANY(\"Phones\")) * (brands: ANY(\"Pixel\")) AND (colors: ANY(\"Red\") OR categories: ANY(\"Phones\")) For more information, see [Filter recommendations](https://cloud.google.com/retail/docs/filter-recs).",
           "type": "string"
         },
         "labels": {
