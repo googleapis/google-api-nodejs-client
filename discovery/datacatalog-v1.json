@@ -901,6 +901,34 @@
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
+                        },
+                        "reconcile": {
+                          "description": "Reconciles tags created with a given tag template on a given Entry. Reconciliation is an operation that given a list of tags creates or updates them on the entry. Additionally, the operation is also able to delete tags not mentioned in the tag list. It can be achieved by setting force_delete_missing parameter. Reconciliation is a long-running operation done in the background, so this method returns long-running operation resource. The resource can be queried with Operations.GetOperation which contains metadata and response.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags:reconcile",
+                          "httpMethod": "POST",
+                          "id": "datacatalog.projects.locations.entryGroups.entries.tags.reconcile",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Name of Entry to be tagged.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/tags:reconcile",
+                          "request": {
+                            "$ref": "GoogleCloudDatacatalogV1ReconcileTagsRequest"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     }
@@ -2106,7 +2134,7 @@
       }
     }
   },
-  "revision": "20230117",
+  "revision": "20230127",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2118,7 +2146,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -3371,6 +3399,80 @@
         },
         "parentPolicyTag": {
           "description": "Resource name of this policy tag's parent policy tag. If empty, this is a top level tag. If not set, defaults to an empty string. For example, for the \"LatLong\" policy tag in the example above, this field contains the resource name of the \"Geolocation\" policy tag, and, for \"Geolocation\", this field is empty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ReconcileTagsMetadata": {
+      "description": "Metadata message for long-running operation returned by the ReconcileTags.",
+      "id": "GoogleCloudDatacatalogV1ReconcileTagsMetadata",
+      "properties": {
+        "errors": {
+          "additionalProperties": {
+            "$ref": "Status"
+          },
+          "description": "Map that maps name of each tagged column (or empty string in case of sole entry) to tagging operation status.",
+          "type": "object"
+        },
+        "state": {
+          "description": "State of the reconciliation operation.",
+          "enum": [
+            "RECONCILIATION_STATE_UNSPECIFIED",
+            "RECONCILIATION_QUEUED",
+            "RECONCILIATION_IN_PROGRESS",
+            "RECONCILIATION_DONE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The reconciliation has been queued and awaits for execution.",
+            "The reconciliation is in progress.",
+            "The reconciliation has been finished."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ReconcileTagsRequest": {
+      "description": "Request message for ReconcileTags.",
+      "id": "GoogleCloudDatacatalogV1ReconcileTagsRequest",
+      "properties": {
+        "forceDeleteMissing": {
+          "description": "If set to true deletes from the entry tags related to given tag template and not mentioned in the tags source. If set to false only creates and updates of the tags mentioned in the source will take place. Other tags in that entry using the same tag template will be retained instead of being deleted.",
+          "type": "boolean"
+        },
+        "tagTemplate": {
+          "description": "Required. The name of the tag template, that will be used for reconciliation.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "A list of tags to be applied on a given entry. Individual tags may specify tag template, but it must be the same as the one in the ReconcileTagsRequest. The sole entry and each of its columns must be mentioned at most once.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1Tag"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ReconcileTagsResponse": {
+      "description": "Request message for long-running operation returned by the ReconcileTags.",
+      "id": "GoogleCloudDatacatalogV1ReconcileTagsResponse",
+      "properties": {
+        "createdTagsCount": {
+          "description": "Number of tags created in the request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "deletedTagsCount": {
+          "description": "Number of tags deleted in the request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "updatedTagsCount": {
+          "description": "Number of tags updated in the request.",
+          "format": "int64",
           "type": "string"
         }
       },

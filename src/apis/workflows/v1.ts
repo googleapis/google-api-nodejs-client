@@ -1382,6 +1382,8 @@ export namespace workflows_v1 {
      *   const res = await workflows.projects.locations.workflows.get({
      *     // Required. Name of the workflow for which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      *     name: 'projects/my-project/locations/my-location/workflows/my-workflow',
+     *     // Optional. Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is "000001-a4d", where the first 6 characters define the zero-padded decimal revision number. They are followed by a hyphen and 3 hexadecimal characters. (go/wf_adr_clh_1)
+     *     revisionId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1811,6 +1813,10 @@ export namespace workflows_v1 {
      * Required. Name of the workflow for which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string;
+    /**
+     * Optional. Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is "000001-a4d", where the first 6 characters define the zero-padded decimal revision number. They are followed by a hyphen and 3 hexadecimal characters. (go/wf_adr_clh_1)
+     */
+    revisionId?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflows$List
     extends StandardParameters {

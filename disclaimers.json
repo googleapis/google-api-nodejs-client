@@ -524,6 +524,10 @@
     "package": "@google-cloud/datalabeling"
   },
   {
+    "api": "datalineage",
+    "package": "@google-cloud/lineage"
+  },
+  {
     "api": "dataqna",
     "package": "@google-cloud/data-qna"
   },

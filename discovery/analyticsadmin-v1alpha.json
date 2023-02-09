@@ -340,6 +340,270 @@
         }
       },
       "resources": {
+        "accessBindings": {
+          "methods": {
+            "batchCreate": {
+              "description": "Creates information about multiple access bindings to an account or property. This method is transactional. If any AccessBinding cannot be created, none of the AccessBindings will be created.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchCreate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the CreateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchCreate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchDelete": {
+              "description": "Deletes information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchDelete",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.batchDelete",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchDelete",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchGet": {
+              "description": "Gets information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchGet",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.accessBindings.batchGet",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "names": {
+                  "description": "Required. The names of the access bindings to retrieve. A maximum of 1000 access bindings can be retrieved in a batch. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchGet",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchUpdate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchUpdate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "create": {
+              "description": "Creates an access binding on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an access binding on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.accounts.accessBindings.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "get": {
+              "description": "Gets information about an access binding.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.accessBindings.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the access binding to retrieve. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists all access bindings on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.accessBindings.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of access bindings to return. The service may return fewer than this value. If unspecified, at most 200 access bindings will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListAccessBindings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccessBindings` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates an access binding on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.accounts.accessBindings.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this binding. Format: accounts/{account}/accessBindings/{access_binding} or properties/{property}/accessBindings/{access_binding} Example: \"accounts/100/accessBindings/200\"",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            }
+          }
+        },
         "userLinks": {
           "methods": {
             "audit": {
@@ -1059,6 +1323,270 @@
         }
       },
       "resources": {
+        "accessBindings": {
+          "methods": {
+            "batchCreate": {
+              "description": "Creates information about multiple access bindings to an account or property. This method is transactional. If any AccessBinding cannot be created, none of the AccessBindings will be created.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchCreate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the CreateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchCreate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchDelete": {
+              "description": "Deletes information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchDelete",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.batchDelete",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchDelete",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchGet": {
+              "description": "Gets information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchGet",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.accessBindings.batchGet",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "names": {
+                  "description": "Required. The names of the access bindings to retrieve. A maximum of 1000 access bindings can be retrieved in a batch. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchGet",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchUpdate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchUpdate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "create": {
+              "description": "Creates an access binding on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an access binding on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.accessBindings.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "get": {
+              "description": "Gets information about an access binding.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.accessBindings.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the access binding to retrieve. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists all access bindings on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.accessBindings.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of access bindings to return. The service may return fewer than this value. If unspecified, at most 200 access bindings will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListAccessBindings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccessBindings` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates an access binding on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.accessBindings.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this binding. Format: accounts/{account}/accessBindings/{access_binding} or properties/{property}/accessBindings/{access_binding} Example: \"accounts/100/accessBindings/200\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            }
+          }
+        },
         "audiences": {
           "methods": {
             "archive": {
@@ -3060,7 +3588,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230203",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -3074,6 +3602,29 @@
         "toValue": {
           "$ref": "GoogleAnalyticsAdminV1alphaNumericValue",
           "description": "Ends with this number."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAccessBinding": {
+      "description": "A binding of a user to a set of roles.",
+      "id": "GoogleAnalyticsAdminV1alphaAccessBinding",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of this binding. Format: accounts/{account}/accessBindings/{access_binding} or properties/{property}/accessBindings/{access_binding} Example: \"accounts/100/accessBindings/200\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "roles": {
+          "description": "A list of roles for to grant to the parent resource. Valid values: predefinedRoles/viewer predefinedRoles/analyst predefinedRoles/editor predefinedRoles/admin predefinedRoles/no-cost-data predefinedRoles/no-revenue-data For users, if an empty list of roles is set, this AccessBinding will be deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "user": {
+          "description": "If set, the email address of the user to set roles for. Format: \"someuser@gmail.com\"",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4086,6 +4637,34 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest": {
+      "description": "Request message for BatchCreateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The requests specifying the access bindings to create. A maximum of 1000 access bindings can be created in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse": {
+      "description": "Response message for BatchCreateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "The access bindings created.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest": {
       "description": "Request message for BatchCreateUserLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest",
@@ -4118,6 +4697,20 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest": {
+      "description": "Request message for BatchDeleteAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The requests specifying the access bindings to delete. A maximum of 1000 access bindings can be deleted in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest": {
       "description": "Request message for BatchDeleteUserLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest",
@@ -4132,6 +4725,20 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse": {
+      "description": "Response message for BatchGetAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "The requested access bindings.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse": {
       "description": "Response message for BatchGetUserLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse",
@@ -4140,6 +4747,34 @@
           "description": "The requested user links.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest": {
+      "description": "Request message for BatchUpdateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The requests specifying the access bindings to update. A maximum of 1000 access bindings can be updated in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse": {
+      "description": "Response message for BatchUpdateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "The access bindings updated.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
           },
           "type": "array"
         }
@@ -4412,6 +5047,21 @@
         "name": {
           "description": "Output only. Resource name of this conversion event. Format: properties/{property}/conversionEvents/{conversion_event}",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest": {
+      "description": "Request message for CreateAccessBinding RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest",
+      "properties": {
+        "accessBinding": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding",
+          "description": "Required. The access binding to create."
+        },
+        "parent": {
+          "description": "Required. Formats: - accounts/{account} - properties/{property}",
           "type": "string"
         }
       },
@@ -4733,6 +5383,17 @@
         "measurementId": {
           "description": "Output only. Analytics \"Measurement ID\", without the \"G-\" prefix. Example: \"G-1A2BCD345E\" would just be \"1A2BCD345E\"",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest": {
+      "description": "Request message for DeleteAccessBinding RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest",
+      "properties": {
+        "name": {
+          "description": "Required. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
           "type": "string"
         }
       },
@@ -5155,6 +5816,24 @@
         "requestorEmail": {
           "description": "Output only. The email address of the user that proposed this linkage.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse": {
+      "description": "Response message for ListAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "List of AccessBindings. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -5971,6 +6650,17 @@
       "description": "Response message for setting the opt out status for the automated GA4 setup process.",
       "id": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest": {
+      "description": "Request message for UpdateAccessBinding RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest",
+      "properties": {
+        "accessBinding": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding",
+          "description": "Required. The access binding to update."
+        }
+      },
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest": {

@@ -198,7 +198,7 @@ export namespace gkehub_v1beta {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -695,6 +695,15 @@ export namespace gkehub_v1beta {
     templateLibraryInstalled?: boolean | null;
   }
   /**
+   * State for the migration of PolicyController from ACM -\> PoCo Hub.
+   */
+  export interface Schema$ConfigManagementPolicyControllerMigration {
+    /**
+     * Stage of the migration.
+     */
+    stage?: string | null;
+  }
+  /**
    * PolicyControllerMonitoring specifies the backends Policy Controller should export metrics to. For example, to specify metrics should be exported to Cloud Monitoring and Prometheus, specify backends: ["cloudmonitoring", "prometheus"]
    */
   export interface Schema$ConfigManagementPolicyControllerMonitoring {
@@ -711,6 +720,10 @@ export namespace gkehub_v1beta {
      * The state about the policy controller installation.
      */
     deploymentState?: Schema$ConfigManagementGatekeeperDeploymentState;
+    /**
+     * Record state of ACM -\> PoCo Hub migration for this feature.
+     */
+    migration?: Schema$ConfigManagementPolicyControllerMigration;
     /**
      * The version of Gatekeeper Policy Controller deployed.
      */
@@ -1344,6 +1357,16 @@ export namespace gkehub_v1beta {
      */
     auditIntervalSeconds?: string | null;
     /**
+     * The maximum number of audit violations to be stored in a constraint. If not set, the internal default (currently 20) will be used.
+     */
+    constraintViolationLimit?: string | null;
+    /**
+     * Map of deployment configs to deployments (“admission”, “audit”, “mutation”).
+     */
+    deploymentConfigs?: {
+      [key: string]: Schema$PolicyControllerPolicyControllerDeploymentConfig;
+    } | null;
+    /**
      * The set of namespaces that are excluded from Policy Controller checks. Namespaces do not need to currently exist on the cluster.
      */
     exemptableNamespaces?: string[] | null;
@@ -1440,6 +1463,49 @@ export namespace gkehub_v1beta {
      * map of bundle name to BundleInstallSpec. The bundle name maps to the `bundleName` key in the `policycontroller.gke.io/constraintData` annotation on a constraint.
      */
     bundles?: {[key: string]: Schema$PolicyControllerBundleInstallSpec} | null;
+  }
+  /**
+   * Deployment-specific configuration.
+   */
+  export interface Schema$PolicyControllerPolicyControllerDeploymentConfig {
+    /**
+     * Container resource requirements.
+     */
+    containerResources?: Schema$PolicyControllerResourceRequirements;
+    /**
+     * Pod anti-affinity enablement.
+     */
+    podAntiAffinity?: boolean | null;
+    /**
+     * Pod replica count.
+     */
+    replicaCount?: string | null;
+  }
+  /**
+   * ResourceList contains container resource requirements.
+   */
+  export interface Schema$PolicyControllerResourceList {
+    /**
+     * CPU requirement expressed in Kubernetes resource units.
+     */
+    cpu?: string | null;
+    /**
+     * Memory requirement expressed in Kubernetes resource units.
+     */
+    memory?: string | null;
+  }
+  /**
+   * ResourceRequirements describes the compute resource requirements.
+   */
+  export interface Schema$PolicyControllerResourceRequirements {
+    /**
+     * Limits describes the maximum amount of compute resources allowed for use by the running container.
+     */
+    limits?: Schema$PolicyControllerResourceList;
+    /**
+     * Requests describes the amount of compute resources reserved for the container by the kube-scheduler.
+     */
+    requests?: Schema$PolicyControllerResourceList;
   }
   /**
    * The config specifying which default library templates to install.

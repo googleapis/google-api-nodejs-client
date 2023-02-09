@@ -481,6 +481,32 @@ export namespace cloudbilling_v1beta {
     acceleratorType?: string | null;
   }
   /**
+   * Egress traffic between two regions.
+   */
+  export interface Schema$InterRegionEgress {
+    /**
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data goes to.
+     */
+    destinationRegion?: string | null;
+    /**
+     * VM to VM egress usage. Expected units such as "GiBy/s, By/s, etc."
+     */
+    egressRate?: Schema$Usage;
+    /**
+     * Which [region](https://cloud.google.com/compute/docs/regions-zones) the egress data comes from.
+     */
+    sourceRegion?: string | null;
+  }
+  /**
+   * Egress traffic within the same region. When source region and destination region are in the same zone, using the internal IP addresses, there isn't any egress charge.
+   */
+  export interface Schema$IntraRegionEgress {
+    /**
+     * VM to VM egress usage. Expected units such as "GiBy/s, By/s, etc."
+     */
+    egressRate?: Schema$Usage;
+  }
+  /**
    * Specification of machine series, memory, and number of vCPUs.
    */
   export interface Schema$MachineType {
@@ -775,6 +801,13 @@ export namespace cloudbilling_v1beta {
     virtualCpuCount?: string | null;
   }
   /**
+   * Specify VM to VM egress.
+   */
+  export interface Schema$VmToVmEgressWorkload {
+    interRegionEgress?: Schema$InterRegionEgress;
+    intraRegionEgress?: Schema$IntraRegionEgress;
+  }
+  /**
    * Specifies usage on a single Google Cloud product over a time frame. Each Google Cloud product has its own message, containing specific product configuration parameters of the product usage amounts along each dimension in which the product is billed.
    */
   export interface Schema$Workload {
@@ -818,6 +851,10 @@ export namespace cloudbilling_v1beta {
      * Usage on Standard Tier Internet Egress.
      */
     standardTierEgressWorkload?: Schema$StandardTierEgressWorkload;
+    /**
+     * Usage on Vm to Vm Egress.
+     */
+    vmToVmEgressWorkload?: Schema$VmToVmEgressWorkload;
   }
   /**
    * Estimated cost for a workload.
