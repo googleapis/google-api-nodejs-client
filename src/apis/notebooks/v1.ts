@@ -125,7 +125,7 @@ export namespace notebooks_v1 {
   }
 
   /**
-   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.
+   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.
    */
   export interface Schema$AcceleratorConfig {
     /**
@@ -146,7 +146,7 @@ export namespace notebooks_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -240,7 +240,7 @@ export namespace notebooks_v1 {
      */
     boot?: boolean | null;
     /**
-     * Indicates a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine.This field is only applicable for persistent disks.
+     * Indicates a unique device name of your choice that is reflected into the `/dev/disk/by-id/google-*` tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine.This field is only applicable for persistent disks.
      */
     deviceName?: string | null;
     /**
@@ -256,7 +256,7 @@ export namespace notebooks_v1 {
      */
     index?: string | null;
     /**
-     * Indicates the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * NVME * SCSI
+     * Indicates the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * `NVME` * `SCSI`
      */
     interface?: string | null;
     /**
@@ -268,7 +268,7 @@ export namespace notebooks_v1 {
      */
     licenses?: string[] | null;
     /**
-     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: * READ_ONLY * READ_WRITE
+     * The mode in which to attach this disk, either `READ_WRITE` or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode. Valid values: * `READ_ONLY` * `READ_WRITE`
      */
     mode?: string | null;
     /**
@@ -276,7 +276,7 @@ export namespace notebooks_v1 {
      */
     source?: string | null;
     /**
-     * Indicates the type of the disk, either SCRATCH or PERSISTENT. Valid values: * PERSISTENT * SCRATCH
+     * Indicates the type of the disk, either `SCRATCH` or `PERSISTENT`. Valid values: * `PERSISTENT` * `SCRATCH`
      */
     type?: string | null;
   }
@@ -488,7 +488,7 @@ export namespace notebooks_v1 {
    */
   export interface Schema$GuestOsFeature {
     /**
-     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: * FEATURE_TYPE_UNSPECIFIED * MULTI_IP_SUBNET * SECURE_BOOT * UEFI_COMPATIBLE * VIRTIO_SCSI_MULTIQUEUE * WINDOWS
+     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: * `FEATURE_TYPE_UNSPECIFIED` * `MULTI_IP_SUBNET` * `SECURE_BOOT` * `UEFI_COMPATIBLE` * `VIRTIO_SCSI_MULTIQUEUE` * `WINDOWS`
      */
     type?: string | null;
   }
@@ -497,7 +497,7 @@ export namespace notebooks_v1 {
    */
   export interface Schema$Instance {
     /**
-     * The hardware accelerator used on this instance. If you use accelerators, make sure that your configuration has [enough vCPUs and memory to support the `machine_type` you have selected](/compute/docs/gpus/#gpus-list).
+     * The hardware accelerator used on this instance. If you use accelerators, make sure that your configuration has [enough vCPUs and memory to support the `machine_type` you have selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
      */
     acceleratorConfig?: Schema$AcceleratorConfig;
     /**
@@ -561,7 +561,7 @@ export namespace notebooks_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The [Compute Engine machine type](/compute/docs/machine-types) of this instance.
+     * Required. The [Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) of this instance.
      */
     machineType?: string | null;
     /**
@@ -722,7 +722,7 @@ export namespace notebooks_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached. For example, ['us-west1-a', 'us-central1-b']. A ListInstancesResponse will only contain either instances or unreachables,
+     * Locations that could not be reached. For example, `['us-west1-a', 'us-central1-b']`. A ListInstancesResponse will only contain either instances or unreachables,
      */
     unreachable?: string[] | null;
   }
@@ -765,7 +765,7 @@ export namespace notebooks_v1 {
      */
     runtimes?: Schema$Runtime[];
     /**
-     * Locations that could not be reached. For example, ['us-west1', 'us-central1']. A ListRuntimesResponse will only contain either runtimes or unreachables,
+     * Locations that could not be reached. For example, `['us-west1', 'us-central1']`. A ListRuntimesResponse will only contain either runtimes or unreachables,
      */
     unreachable?: string[] | null;
   }
@@ -799,7 +799,7 @@ export namespace notebooks_v1 {
      */
     boot?: boolean | null;
     /**
-     * Optional. Output only. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     * Optional. Output only. Specifies a unique device name of your choice that is reflected into the `/dev/disk/by-id/google-*` tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
      */
     deviceName?: string | null;
     /**
@@ -815,7 +815,7 @@ export namespace notebooks_v1 {
      */
     initializeParams?: Schema$LocalDiskInitializeParams;
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * NVME * SCSI
+     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * `NVME` * `SCSI`
      */
     interface?: string | null;
     /**
@@ -827,7 +827,7 @@ export namespace notebooks_v1 {
      */
     licenses?: string[] | null;
     /**
-     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: * READ_ONLY * READ_WRITE
+     * The mode in which to attach this disk, either `READ_WRITE` or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode. Valid values: * `READ_ONLY` * `READ_WRITE`
      */
     mode?: string | null;
     /**
@@ -835,7 +835,7 @@ export namespace notebooks_v1 {
      */
     source?: string | null;
     /**
-     * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT. Valid values: * PERSISTENT * SCRATCH
+     * Specifies the type of the disk, either `SCRATCH` or `PERSISTENT`. If not specified, the default is `PERSISTENT`. Valid values: * `PERSISTENT` * `SCRATCH`
      */
     type?: string | null;
   }
@@ -1000,6 +1000,19 @@ export namespace notebooks_v1 {
     instanceId?: string | null;
   }
   /**
+   * Request for reporting a Managed Notebook Event.
+   */
+  export interface Schema$ReportInstanceEventRequest {
+    /**
+     * Required. The Event to be reported.
+     */
+    event?: Schema$Event;
+    /**
+     * Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     */
+    vmId?: string | null;
+  }
+  /**
    * Request for notebook instances to report information to Notebooks API.
    */
   export interface Schema$ReportInstanceInfoRequest {
@@ -1060,7 +1073,7 @@ export namespace notebooks_v1 {
    */
   export interface Schema$RollbackInstanceRequest {
     /**
-     * Required. The snapshot for rollback. Example: "projects/test-project/global/snapshots/krwlzipynril".
+     * Required. The snapshot for rollback. Example: `projects/test-project/global/snapshots/krwlzipynril`.
      */
     targetSnapshot?: string | null;
   }
@@ -1080,6 +1093,10 @@ export namespace notebooks_v1 {
      * Output only. Runtime health_state.
      */
     healthState?: string | null;
+    /**
+     * Optional. The labels to associate with this Managed Notebook or Runtime. Label **keys** must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). Label **values** may be empty, but, if present, must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a cluster.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. Contains Runtime daemon metrics such as Service status and JupyterLab stats.
      */
@@ -1140,7 +1157,7 @@ export namespace notebooks_v1 {
    */
   export interface Schema$RuntimeGuestOsFeature {
     /**
-     * The ID of a supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options. Valid values: * FEATURE_TYPE_UNSPECIFIED * MULTI_IP_SUBNET * SECURE_BOOT * UEFI_COMPATIBLE * VIRTIO_SCSI_MULTIQUEUE * WINDOWS
+     * The ID of a supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options. Valid values: * `FEATURE_TYPE_UNSPECIFIED` * `MULTI_IP_SUBNET` * `SECURE_BOOT` * `UEFI_COMPATIBLE` * `VIRTIO_SCSI_MULTIQUEUE` * `WINDOWS`
      */
     type?: string | null;
   }
@@ -1232,7 +1249,7 @@ export namespace notebooks_v1 {
      */
     createTime?: string | null;
     /**
-     * Cron-tab formatted schedule by which the job will execute. Format: minute, hour, day of month, month, day of week, e.g. 0 0 * * WED = every Wednesday More examples: https://crontab.guru/examples.html
+     * Cron-tab formatted schedule by which the job will execute. Format: minute, hour, day of month, month, day of week, e.g. `0 0 * * WED` = every Wednesday More examples: https://crontab.guru/examples.html
      */
     cronSchedule?: string | null;
     /**
@@ -1240,7 +1257,7 @@ export namespace notebooks_v1 {
      */
     description?: string | null;
     /**
-     * Output only. Display name used for UI purposes. Name can only contain alphanumeric characters, hyphens '-', and underscores '_'.
+     * Output only. Display name used for UI purposes. Name can only contain alphanumeric characters, hyphens `-`, and underscores `_`.
      */
     displayName?: string | null;
     /**
@@ -1319,7 +1336,7 @@ export namespace notebooks_v1 {
     machineType?: string | null;
   }
   /**
-   * A set of Shielded Instance options. Check [Images using supported Shielded VM features] Not all combinations are valid.
+   * A set of Shielded Instance options. Check [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
    */
   export interface Schema$ShieldedInstanceConfig {
     /**
@@ -1482,7 +1499,7 @@ export namespace notebooks_v1 {
      */
     state?: string | null;
     /**
-     * Target VM Image. Format: ainotebooks-vm/project/image-name/name.
+     * Target VM Image. Format: `ainotebooks-vm/project/image-name/name`.
      */
     targetImage?: string | null;
     /**
@@ -1534,11 +1551,11 @@ export namespace notebooks_v1 {
    */
   export interface Schema$VertexAIParameters {
     /**
-     * Environment variables. At most 100 environment variables can be specified and unique. Example: GCP_BUCKET=gs://my-bucket/samples/
+     * Environment variables. At most 100 environment variables can be specified and unique. Example: `GCP_BUCKET=gs://my-bucket/samples/`
      */
     env?: {[key: string]: string} | null;
     /**
-     * The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project\}/global/networks/{network\}`. Where {project\} is a project number, as in `12345`, and {network\} is a network name. Private services access must already be configured for the network. If left unspecified, the job is not peered with any network.
+     * The full name of the Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project\}/global/networks/{network\}`. Where `{project\}` is a project number, as in `12345`, and `{network\}` is a network name. Private services access must already be configured for the network. If left unspecified, the job is not peered with any network.
      */
     network?: string | null;
   }
@@ -3034,7 +3051,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.executions.list({
-     *     // Filter applied to resulting executions. Currently only supports filtering executions by a specified schedule_id. Format: `schedule_id=`
+     *     // Filter applied to resulting executions. Currently only supports filtering executions by a specified `schedule_id`. Format: `schedule_id=`
      *     filter: 'placeholder-value',
      *     // Sort by field.
      *     orderBy: 'placeholder-value',
@@ -3185,7 +3202,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Executions$List
     extends StandardParameters {
     /**
-     * Filter applied to resulting executions. Currently only supports filtering executions by a specified schedule_id. Format: `schedule_id=`
+     * Filter applied to resulting executions. Currently only supports filtering executions by a specified `schedule_id`. Format: `schedule_id=`
      */
     filter?: string;
     /**
@@ -4640,6 +4657,148 @@ export namespace notebooks_v1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1/{+name}:report').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Reports and processes an instance event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.reportEvent({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "event": {},
+     *       //   "vmId": "my_vmId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Instances$Reportevent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportEvent(
+      params?: Params$Resource$Projects$Locations$Instances$Reportevent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Instances$Reportevent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Instances$Reportevent,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Instances$Reportevent,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reportEvent(callback: BodyResponseCallback<Schema$Operation>): void;
+    reportEvent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Reportevent
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Reportevent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Reportevent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:reportEvent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -6748,6 +6907,18 @@ export namespace notebooks_v1 {
      */
     requestBody?: Schema$ReportInstanceInfoRequest;
   }
+  export interface Params$Resource$Projects$Locations$Instances$Reportevent
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportInstanceEventRequest;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Reset
     extends StandardParameters {
     /**
@@ -7542,6 +7713,7 @@ export namespace notebooks_v1 {
      *       //   "accessConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "healthState": "my_healthState",
+     *       //   "labels": {},
      *       //   "metrics": {},
      *       //   "name": "my_name",
      *       //   "softwareConfig": {},
@@ -7964,6 +8136,7 @@ export namespace notebooks_v1 {
      *   //   "accessConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "healthState": "my_healthState",
+     *   //   "labels": {},
      *   //   "metrics": {},
      *   //   "name": "my_name",
      *   //   "softwareConfig": {},
@@ -8365,7 +8538,7 @@ export namespace notebooks_v1 {
      *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
      *     // Idempotent request UUID.
      *     requestId: 'placeholder-value',
-     *     // Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout - software_config.disable_terminal
+     *     // Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - `software_config.kernels` - `software_config.post_startup_script` - `software_config.custom_gpu_driver_path` - `software_config.idle_shutdown` - `software_config.idle_shutdown_timeout` - `software_config.disable_terminal` - `labels`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8375,6 +8548,7 @@ export namespace notebooks_v1 {
      *       //   "accessConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "healthState": "my_healthState",
+     *       //   "labels": {},
      *       //   "metrics": {},
      *       //   "name": "my_name",
      *       //   "softwareConfig": {},
@@ -9842,7 +10016,7 @@ export namespace notebooks_v1 {
      */
     requestId?: string;
     /**
-     * Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - software_config.kernels - software_config.post_startup_script - software_config.custom_gpu_driver_path - software_config.idle_shutdown - software_config.idle_shutdown_timeout - software_config.disable_terminal
+     * Required. Specifies the path, relative to `Runtime`, of the field to update. For example, to change the software configuration kernels, the `update_mask` parameter would be specified as `software_config.kernels`, and the `PATCH` request body would specify the new value, as follows: { "software_config":{ "kernels": [{ 'repository': 'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag': 'latest' \}], \} \} Currently, only the following fields can be updated: - `software_config.kernels` - `software_config.post_startup_script` - `software_config.custom_gpu_driver_path` - `software_config.idle_shutdown` - `software_config.idle_shutdown_timeout` - `software_config.disable_terminal` - `labels`
      */
     updateMask?: string;
 
