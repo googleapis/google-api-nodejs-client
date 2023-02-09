@@ -171,7 +171,7 @@ export namespace artifactregistry_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -217,6 +217,15 @@ export namespace artifactregistry_v1 {
     uri?: string | null;
   }
   /**
+   * Configuration for a Docker remote repository.
+   */
+  export interface Schema$DockerRepository {
+    /**
+     * One of the publicly available Docker repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -249,6 +258,10 @@ export namespace artifactregistry_v1 {
      * The time when the File was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. The time when the last attempt to refresh the file's data was made. Only set when the repository is remote.
+     */
+    fetchTime?: string | null;
     /**
      * The hashes of the file content.
      */
@@ -589,6 +602,15 @@ export namespace artifactregistry_v1 {
     version?: string | null;
   }
   /**
+   * Configuration for a Maven remote repository.
+   */
+  export interface Schema$MavenRepository {
+    /**
+     * One of the publicly available Maven repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
+  }
+  /**
    * MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type.
    */
   export interface Schema$MavenRepositoryConfig {
@@ -629,6 +651,15 @@ export namespace artifactregistry_v1 {
      * Version of this package.
      */
     version?: string | null;
+  }
+  /**
+   * Configuration for a Npm remote repository.
+   */
+  export interface Schema$NpmRepository {
+    /**
+     * One of the publicly available Npm repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -740,6 +771,40 @@ export namespace artifactregistry_v1 {
     version?: string | null;
   }
   /**
+   * Configuration for a Python remote repository.
+   */
+  export interface Schema$PythonRepository {
+    /**
+     * One of the publicly available Python repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
+  }
+  /**
+   * Remote repository configuration.
+   */
+  export interface Schema$RemoteRepositoryConfig {
+    /**
+     * The description of the remote source.
+     */
+    description?: string | null;
+    /**
+     * Specific settings for a Docker remote repository.
+     */
+    dockerRepository?: Schema$DockerRepository;
+    /**
+     * Specific settings for a Maven remote repository.
+     */
+    mavenRepository?: Schema$MavenRepository;
+    /**
+     * Specific settings for an Npm remote repository.
+     */
+    npmRepository?: Schema$NpmRepository;
+    /**
+     * Specific settings for a Python remote repository.
+     */
+    pythonRepository?: Schema$PythonRepository;
+  }
+  /**
    * A Repository for storing artifacts with a specific format.
    */
   export interface Schema$Repository {
@@ -768,9 +833,17 @@ export namespace artifactregistry_v1 {
      */
     mavenConfig?: Schema$MavenRepositoryConfig;
     /**
+     * The mode of the repository.
+     */
+    mode?: string | null;
+    /**
      * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
      */
     name?: string | null;
+    /**
+     * Configuration specific for a Remote Repository.
+     */
+    remoteRepositoryConfig?: Schema$RemoteRepositoryConfig;
     /**
      * Output only. If set, the repository satisfies physical zone separation.
      */
@@ -783,6 +856,10 @@ export namespace artifactregistry_v1 {
      * The time when the repository was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Configuration specific for a Virtual Repository.
+     */
+    virtualRepositoryConfig?: Schema$VirtualRepositoryConfig;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -920,6 +997,23 @@ export namespace artifactregistry_v1 {
     yumArtifacts?: Schema$YumArtifact[];
   }
   /**
+   * Artifact policy configuration for the repository contents.
+   */
+  export interface Schema$UpstreamPolicy {
+    /**
+     * The user-provided ID of the upstream policy.
+     */
+    id?: string | null;
+    /**
+     * Entries with a greater priority value take precedence in the pull order.
+     */
+    priority?: number | null;
+    /**
+     * A reference to the repository resource, for example: "projects/p1/locations/us-central1/repository/repo1".
+     */
+    repository?: string | null;
+  }
+  /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.
    */
   export interface Schema$Version {
@@ -947,6 +1041,28 @@ export namespace artifactregistry_v1 {
      * The time when the version was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Virtual repository configuration.
+   */
+  export interface Schema$VirtualRepositoryConfig {
+    /**
+     * Policies that configure the upstream artifacts distributed by the Virtual Repository. Upstream policies cannot be set on a standard repository.
+     */
+    upstreamPolicies?: Schema$UpstreamPolicy[];
+  }
+  /**
+   * The Artifact Registry VPC SC config that apply to a Project.
+   */
+  export interface Schema$VPCSCConfig {
+    /**
+     * The name of the project's VPC SC Config. Always of the form: projects/{projectID\}/locations/{location\}/vpcscConfig In update request: never set In response: always set
+     */
+    name?: string | null;
+    /**
+     * The project per location VPC SC policy that defines the VPC SC behavior for the Remote Repository (Allow/Deny).
+     */
+    vpcscPolicy?: string | null;
   }
   /**
    * A detailed representation of a Yum artifact.
@@ -1426,6 +1542,137 @@ export namespace artifactregistry_v1 {
     }
 
     /**
+     * Retrieves the VPCSC Config for the Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.getVpcscConfig({
+     *     // Required. The name of the VPCSCConfig resource.
+     *     name: 'projects/my-project/locations/my-location/vpcscConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "vpcscPolicy": "my_vpcscPolicy"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVpcscConfig(
+      params?: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VPCSCConfig>;
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$VPCSCConfig>,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    getVpcscConfig(callback: BodyResponseCallback<Schema$VPCSCConfig>): void;
+    getVpcscConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getvpcscconfig
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$VPCSCConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getvpcscconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getvpcscconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VPCSCConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VPCSCConfig>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      * @example
      * ```js
@@ -1569,12 +1816,158 @@ export namespace artifactregistry_v1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the VPCSC Config for the Project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.updateVpcscConfig({
+     *     // The name of the project's VPC SC Config. Always of the form: projects/{projectID\}/locations/{location\}/vpcscConfig In update request: never set In response: always set
+     *     name: 'projects/my-project/locations/my-location/vpcscConfig',
+     *     // Field mask to support partial updates.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "vpcscPolicy": "my_vpcscPolicy"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "vpcscPolicy": "my_vpcscPolicy"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateVpcscConfig(
+      params?: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VPCSCConfig>;
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$VPCSCConfig>,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    updateVpcscConfig(callback: BodyResponseCallback<Schema$VPCSCConfig>): void;
+    updateVpcscConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updatevpcscconfig
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$VPCSCConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updatevpcscconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updatevpcscconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VPCSCConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VPCSCConfig>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getvpcscconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the VPCSCConfig resource.
      */
     name?: string;
   }
@@ -1596,6 +1989,22 @@ export namespace artifactregistry_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updatevpcscconfig
+    extends StandardParameters {
+    /**
+     * The name of the project's VPC SC Config. Always of the form: projects/{projectID\}/locations/{location\}/vpcscConfig In update request: never set In response: always set
+     */
+    name?: string;
+    /**
+     * Field mask to support partial updates.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VPCSCConfig;
   }
 
   export class Resource$Projects$Locations$Operations {
@@ -1828,10 +2237,13 @@ export namespace artifactregistry_v1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "mavenConfig": {},
+     *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "remoteRepositoryConfig": {},
      *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "virtualRepositoryConfig": {}
      *       // }
      *     },
      *   });
@@ -2113,10 +2525,13 @@ export namespace artifactregistry_v1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "mavenConfig": {},
+     *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "remoteRepositoryConfig": {},
      *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "virtualRepositoryConfig": {}
      *   // }
      * }
      *
@@ -2534,10 +2949,13 @@ export namespace artifactregistry_v1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "mavenConfig": {},
+     *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "remoteRepositoryConfig": {},
      *       //   "satisfiesPzs": false,
      *       //   "sizeBytes": "my_sizeBytes",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "virtualRepositoryConfig": {}
      *       // }
      *     },
      *   });
@@ -2551,10 +2969,13 @@ export namespace artifactregistry_v1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "mavenConfig": {},
+     *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "remoteRepositoryConfig": {},
      *   //   "satisfiesPzs": false,
      *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "virtualRepositoryConfig": {}
      *   // }
      * }
      *
@@ -3751,6 +4172,7 @@ export namespace artifactregistry_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "fetchTime": "my_fetchTime",
      *   //   "hashes": [],
      *   //   "name": "my_name",
      *   //   "owner": "my_owner",
