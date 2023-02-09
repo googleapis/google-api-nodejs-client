@@ -2184,7 +2184,7 @@ export namespace cloudasset_v1 {
     version?: string | null;
   }
   /**
-   * A result of Resource Search, containing information of a cloud resource. Next ID: 31
+   * A result of Resource Search, containing information of a cloud resource. Next ID: 32
    */
   export interface Schema$ResourceSearchResult {
     /**

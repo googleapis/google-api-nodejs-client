@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20230125",
+  "revision": "20230202",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -636,13 +636,19 @@
             "INSTANCE_SIZE_UNSPECIFIED",
             "STANDARD_SMALL",
             "STANDARD_MEDIUM",
-            "STANDARD_LARGE"
+            "STANDARD_LARGE",
+            "STANDARD_XLARGE",
+            "STANDARD_2XLARGE",
+            "STANDARD_3XLARGE"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
             "Instance Size STANDARD_SMALL.",
             "Instance Size STANDARD_MEDIUM.",
-            "Instance Size STANDARD_LARGE."
+            "Instance Size STANDARD_LARGE.",
+            "Instance Size STANDARD_XLARGE.",
+            "Instance Size STANDARD_2XLARGE.",
+            "Instance Size STANDARD_3XLARGE."
           ],
           "type": "string"
         }

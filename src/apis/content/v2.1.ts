@@ -6316,7 +6316,7 @@ export namespace content_v2_1 {
      */
     brandExclusion?: string[] | null;
     /**
-     * Required. The content language used as part of the unique identifier. `en` content language is available for all target countries. `fr` content language is available for `CA` and `FR` target countries, and `de` content language is available for `DE` target country.
+     * Required. The content language used as part of the unique identifier. `en` content language is available for all target countries. `fr` content language is available for `CA` and `FR` target countries. `de` content language is available for `DE` target country. `nl` content language is available for `NL` target country. `it` content language is available for `IT` target country. `pt` content language is available for `BR` target country. `ja` content language is available for `JP` target country. `ko` content language is available for `KR` target country.
      */
     contentLanguage?: string | null;
     /**
@@ -6468,7 +6468,7 @@ export namespace content_v2_1 {
      */
     storeCodeExclusion?: string[] | null;
     /**
-     * Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN` or `US`.
+     * Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN`, `US`, `BR`, `ES`, `NL`, `JP`, `IT` or `KR`.
      */
     targetCountry?: string | null;
   }

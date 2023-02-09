@@ -347,6 +347,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "revisionId": {
+                      "description": "Optional. Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is \"000001-a4d\", where the first 6 characters define the zero-padded decimal revision number. They are followed by a hyphen and 3 hexadecimal characters. (go/wf_adr_clh_1)",
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+name}",
@@ -444,7 +449,7 @@
       }
     }
   },
-  "revision": "20221208",
+  "revision": "20230125",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {

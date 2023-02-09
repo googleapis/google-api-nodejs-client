@@ -200,6 +200,32 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
             },
+            "getVpcscConfig": {
+              "description": "Retrieves the VPCSC Config for the Project.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/vpcscConfig",
+              "httpMethod": "GET",
+              "id": "artifactregistry.projects.locations.getVpcscConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the VPCSCConfig resource.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/vpcscConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "VPCSCConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1/projects/{projectsId}/locations",
@@ -240,6 +266,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "updateVpcscConfig": {
+              "description": "Updates the VPCSC Config for the Project.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/vpcscConfig",
+              "httpMethod": "PATCH",
+              "id": "artifactregistry.projects.locations.updateVpcscConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the project's VPC SC Config. Always of the form: projects/{projectID}/locations/{location}/vpcscConfig In update request: never set In response: always set",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/vpcscConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Field mask to support partial updates.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "VPCSCConfig"
+              },
+              "response": {
+                "$ref": "VPCSCConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
           },
@@ -1457,7 +1517,7 @@
       }
     }
   },
-  "revision": "20221022",
+  "revision": "20230202",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1531,7 +1591,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -1591,6 +1651,25 @@
       },
       "type": "object"
     },
+    "DockerRepository": {
+      "description": "Configuration for a Docker remote repository.",
+      "id": "DockerRepository",
+      "properties": {
+        "publicRepository": {
+          "description": "One of the publicly available Docker repositories supported by Artifact Registry.",
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "DOCKER_HUB"
+          ],
+          "enumDescriptions": [
+            "Unspecified repository.",
+            "Docker Hub."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -1627,6 +1706,12 @@
         "createTime": {
           "description": "The time when the File was created.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "fetchTime": {
+          "description": "Output only. The time when the last attempt to refresh the file's data was made. Only set when the repository is remote.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "hashes": {
@@ -2094,6 +2179,25 @@
       },
       "type": "object"
     },
+    "MavenRepository": {
+      "description": "Configuration for a Maven remote repository.",
+      "id": "MavenRepository",
+      "properties": {
+        "publicRepository": {
+          "description": "One of the publicly available Maven repositories supported by Artifact Registry.",
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "MAVEN_CENTRAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified repository.",
+            "Maven Central."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MavenRepositoryConfig": {
       "description": "MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type.",
       "id": "MavenRepositoryConfig",
@@ -2152,6 +2256,25 @@
         },
         "version": {
           "description": "Version of this package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NpmRepository": {
+      "description": "Configuration for a Npm remote repository.",
+      "id": "NpmRepository",
+      "properties": {
+        "publicRepository": {
+          "description": "One of the publicly available Npm repositories supported by Artifact Registry.",
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "NPMJS"
+          ],
+          "enumDescriptions": [
+            "Unspecified repository.",
+            "npmjs."
+          ],
           "type": "string"
         }
       },
@@ -2309,6 +2432,52 @@
       },
       "type": "object"
     },
+    "PythonRepository": {
+      "description": "Configuration for a Python remote repository.",
+      "id": "PythonRepository",
+      "properties": {
+        "publicRepository": {
+          "description": "One of the publicly available Python repositories supported by Artifact Registry.",
+          "enum": [
+            "PUBLIC_REPOSITORY_UNSPECIFIED",
+            "PYPI"
+          ],
+          "enumDescriptions": [
+            "Unspecified repository.",
+            "PyPI."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoteRepositoryConfig": {
+      "description": "Remote repository configuration.",
+      "id": "RemoteRepositoryConfig",
+      "properties": {
+        "description": {
+          "description": "The description of the remote source.",
+          "type": "string"
+        },
+        "dockerRepository": {
+          "$ref": "DockerRepository",
+          "description": "Specific settings for a Docker remote repository."
+        },
+        "mavenRepository": {
+          "$ref": "MavenRepository",
+          "description": "Specific settings for a Maven remote repository."
+        },
+        "npmRepository": {
+          "$ref": "NpmRepository",
+          "description": "Specific settings for an Npm remote repository."
+        },
+        "pythonRepository": {
+          "$ref": "PythonRepository",
+          "description": "Specific settings for a Python remote repository."
+        }
+      },
+      "type": "object"
+    },
     "Repository": {
       "description": "A Repository for storing artifacts with a specific format.",
       "id": "Repository",
@@ -2361,9 +2530,29 @@
           "$ref": "MavenRepositoryConfig",
           "description": "Maven repository config contains repository level configuration for the repositories of maven type."
         },
+        "mode": {
+          "description": "The mode of the repository.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "STANDARD_REPOSITORY",
+            "VIRTUAL_REPOSITORY",
+            "REMOTE_REPOSITORY"
+          ],
+          "enumDescriptions": [
+            "Unspecified mode.",
+            "A standard repository storing artifacts.",
+            "A virtual repository to serve artifacts from one or more sources.",
+            "A remote repository to serve artifacts from a remote source."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "The name of the repository, for example: \"projects/p1/locations/us-central1/repositories/repo1\".",
           "type": "string"
+        },
+        "remoteRepositoryConfig": {
+          "$ref": "RemoteRepositoryConfig",
+          "description": "Configuration specific for a Remote Repository."
         },
         "satisfiesPzs": {
           "description": "Output only. If set, the repository satisfies physical zone separation.",
@@ -2380,6 +2569,10 @@
           "description": "The time when the repository was last updated.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "virtualRepositoryConfig": {
+          "$ref": "VirtualRepositoryConfig",
+          "description": "Configuration specific for a Virtual Repository."
         }
       },
       "type": "object"
@@ -2574,6 +2767,51 @@
       },
       "type": "object"
     },
+    "UpstreamPolicy": {
+      "description": "Artifact policy configuration for the repository contents.",
+      "id": "UpstreamPolicy",
+      "properties": {
+        "id": {
+          "description": "The user-provided ID of the upstream policy.",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Entries with a greater priority value take precedence in the pull order.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "repository": {
+          "description": "A reference to the repository resource, for example: \"projects/p1/locations/us-central1/repository/repo1\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VPCSCConfig": {
+      "description": "The Artifact Registry VPC SC config that apply to a Project.",
+      "id": "VPCSCConfig",
+      "properties": {
+        "name": {
+          "description": "The name of the project's VPC SC Config. Always of the form: projects/{projectID}/locations/{location}/vpcscConfig In update request: never set In response: always set",
+          "type": "string"
+        },
+        "vpcscPolicy": {
+          "description": "The project per location VPC SC policy that defines the VPC SC behavior for the Remote Repository (Allow/Deny).",
+          "enum": [
+            "VPCSC_POLICY_UNSPECIFIED",
+            "DENY",
+            "ALLOW"
+          ],
+          "enumDescriptions": [
+            "VPCSC_POLICY_UNSPECIFIED - the VPS SC policy is not defined. When VPS SC policy is not defined - the Service will use the default behavior (VPCSC_DENY).",
+            "VPCSC_DENY - repository will block the requests to the Upstreams for the Remote Repositories if the resource is in the perimeter.",
+            "VPCSC_ALLOW - repository will allow the requests to the Upstreams for the Remote Repositories if the resource is in the perimeter."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Version": {
       "description": "The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.",
       "id": "Version",
@@ -2611,6 +2849,20 @@
           "description": "The time when the version was last updated.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualRepositoryConfig": {
+      "description": "Virtual repository configuration.",
+      "id": "VirtualRepositoryConfig",
+      "properties": {
+        "upstreamPolicies": {
+          "description": "Policies that configure the upstream artifacts distributed by the Virtual Repository. Upstream policies cannot be set on a standard repository.",
+          "items": {
+            "$ref": "UpstreamPolicy"
+          },
+          "type": "array"
         }
       },
       "type": "object"

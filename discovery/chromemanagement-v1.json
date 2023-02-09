@@ -764,7 +764,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230208",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -2626,6 +2626,14 @@
           "description": "Output only. Contains relevant information regarding ChromeOS update status.",
           "items": {
             "$ref": "GoogleChromeManagementV1OsUpdateStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "peripheralsReport": {
+          "description": "Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1PeripheralsReport"
           },
           "readOnly": true,
           "type": "array"

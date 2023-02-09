@@ -276,7 +276,7 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
     /**
-     * consumer_defined_name is the name that is set by the consumer. On the other hand Name field represents system-assigned id of an instance so consumers are not necessarily aware of it. consumer_defined_name is used for notification/UI purposes for consumer to recognize their instances.
+     * consumer_defined_name is the name of the instance set by the service consumers. Generally this is different from the `name` field which reperesents the system-assigned id of the instance which the service consumers do not recognize. This is a required field for tenants onboarding to Maintenance Window notifications (go/slm-rollout-maintenance-policies#prerequisites).
      */
     consumerDefinedName?: string | null;
     /**

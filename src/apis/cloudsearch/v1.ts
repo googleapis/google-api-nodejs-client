@@ -277,7 +277,7 @@ export namespace cloudsearch_v1 {
     membershipChanged?: Schema$MembershipChangedMetadata;
     readReceiptsSettingsMetadata?: Schema$ReadReceiptsSettingsUpdatedMetadata;
     /**
-     * Metadata that defines all of the required features that must be rendered in the message. Clients can use this to see whether they support the entire message, or show a fallback chip otherwise. See go/message-quoting-client-to-server for details. LINT.ThenChange( //depot/google3/java/com/google/apps/dynamite/v1/allshared/parser/AnnotationSanitizer.java, //depot/google3/java/com/google/apps/dynamite/v1/backend/action/common/SystemMessageHelper.java, //depot/google3/java/com/google/caribou/eli/mediation/chat/AnnotationTranslator.java )
+     * Metadata that defines all of the required features that must be rendered in the message. Clients can use this to see whether they support the entire message, or show a fallback chip otherwise. See go/message-quoting-client-to-server for details. LINT.ThenChange( //depot/google3/java/com/google/apps/dynamite/v1/allshared/parser/AnnotationSanitizer.java, //depot/google3/java/com/google/apps/dynamite/v1/backend/action/common/SystemMessageHelper.java, //depot/google3/java/com/google/caribou/eli/mediation/chat/AnnotationConverter.java )
      */
     requiredMessageFeaturesMetadata?: Schema$RequiredMessageFeaturesMetadata;
     roomUpdated?: Schema$RoomUpdatedMetadata;
@@ -3392,11 +3392,19 @@ export namespace cloudsearch_v1 {
    * This is the proto for holding message level scoring information. This data is used for logging in query-api server and for testing purposes.
    */
   export interface Schema$DynamiteMessagesScoringInfo {
+    commonContactCount?: string | null;
+    commonCountToContactListCountRatio?: number | null;
+    commonCountToMembershipCountRatio?: number | null;
+    creatorGaiaId?: string | null;
+    creatorInSearcherContactList?: boolean | null;
+    dasContactCount?: string | null;
     finalScore?: number | null;
     freshnessScore?: number | null;
     joinedSpaceAffinityScore?: number | null;
     messageAgeInDays?: number | null;
     messageSenderAffinityScore?: number | null;
+    spaceId?: string | null;
+    spaceMembershipCount?: string | null;
     topicalityScore?: number | null;
     unjoinedSpaceAffinityScore?: number | null;
   }
