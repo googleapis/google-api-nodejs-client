@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230207",
   "rootUrl": "https://mybusinessverifications.googleapis.com/",
   "schemas": {
     "AddressVerificationData": {
@@ -543,7 +543,7 @@
             "Make a phone call with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Send an SMS with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Verify the location without additional user action. This option may not be available for all locations.",
-            "Used for vetted [partners](https://support.google.com/business/answer/7674102). This option may not be available for all locations."
+            "This option may not be available for all locations."
           ],
           "type": "string"
         },
@@ -608,7 +608,7 @@
             "Make a phone call with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Send an SMS with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Verify the location without additional user action. This option may not be available for all locations.",
-            "Used for vetted [partners](https://support.google.com/business/answer/7674102). This option may not be available for all locations."
+            "This option may not be available for all locations."
           ],
           "type": "string"
         }
@@ -675,7 +675,7 @@
             "Make a phone call with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Send an SMS with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Verify the location without additional user action. This option may not be available for all locations.",
-            "Used for vetted [partners](https://support.google.com/business/answer/7674102). This option may not be available for all locations."
+            "This option may not be available for all locations."
           ],
           "type": "string"
         },
