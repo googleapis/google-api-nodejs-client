@@ -2905,6 +2905,143 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.channels.releases.get({
+     *     // Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     *     name: 'projects/my-project/sites/my-site/channels/my-channel/releases/my-release',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Sites$Channels$Releases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Get,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Release>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$Releases$Get
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$Releases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$Releases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Release>(parameters);
+      }
+    }
+
+    /**
      * Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.
      * @example
      * ```js
@@ -3065,6 +3202,13 @@ export namespace firebasehosting_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Release;
+  }
+  export interface Params$Resource$Projects$Sites$Channels$Releases$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Sites$Channels$Releases$List
     extends StandardParameters {
@@ -4010,6 +4154,143 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.releases.get({
+     *     // Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     *     name: 'projects/my-project/sites/my-site/releases/my-release',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Sites$Releases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Sites$Releases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    get(
+      params: Params$Resource$Projects$Sites$Releases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Releases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Releases$Get,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Release>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Releases$Get
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Releases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Releases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Release>(parameters);
+      }
+    }
+
+    /**
      * Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.
      * @example
      * ```js
@@ -4170,6 +4451,13 @@ export namespace firebasehosting_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Release;
+  }
+  export interface Params$Resource$Projects$Sites$Releases$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Sites$Releases$List
     extends StandardParameters {
@@ -4635,6 +4923,149 @@ export namespace firebasehosting_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Get the specified version that has been created for the specified site. This can include versions that were created for the default `live` channel or for any active preview channels for the specified site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.versions.get({
+     *     // Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
+     *     name: 'projects/my-project/sites/my-site/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "createUser": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "deleteUser": {},
+     *   //   "fileCount": "my_fileCount",
+     *   //   "finalizeTime": "my_finalizeTime",
+     *   //   "finalizeUser": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "status": "my_status",
+     *   //   "versionBytes": "my_versionBytes"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Sites$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Sites$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
+    get(
+      params: Params$Resource$Projects$Sites$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Versions$Get,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Version>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Versions$Get
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Version>(parameters);
       }
     }
 
@@ -5132,6 +5563,13 @@ export namespace firebasehosting_v1beta1 {
     requestBody?: Schema$Version;
   }
   export interface Params$Resource$Projects$Sites$Versions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Versions$Get
     extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
@@ -6631,6 +7069,143 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.channels.releases.get({
+     *     // Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     *     name: 'sites/my-site/channels/my-channel/releases/my-release',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Sites$Channels$Releases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Sites$Channels$Releases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    get(
+      params: Params$Resource$Sites$Channels$Releases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Channels$Releases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Channels$Releases$Get,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Release>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$Releases$Get
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$Releases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$Releases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Release>(parameters);
+      }
+    }
+
+    /**
      * Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.
      * @example
      * ```js
@@ -6791,6 +7366,13 @@ export namespace firebasehosting_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Release;
+  }
+  export interface Params$Resource$Sites$Channels$Releases$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     */
+    name?: string;
   }
   export interface Params$Resource$Sites$Channels$Releases$List
     extends StandardParameters {
@@ -7736,6 +8318,143 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.releases.get({
+     *     // Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     *     name: 'sites/my-site/releases/my-release',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "releaseTime": "my_releaseTime",
+     *   //   "releaseUser": {},
+     *   //   "type": "my_type",
+     *   //   "version": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Sites$Releases$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Sites$Releases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    get(
+      params: Params$Resource$Sites$Releases$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Releases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Releases$Get,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Release>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Releases$Get
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Release>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Release> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Releases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Releases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Release>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Release>(parameters);
+      }
+    }
+
+    /**
      * Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.
      * @example
      * ```js
@@ -7896,6 +8615,13 @@ export namespace firebasehosting_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Release;
+  }
+  export interface Params$Resource$Sites$Releases$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID
+     */
+    name?: string;
   }
   export interface Params$Resource$Sites$Releases$List
     extends StandardParameters {
@@ -8361,6 +9087,149 @@ export namespace firebasehosting_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Get the specified version that has been created for the specified site. This can include versions that were created for the default `live` channel or for any active preview channels for the specified site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.sites.versions.get({
+     *     // Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
+     *     name: 'sites/my-site/versions/my-version',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "createUser": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "deleteUser": {},
+     *   //   "fileCount": "my_fileCount",
+     *   //   "finalizeTime": "my_finalizeTime",
+     *   //   "finalizeUser": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "status": "my_status",
+     *   //   "versionBytes": "my_versionBytes"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Sites$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Sites$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
+    get(
+      params: Params$Resource$Sites$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Versions$Get,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Version>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Get
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Version>(parameters);
       }
     }
 
@@ -8858,6 +9727,13 @@ export namespace firebasehosting_v1beta1 {
     requestBody?: Schema$Version;
   }
   export interface Params$Resource$Sites$Versions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Sites$Versions$Get
     extends StandardParameters {
     /**
      * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID

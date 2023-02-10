@@ -348,6 +348,10 @@ export namespace servicecontrol_v2 {
    */
   export interface Schema$CheckResponse {
     /**
+     * Esf migration server override during check v2 migration. This is temporary and Chemist internal only.
+     */
+    esfMigrationServerOverride?: Schema$EsfMigrationServerOverride;
+    /**
      * Returns a set of request contexts generated from the `CheckRequest`.
      */
     headers?: {[key: string]: string} | null;
@@ -355,6 +359,15 @@ export namespace servicecontrol_v2 {
      * Operation is allowed when this field is not set. Any non-'OK' status indicates a denial; google.rpc.Status.details would contain additional details about the denial.
      */
     status?: Schema$Status;
+  }
+  /**
+   * Esf migration server override during chemist check v2 migration
+   */
+  export interface Schema$EsfMigrationServerOverride {
+    /**
+     * Esf migration override mode
+     */
+    overrideMode?: string | null;
   }
   /**
    * First party identity principal.
@@ -923,6 +936,7 @@ export namespace servicecontrol_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "esfMigrationServerOverride": {},
      *   //   "headers": {},
      *   //   "status": {}
      *   // }

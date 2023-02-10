@@ -520,6 +520,43 @@
                             "https://www.googleapis.com/auth/monitoring.read"
                           ]
                         },
+                        "query_exemplars": {
+                          "description": "Lists exemplars relevant to a given PromQL query,",
+                          "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/query_exemplars",
+                          "httpMethod": "POST",
+                          "id": "monitoring.projects.location.prometheus.api.v1.query_exemplars",
+                          "parameterOrder": [
+                            "name",
+                            "location"
+                          ],
+                          "parameters": {
+                            "location": {
+                              "description": "Location of the resource information. Has to be \"global\" now.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/location/{location}/prometheus/api/v1/query_exemplars",
+                          "request": {
+                            "$ref": "QueryExemplarsRequest"
+                          },
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/monitoring",
+                            "https://www.googleapis.com/auth/monitoring.read"
+                          ]
+                        },
                         "query_range": {
                           "description": "Evaluate a PromQL query with start, end time range.",
                           "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/query_range",
@@ -769,7 +806,7 @@
       }
     }
   },
-  "revision": "20221219",
+  "revision": "20230206",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1586,6 +1623,25 @@
             "Compute the sum of all values.",
             "Select the most recent value."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryExemplarsRequest": {
+      "description": "QueryExemplarsRequest holds all parameters of the Prometheus upstream API for querying exemplars.",
+      "id": "QueryExemplarsRequest",
+      "properties": {
+        "end": {
+          "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+          "type": "string"
+        },
+        "query": {
+          "description": "A PromQL query string. Query lanauge documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
+          "type": "string"
+        },
+        "start": {
+          "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
           "type": "string"
         }
       },
