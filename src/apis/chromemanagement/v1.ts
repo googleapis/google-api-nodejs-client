@@ -531,6 +531,23 @@ export namespace chromemanagement_v1 {
     totalSize?: number | null;
   }
   /**
+   * Response containing counts for browsers that need attention.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse {
+    /**
+     * Number of browsers that haven’t had any recent activity
+     */
+    noRecentActivityCount?: string | null;
+    /**
+     * Number of browsers that are pending an OS update
+     */
+    pendingBrowserUpdateCount?: string | null;
+    /**
+     * Number of browsers that have been recently enrolled
+     */
+    recentlyEnrolledCount?: string | null;
+  }
+  /**
    * Response containing a list of devices expiring in each month of a selected time frame. Counts are grouped by model and Auto Update Expiration date.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse {
@@ -2258,6 +2275,155 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Count of Chrome Browsers that have been recently enrolled, have new policy to be synced, or have no recent activity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeBrowsersNeedingAttention(
+     *       {
+     *         // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     *         orgUnitId: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "noRecentActivityCount": "my_noRecentActivityCount",
+     *   //   "pendingBrowserUpdateCount": "my_pendingBrowserUpdateCount",
+     *   //   "recentlyEnrolledCount": "my_recentlyEnrolledCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeBrowsersNeedingAttention(
+      params: Params$Resource$Customers$Reports$Countchromebrowsersneedingattention,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countChromeBrowsersNeedingAttention(
+      params?: Params$Resource$Customers$Reports$Countchromebrowsersneedingattention,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>;
+    countChromeBrowsersNeedingAttention(
+      params: Params$Resource$Customers$Reports$Countchromebrowsersneedingattention,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeBrowsersNeedingAttention(
+      params: Params$Resource$Customers$Reports$Countchromebrowsersneedingattention,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+    ): void;
+    countChromeBrowsersNeedingAttention(
+      params: Params$Resource$Customers$Reports$Countchromebrowsersneedingattention,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+    ): void;
+    countChromeBrowsersNeedingAttention(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+    ): void;
+    countChromeBrowsersNeedingAttention(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromebrowsersneedingattention
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromebrowsersneedingattention;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countchromebrowsersneedingattention;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/reports:countChromeBrowsersNeedingAttention'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).
      * @example
      * ```js
@@ -3171,6 +3337,17 @@ export namespace chromemanagement_v1 {
     }
   }
 
+  export interface Params$Resource$Customers$Reports$Countchromebrowsersneedingattention
+    extends StandardParameters {
+    /**
+     * Required. The customer ID or "my_customer" prefixed with "customers/".
+     */
+    customer?: string;
+    /**
+     * Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     */
+    orgUnitId?: string;
+  }
   export interface Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate
     extends StandardParameters {
     /**
