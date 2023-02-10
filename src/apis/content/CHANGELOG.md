@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v9.1.0...content-v9.2.0) (2023-02-10)
+
+
+### Features
+
+* **content:** update the API ([8cf1e31](https://github.com/googleapis/google-api-nodejs-client/commit/8cf1e316f485453900e54347190353738f4a691c))
+
+
+### Bug Fixes
+
+* **content:** update the API ([6b0614b](https://github.com/googleapis/google-api-nodejs-client/commit/6b0614bc80883bdf9bd8146c90566264b7bd3808))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v9.0.0...content-v9.1.0) (2022-12-22)
 
 

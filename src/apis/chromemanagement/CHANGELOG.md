@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v3.1.0...chromemanagement-v4.0.0) (2023-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chromemanagement:** This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([3368e8d](https://github.com/googleapis/google-api-nodejs-client/commit/3368e8dd0e6b92d05fdaf43069758d2c0c01a3f6))
+* **chromemanagement:** update the API ([76eea6c](https://github.com/googleapis/google-api-nodejs-client/commit/76eea6cdcb93e4c67e70573e729332dc6bff619d))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v3.0.0...chromemanagement-v3.1.0) (2022-12-22)
 
 

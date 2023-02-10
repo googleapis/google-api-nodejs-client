@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v3.0.0...safebrowsing-v4.0.0) (2023-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **safebrowsing:** This release has breaking changes.
+
+### Features
+
+* **safebrowsing:** update the API ([ecb8989](https://github.com/googleapis/google-api-nodejs-client/commit/ecb8989ba492449389bce301095cdc6f76369061))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v2.0.3...safebrowsing-v3.0.0) (2022-10-28)
 
 
