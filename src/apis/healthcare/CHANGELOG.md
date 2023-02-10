@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v5.1.0...healthcare-v5.1.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([fa9914f](https://github.com/googleapis/google-api-nodejs-client/commit/fa9914febbf99733117748d0d404b42318aa5870))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v5.0.0...healthcare-v5.1.0) (2022-12-22)
 
 

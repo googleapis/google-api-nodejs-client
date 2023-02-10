@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v1.0.0...playintegrity-v1.1.0) (2023-02-10)
+
+
+### Features
+
+* **playintegrity:** update the API ([ab8a18a](https://github.com/googleapis/google-api-nodejs-client/commit/ab8a18ae22d36d9b7e6af212626b8c52e7d29c93))
+
 ## 1.0.0 (2022-12-22)
 
 

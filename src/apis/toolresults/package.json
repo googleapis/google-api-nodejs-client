@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/toolresults",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "toolresults",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v1.0.0...networkservices-v1.0.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([77405ce](https://github.com/googleapis/google-api-nodejs-client/commit/77405ce81969f68ba56c11583d6cd9978500f3f3))
+
 ## 1.0.0 (2022-12-22)
 
 
