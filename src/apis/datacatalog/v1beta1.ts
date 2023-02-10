@@ -561,7 +561,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1SearchCatalogRequestScope {
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in the search results. Info on GCP public datasets is available at https://cloud.google.com/public-datasets/. By default, GCP public datasets are excluded.
+     * If `true`, include Google Cloud public datasets in the search results. Info on Google Cloud public datasets is available at https://cloud.google.com/public-datasets/. By default, Google Cloud public datasets are excluded.
      */
     includeGcpPublicDatasets?: boolean | null;
     /**
@@ -757,7 +757,7 @@ export namespace datacatalog_v1beta1 {
     displayName?: string | null;
   }
   /**
-   * A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to GCP resources. [Tag template roles](https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.
+   * A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to Google Cloud resources. [Tag template roles](https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1TagTemplate {
     /**
@@ -829,7 +829,7 @@ export namespace datacatalog_v1beta1 {
      */
     policyTagCount?: number | null;
     /**
-     * Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a GCP service. Currently only 'DATAPLEX' is supported.
+     * Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a Google Cloud service. Currently only 'DATAPLEX' is supported.
      */
     service?: Schema$GoogleCloudDatacatalogV1beta1TaxonomyService;
     /**
@@ -846,7 +846,7 @@ export namespace datacatalog_v1beta1 {
      */
     identity?: string | null;
     /**
-     * The GCP service name.
+     * The Google Cloud service name.
      */
     name?: string | null;
   }
@@ -922,11 +922,11 @@ export namespace datacatalog_v1beta1 {
     upsertedEntriesCount?: string | null;
   }
   /**
-   * Metadata message for long-running operation returned by the ReconcileTags.
+   * Long-running operation metadata message returned by the ReconcileTags.
    */
   export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsMetadata {
     /**
-     * Map that maps name of each tagged column (or empty string in case of sole entry) to tagging operation status.
+     * Maps the name of each tagged column (or empty string for a sole entry) to tagging operation status.
      */
     errors?: {[key: string]: Schema$Status} | null;
     /**
@@ -935,7 +935,7 @@ export namespace datacatalog_v1beta1 {
     state?: string | null;
   }
   /**
-   * Request message for long-running operation returned by the ReconcileTags.
+   * Long-running operation response message returned by ReconcileTags.
    */
   export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsResponse {
     /**

@@ -917,7 +917,7 @@ export namespace gmail_v1 {
      */
     restrictToContacts?: boolean | null;
     /**
-     * Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for G Suite users.
+     * Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for Google Workspace users.
      */
     restrictToDomain?: boolean | null;
     /**
@@ -4157,7 +4157,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.messages.import({
-     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
      *     deleted: 'placeholder-value',
      *     // Source for Gmail's internal date of the message.
      *     internalDateSource: 'placeholder-value',
@@ -4329,7 +4329,7 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.messages.insert({
-     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     *     // Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
      *     deleted: 'placeholder-value',
      *     // Source for Gmail's internal date of the message.
      *     internalDateSource: 'placeholder-value',
@@ -5273,7 +5273,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Import
     extends StandardParameters {
     /**
-     * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
      */
     deleted?: boolean;
     /**
@@ -5316,7 +5316,7 @@ export namespace gmail_v1 {
   export interface Params$Resource$Users$Messages$Insert
     extends StandardParameters {
     /**
-     * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
+     * Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts.
      */
     deleted?: boolean;
     /**
@@ -8861,7 +8861,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user. Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators. Note that a delegate user must be referred to by their primary email address, and not an email alias. Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must be a member of the same Google Workspace organization as the delegator user. Gmail imposes limitations on the number of delegates and delegators each user in a Google Workspace organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators. Note that a delegate user must be referred to by their primary email address, and not an email alias. Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
      * ```js
      * // Before running the sample:

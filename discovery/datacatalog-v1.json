@@ -532,7 +532,7 @@
                       ]
                     },
                     "import": {
-                      "description": "Imports entries from some source (e.g. dump in a Cloud Storage bucket) to the Data Catalog. Dump here is a snapshot of the third-party system state, that needs to be ingested in the Data Catalog. Import of entries is a sync operation that reconciles state of the third-party system and Data Catalog. ImportEntries is a long-running operation done in the background, so this method returns long-running operation resource. The resource can be queried with Operations.GetOperation which contains metadata and response.",
+                      "description": "Imports entries from a source, such as data previously dumped into a Cloud Storage bucket, into Data Catalog. `ImportEntries` accepts source data snapshots of third-party system state. Import of entries is a sync operation that reconciles the state of the third-party system with Data Catalog. `ImportEntries` returns a long-running operation resource that can be queried with Operations.GetOperation to return ImportEntriesMetadata and an ImportEntriesResponse message.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries:import",
                       "httpMethod": "POST",
                       "id": "datacatalog.projects.locations.entryGroups.entries.import",
@@ -903,7 +903,7 @@
                           ]
                         },
                         "reconcile": {
-                          "description": "Reconciles tags created with a given tag template on a given Entry. Reconciliation is an operation that given a list of tags creates or updates them on the entry. Additionally, the operation is also able to delete tags not mentioned in the tag list. It can be achieved by setting force_delete_missing parameter. Reconciliation is a long-running operation done in the background, so this method returns long-running operation resource. The resource can be queried with Operations.GetOperation which contains metadata and response.",
+                          "description": "`ReconcileTags` creates or updates a list of tags on the entry. If the ReconcileTagsRequest.force_delete_missing parameter is set, the operation deletes tags not included in the input tag list. `ReconcileTags` returns a long-running operation resource that can be queried with Operations.GetOperation to return ReconcileTagsMetadata and a ReconcileTagsResponse message.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags:reconcile",
                           "httpMethod": "POST",
                           "id": "datacatalog.projects.locations.entryGroups.entries.tags.reconcile",
@@ -2134,7 +2134,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230207",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3405,14 +3405,14 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1ReconcileTagsMetadata": {
-      "description": "Metadata message for long-running operation returned by the ReconcileTags.",
+      "description": "Long-running operation metadata message returned by the ReconcileTags.",
       "id": "GoogleCloudDatacatalogV1ReconcileTagsMetadata",
       "properties": {
         "errors": {
           "additionalProperties": {
             "$ref": "Status"
           },
-          "description": "Map that maps name of each tagged column (or empty string in case of sole entry) to tagging operation status.",
+          "description": "Maps the name of each tagged column (or empty string for a sole entry) to tagging operation status.",
           "type": "object"
         },
         "state": {
@@ -3439,15 +3439,15 @@
       "id": "GoogleCloudDatacatalogV1ReconcileTagsRequest",
       "properties": {
         "forceDeleteMissing": {
-          "description": "If set to true deletes from the entry tags related to given tag template and not mentioned in the tags source. If set to false only creates and updates of the tags mentioned in the source will take place. Other tags in that entry using the same tag template will be retained instead of being deleted.",
+          "description": "If set to `true`, deletes entry tags related to a tag template not listed in the tags source from an entry. If set to `false`, unlisted tags are retained.",
           "type": "boolean"
         },
         "tagTemplate": {
-          "description": "Required. The name of the tag template, that will be used for reconciliation.",
+          "description": "Required. The name of the tag template, which is used for reconciliation.",
           "type": "string"
         },
         "tags": {
-          "description": "A list of tags to be applied on a given entry. Individual tags may specify tag template, but it must be the same as the one in the ReconcileTagsRequest. The sole entry and each of its columns must be mentioned at most once.",
+          "description": "A list of tags to apply to an entry. A tag can specify a tag template, which must be the template specified in the `ReconcileTagsRequest`. The sole entry and each of its columns must be mentioned at most once.",
           "items": {
             "$ref": "GoogleCloudDatacatalogV1Tag"
           },
@@ -3457,7 +3457,7 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1ReconcileTagsResponse": {
-      "description": "Request message for long-running operation returned by the ReconcileTags.",
+      "description": "Long-running operation response message returned by ReconcileTags.",
       "id": "GoogleCloudDatacatalogV1ReconcileTagsResponse",
       "properties": {
         "createdTagsCount": {
@@ -3633,7 +3633,7 @@
       "id": "GoogleCloudDatacatalogV1SearchCatalogRequestScope",
       "properties": {
         "includeGcpPublicDatasets": {
-          "description": "If `true`, include Google Cloud Platform (GCP) public datasets in search results. By default, they are excluded. See [Google Cloud Public Datasets](/public-datasets) for more information.",
+          "description": "If `true`, include Google Cloud public datasets in search results. By default, they are excluded. See [Google Cloud Public Datasets](/public-datasets) for more information.",
           "type": "boolean"
         },
         "includeOrgIds": {
@@ -4006,7 +4006,7 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1TagTemplate": {
-      "description": "A tag template defines a tag that can have one or more typed fields. The template is used to create tags that are attached to GCP resources. [Tag template roles] (https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. For example, see the [TagTemplate User] (https://cloud.google.com/data-catalog/docs/how-to/template-user) role that includes a permission to use the tag template to tag resources.",
+      "description": "A tag template defines a tag that can have one or more typed fields. The template is used to create tags that are attached to Google Cloud resources. [Tag template roles] (https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. For example, see the [TagTemplate User] (https://cloud.google.com/data-catalog/docs/how-to/template-user) role that includes a permission to use the tag template to tag resources.",
       "id": "GoogleCloudDatacatalogV1TagTemplate",
       "properties": {
         "displayName": {
@@ -4104,7 +4104,7 @@
         },
         "service": {
           "$ref": "GoogleCloudDatacatalogV1TaxonomyService",
-          "description": "Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a GCP service. Currently only 'DATAPLEX' is supported.",
+          "description": "Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a Google Cloud service. Currently only 'DATAPLEX' is supported.",
           "readOnly": true
         },
         "taxonomyTimestamps": {
@@ -4124,7 +4124,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The GCP service name.",
+          "description": "The Google Cloud service name.",
           "enum": [
             "MANAGING_SYSTEM_UNSPECIFIED",
             "MANAGING_SYSTEM_DATAPLEX",

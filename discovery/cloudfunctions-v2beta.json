@@ -344,7 +344,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Maximum number of functions to return per call.",
+                      "description": "Maximum number of functions to return per call. The largest allowed page_size is 1,000, if the page_size is omitted or specified as greater than 1,000 then it will be replaced as 1,000. The size of the list response can be less than specified when used with filters.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20230126",
+  "revision": "20230202",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {

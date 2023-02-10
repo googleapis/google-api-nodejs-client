@@ -254,6 +254,36 @@
         },
         "reports": {
           "methods": {
+            "countChromeBrowsersNeedingAttention": {
+              "description": "Count of Chrome Browsers that have been recently enrolled, have new policy to be synced, or have no recent activity.",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeBrowsersNeedingAttention",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeBrowsersNeedingAttention",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. The customer ID or \"my_customer\" prefixed with \"customers/\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "Optional. The ID of the organizational unit. If omitted, all data will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeBrowsersNeedingAttention",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "countChromeDevicesReachingAutoExpirationDate": {
               "description": "Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).",
               "flatPath": "v1/customers/{customersId}/reports:countChromeDevicesReachingAutoExpirationDate",
@@ -764,7 +794,7 @@
       }
     }
   },
-  "revision": "20230208",
+  "revision": "20230209",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1398,6 +1428,28 @@
           "description": "Total number of matching app requests.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse": {
+      "description": "Response containing counts for browsers that need attention.",
+      "id": "GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse",
+      "properties": {
+        "noRecentActivityCount": {
+          "description": "Number of browsers that haven’t had any recent activity",
+          "format": "int64",
+          "type": "string"
+        },
+        "pendingBrowserUpdateCount": {
+          "description": "Number of browsers that are pending an OS update",
+          "format": "int64",
+          "type": "string"
+        },
+        "recentlyEnrolledCount": {
+          "description": "Number of browsers that have been recently enrolled",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
