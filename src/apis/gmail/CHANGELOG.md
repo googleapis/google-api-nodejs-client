@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v1.1.0...gmail-v1.1.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([454caaf](https://github.com/googleapis/google-api-nodejs-client/commit/454caaf1e282d8afb2dd933ec6cf56c1193a27e5))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v1.0.0...gmail-v1.1.0) (2022-12-22)
 
 

@@ -1,5 +1,21 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v3.0.1...cloudtasks-v4.0.0) (2023-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudtasks:** This release has breaking changes.
+
+### Features
+
+* **cloudtasks:** update the API ([6c5644c](https://github.com/googleapis/google-api-nodejs-client/commit/6c5644cee8b07f03217b0d7c300c066ac257df5c))
+
+
+### Bug Fixes
+
+* **cloudtasks:** update the API ([083c4d1](https://github.com/googleapis/google-api-nodejs-client/commit/083c4d107e09e0de6c16c75a95d8a45832d26b23))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v3.0.0...cloudtasks-v3.0.1) (2022-12-22)
 
 

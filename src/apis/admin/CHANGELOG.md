@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v7.1.0...admin-v7.2.0) (2023-02-10)
+
+
+### Features
+
+* **admin:** update the API ([374bc14](https://github.com/googleapis/google-api-nodejs-client/commit/374bc148645a8723c25b8ecdc1cfdfd66451bf03))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v7.0.0...admin-v7.1.0) (2022-12-22)
 
 
