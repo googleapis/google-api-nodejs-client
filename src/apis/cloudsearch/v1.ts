@@ -268,7 +268,7 @@ export namespace cloudsearch_v1 {
      */
     length?: number | null;
     /**
-     * A unique client-assigned ID for this annotation. This is helpful in matching the back-filled annotations to the original annotations on client side, without having to re-parse the message.
+     * * A client-assigned ID for this annotation. This is helpful in matching the back-filled annotations to the original annotations on client side, without having to re-parse the message. There is no guarantee an annotation has a local_id, it's a purely client used and controlled field with no guarantee of uniqueness.
      */
     localId?: string | null;
     /**
@@ -295,7 +295,7 @@ export namespace cloudsearch_v1 {
      */
     type?: string | null;
     /**
-     * A unique server-assigned ID for this annotation. This is helpful in matching annotation objects when fetched from service.
+     * * A unique server-assigned ID for this annotation. This is helpful in matching annotation objects when fetched from service. All uploads should have a unique_id after the message they are attached to is successfully sent. Url annotations that originally were uploads (i.e. policy violations) will have a unique_id after the message they are attached to is successfully sent. No other url annotations should have a unique_id. All drive annotations should have a unique_id after the message they are attached to is successfully sent.
      */
     uniqueId?: string | null;
     uploadMetadata?: Schema$UploadMetadata;
@@ -3401,6 +3401,7 @@ export namespace cloudsearch_v1 {
     finalScore?: number | null;
     freshnessScore?: number | null;
     joinedSpaceAffinityScore?: number | null;
+    lastReadTimestampAgeInDays?: number | null;
     messageAgeInDays?: number | null;
     messageSenderAffinityScore?: number | null;
     spaceId?: string | null;
@@ -8348,7 +8349,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$UploadMetadata {
     /**
-     * Opaque token. Clients shall simply pass it back to the Backend. This field will NOT be saved into storage.
+     * Opaque token. Clients shall simply pass it back to the Backend. There is no guarantee the attachment_token returned on subsequent reads is the same even if nothing has changed. This field will NOT be saved into storage.
      */
     attachmentToken?: string | null;
     /**
