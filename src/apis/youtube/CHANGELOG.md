@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v8.0.1...youtube-v8.0.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* **youtube:** update the API ([a275134](https://github.com/googleapis/google-api-nodejs-client/commit/a275134286b36e78c9b5336f9b04af4914be82da))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v8.0.0...youtube-v8.0.1) (2022-12-22)
 
 
