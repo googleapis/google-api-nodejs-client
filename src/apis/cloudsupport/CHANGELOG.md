@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v1.0.0...cloudsupport-v1.0.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([9d69ef4](https://github.com/googleapis/google-api-nodejs-client/commit/9d69ef45bb22779a86ad12d9843b21fcf3c6752c))
+
 ## 1.0.0 (2022-12-22)
 
 

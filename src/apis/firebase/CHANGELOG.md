@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v5.1.0...firebase-v5.2.0) (2023-02-10)
+
+
+### Features
+
+* **firebase:** update the API ([873a7d7](https://github.com/googleapis/google-api-nodejs-client/commit/873a7d7a73813a9405418016f054ea39909c62f9))
+* **firebase:** update the API ([e1a3797](https://github.com/googleapis/google-api-nodejs-client/commit/e1a3797639ac080d45b762c047a917f41e88d91f))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v5.0.0...firebase-v5.1.0) (2022-12-22)
 
 

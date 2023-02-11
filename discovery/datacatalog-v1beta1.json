@@ -1813,7 +1813,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230207",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1940,14 +1940,14 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1ReconcileTagsMetadata": {
-      "description": "Metadata message for long-running operation returned by the ReconcileTags.",
+      "description": "Long-running operation metadata message returned by the ReconcileTags.",
       "id": "GoogleCloudDatacatalogV1ReconcileTagsMetadata",
       "properties": {
         "errors": {
           "additionalProperties": {
             "$ref": "Status"
           },
-          "description": "Map that maps name of each tagged column (or empty string in case of sole entry) to tagging operation status.",
+          "description": "Maps the name of each tagged column (or empty string for a sole entry) to tagging operation status.",
           "type": "object"
         },
         "state": {
@@ -1970,7 +1970,7 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1ReconcileTagsResponse": {
-      "description": "Request message for long-running operation returned by the ReconcileTags.",
+      "description": "Long-running operation response message returned by ReconcileTags.",
       "id": "GoogleCloudDatacatalogV1ReconcileTagsResponse",
       "properties": {
         "createdTagsCount": {
@@ -2529,7 +2529,7 @@
       "id": "GoogleCloudDatacatalogV1beta1SearchCatalogRequestScope",
       "properties": {
         "includeGcpPublicDatasets": {
-          "description": "If `true`, include Google Cloud Platform (GCP) public datasets in the search results. Info on GCP public datasets is available at https://cloud.google.com/public-datasets/. By default, GCP public datasets are excluded.",
+          "description": "If `true`, include Google Cloud public datasets in the search results. Info on Google Cloud public datasets is available at https://cloud.google.com/public-datasets/. By default, Google Cloud public datasets are excluded.",
           "type": "boolean"
         },
         "includeOrgIds": {
@@ -2802,7 +2802,7 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1beta1TagTemplate": {
-      "description": "A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to GCP resources. [Tag template roles](https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.",
+      "description": "A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to Google Cloud resources. [Tag template roles](https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.",
       "id": "GoogleCloudDatacatalogV1beta1TagTemplate",
       "properties": {
         "displayName": {
@@ -2896,7 +2896,7 @@
         },
         "service": {
           "$ref": "GoogleCloudDatacatalogV1beta1TaxonomyService",
-          "description": "Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a GCP service. Currently only 'DATAPLEX' is supported.",
+          "description": "Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a Google Cloud service. Currently only 'DATAPLEX' is supported.",
           "readOnly": true
         },
         "taxonomyTimestamps": {
@@ -2916,7 +2916,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The GCP service name.",
+          "description": "The Google Cloud service name.",
           "enum": [
             "MANAGING_SYSTEM_UNSPECIFIED",
             "MANAGING_SYSTEM_DATAPLEX",

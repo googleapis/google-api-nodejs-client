@@ -998,11 +998,11 @@ export namespace datacatalog_v1 {
     parentPolicyTag?: string | null;
   }
   /**
-   * Metadata message for long-running operation returned by the ReconcileTags.
+   * Long-running operation metadata message returned by the ReconcileTags.
    */
   export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsMetadata {
     /**
-     * Map that maps name of each tagged column (or empty string in case of sole entry) to tagging operation status.
+     * Maps the name of each tagged column (or empty string for a sole entry) to tagging operation status.
      */
     errors?: {[key: string]: Schema$Status} | null;
     /**
@@ -1015,20 +1015,20 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsRequest {
     /**
-     * If set to true deletes from the entry tags related to given tag template and not mentioned in the tags source. If set to false only creates and updates of the tags mentioned in the source will take place. Other tags in that entry using the same tag template will be retained instead of being deleted.
+     * If set to `true`, deletes entry tags related to a tag template not listed in the tags source from an entry. If set to `false`, unlisted tags are retained.
      */
     forceDeleteMissing?: boolean | null;
     /**
-     * A list of tags to be applied on a given entry. Individual tags may specify tag template, but it must be the same as the one in the ReconcileTagsRequest. The sole entry and each of its columns must be mentioned at most once.
+     * A list of tags to apply to an entry. A tag can specify a tag template, which must be the template specified in the `ReconcileTagsRequest`. The sole entry and each of its columns must be mentioned at most once.
      */
     tags?: Schema$GoogleCloudDatacatalogV1Tag[];
     /**
-     * Required. The name of the tag template, that will be used for reconciliation.
+     * Required. The name of the tag template, which is used for reconciliation.
      */
     tagTemplate?: string | null;
   }
   /**
-   * Request message for long-running operation returned by the ReconcileTags.
+   * Long-running operation response message returned by ReconcileTags.
    */
   export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsResponse {
     /**
@@ -1156,7 +1156,7 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1SearchCatalogRequestScope {
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in search results. By default, they are excluded. See [Google Cloud Public Datasets](/public-datasets) for more information.
+     * If `true`, include Google Cloud public datasets in search results. By default, they are excluded. See [Google Cloud Public Datasets](/public-datasets) for more information.
      */
     includeGcpPublicDatasets?: boolean | null;
     /**
@@ -1420,7 +1420,7 @@ export namespace datacatalog_v1 {
     displayName?: string | null;
   }
   /**
-   * A tag template defines a tag that can have one or more typed fields. The template is used to create tags that are attached to GCP resources. [Tag template roles] (https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. For example, see the [TagTemplate User] (https://cloud.google.com/data-catalog/docs/how-to/template-user) role that includes a permission to use the tag template to tag resources.
+   * A tag template defines a tag that can have one or more typed fields. The template is used to create tags that are attached to Google Cloud resources. [Tag template roles] (https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. For example, see the [TagTemplate User] (https://cloud.google.com/data-catalog/docs/how-to/template-user) role that includes a permission to use the tag template to tag resources.
    */
   export interface Schema$GoogleCloudDatacatalogV1TagTemplate {
     /**
@@ -1496,7 +1496,7 @@ export namespace datacatalog_v1 {
      */
     policyTagCount?: number | null;
     /**
-     * Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a GCP service. Currently only 'DATAPLEX' is supported.
+     * Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a Google Cloud service. Currently only 'DATAPLEX' is supported.
      */
     service?: Schema$GoogleCloudDatacatalogV1TaxonomyService;
     /**
@@ -1513,7 +1513,7 @@ export namespace datacatalog_v1 {
      */
     identity?: string | null;
     /**
-     * The GCP service name.
+     * The Google Cloud service name.
      */
     name?: string | null;
   }
@@ -3955,7 +3955,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Imports entries from some source (e.g. dump in a Cloud Storage bucket) to the Data Catalog. Dump here is a snapshot of the third-party system state, that needs to be ingested in the Data Catalog. Import of entries is a sync operation that reconciles state of the third-party system and Data Catalog. ImportEntries is a long-running operation done in the background, so this method returns long-running operation resource. The resource can be queried with Operations.GetOperation which contains metadata and response.
+     * Imports entries from a source, such as data previously dumped into a Cloud Storage bucket, into Data Catalog. `ImportEntries` accepts source data snapshots of third-party system state. Import of entries is a sync operation that reconciles the state of the third-party system with Data Catalog. `ImportEntries` returns a long-running operation resource that can be queried with Operations.GetOperation to return ImportEntriesMetadata and an ImportEntriesResponse message.
      * @example
      * ```js
      * // Before running the sample:
@@ -5899,7 +5899,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Reconciles tags created with a given tag template on a given Entry. Reconciliation is an operation that given a list of tags creates or updates them on the entry. Additionally, the operation is also able to delete tags not mentioned in the tag list. It can be achieved by setting force_delete_missing parameter. Reconciliation is a long-running operation done in the background, so this method returns long-running operation resource. The resource can be queried with Operations.GetOperation which contains metadata and response.
+     * `ReconcileTags` creates or updates a list of tags on the entry. If the ReconcileTagsRequest.force_delete_missing parameter is set, the operation deletes tags not included in the input tag list. `ReconcileTags` returns a long-running operation resource that can be queried with Operations.GetOperation to return ReconcileTagsMetadata and a ReconcileTagsResponse message.
      * @example
      * ```js
      * // Before running the sample:

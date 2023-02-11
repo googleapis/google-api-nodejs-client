@@ -5247,7 +5247,7 @@
       "id": "sqladmin:v1beta4",
       "name": "sqladmin",
       "version": "v1beta4",
-      "title": "Cloud SQL Admin API",
+      "title": "sqladmin API (prod)",
       "description": "API for Cloud SQL database instance management",
       "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1beta4",
       "icons": {
@@ -5262,7 +5262,7 @@
       "id": "sqladmin:v1",
       "name": "sqladmin",
       "version": "v1",
-      "title": "Cloud SQL Admin API",
+      "title": "sqladmin API (prod)",
       "description": "API for Cloud SQL database instance management",
       "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1",
       "icons": {

@@ -2134,7 +2134,7 @@ export namespace cloudfunctions_v2beta {
      *     filter: 'placeholder-value',
      *     // The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. See https://google.aip.dev/132#ordering.
      *     orderBy: 'placeholder-value',
-     *     // Maximum number of functions to return per call.
+     *     // Maximum number of functions to return per call. The largest allowed page_size is 1,000, if the page_size is omitted or specified as greater than 1,000 then it will be replaced as 1,000. The size of the list response can be less than specified when used with filters.
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
@@ -2766,7 +2766,7 @@ export namespace cloudfunctions_v2beta {
      */
     orderBy?: string;
     /**
-     * Maximum number of functions to return per call.
+     * Maximum number of functions to return per call. The largest allowed page_size is 1,000, if the page_size is omitted or specified as greater than 1,000 then it will be replaced as 1,000. The size of the list response can be less than specified when used with filters.
      */
     pageSize?: number;
     /**
