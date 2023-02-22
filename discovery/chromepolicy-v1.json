@@ -557,12 +557,19 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230220",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
       "id": "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle",
       "properties": {
+        "deprecatedInFavorOf": {
+          "description": "In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "description": {
           "description": "Description about current life cycle.",
           "type": "string"
@@ -943,6 +950,54 @@
           "description": "Minimum value.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyVersionsV1PolicyModificationError": {
+      "description": "Error information for a modification request of a specific policy on a specific target.",
+      "id": "GoogleChromePolicyVersionsV1PolicyModificationError",
+      "properties": {
+        "errors": {
+          "description": "Output only. The non-field errors related to the modification.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "fieldErrors": {
+          "description": "Output only. The error messages related to the modification.",
+          "items": {
+            "$ref": "GoogleChromePolicyVersionsV1PolicyModificationFieldError"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "policySchema": {
+          "description": "Output only. The specific policy schema modification that had an error.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policyTargetKey": {
+          "$ref": "GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "description": "Output only. The specific policy target modification that had error.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyVersionsV1PolicyModificationErrorDetails": {
+      "description": "Details of the errors encountered during a policy modification request. This message will be returned as part of the details of a google.rpc.Status returned to the user when there is an error in their request.",
+      "id": "GoogleChromePolicyVersionsV1PolicyModificationErrorDetails",
+      "properties": {
+        "modificationErrors": {
+          "description": "Output only. List of specific policy modifications errors that may have occurred during a modifying request.",
+          "items": {
+            "$ref": "GoogleChromePolicyVersionsV1PolicyModificationError"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
