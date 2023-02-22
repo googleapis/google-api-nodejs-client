@@ -218,7 +218,7 @@
       "name": "advisorynotifications",
       "version": "v1",
       "title": "Advisory Notifications API",
-      "description": "",
+      "description": "An API for accessing Advisory Notifications in Google Cloud",
       "discoveryRestUrl": "https://advisorynotifications.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1794,7 +1794,7 @@
       "id": "contentwarehouse:v1",
       "name": "contentwarehouse",
       "version": "v1",
-      "title": "contentwarehouse API",
+      "title": "Document AI Warehouse API",
       "description": "",
       "discoveryRestUrl": "https://contentwarehouse.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -4550,6 +4550,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/pubsub/lite/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "readerrevenuesubscriptionlinking:v1",
+      "name": "readerrevenuesubscriptionlinking",
+      "version": "v1",
+      "title": "Reader Revenue Subscription Linking API",
+      "description": "readerrevenuesubscriptionlinking.googleapis.com API.",
+      "discoveryRestUrl": "https://readerrevenuesubscriptionlinking.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/news/subscribe/subscription-linking/overview",
       "preferred": true
     },
     {
