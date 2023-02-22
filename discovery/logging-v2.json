@@ -450,6 +450,40 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "createAsync": {
+                  "description": "Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets:createAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.billingAccounts.locations.buckets.createAsync",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "bucketId": {
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource in which to create the log bucket: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/buckets:createAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
                 "delete": {
                   "description": "Deletes a log bucket.Changes the bucket's lifecycle_state to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all log entries in the bucket will be permanently deleted.",
                   "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}",
@@ -544,7 +578,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "description": "Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
                   "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.billingAccounts.locations.buckets.patch",
@@ -601,6 +635,41 @@
                   },
                   "response": {
                     "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "updateAsync": {
+                  "description": "Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}:updateAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.billingAccounts.locations.buckets.updateAsync",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the bucket to update. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" For example:\"projects/my-project/locations/global/buckets/my-bucket\"",
+                      "location": "path",
+                      "pattern": "^billingAccounts/[^/]+/locations/[^/]+/buckets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:updateAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -1837,6 +1906,40 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "createAsync": {
+                  "description": "Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets:createAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.folders.locations.buckets.createAsync",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "bucketId": {
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource in which to create the log bucket: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/buckets:createAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
                 "delete": {
                   "description": "Deletes a log bucket.Changes the bucket's lifecycle_state to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all log entries in the bucket will be permanently deleted.",
                   "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}",
@@ -1931,7 +2034,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "description": "Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
                   "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.folders.locations.buckets.patch",
@@ -1988,6 +2091,41 @@
                   },
                   "response": {
                     "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "updateAsync": {
+                  "description": "Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}:updateAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.folders.locations.buckets.updateAsync",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the bucket to update. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" For example:\"projects/my-project/locations/global/buckets/my-bucket\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/buckets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:updateAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -2722,6 +2860,40 @@
                 "https://www.googleapis.com/auth/logging.admin"
               ]
             },
+            "createAsync": {
+              "description": "Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.",
+              "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets:createAsync",
+              "httpMethod": "POST",
+              "id": "logging.locations.buckets.createAsync",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "bucketId": {
+                  "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The resource in which to create the log bucket: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                  "location": "path",
+                  "pattern": "^[^/]+/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+parent}/buckets:createAsync",
+              "request": {
+                "$ref": "LogBucket"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/logging.admin"
+              ]
+            },
             "delete": {
               "description": "Deletes a log bucket.Changes the bucket's lifecycle_state to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all log entries in the bucket will be permanently deleted.",
               "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}",
@@ -2816,7 +2988,7 @@
               ]
             },
             "patch": {
-              "description": "Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+              "description": "Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
               "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}",
               "httpMethod": "PATCH",
               "id": "logging.locations.buckets.patch",
@@ -2873,6 +3045,41 @@
               },
               "response": {
                 "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/logging.admin"
+              ]
+            },
+            "updateAsync": {
+              "description": "Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+              "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}:updateAsync",
+              "httpMethod": "POST",
+              "id": "logging.locations.buckets.updateAsync",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The full resource name of the bucket to update. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" For example:\"projects/my-project/locations/global/buckets/my-bucket\"",
+                  "location": "path",
+                  "pattern": "^[^/]+/[^/]+/locations/[^/]+/buckets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}:updateAsync",
+              "request": {
+                "$ref": "LogBucket"
+              },
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -3668,6 +3875,40 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "createAsync": {
+                  "description": "Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets:createAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.organizations.locations.buckets.createAsync",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "bucketId": {
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource in which to create the log bucket: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/buckets:createAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
                 "delete": {
                   "description": "Deletes a log bucket.Changes the bucket's lifecycle_state to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all log entries in the bucket will be permanently deleted.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}",
@@ -3762,7 +4003,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "description": "Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.organizations.locations.buckets.patch",
@@ -3819,6 +4060,41 @@
                   },
                   "response": {
                     "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "updateAsync": {
+                  "description": "Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}:updateAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.organizations.locations.buckets.updateAsync",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the bucket to update. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" For example:\"projects/my-project/locations/global/buckets/my-bucket\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/buckets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:updateAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -4774,6 +5050,40 @@
                     "https://www.googleapis.com/auth/logging.admin"
                   ]
                 },
+                "createAsync": {
+                  "description": "Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets:createAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.projects.locations.buckets.createAsync",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "bucketId": {
+                      "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource in which to create the log bucket: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/buckets:createAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
                 "delete": {
                   "description": "Deletes a log bucket.Changes the bucket's lifecycle_state to the DELETE_REQUESTED state. After 7 days, the bucket will be purged and all log entries in the bucket will be permanently deleted.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}",
@@ -4868,7 +5178,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "description": "Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.projects.locations.buckets.patch",
@@ -4925,6 +5235,41 @@
                   },
                   "response": {
                     "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "updateAsync": {
+                  "description": "Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}:updateAsync",
+                  "httpMethod": "POST",
+                  "id": "logging.projects.locations.buckets.updateAsync",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the bucket to update. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" For example:\"projects/my-project/locations/global/buckets/my-bucket\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/buckets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:updateAsync",
+                  "request": {
+                    "$ref": "LogBucket"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -6007,7 +6352,7 @@
       }
     }
   },
-  "revision": "20230120",
+  "revision": "20230211",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -6022,6 +6367,53 @@
           "description": "Output only. True if new timestamp column based partitioning is in use, false if legacy ingestion-time partitioning is in use.All new sinks will have this field set true and will use timestamp column based partitioning. If use_partitioned_tables is false, this value has no meaning and will be false. Legacy sinks using partitioned tables will have this field set to false.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BucketMetadata": {
+      "description": "Metadata for LongRunningUpdateBucket Operations.",
+      "id": "BucketMetadata",
+      "properties": {
+        "createBucketRequest": {
+          "$ref": "CreateBucketRequest",
+          "description": "LongRunningCreateBucket RPC request."
+        },
+        "endTime": {
+          "description": "The end time of an operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The create time of an operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of an operation.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "OPERATION_STATE_SCHEDULED",
+            "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
+            "OPERATION_STATE_RUNNING",
+            "OPERATION_STATE_SUCCEEDED",
+            "OPERATION_STATE_FAILED",
+            "OPERATION_STATE_CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Should not be used.",
+            "The operation is scheduled.",
+            "Waiting for necessary permissions.",
+            "The operation is running.",
+            "The operation was completed successfully.",
+            "The operation failed.",
+            "The operation was cancelled by the user."
+          ],
+          "type": "string"
+        },
+        "updateBucketRequest": {
+          "$ref": "UpdateBucketRequest",
+          "description": "LongRunningUpdateBucket RPC request."
         }
       },
       "type": "object"
@@ -6158,6 +6550,25 @@
         "logEntriesCopiedCount": {
           "description": "Number of log entries copied.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateBucketRequest": {
+      "description": "The parameters to CreateBucket.",
+      "id": "CreateBucketRequest",
+      "properties": {
+        "bucket": {
+          "$ref": "LogBucket",
+          "description": "Required. The new bucket. The region specified in the new bucket must be compliant with any Location Restriction Org Policy. The name field in the bucket is ignored."
+        },
+        "bucketId": {
+          "description": "Required. A client-assigned identifier such as \"my-bucket\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The resource in which to create the log bucket: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
           "type": "string"
         }
       },
@@ -6616,6 +7027,10 @@
       "description": "Describes a repository in which log entries are stored.",
       "id": "LogBucket",
       "properties": {
+        "analyticsEnabled": {
+          "description": "Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.",
+          "type": "boolean"
+        },
         "cmekSettings": {
           "$ref": "CmekSettings",
           "description": "The CMEK settings of the log bucket. If present, new log entries written to this log bucket are encrypted using the CMEK key provided in this configuration. If a log bucket has CMEK settings, the CMEK settings cannot be disabled later by updating the log bucket. Changing the KMS key is allowed."
@@ -6642,12 +7057,18 @@
           "enum": [
             "LIFECYCLE_STATE_UNSPECIFIED",
             "ACTIVE",
-            "DELETE_REQUESTED"
+            "DELETE_REQUESTED",
+            "UPDATING",
+            "CREATING",
+            "FAILED"
           ],
           "enumDescriptions": [
             "Unspecified state. This is only used/useful for distinguishing unset values.",
             "The normal and active state.",
-            "The resource has been marked for deletion by the user. For some resources (e.g. buckets), this can be reversed by an un-delete operation."
+            "The resource has been marked for deletion by the user. For some resources (e.g. buckets), this can be reversed by an un-delete operation.",
+            "The resource has been marked for an update by the user. It will remain in this state until the update is complete.",
+            "The resource has been marked for creation by the user. It will remain in this state until the creation is complete.",
+            "The resource is in an INTERNAL error state."
           ],
           "readOnly": true,
           "type": "string"
@@ -7717,6 +8138,26 @@
       "description": "The parameters to UndeleteBucket.",
       "id": "UndeleteBucketRequest",
       "properties": {},
+      "type": "object"
+    },
+    "UpdateBucketRequest": {
+      "description": "The parameters to UpdateBucket.",
+      "id": "UpdateBucketRequest",
+      "properties": {
+        "bucket": {
+          "$ref": "LogBucket",
+          "description": "Required. The updated bucket."
+        },
+        "name": {
+          "description": "Required. The full resource name of the bucket to update. \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" \"folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]\" For example:\"projects/my-project/locations/global/buckets/my-bucket\"",
+          "type": "string"
+        },
+        "updateMask": {
+          "description": "Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "WriteLogEntriesRequest": {
