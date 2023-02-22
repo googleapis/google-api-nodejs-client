@@ -160,6 +160,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings {
     /**
+     * If present, incoming audio is exported by Dialogflow to the configured Google Cloud Storage destination. Exposed at the following levels: - Agent level - Flow level
+     */
+    audioExportGcsDestination?: Schema$GoogleCloudDialogflowCxV3beta1GcsDestination;
+    /**
      * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
      */
     loggingSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings;
@@ -233,6 +237,10 @@ export namespace dialogflow_v3beta1 {
      * The list of all languages supported by the agent (except for the `default_language_code`).
      */
     supportedLanguageCodes?: string[] | null;
+    /**
+     * Settings on instructing the speech synthesizer on how to generate the output audio content.
+     */
+    textToSpeechSettings?: Schema$GoogleCloudDialogflowCxV3beta1TextToSpeechSettings;
     /**
      * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
@@ -1268,6 +1276,15 @@ export namespace dialogflow_v3beta1 {
      * The new value of the parameter. A null value clears the parameter.
      */
     value?: any | null;
+  }
+  /**
+   * Google Cloud Storage location for a Dialogflow operation that writes or exports objects (e.g. exported agent or transcripts) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GcsDestination {
+    /**
+     * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: gs://bucket/object-name-or-prefix Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
+     */
+    uri?: string | null;
   }
   /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
@@ -2657,6 +2674,19 @@ export namespace dialogflow_v3beta1 {
      * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
      */
     text?: string | null;
+  }
+  /**
+   * Settings related to speech generating.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1TextToSpeechSettings {
+    /**
+     * Configuration of how speech should be synthesized, mapping from language (https://dialogflow.com/docs/reference/language) to SynthesizeSpeechConfig.
+     */
+    synthesizeSpeechConfigs?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3beta1SynthesizeSpeechConfig;
+    } | null;
   }
   /**
    * The request message for Flows.TrainFlow.
@@ -8215,6 +8245,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "speechToTextSettings": {},
      *       //   "startFlow": "my_startFlow",
      *       //   "supportedLanguageCodes": [],
+     *       //   "textToSpeechSettings": {},
      *       //   "timeZone": "my_timeZone"
      *       // }
      *     },
@@ -8236,6 +8267,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
      *   //   "supportedLanguageCodes": [],
+     *   //   "textToSpeechSettings": {},
      *   //   "timeZone": "my_timeZone"
      *   // }
      * }
@@ -8673,6 +8705,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
      *   //   "supportedLanguageCodes": [],
+     *   //   "textToSpeechSettings": {},
      *   //   "timeZone": "my_timeZone"
      *   // }
      * }
@@ -9114,6 +9147,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "speechToTextSettings": {},
      *       //   "startFlow": "my_startFlow",
      *       //   "supportedLanguageCodes": [],
+     *       //   "textToSpeechSettings": {},
      *       //   "timeZone": "my_timeZone"
      *       // }
      *     },
@@ -9135,6 +9169,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
      *   //   "supportedLanguageCodes": [],
+     *   //   "textToSpeechSettings": {},
      *   //   "timeZone": "my_timeZone"
      *   // }
      * }

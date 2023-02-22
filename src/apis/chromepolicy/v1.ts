@@ -128,6 +128,10 @@ export namespace chromepolicy_v1 {
 
   export interface Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle {
     /**
+     * In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI.
+     */
+    deprecatedInFavorOf?: string[] | null;
+    /**
      * Description about current life cycle.
      */
     description?: string | null;
@@ -411,6 +415,36 @@ export namespace chromepolicy_v1 {
      * Minimum value.
      */
     minimum?: string | null;
+  }
+  /**
+   * Error information for a modification request of a specific policy on a specific target.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1PolicyModificationError {
+    /**
+     * Output only. The non-field errors related to the modification.
+     */
+    errors?: string[] | null;
+    /**
+     * Output only. The error messages related to the modification.
+     */
+    fieldErrors?: Schema$GoogleChromePolicyVersionsV1PolicyModificationFieldError[];
+    /**
+     * Output only. The specific policy schema modification that had an error.
+     */
+    policySchema?: string | null;
+    /**
+     * Output only. The specific policy target modification that had error.
+     */
+    policyTargetKey?: Schema$GoogleChromePolicyVersionsV1PolicyTargetKey;
+  }
+  /**
+   * Details of the errors encountered during a policy modification request. This message will be returned as part of the details of a google.rpc.Status returned to the user when there is an error in their request.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1PolicyModificationErrorDetails {
+    /**
+     * Output only. List of specific policy modifications errors that may have occurred during a modifying request.
+     */
+    modificationErrors?: Schema$GoogleChromePolicyVersionsV1PolicyModificationError[];
   }
   /**
    * Error information for a modification request of a specific field on a specific policy.

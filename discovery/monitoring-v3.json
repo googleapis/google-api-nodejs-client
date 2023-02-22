@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20230206",
+  "revision": "20230212",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3823,12 +3823,18 @@
           "description": "The content type header to use for the check. The following configurations result in errors: 1. Content type is specified in both the headers field and the content_type field. 2. Request method is GET and content_type is not TYPE_UNSPECIFIED 3. Request method is POST and content_type is TYPE_UNSPECIFIED. 4. Request method is POST and a \"Content-Type\" header is provided via headers field. The content_type field should be used instead.",
           "enum": [
             "TYPE_UNSPECIFIED",
-            "URL_ENCODED"
+            "URL_ENCODED",
+            "USER_PROVIDED"
           ],
           "enumDescriptions": [
             "No content type specified.",
-            "body is in URL-encoded form. Equivalent to setting the Content-Type to application/x-www-form-urlencoded in the HTTP request."
+            "body is in URL-encoded form. Equivalent to setting the Content-Type to application/x-www-form-urlencoded in the HTTP request.",
+            "body is in custom_content_type form. Equivalent to setting the Content-Type to the contents of custom_content_type in the HTTP request."
           ],
+          "type": "string"
+        },
+        "customContentType": {
+          "description": "A user provided content type header to use for the check. The invalid configurations outlined in the content_type field apply to custom_content_type, as well as the following: 1. content_type is URL_ENCODED and custom_content_type is set. 2. content_type is USER_PROVIDED and custom_content_type is not set.",
           "type": "string"
         },
         "headers": {

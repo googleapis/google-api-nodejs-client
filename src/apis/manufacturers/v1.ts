@@ -727,7 +727,7 @@ export namespace manufacturers_v1 {
     targetCountry?: string | null;
   }
   /**
-   * The data matches with the vertical specification for product in http://google3/googlebase/verticals/devel/product_certification
+   * Product certification data.
    */
   export interface Schema$ProductCertification {
     /**

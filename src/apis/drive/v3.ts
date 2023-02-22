@@ -432,6 +432,7 @@ export namespace drive_v3 {
       canChangeDomainUsersOnlyRestriction?: boolean;
       canChangeDriveBackground?: boolean;
       canChangeDriveMembersOnlyRestriction?: boolean;
+      canChangeSharingFoldersRequiresOrganizerPermissionRestriction?: boolean;
       canComment?: boolean;
       canCopy?: boolean;
       canDeleteChildren?: boolean;
@@ -483,6 +484,7 @@ export namespace drive_v3 {
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
       driveMembersOnly?: boolean;
+      sharingFoldersRequiresOrganizerPermission?: boolean;
     } | null;
     /**
      * The ID of the theme from which the background image and color will be set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.
@@ -1327,6 +1329,7 @@ export namespace drive_v3 {
       canAddChildren?: boolean;
       canChangeCopyRequiresWriterPermissionRestriction?: boolean;
       canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeSharingFoldersRequiresOrganizerPermissionRestriction?: boolean;
       canChangeTeamDriveBackground?: boolean;
       canChangeTeamMembersOnlyRestriction?: boolean;
       canComment?: boolean;
@@ -1376,6 +1379,7 @@ export namespace drive_v3 {
       adminManagedRestrictions?: boolean;
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
+      sharingFoldersRequiresOrganizerPermission?: boolean;
       teamMembersOnly?: boolean;
     } | null;
     /**

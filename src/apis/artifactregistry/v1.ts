@@ -255,7 +255,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1File {
     /**
-     * The time when the File was created.
+     * Output only. The time when the File was created.
      */
     createTime?: string | null;
     /**
@@ -279,7 +279,7 @@ export namespace artifactregistry_v1 {
      */
     sizeBytes?: string | null;
     /**
-     * The time when the File was last updated.
+     * Output only. The time when the File was last updated.
      */
     updateTime?: string | null;
   }
@@ -1009,7 +1009,7 @@ export namespace artifactregistry_v1 {
      */
     priority?: number | null;
     /**
-     * A reference to the repository resource, for example: "projects/p1/locations/us-central1/repository/repo1".
+     * A reference to the repository resource, for example: "projects/p1/locations/us-central1/repositories/repo1".
      */
     repository?: string | null;
   }
@@ -4164,7 +4164,7 @@ export namespace artifactregistry_v1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.files.get({
-     *     // The name of the file to retrieve.
+     *     // Required. The name of the file to retrieve.
      *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/files/.*',
      *   });
      *   console.log(res.data);
@@ -4319,7 +4319,7 @@ export namespace artifactregistry_v1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
+     *       // Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
      *     }
@@ -4433,7 +4433,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Files$Get
     extends StandardParameters {
     /**
-     * The name of the file to retrieve.
+     * Required. The name of the file to retrieve.
      */
     name?: string;
   }
@@ -4456,7 +4456,7 @@ export namespace artifactregistry_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
+     * Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
   }

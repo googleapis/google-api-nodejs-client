@@ -1107,7 +1107,7 @@ export namespace androidmanagement_v1 {
      */
     enabledNotificationTypes?: string[] | null;
     /**
-     * The name of the enterprise displayed to users.
+     * The name of the enterprise displayed to users. This field has a maximum length of 100 characters.
      */
     enterpriseDisplayName?: string | null;
     /**
@@ -2906,7 +2906,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Creates an enterprise. This is the last step in the enterprise signup flow.
+     * Creates an enterprise. This is the last step in the enterprise signup flow. See also: SigninDetail
      * @example
      * ```js
      * // Before running the sample:
@@ -3463,7 +3463,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Updates an enterprise.
+     * Updates an enterprise. See also: SigninDetail
      * @example
      * ```js
      * // Before running the sample:

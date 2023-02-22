@@ -416,7 +416,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230209",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -1209,7 +1209,7 @@
       "type": "object"
     },
     "ProductCertification": {
-      "description": "The data matches with the vertical specification for product in http://google3/googlebase/verticals/devel/product_certification",
+      "description": "Product certification data.",
       "id": "ProductCertification",
       "properties": {
         "brand": {

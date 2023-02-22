@@ -2077,7 +2077,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230214",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -3777,8 +3777,13 @@
           "type": "string"
         },
         "numMembers": {
+          "description": "Deprecated. Use segmented_membership_counts instead which also includes other counts such as rosters.",
           "format": "int32",
           "type": "integer"
+        },
+        "segmentedMembershipCounts": {
+          "$ref": "AppsDynamiteSharedSegmentedMembershipCounts",
+          "description": "Member counts object with types of members and their respective counts."
         },
         "userMembershipState": {
           "description": "searching user's membership state in this space",
@@ -3988,6 +3993,10 @@
             "$ref": "AppsDynamiteStorageActionActionParameter"
           },
           "type": "array"
+        },
+        "persistValues": {
+          "description": "Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4762,13 +4771,15 @@
             "CHECK_BOX",
             "RADIO_BUTTON",
             "SWITCH",
-            "DROPDOWN"
+            "DROPDOWN",
+            "MULTI_SELECT"
           ],
           "enumDescriptions": [
             "The selection type is a checkbox.",
             "The selection type is a radio button.",
             "The selection type is a switch.",
-            "The selection type is a dropdown."
+            "The selection type is a dropdown.",
+            "The selection type is multi-select"
           ],
           "type": "string"
         }
@@ -13071,6 +13082,13 @@
             "$ref": "MultiKey"
           },
           "type": "array"
+        },
+        "wonderCardMappings": {
+          "description": "Value of coproc's message delete history record extension that exports /wonder/message_mapping/{vertical} attribute of deleted messages which have smartmail label (eg. ^cob_sm_invoice, etc).",
+          "items": {
+            "$ref": "WonderCardDelete"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -17986,6 +18004,18 @@
             "Server-generated user mention, for clients to strikethrough."
           ],
           "type": "string"
+        },
+        "userMentionError": {
+          "description": "Specific reason for the user mention failing, for fine-grained processing by clients (i.e. specific error message for space limit exceeded case) IMPORTANT: Set this only for FAILED_TO_ADD case.",
+          "enum": [
+            "USER_MENTION_ERROR_UNSPECIFIED",
+            "MEMBERSHIP_LIMIT_EXCEEDED"
+          ],
+          "enumDescriptions": [
+            "",
+            "Failure caused by adding user to a room that is full"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -18215,6 +18245,39 @@
         "textParagraph": {
           "$ref": "TextParagraph",
           "description": "Read-only Widgets"
+        }
+      },
+      "type": "object"
+    },
+    "WonderCardDelete": {
+      "description": "Message delete history record extension that exports /wonder/message_mapping/{vertical} attribute of deleted messages which have any smartmail label (eg. ^cob_sm_invoice). go/how-dd-card-deletion",
+      "id": "WonderCardDelete",
+      "properties": {
+        "messageMappings": {
+          "additionalProperties": {
+            "$ref": "WonderMessageMapping"
+          },
+          "description": "Contains <{@code WonderCardType} enum value, value of /wonder/message_mapping/{vertical} attribute of deleted message> pairs.",
+          "type": "object"
+        },
+        "msgId": {
+          "description": "Message ID of the original deleted message",
+          "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WonderMessageMapping": {
+      "description": "Card mapping attached to original message as an attribute stored at /wonder/message_mapping/{vertical} Next ID: 2",
+      "id": "WonderMessageMapping",
+      "properties": {
+        "wonderCardMessageId": {
+          "description": "List of wonder card (client-generated) message IDs generated based on the original message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

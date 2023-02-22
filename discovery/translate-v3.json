@@ -1286,7 +1286,7 @@
       }
     }
   },
-  "revision": "20230120",
+  "revision": "20230210",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -2250,7 +2250,7 @@
           "description": "Optional. Output configurations. Defines if the output file should be stored within Cloud Storage as well as the desired output format. If not provided the translated file will only be returned through a byte-stream and its output mime type will be the same as the input file's mime type."
         },
         "enableShadowRemovalNativePdf": {
-          "description": "Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation.",
+          "description": "Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation. Shadow removal feature can only be enabled when is_translate_native_pdf_only: false && pdf_native_only: false",
           "type": "boolean"
         },
         "glossaryConfig": {

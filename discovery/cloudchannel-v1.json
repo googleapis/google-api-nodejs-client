@@ -2009,7 +2009,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230220",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2716,7 +2716,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For GCP billing accounts, the following Parameter may be accepted as input: - display_name: The display name of the billing account.",
+          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For GCP billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.",
           "items": {
             "$ref": "GoogleCloudChannelV1Parameter"
           },
@@ -4510,7 +4510,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For GCP billing accounts, the following Parameter may be accepted as input: - display_name: The display name of the billing account.",
+          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For GCP billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.",
           "items": {
             "$ref": "GoogleCloudChannelV1alpha1Parameter"
           },

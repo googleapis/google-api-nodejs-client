@@ -823,7 +823,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230215",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -939,14 +939,14 @@
           "type": "string"
         },
         "edition": {
-          "description": "Edition of the capacity commitment.",
+          "description": "Do not use.",
           "enum": [
             "EDITION_UNSPECIFIED",
             "ENTERPRISE"
           ],
           "enumDescriptions": [
-            "Default value, only for legacy reservations and capacity commitments.",
-            "Enterprise edition."
+            "Do not use.",
+            "Do not use."
           ],
           "type": "string"
         },
@@ -980,7 +980,7 @@
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
             "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
-            "Should only be used for `renewal_plan` and is only meaningful if edition is specified to values other than EDITION_UNSPECIFIED. Otherwise CreateCapacityCommitmentRequest or UpdateCapacityCommitmentRequest will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. If the renewal_plan is NONE, capacity commitment will be removed at the end of its commitment period."
+            "Do not use."
           ],
           "type": "string"
         },
@@ -1000,7 +1000,7 @@
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
             "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
-            "Should only be used for `renewal_plan` and is only meaningful if edition is specified to values other than EDITION_UNSPECIFIED. Otherwise CreateCapacityCommitmentRequest or UpdateCapacityCommitmentRequest will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. If the renewal_plan is NONE, capacity commitment will be removed at the end of its commitment period."
+            "Do not use."
           ],
           "type": "string"
         },
@@ -1134,14 +1134,14 @@
           "type": "string"
         },
         "edition": {
-          "description": "Edition of the reservation.",
+          "description": "Do not use.",
           "enum": [
             "EDITION_UNSPECIFIED",
             "ENTERPRISE"
           ],
           "enumDescriptions": [
-            "Default value, only for legacy reservations and capacity commitments.",
-            "Enterprise edition."
+            "Do not use.",
+            "Do not use."
           ],
           "type": "string"
         },

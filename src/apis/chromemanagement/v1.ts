@@ -637,6 +637,40 @@ export namespace chromemanagement_v1 {
     totalSize?: number | null;
   }
   /**
+   * Response containing a summary printing report for each printer from the specified organizational unit for the requested time interval.
+   */
+  export interface Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse {
+    /**
+     * Pagination token for requesting the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of PrinterReports matching request.
+     */
+    printerReports?: Schema$GoogleChromeManagementV1PrinterReport[];
+    /**
+     * Total number of printers matching request.
+     */
+    totalSize?: string | null;
+  }
+  /**
+   * Response containing a summary printing report for each user that has initiated a print job with a printer from the specified organizational unit during the requested time interval.
+   */
+  export interface Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse {
+    /**
+     * Pagination token for requesting the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Total number of users matching request.
+     */
+    totalSize?: string | null;
+    /**
+     * List of UserPrintReports matching request.
+     */
+    userPrintReports?: Schema$GoogleChromeManagementV1UserPrintReport[];
+  }
+  /**
    * CPU specifications for the device * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1CpuInfo {
@@ -1175,6 +1209,35 @@ export namespace chromemanagement_v1 {
     usbPeripheralReport?: Schema$GoogleChromeManagementV1UsbPeripheralReport[];
   }
   /**
+   * Report for CountPrintJobsByPrinter, contains statistics on printer usage. Contains the total number of print jobs initiated with this printer, the number of users and the number of devices that have initiated at least one print job with this printer.
+   */
+  export interface Schema$GoogleChromeManagementV1PrinterReport {
+    /**
+     * Number of chrome devices that have been used to send print jobs to the specified printer.
+     */
+    deviceCount?: string | null;
+    /**
+     * Number of print jobs sent to the printer.
+     */
+    jobCount?: string | null;
+    /**
+     * Printer name.
+     */
+    printer?: string | null;
+    /**
+     * Printer API ID.
+     */
+    printerId?: string | null;
+    /**
+     * Printer model.
+     */
+    printerModel?: string | null;
+    /**
+     * Number of users that have sent print jobs to the printer.
+     */
+    userCount?: string | null;
+  }
+  /**
    * Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
    */
   export interface Schema$GoogleChromeManagementV1StorageInfo {
@@ -1519,6 +1582,31 @@ export namespace chromemanagement_v1 {
      * Output only. Vendor ID
      */
     vid?: number | null;
+  }
+  /**
+   * Report for CountPrintJobsByUser, contains printing statistics for a user. Contains the number of printers, the number of devices used to initiate print jobs, and the number of print jobs initiated.
+   */
+  export interface Schema$GoogleChromeManagementV1UserPrintReport {
+    /**
+     * Number of chrome devices that have been used to initiate print jobs by the user.
+     */
+    deviceCount?: string | null;
+    /**
+     * Number of print jobs initiated by the user.
+     */
+    jobCount?: string | null;
+    /**
+     * Number of printers used by the user.
+     */
+    printerCount?: string | null;
+    /**
+     * The primary e-mail address of the user.
+     */
+    userEmail?: string | null;
+    /**
+     * The unique Directory API ID of the user.
+     */
+    userId?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -3180,6 +3268,311 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Get a summary of printing done by each printer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countPrintJobsByPrinter({
+     *     // Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. If omitted, results will be ordered in ascending order of the 'printer' field. Supported order_by fields: * printer * job_count * device_count * user_count
+     *     orderBy: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the response to be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the organizational unit for printers. If specified, only data for printers from the specified organizational unit will be returned. If omitted, data for printers from all organizational units will be returned.
+     *     printerOrgUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "printerReports": [],
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countPrintJobsByPrinter(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyprinter,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countPrintJobsByPrinter(
+      params?: Params$Resource$Customers$Reports$Countprintjobsbyprinter,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>;
+    countPrintJobsByPrinter(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyprinter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countPrintJobsByPrinter(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyprinter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+    ): void;
+    countPrintJobsByPrinter(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyprinter,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+    ): void;
+    countPrintJobsByPrinter(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+    ): void;
+    countPrintJobsByPrinter(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countprintjobsbyprinter
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countprintjobsbyprinter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countprintjobsbyprinter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countPrintJobsByPrinter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountPrintJobsByPrinterResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get a summary of printing done by each user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countPrintJobsByUser({
+     *     // Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. If omitted, results will be ordered in ascending order of the 'user_email' field. Supported order_by fields: * user_email * job_count * printer_count * device_count
+     *     orderBy: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the response to be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the organizational unit for printers. If specified, only print jobs initiated with printers from the specified organizational unit will be counted. If omitted, all print jobs will be counted.
+     *     printerOrgUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": "my_totalSize",
+     *   //   "userPrintReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countPrintJobsByUser(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyuser,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countPrintJobsByUser(
+      params?: Params$Resource$Customers$Reports$Countprintjobsbyuser,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>;
+    countPrintJobsByUser(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyuser,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countPrintJobsByUser(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyuser,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+    ): void;
+    countPrintJobsByUser(
+      params: Params$Resource$Customers$Reports$Countprintjobsbyuser,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+    ): void;
+    countPrintJobsByUser(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+    ): void;
+    countPrintJobsByUser(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countprintjobsbyuser
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countprintjobsbyuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Reports$Countprintjobsbyuser;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countPrintJobsByUser'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountPrintJobsByUserResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of devices that have a specified app installed.
      * @example
      * ```js
@@ -3446,6 +3839,60 @@ export namespace chromemanagement_v1 {
      * Token to specify the page of the request to be returned.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Countprintjobsbyprinter
+    extends StandardParameters {
+    /**
+     * Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
+     */
+    customer?: string;
+    /**
+     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     */
+    filter?: string;
+    /**
+     * Field used to order results. If omitted, results will be ordered in ascending order of the 'printer' field. Supported order_by fields: * printer * job_count * device_count * user_count
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Token to specify the page of the response to be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the organizational unit for printers. If specified, only data for printers from the specified organizational unit will be returned. If omitted, data for printers from all organizational units will be returned.
+     */
+    printerOrgUnitId?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Countprintjobsbyuser
+    extends StandardParameters {
+    /**
+     * Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
+     */
+    customer?: string;
+    /**
+     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     */
+    filter?: string;
+    /**
+     * Field used to order results. If omitted, results will be ordered in ascending order of the 'user_email' field. Supported order_by fields: * user_email * job_count * printer_count * device_count
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Token to specify the page of the response to be returned.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the organizational unit for printers. If specified, only print jobs initiated with printers from the specified organizational unit will be counted. If omitted, all print jobs will be counted.
+     */
+    printerOrgUnitId?: string;
   }
   export interface Params$Resource$Customers$Reports$Findinstalledappdevices
     extends StandardParameters {

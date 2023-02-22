@@ -120,7 +120,8 @@
                 "CALL_CLICKS",
                 "WEBSITE_CLICKS",
                 "BUSINESS_BOOKINGS",
-                "BUSINESS_FOOD_ORDERS"
+                "BUSINESS_FOOD_ORDERS",
+                "BUSINESS_FOOD_MENU_CLICKS"
               ],
               "enumDescriptions": [
                 "Represents the default unknown value.",
@@ -133,7 +134,8 @@
                 "The number of times the business profile call button was clicked.",
                 "The number of times the business profile website was clicked.",
                 "The number of bookings received from the business profile.",
-                "The number of food orders received from the business profile."
+                "The number of food orders received from the business profile.",
+                "The number of clicks to view or interact with the menu content on the business profile. Multiple clicks by a unique user within a single day are counted as 1."
               ],
               "location": "query",
               "type": "string"
@@ -323,7 +325,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230221",
   "rootUrl": "https://businessprofileperformance.googleapis.com/",
   "schemas": {
     "Date": {

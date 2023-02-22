@@ -275,7 +275,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+              "description": "Required. The list of fields to be updated. Field names must be in snake case (for example, \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -907,7 +907,7 @@
     "properties": {
       "methods": {
         "acknowledgeUserDataCollection": {
-          "description": "Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or via this API) before MeasurementProtocolSecret resources may be created.",
+          "description": "Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or through this API) before MeasurementProtocolSecret resources may be created.",
           "flatPath": "v1alpha/properties/{propertiesId}:acknowledgeUserDataCollection",
           "httpMethod": "POST",
           "id": "analyticsadmin.properties.acknowledgeUserDataCollection",
@@ -2911,6 +2911,160 @@
             }
           }
         },
+        "expandedDataSets": {
+          "methods": {
+            "create": {
+              "description": "Creates a ExpandedDataSet.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.expandedDataSets.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/expandedDataSets",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a ExpandedDataSet on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets/{expandedDataSetsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.expandedDataSets.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: properties/1234/expandedDataSets/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/expandedDataSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single ExpandedDataSet.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets/{expandedDataSetsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.expandedDataSets.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the Audience to get. Example format: properties/1234/expandedDataSets/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/expandedDataSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists ExpandedDataSets on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.expandedDataSets.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListExpandedDataSets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExpandedDataSet` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/expandedDataSets",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a ExpandedDataSet on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets/{expandedDataSetsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.expandedDataSets.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for this ExpandedDataSet resource. Format: properties/{property_id}/expandedDataSets/{expanded_data_set}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/expandedDataSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "firebaseLinks": {
           "methods": {
             "create": {
@@ -3588,7 +3742,7 @@
       }
     }
   },
-  "revision": "20230203",
+  "revision": "20230221",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -6019,6 +6173,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse": {
+      "description": "Response message for ListExpandedDataSets RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse",
+      "properties": {
+        "expandedDataSets": {
+          "description": "List of ExpandedDataSet. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse": {
       "description": "Response message for ListFirebaseLinks RPC",
       "id": "GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse",
@@ -6358,7 +6530,7 @@
           "description": "The account to create."
         },
         "redirectUri": {
-          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI",
+          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI.",
           "type": "string"
         }
       },
@@ -6388,7 +6560,7 @@
         },
         "dimensionFilter": {
           "$ref": "GoogleAnalyticsAdminV1alphaAccessFilterExpression",
-          "description": "Dimension filters allow you to restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter."
+          "description": "Dimension filters let you restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter."
         },
         "dimensions": {
           "description": "The dimensions requested and displayed in the response. Requests are allowed up to 9 dimensions.",

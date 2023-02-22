@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230221",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -1068,6 +1068,11 @@
       "description": "Individual line item definition of a subscription.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem",
       "properties": {
+        "amount": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Amount",
+          "description": "Output only. The price of the product/service in this line item.",
+          "readOnly": true
+        },
         "description": {
           "description": "Output only. Description of this line item.",
           "readOnly": true,

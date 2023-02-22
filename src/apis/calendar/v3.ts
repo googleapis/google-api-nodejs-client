@@ -656,6 +656,7 @@ export namespace calendar_v3 {
      * - "default" - A regular event or not further specified.
      * - "outOfOffice" - An out-of-office event.
      * - "focusTime" - A focus-time event.
+     * - "workingLocation" - A working location event.
      */
     eventType?: string | null;
     /**
@@ -803,6 +804,10 @@ export namespace calendar_v3 {
      * - "confidential" - The event is private. This value is provided for compatibility reasons.
      */
     visibility?: string | null;
+    /**
+     * Working Location event data. Read-only.
+     */
+    workingLocationProperties?: Schema$EventWorkingLocationProperties;
   }
   export interface Schema$EventAttachment {
     /**
@@ -954,6 +959,26 @@ export namespace calendar_v3 {
      * Last modification time of the calendar (as a RFC3339 timestamp). Read-only.
      */
     updated?: string | null;
+  }
+  export interface Schema$EventWorkingLocationProperties {
+    /**
+     * If present, specifies that the user is working from a custom location.
+     */
+    customLocation?: {label?: string} | null;
+    /**
+     * If present, specifies that the user is working at home.
+     */
+    homeOffice?: any | null;
+    /**
+     * If present, specifies that the user is working from an office.
+     */
+    officeLocation?: {
+      buildingId?: string;
+      deskId?: string;
+      floorId?: string;
+      floorSectionId?: string;
+      label?: string;
+    } | null;
   }
   export interface Schema$FreeBusyCalendar {
     /**
@@ -4874,7 +4899,8 @@ export namespace calendar_v3 {
      *   //   "summary": "my_summary",
      *   //   "transparency": "my_transparency",
      *   //   "updated": "my_updated",
-     *   //   "visibility": "my_visibility"
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
      *   // }
      * }
      *
@@ -5046,7 +5072,8 @@ export namespace calendar_v3 {
      *       //   "summary": "my_summary",
      *       //   "transparency": "my_transparency",
      *       //   "updated": "my_updated",
-     *       //   "visibility": "my_visibility"
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
      *       // }
      *     },
      *   });
@@ -5092,7 +5119,8 @@ export namespace calendar_v3 {
      *   //   "summary": "my_summary",
      *   //   "transparency": "my_transparency",
      *   //   "updated": "my_updated",
-     *   //   "visibility": "my_visibility"
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
      *   // }
      * }
      *
@@ -5272,7 +5300,8 @@ export namespace calendar_v3 {
      *       //   "summary": "my_summary",
      *       //   "transparency": "my_transparency",
      *       //   "updated": "my_updated",
-     *       //   "visibility": "my_visibility"
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
      *       // }
      *     },
      *   });
@@ -5318,7 +5347,8 @@ export namespace calendar_v3 {
      *   //   "summary": "my_summary",
      *   //   "transparency": "my_transparency",
      *   //   "updated": "my_updated",
-     *   //   "visibility": "my_visibility"
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
      *   // }
      * }
      *
@@ -5848,7 +5878,8 @@ export namespace calendar_v3 {
      *   //   "summary": "my_summary",
      *   //   "transparency": "my_transparency",
      *   //   "updated": "my_updated",
-     *   //   "visibility": "my_visibility"
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
      *   // }
      * }
      *
@@ -6033,7 +6064,8 @@ export namespace calendar_v3 {
      *       //   "summary": "my_summary",
      *       //   "transparency": "my_transparency",
      *       //   "updated": "my_updated",
-     *       //   "visibility": "my_visibility"
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
      *       // }
      *     },
      *   });
@@ -6079,7 +6111,8 @@ export namespace calendar_v3 {
      *   //   "summary": "my_summary",
      *   //   "transparency": "my_transparency",
      *   //   "updated": "my_updated",
-     *   //   "visibility": "my_visibility"
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
      *   // }
      * }
      *
@@ -6255,7 +6288,8 @@ export namespace calendar_v3 {
      *   //   "summary": "my_summary",
      *   //   "transparency": "my_transparency",
      *   //   "updated": "my_updated",
-     *   //   "visibility": "my_visibility"
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
      *   // }
      * }
      *
@@ -6439,7 +6473,8 @@ export namespace calendar_v3 {
      *       //   "summary": "my_summary",
      *       //   "transparency": "my_transparency",
      *       //   "updated": "my_updated",
-     *       //   "visibility": "my_visibility"
+     *       //   "visibility": "my_visibility",
+     *       //   "workingLocationProperties": {}
      *       // }
      *     },
      *   });
@@ -6485,7 +6520,8 @@ export namespace calendar_v3 {
      *   //   "summary": "my_summary",
      *   //   "transparency": "my_transparency",
      *   //   "updated": "my_updated",
-     *   //   "visibility": "my_visibility"
+     *   //   "visibility": "my_visibility",
+     *   //   "workingLocationProperties": {}
      *   // }
      * }
      *

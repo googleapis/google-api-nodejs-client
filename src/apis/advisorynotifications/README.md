@@ -2,7 +2,7 @@
 
 # advisorynotifications
 
-> 
+> An API for accessing Advisory Notifications in Google Cloud
 
 ## Installation
 

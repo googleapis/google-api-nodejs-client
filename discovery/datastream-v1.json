@@ -1222,7 +1222,7 @@
       }
     }
   },
-  "revision": "20221128",
+  "revision": "20230201",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -2003,6 +2003,11 @@
           "$ref": "MysqlRdbms",
           "description": "MySQL objects to retrieve from the source."
         },
+        "maxConcurrentBackfillTasks": {
+          "description": "Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "maxConcurrentCdcTasks": {
           "description": "Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
           "format": "int32",
@@ -2292,6 +2297,11 @@
           "$ref": "OracleRdbms",
           "description": "Oracle objects to include in the stream."
         },
+        "maxConcurrentBackfillTasks": {
+          "description": "Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "maxConcurrentCdcTasks": {
           "description": "Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
           "format": "int32",
@@ -2451,6 +2461,11 @@
         "includeObjects": {
           "$ref": "PostgresqlRdbms",
           "description": "PostgreSQL objects to include in the stream."
+        },
+        "maxConcurrentBackfillTasks": {
+          "description": "Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
+          "format": "int32",
+          "type": "integer"
         },
         "publication": {
           "description": "Required. The name of the publication that includes the set of all tables that are defined in the stream's include_objects.",

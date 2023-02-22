@@ -1027,7 +1027,7 @@ export namespace analyticsdata_v1beta {
      */
     dateRanges?: Schema$DateRange[];
     /**
-     * Dimension filters allow you to ask for only specific dimension values in the report. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter.
+     * Dimension filters let you ask for only specific dimension values in the report. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter.
      */
     dimensionFilter?: Schema$FilterExpression;
     /**

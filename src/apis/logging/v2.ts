@@ -159,6 +159,31 @@ export namespace logging_v2 {
     usesTimestampColumnPartitioning?: boolean | null;
   }
   /**
+   * Metadata for LongRunningUpdateBucket Operations.
+   */
+  export interface Schema$BucketMetadata {
+    /**
+     * LongRunningCreateBucket RPC request.
+     */
+    createBucketRequest?: Schema$CreateBucketRequest;
+    /**
+     * The end time of an operation.
+     */
+    endTime?: string | null;
+    /**
+     * The create time of an operation.
+     */
+    startTime?: string | null;
+    /**
+     * State of an operation.
+     */
+    state?: string | null;
+    /**
+     * LongRunningUpdateBucket RPC request.
+     */
+    updateBucketRequest?: Schema$UpdateBucketRequest;
+  }
+  /**
    * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i \> 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
    */
   export interface Schema$BucketOptions {
@@ -258,6 +283,23 @@ export namespace logging_v2 {
      * Number of log entries copied.
      */
     logEntriesCopiedCount?: string | null;
+  }
+  /**
+   * The parameters to CreateBucket.
+   */
+  export interface Schema$CreateBucketRequest {
+    /**
+     * Required. The new bucket. The region specified in the new bucket must be compliant with any Location Restriction Org Policy. The name field in the bucket is ignored.
+     */
+    bucket?: Schema$LogBucket;
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string | null;
+    /**
+     * Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -593,6 +635,10 @@ export namespace logging_v2 {
    * Describes a repository in which log entries are stored.
    */
   export interface Schema$LogBucket {
+    /**
+     * Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.
+     */
+    analyticsEnabled?: boolean | null;
     /**
      * The CMEK settings of the log bucket. If present, new log entries written to this log bucket are encrypted using the CMEK key provided in this configuration. If a log bucket has CMEK settings, the CMEK settings cannot be disabled later by updating the log bucket. Changing the KMS key is allowed.
      */
@@ -1353,6 +1399,23 @@ export namespace logging_v2 {
    * The parameters to UndeleteBucket.
    */
   export interface Schema$UndeleteBucketRequest {}
+  /**
+   * The parameters to UpdateBucket.
+   */
+  export interface Schema$UpdateBucketRequest {
+    /**
+     * Required. The updated bucket.
+     */
+    bucket?: Schema$LogBucket;
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     */
+    name?: string | null;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     */
+    updateMask?: string | null;
+  }
   /**
    * The parameters to WriteLogEntries.
    */
@@ -2835,6 +2898,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -2852,6 +2916,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -2953,6 +3018,163 @@ export namespace logging_v2 {
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.createAsync({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     parent: 'billingAccounts/my-billingAccount/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Createasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAsync(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Createasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    createAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Createasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Createasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Createasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    createAsync(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Createasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Createasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Createasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets:createAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -3122,6 +3344,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -3366,7 +3589,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
      * @example
      * ```js
      * // Before running the sample:
@@ -3404,6 +3627,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -3421,6 +3645,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -3658,9 +3883,182 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.billingAccounts.locations.buckets.updateAsync({
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     *     name: 'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAsync(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Updateasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Updateasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Updateasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAsync(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Updateasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Updateasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Updateasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:updateAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Billingaccounts$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
@@ -3732,6 +4130,22 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteBucketRequest;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Updateasync
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Billingaccounts$Locations$Buckets$Views {
@@ -9412,6 +9826,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -9429,6 +9844,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -9530,6 +9946,162 @@ export namespace logging_v2 {
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.createAsync({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     parent: 'folders/my-folder/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Createasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAsync(
+      params?: Params$Resource$Folders$Locations$Buckets$Createasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    createAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Createasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Createasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Createasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    createAsync(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Createasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Createasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Createasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets:createAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -9699,6 +10271,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -9943,7 +10516,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
      * @example
      * ```js
      * // Before running the sample:
@@ -9981,6 +10554,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -9998,6 +10572,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -10234,9 +10809,181 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.folders.locations.buckets.updateAsync({
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAsync(
+      params?: Params$Resource$Folders$Locations$Buckets$Updateasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Updateasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Folders$Locations$Buckets$Updateasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAsync(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Updateasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Updateasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Updateasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:updateAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Folders$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Folders$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
@@ -10308,6 +11055,22 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteBucketRequest;
+  }
+  export interface Params$Resource$Folders$Locations$Buckets$Updateasync
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Folders$Locations$Buckets$Views {
@@ -13366,6 +14129,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -13383,6 +14147,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -13484,6 +14249,162 @@ export namespace logging_v2 {
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.createAsync({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     parent: '[^/]+/[^/]+/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createAsync(
+      params: Params$Resource$Locations$Buckets$Createasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAsync(
+      params?: Params$Resource$Locations$Buckets$Createasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    createAsync(
+      params: Params$Resource$Locations$Buckets$Createasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createAsync(
+      params: Params$Resource$Locations$Buckets$Createasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(
+      params: Params$Resource$Locations$Buckets$Createasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    createAsync(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Createasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Createasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Createasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets:createAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -13653,6 +14574,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -13897,7 +14819,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
      * @example
      * ```js
      * // Before running the sample:
@@ -13935,6 +14857,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -13952,6 +14875,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -14188,9 +15112,181 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.locations.buckets.updateAsync({
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     *     name: '[^/]+/[^/]+/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAsync(
+      params: Params$Resource$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAsync(
+      params?: Params$Resource$Locations$Buckets$Updateasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateAsync(
+      params: Params$Resource$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Locations$Buckets$Updateasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Locations$Buckets$Updateasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAsync(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Updateasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Updateasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Updateasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:updateAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
@@ -14262,6 +15358,22 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteBucketRequest;
+  }
+  export interface Params$Resource$Locations$Buckets$Updateasync
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Locations$Buckets$Views {
@@ -17732,6 +18844,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -17749,6 +18862,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -17850,6 +18964,163 @@ export namespace logging_v2 {
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.createAsync({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Createasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAsync(
+      params?: Params$Resource$Organizations$Locations$Buckets$Createasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    createAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Createasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Createasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Createasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    createAsync(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Createasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Createasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Createasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets:createAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -18019,6 +19290,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -18263,7 +19535,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
      * @example
      * ```js
      * // Before running the sample:
@@ -18301,6 +19573,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -18318,6 +19591,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -18554,9 +19828,182 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.organizations.locations.buckets.updateAsync({
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAsync(
+      params?: Params$Resource$Organizations$Locations$Buckets$Updateasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Updateasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Organizations$Locations$Buckets$Updateasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAsync(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Updateasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Updateasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Updateasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:updateAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Organizations$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Organizations$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
@@ -18628,6 +20075,22 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteBucketRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Buckets$Updateasync
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Organizations$Locations$Buckets$Views {
@@ -22778,6 +24241,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -22795,6 +24259,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -22896,6 +24361,162 @@ export namespace logging_v2 {
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * Creates a log bucket asynchronously that can be used to store log entries.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.createAsync({
+     *     // Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     *     bucketId: 'placeholder-value',
+     *     // Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Createasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createAsync(
+      params?: Params$Resource$Projects$Locations$Buckets$Createasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    createAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Createasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Createasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Createasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    createAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    createAsync(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Createasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Createasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Createasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets:createAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -23065,6 +24686,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -23309,7 +24931,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a log bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * Updates a log bucket.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
      * @example
      * ```js
      * // Before running the sample:
@@ -23347,6 +24969,7 @@ export namespace logging_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "analyticsEnabled": false,
      *       //   "cmekSettings": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -23364,6 +24987,7 @@ export namespace logging_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "analyticsEnabled": false,
      *   //   "cmekSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -23600,9 +25224,181 @@ export namespace logging_v2 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Updates a log bucket asynchronously.If the bucket has a lifecycle_state of DELETE_REQUESTED, then FAILED_PRECONDITION will be returned.After a bucket has been created, the bucket's location cannot be changed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.projects.locations.buckets.updateAsync({
+     *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket',
+     *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analyticsEnabled": false,
+     *       //   "cmekSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "indexConfigs": [],
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "locked": false,
+     *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
+     *       //   "retentionDays": 0,
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAsync(
+      params?: Params$Resource$Projects$Locations$Buckets$Updateasync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Updateasync,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Updateasync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(
+      params: Params$Resource$Projects$Locations$Buckets$Updateasync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateAsync(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAsync(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Updateasync
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Updateasync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Updateasync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:updateAsync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Buckets$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
+     */
+    bucketId?: string;
+    /**
+     * Required. The resource in which to create the log bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$Createasync
     extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods.
@@ -23674,6 +25470,22 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$UndeleteBucketRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$Updateasync
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Projects$Locations$Buckets$Views {

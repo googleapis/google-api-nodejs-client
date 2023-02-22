@@ -732,7 +732,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230214",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
@@ -869,7 +869,7 @@
       "type": "object"
     },
     "BufferTaskRequest": {
-      "description": "Request message for BufferTask.",
+      "description": "LINT.IfChange Request message for BufferTask.",
       "id": "BufferTaskRequest",
       "properties": {
         "body": {
