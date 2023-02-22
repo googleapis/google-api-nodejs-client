@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20230130",
+  "revision": "20230213",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2325,6 +2325,10 @@
           "description": "Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.",
           "format": "float",
           "type": "number"
+        },
+        "cvssV2": {
+          "$ref": "CVSS",
+          "description": "The cvss v2 score for the vulnerability."
         },
         "cvssVersion": {
           "description": "Output only. CVSS version used to populate cvss_score and severity.",
