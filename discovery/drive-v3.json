@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/usHvhS2KEqa4qu-fvyF64hqv4W8\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/FMnBlYEB3J1VPpdpymK8SWXFoSQ\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -2312,7 +2312,7 @@
       }
     }
   },
-  "revision": "20230206",
+  "revision": "20230212",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2768,6 +2768,10 @@
               "description": "Whether the current user can change the driveMembersOnly restriction of this shared drive.",
               "type": "boolean"
             },
+            "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": {
+              "description": "Whether the current user can change the sharingFoldersRequiresOrganizerPermission restriction of this shared drive.",
+              "type": "boolean"
+            },
             "canComment": {
               "description": "Whether the current user can comment on files in this shared drive.",
               "type": "boolean"
@@ -2879,6 +2883,10 @@
             },
             "driveMembersOnly": {
               "description": "Whether access to items inside this shared drive is restricted to its members.",
+              "type": "boolean"
+            },
+            "sharingFoldersRequiresOrganizerPermission": {
+              "description": "If true, only users with the organizer role can share folders. If false, users with either the organizer role or the file organizer role can share folders.",
               "type": "boolean"
             }
           },
@@ -4207,6 +4215,10 @@
               "description": "Whether the current user can change the domainUsersOnly restriction of this Team Drive.",
               "type": "boolean"
             },
+            "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": {
+              "description": "Whether the current user can change the sharingFoldersRequiresOrganizerPermission restriction of this Team Drive.",
+              "type": "boolean"
+            },
             "canChangeTeamDriveBackground": {
               "description": "Whether the current user can change the background of this Team Drive.",
               "type": "boolean"
@@ -4322,6 +4334,10 @@
             },
             "domainUsersOnly": {
               "description": "Whether access to this Team Drive and items inside this Team Drive is restricted to users of the domain to which this Team Drive belongs. This restriction may be overridden by other sharing policies controlled outside of this Team Drive.",
+              "type": "boolean"
+            },
+            "sharingFoldersRequiresOrganizerPermission": {
+              "description": "If true, only users with the organizer role can share folders. If false, users with either the organizer role or the file organizer role can share folders.",
               "type": "boolean"
             },
             "teamMembersOnly": {
