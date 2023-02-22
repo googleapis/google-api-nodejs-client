@@ -247,6 +247,10 @@ export namespace redis_v1 {
      */
     authorizedNetwork?: string | null;
     /**
+     * Optional. The available maintenance versions that an instance could update to.
+     */
+    availableMaintenanceVersions?: string[] | null;
+    /**
      * Optional. The network connect mode of the Redis instance. If not provided, the connect mode defaults to DIRECT_PEERING.
      */
     connectMode?: string | null;
@@ -286,6 +290,10 @@ export namespace redis_v1 {
      * Output only. Date and time of upcoming maintenance events which have been scheduled.
      */
     maintenanceSchedule?: Schema$MaintenanceSchedule;
+    /**
+     * Optional. The self service update maintenance version. The version is date based such as "20210712_00_00".
+     */
+    maintenanceVersion?: string | null;
     /**
      * Required. Redis memory size in GiB.
      */
@@ -1035,6 +1043,7 @@ export namespace redis_v1 {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
      *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
@@ -1045,6 +1054,7 @@ export namespace redis_v1 {
      *       //   "locationId": "my_locationId",
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
@@ -1617,6 +1627,7 @@ export namespace redis_v1 {
      *   //   "alternativeLocationId": "my_alternativeLocationId",
      *   //   "authEnabled": false,
      *   //   "authorizedNetwork": "my_authorizedNetwork",
+     *   //   "availableMaintenanceVersions": [],
      *   //   "connectMode": "my_connectMode",
      *   //   "createTime": "my_createTime",
      *   //   "currentLocationId": "my_currentLocationId",
@@ -1627,6 +1638,7 @@ export namespace redis_v1 {
      *   //   "locationId": "my_locationId",
      *   //   "maintenancePolicy": {},
      *   //   "maintenanceSchedule": {},
+     *   //   "maintenanceVersion": "my_maintenanceVersion",
      *   //   "memorySizeGb": 0,
      *   //   "name": "my_name",
      *   //   "nodes": [],
@@ -2190,6 +2202,7 @@ export namespace redis_v1 {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
      *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
      *       //   "currentLocationId": "my_currentLocationId",
@@ -2200,6 +2213,7 @@ export namespace redis_v1 {
      *       //   "locationId": "my_locationId",
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
