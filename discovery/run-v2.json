@@ -1087,7 +1087,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230212",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1612,7 +1612,7 @@
       "id": "GoogleCloudRunV2GRPCAction",
       "properties": {
         "port": {
-          "description": "Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to 8080.",
+          "description": "Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
           "format": "int32",
           "type": "integer"
         },
@@ -1637,6 +1637,11 @@
         "path": {
           "description": "Path to access on the HTTP server. Defaults to '/'.",
           "type": "string"
+        },
+        "port": {
+          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2488,7 +2493,7 @@
       "id": "GoogleCloudRunV2TCPSocketAction",
       "properties": {
         "port": {
-          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to 8080.",
+          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
           "format": "int32",
           "type": "integer"
         }
