@@ -218,7 +218,7 @@ export namespace cloudtasks_v2beta3 {
     role?: string | null;
   }
   /**
-   * Request message for BufferTask.
+   * LINT.IfChange Request message for BufferTask.
    */
   export interface Schema$BufferTaskRequest {
     /**
