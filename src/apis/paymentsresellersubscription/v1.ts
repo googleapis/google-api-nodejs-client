@@ -523,6 +523,10 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem {
     /**
+     * Output only. The price of the product/service in this line item.
+     */
+    amount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
+    /**
      * Output only. Description of this line item.
      */
     description?: string | null;
