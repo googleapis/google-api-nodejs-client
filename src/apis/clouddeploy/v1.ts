@@ -883,6 +883,10 @@ export namespace clouddeploy_v1 {
      */
     buildArtifacts?: Schema$BuildArtifact[];
     /**
+     * Output only. Information around the state of the Release.
+     */
+    condition?: Schema$ReleaseCondition;
+    /**
      * Output only. Time at which the `Release` was created.
      */
     createTime?: string | null;
@@ -948,6 +952,19 @@ export namespace clouddeploy_v1 {
     uid?: string | null;
   }
   /**
+   * ReleaseCondition contains all conditions relevant to a Release.
+   */
+  export interface Schema$ReleaseCondition {
+    /**
+     * Details around the Releases's overall status.
+     */
+    releaseReadyCondition?: Schema$ReleaseReadyCondition;
+    /**
+     * Details around the support state of the release's skaffold version.
+     */
+    skaffoldSupportedCondition?: Schema$SkaffoldSupportedCondition;
+  }
+  /**
    * Payload proto for "clouddeploy.googleapis.com/release_notification" Platform Log event that describes the failure to send release status change Pub/Sub notification.
    */
   export interface Schema$ReleaseNotificationEvent {
@@ -963,6 +980,15 @@ export namespace clouddeploy_v1 {
      * Type of this notification, e.g. for a Pub/Sub failure.
      */
     type?: string | null;
+  }
+  /**
+   * ReleaseReadyCondition contains information around the status of the Release. If a release is not ready, you cannot create a rollout with the release.
+   */
+  export interface Schema$ReleaseReadyCondition {
+    /**
+     * True if the Release is in a valid state. Otherwise at least one condition in `ReleaseCondition` is in an invalid state. Iterate over those conditions and see which condition(s) has status = false to find out what is wrong with the Release.
+     */
+    status?: boolean | null;
   }
   /**
    * Payload proto for "clouddeploy.googleapis.com/release_render" Platform Log event that describes the render status change.
@@ -1127,13 +1153,42 @@ export namespace clouddeploy_v1 {
     updateMask?: string | null;
   }
   /**
+   * SkaffoldSupportedCondition contains information about when support for the release's version of skaffold ends.
+   */
+  export interface Schema$SkaffoldSupportedCondition {
+    /**
+     * The time at which this release's version of skaffold will enter maintenance mode.
+     */
+    maintenanceModeTime?: string | null;
+    /**
+     * The skaffold support state for this release's version of skaffold.
+     */
+    skaffoldSupportState?: string | null;
+    /**
+     * True if the version of skaffold used by this release is supported.
+     */
+    status?: boolean | null;
+    /**
+     * The time at which this release's version of skaffold will no longer be supported.
+     */
+    supportExpirationTime?: string | null;
+  }
+  /**
    * Details of a supported Skaffold version.
    */
   export interface Schema$SkaffoldVersion {
     /**
+     * The time at which this version of skaffold will enter maintenance mode.
+     */
+    maintenanceModeTime?: string | null;
+    /**
      * Date when this version is expected to no longer be supported.
      */
     supportEndDate?: Schema$Date;
+    /**
+     * The time at which this version of skaffold will no longer be supported.
+     */
+    supportExpirationTime?: string | null;
     /**
      * Release version number. For example, "1.20.3".
      */
@@ -3367,6 +3422,7 @@ export namespace clouddeploy_v1 {
      *         //   "abandoned": false,
      *         //   "annotations": {},
      *         //   "buildArtifacts": [],
+     *         //   "condition": {},
      *         //   "createTime": "my_createTime",
      *         //   "deliveryPipelineSnapshot": {},
      *         //   "description": "my_description",
@@ -3528,6 +3584,7 @@ export namespace clouddeploy_v1 {
      *   //   "abandoned": false,
      *   //   "annotations": {},
      *   //   "buildArtifacts": [],
+     *   //   "condition": {},
      *   //   "createTime": "my_createTime",
      *   //   "deliveryPipelineSnapshot": {},
      *   //   "description": "my_description",
