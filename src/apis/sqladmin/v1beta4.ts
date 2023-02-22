@@ -2031,7 +2031,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
+     * Unused.
      */
     nextPageToken?: string | null;
   }
