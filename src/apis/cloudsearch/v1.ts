@@ -999,7 +999,14 @@ export namespace cloudsearch_v1 {
      */
     isExternal?: boolean | null;
     name?: string | null;
+    /**
+     * Deprecated. Use segmented_membership_counts instead which also includes other counts such as rosters.
+     */
     numMembers?: number | null;
+    /**
+     * Member counts object with types of members and their respective counts.
+     */
+    segmentedMembershipCounts?: Schema$AppsDynamiteSharedSegmentedMembershipCounts;
     /**
      * searching user's membership state in this space
      */
@@ -1107,6 +1114,10 @@ export namespace cloudsearch_v1 {
      * List of action parameters.
      */
     parameters?: Schema$AppsDynamiteStorageActionActionParameter[];
+    /**
+     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed.
+     */
+    persistValues?: boolean | null;
   }
   /**
    * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
@@ -5645,6 +5656,10 @@ export namespace cloudsearch_v1 {
      */
     imapSyncMappings?: Schema$ImapSyncDelete[];
     messageKeys?: Schema$MultiKey[];
+    /**
+     * Value of coproc's message delete history record extension that exports /wonder/message_mapping/{vertical\} attribute of deleted messages which have smartmail label (eg. ^cob_sm_invoice, etc).
+     */
+    wonderCardMappings?: Schema$WonderCardDelete[];
   }
   /**
    * Primary key for Message resource.
@@ -8634,6 +8649,10 @@ export namespace cloudsearch_v1 {
      */
     inviteeInfo?: Schema$InviteeInfo;
     type?: string | null;
+    /**
+     * Specific reason for the user mention failing, for fine-grained processing by clients (i.e. specific error message for space limit exceeded case) IMPORTANT: Set this only for FAILED_TO_ADD case.
+     */
+    userMentionError?: string | null;
   }
   /**
    * Definition of a single value with generic type.
@@ -8767,6 +8786,28 @@ export namespace cloudsearch_v1 {
      * Read-only Widgets
      */
     textParagraph?: Schema$TextParagraph;
+  }
+  /**
+   * Message delete history record extension that exports /wonder/message_mapping/{vertical\} attribute of deleted messages which have any smartmail label (eg. ^cob_sm_invoice). go/how-dd-card-deletion
+   */
+  export interface Schema$WonderCardDelete {
+    /**
+     * Contains <{@code WonderCardType\} enum value, value of /wonder/message_mapping/{vertical\} attribute of deleted message\> pairs.
+     */
+    messageMappings?: {[key: string]: Schema$WonderMessageMapping} | null;
+    /**
+     * Message ID of the original deleted message
+     */
+    msgId?: string | null;
+  }
+  /**
+   * Card mapping attached to original message as an attribute stored at /wonder/message_mapping/{vertical\} Next ID: 2
+   */
+  export interface Schema$WonderMessageMapping {
+    /**
+     * List of wonder card (client-generated) message IDs generated based on the original message.
+     */
+    wonderCardMessageId?: string[] | null;
   }
   /**
    * A wrapper around a raw resource key. The secret should never be logged, and this proto annotates those secret fields to ensure that they are not. Clients are encouraged to use this proto rather than defining their own, to ensure that secrets are correctly annotated.
