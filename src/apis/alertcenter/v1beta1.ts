@@ -127,35 +127,6 @@ export namespace alertcenter_v1beta1 {
   }
 
   /**
-   * A generic alert for abusive user activity occurring with a customer.
-   */
-  export interface Schema$AbuseDetected {
-    /**
-     * List of abusive users/entities to be displayed in a table in the alert.
-     */
-    additionalDetails?: Schema$EntityList;
-    /**
-     * Displayed after Customer abuse detected - {alert_descriptor\}. If missing, alert name will be displayed as Customer abuse detected.
-     */
-    alertDescriptor?: string | null;
-    /**
-     * Customizable text to display in the next steps section of the alert. Will be parsed as HTML to allow new paragraphs and hyperlinks.
-     */
-    nextSteps?: string | null;
-    /**
-     * Product that the abuse is originating from.
-     */
-    product?: string | null;
-    /**
-     * Unique identifier of each alert that is onboarded.
-     */
-    subAlertId?: string | null;
-    /**
-     * Customizable text to display in the summary section of the alert. Will be parsed as HTML to allow new paragraphs and hyperlinks.
-     */
-    summary?: string | null;
-  }
-  /**
    * Details about why an account is receiving an account suspension warning.
    */
   export interface Schema$AccountSuspensionDetails {
@@ -644,40 +615,6 @@ export namespace alertcenter_v1beta1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
-  /**
-   * Individual entity affected by, or related to, an alert.
-   */
-  export interface Schema$Entity {
-    /**
-     * Link to a Security Investigation Tool search based on this entity, if available.
-     */
-    link?: string | null;
-    /**
-     * Human-readable name of this entity, such as an email address, file ID, or device name.
-     */
-    name?: string | null;
-    /**
-     * Extra values beyond name. The order of values should align with headers in EntityList.
-     */
-    values?: string[] | null;
-  }
-  /**
-   * EntityList stores entities in a format that can be translated to a table in the Alert Center UI.
-   */
-  export interface Schema$EntityList {
-    /**
-     * List of entities affected by the alert.
-     */
-    entities?: Schema$Entity[];
-    /**
-     * Headers of the values in entities. If no value is defined in Entity, this field should be empty.
-     */
-    headers?: string[] | null;
-    /**
-     * Name of the key detail used to display this entity list.
-     */
-    name?: string | null;
-  }
   /**
    * Details of a message in phishing spike alert.
    */
