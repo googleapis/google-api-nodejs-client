@@ -484,10 +484,6 @@
     "package": "@google/area120-tables"
   },
   {
-    "api": "area120tables",
-    "package": "@google/area120-tables"
-  },
-  {
     "api": "baremetalsolution",
     "package": "@google-cloud/bare-metal-solution"
   },
@@ -564,12 +560,12 @@
     "package": "@google-analytics/data"
   },
   {
-    "api": "analyticsdata",
-    "package": "@google-analytics/data"
-  },
-  {
     "api": "routes",
     "package": "@googlemaps/routing"
+  },
+  {
+    "api": "gsuiteaddons",
+    "package": "@google-cloud/gsuiteaddons"
   },
   {
     "api": "google",

@@ -192,6 +192,24 @@
           "scopes": [
             "https://www.googleapis.com/auth/sasportal"
           ]
+        },
+        "provisionDeployment": {
+          "description": "Creates a new SAS deployment through the GCP workflow. Creates a SAS organization if an organization match is not found.",
+          "flatPath": "v1alpha1/customers:provisionDeployment",
+          "httpMethod": "POST",
+          "id": "prod_tt_sasportal.customers.provisionDeployment",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers:provisionDeployment",
+          "request": {
+            "$ref": "SasPortalProvisionDeploymentRequest"
+          },
+          "response": {
+            "$ref": "SasPortalProvisionDeploymentResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/sasportal"
+          ]
         }
       },
       "resources": {
@@ -2484,7 +2502,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230220",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -3288,6 +3306,23 @@
         "etag": {
           "description": "The etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to GetPolicy, and systems are expected to put that etag in the request to SetPolicy to ensure that their change will be applied to the same version of the policy. If no etag is provided in the call to GetPolicy, then the existing policy is overwritten blindly.",
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalProvisionDeploymentRequest": {
+      "description": "Request for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]. No input is needed, because GCP Project, Organization Info, and caller’s GAIA ID should be retrieved from the RPC handler, and used as inputs to create a new SAS organization (if not exists) and a new SAS deployment.",
+      "id": "SasPortalProvisionDeploymentRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "SasPortalProvisionDeploymentResponse": {
+      "description": "Response for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment].",
+      "id": "SasPortalProvisionDeploymentResponse",
+      "properties": {
+        "errorMessage": {
+          "description": "Optional. Optional error message if the provisioning request is not successful.",
           "type": "string"
         }
       },

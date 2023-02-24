@@ -108,7 +108,7 @@
     "enterprises": {
       "methods": {
         "create": {
-          "description": "Creates an enterprise. This is the last step in the enterprise signup flow.",
+          "description": "Creates an enterprise. This is the last step in the enterprise signup flow. See also: SigninDetail",
           "flatPath": "v1/enterprises",
           "httpMethod": "POST",
           "id": "androidmanagement.enterprises.create",
@@ -242,7 +242,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an enterprise.",
+          "description": "Updates an enterprise. See also: SigninDetail",
           "flatPath": "v1/enterprises/{enterprisesId}",
           "httpMethod": "PATCH",
           "id": "androidmanagement.enterprises.patch",
@@ -1065,7 +1065,7 @@
       }
     }
   },
-  "revision": "20230123",
+  "revision": "20230213",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2707,7 +2707,7 @@
           "type": "array"
         },
         "enterpriseDisplayName": {
-          "description": "The name of the enterprise displayed to users.",
+          "description": "The name of the enterprise displayed to users. This field has a maximum length of 100 characters.",
           "type": "string"
         },
         "logo": {

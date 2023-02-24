@@ -467,17 +467,45 @@ export namespace androidenterprise_v1 {
      */
     androidId?: string | null;
     /**
+     * The internal hardware codename of the device. This comes from android.os.Build.DEVICE. (field named "device" per logs/wireless/android/android_checkin.proto)
+     */
+    device?: string | null;
+    /**
+     * The build fingerprint of the device if known.
+     */
+    latestBuildFingerprint?: string | null;
+    /**
+     * The manufacturer of the device. This comes from android.os.Build.MANUFACTURER.
+     */
+    maker?: string | null;
+    /**
      * Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations. Possible values include: - "managedDevice", a device that has the EMM's device policy controller (DPC) as the device owner. - "managedProfile", a device that has a profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC. - "containerApp", no longer used (deprecated). - "unmanagedProfile", a device that has been allowed (by the domain's admin, using the Admin Console to enable the privilege) to use managed Google Play, but the profile is itself not owned by a DPC.
      */
     managementType?: string | null;
+    /**
+     * The model name of the device. This comes from android.os.Build.MODEL.
+     */
+    model?: string | null;
     /**
      * The policy enforced on the device.
      */
     policy?: Schema$Policy;
     /**
+     * The product name of the device. This comes from android.os.Build.PRODUCT.
+     */
+    product?: string | null;
+    /**
      * The device report updated with the latest app states.
      */
     report?: Schema$DeviceReport;
+    /**
+     * Retail brand for the device, if set. See https://developer.android.com/reference/android/os/Build.html#BRAND
+     */
+    retailBrand?: string | null;
+    /**
+     * API compatibility version.
+     */
+    sdkVersion?: number | null;
   }
   /**
    * Device report updated with the latest app states for managed apps on the device.
@@ -1688,9 +1716,16 @@ export namespace androidenterprise_v1 {
      *   // Example response
      *   // {
      *   //   "androidId": "my_androidId",
+     *   //   "device": "my_device",
+     *   //   "latestBuildFingerprint": "my_latestBuildFingerprint",
+     *   //   "maker": "my_maker",
      *   //   "managementType": "my_managementType",
+     *   //   "model": "my_model",
      *   //   "policy": {},
-     *   //   "report": {}
+     *   //   "product": "my_product",
+     *   //   "report": {},
+     *   //   "retailBrand": "my_retailBrand",
+     *   //   "sdkVersion": 0
      *   // }
      * }
      *
@@ -2234,9 +2269,16 @@ export namespace androidenterprise_v1 {
      *       // request body parameters
      *       // {
      *       //   "androidId": "my_androidId",
+     *       //   "device": "my_device",
+     *       //   "latestBuildFingerprint": "my_latestBuildFingerprint",
+     *       //   "maker": "my_maker",
      *       //   "managementType": "my_managementType",
+     *       //   "model": "my_model",
      *       //   "policy": {},
-     *       //   "report": {}
+     *       //   "product": "my_product",
+     *       //   "report": {},
+     *       //   "retailBrand": "my_retailBrand",
+     *       //   "sdkVersion": 0
      *       // }
      *     },
      *   });
@@ -2245,9 +2287,16 @@ export namespace androidenterprise_v1 {
      *   // Example response
      *   // {
      *   //   "androidId": "my_androidId",
+     *   //   "device": "my_device",
+     *   //   "latestBuildFingerprint": "my_latestBuildFingerprint",
+     *   //   "maker": "my_maker",
      *   //   "managementType": "my_managementType",
+     *   //   "model": "my_model",
      *   //   "policy": {},
-     *   //   "report": {}
+     *   //   "product": "my_product",
+     *   //   "report": {},
+     *   //   "retailBrand": "my_retailBrand",
+     *   //   "sdkVersion": 0
      *   // }
      * }
      *

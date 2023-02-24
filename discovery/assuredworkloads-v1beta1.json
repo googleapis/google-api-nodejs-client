@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20230123",
+  "revision": "20230218",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -926,6 +926,7 @@
             "AU_REGIONS_AND_US_SUPPORT",
             "ASSURED_WORKLOADS_FOR_PARTNERS",
             "ISR_REGIONS",
+            "ISR_REGIONS_AND_SUPPORT",
             "CA_PROTECTED_B"
           ],
           "enumDescriptions": [
@@ -943,6 +944,7 @@
             "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
             "Assured Workloads for Partners;",
             "Assured Workloads for Israel",
+            "Assured Workloads for Israel Regions",
             "Assured Workloads for Canada Protected B regime"
           ],
           "type": "string"

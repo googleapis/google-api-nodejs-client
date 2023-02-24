@@ -514,7 +514,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230216",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -684,7 +684,7 @@
         },
         "transactionEvent": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionEvent",
-          "description": "Optional. If the Assessment is part of a Payment Transaction, provide details on Payment Lifecycle Events that occur in the Transaction."
+          "description": "Optional. If the assessment is part of a payment transaction, provide details on payment lifecycle events that occur in the transaction."
         }
       },
       "type": "object"
@@ -1268,20 +1268,20 @@
           ],
           "enumDescriptions": [
             "Default, unspecified event type.",
-            "Indicates that the transaction is approved by the merchant's risk engine. The accompanying reasons can include 'INHOUSE', 'ACCERTIFY', or 'RECAPTCHA'.",
-            "Indicates that the transaction is denied and concluded due to risks detected by the merchant's risk engine. The accompanying reasons can include 'INHOUSE', 'ACCERTIFY', 'MANUAL_REVIEW', or 'RECAPTCHA'.",
+            "Indicates that the transaction is approved by the merchant. The accompanying reasons can include terms such as 'INHOUSE', 'ACCERTIFY', 'CYBERSOURCE', or 'MANUAL_REVIEW'.",
+            "Indicates that the transaction is denied and concluded due to risks detected by the merchant. The accompanying reasons can include terms such as 'INHOUSE', 'ACCERTIFY', 'CYBERSOURCE', or 'MANUAL_REVIEW'.",
             "Indicates that the transaction is being evaluated by a human, due to suspicion or risk.",
             "Indicates that the authorization attempt with the card issuer succeeded.",
-            "Indicates that the authorization attempt with the card issuer failed. The accompanying reasons can include Visa's '54' indicating that the card is expired or '82' indicating that the CVV is incorrect.",
+            "Indicates that the authorization attempt with the card issuer failed. The accompanying reasons can include Visa's '54' indicating that the card is expired, or '82' indicating that the CVV is incorrect.",
             "Indicates that the transaction is completed because the funds were settled.",
             "Indicates that the transaction could not be completed because the funds were not settled.",
             "Indicates that the transaction has been canceled. Specify the reason for the cancellation. For example, 'INSUFFICIENT_INVENTORY'.",
-            "Indicates that the merchant has received a chargeback inquiry for the transaction, requesting additional information before a chargeback is officially issued and a formal chargeback notification is sent.",
-            "Indicates that the merchant has received a chargeback alert for the transaction. The process of resolving the dispute without involving the payment network is started.",
+            "Indicates that the merchant has received a chargeback inquiry due to fraud for the transaction, requesting additional information before a fraud chargeback is officially issued and a formal chargeback notification is sent.",
+            "Indicates that the merchant has received a chargeback alert due to fraud for the transaction. The process of resolving the dispute without involving the payment network is started.",
             "Indicates that a fraud notification is issued for the transaction, sent by the payment instrument's issuing bank because the transaction appears to be fraudulent. We recommend including TC40 or SAFE data in the `reason` field for this event type. For partial chargebacks, we recommend that you include an amount in the `value` field.",
-            "Indicates that the merchant is informed by the payment network that the transaction has entered the chargeback process. Reason code examples include Discover's '4553' and '6041'. For partial chargebacks, we recommend that you include an amount in the `value` field.",
-            "Indicates that the transaction has entered the chargeback process, and that the merchant has chosen to enter representment. Reason examples include Discover's '4553' and '6041'. For partial chargebacks, we recommend that you include an amount in the `value` field.",
-            "Indicates that the transaction has had a chargeback which was illegitimate and was reversed as a result. For partial chargebacks, we recommend that you include an amount in the `value` field.",
+            "Indicates that the merchant is informed by the payment network that the transaction has entered the chargeback process due to fraud. Reason code examples include Discover's '6005' and '6041'. For partial chargebacks, we recommend that you include an amount in the `value` field.",
+            "Indicates that the transaction has entered the chargeback process due to fraud, and that the merchant has chosen to enter representment. Reason examples include Discover's '6005' and '6041'. For partial chargebacks, we recommend that you include an amount in the `value` field.",
+            "Indicates that the transaction has had a fraud chargeback which was illegitimate and was reversed as a result. For partial chargebacks, we recommend that you include an amount in the `value` field.",
             "Indicates that the merchant has received a refund for a completed transaction. For partial refunds, we recommend that you include an amount in the `value` field. Reason example: 'TAX_EXEMPT' (partial refund of exempt tax)",
             "Indicates that the merchant has received a refund request for this transaction, but that they have declined it. For partial refunds, we recommend that you include an amount in the `value` field. Reason example: 'TAX_EXEMPT' (partial refund of exempt tax)",
             "Indicates that the completed transaction was refunded by the merchant. For partial refunds, we recommend that you include an amount in the `value` field. Reason example: 'TAX_EXEMPT' (partial refund of exempt tax)",
@@ -1290,11 +1290,11 @@
           "type": "string"
         },
         "reason": {
-          "description": "Optional. The reason or standardized code which corresponds with this transaction event, if one exists. E.g. a CHARGEBACK Event with code 4553.",
+          "description": "Optional. The reason or standardized code that corresponds with this transaction event, if one exists. For example, a CHARGEBACK event with code 6005.",
           "type": "string"
         },
         "value": {
-          "description": "Optional. The value that corresponds with this transaction event, if one exists. E.g. A refund event where $5.00 was refunded. Currency is obtained from the original transaction data.",
+          "description": "Optional. The value that corresponds with this transaction event, if one exists. For example, a refund event where $5.00 was refunded. Currency is obtained from the original transaction data.",
           "format": "double",
           "type": "number"
         }

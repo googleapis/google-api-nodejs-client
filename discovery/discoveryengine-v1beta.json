@@ -793,7 +793,7 @@
       }
     }
   },
-  "revision": "20230126",
+  "revision": "20230209",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1166,7 +1166,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The Document resource full name, of the form: projects//locations//dataStores//branches//documents/",
+          "description": "Required. The Document resource full name, of the form: projects/{project\\_id}/locations/{location}/dataStores/{data\\_store\\_id}/branches/{branch\\_id}/documents/{document\\_id}",
           "type": "string"
         },
         "promotionIds": {

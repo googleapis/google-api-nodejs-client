@@ -427,7 +427,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2GRPCAction {
     /**
-     * Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to 8080.
+     * Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
      */
     port?: number | null;
     /**
@@ -447,6 +447,10 @@ export namespace run_v2 {
      * Path to access on the HTTP server. Defaults to '/'.
      */
     path?: string | null;
+    /**
+     * Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
+     */
+    port?: number | null;
   }
   /**
    * HTTPHeader describes a custom header to be used in HTTP probes
@@ -1184,7 +1188,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2TCPSocketAction {
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to 8080.
+     * Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.
      */
     port?: number | null;
   }

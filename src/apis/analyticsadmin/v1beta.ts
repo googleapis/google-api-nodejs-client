@@ -783,7 +783,7 @@ export namespace analyticsadmin_v1beta {
      */
     account?: Schema$GoogleAnalyticsAdminV1betaAccount;
     /**
-     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI
+     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI.
      */
     redirectUri?: string | null;
   }
@@ -1443,7 +1443,7 @@ export namespace analyticsadmin_v1beta {
      *   const res = await analyticsadmin.accounts.patch({
      *     // Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
      *     name: 'accounts/my-account',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     *     // Required. The list of fields to be updated. Field names must be in snake case (for example, "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1908,7 +1908,7 @@ export namespace analyticsadmin_v1beta {
      */
     name?: string;
     /**
-     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     * Required. The list of fields to be updated. Field names must be in snake case (for example, "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -2126,7 +2126,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or via this API) before MeasurementProtocolSecret resources may be created.
+     * Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or through this API) before MeasurementProtocolSecret resources may be created.
      * @example
      * ```js
      * // Before running the sample:

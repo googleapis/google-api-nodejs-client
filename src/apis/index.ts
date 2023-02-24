@@ -483,6 +483,10 @@ import {
 import {VERSIONS as pubsubVersions, pubsub} from './pubsub';
 import {VERSIONS as pubsubliteVersions, pubsublite} from './pubsublite';
 import {
+  VERSIONS as readerrevenuesubscriptionlinkingVersions,
+  readerrevenuesubscriptionlinking,
+} from './readerrevenuesubscriptionlinking';
+import {
   VERSIONS as realtimebiddingVersions,
   realtimebidding,
 } from './realtimebidding';
@@ -835,6 +839,7 @@ export const APIS: APIList = {
   prod_tt_sasportal: prod_tt_sasportalVersions,
   pubsub: pubsubVersions,
   pubsublite: pubsubliteVersions,
+  readerrevenuesubscriptionlinking: readerrevenuesubscriptionlinkingVersions,
   realtimebidding: realtimebiddingVersions,
   recaptchaenterprise: recaptchaenterpriseVersions,
   recommendationengine: recommendationengineVersions,
@@ -1100,6 +1105,7 @@ export class GeneratedAPIs {
   prod_tt_sasportal = prod_tt_sasportal;
   pubsub = pubsub;
   pubsublite = pubsublite;
+  readerrevenuesubscriptionlinking = readerrevenuesubscriptionlinking;
   realtimebidding = realtimebidding;
   recaptchaenterprise = recaptchaenterprise;
   recommendationengine = recommendationengine;

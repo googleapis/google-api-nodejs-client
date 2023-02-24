@@ -357,6 +357,7 @@ export {pubsub_v1} from './apis/pubsub/v1';
 export {pubsub_v1beta1a} from './apis/pubsub/v1beta1a';
 export {pubsub_v1beta2} from './apis/pubsub/v1beta2';
 export {pubsublite_v1} from './apis/pubsublite/v1';
+export {readerrevenuesubscriptionlinking_v1} from './apis/readerrevenuesubscriptionlinking/v1';
 export {realtimebidding_v1} from './apis/realtimebidding/v1';
 export {realtimebidding_v1alpha} from './apis/realtimebidding/v1alpha';
 export {recaptchaenterprise_v1} from './apis/recaptchaenterprise/v1';

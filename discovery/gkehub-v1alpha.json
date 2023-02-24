@@ -1179,7 +1179,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230206",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -3126,6 +3126,11 @@
         "gkeCluster": {
           "$ref": "GkeCluster",
           "description": "Optional. Specific information for a GKE-on-GCP cluster."
+        },
+        "googleManaged": {
+          "description": "Output only. Whether the lifecycle of this membership is managed by a google cluster platform service.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "kubernetesMetadata": {
           "$ref": "KubernetesMetadata",

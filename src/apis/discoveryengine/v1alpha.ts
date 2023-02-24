@@ -332,7 +332,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * Required. The Document resource full name, of the form: projects//locations//dataStores//branches//documents/
+     * Required. The Document resource full name, of the form: projects/{project\_id\}/locations/{location\}/dataStores/{data\_store\_id\}/branches/{branch\_id\}/documents/{document\_id\}
      */
     name?: string | null;
     /**

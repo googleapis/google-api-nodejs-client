@@ -269,7 +269,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+              "description": "Required. The list of fields to be updated. Field names must be in snake case (for example, \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -337,7 +337,7 @@
     "properties": {
       "methods": {
         "acknowledgeUserDataCollection": {
-          "description": "Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or via this API) before MeasurementProtocolSecret resources may be created.",
+          "description": "Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or through this API) before MeasurementProtocolSecret resources may be created.",
           "flatPath": "v1beta/properties/{propertiesId}:acknowledgeUserDataCollection",
           "httpMethod": "POST",
           "id": "analyticsadmin.properties.acknowledgeUserDataCollection",
@@ -1536,7 +1536,7 @@
       }
     }
   },
-  "revision": "20221214",
+  "revision": "20230221",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccount": {
@@ -2544,7 +2544,7 @@
           "description": "The account to create."
         },
         "redirectUri": {
-          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI",
+          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI.",
           "type": "string"
         }
       },

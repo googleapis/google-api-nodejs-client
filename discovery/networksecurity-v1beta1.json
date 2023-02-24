@@ -109,6 +109,298 @@
       "resources": {
         "locations": {
           "resources": {
+            "addressGroups": {
+              "methods": {
+                "addItems": {
+                  "description": "Adds items to an address group.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:addItems",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.addressGroups.addItems",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to add items to. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:addItems",
+                  "request": {
+                    "$ref": "AddAddressGroupItemsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "cloneItems": {
+                  "description": "Clones items from one address group to another.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:cloneItems",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.addressGroups.cloneItems",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:cloneItems",
+                  "request": {
+                    "$ref": "CloneAddressGroupItemsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a new address group in a given project and location.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.addressGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "addressGroupId": {
+                      "description": "Required. Short name of the AddressGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"authz_policy\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the AddressGroup. Must be in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/addressGroups",
+                  "request": {
+                    "$ref": "AddressGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an address group.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.organizations.locations.addressGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the AddressGroup to delete. Must be in the format `projects/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single address group.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.addressGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the AddressGroup to get. Must be in the format `projects/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "AddressGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists address groups in a given project and location.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.addressGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of AddressGroups to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListAddressGroupsResponse` Indicates that this is a continuation of a prior `ListAddressGroups` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the AddressGroups should be listed, specified in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/addressGroups",
+                  "response": {
+                    "$ref": "ListAddressGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listReferences": {
+                  "description": "Lists references of an address group.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:listReferences",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.organizations.locations.addressGroups.listReferences",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of references to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more AddressGroupUsers left to be queried.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token value returned from a previous List request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:listReferences",
+                  "response": {
+                    "$ref": "ListAddressGroupReferencesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates parameters of an address group.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.organizations.locations.addressGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the AddressGroup resource. It matches pattern `projects/*/locations/{location}/addressGroups/`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the AddressGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "AddressGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "removeItems": {
+                  "description": "Removes items from an address group.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:removeItems",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.addressGroups.removeItems",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to remove items from. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:removeItems",
+                  "request": {
+                    "$ref": "RemoveAddressGroupItemsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -310,6 +602,155 @@
           "resources": {
             "addressGroups": {
               "methods": {
+                "addItems": {
+                  "description": "Adds items to an address group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:addItems",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.addressGroups.addItems",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to add items to. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:addItems",
+                  "request": {
+                    "$ref": "AddAddressGroupItemsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "cloneItems": {
+                  "description": "Clones items from one address group to another.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:cloneItems",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.addressGroups.cloneItems",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:cloneItems",
+                  "request": {
+                    "$ref": "CloneAddressGroupItemsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a new address group in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.addressGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "addressGroupId": {
+                      "description": "Required. Short name of the AddressGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"authz_policy\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the AddressGroup. Must be in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/addressGroups",
+                  "request": {
+                    "$ref": "AddressGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single address group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.addressGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the AddressGroup to delete. Must be in the format `projects/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single address group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.addressGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the AddressGroup to get. Must be in the format `projects/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "AddressGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:getIamPolicy",
@@ -336,6 +777,145 @@
                   "path": "v1beta1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists address groups in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.addressGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of AddressGroups to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListAddressGroupsResponse` Indicates that this is a continuation of a prior `ListAddressGroups` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the AddressGroups should be listed, specified in the format `projects/*/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/addressGroups",
+                  "response": {
+                    "$ref": "ListAddressGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listReferences": {
+                  "description": "Lists references of an address group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:listReferences",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.addressGroups.listReferences",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of references to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more AddressGroupUsers left to be queried.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token value returned from a previous List request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:listReferences",
+                  "response": {
+                    "$ref": "ListAddressGroupReferencesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single address group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.addressGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the AddressGroup resource. It matches pattern `projects/*/locations/{location}/addressGroups/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the AddressGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "AddressGroup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "removeItems": {
+                  "description": "Removes items from an address group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:removeItems",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.addressGroups.removeItems",
+                  "parameterOrder": [
+                    "addressGroup"
+                  ],
+                  "parameters": {
+                    "addressGroup": {
+                      "description": "Required. A name of the AddressGroup to remove items from. Must be in the format `projects|organization/*/locations/{location}/addressGroups/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+addressGroup}:removeItems",
+                  "request": {
+                    "$ref": "RemoveAddressGroupItemsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1259,9 +1839,92 @@
       }
     }
   },
-  "revision": "20230130",
+  "revision": "20230208",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
+    "AddAddressGroupItemsRequest": {
+      "description": "Request used by the AddAddressGroupItems method.",
+      "id": "AddAddressGroupItemsRequest",
+      "properties": {
+        "items": {
+          "description": "Required. List of items to add.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddressGroup": {
+      "description": "AddressGroup is a resource that specifies how a collection of IP/DNS used in Firewall Policy.",
+      "id": "AddressGroup",
+      "properties": {
+        "capacity": {
+          "description": "Required. Capacity of the Address Group",
+          "format": "int32",
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free-text description of the resource.",
+          "type": "string"
+        },
+        "items": {
+          "description": "Optional. List of items.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of label tags associated with the AddressGroup resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Name of the AddressGroup resource. It matches pattern `projects/*/locations/{location}/addressGroups/`.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. Server-defined fully-qualified URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of the Address Group. Possible values are \"IPv4\" or \"IPV6\".",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "IP v4 ranges.",
+            "IP v6 ranges."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AuthorizationPolicy": {
       "description": "AuthorizationPolicy is a resource that specifies how a server should authorize incoming connections. This resource in itself does not change the configuration unless it's attached to a target https proxy or endpoint config selector resource.",
       "id": "AuthorizationPolicy",
@@ -1378,6 +2041,21 @@
           "description": "Output only. The timestamp when the resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloneAddressGroupItemsRequest": {
+      "description": "Request used by the CloneAddressGroupItems method.",
+      "id": "CloneAddressGroupItemsRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "sourceAddressGroup": {
+          "description": "Required. Source address group to clone items from.",
           "type": "string"
         }
       },
@@ -1631,6 +2309,58 @@
       },
       "type": "object"
     },
+    "ListAddressGroupReferencesResponse": {
+      "description": "Response of the ListAddressGroupReferences method.",
+      "id": "ListAddressGroupReferencesResponse",
+      "properties": {
+        "addressGroupReferences": {
+          "description": "A list of references that matches the specified filter in the request.",
+          "items": {
+            "$ref": "ListAddressGroupReferencesResponseAddressGroupReference"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAddressGroupReferencesResponseAddressGroupReference": {
+      "description": "The Reference of AddressGroup.",
+      "id": "ListAddressGroupReferencesResponseAddressGroupReference",
+      "properties": {
+        "firewallPolicy": {
+          "description": "FirewallPolicy that is using the Address Group.",
+          "type": "string"
+        },
+        "rulePriority": {
+          "description": "Rule priority of the FirewallPolicy that is using the Address Group.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ListAddressGroupsResponse": {
+      "description": "Response returned by the ListAddressGroups method.",
+      "id": "ListAddressGroupsResponse",
+      "properties": {
+        "addressGroups": {
+          "description": "List of AddressGroups resources.",
+          "items": {
+            "$ref": "AddressGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAuthorizationPoliciesResponse": {
       "description": "Response returned by the ListAuthorizationPolicies method.",
       "id": "ListAuthorizationPoliciesResponse",
@@ -1843,6 +2573,24 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveAddressGroupItemsRequest": {
+      "description": "Request used by the RemoveAddressGroupItems method.",
+      "id": "RemoveAddressGroupItemsRequest",
+      "properties": {
+        "items": {
+          "description": "Required. List of items to remove.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },

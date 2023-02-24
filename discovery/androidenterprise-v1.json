@@ -2649,7 +2649,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230219",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3157,6 +3157,18 @@
           "description": "The Google Play Services Android ID for the device encoded as a lowercase hex string. For example, \"123456789abcdef0\".",
           "type": "string"
         },
+        "device": {
+          "description": "The internal hardware codename of the device. This comes from android.os.Build.DEVICE. (field named \"device\" per logs/wireless/android/android_checkin.proto)",
+          "type": "string"
+        },
+        "latestBuildFingerprint": {
+          "description": "The build fingerprint of the device if known.",
+          "type": "string"
+        },
+        "maker": {
+          "description": "The manufacturer of the device. This comes from android.os.Build.MANUFACTURER.",
+          "type": "string"
+        },
         "managementType": {
           "description": "Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations. Possible values include: - \"managedDevice\", a device that has the EMM's device policy controller (DPC) as the device owner. - \"managedProfile\", a device that has a profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC. - \"containerApp\", no longer used (deprecated). - \"unmanagedProfile\", a device that has been allowed (by the domain's admin, using the Admin Console to enable the privilege) to use managed Google Play, but the profile is itself not owned by a DPC. ",
           "enum": [
@@ -3173,13 +3185,30 @@
           ],
           "type": "string"
         },
+        "model": {
+          "description": "The model name of the device. This comes from android.os.Build.MODEL.",
+          "type": "string"
+        },
         "policy": {
           "$ref": "Policy",
           "description": "The policy enforced on the device."
         },
+        "product": {
+          "description": "The product name of the device. This comes from android.os.Build.PRODUCT.",
+          "type": "string"
+        },
         "report": {
           "$ref": "DeviceReport",
           "description": "The device report updated with the latest app states."
+        },
+        "retailBrand": {
+          "description": "Retail brand for the device, if set. See https://developer.android.com/reference/android/os/Build.html#BRAND",
+          "type": "string"
+        },
+        "sdkVersion": {
+          "description": "API compatibility version.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

@@ -1280,6 +1280,10 @@ export namespace gkehub_v1 {
      */
     gkeCluster?: Schema$GkeCluster;
     /**
+     * Output only. Whether the lifecycle of this membership is managed by a google cluster platform service.
+     */
+    googleManaged?: boolean | null;
+    /**
      * Output only. Useful Kubernetes-specific metadata.
      */
     kubernetesMetadata?: Schema$KubernetesMetadata;
