@@ -4,6 +4,35 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [112.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v111.0.0...googleapis-v112.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+
+### Features
+
+* **appengine:** update the API ([3a57b47](https://github.com/googleapis/google-api-nodejs-client/commit/3a57b4701536de6673b02c66b6919a5575ab16e0))
+* **chromemanagement:** update the API ([1c18b16](https://github.com/googleapis/google-api-nodejs-client/commit/1c18b1665587b2d59e7bec78acb695017424aa9f))
+* **cloudsearch:** update the API ([110d85a](https://github.com/googleapis/google-api-nodejs-client/commit/110d85ab29d65dc7dbaefdfb9ee7e8c5df72bb2f))
+* **compute:** update the API ([bb19b0d](https://github.com/googleapis/google-api-nodejs-client/commit/bb19b0da143ef86b93aff89afc96fd976efb58c4))
+* **dialogflow:** update the API ([a313a0d](https://github.com/googleapis/google-api-nodejs-client/commit/a313a0d677542f77003e173b672fd97413a8107b))
+* **displayvideo:** update the API ([f746fe6](https://github.com/googleapis/google-api-nodejs-client/commit/f746fe658a636a8d65dc61829ffc4693b9b6b401))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+
+### Bug Fixes
+
+* **cloudfunctions:** update the API ([dd8be29](https://github.com/googleapis/google-api-nodejs-client/commit/dd8be29902e2da869829f58572497720a7e64168))
+* **cloudtrace:** update the API ([0c7a479](https://github.com/googleapis/google-api-nodejs-client/commit/0c7a479b999f67f7d70f98170d5b607981217be1))
+* **datacatalog:** update the API ([f8337b1](https://github.com/googleapis/google-api-nodejs-client/commit/f8337b1462fce665b779ec1e102bc834cc598f65))
+* **dataplex:** update the API ([85a06ee](https://github.com/googleapis/google-api-nodejs-client/commit/85a06ee032f1ba8941a01e07ebfed2bbe9a302b1))
+* **gmail:** update the API ([c6fa1dc](https://github.com/googleapis/google-api-nodejs-client/commit/c6fa1dc47d81d49492f7e81a13b816326840340d))
+
 ## [111.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v110.0.0...googleapis-v111.0.0) (2023-02-10)
 
 
