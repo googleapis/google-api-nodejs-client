@@ -142,7 +142,7 @@ There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-cli
 This library has a full set of [API Reference Documentation](https://googleapis.dev/nodejs/googleapis/latest). This documentation is auto-generated, and the location may change.
 
 ## Authentication and authorization
-There are multiple ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
+There are multiple ways to authenticate to Google APIs. Some services support all authentication methods, while others may only support one or two.
 
 - **OAuth2** - This allows you to make API calls on behalf of a given user.  In this model, the user visits your application, signs in with their Google account, and provides your application with authorization against a set of scopes.  [Learn more](#oauth2-client).
 
