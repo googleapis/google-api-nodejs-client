@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20221220",
+  "revision": "20230220",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -786,6 +786,13 @@
           "description": "The number of seconds to wait for the completion of a long running operation. The default is no deadline.",
           "format": "double",
           "type": "number"
+        },
+        "overridesByRequestProtocol": {
+          "additionalProperties": {
+            "$ref": "BackendRule"
+          },
+          "description": "The map between request protocol and the backend address.",
+          "type": "object"
         },
         "pathTranslation": {
           "enum": [

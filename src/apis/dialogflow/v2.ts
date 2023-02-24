@@ -7521,6 +7521,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SuggestConversationSummaryRequest {
     /**
+     * Parameters for a human assist query.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
+    /**
      * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
      */
     contextSize?: number | null;
@@ -25989,6 +25993,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -45258,6 +45263,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }

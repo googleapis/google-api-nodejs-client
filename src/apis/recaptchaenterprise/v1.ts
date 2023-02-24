@@ -184,7 +184,7 @@ export namespace recaptchaenterprise_v1 {
      */
     reasons?: string[] | null;
     /**
-     * Optional. If the Assessment is part of a Payment Transaction, provide details on Payment Lifecycle Events that occur in the Transaction.
+     * Optional. If the assessment is part of a payment transaction, provide details on payment lifecycle events that occur in the transaction.
      */
     transactionEvent?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionEvent;
   }
@@ -591,11 +591,11 @@ export namespace recaptchaenterprise_v1 {
      */
     eventType?: string | null;
     /**
-     * Optional. The reason or standardized code which corresponds with this transaction event, if one exists. E.g. a CHARGEBACK Event with code 4553.
+     * Optional. The reason or standardized code that corresponds with this transaction event, if one exists. For example, a CHARGEBACK event with code 6005.
      */
     reason?: string | null;
     /**
-     * Optional. The value that corresponds with this transaction event, if one exists. E.g. A refund event where $5.00 was refunded. Currency is obtained from the original transaction data.
+     * Optional. The value that corresponds with this transaction event, if one exists. For example, a refund event where $5.00 was refunded. Currency is obtained from the original transaction data.
      */
     value?: number | null;
   }

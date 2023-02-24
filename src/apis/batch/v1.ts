@@ -315,32 +315,6 @@ export namespace batch_v1 {
     newDisk?: Schema$Disk;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
-   */
-  export interface Schema$AuditConfig {
-    /**
-     * The configuration for logging of each type of permission.
-     */
-    auditLogConfigs?: Schema$AuditLogConfig[];
-    /**
-     * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
-     */
-    service?: string | null;
-  }
-  /**
-   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
-   */
-  export interface Schema$AuditLogConfig {
-    /**
-     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
-     */
-    exemptedMembers?: string[] | null;
-    /**
-     * The log type that this config enables.
-     */
-    logType?: string | null;
-  }
-  /**
    * Barrier runnable blocks until all tasks in a taskgroup reach it.
    */
   export interface Schema$Barrier {
@@ -348,23 +322,6 @@ export namespace batch_v1 {
      * Barriers are identified by their index in runnable list. Names are not required, but if present should be an identifier.
      */
     name?: string | null;
-  }
-  /**
-   * Associates `members`, or principals, with a `role`.
-   */
-  export interface Schema$Binding {
-    /**
-     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    condition?: Schema$Expr;
-    /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
-     */
-    members?: string[] | null;
-    /**
-     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
-     */
-    role?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -471,27 +428,6 @@ export namespace batch_v1 {
     variables?: {[key: string]: string} | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
-   */
-  export interface Schema$Expr {
-    /**
-     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
-     */
-    description?: string | null;
-    /**
-     * Textual representation of an expression in Common Expression Language syntax.
-     */
-    expression?: string | null;
-    /**
-     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
-     */
-    location?: string | null;
-    /**
-     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
-     */
-    title?: string | null;
-  }
-  /**
    * Represents a Google Cloud Storage volume.
    */
   export interface Schema$GCS {
@@ -596,7 +532,7 @@ export namespace batch_v1 {
      */
     notifications?: Schema$JobNotification[];
     /**
-     * Priority of the Job. The valid value range is [0, 100). A job with higher priority value is more likely to run earlier if all other requirements are satisfied.
+     * Priority of the Job. The valid value range is [0, 100). Default value is 0. Higher value indicates higher priority. A job with higher priority value is more likely to run earlier if all other requirements are satisfied.
      */
     priority?: string | null;
     /**
@@ -665,7 +601,7 @@ export namespace batch_v1 {
    */
   export interface Schema$LifecyclePolicy {
     /**
-     * Action to execute when ActionCondition is true.
+     * Action to execute when ActionCondition is true. When RETRY_TASK is specified, we will retry failed tasks if we notice any exit code match and fail tasks if no match is found. Likewise, when FAIL_TASK is specified, we will fail tasks if we notice any exit code match and retry tasks if no match is found.
      */
     action?: string | null;
     /**
@@ -892,27 +828,6 @@ export namespace batch_v1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
-   */
-  export interface Schema$Policy {
-    /**
-     * Specifies cloud audit logging configuration for this policy.
-     */
-    auditConfigs?: Schema$AuditConfig[];
-    /**
-     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
-     */
-    bindings?: Schema$Binding[];
-    /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
-     */
-    etag?: string | null;
-    /**
-     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    version?: number | null;
-  }
-  /**
    * Request to report agent's state. The Request itself implies the agent is healthy.
    */
   export interface Schema$ReportAgentStateRequest {
@@ -1008,19 +923,6 @@ export namespace batch_v1 {
      * List of scopes to be enabled for this service account on the VM, in addition to the cloud-platform API scope that will be added by default.
      */
     scopes?: string[] | null;
-  }
-  /**
-   * Request message for `SetIamPolicy` method.
-   */
-  export interface Schema$SetIamPolicyRequest {
-    /**
-     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
-     */
-    policy?: Schema$Policy;
-    /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
-     */
-    updateMask?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1153,7 +1055,7 @@ export namespace batch_v1 {
      */
     environments?: {[key: string]: string} | null;
     /**
-     * Lifecycle management schema when any task in a task group is failed. The valid size of lifecycle policies are [0, 10]. For each lifecycle policy, when the condition is met, the action in that policy will execute. If there are multiple policies that the task execution result matches, we use the action from the first matched policy. If task execution result does not meet with any of the defined lifecycle policy, we consider it as the default policy. Default policy means if the exit code is 0, exit task. If task ends with non-zero exit code, retry the task with max_retry_count.
+     * Lifecycle management schema when any task in a task group is failed. Currently we only support one lifecycle policy. When the lifecycle policy condition is met, the action in the policy will execute. If task execution result does not meet with the defined lifecycle policy, we consider it as the default policy. Default policy means if the exit code is 0, exit task. If task ends with non-zero exit code, retry the task with max_retry_count.
      */
     lifecyclePolicies?: Schema$LifecyclePolicy[];
     /**
@@ -1185,24 +1087,6 @@ export namespace batch_v1 {
      * Detailed info about why the state is reached.
      */
     statusEvents?: Schema$StatusEvent[];
-  }
-  /**
-   * Request message for `TestIamPermissions` method.
-   */
-  export interface Schema$TestIamPermissionsRequest {
-    /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     */
-    permissions?: string[] | null;
-  }
-  /**
-   * Response message for `TestIamPermissions` method.
-   */
-  export interface Schema$TestIamPermissionsResponse {
-    /**
-     * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
-     */
-    permissions?: string[] | null;
   }
   /**
    * Volume describes a volume and parameters for it to be mounted to a VM.
@@ -1593,7 +1477,7 @@ export namespace batch_v1 {
      *     jobId: 'placeholder-value',
      *     // Required. The parent resource name where the Job will be created. Pattern: "projects/{project\}/locations/{location\}"
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1751,7 +1635,7 @@ export namespace batch_v1 {
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *     // Optional. Reason for this deletion.
      *     reason: 'placeholder-value',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1991,140 +1875,6 @@ export namespace batch_v1 {
     }
 
     /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.jobs.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Jobs$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Jobs$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
      * List all Jobs for a project within a region.
      * @example
      * ```js
@@ -2257,292 +2007,6 @@ export namespace batch_v1 {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
       }
     }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.jobs.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Jobs$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Jobs$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Jobs$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/batch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const batch = google.batch('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await batch.projects.locations.jobs.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/jobs/my-job',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Jobs$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Jobs$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Jobs$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://batch.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Jobs$Create
@@ -2556,7 +2020,7 @@ export namespace batch_v1 {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -2576,7 +2040,7 @@ export namespace batch_v1 {
      */
     reason?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -2586,17 +2050,6 @@ export namespace batch_v1 {
      * Required. Job name.
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Jobs$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Jobs$List
     extends StandardParameters {
@@ -2616,30 +2069,6 @@ export namespace batch_v1 {
      * Parent path.
      */
     parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Jobs$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Jobs$Testiampermissions
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations$Jobs$Taskgroups {

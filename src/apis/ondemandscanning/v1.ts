@@ -1392,6 +1392,10 @@ export namespace ondemandscanning_v1 {
      */
     cvssScore?: number | null;
     /**
+     * The cvss v2 score for the vulnerability.
+     */
+    cvssV2?: Schema$CVSS;
+    /**
      * The cvss v3 score for the vulnerability.
      */
     cvssv3?: Schema$CVSS;

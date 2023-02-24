@@ -201,15 +201,15 @@ export namespace workstations_v1beta {
     workingDir?: string | null;
   }
   /**
-   * A customer-specified encryption key for the Compute Engine resources of this workstation configuration.
+   * A customer-managed encryption key for the Compute Engine resources of this workstation configuration.
    */
   export interface Schema$CustomerEncryptionKey {
     /**
-     * The name of the encryption key that is stored in Google Cloud KMS, for example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`.
+     * The name of the Google Cloud KMS encryption key. For example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`.
      */
     kmsKey?: string | null;
     /**
-     * The service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used. However, it is recommended to use a separate service account and to follow KMS best practices mentioned at https://cloud.google.com/kms/docs/separation-of-duties
+     * The service account to use with the specified KMS key. We recommend that you use a separate service account and follow KMS best practices. For more information, see [Separation of duties](https://cloud.google.com/kms/docs/separation-of-duties) and `gcloud kms keys add-iam-policy-binding` [`--member`](https://cloud.google.com/sdk/gcloud/reference/kms/keys/add-iam-policy-binding#--member).
      */
     kmsKeyServiceAccount?: string | null;
   }
@@ -417,7 +417,7 @@ export namespace workstations_v1beta {
      */
     unreachable?: string[] | null;
     /**
-     * The requested clusters.
+     * The requested workstation clusters.
      */
     workstationClusters?: Schema$WorkstationCluster[];
   }
@@ -793,7 +793,7 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
-     * Encrypts resources of this workstation configuration using a customer-specified encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk will be encrypted using this encryption key. If this field is not set, the disks will be encrypted using a generated key. Customer-specified encryption keys do not protect disk metadata. If the customer-specified encryption key is rotated, when the workstation instance is stopped, the system will attempt to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours.
+     * Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours.
      */
     encryptionKey?: Schema$CustomerEncryptionKey;
     /**
@@ -825,7 +825,7 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
-     * How long to wait before automatically stopping a workstation after it started. A value of 0 indicates that workstations using this config should never time out. Must be greater than 0 and less than 24 hours if encryption_key is set. Defaults to 12 hours.
+     * How long to wait before automatically stopping a workstation after it started. A value of 0 indicates that workstations using this configuration should never time out. Must be greater than 0 and less than 24 hours if encryption_key is set. Defaults to 12 hours.
      */
     runningTimeout?: string | null;
     /**
@@ -1490,7 +1490,7 @@ export namespace workstations_v1beta {
      *     parent: 'projects/my-project/locations/my-location',
      *     // If set, validate the request and preview the review, but do not actually apply it.
      *     validateOnly: 'placeholder-value',
-     *     // Required. ID to use for the cluster.
+     *     // Required. ID to use for the workstation cluster.
      *     workstationClusterId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1646,13 +1646,13 @@ export namespace workstations_v1beta {
      *
      *   // Do the magic
      *   const res = await workstations.projects.locations.workstationClusters.delete({
-     *     // If set, the request will be rejected if the latest version of the cluster on the server does not have this etag.
+     *     // If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this etag.
      *     etag: 'placeholder-value',
-     *     // If set, any workstation configurations and workstations in the cluster will also be deleted. Otherwise, the request will work only if the cluster has no configurations or workstations.
+     *     // If set, any workstation configurations and workstations in the workstation cluster are also deleted. Otherwise, the request only works if the workstation cluster has no configurations or workstations.
      *     force: 'placeholder-value',
-     *     // Required. Name of the cluster to delete.
+     *     // Required. Name of the workstation cluster to delete.
      *     name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster',
-     *     // If set, validate the request and preview the review, but do not actually apply it.
+     *     // If set, validate the request and preview the review, but do not apply it.
      *     validateOnly: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2072,11 +2072,11 @@ export namespace workstations_v1beta {
      *
      *   // Do the magic
      *   const res = await workstations.projects.locations.workstationClusters.patch({
-     *     // If set, and the cluster is not found, a new cluster will be created. In this situation, update_mask is ignored.
+     *     // If set, and the workstation cluster is not found, a new workstation cluster will be created. In this situation, update_mask is ignored.
      *     allowMissing: 'placeholder-value',
      *     // Full name of this resource.
      *     name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster',
-     *     // Required. Mask specifying which fields in the cluster should be updated.
+     *     // Required. Mask that specifies which fields in the workstation cluster should be updated.
      *     updateMask: 'placeholder-value',
      *     // If set, validate the request and preview the review, but do not actually apply it.
      *     validateOnly: 'placeholder-value',
@@ -2216,7 +2216,7 @@ export namespace workstations_v1beta {
      */
     validateOnly?: boolean;
     /**
-     * Required. ID to use for the cluster.
+     * Required. ID to use for the workstation cluster.
      */
     workstationClusterId?: string;
 
@@ -2228,19 +2228,19 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$Delete
     extends StandardParameters {
     /**
-     * If set, the request will be rejected if the latest version of the cluster on the server does not have this etag.
+     * If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this etag.
      */
     etag?: string;
     /**
-     * If set, any workstation configurations and workstations in the cluster will also be deleted. Otherwise, the request will work only if the cluster has no configurations or workstations.
+     * If set, any workstation configurations and workstations in the workstation cluster are also deleted. Otherwise, the request only works if the workstation cluster has no configurations or workstations.
      */
     force?: boolean;
     /**
-     * Required. Name of the cluster to delete.
+     * Required. Name of the workstation cluster to delete.
      */
     name?: string;
     /**
-     * If set, validate the request and preview the review, but do not actually apply it.
+     * If set, validate the request and preview the review, but do not apply it.
      */
     validateOnly?: boolean;
   }
@@ -2269,7 +2269,7 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$Patch
     extends StandardParameters {
     /**
-     * If set, and the cluster is not found, a new cluster will be created. In this situation, update_mask is ignored.
+     * If set, and the workstation cluster is not found, a new workstation cluster will be created. In this situation, update_mask is ignored.
      */
     allowMissing?: boolean;
     /**
@@ -2277,7 +2277,7 @@ export namespace workstations_v1beta {
      */
     name?: string;
     /**
-     * Required. Mask specifying which fields in the cluster should be updated.
+     * Required. Mask that specifies which fields in the workstation cluster should be updated.
      */
     updateMask?: string;
     /**

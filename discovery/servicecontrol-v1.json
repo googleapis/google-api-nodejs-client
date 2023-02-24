@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230215",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -646,10 +646,6 @@
           "$ref": "CheckInfo",
           "description": "Feedback data returned from the server during processing a Check request."
         },
-        "esfMigrationServerOverride": {
-          "$ref": "EsfMigrationServerOverride",
-          "description": "Esf migration server override during check v2 migration. This is temporary and Chemist internal only."
-        },
         "operationId": {
           "description": "The same operation_id value used in the CheckRequest. Used for logging and diagnostics purposes.",
           "type": "string"
@@ -759,27 +755,6 @@
           "description": "The sum of squared deviations from the mean: Sum[i=1..count]((x_i - mean)^2) where each x_i is a sample values. If `count` is zero then this field must be zero, otherwise validation of the request fails.",
           "format": "double",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "EsfMigrationServerOverride": {
-      "description": "Esf migration server override during chemist check v2 migration",
-      "id": "EsfMigrationServerOverride",
-      "properties": {
-        "overrideMode": {
-          "description": "Esf migration override mode",
-          "enum": [
-            "ESF_MIGRATION_OVERRIDE_MODE_UNSPECIFIED",
-            "DRY_RUN",
-            "NO_OVERRIDE"
-          ],
-          "enumDescriptions": [
-            "Default, ESF should use the mode that is determined by the configuration.",
-            "ESF should send 95% v1 request and 5% dry run request.",
-            "Same as ESF_MIGRATION_OVERRIDE_MODE_UNSPECIFIED, remove the override mode. This is used for safe unpush."
-          ],
-          "type": "string"
         }
       },
       "type": "object"

@@ -1079,7 +1079,7 @@
       }
     }
   },
-  "revision": "20230125",
+  "revision": "20230208",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1547,7 +1547,8 @@
             "INACTIVE",
             "DELETING",
             "UPDATING",
-            "ERROR"
+            "ERROR",
+            "AUTHORIZATION_REQUIRED"
           ],
           "enumDescriptions": [
             "Connection does not have a state yet.",
@@ -1556,7 +1557,8 @@
             "Connection is stopped.",
             "Connection is being deleted.",
             "Connection is being updated.",
-            "Connection is not running due to an error."
+            "Connection is not running due to an error.",
+            "Connection is not running due to an auth error for the Oauth2 Auth Code based connector."
           ],
           "type": "string"
         },

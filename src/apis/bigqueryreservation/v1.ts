@@ -192,7 +192,7 @@ export namespace bigqueryreservation_v1 {
      */
     commitmentStartTime?: string | null;
     /**
-     * Edition of the capacity commitment.
+     * Do not use.
      */
     edition?: string | null;
     /**
@@ -302,7 +302,7 @@ export namespace bigqueryreservation_v1 {
      */
     creationTime?: string | null;
     /**
-     * Edition of the reservation.
+     * Do not use.
      */
     edition?: string | null;
     /**

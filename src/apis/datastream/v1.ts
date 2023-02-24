@@ -706,6 +706,10 @@ export namespace datastream_v1 {
      */
     includeObjects?: Schema$MysqlRdbms;
     /**
+     * Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+     */
+    maxConcurrentBackfillTasks?: number | null;
+    /**
      * Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
      */
     maxConcurrentCdcTasks?: number | null;
@@ -936,6 +940,10 @@ export namespace datastream_v1 {
      */
     includeObjects?: Schema$OracleRdbms;
     /**
+     * Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+     */
+    maxConcurrentBackfillTasks?: number | null;
+    /**
      * Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
      */
     maxConcurrentCdcTasks?: number | null;
@@ -1066,6 +1074,10 @@ export namespace datastream_v1 {
      * PostgreSQL objects to include in the stream.
      */
     includeObjects?: Schema$PostgresqlRdbms;
+    /**
+     * Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+     */
+    maxConcurrentBackfillTasks?: number | null;
     /**
      * Required. The name of the publication that includes the set of all tables that are defined in the stream's include_objects.
      */

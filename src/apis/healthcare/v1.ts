@@ -256,7 +256,7 @@ export namespace healthcare_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -913,6 +913,36 @@ export namespace healthcare_v1 {
      * Immutable. The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.
      */
     version?: string | null;
+  }
+  /**
+   * Count of resources and total storage size by type for a given FHIR store.
+   */
+  export interface Schema$FhirStoreMetric {
+    /**
+     * The total count of FHIR resources in the store of this resource type.
+     */
+    count?: string | null;
+    /**
+     * The FHIR resource type this metric applies to.
+     */
+    resourceType?: string | null;
+    /**
+     * The total amount of structured storage used by FHIR resources of this resource type in the store.
+     */
+    structuredStorageSizeBytes?: string | null;
+  }
+  /**
+   * List of metrics for a given FHIR store.
+   */
+  export interface Schema$FhirStoreMetrics {
+    /**
+     * List of FhirStoreMetric by resource type.
+     */
+    metrics?: Schema$FhirStoreMetric[];
+    /**
+     * The resource name of the FHIR store to get metrics for, in the format `projects/{project_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string | null;
   }
   /**
    * A (sub) field of a type.
@@ -1754,6 +1784,10 @@ export namespace healthcare_v1 {
    */
   export interface Schema$SchemaConfig {
     /**
+     * The configuration for exported BigQuery tables to be partitioned by FHIR resource's last updated time column.
+     */
+    lastUpdatedPartitionConfig?: Schema$TimePartitioning;
+    /**
      * The depth for all recursive structures in the output analytics schema. For example, `concept` in the CodeSystem resource is a recursive structure; when the depth is 2, the CodeSystem table will have a column called `concept.concept` but not `concept.concept.concept`. If not specified or set to 0, the server will use the default value 2. The maximum depth allowed is 5.
      */
     recursiveStructureDepth?: string | null;
@@ -1981,6 +2015,19 @@ export namespace healthcare_v1 {
      * The original text contained in this span.
      */
     content?: string | null;
+  }
+  /**
+   * Configuration for FHIR BigQuery time-partitioned tables.
+   */
+  export interface Schema$TimePartitioning {
+    /**
+     * Number of milliseconds for which to keep the storage for a partition.
+     */
+    expirationMs?: string | null;
+    /**
+     * Type of partitioning.
+     */
+    type?: string | null;
   }
   /**
    * A type definition for some HL7v2 type (incl. Segments and Datatypes).
@@ -14900,6 +14947,142 @@ export namespace healthcare_v1 {
     }
 
     /**
+     * Gets metrics associated with the FHIR store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.getFHIRStoreMetrics(
+     *       {
+     *         // The resource name of the FHIR store to get metrics for.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metrics": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getFHIRStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getFHIRStoreMetrics(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FhirStoreMetrics>;
+    getFHIRStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getFHIRStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$FhirStoreMetrics>,
+      callback: BodyResponseCallback<Schema$FhirStoreMetrics>
+    ): void;
+    getFHIRStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics,
+      callback: BodyResponseCallback<Schema$FhirStoreMetrics>
+    ): void;
+    getFHIRStoreMetrics(
+      callback: BodyResponseCallback<Schema$FhirStoreMetrics>
+    ): void;
+    getFHIRStoreMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics
+        | BodyResponseCallback<Schema$FhirStoreMetrics>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FhirStoreMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FhirStoreMetrics>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FhirStoreMetrics> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getFHIRStoreMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FhirStoreMetrics>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FhirStoreMetrics>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
@@ -15818,6 +16001,13 @@ export namespace healthcare_v1 {
     extends StandardParameters {
     /**
      * The resource name of the FHIR store to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Getfhirstoremetrics
+    extends StandardParameters {
+    /**
+     * The resource name of the FHIR store to get metrics for.
      */
     name?: string;
   }

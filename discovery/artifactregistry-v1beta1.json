@@ -472,7 +472,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the file to retrieve.",
+                          "description": "Required. The name of the file to retrieve.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/files/.*$",
                           "required": true,
@@ -514,7 +514,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "The name of the repository whose files will be listed. For example: \"projects/p1/locations/us-central1/repositories/repo1",
+                          "description": "Required. The name of the repository whose files will be listed. For example: \"projects/p1/locations/us-central1/repositories/repo1",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                           "required": true,
@@ -929,7 +929,7 @@
       }
     }
   },
-  "revision": "20230202",
+  "revision": "20230208",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -988,8 +988,9 @@
       "id": "File",
       "properties": {
         "createTime": {
-          "description": "The time when the File was created.",
+          "description": "Output only. The time when the File was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "hashes": {
@@ -1013,8 +1014,9 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "The time when the File was last updated.",
+          "description": "Output only. The time when the File was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

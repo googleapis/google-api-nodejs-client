@@ -685,6 +685,19 @@ export namespace prod_tt_sasportal_v1alpha1 {
     etag?: string | null;
   }
   /**
+   * Request for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]. No input is needed, because GCP Project, Organization Info, and caller’s GAIA ID should be retrieved from the RPC handler, and used as inputs to create a new SAS organization (if not exists) and a new SAS deployment.
+   */
+  export interface Schema$SasPortalProvisionDeploymentRequest {}
+  /**
+   * Response for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment].
+   */
+  export interface Schema$SasPortalProvisionDeploymentResponse {
+    /**
+     * Optional. Optional error message if the provisioning request is not successful.
+     */
+    errorMessage?: string | null;
+  }
+  /**
    * Request message for `SetPolicy` method.
    */
   export interface Schema$SasPortalSetPolicyRequest {
@@ -1210,6 +1223,148 @@ export namespace prod_tt_sasportal_v1alpha1 {
         return createAPIRequest<Schema$SasPortalCustomer>(parameters);
       }
     }
+
+    /**
+     * Creates a new SAS deployment through the GCP workflow. Creates a SAS organization if an organization match is not found.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/sasportal'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await prod_tt_sasportal.customers.provisionDeployment({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorMessage": "my_errorMessage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    provisionDeployment(
+      params: Params$Resource$Customers$Provisiondeployment,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    provisionDeployment(
+      params?: Params$Resource$Customers$Provisiondeployment,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalProvisionDeploymentResponse>;
+    provisionDeployment(
+      params: Params$Resource$Customers$Provisiondeployment,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    provisionDeployment(
+      params: Params$Resource$Customers$Provisiondeployment,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalProvisionDeploymentResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalProvisionDeploymentResponse>
+    ): void;
+    provisionDeployment(
+      params: Params$Resource$Customers$Provisiondeployment,
+      callback: BodyResponseCallback<Schema$SasPortalProvisionDeploymentResponse>
+    ): void;
+    provisionDeployment(
+      callback: BodyResponseCallback<Schema$SasPortalProvisionDeploymentResponse>
+    ): void;
+    provisionDeployment(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Provisiondeployment
+        | BodyResponseCallback<Schema$SasPortalProvisionDeploymentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalProvisionDeploymentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalProvisionDeploymentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalProvisionDeploymentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Provisiondeployment;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Provisiondeployment;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/customers:provisionDeployment').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalProvisionDeploymentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalProvisionDeploymentResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Customers$Get extends StandardParameters {
@@ -1242,6 +1397,13 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$SasPortalCustomer;
+  }
+  export interface Params$Resource$Customers$Provisiondeployment
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalProvisionDeploymentRequest;
   }
 
   export class Resource$Customers$Deployments {

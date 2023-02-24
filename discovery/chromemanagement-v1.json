@@ -493,6 +493,108 @@
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
               ]
             },
+            "countPrintJobsByPrinter": {
+              "description": "Get a summary of printing done by each printer.",
+              "flatPath": "v1/customers/{customersId}/reports:countPrintJobsByPrinter",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countPrintJobsByPrinter",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer ID prefixed with \"customers/\" or \"customers/my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * completion_time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. If omitted, results will be ordered in ascending order of the 'printer' field. Supported order_by fields: * printer * job_count * device_count * user_count",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Token to specify the page of the response to be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "printerOrgUnitId": {
+                  "description": "The ID of the organizational unit for printers. If specified, only data for printers from the specified organizational unit will be returned. If omitted, data for printers from all organizational units will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countPrintJobsByPrinter",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountPrintJobsByPrinterResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "countPrintJobsByUser": {
+              "description": "Get a summary of printing done by each user.",
+              "flatPath": "v1/customers/{customersId}/reports:countPrintJobsByUser",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countPrintJobsByUser",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer ID prefixed with \"customers/\" or \"customers/my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * completion_time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. If omitted, results will be ordered in ascending order of the 'user_email' field. Supported order_by fields: * user_email * job_count * printer_count * device_count",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Token to specify the page of the response to be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "printerOrgUnitId": {
+                  "description": "The ID of the organizational unit for printers. If specified, only print jobs initiated with printers from the specified organizational unit will be counted. If omitted, all print jobs will be counted.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countPrintJobsByUser",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountPrintJobsByUserResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "findInstalledAppDevices": {
               "description": "Generate report of devices that have a specified app installed.",
               "flatPath": "v1/customers/{customersId}/reports:findInstalledAppDevices",
@@ -794,7 +896,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230220",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1577,6 +1679,52 @@
           "description": "Total number of installed apps matching request.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountPrintJobsByPrinterResponse": {
+      "description": "Response containing a summary printing report for each printer from the specified organizational unit for the requested time interval.",
+      "id": "GoogleChromeManagementV1CountPrintJobsByPrinterResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token for requesting the next page.",
+          "type": "string"
+        },
+        "printerReports": {
+          "description": "List of PrinterReports matching request.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1PrinterReport"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of printers matching request.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountPrintJobsByUserResponse": {
+      "description": "Response containing a summary printing report for each user that has initiated a print job with a printer from the specified organizational unit during the requested time interval.",
+      "id": "GoogleChromeManagementV1CountPrintJobsByUserResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token for requesting the next page.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Total number of users matching request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userPrintReports": {
+          "description": "List of UserPrintReports matching request.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1UserPrintReport"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2483,6 +2631,40 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1PrinterReport": {
+      "description": "Report for CountPrintJobsByPrinter, contains statistics on printer usage. Contains the total number of print jobs initiated with this printer, the number of users and the number of devices that have initiated at least one print job with this printer.",
+      "id": "GoogleChromeManagementV1PrinterReport",
+      "properties": {
+        "deviceCount": {
+          "description": "Number of chrome devices that have been used to send print jobs to the specified printer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "jobCount": {
+          "description": "Number of print jobs sent to the printer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "printer": {
+          "description": "Printer name.",
+          "type": "string"
+        },
+        "printerId": {
+          "description": "Printer API ID.",
+          "type": "string"
+        },
+        "printerModel": {
+          "description": "Printer model.",
+          "type": "string"
+        },
+        "userCount": {
+          "description": "Number of users that have sent print jobs to the printer.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1StorageInfo": {
       "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
       "id": "GoogleChromeManagementV1StorageInfo",
@@ -3043,6 +3225,36 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1UserPrintReport": {
+      "description": "Report for CountPrintJobsByUser, contains printing statistics for a user. Contains the number of printers, the number of devices used to initiate print jobs, and the number of print jobs initiated.",
+      "id": "GoogleChromeManagementV1UserPrintReport",
+      "properties": {
+        "deviceCount": {
+          "description": "Number of chrome devices that have been used to initiate print jobs by the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "jobCount": {
+          "description": "Number of print jobs initiated by the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "printerCount": {
+          "description": "Number of printers used by the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userEmail": {
+          "description": "The primary e-mail address of the user.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "The unique Directory API ID of the user.",
+          "type": "string"
         }
       },
       "type": "object"

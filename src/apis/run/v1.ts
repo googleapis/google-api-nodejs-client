@@ -733,6 +733,10 @@ export namespace run_v1 {
      */
     path?: string | null;
     /**
+     * Port number to access on the container. Number must be in the range 1 to 65535.
+     */
+    port?: number | null;
+    /**
      * Not supported by Cloud Run.
      */
     scheme?: string | null;
