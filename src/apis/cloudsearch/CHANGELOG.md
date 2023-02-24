@@ -1,5 +1,23 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v7.0.0...cloudsearch-v8.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **cloudsearch:** This release has breaking changes.
+* **cloudsearch:** This release has breaking changes.
+
+### Features
+
+* **cloudsearch:** update the API ([110d85a](https://github.com/googleapis/google-api-nodejs-client/commit/110d85ab29d65dc7dbaefdfb9ee7e8c5df72bb2f))
+* **cloudsearch:** update the API ([e743154](https://github.com/googleapis/google-api-nodejs-client/commit/e7431549a8c85e8bc5b904cf1241e86716317adf))
+* **cloudsearch:** update the API ([ebe2a2b](https://github.com/googleapis/google-api-nodejs-client/commit/ebe2a2bf9ed89ff05ebc9e962f34518f21fd6880))
+* **cloudsearch:** update the API ([0be5246](https://github.com/googleapis/google-api-nodejs-client/commit/0be5246196ff85cc116bc6b72edadd2ed63c41b1))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v6.0.0...cloudsearch-v7.0.0) (2023-02-10)
 
 

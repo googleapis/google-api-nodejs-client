@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v4.0.2...drive-v5.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+
+### Bug Fixes
+
+* **drive:** update the API ([885131d](https://github.com/googleapis/google-api-nodejs-client/commit/885131d5a20cd4b6106d685ee312f6e128e346bb))
+* **drive:** update the API ([01b0b7c](https://github.com/googleapis/google-api-nodejs-client/commit/01b0b7c1eda91f85f73cba23da7f350bf7661ad4))
+
 ## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v4.0.1...drive-v4.0.2) (2023-02-10)
 
 

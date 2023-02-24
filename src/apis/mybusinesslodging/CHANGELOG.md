@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinesslodging-v1.0.1...mybusinesslodging-v1.1.0) (2023-02-24)
+
+
+### Features
+
+* **mybusinesslodging:** update the API ([892c60b](https://github.com/googleapis/google-api-nodejs-client/commit/892c60b19065d1addc7e958e692e490ebbd49099))
+
+
+### Bug Fixes
+
+* **mybusinesslodging:** update the API ([28f185b](https://github.com/googleapis/google-api-nodejs-client/commit/28f185b430329233ac7faf9204db1fdf88f3ef1d))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinesslodging-v1.0.0...mybusinesslodging-v1.0.1) (2023-02-10)
 
 

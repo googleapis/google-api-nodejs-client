@@ -1,5 +1,22 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v7.1.0...displayvideo-v8.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+* **displayvideo:** This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([f746fe6](https://github.com/googleapis/google-api-nodejs-client/commit/f746fe658a636a8d65dc61829ffc4693b9b6b401))
+* **displayvideo:** update the API ([be41c17](https://github.com/googleapis/google-api-nodejs-client/commit/be41c177031ca55b1cee79a4385da32e190c7c5a))
+* **displayvideo:** update the API ([9c560c7](https://github.com/googleapis/google-api-nodejs-client/commit/9c560c7618bb493df8a788afb637121051eef09a))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v7.0.0...displayvideo-v7.1.0) (2023-02-10)
 
 
