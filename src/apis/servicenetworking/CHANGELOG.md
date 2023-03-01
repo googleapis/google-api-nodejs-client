@@ -1,5 +1,18 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v8.2.0...servicenetworking-v9.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* **servicenetworking:** update the API ([d632167](https://github.com/googleapis/google-api-nodejs-client/commit/d632167eaff51ac9f8a8c98a321743b52e5d90d0))
+* **servicenetworking:** update the API ([dd8d2fd](https://github.com/googleapis/google-api-nodejs-client/commit/dd8d2fdbd82f58103e6c8dc3536450f0091dbb7f))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v8.1.0...servicenetworking-v8.2.0) (2023-02-10)
 
 

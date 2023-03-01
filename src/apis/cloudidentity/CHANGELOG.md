@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v8.2.0...cloudidentity-v8.3.0) (2023-02-24)
+
+
+### Features
+
+* **cloudidentity:** update the API ([2b9fb69](https://github.com/googleapis/google-api-nodejs-client/commit/2b9fb694cd568421bf64f0e16495c39b9ae7f244))
+* **cloudidentity:** update the API ([a4a6e8f](https://github.com/googleapis/google-api-nodejs-client/commit/a4a6e8f98e15ec34ef00703cbc25f1ef010bacd1))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v8.1.0...cloudidentity-v8.2.0) (2023-02-10)
 
 

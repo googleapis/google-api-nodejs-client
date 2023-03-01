@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.2...mybusinessaccountmanagement-v3.0.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* **mybusinessaccountmanagement:** update the API ([413722a](https://github.com/googleapis/google-api-nodejs-client/commit/413722ab846c0c06bf30481bfb224186cbeb2161))
+* **mybusinessaccountmanagement:** update the API ([e944b6b](https://github.com/googleapis/google-api-nodejs-client/commit/e944b6b191d6029c2dae38ed5c777142d3d80039))
+
 ## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.1...mybusinessaccountmanagement-v3.0.2) (2023-02-10)
 
 

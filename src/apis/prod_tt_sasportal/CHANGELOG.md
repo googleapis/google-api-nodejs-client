@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v6.1.0...prod_tt_sasportal-v7.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **prod_tt_sasportal:** update the API ([d3c834b](https://github.com/googleapis/google-api-nodejs-client/commit/d3c834b8e744af3da352acf667ec7cec45f41a9b))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v6.0.0...prod_tt_sasportal-v6.1.0) (2023-02-10)
 
 

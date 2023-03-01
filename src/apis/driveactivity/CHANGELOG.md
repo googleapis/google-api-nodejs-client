@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/driveactivity-v2.0.1...driveactivity-v2.0.2) (2023-02-24)
+
+
+### Bug Fixes
+
+* **driveactivity:** update the API ([2858e5a](https://github.com/googleapis/google-api-nodejs-client/commit/2858e5ae7cbfd159230e060de0034221a418ac16))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/driveactivity-v2.0.0...driveactivity-v2.0.1) (2023-02-10)
 
 

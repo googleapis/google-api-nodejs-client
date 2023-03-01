@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.2.0...testing-v2.3.0) (2023-02-24)
+
+
+### Features
+
+* **testing:** update the API ([f7aa8c8](https://github.com/googleapis/google-api-nodejs-client/commit/f7aa8c877911e020068e6347568392aff48b9403))
+* **testing:** update the API ([2769006](https://github.com/googleapis/google-api-nodejs-client/commit/2769006f49528c830d5396977ed8321035ea58dd))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.1.0...testing-v2.2.0) (2023-02-10)
 
 
