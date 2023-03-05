@@ -299,7 +299,7 @@ export namespace analyticsadmin_v1beta {
      */
     custom?: boolean | null;
     /**
-     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     * Output only. If set, this event can currently be deleted with DeleteConversionEvent.
      */
     deletable?: boolean | null;
     /**
@@ -737,7 +737,7 @@ export namespace analyticsadmin_v1beta {
      */
     parent?: string | null;
     /**
-     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created via Google Analytics Admin API.
+     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created with the Google Analytics Admin API.
      */
     propertyType?: string | null;
     /**
@@ -783,7 +783,7 @@ export namespace analyticsadmin_v1beta {
      */
     account?: Schema$GoogleAnalyticsAdminV1betaAccount;
     /**
-     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI.
+     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Cloud Console as a Redirect URI.
      */
     redirectUri?: string | null;
   }
