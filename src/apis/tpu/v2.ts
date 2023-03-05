@@ -125,9 +125,26 @@ export namespace tpu_v2 {
   }
 
   /**
+   * A TPU accelerator configuration.
+   */
+  export interface Schema$AcceleratorConfig {
+    /**
+     * Required. Topology of TPU in chips.
+     */
+    topology?: string | null;
+    /**
+     * Required. Type of TPU.
+     */
+    type?: string | null;
+  }
+  /**
    * A accelerator type that a Node can be configured with.
    */
   export interface Schema$AcceleratorType {
+    /**
+     * The accelerator config.
+     */
+    acceleratorConfigs?: Schema$AcceleratorConfig[];
     /**
      * The resource name.
      */
@@ -381,6 +398,10 @@ export namespace tpu_v2 {
    * A TPU instance.
    */
   export interface Schema$Node {
+    /**
+     * The AccleratorConfig for the TPU Node.
+     */
+    acceleratorConfig?: Schema$AcceleratorConfig;
     /**
      * Required. The type of hardware accelerators associated with this node.
      */
@@ -1153,6 +1174,7 @@ export namespace tpu_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "acceleratorConfigs": [],
      *   //   "name": "my_name",
      *   //   "type": "my_type"
      *   // }
@@ -1468,6 +1490,7 @@ export namespace tpu_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "acceleratorConfig": {},
      *       //   "acceleratorType": "my_acceleratorType",
      *       //   "apiVersion": "my_apiVersion",
      *       //   "cidrBlock": "my_cidrBlock",
@@ -1759,6 +1782,7 @@ export namespace tpu_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "acceleratorConfig": {},
      *   //   "acceleratorType": "my_acceleratorType",
      *   //   "apiVersion": "my_apiVersion",
      *   //   "cidrBlock": "my_cidrBlock",
@@ -2191,6 +2215,7 @@ export namespace tpu_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "acceleratorConfig": {},
      *       //   "acceleratorType": "my_acceleratorType",
      *       //   "apiVersion": "my_apiVersion",
      *       //   "cidrBlock": "my_cidrBlock",

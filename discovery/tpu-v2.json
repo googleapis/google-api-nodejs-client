@@ -721,13 +721,47 @@
       }
     }
   },
-  "revision": "20230105",
+  "revision": "20230223",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
+    "AcceleratorConfig": {
+      "description": "A TPU accelerator configuration.",
+      "id": "AcceleratorConfig",
+      "properties": {
+        "topology": {
+          "description": "Required. Topology of TPU in chips.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of TPU.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "V2",
+            "V3",
+            "V4"
+          ],
+          "enumDescriptions": [
+            "Unspecified version.",
+            "TPU v2.",
+            "TPU v3.",
+            "TPU v4."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AcceleratorType": {
       "description": "A accelerator type that a Node can be configured with.",
       "id": "AcceleratorType",
       "properties": {
+        "acceleratorConfigs": {
+          "description": "The accelerator config.",
+          "items": {
+            "$ref": "AcceleratorConfig"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "The resource name.",
           "type": "string"
@@ -1071,6 +1105,10 @@
       "description": "A TPU instance.",
       "id": "Node",
       "properties": {
+        "acceleratorConfig": {
+          "$ref": "AcceleratorConfig",
+          "description": "The AccleratorConfig for the TPU Node."
+        },
         "acceleratorType": {
           "description": "Required. The type of hardware accelerators associated with this node.",
           "type": "string"

@@ -663,7 +663,7 @@ export namespace tpu_v2alpha1 {
      */
     queueingPolicy?: Schema$QueueingPolicy;
     /**
-     * Output only. State of the QueuedResource request
+     * Output only. State of the QueuedResource request.
      */
     state?: Schema$QueuedResourceState;
     /**
