@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20230208",
+  "revision": "20230220",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1370,6 +1370,10 @@
           "description": "Size of the disk in GB. Must be empty if source_snapshot is set.",
           "format": "int32",
           "type": "integer"
+        },
+        "sourceSnapshot": {
+          "description": "Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty.",
+          "type": "string"
         }
       },
       "type": "object"
