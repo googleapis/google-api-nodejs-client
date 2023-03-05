@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230223",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -3506,6 +3506,11 @@
           "description": "The labels of the migrating VM.",
           "type": "object"
         },
+        "lastReplicationCycle": {
+          "$ref": "ReplicationCycle",
+          "description": "Output only. Details of the last replication cycle. This will be updated whenever a replication cycle is finished and is not to be confused with last_sync which is only updated on successful replication cycles.",
+          "readOnly": true
+        },
         "lastSync": {
           "$ref": "ReplicationSync",
           "description": "Output only. The most updated snapshot created time in the source that finished replication.",
@@ -3648,6 +3653,45 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MigrationWarning": {
+      "description": "Represents migration resource warning information that can be used with google.rpc.Status message. MigrationWarning is used to present the user with warning information in migration operations.",
+      "id": "MigrationWarning",
+      "properties": {
+        "actionItem": {
+          "$ref": "LocalizedMessage",
+          "description": "Suggested action for solving the warning."
+        },
+        "code": {
+          "description": "The warning code.",
+          "enum": [
+            "WARNING_CODE_UNSPECIFIED",
+            "ADAPTATION_WARNING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is not used.",
+            "A warning originated from OS Adaptation."
+          ],
+          "type": "string"
+        },
+        "helpLinks": {
+          "description": "URL(s) pointing to additional information on handling the current warning.",
+          "items": {
+            "$ref": "Link"
+          },
+          "type": "array"
+        },
+        "warningMessage": {
+          "$ref": "LocalizedMessage",
+          "description": "The localized warning message."
+        },
+        "warningTime": {
+          "description": "The time the warning occurred.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3876,6 +3920,14 @@
           "description": "The accumulated duration the replication cycle was paused.",
           "format": "google-duration",
           "type": "string"
+        },
+        "warnings": {
+          "description": "Output only. Warnings that occurred during the cycle.",
+          "items": {
+            "$ref": "MigrationWarning"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"

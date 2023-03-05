@@ -1117,6 +1117,10 @@ export namespace vmmigration_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. Details of the last replication cycle. This will be updated whenever a replication cycle is finished and is not to be confused with last_sync which is only updated on successful replication cycles.
+     */
+    lastReplicationCycle?: Schema$ReplicationCycle;
+    /**
      * Output only. The most updated snapshot created time in the source that finished replication.
      */
     lastSync?: Schema$ReplicationSync;
@@ -1181,6 +1185,31 @@ export namespace vmmigration_v1alpha1 {
      * Output only. URL(s) pointing to additional information on handling the current error.
      */
     helpLinks?: Schema$Link[];
+  }
+  /**
+   * Represents migration resource warning information that can be used with google.rpc.Status message. MigrationWarning is used to present the user with warning information in migration operations.
+   */
+  export interface Schema$MigrationWarning {
+    /**
+     * Suggested action for solving the warning.
+     */
+    actionItem?: Schema$LocalizedMessage;
+    /**
+     * The warning code.
+     */
+    code?: string | null;
+    /**
+     * URL(s) pointing to additional information on handling the current warning.
+     */
+    helpLinks?: Schema$Link[];
+    /**
+     * The localized warning message.
+     */
+    warningMessage?: Schema$LocalizedMessage;
+    /**
+     * The time the warning occurred.
+     */
+    warningTime?: string | null;
   }
   /**
    * NetworkInterface represents a NIC of a VM.
@@ -1347,6 +1376,10 @@ export namespace vmmigration_v1alpha1 {
      * The accumulated duration the replication cycle was paused.
      */
     totalPauseDuration?: string | null;
+    /**
+     * Output only. Warnings that occurred during the cycle.
+     */
+    warnings?: Schema$MigrationWarning[];
   }
   /**
    * ReplicationSync contain information about the last replica sync to the cloud.
@@ -5701,6 +5734,7 @@ export namespace vmmigration_v1alpha1 {
      *       //   "error": {},
      *       //   "group": "my_group",
      *       //   "labels": {},
+     *       //   "lastReplicationCycle": {},
      *       //   "lastSync": {},
      *       //   "name": "my_name",
      *       //   "policy": {},
@@ -6138,6 +6172,7 @@ export namespace vmmigration_v1alpha1 {
      *   //   "error": {},
      *   //   "group": "my_group",
      *   //   "labels": {},
+     *   //   "lastReplicationCycle": {},
      *   //   "lastSync": {},
      *   //   "name": "my_name",
      *   //   "policy": {},
@@ -6435,6 +6470,7 @@ export namespace vmmigration_v1alpha1 {
      *       //   "error": {},
      *       //   "group": "my_group",
      *       //   "labels": {},
+     *       //   "lastReplicationCycle": {},
      *       //   "lastSync": {},
      *       //   "name": "my_name",
      *       //   "policy": {},
@@ -8476,7 +8512,8 @@ export namespace vmmigration_v1alpha1 {
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "steps": [],
-     *   //   "totalPauseDuration": "my_totalPauseDuration"
+     *   //   "totalPauseDuration": "my_totalPauseDuration",
+     *   //   "warnings": []
      *   // }
      * }
      *
