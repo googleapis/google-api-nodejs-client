@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20230220",
+  "revision": "20230302",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1995,6 +1995,52 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1DisplayDevice": {
+      "description": "Information of a display device.",
+      "id": "GoogleChromeManagementV1DisplayDevice",
+      "properties": {
+        "displayHeightMm": {
+          "description": "Output only. Display height in millimeters.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "displayName": {
+          "description": "Output only. Display device name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayWidthMm": {
+          "description": "Output only. Display width in millimeters.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "internal": {
+          "description": "Output only. Is display internal or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "manufactureYear": {
+          "description": "Output only. Year of manufacture.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "manufacturerId": {
+          "description": "Output only. Three letter manufacturer ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "modelId": {
+          "description": "Output only. Manufacturer product code.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1DisplayInfo": {
       "description": "Information for a display.",
       "id": "GoogleChromeManagementV1DisplayInfo",
@@ -2002,6 +2048,11 @@
         "deviceId": {
           "description": "Output only. Represents the graphics card device id.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display device name.",
           "readOnly": true,
           "type": "string"
         },
@@ -2084,6 +2135,24 @@
         "adapterInfo": {
           "$ref": "GoogleChromeManagementV1GraphicsAdapterInfo",
           "description": "Output only. Information about the graphics adapter (GPU).",
+          "readOnly": true
+        },
+        "displayDevices": {
+          "description": "Output only. Information about the display(s) of the device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1DisplayDevice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "eprivacySupported": {
+          "description": "Output only. Is ePrivacy screen supported or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "touchScreenInfo": {
+          "$ref": "GoogleChromeManagementV1TouchScreenInfo",
+          "description": "Output only. Information about the internal touch screen(s) of the device.",
           "readOnly": true
         }
       },
@@ -3170,6 +3239,49 @@
         "maxKeys": {
           "description": "The maximum number of keys that can be used for encryption.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TouchScreenDevice": {
+      "description": "Information of an internal touch screen device.",
+      "id": "GoogleChromeManagementV1TouchScreenDevice",
+      "properties": {
+        "displayName": {
+          "description": "Output only. Touch screen device display name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stylusCapable": {
+          "description": "Output only. Touch screen device is stylus capable or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "touchPointCount": {
+          "description": "Output only. Number of touch points supported on the device.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TouchScreenInfo": {
+      "description": "Information on the device touch screen.",
+      "id": "GoogleChromeManagementV1TouchScreenInfo",
+      "properties": {
+        "devices": {
+          "description": "Output only. List of the internal touch screen devices.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TouchScreenDevice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "touchpadLibrary": {
+          "description": "Output only. Touchpad library name used by the input stack.",
+          "readOnly": true,
           "type": "string"
         }
       },
