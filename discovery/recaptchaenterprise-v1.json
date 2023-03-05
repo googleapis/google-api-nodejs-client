@@ -514,7 +514,7 @@
       }
     }
   },
-  "revision": "20230216",
+  "revision": "20230219",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -711,6 +711,10 @@
           "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
           "description": "The event being assessed."
         },
+        "fraudPreventionAssessment": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment",
+          "description": "Assessment returned by Fraud Prevention when TransactionData is provided."
+        },
         "name": {
           "description": "Output only. The resource name for the Assessment in the format \"projects/{project}/assessments/{assessment}\".",
           "readOnly": true,
@@ -806,6 +810,10 @@
           "description": "Optional. The user response token provided by the reCAPTCHA Enterprise client-side integration on your site.",
           "type": "string"
         },
+        "transactionData": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionData",
+          "description": "Optional. Data describing a payment transaction to be assessed. Sending this data enables reCAPTCHA Enterprise Fraud Prevention and the FraudPreventionAssessment component in the response."
+        },
         "userAgent": {
           "description": "Optional. The user agent present in the request from the user's device related to this event.",
           "type": "string"
@@ -813,6 +821,50 @@
         "userIpAddress": {
           "description": "Optional. The IP address in the request from the user's device related to this event.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment": {
+      "description": "Assessment for Fraud Prevention.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment",
+      "properties": {
+        "cardTestingVerdict": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict",
+          "description": "Assessment of this transaction for risk of being part of a card testing attack."
+        },
+        "stolenInstrumentVerdict": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict",
+          "description": "Assessment of this transaction for risk of a stolen instrument."
+        },
+        "transactionRisk": {
+          "description": "Probability (0-1) of this transaction being fraudulent. Summarizes the combined risk of attack vectors below.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict": {
+      "description": "Information about card testing fraud, where an adversary is testing fraudulently obtained cards or brute forcing their details.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict",
+      "properties": {
+        "risk": {
+          "description": "Probability (0-1) of this transaction attempt being part of a card testing attack.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict": {
+      "description": "Information about stolen instrument fraud, where the user is not the legitimate owner of the instrument being used for the purchase.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict",
+      "properties": {
+        "risk": {
+          "description": "Probability (0-1) of this transaction being executed with a stolen instrument.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -1061,7 +1113,9 @@
               "UNEXPECTED_ENVIRONMENT",
               "TOO_MUCH_TRAFFIC",
               "UNEXPECTED_USAGE_PATTERNS",
-              "LOW_CONFIDENCE_SCORE"
+              "LOW_CONFIDENCE_SCORE",
+              "SUSPECTED_CARDING",
+              "SUSPECTED_CHARGEBACK"
             ],
             "enumDescriptions": [
               "Default unspecified type.",
@@ -1069,7 +1123,9 @@
               "The event originated from an illegitimate environment.",
               "Traffic volume from the event source is higher than normal.",
               "Interactions with the site were significantly different than expected patterns.",
-              "Too little traffic has been received from this site thus far to generate quality risk analysis."
+              "Too little traffic has been received from this site thus far to generate quality risk analysis.",
+              "The request matches behavioral characteristics of a carding attack.",
+              "The request matches behavioral characteristics of chargebacks for fraud."
             ],
             "type": "string"
           },
@@ -1234,6 +1290,187 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecaptchaenterpriseV1TransactionData": {
+      "description": "Transaction data associated with a payment protected by reCAPTCHA Enterprise. All fields are optional.",
+      "id": "GoogleCloudRecaptchaenterpriseV1TransactionData",
+      "properties": {
+        "billingAddress": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
+          "description": "Address associated with the payment method when applicable."
+        },
+        "cardBin": {
+          "description": "The Bank Identification Number - generally the first 6 or 8 digits of the card.",
+          "type": "string"
+        },
+        "cardLastFour": {
+          "description": "The last four digits of the card.",
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "The currency code in ISO-4217 format.",
+          "type": "string"
+        },
+        "gatewayInfo": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo",
+          "description": "Information about the payment gateway's response to the transaction."
+        },
+        "items": {
+          "description": "Items purchased in this transaction.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataItem"
+          },
+          "type": "array"
+        },
+        "merchants": {
+          "description": "Information about the user or users fulfilling the transaction.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser"
+          },
+          "type": "array"
+        },
+        "paymentMethod": {
+          "description": "The payment method for the transaction. The allowed values are: * credit-card * debit-card * gift-card * processor-{name} (If a third-party is used, for example, processor-paypal) * custom-{name} (If an alternative method is used, for example, custom-crypto)",
+          "type": "string"
+        },
+        "shippingAddress": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
+          "description": "Destination address if this transaction involves shipping a physical item."
+        },
+        "shippingValue": {
+          "description": "The value of shipping in the specified currency. 0 for free or no shipping.",
+          "format": "double",
+          "type": "number"
+        },
+        "transactionId": {
+          "description": "Unique identifier for the transaction. This custom identifier can be used to reference this transaction in the future, for example, labeling a refund or chargeback event. Two attempts at the same transaction should use the same transaction id.",
+          "type": "string"
+        },
+        "user": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser",
+          "description": "Information about the user paying/initiating the transaction."
+        },
+        "value": {
+          "description": "The decimal value of the transaction in the specified currency.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1TransactionDataAddress": {
+      "description": "Structured address format for billing and shipping addresses.",
+      "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
+      "properties": {
+        "address": {
+          "description": "The first lines of the address. The first line generally contains the street name and number, and further lines may include information such as an apartment number.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "administrativeArea": {
+          "description": "The state, province, or otherwise administrative area of the address.",
+          "type": "string"
+        },
+        "locality": {
+          "description": "The town/city of the address.",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "The postal or ZIP code of the address.",
+          "type": "string"
+        },
+        "recipient": {
+          "description": "The recipient name, potentially including information such as \"care of\".",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "The CLDR country/region of the address.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo": {
+      "description": "Details about the transaction from the gateway.",
+      "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo",
+      "properties": {
+        "avsResponseCode": {
+          "description": "AVS response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).",
+          "type": "string"
+        },
+        "cvvResponseCode": {
+          "description": "CVV response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).",
+          "type": "string"
+        },
+        "gatewayResponseCode": {
+          "description": "Gateway response code describing the state of the transaction.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the gateway service (for example, stripe, square, paypal).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1TransactionDataItem": {
+      "description": "Line items being purchased in this transaction.",
+      "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataItem",
+      "properties": {
+        "merchantAccountId": {
+          "description": "When a merchant is specified, its corresponding account_id. Necessary to populate marketplace-style transactions.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The full name of the item.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The quantity of this item that is being purchased.",
+          "format": "int64",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value per item that the user is paying, in the transaction currency, after discounts.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1TransactionDataUser": {
+      "description": "Details about a user's account involved in the transaction.",
+      "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser",
+      "properties": {
+        "accountId": {
+          "description": "Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.",
+          "type": "string"
+        },
+        "creationMs": {
+          "description": "The epoch milliseconds of the user's account creation.",
+          "format": "int64",
+          "type": "string"
+        },
+        "email": {
+          "description": "The email address of the user.",
+          "type": "string"
+        },
+        "emailVerified": {
+          "description": "Whether the email has been verified to be accessible by the user (OTP or similar).",
+          "type": "boolean"
+        },
+        "phoneNumber": {
+          "description": "The phone number of the user, with country code.",
+          "type": "string"
+        },
+        "phoneVerified": {
+          "description": "Whether the phone number has been verified to be accessible by the user (OTP or similar).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1TransactionEvent": {
       "description": "Describes an event in the lifecycle of a payment transaction.",
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionEvent",
@@ -1325,11 +1562,13 @@
           "description": "Required. The WAF service that uses this key.",
           "enum": [
             "WAF_SERVICE_UNSPECIFIED",
-            "CA"
+            "CA",
+            "FASTLY"
           ],
           "enumDescriptions": [
             "Undefined WAF",
-            "Cloud Armor"
+            "Cloud Armor",
+            "Fastly"
           ],
           "type": "string"
         }
