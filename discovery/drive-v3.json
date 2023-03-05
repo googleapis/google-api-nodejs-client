@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/FMnBlYEB3J1VPpdpymK8SWXFoSQ\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/hqr9mhZQTOslZy0RlLi-ua3kvIM\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -266,7 +266,7 @@
           "supportsSubscription": true
         },
         "watch": {
-          "description": "Subscribes to changes for a user.",
+          "description": "Subscribes to changes for a user. To use this method, you must include the pageToken query parameter.",
           "httpMethod": "POST",
           "id": "drive.changes.watch",
           "parameterOrder": [
@@ -1492,7 +1492,7 @@
     "permissions": {
       "methods": {
         "create": {
-          "description": "Creates a permission for a file or shared drive.",
+          "description": "Creates a permission for a file or shared drive. For more information on creating permissions, see Share files, folders & drives.",
           "httpMethod": "POST",
           "id": "drive.permissions.create",
           "parameterOrder": [
@@ -2312,7 +2312,7 @@
       }
     }
   },
-  "revision": "20230212",
+  "revision": "20230219",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3840,7 +3840,7 @@
       "type": "object"
     },
     "Permission": {
-      "description": "A permission for a file. A permission grants a user, group, domain or the world access to a file or a folder hierarchy.",
+      "description": "A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy.",
       "id": "Permission",
       "properties": {
         "allowFileDiscovery": {
@@ -3852,11 +3852,11 @@
           "type": "boolean"
         },
         "displayName": {
-          "description": "The \"pretty\" name of the value of the permission. The following is a list of examples for each type of permission:  \n- user - User's full name, as defined for their Google account, such as \"Joe Smith.\" \n- group - Name of the Google Group, such as \"The Company Administrators.\" \n- domain - String domain name, such as \"thecompany.com.\" \n- anyone - No displayName is present.",
+          "description": "The \"pretty\" name of the value of the permission. The following is a list of examples for each type of permission:  \n- user - User's full name, as defined for their Google Account, such as \"Joe Smith.\" \n- group - Name of the Google Group, such as \"The Company Administrators.\" \n- domain - String domain name, such as \"your-company.com.\" \n- anyone - No displayName is present.",
           "type": "string"
         },
         "domain": {
-          "description": "The domain to which this permission refers.",
+          "description": "The domain to which this permission refers. The following options are currently allowed:  \n- The entire domain, such as \"your-company.com.\" \n- A target audience, such as \"ID.audience.googledomains.com.\"",
           "type": "string"
         },
         "emailAddress": {
@@ -3864,7 +3864,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:  \n- They cannot be set on shared drive items \n- They can only be set on user and group permissions \n- The time must be in the future \n- The time cannot be more than a year in the future",
+          "description": "The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:  \n- They cannot be set on shared drive items. \n- They can only be set on user and group permissions. \n- The time must be in the future. \n- The time cannot be more than one year in the future.",
           "format": "date-time",
           "type": "string"
         },
@@ -3878,11 +3878,11 @@
           "type": "string"
         },
         "pendingOwner": {
-          "description": "Whether the account associated with this permission is a pending owner. Only populated for user type permissions for files that are not in a shared drive.",
+          "description": "Whether the account associated with this permission is a pending owner. Only populated for user type permissions for files that aren't in a shared drive.",
           "type": "boolean"
         },
         "permissionDetails": {
-          "description": "Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.",
+          "description": "Details of whether the permissions on this shared drive item are inherited or are directly on this item. This is an output-only field that's present only for shared drive items.",
           "items": {
             "properties": {
               "inherited": {
@@ -3894,11 +3894,11 @@
                 "type": "string"
               },
               "permissionType": {
-                "description": "The permission type for this user. While new values may be added in future, the following are currently possible:  \n- file \n- member",
+                "description": "The permission type for this user. While new values may be added in future, the following are currently allowed:  \n- file \n- member",
                 "type": "string"
               },
               "role": {
-                "description": "The primary role for this user. While new values may be added in the future, the following are currently possible:  \n- organizer \n- fileOrganizer \n- writer \n- commenter \n- reader",
+                "description": "The primary role for this user. While new values may be added in the future, the following are currently allowed:  \n- organizer \n- fileOrganizer \n- writer \n- commenter \n- reader",
                 "type": "string"
               }
             },
@@ -3952,7 +3952,7 @@
               "drive.permissions.create"
             ]
           },
-          "description": "The type of the grantee. Valid values are:  \n- user \n- group \n- domain \n- anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn't extra information required for a anyone type.",
+          "description": "The type of the grantee. Valid values are:  \n- user \n- group \n- domain \n- anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn't extra information required for the anyone type.",
           "type": "string"
         },
         "view": {
