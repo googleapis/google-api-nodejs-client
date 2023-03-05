@@ -3644,6 +3644,15 @@ export namespace contentwarehouse_v1 {
     supportedCameraReceivers?: Schema$AssistantApiCoreTypesCastAppInfo[];
   }
   /**
+   * Information about the readiness of Home app features on the device. As of January 2023, this is only populated by Assistant on Android.
+   */
+  export interface Schema$AssistantApiCapabilitiesHomeAppCapabilities {
+    /**
+     * The app's installation and setup state. This is most pertinent for Tangor, where lock screen Smart Home queries are fulfilled by a Home app activity that may be blocked if this value is not `SETUP_STATE_COMPLETE`.
+     */
+    setupState?: string | null;
+  }
+  /**
    * Capabilities that are associated with Assistants on auto surfaces. This is different from other capabilities such as CarSettingsCapabilities, CloudCarCapabilities since they are specific to settings and 3P cloud information. All the auto/car Assistant specific capabilities should live here.
    */
   export interface Schema$AssistantApiCarAssistantCapabilities {
@@ -6567,7 +6576,7 @@ export namespace contentwarehouse_v1 {
     supportsWarmWords?: boolean | null;
   }
   /**
-   * These capabilities represent what software features the client supports. This should be determined based on the client's various software versions (OS, GSA version, etc). Next ID: 26
+   * These capabilities represent what software features the client supports. This should be determined based on the client's various software versions (OS, GSA version, etc). Next ID: 27
    */
   export interface Schema$AssistantApiSoftwareCapabilities {
     /**
@@ -6602,6 +6611,10 @@ export namespace contentwarehouse_v1 {
     crossDeviceExecutionCapabilities?: Schema$AssistantApiCrossDeviceExecutionCapability;
     gacsCapabilities?: Schema$AssistantApiGacsCapabilities;
     gcmCapabilities?: Schema$AssistantApiGcmCapabilities;
+    /**
+     * Google Home app features.
+     */
+    homeAppCapabilities?: Schema$AssistantApiCapabilitiesHomeAppCapabilities;
     /**
      * Capabilities related to live TV channels.
      */
@@ -6792,7 +6805,7 @@ export namespace contentwarehouse_v1 {
     version?: number | null;
   }
   /**
-   * These are the set of features that are supported by the device. It's a part of the SoftwareCapabilities of the device. Next ID: 62
+   * These are the set of features that are supported by the device. It's a part of the SoftwareCapabilities of the device. Next ID: 63
    */
   export interface Schema$AssistantApiSupportedFeatures {
     /**
@@ -6836,6 +6849,10 @@ export namespace contentwarehouse_v1 {
      * Whether the client can batch client op results before sending them to the server.
      */
     clientOpResultBatchingSupported?: boolean | null;
+    /**
+     * Whether the client supports confirmation flow before announcement of multiple messages. If set to true the user will be prompted once and confirmation will be taken before all the messages are announced.
+     */
+    confirmationBeforeReadingMultipleMessagesSupported?: boolean | null;
     /**
      * Whether the client supports cross-device broadcast (i.e. on Torus).
      */
@@ -8270,9 +8287,11 @@ export namespace contentwarehouse_v1 {
     numUnknownDistanceDevices?: number | null;
   }
   /**
-   * Provider annotation annotated from the query.
+   * Provider annotation annotated from the query. These fields contain the detailed information for the provider. (e.g. for Youtube, package_names contains "com.google.android.youtube", localized_names contains "youtube", and lang contains "en" from "en-US" which depends on user's setting.)
    */
   export interface Schema$AssistantLogsProviderAnnotationLog {
+    lang?: string | null;
+    localizedNames?: string[] | null;
     packageNames?: string[] | null;
   }
   /**
@@ -8387,7 +8406,7 @@ export namespace contentwarehouse_v1 {
     resultConfidenceLevel?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 39
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 41
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -8446,6 +8465,14 @@ export namespace contentwarehouse_v1 {
      * Feasibility of fulfilling the binding set. Eg: For PlayMedia, this is equivalent to playability. More details: go/hgr-feasibility-feature.
      */
     isFeasible?: boolean | null;
+    /**
+     * Whether the intent is fully grounded.
+     */
+    isFullyGrounded?: boolean | null;
+    /**
+     * Whether the intent is a PlayGenericMusic-type intent.
+     */
+    isPlayGenericMusic?: boolean | null;
     /**
      * The rank order of the interpretation as determined by kscorer. The kscorer-determined dominant interpretation, if any, gets a rank of 0. The remaining N interpretations get a rank of 1 through N.
      */
@@ -9930,7 +9957,6 @@ export namespace contentwarehouse_v1 {
      * Contains a date used for the "Date Last Modified" toolbelt restrict mode. Note: this date is a combined date and is different from the pure shingle-based signal stored in contentage.last_significant_update field.
      */
     lastSignificantUpdate?: Schema$QualityTimebasedLastSignificantUpdate;
-    oldnessInfo?: Schema$QualityTimebasedOldnessInfo;
     pagetype?: Schema$QualityTimebasedPageType;
   }
   /**
@@ -9940,7 +9966,7 @@ export namespace contentwarehouse_v1 {
     newsRobotsInfo?: Schema$IndexingConverterRobotsInfo;
   }
   /**
-   * A message containing per doc signals that are compressed and included in Mustang and TeraGoogle. For TeraGoogle, this message is included in perdocdata which means it can be used in preliminary scoring. CAREFUL: For TeraGoogle, this data resides in very limited serving memory (Flash storage) for a huge number of documents. Next id: 40
+   * A message containing per doc signals that are compressed and included in Mustang and TeraGoogle. For TeraGoogle, this message is included in perdocdata which means it can be used in preliminary scoring. CAREFUL: For TeraGoogle, this data resides in very limited serving memory (Flash storage) for a huge number of documents. Next id: 42
    */
   export interface Schema$CompressedQualitySignals {
     /**
@@ -10041,6 +10067,14 @@ export namespace contentwarehouse_v1 {
     productReviewPDemoteSite?: number | null;
     productReviewPPromotePage?: number | null;
     productReviewPPromoteSite?: number | null;
+    /**
+     * Fields product_review_p_review_page and product_review_p_uhq_page are for promoting/demoting HQ/LQ review pages in NGS. See go/pr-boosts for details. The possibility of a page being a review page.
+     */
+    productReviewPReviewPage?: number | null;
+    /**
+     * The possibility of a page being a high quality review page.
+     */
+    productReviewPUhqPage?: number | null;
     /**
      * Scam model score. Used as one of the web page quality qstar signals. Value range from 0 to 1023.
      */
@@ -12494,6 +12528,9 @@ export namespace contentwarehouse_v1 {
      */
     sourceDataset?: string | null;
   }
+  /**
+   * WARNING: Outside of FeatureProto, please avoid in favor of a standard civil time type. Direct usage is error-prone due to the conflation of physical time and civil time (go/httat). In a protocol buffer, please use google.type.Date, with an additional google.type.TimeOfDay for precision finer-grained than a day. (For google.type.DateTime, go/prototime#types cites go/httat#zoned_datetime as a caveat). In a programming language, see go/time-devguide/languages. Additionally in C++, google3/geostore/base/public/datetime.h has conversion functions between DateTimeProto and Abseil's civil time types.
+   */
   export interface Schema$GeostoreDateTimeProto {
     /**
      * This attribute describes the precision of the date and time. It would be unusual for a data provider to provide a precision along with their date. It is more likely that the precision of a date will be inferred from the date format. For example "19th century" is likely to be correct to the century, while "1800" is probably correct to the year. The precision should be semantically interpreted as a cast, so a DateTimeProto object with a seconds value corresponding to 2018-03-28 18:40:00 UTC and a precision of MONTH should be interpreted as "March 2018". The enums above are only some of the possible precision levels for dates and times. Clients may wish to add more precision enums in the future. However, these enums must be ordered by decreasing duration. Clients should be able to write date formatting code that looks like this: if (datetime.precision() <= DateTimeProto::PRECISION_CENTURY) { date = FormatCenturyDate(proto.seconds()); \} else if (proto.precision() <= case DateTimeProto::PRECISION_DECADE) { date = FormatDecadeDate(proto.seconds()); \} else { ... \} See geostore/base/public/datetime.h for date formatting utility functions.
@@ -14040,7 +14077,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostorePoseProto {
     /**
-     * The height of the poses above the WGS-84 ellipsoid in meters.
+     * The height of the pose. A positive height is above the WGS-84 ellipsoid in meters; negative is below.
      */
     altitude?: number | null;
     /**
@@ -16666,6 +16703,10 @@ export namespace contentwarehouse_v1 {
      */
     document?: Schema$GoogleCloudContentwarehouseV1Document;
     /**
+     * post-processing LROs
+     */
+    longRunningOperations?: Schema$GoogleLongrunningOperation[];
+    /**
      * Additional information for the API invocation, such as the request tracking id.
      */
     metadata?: Schema$GoogleCloudContentwarehouseV1ResponseMetadata;
@@ -17003,17 +17044,21 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleCloudContentwarehouseV1ExportToCdwPipeline {
     /**
-     * The list of all the documents to be processed.
+     * The CDW dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
      */
-    documentIds?: string[] | null;
+    docAiDataset?: string | null;
+    /**
+     * The list of all the resource names of the documents to be processed. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\}.
+     */
+    documents?: string[] | null;
     /**
      * The Cloud Storage folder path used to store the exported documents before being sent to CDW. Format: gs:///.
      */
     exportFolderPath?: string | null;
     /**
-     * The CDW processor information.
+     * Ratio of training dataset split. When importing into Document AI Workbench, documents will be automatically split into training and test split category with the specified ratio.
      */
-    processorInfo?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
+    trainingSplitRatio?: number | null;
   }
   /**
    * Request message for DocumentService.FetchAcl
@@ -17072,6 +17117,10 @@ export namespace contentwarehouse_v1 {
      */
     inputPath?: string | null;
     /**
+     * The Cloud Storage folder path used to store the raw results from processors. Format: gs:///.
+     */
+    processorResultsFolderPath?: string | null;
+    /**
      * The Document Warehouse schema resource name. All documents processed by this pipeline will use this schema. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
      */
     schemaName?: string | null;
@@ -17081,11 +17130,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline {
     /**
-     * The classify or split processor information.
-     */
-    classifySplitProcessorInfos?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
-    /**
-     * The entity or key-value pair extracting processor information.
+     * The extract processors information. One matched extract processor will be used to process documents based on the classify processor result. If no classify processor is specificied, the first extract processor will be used.
      */
     extractProcessorInfos?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo[];
     /**
@@ -17096,6 +17141,10 @@ export namespace contentwarehouse_v1 {
      * The Cloud Storage folder path used to store the raw results from processors. Format: gs:///.
      */
     processorResultsFolderPath?: string | null;
+    /**
+     * The split and classify processor information. The split and classify result will be used to find a matched extract processor.
+     */
+    splitClassifyProcessorInfo?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
   }
   /**
    * Request message for DocumentService.GetDocument.
@@ -17343,6 +17392,27 @@ export namespace contentwarehouse_v1 {
      * The Document schema resource name. All documents processed by this processor will use this schema. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
      */
     schemaName?: string | null;
+  }
+  /**
+   * The configuration of processing documents in Document Warehouse with DocAi processors pipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1ProcessWithDocAi {
+    /**
+     * The list of all the resource names of the documents to be processed. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\}.
+     */
+    documents?: string[] | null;
+    /**
+     * The Cloud Storage folder path used to store the exported documents before being sent to CDW. Format: gs:///.
+     */
+    exportFolderPath?: string | null;
+    /**
+     * The CDW processor information.
+     */
+    processorInfo?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
+    /**
+     * The Cloud Storage folder path used to store the raw results from processors. Format: gs:///.
+     */
+    processorResultsFolderPath?: string | null;
   }
   /**
    * Property of a document.
@@ -17667,7 +17737,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleCloudContentwarehouseV1RunPipelineRequest {
     /**
-     * Export docuemnts from Document Warehouseing to CDW for training purpose.
+     * Export docuemnts from Document Warehouse to CDW for training purpose.
      */
     exportCdwPipeline?: Schema$GoogleCloudContentwarehouseV1ExportToCdwPipeline;
     /**
@@ -17678,6 +17748,10 @@ export namespace contentwarehouse_v1 {
      * Use DocAI processors to process documents in Cloud Storage and ingest them to Document Warehouse.
      */
     gcsIngestWithDocAiProcessorsPipeline?: Schema$GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline;
+    /**
+     * Use a DocAI processor to process documents in Document Warehouse, and re-ingest the updated results into Document Warehouse.
+     */
+    processWithDocAiPipeline?: Schema$GoogleCloudContentwarehouseV1ProcessWithDocAi;
   }
   /**
    * Request message for DocumentService.SearchDocuments.
@@ -18945,7 +19019,7 @@ export namespace contentwarehouse_v1 {
      */
     committedUntil?: string | null;
     /**
-     * TODO(b/265939748) To be removed, always false from User Status Service.
+     * TODO(b/265939748) To be removed, always false.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -18987,7 +19061,7 @@ export namespace contentwarehouse_v1 {
      */
     committedUntil?: string | null;
     /**
-     * TODO(b/265939748) To be removed, always false from User Status Service.
+     * TODO(b/265939748) To be removed, always false.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -19016,7 +19090,7 @@ export namespace contentwarehouse_v1 {
      */
     committedUntil?: string | null;
     /**
-     * TODO(b/265939748) To be removed, always false from User Status Service.
+     * TODO(b/265939748) To be removed, always false.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -19075,7 +19149,7 @@ export namespace contentwarehouse_v1 {
      */
     committedUntil?: string | null;
     /**
-     * TODO(b/265939748) To be removed, always false from User Status Service.
+     * TODO(b/265939748) To be removed, always false.
      */
     committedUntilIsMixed?: boolean | null;
     /**
@@ -21485,7 +21559,7 @@ export namespace contentwarehouse_v1 {
     xtags?: Schema$ImageRepositoryApiXtag[];
   }
   /**
-   * Next Tag: 48
+   * Next Tag: 49
    */
   export interface Schema$ImageRepositoryContentBasedVideoMetadata {
     /**
@@ -21534,6 +21608,10 @@ export namespace contentwarehouse_v1 {
      */
     mediaInfo?: Schema$VideoMediaInfo;
     representativeFrameData?: Schema$ImageData;
+    /**
+     * Trnascript generated through AMARNA_CLOUD_SPEECH asset in Venom. Note that AMARNA_CLOUD_SPEECH uses S3 as the speech engine backend, similar to YT caption's SPEECH_RECOGNIZER asset. However, they may use different S3 models.
+     */
+    s3Asr?: Schema$ImageRepositoryAmarnaCloudSpeechSignals;
     s3LanguageIdentification?: Schema$ImageRepositoryS3LangIdSignals;
     /**
      * Contains SafeSearch video classification outputs which are vertical_name/float pairs.
@@ -21562,7 +21640,7 @@ export namespace contentwarehouse_v1 {
      */
     transcodeMetadata?: Schema$ImageRepositoryApiItagSpecificMetadata[];
     /**
-     * Speech related metadata
+     * Speech related metadata The transcript_asr field is generated from the YT caption's SPEECH_RECOGNIZER asset.
      */
     transcriptAsr?: Schema$PseudoVideoData;
     /**
@@ -22058,7 +22136,14 @@ export namespace contentwarehouse_v1 {
      */
     ytPornScore?: number | null;
   }
+  /**
+   * A protocol buffer to store the OCR annotation. Next available tag id: 10.
+   */
   export interface Schema$ImageSafesearchContentOCRAnnotation {
+    /**
+     * A string that indicates the version of SafeSearch OCR annotation.
+     */
+    ocrAnnotationVersion?: string | null;
     /**
      * The score produced by Aksara geometry and spoof score. Describes the 'visibility' or 'importance' of the text on the image [0, 1]
      */
@@ -24770,7 +24855,7 @@ export namespace contentwarehouse_v1 {
     unexplainedTokens?: Schema$KnowledgeAnswersIntentQueryTokens[];
   }
   /**
-   * Next ID: 35
+   * Next ID: 36
    */
   export interface Schema$KnowledgeAnswersIntentQueryFunctionCallSignals {
     /**
@@ -24868,6 +24953,10 @@ export namespace contentwarehouse_v1 {
      * The id of the summary node if this funcall represents an mdvc interpretation
      */
     refxSummaryNodeId?: string | null;
+    /**
+     * Signal data from SRM generation. Solely used internally. See: go/srm-design.
+     */
+    responseMeaningSignals?: Schema$KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals;
     /**
      * The list of result supports for this FunctionCall.
      */
@@ -25162,6 +25251,12 @@ export namespace contentwarehouse_v1 {
   export interface Schema$KnowledgeAnswersIntentQueryRelatednessSignals {
     queryPopularity?: number | null;
     youtubeViews?: string | null;
+  }
+  /**
+   * SRM signal data. Properties here should be nonsemantic. Semantic properties should be modeled directly in the SRM.
+   */
+  export interface Schema$KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals {
+    propertyValue?: Schema$FreebasePropertyValue[];
   }
   /**
    * Signals derived from overlapping saft annotations.
@@ -28937,6 +29032,9 @@ export namespace contentwarehouse_v1 {
   export interface Schema$NlpSemanticParsingLocalCuisineConstraint {
     cuisineGcid?: string | null;
   }
+  export interface Schema$NlpSemanticParsingLocalEvChargingStationConnectorConstraint {
+    connectorType?: string | null;
+  }
   /**
    * There is an implicit AND relation if multiple EVCS constraint types are specified.
    */
@@ -29163,7 +29261,7 @@ export namespace contentwarehouse_v1 {
     vicinityLocation?: Schema$NlpSemanticParsingLocalVicinityLocation;
   }
   /**
-   * All the possible location constraints. This message is associated with a location and can be nested accordingly. E.g., for a compound location the constraint may be associated with the entire location or with either of the two internal locations (loc_1 and loc_2). There is an implicit AND relation between the different constraints. Next ID: 24.
+   * All the possible location constraints. This message is associated with a location and can be nested accordingly. E.g., for a compound location the constraint may be associated with the entire location or with either of the two internal locations (loc_1 and loc_2). There is an implicit AND relation between the different constraints. Next ID: 25.
    */
   export interface Schema$NlpSemanticParsingLocalLocationConstraint {
     /**
@@ -29172,6 +29270,10 @@ export namespace contentwarehouse_v1 {
     amenities?: Schema$NlpSemanticParsingLocalAmenities;
     chainMember?: Schema$NlpSemanticParsingLocalChainMemberConstraint;
     cuisine?: Schema$NlpSemanticParsingLocalCuisineConstraint;
+    /**
+     * Used for populating ElectricVehicleConnectorRefinement from QBF go/evcs-qbf-connector
+     */
+    evcsConnectorConstraint?: Schema$NlpSemanticParsingLocalEvChargingStationConnectorConstraint;
     evcsSpeedConstraint?: Schema$NlpSemanticParsingLocalEvChargingStationSpeedConstraint;
     /**
      * Used for GCID filter. Unlike other grammar, for now this is populated in Superroot (currently based on QBLD classification, and an allowlist of GCID).
@@ -32863,6 +32965,10 @@ export namespace contentwarehouse_v1 {
      * Application information associated to the document.
      */
     rsApplication?: Schema$RepositoryAnnotationsRdfaRdfaRichSnippetsApplication;
+    /**
+     * Primary video's audio language classified by S3 based Automatic Language Identification (only for watch pages).
+     */
+    s3AudioLanguage?: Schema$S3AudioLanguageS3AudioLanguage;
     /**
      * Top document language as generated by SAFT LangID. For now we store bare minimum: just the top 1 language value, converted to the language enum, and only when different from the first value in 'languages'.
      */
@@ -36766,12 +36872,6 @@ export namespace contentwarehouse_v1 {
      */
     upperboundTimestampInSeconds?: string | null;
   }
-  export interface Schema$QualityTimebasedOldnessInfo {
-    /**
-     * Set to true if this page is considered old.
-     */
-    isOldPage?: boolean | null;
-  }
   export interface Schema$QualityTimebasedPageType {
     /**
      * Set to true if this page is classified as a forum page.
@@ -39575,7 +39675,6 @@ export namespace contentwarehouse_v1 {
      * Metadata related to why this doc was matched to its owning entity.
      */
     matchingMetadata?: Schema$RepositoryWebrefPreprocessingUrlMatchingMetadata;
-    obsoleteAnchorsWithoutInterwiki?: Schema$RepositoryWebrefSimplifiedAnchors;
     /**
      * Additional document metadata needed by Refcon.
      */
@@ -41081,6 +41180,23 @@ export namespace contentwarehouse_v1 {
     src?: string | null;
   }
   /**
+   * S3 based Audio language information about a Watch Page.
+   */
+  export interface Schema$S3AudioLanguageS3AudioLanguage {
+    /**
+     * Audio language of video classified by Automatic Language Identification. It corresponds to the langid_result in S3LangIdSignals.
+     */
+    language?: string | null;
+    /**
+     * Confidence interval of the recognized language.
+     */
+    languageConfidence?: string | null;
+    /**
+     * Type of detected speech.
+     */
+    speechClass?: string | null;
+  }
+  /**
    * A proto that stores SafeSearch internal signals that are not exported to clients.
    */
   export interface Schema$SafesearchInternalImageSignals {
@@ -42477,6 +42593,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$ShoppingWebentityShoppingAnnotationInferredImage {
     inferredImageId?: string | null;
+    inferredImageSource?: string | null;
     inferredImageType?: string | null;
   }
   /**
@@ -42557,7 +42674,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$SmartphonePerDocData {
     /**
-     * Indicates if the page is violating mobile ads density interstitial policy and the voilation strength. See go/interstitials-for-ads and http://ariane/268642 for details. To save indexing space, we convert the double values in [0.0, 1.0] to intergers in range [0, 1000] by using floor(value * 1000).
+     * Indicates if the page is violating mobile ads density interstitial policy and the violation strength. See go/interstitials-for-ads and http://ariane/268642 for details. To save indexing space, we convert the double values in [0.0, 1.0] to intergers in range [0, 1000] by using floor(value * 1000).
      */
     adsDensityInterstitialViolationStrength?: number | null;
     /**
@@ -43082,9 +43199,13 @@ export namespace contentwarehouse_v1 {
     hostAppName?: string | null;
   }
   /**
-   * A reference to a photo in either Photos Backend or SGI storage. This message should be treated as an opaque blob to avoid a dependency on a specific storage backend.
+   * A reference to a photo in either Photos Backend or SGI storage. This message should be treated as an opaque blob to avoid a dependency on a specific storage backend. This version of ImageReference is visible outside of SGBE. Do not add fields that should not be exposed outside of Profile Service and Image Service.
    */
   export interface Schema$SocialGraphApiProtoImageReference {
+    /**
+     * Identifies the most recent version of this photo. Use this as a FIFE param (ie -iv12) to prevent reads of a stale version.
+     */
+    contentVersion?: string | null;
     /**
      * Unique identifier for the photo. For now, this will always be a Photos Backend media key.
      */
@@ -43905,9 +44026,13 @@ export namespace contentwarehouse_v1 {
     bugId?: string | null;
   }
   /**
-   * Metadata on source assertions that isn't part of the user-visible Triple payload, and that doesn't really represent data provenance, but that's used to affect the way Livegraph and possibly other horizontal KG infra systems *process* the triple. Read: fields below really shouldn't be part of the cross-system Triple proto at all. But because Triple is used both as an internal and an external KG API, we at least want to "hide" those fields that ought to be purely part of the internal source <-\> LG contract. Next id: 5
+   * Metadata on source assertions that isn't part of the user-visible Triple payload, and that doesn't really represent data provenance, but that's used to affect the way Livegraph and possibly other horizontal KG infra systems *process* the triple. Read: fields below really shouldn't be part of the cross-system Triple proto at all. But because Triple is used both as an internal and an external KG API, we at least want to "hide" those fields that ought to be purely part of the internal source <-\> LG contract. Next id: 6
    */
   export interface Schema$StorageGraphBfgLivegraphProvenanceMetadata {
+    /**
+     * If one triple is directly-written after recon by LG without going through Composer, we add the record id it's from. Otherwise, it's empty. Note: 1) LG will dedup record ids before updating it. So this field shouldn't see duplicated record ids. 2) This is used internally by LG only. So if set by clients, they will be dropped by LG.
+     */
+    directWriteRecordIds?: string[] | null;
     /**
      * Identifies the LG internal writers that asserted the triple. This is the same as 'origin_id' in LG. This will only be populated by the LG writers to FactStore
      */
@@ -51428,7 +51553,8 @@ export namespace contentwarehouse_v1 {
      *       // {
      *       //   "exportCdwPipeline": {},
      *       //   "gcsIngestPipeline": {},
-     *       //   "gcsIngestWithDocAiProcessorsPipeline": {}
+     *       //   "gcsIngestWithDocAiProcessorsPipeline": {},
+     *       //   "processWithDocAiPipeline": {}
      *       // }
      *     },
      *   });
@@ -51629,6 +51755,7 @@ export namespace contentwarehouse_v1 {
      *   // Example response
      *   // {
      *   //   "document": {},
+     *   //   "longRunningOperations": [],
      *   //   "metadata": {},
      *   //   "ruleEngineOutput": {}
      *   // }
