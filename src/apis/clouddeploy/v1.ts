@@ -133,6 +133,23 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AbandonReleaseResponse {}
   /**
+   * An advanceChildRollout Job.
+   */
+  export interface Schema$AdvanceChildRolloutJob {}
+  /**
+   * AdvanceChildRolloutJobRun contains information specific to a advanceChildRollout `JobRun`.
+   */
+  export interface Schema$AdvanceChildRolloutJobRun {
+    /**
+     * Output only. Name of the `ChildRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     */
+    rollout?: string | null;
+    /**
+     * Output only. the ID of the ChildRollout's Phase.
+     */
+    rolloutPhaseId?: string | null;
+  }
+  /**
    * Information specifying an Anthos Cluster.
    */
   export interface Schema$AnthosCluster {
@@ -215,6 +232,19 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * ChildRollouts job composition
+   */
+  export interface Schema$ChildRolloutJobs {
+    /**
+     * Output only. List of AdvanceChildRolloutJobs
+     */
+    advanceRolloutJobs?: Schema$Job[];
+    /**
+     * Output only. List of CreateChildRolloutJobs
+     */
+    createRolloutJobs?: Schema$Job[];
+  }
+  /**
    * Information specifying where to deploy a Cloud Run Service.
    */
   export interface Schema$CloudRunLocation {
@@ -256,6 +286,23 @@ export namespace clouddeploy_v1 {
      * All supported versions of Skaffold.
      */
     supportedVersions?: Schema$SkaffoldVersion[];
+  }
+  /**
+   * A createChildRollout Job.
+   */
+  export interface Schema$CreateChildRolloutJob {}
+  /**
+   * CreateChildRolloutJobRun contains information specific to a createChildRollout `JobRun`.
+   */
+  export interface Schema$CreateChildRolloutJobRun {
+    /**
+     * Output only. Name of the `ChildRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     */
+    rollout?: string | null;
+    /**
+     * Output only. The ID of the childRollout Phase initiated by this JobRun.
+     */
+    rolloutPhaseId?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -476,6 +523,14 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Job {
     /**
+     * Output only. An advanceChildRollout Job.
+     */
+    advanceChildRolloutJob?: Schema$AdvanceChildRolloutJob;
+    /**
+     * Output only. A createChildRollout Job.
+     */
+    createChildRolloutJob?: Schema$CreateChildRolloutJob;
+    /**
      * Output only. A deploy Job.
      */
     deployJob?: Schema$DeployJob;
@@ -500,6 +555,14 @@ export namespace clouddeploy_v1 {
    * A `JobRun` resource in the Google Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.
    */
   export interface Schema$JobRun {
+    /**
+     * Output only. Information specific to an advanceChildRollout `JobRun`
+     */
+    advanceChildRolloutJobRun?: Schema$AdvanceChildRolloutJobRun;
+    /**
+     * Output only. Information specific to a createChildRollout `JobRun`.
+     */
+    createChildRolloutJobRun?: Schema$CreateChildRolloutJobRun;
     /**
      * Output only. Time at which the `JobRun` was created.
      */
@@ -724,6 +787,15 @@ export namespace clouddeploy_v1 {
     cloudRun?: Schema$CloudRunMetadata;
   }
   /**
+   * Information specifying a multiTarget.
+   */
+  export interface Schema$MultiTarget {
+    /**
+     * Required. The target_ids of this multiTarget.
+     */
+    targetIds?: string[] | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -785,6 +857,10 @@ export namespace clouddeploy_v1 {
    * Phase represents a collection of jobs that are logically grouped together for a `Rollout`.
    */
   export interface Schema$Phase {
+    /**
+     * Output only. ChildRollout job composition.
+     */
+    childRolloutJobs?: Schema$ChildRolloutJobs;
     /**
      * Output only. Deployment job composition.
      */
@@ -1037,6 +1113,10 @@ export namespace clouddeploy_v1 {
      */
     approveTime?: string | null;
     /**
+     * Output only. Name of the `ControllerRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     */
+    controllerRollout?: string | null;
+    /**
      * Output only. Time at which the `Rollout` was created.
      */
     createTime?: string | null;
@@ -1282,6 +1362,10 @@ export namespace clouddeploy_v1 {
      * Optional. Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Information specifying a multiTarget.
+     */
+    multiTarget?: Schema$MultiTarget;
     /**
      * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
      */
@@ -4113,6 +4197,7 @@ export namespace clouddeploy_v1 {
      *           //   "annotations": {},
      *           //   "approvalState": "my_approvalState",
      *           //   "approveTime": "my_approveTime",
+     *           //   "controllerRollout": "my_controllerRollout",
      *           //   "createTime": "my_createTime",
      *           //   "deployEndTime": "my_deployEndTime",
      *           //   "deployFailureCause": "my_deployFailureCause",
@@ -4277,6 +4362,7 @@ export namespace clouddeploy_v1 {
      *   //   "annotations": {},
      *   //   "approvalState": "my_approvalState",
      *   //   "approveTime": "my_approveTime",
+     *   //   "controllerRollout": "my_controllerRollout",
      *   //   "createTime": "my_createTime",
      *   //   "deployEndTime": "my_deployEndTime",
      *   //   "deployFailureCause": "my_deployFailureCause",
@@ -4802,6 +4888,8 @@ export namespace clouddeploy_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "advanceChildRolloutJobRun": {},
+     *   //   "createChildRolloutJobRun": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployJobRun": {},
      *   //   "endTime": "my_endTime",
@@ -5716,6 +5804,7 @@ export namespace clouddeploy_v1 {
      *       //   "executionConfigs": [],
      *       //   "gke": {},
      *       //   "labels": {},
+     *       //   "multiTarget": {},
      *       //   "name": "my_name",
      *       //   "requireApproval": false,
      *       //   "run": {},
@@ -6008,6 +6097,7 @@ export namespace clouddeploy_v1 {
      *   //   "executionConfigs": [],
      *   //   "gke": {},
      *   //   "labels": {},
+     *   //   "multiTarget": {},
      *   //   "name": "my_name",
      *   //   "requireApproval": false,
      *   //   "run": {},
@@ -6431,6 +6521,7 @@ export namespace clouddeploy_v1 {
      *       //   "executionConfigs": [],
      *       //   "gke": {},
      *       //   "labels": {},
+     *       //   "multiTarget": {},
      *       //   "name": "my_name",
      *       //   "requireApproval": false,
      *       //   "run": {},
