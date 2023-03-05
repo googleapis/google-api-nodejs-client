@@ -131,145 +131,6 @@ export namespace policysimulator_v1beta1 {
   }
 
   /**
-   * A summary and comparison of the member's access under the current (baseline) policies and the proposed (simulated) policies for a single access tuple.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1AccessStateDiff {
-    /**
-     * How the member's access, specified in the AccessState field, changed between the current (baseline) policies and proposed (simulated) policies.
-     */
-    accessChange?: string | null;
-    /**
-     * The results of evaluating the access tuple under the current (baseline) policies. If the AccessState couldn't be fully evaluated, this field explains why.
-     */
-    baseline?: Schema$GoogleCloudPolicysimulatorV1beta1ExplainedAccess;
-    /**
-     * The results of evaluating the access tuple under the proposed (simulated) policies. If the AccessState couldn't be fully evaluated, this field explains why.
-     */
-    simulated?: Schema$GoogleCloudPolicysimulatorV1beta1ExplainedAccess;
-  }
-  /**
-   * Information about the principal, resource, and permission to check.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1AccessTuple {
-    /**
-     * Required. The full resource name that identifies the resource. For example, `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names.
-     */
-    fullResourceName?: string | null;
-    /**
-     * Required. The IAM permission to check for the specified principal and resource. For a complete list of IAM permissions, see https://cloud.google.com/iam/help/permissions/reference. For a complete list of predefined IAM roles and the permissions in each role, see https://cloud.google.com/iam/help/roles/reference.
-     */
-    permission?: string | null;
-    /**
-     * Required. The principal whose access you want to check, in the form of the email address that represents that principal. For example, `alice@example.com` or `my-service-account@my-project.iam.gserviceaccount.com`. The principal must be a Google Account or a service account. Other types of principals are not supported.
-     */
-    principal?: string | null;
-  }
-  /**
-   * Details about how a binding in a policy affects a principal's ability to use a permission.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1BindingExplanation {
-    /**
-     * Required. Indicates whether _this binding_ provides the specified permission to the specified principal for the specified resource. This field does _not_ indicate whether the principal actually has the permission for the resource. There might be another binding that overrides this binding. To determine whether the principal actually has the permission, use the `access` field in the TroubleshootIamPolicyResponse.
-     */
-    access?: string | null;
-    /**
-     * A condition expression that prevents this binding from granting access unless the expression evaluates to `true`. To learn about IAM Conditions, see https://cloud.google.com/iam/docs/conditions-overview.
-     */
-    condition?: Schema$GoogleTypeExpr;
-    /**
-     * Indicates whether each principal in the binding includes the principal specified in the request, either directly or indirectly. Each key identifies a principal in the binding, and each value indicates whether the principal in the binding includes the principal in the request. For example, suppose that a binding includes the following principals: * `user:alice@example.com` * `group:product-eng@example.com` The principal in the replayed access tuple is `user:bob@example.com`. This user is a principal of the group `group:product-eng@example.com`. For the first principal in the binding, the key is `user:alice@example.com`, and the `membership` field in the value is set to `MEMBERSHIP_NOT_INCLUDED`. For the second principal in the binding, the key is `group:product-eng@example.com`, and the `membership` field in the value is set to `MEMBERSHIP_INCLUDED`.
-     */
-    memberships?: {
-      [
-        key: string
-      ]: Schema$GoogleCloudPolicysimulatorV1beta1BindingExplanationAnnotatedMembership;
-    } | null;
-    /**
-     * The relevance of this binding to the overall determination for the entire policy.
-     */
-    relevance?: string | null;
-    /**
-     * The role that this binding grants. For example, `roles/compute.serviceAgent`. For a complete list of predefined IAM roles, as well as the permissions in each role, see https://cloud.google.com/iam/help/roles/reference.
-     */
-    role?: string | null;
-    /**
-     * Indicates whether the role granted by this binding contains the specified permission.
-     */
-    rolePermission?: string | null;
-    /**
-     * The relevance of the permission's existence, or nonexistence, in the role to the overall determination for the entire policy.
-     */
-    rolePermissionRelevance?: string | null;
-  }
-  /**
-   * Details about whether the binding includes the principal.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1BindingExplanationAnnotatedMembership {
-    /**
-     * Indicates whether the binding includes the principal.
-     */
-    membership?: string | null;
-    /**
-     * The relevance of the principal's status to the overall determination for the binding.
-     */
-    relevance?: string | null;
-  }
-  /**
-   * Details about how a set of policies, listed in ExplainedPolicy, resulted in a certain AccessState when replaying an access tuple.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ExplainedAccess {
-    /**
-     * Whether the member in the access tuple has permission to access the resource in the access tuple under the given policies.
-     */
-    accessState?: string | null;
-    /**
-     * If the AccessState is `UNKNOWN`, this field contains a list of errors explaining why the result is `UNKNOWN`. If the `AccessState` is `GRANTED` or `NOT_GRANTED`, this field is omitted.
-     */
-    errors?: Schema$GoogleRpcStatus[];
-    /**
-     * If the AccessState is `UNKNOWN`, this field contains the policies that led to that result. If the `AccessState` is `GRANTED` or `NOT_GRANTED`, this field is omitted.
-     */
-    policies?: Schema$GoogleCloudPolicysimulatorV1beta1ExplainedPolicy[];
-  }
-  /**
-   * Details about how a specific IAM Policy contributed to the access check.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ExplainedPolicy {
-    /**
-     * Indicates whether _this policy_ provides the specified permission to the specified principal for the specified resource. This field does _not_ indicate whether the principal actually has the permission for the resource. There might be another policy that overrides this policy. To determine whether the principal actually has the permission, use the `access` field in the TroubleshootIamPolicyResponse.
-     */
-    access?: string | null;
-    /**
-     * Details about how each binding in the policy affects the principal's ability, or inability, to use the permission for the resource. If the user who created the Replay does not have access to the policy, this field is omitted.
-     */
-    bindingExplanations?: Schema$GoogleCloudPolicysimulatorV1beta1BindingExplanation[];
-    /**
-     * The full resource name that identifies the resource. For example, `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`. If the user who created the Replay does not have access to the policy, this field is omitted. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names.
-     */
-    fullResourceName?: string | null;
-    /**
-     * The IAM policy attached to the resource. If the user who created the Replay does not have access to the policy, this field is empty.
-     */
-    policy?: Schema$GoogleIamV1Policy;
-    /**
-     * The relevance of this policy to the overall determination in the TroubleshootIamPolicyResponse. If the user who created the Replay does not have access to the policy, this field is omitted.
-     */
-    relevance?: string | null;
-  }
-  /**
-   * Response message for Simulator.ListReplayResults.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse {
-    /**
-     * A token that you can use to retrieve the next page of ReplayResult objects. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The results of running a Replay.
-     */
-    replayResults?: Schema$GoogleCloudPolicysimulatorV1beta1ReplayResult[];
-  }
-  /**
    * A resource describing a `Replay`, or simulation.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1beta1Replay {
@@ -304,15 +165,6 @@ export namespace policysimulator_v1beta1 {
     policyOverlay?: {[key: string]: Schema$GoogleIamV1Policy} | null;
   }
   /**
-   * The difference between the results of evaluating an access tuple under the current (baseline) policies and under the proposed (simulated) policies. This difference explains how a member's access could change if the proposed policies were applied.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ReplayDiff {
-    /**
-     * A summary and comparison of the member's access under the current (baseline) policies and the proposed (simulated) policies for a single access tuple. The evaluation of the member's access is reported in the AccessState field.
-     */
-    accessDiff?: Schema$GoogleCloudPolicysimulatorV1beta1AccessStateDiff;
-  }
-  /**
    * Metadata about a Replay operation.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1beta1ReplayOperationMetadata {
@@ -320,35 +172,6 @@ export namespace policysimulator_v1beta1 {
      * Time when the request was received.
      */
     startTime?: string | null;
-  }
-  /**
-   * The result of replaying a single access tuple against a simulated state.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ReplayResult {
-    /**
-     * The access tuple that was replayed. This field includes information about the member, resource, and permission that were involved in the access attempt.
-     */
-    accessTuple?: Schema$GoogleCloudPolicysimulatorV1beta1AccessTuple;
-    /**
-     * The difference between the member's access under the current (baseline) policies and the member's access under the proposed (simulated) policies. This field is only included for access tuples that were successfully replayed and had different results under the current policies and the proposed policies.
-     */
-    diff?: Schema$GoogleCloudPolicysimulatorV1beta1ReplayDiff;
-    /**
-     * The error that caused the access tuple replay to fail. This field is only included for access tuples that were not replayed successfully.
-     */
-    error?: Schema$GoogleRpcStatus;
-    /**
-     * The latest date this access tuple was seen in the logs.
-     */
-    lastSeenDate?: Schema$GoogleTypeDate;
-    /**
-     * The resource name of the `ReplayResult`, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}/results/{replay-result-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36/results/1234`
-     */
-    name?: string | null;
-    /**
-     * The Replay that the access tuple was included in.
-     */
-    parent?: string | null;
   }
   /**
    * Summary statistics about the replayed log entries.
@@ -486,7 +309,7 @@ export namespace policysimulator_v1beta1 {
      */
     condition?: Schema$GoogleTypeExpr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -620,29 +443,38 @@ export namespace policysimulator_v1beta1 {
 
   export class Resource$Folders$Locations {
     context: APIRequestContext;
+    orgPolicyViolationsPreviews: Resource$Folders$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Folders$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.orgPolicyViolationsPreviews =
+        new Resource$Folders$Locations$Orgpolicyviolationspreviews(
+          this.context
+        );
       this.replays = new Resource$Folders$Locations$Replays(this.context);
     }
   }
 
-  export class Resource$Folders$Locations$Replays {
+  export class Resource$Folders$Locations$Orgpolicyviolationspreviews {
     context: APIRequestContext;
-    operations: Resource$Folders$Locations$Replays$Operations;
-    results: Resource$Folders$Locations$Replays$Results;
+    operations: Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Folders$Locations$Replays$Operations(
-        this.context
-      );
-      this.results = new Resource$Folders$Locations$Replays$Results(
-        this.context
-      );
+      this.operations =
+        new Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
     }
 
     /**
-     * Creates and starts a Replay using the given ReplayConfig.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * ```js
      * // Before running the sample:
@@ -667,21 +499,13 @@ export namespace policysimulator_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.create({
-     *     // Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     *     parent: 'folders/my-folder/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "name": "my_name",
-     *       //   "resultsSummary": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
+     *   const res =
+     *     await policysimulator.folders.locations.orgPolicyViolationsPreviews.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'folders/my-folder/locations/my-location/orgPolicyViolationsPreviews/my-orgPolicyViolationsPreview/operations/.*',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -706,36 +530,36 @@ export namespace policysimulator_v1beta1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    create(
-      params: Params$Resource$Folders$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Folders$Locations$Replays$Create,
+    get(
+      params?: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    create(
-      params: Params$Resource$Folders$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    create(
-      params: Params$Resource$Folders$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
-      params: Params$Resource$Folders$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
+    get(
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
+    get(
       paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Replays$Create
+        | Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -751,152 +575,13 @@ export namespace policysimulator_v1beta1 {
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Replays$Create;
+        {}) as Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Replays$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/replays').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets the specified Replay. Each `Replay` is available for at least 7 days.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.get({
-     *     // Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     name: 'folders/my-folder/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "name": "my_name",
-     *   //   "resultsSummary": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Folders$Locations$Replays$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Folders$Locations$Replays$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1Replay>;
-    get(
-      params: Params$Resource$Folders$Locations$Replays$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Folders$Locations$Replays$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      params: Params$Resource$Folders$Locations$Replays$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Replays$Get
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Replays$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Replays$Get;
+        params =
+          {} as Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get;
         options = {};
       }
 
@@ -921,36 +606,33 @@ export namespace policysimulator_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1Replay>(
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1Replay>(
-          parameters
-        );
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Replays$Create
+  export interface Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get
     extends StandardParameters {
     /**
-     * Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudPolicysimulatorV1beta1Replay;
-  }
-  export interface Params$Resource$Folders$Locations$Replays$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
+     * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Folders$Locations$Replays {
+    context: APIRequestContext;
+    operations: Resource$Folders$Locations$Replays$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Folders$Locations$Replays$Operations(
+        this.context
+      );
+    }
   }
 
   export class Resource$Folders$Locations$Replays$Operations {
@@ -1267,173 +949,6 @@ export namespace policysimulator_v1beta1 {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Folders$Locations$Replays$Results {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the results of running a Replay.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.folders.locations.replays.results.list({
-     *     // The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     parent: 'folders/my-folder/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "replayResults": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Folders$Locations$Replays$Results$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Folders$Locations$Replays$Results$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>;
-    list(
-      params: Params$Resource$Folders$Locations$Replays$Results$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Replays$Results$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Folders$Locations$Replays$Results$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Replays$Results$List
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Replays$Results$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Replays$Results$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/results').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Folders$Locations$Replays$Results$List
-    extends StandardParameters {
-    /**
-     * The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     */
-    parent?: string;
   }
 
   export class Resource$Operations {
@@ -1758,29 +1273,38 @@ export namespace policysimulator_v1beta1 {
 
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
+    orgPolicyViolationsPreviews: Resource$Organizations$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Organizations$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.orgPolicyViolationsPreviews =
+        new Resource$Organizations$Locations$Orgpolicyviolationspreviews(
+          this.context
+        );
       this.replays = new Resource$Organizations$Locations$Replays(this.context);
     }
   }
 
-  export class Resource$Organizations$Locations$Replays {
+  export class Resource$Organizations$Locations$Orgpolicyviolationspreviews {
     context: APIRequestContext;
-    operations: Resource$Organizations$Locations$Replays$Operations;
-    results: Resource$Organizations$Locations$Replays$Results;
+    operations: Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Organizations$Locations$Replays$Operations(
-        this.context
-      );
-      this.results = new Resource$Organizations$Locations$Replays$Results(
-        this.context
-      );
+      this.operations =
+        new Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
     }
 
     /**
-     * Creates and starts a Replay using the given ReplayConfig.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * ```js
      * // Before running the sample:
@@ -1805,21 +1329,13 @@ export namespace policysimulator_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await policysimulator.organizations.locations.replays.create({
-     *     // Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "name": "my_name",
-     *       //   "resultsSummary": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
+     *   const res =
+     *     await policysimulator.organizations.locations.orgPolicyViolationsPreviews.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'organizations/my-organization/locations/my-location/orgPolicyViolationsPreviews/my-orgPolicyViolationsPreview/operations/.*',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1844,36 +1360,36 @@ export namespace policysimulator_v1beta1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    create(
-      params: Params$Resource$Organizations$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Organizations$Locations$Replays$Create,
+    get(
+      params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    create(
-      params: Params$Resource$Organizations$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    create(
-      params: Params$Resource$Organizations$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
-      params: Params$Resource$Organizations$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
+    get(
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
+    get(
       paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Replays$Create
+        | Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1889,152 +1405,13 @@ export namespace policysimulator_v1beta1 {
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Replays$Create;
+        {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Replays$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/replays').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets the specified Replay. Each `Replay` is available for at least 7 days.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.organizations.locations.replays.get({
-     *     // Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     name: 'organizations/my-organization/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "name": "my_name",
-     *   //   "resultsSummary": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Organizations$Locations$Replays$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Organizations$Locations$Replays$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1Replay>;
-    get(
-      params: Params$Resource$Organizations$Locations$Replays$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Organizations$Locations$Replays$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      params: Params$Resource$Organizations$Locations$Replays$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Replays$Get
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Replays$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Replays$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get;
         options = {};
       }
 
@@ -2059,36 +1436,33 @@ export namespace policysimulator_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1Replay>(
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1Replay>(
-          parameters
-        );
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Replays$Create
+  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get
     extends StandardParameters {
     /**
-     * Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudPolicysimulatorV1beta1Replay;
-  }
-  export interface Params$Resource$Organizations$Locations$Replays$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
+     * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Organizations$Locations$Replays {
+    context: APIRequestContext;
+    operations: Resource$Organizations$Locations$Replays$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Organizations$Locations$Replays$Operations(
+        this.context
+      );
+    }
   }
 
   export class Resource$Organizations$Locations$Replays$Operations {
@@ -2410,14 +1784,49 @@ export namespace policysimulator_v1beta1 {
     pageToken?: string;
   }
 
-  export class Resource$Organizations$Locations$Replays$Results {
+  export class Resource$Projects {
+    context: APIRequestContext;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    orgPolicyViolationsPreviews: Resource$Projects$Locations$Orgpolicyviolationspreviews;
+    replays: Resource$Projects$Locations$Replays;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.orgPolicyViolationsPreviews =
+        new Resource$Projects$Locations$Orgpolicyviolationspreviews(
+          this.context
+        );
+      this.replays = new Resource$Projects$Locations$Replays(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Orgpolicyviolationspreviews {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * Lists the results of running a Replay.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * ```js
      * // Before running the sample:
@@ -2443,216 +1852,12 @@ export namespace policysimulator_v1beta1 {
      *
      *   // Do the magic
      *   const res =
-     *     await policysimulator.organizations.locations.replays.results.list({
-     *       // The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *       parent:
-     *         'organizations/my-organization/locations/my-location/replays/my-replay',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "replayResults": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Organizations$Locations$Replays$Results$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Organizations$Locations$Replays$Results$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>;
-    list(
-      params: Params$Resource$Organizations$Locations$Replays$Results$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Replays$Results$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Replays$Results$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Replays$Results$List
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Replays$Results$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Replays$Results$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/results').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Replays$Results$List
-    extends StandardParameters {
-    /**
-     * The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects {
-    context: APIRequestContext;
-    locations: Resource$Projects$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations = new Resource$Projects$Locations(this.context);
-    }
-  }
-
-  export class Resource$Projects$Locations {
-    context: APIRequestContext;
-    replays: Resource$Projects$Locations$Replays;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.replays = new Resource$Projects$Locations$Replays(this.context);
-    }
-  }
-
-  export class Resource$Projects$Locations$Replays {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Replays$Operations;
-    results: Resource$Projects$Locations$Replays$Results;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations = new Resource$Projects$Locations$Replays$Operations(
-        this.context
-      );
-      this.results = new Resource$Projects$Locations$Replays$Results(
-        this.context
-      );
-    }
-
-    /**
-     * Creates and starts a Replay using the given ReplayConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.create({
-     *     // Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "name": "my_name",
-     *       //   "resultsSummary": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
+     *     await policysimulator.projects.locations.orgPolicyViolationsPreviews.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/orgPolicyViolationsPreviews/my-orgPolicyViolationsPreview/operations/.*',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2677,36 +1882,36 @@ export namespace policysimulator_v1beta1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    create(
-      params: Params$Resource$Projects$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Replays$Create,
+    get(
+      params?: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    create(
-      params: Params$Resource$Projects$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Replays$Create,
+    get(
+      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
+    get(
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(
+    get(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Replays$Create
+        | Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2722,152 +1927,13 @@ export namespace policysimulator_v1beta1 {
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Replays$Create;
+        {}) as Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Replays$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/replays').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets the specified Replay. Each `Replay` is available for at least 7 days.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.get({
-     *     // Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     name: 'projects/my-project/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "name": "my_name",
-     *   //   "resultsSummary": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Replays$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Replays$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1Replay>;
-    get(
-      params: Params$Resource$Projects$Locations$Replays$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Replays$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Replays$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Replays$Get
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1Replay>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Replays$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Replays$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get;
         options = {};
       }
 
@@ -2892,36 +1958,33 @@ export namespace policysimulator_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1Replay>(
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1Replay>(
-          parameters
-        );
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Replays$Create
+  export interface Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get
     extends StandardParameters {
     /**
-     * Required. The parent resource where this Replay will be created. This resource must be a project, folder, or organization with a location. Example: `projects/my-example-project/locations/global`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudPolicysimulatorV1beta1Replay;
-  }
-  export interface Params$Resource$Projects$Locations$Replays$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the Replay to retrieve, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the `Replay`. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
+     * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Projects$Locations$Replays {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Replays$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Locations$Replays$Operations(
+        this.context
+      );
+    }
   }
 
   export class Resource$Projects$Locations$Replays$Operations {
@@ -3239,172 +2302,5 @@ export namespace policysimulator_v1beta1 {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Projects$Locations$Replays$Results {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the results of running a Replay.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await policysimulator.projects.locations.replays.results.list({
-     *     // The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *     parent: 'projects/my-project/locations/my-location/replays/my-replay',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "replayResults": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Replays$Results$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Replays$Results$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Replays$Results$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Replays$Results$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Replays$Results$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Replays$Results$List
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Replays$Results$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Replays$Results$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/results').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Replays$Results$List
-    extends StandardParameters {
-    /**
-     * The maximum number of ReplayResult objects to return. Defaults to 5000. The maximum value is 5000; values above 5000 are rounded down to 5000.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous Simulator.ListReplayResults call. Provide this token to retrieve the next page of results. When paginating, all other parameters provided to [Simulator.ListReplayResults[] must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The Replay whose results are listed, in the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}` Example: `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     */
-    parent?: string;
   }
 }
