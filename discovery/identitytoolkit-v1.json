@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20230218",
+  "revision": "20230228",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -2371,6 +2371,10 @@
         },
         "phoneNumber": {
           "description": "The phone number to send the verification code to in E.164 format.",
+          "type": "string"
+        },
+        "playIntegrityToken": {
+          "description": "Android only. Used to assert application identity in place of a recaptcha token (and safety_net_token). At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, , or `play_integrity_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator. A Play Integrity Token can be generated via the [PlayIntegrity API](https://developer.android.com/google/play/integrity) with applying SHA256 to the `phone_number` field as the nonce.",
           "type": "string"
         },
         "recaptchaToken": {
