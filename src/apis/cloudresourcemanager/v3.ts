@@ -312,6 +312,10 @@ export namespace cloudresourcemanager_v3 {
      */
     tagKey?: string | null;
     /**
+     * The parent name of the tag key. Must be in the format `organizations/{organization_id\}`.
+     */
+    tagKeyParentName?: string | null;
+    /**
      * Resource name for TagValue in the format `tagValues/456`.
      */
     tagValue?: string | null;
