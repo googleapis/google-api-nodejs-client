@@ -1339,7 +1339,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230224",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1352,6 +1352,29 @@
       "description": "The response object for `AbandonRelease`.",
       "id": "AbandonReleaseResponse",
       "properties": {},
+      "type": "object"
+    },
+    "AdvanceChildRolloutJob": {
+      "description": "An advanceChildRollout Job.",
+      "id": "AdvanceChildRolloutJob",
+      "properties": {},
+      "type": "object"
+    },
+    "AdvanceChildRolloutJobRun": {
+      "description": "AdvanceChildRolloutJobRun contains information specific to a advanceChildRollout `JobRun`.",
+      "id": "AdvanceChildRolloutJobRun",
+      "properties": {
+        "rollout": {
+          "description": "Output only. Name of the `ChildRollout`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/a-z{0,62}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rolloutPhaseId": {
+          "description": "Output only. the ID of the ChildRollout's Phase.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "AnthosCluster": {
@@ -1473,6 +1496,29 @@
       "properties": {},
       "type": "object"
     },
+    "ChildRolloutJobs": {
+      "description": "ChildRollouts job composition",
+      "id": "ChildRolloutJobs",
+      "properties": {
+        "advanceRolloutJobs": {
+          "description": "Output only. List of AdvanceChildRolloutJobs",
+          "items": {
+            "$ref": "Job"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createRolloutJobs": {
+          "description": "Output only. List of CreateChildRolloutJobs",
+          "items": {
+            "$ref": "Job"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CloudRunLocation": {
       "description": "Information specifying where to deploy a Cloud Run Service.",
       "id": "CloudRunLocation",
@@ -1527,6 +1573,29 @@
             "$ref": "SkaffoldVersion"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreateChildRolloutJob": {
+      "description": "A createChildRollout Job.",
+      "id": "CreateChildRolloutJob",
+      "properties": {},
+      "type": "object"
+    },
+    "CreateChildRolloutJobRun": {
+      "description": "CreateChildRolloutJobRun contains information specific to a createChildRollout `JobRun`.",
+      "id": "CreateChildRolloutJobRun",
+      "properties": {
+        "rollout": {
+          "description": "Output only. Name of the `ChildRollout`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/a-z{0,62}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rolloutPhaseId": {
+          "description": "Output only. The ID of the childRollout Phase initiated by this JobRun.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1835,6 +1904,16 @@
       "description": "Job represents an operation for a `Rollout`.",
       "id": "Job",
       "properties": {
+        "advanceChildRolloutJob": {
+          "$ref": "AdvanceChildRolloutJob",
+          "description": "Output only. An advanceChildRollout Job.",
+          "readOnly": true
+        },
+        "createChildRolloutJob": {
+          "$ref": "CreateChildRolloutJob",
+          "description": "Output only. A createChildRollout Job.",
+          "readOnly": true
+        },
         "deployJob": {
           "$ref": "DeployJob",
           "description": "Output only. A deploy Job.",
@@ -1885,6 +1964,16 @@
       "description": "A `JobRun` resource in the Google Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.",
       "id": "JobRun",
       "properties": {
+        "advanceChildRolloutJobRun": {
+          "$ref": "AdvanceChildRolloutJobRun",
+          "description": "Output only. Information specific to an advanceChildRollout `JobRun`",
+          "readOnly": true
+        },
+        "createChildRolloutJobRun": {
+          "$ref": "CreateChildRolloutJobRun",
+          "description": "Output only. Information specific to a createChildRollout `JobRun`.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. Time at which the `JobRun` was created.",
           "format": "google-datetime",
@@ -2209,6 +2298,20 @@
       },
       "type": "object"
     },
+    "MultiTarget": {
+      "description": "Information specifying a multiTarget.",
+      "id": "MultiTarget",
+      "properties": {
+        "targetIds": {
+          "description": "Required. The target_ids of this multiTarget.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -2292,6 +2395,11 @@
       "description": "Phase represents a collection of jobs that are logically grouped together for a `Rollout`.",
       "id": "Phase",
       "properties": {
+        "childRolloutJobs": {
+          "$ref": "ChildRolloutJobs",
+          "description": "Output only. ChildRollout job composition.",
+          "readOnly": true
+        },
         "deploymentJobs": {
           "$ref": "DeploymentJobs",
           "description": "Output only. Deployment job composition.",
@@ -2666,6 +2774,11 @@
         "approveTime": {
           "description": "Output only. Time at which the `Rollout` was approved.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "controllerRollout": {
+          "description": "Output only. Name of the `ControllerRollout`. Format is projects/{project}/ locations/{location}/deliveryPipelines/{deliveryPipeline}/ releases/{release}/rollouts/a-z{0,62}.",
           "readOnly": true,
           "type": "string"
         },
@@ -3047,6 +3160,10 @@
           },
           "description": "Optional. Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
           "type": "object"
+        },
+        "multiTarget": {
+          "$ref": "MultiTarget",
+          "description": "Information specifying a multiTarget."
         },
         "name": {
           "description": "Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/targets/a-z{0,62}.",
