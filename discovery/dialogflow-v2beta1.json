@@ -7507,7 +7507,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230301",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7798,7 +7798,7 @@
           "type": "string"
         },
         "versionConfigs": {
-          "description": "Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
+          "description": "A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig"
           },
@@ -9659,7 +9659,7 @@
           "type": "string"
         },
         "versionConfigs": {
-          "description": "Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
+          "description": "A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig"
           },
@@ -14413,6 +14413,10 @@
           "description": "The time zone of this conversational profile from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. Defaults to America/New_York.",
           "type": "string"
         },
+        "ttsConfig": {
+          "$ref": "GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig",
+          "description": "Configuration for Text-to-Speech synthesization. Used by Phone Gateway to specify synthesization options. If agent defines synthesization options as well, agent settings overrides the option here."
+        },
         "updateTime": {
           "description": "Output only. Update time of the conversation profile.",
           "format": "google-datetime",
@@ -17161,8 +17165,8 @@
           ],
           "enumDescriptions": [
             "If it is unspecified, PROTO will be used.",
-            "Pubsub message will be serialized proto.",
-            "Pubsub message will be json."
+            "Pub/Sub message will be serialized proto.",
+            "Pub/Sub message will be json."
           ],
           "type": "string"
         },
