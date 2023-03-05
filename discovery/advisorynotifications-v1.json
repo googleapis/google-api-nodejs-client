@@ -12,7 +12,7 @@
   "baseUrl": "https://advisorynotifications.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Advisorynotifications",
-  "description": "",
+  "description": "An API for accessing Advisory Notifications in Google Cloud",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/advisory-notifications",
   "fullyEncodeReservedExpansion": true,
@@ -204,7 +204,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230226",
   "rootUrl": "https://advisorynotifications.googleapis.com/",
   "schemas": {
     "GoogleCloudAdvisorynotificationsV1Attachment": {
