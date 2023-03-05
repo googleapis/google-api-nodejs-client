@@ -701,6 +701,10 @@ export namespace dataproc_v1 {
      * Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.
      */
     gcePdKmsKeyName?: string | null;
+    /**
+     * Optional. The Cloud KMS key name to use for encrypting customer core content and cluster PD disk for all instances in the cluster.
+     */
+    kmsKey?: string | null;
   }
   /**
    * Endpoint config for this cluster
@@ -803,7 +807,7 @@ export namespace dataproc_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the "default" network of the project is used, if it exists. Cannot be a "Custom Subnet Network" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/default projects/[project_id]/regions/[region]/default default
+     * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the "default" network of the project is used, if it exists. Cannot be a "Custom Subnet Network" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default projects/[project_id]/global/networks/default default
      */
     networkUri?: string | null;
     /**
