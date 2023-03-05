@@ -1159,7 +1159,7 @@ export namespace sheets_v4 {
      */
     userEnteredFormat?: Schema$CellFormat;
     /**
-     * The value the user entered in the cell. e.g, `1234`, `'Hello'`, or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles in serial number format.
+     * The value the user entered in the cell. e.g., `1234`, `'Hello'`, or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles in serial number format.
      */
     userEnteredValue?: Schema$ExtendedValue;
   }

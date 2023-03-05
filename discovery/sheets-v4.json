@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20221219",
+  "revision": "20230227",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -2436,7 +2436,7 @@
         },
         "userEnteredValue": {
           "$ref": "ExtendedValue",
-          "description": "The value the user entered in the cell. e.g, `1234`, `'Hello'`, or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles in serial number format."
+          "description": "The value the user entered in the cell. e.g., `1234`, `'Hello'`, or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles in serial number format."
         }
       },
       "type": "object"
