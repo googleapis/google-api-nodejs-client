@@ -102,7 +102,7 @@ export namespace advisorynotifications_v1 {
   /**
    * Advisory Notifications API
    *
-   *
+   * An API for accessing Advisory Notifications in Google Cloud
    *
    * @example
    * ```js
