@@ -392,11 +392,11 @@ export namespace gkebackup_v1 {
     k8sVersion?: string | null;
   }
   /**
-   * Identifies the cluster-scoped resources to restore from the Backup.
+   * Defines the scope of cluster-scoped resources to restore. Some group kinds are not reasonable choices for a restore, and will cause an error if selected here. Any scope selection that would restore "all valid" resources automatically excludes these group kinds. - gkebackup.gke.io/BackupJob - gkebackup.gke.io/RestoreJob - metrics.k8s.io/NodeMetrics - migration.k8s.io/StorageState - migration.k8s.io/StorageVersionMigration - Node - snapshot.storage.k8s.io/VolumeSnapshotContent - storage.k8s.io/CSINode Some group kinds are driven by restore configuration elsewhere, and will cause an error if selected here. - Namespace - PersistentVolume
    */
   export interface Schema$ClusterResourceRestoreScope {
     /**
-     * A list of "types" of cluster-scoped resources to be restored from the Backup. An empty list means that NO cluster-scoped resources will be restored. Note that Namespaces and PersistentVolume restoration is handled separately and is not governed by this field.
+     * A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the message.
      */
     selectedGroupKinds?: Schema$GroupKind[];
   }
@@ -793,7 +793,7 @@ export namespace gkebackup_v1 {
     volumesRestoredCount?: number | null;
   }
   /**
-   * Configuration of a restore. Next id: 9
+   * Configuration of a restore. Next id: 11
    */
   export interface Schema$RestoreConfig {
     /**
@@ -926,7 +926,7 @@ export namespace gkebackup_v1 {
      */
     newValue?: string | null;
     /**
-     * (Filtering parameter) This is a [regular expression] (https://en.wikipedia.org/wiki/Regular_expression) that is compared against the fields matched by the target_json_path expression (and must also have passed the previous filters). Substitution will not be performed against fields whose value does not match this expression. If this field is NOT specified, then ALL fields matched by the target_json_path expression will undergo substitution. Note that an empty (e.g., "", rather than unspecified) value for for this field will only match empty fields.
+     * (Filtering parameter) This is a [regular expression] (https://en.wikipedia.org/wiki/Regular_expression) that is compared against the fields matched by the target_json_path expression (and must also have passed the previous filters). Substitution will not be performed against fields whose value does not match this expression. If this field is NOT specified, then ALL fields matched by the target_json_path expression will undergo substitution. Note that an empty (e.g., "", rather than unspecified) value for this field will only match empty fields.
      */
     originalValuePattern?: string | null;
     /**
