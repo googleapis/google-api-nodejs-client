@@ -109,6 +109,335 @@
       "resources": {
         "locations": {
           "resources": {
+            "collections": {
+              "resources": {
+                "dataStores": {
+                  "resources": {
+                    "branches": {
+                      "resources": {
+                        "documents": {
+                          "methods": {
+                            "create": {
+                              "description": "Creates a Document.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "documentId": {
+                                  "description": "Required. The ID to use for the Document, which will become the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. This field must be unique among all Documents with the same parent. Otherwise, an ALREADY_EXISTS error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+parent}/documents",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes a Document.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}",
+                              "httpMethod": "DELETE",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to delete the Document, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Document to delete does not exist, a NOT_FOUND error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}",
+                              "response": {
+                                "$ref": "GoogleProtobufEmpty"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "get": {
+                              "description": "Gets a Document.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Document does not exist, a NOT_FOUND error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "import": {
+                              "description": "Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items will be created. Note: It is possible for a subset of the Documents to be successfully updated.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents:import",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.import",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Requires create/update permission.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+parent}/documents:import",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaImportDocumentsRequest"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Gets a list of Documents.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "pageSize": {
+                                  "description": "Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "A page token ListDocumentsResponse.next_page_token, received from a previous DocumentService.ListDocuments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DocumentService.ListDocuments must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documentss under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+parent}/documents",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaListDocumentsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "patch": {
+                              "description": "Updates a Document.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/branches/{branchesId}/documents/{documentsId}",
+                              "httpMethod": "PATCH",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.branches.documents.patch",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "allowMissing": {
+                                  "description": "If set to true, and the Document is not found, a new Document will be created.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
+                                "name": {
+                                  "description": "Immutable. The full resource name of the document. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/{+name}",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
+                              },
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1betaDocument"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "servingConfigs": {
+                      "methods": {
+                        "recommend": {
+                          "description": "Makes a recommendation, which requires a contextual user event.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}:recommend",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.recommend",
+                          "parameterOrder": [
+                            "servingConfig"
+                          ],
+                          "parameters": {
+                            "servingConfig": {
+                              "description": "Required. Full resource name of the format: projects/*/locations/global/collections/*/dataStores/*/servingConfigs/* Before you can request recommendations from your model, you must create at least one serving config for it.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+servingConfig}:recommend",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaRecommendRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaRecommendResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "userEvents": {
+                      "methods": {
+                        "collect": {
+                          "description": "Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a 3rd party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/userEvents:collect",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.userEvents.collect",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "ets": {
+                              "description": "The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.",
+                              "format": "int64",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent DataStore resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "uri": {
+                              "description": "The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for 3rd party requests.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "userEvent": {
+                              "description": "Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/userEvents:collect",
+                          "response": {
+                            "$ref": "GoogleApiHttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "import": {
+                          "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/userEvents:import",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.userEvents.import",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Parent DataStore resource name, of the form `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/userEvents:import",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaImportUserEventsRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "write": {
+                          "description": "Writes a single user event.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/userEvents:write",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.userEvents.write",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent DataStore resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/userEvents:write",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaUserEvent"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaUserEvent"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "dataStores": {
               "resources": {
                 "branches": {
@@ -130,7 +459,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}`.",
+                              "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+$",
                               "required": true,
@@ -158,7 +487,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to delete the Document, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Document to delete does not exist, a NOT_FOUND error is returned.",
+                              "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to delete the Document, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Document to delete does not exist, a NOT_FOUND error is returned.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
                               "required": true,
@@ -183,7 +512,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Document does not exist, a NOT_FOUND error is returned.",
+                              "description": "Required. Full resource name of Document, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Document does not exist, a NOT_FOUND error is returned.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
                               "required": true,
@@ -208,7 +537,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}`. Requires create/update permission.",
+                              "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Requires create/update permission.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+$",
                               "required": true,
@@ -247,7 +576,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documentss under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
+                              "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documentss under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+$",
                               "required": true,
@@ -277,7 +606,7 @@
                               "type": "boolean"
                             },
                             "name": {
-                              "description": "Immutable. The full resource name of the document. Format: `projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "description": "Immutable. The full resource name of the document. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/branches/[^/]+/documents/[^/]+$",
                               "required": true,
@@ -525,7 +854,7 @@
                       ],
                       "parameters": {
                         "servingConfig": {
-                          "description": "Required. Full resource name of the format: projects/*/locations/global/dataStores/*/servingConfigs/* Before you can request recommendations from your model, you must create at least one serving config for it.",
+                          "description": "Required. Full resource name of the format: projects/*/locations/global/collections/*/dataStores/*/servingConfigs/* Before you can request recommendations from your model, you must create at least one serving config for it.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
@@ -563,7 +892,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent DataStore resource name, such as `projects/{project}/locations/{location}/dataStores/{data_store}`.",
+                          "description": "Required. The parent DataStore resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -598,7 +927,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Parent DataStore resource name, of the form `projects/{project}/locations/{location}/dataStores/{data_store}`",
+                          "description": "Required. Parent DataStore resource name, of the form `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -626,7 +955,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent DataStore resource name, such as `projects/{project}/locations/{location}/dataStores/{data_store}`.",
+                          "description": "Required. The parent DataStore resource name, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -793,7 +1122,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230227",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -854,22 +1183,6 @@
           "description": "A message describing the error.",
           "type": "string"
         },
-        "requestPayload": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "The API request payload, represented as a protocol buffer. Most API request types are supported. For example: \"type.googleapis.com/google.cloud.discoveryengine.v1alpha.DocumentService.CreateDocumentRequest\" \"type.googleapis.com/google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEventRequest\"",
-          "type": "object"
-        },
-        "responsePayload": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "The API response payload, represented as a protocol buffer. This is used to log some \"soft errors\", where the response is valid but we consider there are some quality issues like unjoined events. The following API responses are supported and no PII is included: \"google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend\" \"google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEvent\" \"google.cloud.discoveryengine.v1alpha.UserEventService.CollectUserEvent\"",
-          "type": "object"
-        },
         "serviceContext": {
           "$ref": "GoogleCloudDiscoveryengineLoggingServiceContext",
           "description": "The service context in which this error has occurred."
@@ -894,7 +1207,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineLoggingImportErrorContext": {
-      "description": "The error payload that is populated on LRO import APIs. Including: \"google.cloud.discoveryengine.v1alpha.DocumentService.ImportDocuments\" \"google.cloud.discoveryengine.v1alpha.UserEventService.ImportUserEvents\"",
+      "description": "The error payload that is populated on LRO import APIs, including the following: * `google.cloud.discoveryengine.v1alpha.DocumentService.ImportDocuments` * `google.cloud.discoveryengine.v1alpha.UserEventService.ImportUserEvents`",
       "id": "GoogleCloudDiscoveryengineLoggingImportErrorContext",
       "properties": {
         "document": {
@@ -925,7 +1238,7 @@
       "id": "GoogleCloudDiscoveryengineLoggingServiceContext",
       "properties": {
         "service": {
-          "description": "An identifier of the service. For example, \"discoveryengine.googleapis.com\".",
+          "description": "An identifier of the service—for example, `discoveryengine.googleapis.com`.",
           "type": "string"
         }
       },
@@ -936,7 +1249,7 @@
       "id": "GoogleCloudDiscoveryengineLoggingSourceLocation",
       "properties": {
         "functionName": {
-          "description": "Human-readable name of a function or method. For example, \" google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend\".",
+          "description": "Human-readable name of a function or method—for example, `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend`.",
           "type": "string"
         }
       },
@@ -1135,7 +1448,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The full resource name of the document. Format: `projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "description": "Immutable. The full resource name of the document. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
         "parentDocumentId": {
@@ -1166,7 +1479,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The Document resource full name, of the form: projects/{project\\_id}/locations/{location}/dataStores/{data\\_store\\_id}/branches/{branch\\_id}/documents/{document\\_id}",
+          "description": "Required. The Document resource full name, of the form: projects/{project\\_id}/locations/{location}/collections/{collection\\_id}/dataStores/{data\\_store\\_id}/branches/{branch\\_id}/documents/{document\\_id}",
           "type": "string"
         },
         "promotionIds": {
