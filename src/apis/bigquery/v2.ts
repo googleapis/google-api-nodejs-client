@@ -794,6 +794,10 @@ export namespace bigquery_v2 {
      */
     defaultPartitionExpirationMs?: string | null;
     /**
+     * [Output-only] The default rounding mode of the dataset.
+     */
+    defaultRoundingMode?: string | null;
+    /**
      * [Optional] The default lifetime of all tables in the dataset, in milliseconds. The minimum value is 3600000 milliseconds (one hour). Once this property is set, all newly-created tables in the dataset will have an expirationTime property set to the creation time plus the value in this property, and changing the value will only affect new tables, not existing ones. When the expirationTime for a given table is reached, that table will be deleted automatically. If a table's expirationTime is modified or removed before the table expires, or if you provide an explicit expirationTime when creating a table, that value takes precedence over the default expiration time indicated by this property.
      */
     defaultTableExpirationMs?: string | null;
@@ -3299,6 +3303,10 @@ export namespace bigquery_v2 {
      */
     defaultCollation?: string | null;
     /**
+     * [Output-only] The default rounding mode of the table.
+     */
+    defaultRoundingMode?: string | null;
+    /**
      * [Optional] A user-friendly description of this table.
      */
     description?: string | null;
@@ -3538,6 +3546,10 @@ export namespace bigquery_v2 {
      * [Optional] Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ "NUMERIC" and ≠ "BIGNUMERIC". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: - Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] - Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: - If type = "NUMERIC": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. - If type = "BIGNUMERIC": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): - If type = "NUMERIC": 1 ≤ precision ≤ 29. - If type = "BIGNUMERIC": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.
      */
     precision?: string | null;
+    /**
+     * Optional. Rounding Mode specification of the field. It only can be set on NUMERIC or BIGNUMERIC type fields.
+     */
+    roundingMode?: string | null;
     /**
      * [Optional] See documentation for precision.
      */
@@ -4176,6 +4188,7 @@ export namespace bigquery_v2 {
      *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -4326,6 +4339,7 @@ export namespace bigquery_v2 {
      *       //   "defaultCollation": "my_defaultCollation",
      *       //   "defaultEncryptionConfiguration": {},
      *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
      *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
@@ -4354,6 +4368,7 @@ export namespace bigquery_v2 {
      *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -4648,6 +4663,7 @@ export namespace bigquery_v2 {
      *       //   "defaultCollation": "my_defaultCollation",
      *       //   "defaultEncryptionConfiguration": {},
      *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
      *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
@@ -4676,6 +4692,7 @@ export namespace bigquery_v2 {
      *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -4828,6 +4845,7 @@ export namespace bigquery_v2 {
      *       //   "defaultCollation": "my_defaultCollation",
      *       //   "defaultEncryptionConfiguration": {},
      *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
      *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
@@ -4856,6 +4874,7 @@ export namespace bigquery_v2 {
      *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -9317,6 +9336,7 @@ export namespace bigquery_v2 {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
@@ -9633,6 +9653,7 @@ export namespace bigquery_v2 {
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
@@ -9680,6 +9701,7 @@ export namespace bigquery_v2 {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
@@ -9998,6 +10020,7 @@ export namespace bigquery_v2 {
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
@@ -10045,6 +10068,7 @@ export namespace bigquery_v2 {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
@@ -10512,6 +10536,7 @@ export namespace bigquery_v2 {
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
+     *       //   "defaultRoundingMode": "my_defaultRoundingMode",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
@@ -10559,6 +10584,7 @@ export namespace bigquery_v2 {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
+     *   //   "defaultRoundingMode": "my_defaultRoundingMode",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
