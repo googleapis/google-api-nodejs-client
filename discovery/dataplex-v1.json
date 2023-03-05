@@ -468,6 +468,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/dataScans",
@@ -644,6 +649,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -755,7 +765,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the DataScanJob: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/dataScanJobs/{data_scan_job_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
+                          "description": "Required. The resource name of the DataScanJob: projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+/jobs/[^/]+$",
                           "required": true,
@@ -3980,7 +3990,7 @@
       }
     }
   },
-  "revision": "20230125",
+  "revision": "20230220",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -4478,6 +4488,11 @@
       "description": "Status of the resource referenced by an asset.",
       "id": "GoogleCloudDataplexV1AssetResourceStatus",
       "properties": {
+        "managedAccessIdentity": {
+          "description": "Output only. Service account associated with the BigQuery Connection.",
+          "readOnly": true,
+          "type": "string"
+        },
         "message": {
           "description": "Additional information about the current state.",
           "type": "string"
@@ -4787,7 +4802,7 @@
           "type": "array"
         },
         "resource": {
-          "description": "Optional. Immutable. The resource name of the resource that is binded to attributes. Presently, only entity resource is supported in the form: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity_id} Must belong in the same project and region as the attribute binding, and there can only exist one active binding for a resource.",
+          "description": "Optional. Immutable. The resource name of the resource that is associated to attributes. Presently, only entity resource is supported in the form: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity_id} Must belong in the same project and region as the attribute binding, and there can only exist one active binding for a resource.",
           "type": "string"
         },
         "uid": {
@@ -6114,6 +6129,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1EnvironmentEndpoints": {
+      "description": "URI Endpoints to access sessions associated with the Environment.",
       "id": "GoogleCloudDataplexV1EnvironmentEndpoints",
       "properties": {
         "notebooks": {
@@ -6199,6 +6215,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1EnvironmentSessionSpec": {
+      "description": "Configuration for sessions created for this environment.",
       "id": "GoogleCloudDataplexV1EnvironmentSessionSpec",
       "properties": {
         "enableFastStartup": {
@@ -6214,6 +6231,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1EnvironmentSessionStatus": {
+      "description": "Status of sessions created for this environment.",
       "id": "GoogleCloudDataplexV1EnvironmentSessionStatus",
       "properties": {
         "active": {
@@ -7187,6 +7205,7 @@
           "type": "string"
         },
         "state": {
+          "description": "Output only. State of Session",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",

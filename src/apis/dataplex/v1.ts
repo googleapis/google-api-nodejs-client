@@ -465,6 +465,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1AssetResourceStatus {
     /**
+     * Output only. Service account associated with the BigQuery Connection.
+     */
+    managedAccessIdentity?: string | null;
+    /**
      * Additional information about the current state.
      */
     message?: string | null;
@@ -677,7 +681,7 @@ export namespace dataplex_v1 {
      */
     paths?: Schema$GoogleCloudDataplexV1DataAttributeBindingPath[];
     /**
-     * Optional. Immutable. The resource name of the resource that is binded to attributes. Presently, only entity resource is supported in the form: projects/{project\}/locations/{location\}/lakes/{lake\}/zones/{zone\}/entities/{entity_id\} Must belong in the same project and region as the attribute binding, and there can only exist one active binding for a resource.
+     * Optional. Immutable. The resource name of the resource that is associated to attributes. Presently, only entity resource is supported in the form: projects/{project\}/locations/{location\}/lakes/{lake\}/zones/{zone\}/entities/{entity_id\} Must belong in the same project and region as the attribute binding, and there can only exist one active binding for a resource.
      */
     resource?: string | null;
     /**
@@ -1604,6 +1608,9 @@ export namespace dataplex_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * URI Endpoints to access sessions associated with the Environment.
+   */
   export interface Schema$GoogleCloudDataplexV1EnvironmentEndpoints {
     /**
      * Output only. URI to serve notebook APIs
@@ -1665,6 +1672,9 @@ export namespace dataplex_v1 {
      */
     pythonPackages?: string[] | null;
   }
+  /**
+   * Configuration for sessions created for this environment.
+   */
   export interface Schema$GoogleCloudDataplexV1EnvironmentSessionSpec {
     /**
      * Optional. If True, this causes sessions to be pre-created and available for faster startup to enable interactive exploration use-cases. This defaults to False to avoid additional billed charges. These can only be set to True for the environment with name set to "default", and with default configuration.
@@ -1675,6 +1685,9 @@ export namespace dataplex_v1 {
      */
     maxIdleDuration?: string | null;
   }
+  /**
+   * Status of sessions created for this environment.
+   */
   export interface Schema$GoogleCloudDataplexV1EnvironmentSessionStatus {
     /**
      * Output only. Queries over sessions to mark whether the environment is currently active or not
@@ -2266,6 +2279,9 @@ export namespace dataplex_v1 {
      * Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}/sessions/{session_id\}
      */
     name?: string | null;
+    /**
+     * Output only. State of Session
+     */
     state?: string | null;
     /**
      * Output only. Email of user running the session.
@@ -4727,6 +4743,8 @@ export namespace dataplex_v1 {
      *     dataScanId: 'placeholder-value',
      *     // Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5469,6 +5487,8 @@ export namespace dataplex_v1 {
      *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
      *     // Required. Mask of fields to update.
      *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6046,6 +6066,10 @@ export namespace dataplex_v1 {
      * Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     parent?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -6114,6 +6138,10 @@ export namespace dataplex_v1 {
      * Required. Mask of fields to update.
      */
     updateMask?: string;
+    /**
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -6190,7 +6218,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.jobs.get({
-     *     // Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/dataScanJobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     // Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/jobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan/jobs/my-job',
      *     // Optional. Select the DataScanJob view to return. Defaults to BASIC.
      *     view: 'placeholder-value',
@@ -6454,7 +6482,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Jobs$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/dataScanJobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     * Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/jobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string;
     /**
