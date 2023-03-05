@@ -171,11 +171,11 @@ export namespace translate_v3 {
      */
     outputConfig?: Schema$BatchDocumentOutputConfig;
     /**
-     * Required. The BCP-47 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).
+     * Required. The ISO-639 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. The BCP-47 language code to use for translation of the input document. Specify up to 10 language codes here.
+     * Required. The ISO-639 language code to use for translation of the input document. Specify up to 10 language codes here.
      */
     targetLanguageCodes?: string[] | null;
   }
@@ -288,7 +288,7 @@ export namespace translate_v3 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code of the source content in the request, detected automatically.
+     * The ISO-639 language code of the source content in the request, detected automatically.
      */
     languageCode?: string | null;
   }
@@ -581,11 +581,11 @@ export namespace translate_v3 {
    */
   export interface Schema$LanguageCodePair {
     /**
-     * Required. The BCP-47 language code of the input text, for example, "en-US". Expected to be an exact match for GlossaryTerm.language_code.
+     * Required. The ISO-639 language code of the input text, for example, "en-US". Expected to be an exact match for GlossaryTerm.language_code.
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. The BCP-47 language code for translation output, for example, "zh-CN". Expected to be an exact match for GlossaryTerm.language_code.
+     * Required. The ISO-639 language code for translation output, for example, "zh-CN". Expected to be an exact match for GlossaryTerm.language_code.
      */
     targetLanguageCode?: string | null;
   }
@@ -594,7 +594,7 @@ export namespace translate_v3 {
    */
   export interface Schema$LanguageCodesSet {
     /**
-     * The BCP-47 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.
+     * The ISO-639 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.
      */
     languageCodes?: string[] | null;
   }
@@ -823,7 +823,7 @@ export namespace translate_v3 {
      */
     displayName?: string | null;
     /**
-     * Supported language code, generally consisting of its ISO 639-1 identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes including language and region identifiers are returned (for example, 'zh-TW' and 'zh-CN').
+     * Supported language code, generally consisting of its ISO 639-1 identifier, for example, 'en', 'ja'. In certain cases, ISO-639 codes including language and region identifiers are returned (for example, 'zh-TW' and 'zh-CN').
      */
     languageCode?: string | null;
     /**
@@ -881,11 +881,11 @@ export namespace translate_v3 {
      */
     model?: string | null;
     /**
-     * Optional. The BCP-47 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.
+     * Optional. The ISO-639 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. The BCP-47 language code to use for translation of the input document, set to one of the language codes listed in Language Support.
+     * Required. The ISO-639 language code to use for translation of the input document, set to one of the language codes listed in Language Support.
      */
     targetLanguageCode?: string | null;
   }
@@ -948,11 +948,11 @@ export namespace translate_v3 {
      */
     model?: string | null;
     /**
-     * Optional. The BCP-47 language code of the input text if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.
+     * Optional. The ISO-639 language code of the input text if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. The BCP-47 language code to use for translation of the input text, set to one of the language codes listed in Language Support.
+     * Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in Language Support.
      */
     targetLanguageCode?: string | null;
   }
@@ -971,7 +971,7 @@ export namespace translate_v3 {
    */
   export interface Schema$Translation {
     /**
-     * The BCP-47 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.
+     * The ISO-639 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.
      */
     detectedLanguageCode?: string | null;
     /**
