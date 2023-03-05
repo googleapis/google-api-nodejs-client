@@ -307,6 +307,10 @@ export namespace servicemanagement_v1 {
      * The number of seconds to wait for the completion of a long running operation. The default is no deadline.
      */
     operationDeadline?: number | null;
+    /**
+     * The map between request protocol and the backend address.
+     */
+    overridesByRequestProtocol?: {[key: string]: Schema$BackendRule} | null;
     pathTranslation?: string | null;
     /**
      * The protocol used for sending a request to the backend. The supported values are "http/1.1" and "h2". The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to "h2" for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
@@ -1481,6 +1485,10 @@ export namespace servicemanagement_v1 {
      * For whom the client library is being published.
      */
     organization?: string | null;
+    /**
+     * Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc
+     */
+    protoReferenceDocumentationUri?: string | null;
   }
   /**
    * Settings for Python client libraries.
