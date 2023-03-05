@@ -2077,7 +2077,7 @@
       }
     }
   },
-  "revision": "20230214",
+  "revision": "20230228",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -2322,7 +2322,7 @@
       "type": "object"
     },
     "Annotation": {
-      "description": "NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 29",
+      "description": "NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 31",
       "id": "Annotation",
       "properties": {
         "babelPlaceholderMetadata": {
@@ -2333,7 +2333,7 @@
           "description": "LINT.ThenChange(//depot/google3/java/com/google/apps/dynamite/v1/backend/action/common/SystemMessageHelper.java)"
         },
         "chipRenderType": {
-          "description": "Whether the annotation should be rendered as a chip. If this is missing or unspecified, fallback to should_not_render on the metadata.",
+          "description": "Whether the annotation should be rendered as a preview chip. If this is missing or unspecified, fallback to should_not_render on the metadata.",
           "enum": [
             "CHIP_RENDER_TYPE_UNSPECIFIED",
             "RENDER",
@@ -2342,9 +2342,9 @@
           ],
           "enumDescriptions": [
             "",
-            "Clients must render the annotation as a chip, and if they cannot render this many Annotations, show a fallback card.",
+            "Clients must render the annotation as a preview chip, and if they cannot render this many Annotations, show a fallback card.",
             "Client can render the annotation if it has room to render it.",
-            "Client should not render the annotation as a chip."
+            "Client should not render the annotation as a preview chip."
           ],
           "type": "string"
         },
@@ -2374,9 +2374,25 @@
         "incomingWebhookChangedMetadata": {
           "$ref": "IncomingWebhookChangedMetadata"
         },
+        "inlineRenderFormat": {
+          "description": "The inline render format of this annotation. go/drive-smart-chips-chat-v2.",
+          "enum": [
+            "INLINE_RENDER_FORMAT_UNSPECIFIED",
+            "SMART_CHIP"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "integrationConfigUpdated": {
           "$ref": "IntegrationConfigUpdatedMetadata",
           "description": "LINT.ThenChange(//depot/google3/java/com/google/apps/dynamite/v1/backend/action/common/SystemMessageHelper.java)"
+        },
+        "interactionData": {
+          "$ref": "InteractionData",
+          "description": "Additional interaction data for this annotation."
         },
         "length": {
           "description": "Length of the text_body substring beginning from start_index the Annotation corresponds to.",
@@ -5841,13 +5857,15 @@
               "ACCESS_TYPE_UNSPECIFIED",
               "ACCESS_TYPE_OPEN",
               "ACCESS_TYPE_TRUSTED",
-              "ACCESS_TYPE_RESTRICTED"
+              "ACCESS_TYPE_RESTRICTED",
+              "ACCESS_TYPE_CLOSED"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
               "Anyone with meeting join information (url, phone access...) can join, no knocking required. (Subject to organization policies)",
               "Members of the Host's organization, invited external users, and dial-in users can join without knocking, everyone else must knock. (Subject to organization policies)",
-              "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks."
+              "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks.",
+              "Only participants invited by a host can join. Knocking is not allowed, dial in and dial out are also disabled."
             ],
             "type": "string"
           },
@@ -5954,13 +5972,15 @@
             "ACCESS_TYPE_UNSPECIFIED",
             "ACCESS_TYPE_OPEN",
             "ACCESS_TYPE_TRUSTED",
-            "ACCESS_TYPE_RESTRICTED"
+            "ACCESS_TYPE_RESTRICTED",
+            "ACCESS_TYPE_CLOSED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "Anyone with meeting join information (url, phone access...) can join, no knocking required. (Subject to organization policies)",
             "Members of the Host's organization, invited external users, and dial-in users can join without knocking, everyone else must knock. (Subject to organization policies)",
-            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks."
+            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks.",
+            "Only participants invited by a host can join. Knocking is not allowed, dial in and dial out are also disabled."
           ],
           "type": "string"
         },
@@ -7154,7 +7174,7 @@
           "type": "string"
         },
         "scanNotApplicableForContext": {
-          "description": "Indicates that was no attempt to scan a message or attachment because it was not applicable in the given context (e.g. atomic mutuate). If this is true, scan_outcome should not be set. This flag is used to identify messages that DLP did not attempt to scan for monitoring scan coverage. Contents that DLP attempted to scan but skipped can be identified by DlpScanOutcome.SCAN_SKIPPED_* reasons.",
+          "description": "Indicates that was no attempt to scan a message or attachment because it was not applicable in the given context (e.g. atomic mutuate). If this is true, scan_outcome should not be set. This flag is used to identify messages that DLP did not attempt to scan for monitoring scan coverage. Contents that DLP attempted to scan but skipped can be identified by DlpScanOutcome.SCAN_SKIPPED_* reasons. DEPRECATED: The prober can determine this from the context.",
           "type": "boolean"
         },
         "scanOutcome": {
@@ -7555,6 +7575,10 @@
         },
         "creatorInSearcherContactList": {
           "type": "boolean"
+        },
+        "crowdingMultiplier": {
+          "format": "double",
+          "type": "number"
         },
         "dasContactCount": {
           "format": "int64",
@@ -11479,6 +11503,17 @@
       },
       "type": "object"
     },
+    "InteractionData": {
+      "description": "Interaction data for an annotation, which may be supplemental to the metadata oneof. For example, this will contain the fully built navigation target for smart chips. NEXT TAG: 2",
+      "id": "InteractionData",
+      "properties": {
+        "url": {
+          "$ref": "SafeUrlProto",
+          "description": "A general navigation target associated with the annotation this message is contained in. For smart chips, this will be the destination of the tap/click target and will be returned by the server. For scenarios where the chip originated from a user-provided url, this value will be provided by clients; otherwise it will be built by the corresponding metadata parts."
+        }
+      },
+      "type": "object"
+    },
     "InviteAcceptedEvent": {
       "id": "InviteAcceptedEvent",
       "properties": {
@@ -12758,71 +12793,9 @@
           "description": "Was this message deleted by Vault (Only used for Vault support) This is false if message is live or message was deleted by user.",
           "type": "boolean"
         },
-        "dlpScanOutcome": {
-          "description": "Data Loss Prevention scan information for this message. Messages are evaluated in the backend on create message/topic and edit message actions. DEPRECATED: use dlp_scan_summary instead.",
-          "enum": [
-            "SCAN_UNKNOWN_OUTCOME",
-            "SCAN_SUCCEEDED_NO_VIOLATION",
-            "SCAN_SUCCEEDED_BLOCK",
-            "SCAN_SUCCEEDED_WARN",
-            "SCAN_SUCCEEDED_AUDIT_ONLY",
-            "SCAN_FAILURE_EXCEPTION",
-            "SCAN_FAILURE_RULE_FETCH_FAILED",
-            "SCAN_FAILURE_TIMEOUT",
-            "SCAN_FAILURE_ALL_RULES_FAILED",
-            "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
-            "SCAN_SKIPPED_EXPERIMENT_DISABLED",
-            "SCAN_SKIPPED_CONSUMER",
-            "SCAN_SKIPPED_NON_HUMAN_USER",
-            "SCAN_SKIPPED_NO_MESSAGE",
-            "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
-            "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
-            "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
-            "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
-            "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
-            "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
-            "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
-            "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
-            "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
-            "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
-            "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
-            "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
-            "SCAN_SUCCEEDED_WITH_FAILURES_AUDIT_ONLY"
-          ],
-          "enumDescriptions": [
-            "",
-            "This means no violation is detected on the given message/attachment.",
-            "Violation is detected. The message/attachment will be blocked (or deleted if this happens in failure recovery), the user will be warned, and the violation will be logged to BIP.",
-            "Violation is detected. The user will be warned, and the violation will be logged to BIP.",
-            "Violation is detected and will be logged to BIP (no user-facing action performed).",
-            "Rule fetch and evaluation were attempted but an exception occurred.",
-            "Rule fetch was attempted but failed, so rule evaluation could not be performed.",
-            "Rule fetch and evaluation were attempted but the scanning timed out.",
-            "Rule fetch completed and evaluation were attempted, but all of the rules failed to be evaluated.",
-            "An IllegalStateException is thrown when executing DLP on attachments. This could happen if the space row is missing.",
-            "Rule fetch and evaluation is skipped because DLP is not enabled for the user.",
-            "Rule fetch and evaluation are skipped because the user sending message is consumer.",
-            "Rule fetch and evaluation are skipped because the user sending message is a non-human user (i.e. a bot).",
-            "Rule fetch and evaluation are skipped because there is no message to scan. Deprecated: this should not happen since there must be message or attachment for DLP scan.",
-            "Rule fetch and evaluation are skipped because the user has acknowledged the warning on the message that triggered the Warn violation and sent the message anyway.",
-            "Scanning was skipped because the message originated from Interop or Babel.",
-            "Scanning was skipped because the message was sent while the space is in migration mode. See go/migration-mode for details.",
-            "Rule fetch happened, but rule evaluation is skipped because no rules were found.",
-            "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given action params.",
-            "Rule fetch happened, but rule evaluation is skipped because none of the rules are applicable to the given trigger.",
-            "Rule fetch happened, but rule evaluation is skipped because Changeling returned permanent failure while converting the attachment to text.",
-            "Rule fetch happened, but rule evaluation is skipped because Changeling returned an empty response while converting the attachment to text.",
-            "Rule fetch happened, but rule evaluation is skipped because file type is unsupported.",
-            "Rules were fetched but some evaluations failed. No violation was found in the rules that were successfully evaluated.",
-            "Rules were fetched but some evaluations failed. A blocking violation was found in the rules that were successfully evaluated. The message/attachment will be blocked, the user will be notified, and the violation will be logged to BIP. A blocking violation takes precedence over all other violation types.",
-            "Rules were fetched but some evaluations failed. A warn violation was found in the rules that were successfully evaluated. The user will be warned, and the violation will be logged to BIP.",
-            "Rules were fetched but some evaluations failed. An audit-only violation was found in the rules that were successfully evaluated. The violation will be logged to BIP (no user-facing action performed)."
-          ],
-          "type": "string"
-        },
         "dlpScanSummary": {
           "$ref": "DlpScanSummary",
-          "description": "Data Loss Prevention scan information for this message. Messages are evaluated in the backend on create message/topic and edit message actions."
+          "description": "Data Loss Prevention scan information for this message. Messages are evaluated in the backend on create message/topic and edit message actions. DEPRECATED: Use DATA_LOSS_PREVENTION Annotation."
         },
         "editableBy": {
           "description": "Indicates who can edit the message. This field is set on the read path (e.g. ListTopics) but doesn’t have any effect on the write path (e.g. CreateMessageRequest).",
@@ -13111,6 +13084,18 @@
     "MessageInfo": {
       "id": "MessageInfo",
       "properties": {
+        "authorUserType": {
+          "description": "Message author’s user type (human/bot).",
+          "enum": [
+            "HUMAN",
+            "BOT"
+          ],
+          "enumDescriptions": [
+            "Notes on HUMAN type: 1) Leaving UserId.UserType field empty will return HUMAN as default value. This is expected because all the existing UserIds are without explicitly setting UserType, most of which are HUMAN Ids. For Bot Ids we will always set BOT in UserType field. 2) DO NOT explicitly set HUMAN as type. This is a proto2 issue, that a UserId with explicitly set default value HUMAN as type is NOT equal to an id without setting the field. aka. UserId id1 = UserId.newBuilder() .setId(\"dummy\").setType(UserType.HUMAN).build(); UserId id2 = UserId.newBuilder().setId(\"dummy\").build(); AssertThat(id1).isNotEqual(id2); AssertThat(id2.getType()).isEqualTo(UserType.HUMAN);",
+            ""
+          ],
+          "type": "string"
+        },
         "message": {
           "$ref": "Message",
           "description": "The content of a matching message."
@@ -15058,9 +15043,11 @@
               "REQUIRED_FEATURE_UNSPECIFIED",
               "REQUIRED_FEATURE_MESSAGE_QUOTING",
               "REQUIRED_FEATURE_TOMBSTONES_IN_DMS_AND_UFRS",
-              "REQUIRED_FEATURE_CUSTOM_HYPERLINK"
+              "REQUIRED_FEATURE_CUSTOM_HYPERLINK",
+              "REQUIRED_FEATURE_SMART_CHIP"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -16008,13 +15995,15 @@
             "ACCESS_TYPE_UNSPECIFIED",
             "ACCESS_TYPE_OPEN",
             "ACCESS_TYPE_TRUSTED",
-            "ACCESS_TYPE_RESTRICTED"
+            "ACCESS_TYPE_RESTRICTED",
+            "ACCESS_TYPE_CLOSED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "Anyone with meeting join information (url, phone access...) can join, no knocking required. (Subject to organization policies)",
             "Members of the Host's organization, invited external users, and dial-in users can join without knocking, everyone else must knock. (Subject to organization policies)",
-            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks."
+            "Only participants invited by a host can automatically join, everyone else must knock and be admitted. (Subject to organization policies) Participants cannot dial out from the meeting. And only hosts can accept knocks.",
+            "Only participants invited by a host can join. Knocking is not allowed, dial in and dial out are also disabled."
           ],
           "type": "string"
         },

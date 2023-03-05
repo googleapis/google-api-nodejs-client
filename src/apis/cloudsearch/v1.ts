@@ -233,7 +233,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$AllAuthenticatedUsersProto {}
   /**
-   * NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 29
+   * NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 31
    */
   export interface Schema$Annotation {
     babelPlaceholderMetadata?: Schema$BabelPlaceholderMetadata;
@@ -242,7 +242,7 @@ export namespace cloudsearch_v1 {
      */
     cardCapabilityMetadata?: Schema$CardCapabilityMetadata;
     /**
-     * Whether the annotation should be rendered as a chip. If this is missing or unspecified, fallback to should_not_render on the metadata.
+     * Whether the annotation should be rendered as a preview chip. If this is missing or unspecified, fallback to should_not_render on the metadata.
      */
     chipRenderType?: string | null;
     consentedAppUnfurlMetadata?: Schema$ConsentedAppUnfurlMetadata;
@@ -260,9 +260,17 @@ export namespace cloudsearch_v1 {
     gsuiteIntegrationMetadata?: Schema$GsuiteIntegrationMetadata;
     incomingWebhookChangedMetadata?: Schema$IncomingWebhookChangedMetadata;
     /**
+     * The inline render format of this annotation. go/drive-smart-chips-chat-v2.
+     */
+    inlineRenderFormat?: string | null;
+    /**
      * LINT.ThenChange(//depot/google3/java/com/google/apps/dynamite/v1/backend/action/common/SystemMessageHelper.java)
      */
     integrationConfigUpdated?: Schema$IntegrationConfigUpdatedMetadata;
+    /**
+     * Additional interaction data for this annotation.
+     */
+    interactionData?: Schema$InteractionData;
     /**
      * Length of the text_body substring beginning from start_index the Annotation corresponds to.
      */
@@ -3229,7 +3237,7 @@ export namespace cloudsearch_v1 {
      */
     scanId?: string | null;
     /**
-     * Indicates that was no attempt to scan a message or attachment because it was not applicable in the given context (e.g. atomic mutuate). If this is true, scan_outcome should not be set. This flag is used to identify messages that DLP did not attempt to scan for monitoring scan coverage. Contents that DLP attempted to scan but skipped can be identified by DlpScanOutcome.SCAN_SKIPPED_* reasons.
+     * Indicates that was no attempt to scan a message or attachment because it was not applicable in the given context (e.g. atomic mutuate). If this is true, scan_outcome should not be set. This flag is used to identify messages that DLP did not attempt to scan for monitoring scan coverage. Contents that DLP attempted to scan but skipped can be identified by DlpScanOutcome.SCAN_SKIPPED_* reasons. DEPRECATED: The prober can determine this from the context.
      */
     scanNotApplicableForContext?: boolean | null;
     /**
@@ -3408,6 +3416,7 @@ export namespace cloudsearch_v1 {
     commonCountToMembershipCountRatio?: number | null;
     creatorGaiaId?: string | null;
     creatorInSearcherContactList?: boolean | null;
+    crowdingMultiplier?: number | null;
     dasContactCount?: string | null;
     finalScore?: number | null;
     freshnessScore?: number | null;
@@ -4817,6 +4826,15 @@ export namespace cloudsearch_v1 {
     principal?: Schema$Principal;
     type?: string | null;
   }
+  /**
+   * Interaction data for an annotation, which may be supplemental to the metadata oneof. For example, this will contain the fully built navigation target for smart chips. NEXT TAG: 2
+   */
+  export interface Schema$InteractionData {
+    /**
+     * A general navigation target associated with the annotation this message is contained in. For smart chips, this will be the destination of the tap/click target and will be returned by the server. For scenarios where the chip originated from a user-provided url, this value will be provided by clients; otherwise it will be built by the corresponding metadata parts.
+     */
+    url?: Schema$SafeUrlProto;
+  }
   export interface Schema$InviteAcceptedEvent {
     participantId?: Schema$StoredParticipantId[];
   }
@@ -5510,11 +5528,7 @@ export namespace cloudsearch_v1 {
      */
     deleteTimeForRequester?: string | null;
     /**
-     * Data Loss Prevention scan information for this message. Messages are evaluated in the backend on create message/topic and edit message actions. DEPRECATED: use dlp_scan_summary instead.
-     */
-    dlpScanOutcome?: string | null;
-    /**
-     * Data Loss Prevention scan information for this message. Messages are evaluated in the backend on create message/topic and edit message actions.
+     * Data Loss Prevention scan information for this message. Messages are evaluated in the backend on create message/topic and edit message actions. DEPRECATED: Use DATA_LOSS_PREVENTION Annotation.
      */
     dlpScanSummary?: Schema$DlpScanSummary;
     /**
@@ -5675,6 +5689,10 @@ export namespace cloudsearch_v1 {
     parentId?: Schema$MessageParentId;
   }
   export interface Schema$MessageInfo {
+    /**
+     * Message author’s user type (human/bot).
+     */
+    authorUserType?: string | null;
     /**
      * The content of a matching message.
      */
