@@ -1580,6 +1580,10 @@ export namespace serviceusage_v1 {
      * For whom the client library is being published.
      */
     organization?: string | null;
+    /**
+     * Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc
+     */
+    protoReferenceDocumentationUri?: string | null;
   }
   /**
    * Settings for Python client libraries.
