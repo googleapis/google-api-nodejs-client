@@ -2070,6 +2070,10 @@ export namespace contactcenterinsights_v1 {
      * Percentage of conversations created using Dialogflow runtime integration to analyze automatically, between [0, 100].
      */
     runtimeIntegrationAnalysisPercentage?: number | null;
+    /**
+     * Percentage of conversations created using the UploadConversation endpoint to analyze automatically, between [0, 100].
+     */
+    uploadConversationAnalysisPercentage?: number | null;
   }
   /**
    * The data for a silence annotation.
