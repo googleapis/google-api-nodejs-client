@@ -1047,7 +1047,7 @@ export namespace drive_v3 {
     modifiedLabels?: Schema$Label[];
   }
   /**
-   * A permission for a file. A permission grants a user, group, domain or the world access to a file or a folder hierarchy.
+   * A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy.
    */
   export interface Schema$Permission {
     /**
@@ -1060,14 +1060,16 @@ export namespace drive_v3 {
     deleted?: boolean | null;
     /**
      * The "pretty" name of the value of the permission. The following is a list of examples for each type of permission:
-     * - user - User's full name, as defined for their Google account, such as "Joe Smith."
+     * - user - User's full name, as defined for their Google Account, such as "Joe Smith."
      * - group - Name of the Google Group, such as "The Company Administrators."
-     * - domain - String domain name, such as "thecompany.com."
+     * - domain - String domain name, such as "your-company.com."
      * - anyone - No displayName is present.
      */
     displayName?: string | null;
     /**
-     * The domain to which this permission refers.
+     * The domain to which this permission refers. The following options are currently allowed:
+     * - The entire domain, such as "your-company.com."
+     * - A target audience, such as "ID.audience.googledomains.com."
      */
     domain?: string | null;
     /**
@@ -1076,10 +1078,10 @@ export namespace drive_v3 {
     emailAddress?: string | null;
     /**
      * The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:
-     * - They cannot be set on shared drive items
-     * - They can only be set on user and group permissions
-     * - The time must be in the future
-     * - The time cannot be more than a year in the future
+     * - They cannot be set on shared drive items.
+     * - They can only be set on user and group permissions.
+     * - The time must be in the future.
+     * - The time cannot be more than one year in the future.
      */
     expirationTime?: string | null;
     /**
@@ -1091,11 +1093,11 @@ export namespace drive_v3 {
      */
     kind?: string | null;
     /**
-     * Whether the account associated with this permission is a pending owner. Only populated for user type permissions for files that are not in a shared drive.
+     * Whether the account associated with this permission is a pending owner. Only populated for user type permissions for files that aren't in a shared drive.
      */
     pendingOwner?: boolean | null;
     /**
-     * Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
+     * Details of whether the permissions on this shared drive item are inherited or are directly on this item. This is an output-only field that's present only for shared drive items.
      */
     permissionDetails?: Array<{
       inherited?: boolean;
@@ -1131,7 +1133,7 @@ export namespace drive_v3 {
      * - user
      * - group
      * - domain
-     * - anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn't extra information required for a anyone type.
+     * - anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn't extra information required for the anyone type.
      */
     type?: string | null;
     /**
@@ -1900,7 +1902,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Subscribes to changes for a user.
+     * Subscribes to changes for a user. To use this method, you must include the pageToken query parameter.
      * @example
      * ```js
      * // Before running the sample:
@@ -6869,7 +6871,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a permission for a file or shared drive.
+     * Creates a permission for a file or shared drive. For more information on creating permissions, see Share files, folders & drives.
      * @example
      * ```js
      * // Before running the sample:
