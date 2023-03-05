@@ -940,11 +940,11 @@ export namespace datastream_v1 {
      */
     includeObjects?: Schema$OracleRdbms;
     /**
-     * Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+     * Maximum number of concurrent backfill tasks. The number should be non-negative. If not set (or set to 0), the system's default value is used.
      */
     maxConcurrentBackfillTasks?: number | null;
     /**
-     * Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+     * Maximum number of concurrent CDC tasks. The number should be non-negative. If not set (or set to 0), the system's default value is used.
      */
     maxConcurrentCdcTasks?: number | null;
     /**
