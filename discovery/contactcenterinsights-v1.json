@@ -1356,7 +1356,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230226",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -3327,6 +3327,11 @@
         },
         "runtimeIntegrationAnalysisPercentage": {
           "description": "Percentage of conversations created using Dialogflow runtime integration to analyze automatically, between [0, 100].",
+          "format": "double",
+          "type": "number"
+        },
+        "uploadConversationAnalysisPercentage": {
+          "description": "Percentage of conversations created using the UploadConversation endpoint to analyze automatically, between [0, 100].",
           "format": "double",
           "type": "number"
         }
