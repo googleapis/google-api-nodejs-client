@@ -882,6 +882,10 @@ export namespace cloudchannel_v1 {
      */
     cloudIdentityInfo?: Schema$GoogleCloudChannelV1CloudIdentityInfo;
     /**
+     * Optional. External CRM ID for the customer. Populated only if a CRM ID exists for this customer.
+     */
+    correlationId?: string | null;
+    /**
      * Output only. Time when the customer was created.
      */
     createTime?: string | null;
@@ -4835,6 +4839,7 @@ export namespace cloudchannel_v1 {
      *       //   "channelPartnerId": "my_channelPartnerId",
      *       //   "cloudIdentityId": "my_cloudIdentityId",
      *       //   "cloudIdentityInfo": {},
+     *       //   "correlationId": "my_correlationId",
      *       //   "createTime": "my_createTime",
      *       //   "domain": "my_domain",
      *       //   "languageCode": "my_languageCode",
@@ -4854,6 +4859,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",
@@ -5132,6 +5138,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",
@@ -5292,6 +5299,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",
@@ -5590,6 +5598,7 @@ export namespace cloudchannel_v1 {
      *       //   "channelPartnerId": "my_channelPartnerId",
      *       //   "cloudIdentityId": "my_cloudIdentityId",
      *       //   "cloudIdentityInfo": {},
+     *       //   "correlationId": "my_correlationId",
      *       //   "createTime": "my_createTime",
      *       //   "domain": "my_domain",
      *       //   "languageCode": "my_languageCode",
@@ -5609,6 +5618,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",
@@ -5844,6 +5854,7 @@ export namespace cloudchannel_v1 {
      *       //   "channelPartnerId": "my_channelPartnerId",
      *       //   "cloudIdentityId": "my_cloudIdentityId",
      *       //   "cloudIdentityInfo": {},
+     *       //   "correlationId": "my_correlationId",
      *       //   "createTime": "my_createTime",
      *       //   "domain": "my_domain",
      *       //   "languageCode": "my_languageCode",
@@ -5863,6 +5874,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",
@@ -6139,6 +6151,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",
@@ -6298,6 +6311,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",
@@ -6896,6 +6910,7 @@ export namespace cloudchannel_v1 {
      *       //   "channelPartnerId": "my_channelPartnerId",
      *       //   "cloudIdentityId": "my_cloudIdentityId",
      *       //   "cloudIdentityInfo": {},
+     *       //   "correlationId": "my_correlationId",
      *       //   "createTime": "my_createTime",
      *       //   "domain": "my_domain",
      *       //   "languageCode": "my_languageCode",
@@ -6915,6 +6930,7 @@ export namespace cloudchannel_v1 {
      *   //   "channelPartnerId": "my_channelPartnerId",
      *   //   "cloudIdentityId": "my_cloudIdentityId",
      *   //   "cloudIdentityInfo": {},
+     *   //   "correlationId": "my_correlationId",
      *   //   "createTime": "my_createTime",
      *   //   "domain": "my_domain",
      *   //   "languageCode": "my_languageCode",

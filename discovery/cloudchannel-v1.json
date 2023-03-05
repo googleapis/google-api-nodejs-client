@@ -2009,7 +2009,7 @@
       }
     }
   },
-  "revision": "20230220",
+  "revision": "20230301",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2478,6 +2478,10 @@
           "$ref": "GoogleCloudChannelV1CloudIdentityInfo",
           "description": "Output only. Cloud Identity information for the customer. Populated only if a Cloud Identity account exists for this customer.",
           "readOnly": true
+        },
+        "correlationId": {
+          "description": "Optional. External CRM ID for the customer. Populated only if a CRM ID exists for this customer.",
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. Time when the customer was created.",
