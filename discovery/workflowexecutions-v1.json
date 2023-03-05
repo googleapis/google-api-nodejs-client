@@ -224,7 +224,7 @@
                           ],
                           "enumDescriptions": [
                             "The default / unset value.",
-                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, duration, state and workflow_revision_id.",
+                            "Includes only basic metadata about the execution. The following fields are returned: name, start_time, end_time, duration, state, and workflow_revision_id.",
                             "Includes all data."
                           ],
                           "location": "query",
@@ -254,7 +254,7 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. The orderding applied to the [Executions.ListExecutions] results. By default the ordering is based on descending start time. The following fields are supported for order by: executionID, startTime, endTime, duration, state, and workflowRevisionID.",
+                          "description": "Optional. The ordering applied to the [Executions.ListExecutions] results. By default the ordering is based on descending start time. The following fields are supported for order by: executionID, startTime, endTime, duration, state, and workflowRevisionID.",
                           "location": "query",
                           "type": "string"
                         },
@@ -265,7 +265,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.",
+                          "description": "A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token. Note that pagination is applied to dynamic data. The list of executions returned can change between page requests.",
                           "location": "query",
                           "type": "string"
                         },
@@ -285,7 +285,7 @@
                           ],
                           "enumDescriptions": [
                             "The default / unset value.",
-                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, duration, state and workflow_revision_id.",
+                            "Includes only basic metadata about the execution. The following fields are returned: name, start_time, end_time, duration, state, and workflow_revision_id.",
                             "Includes all data."
                           ],
                           "location": "query",
@@ -309,7 +309,7 @@
       }
     }
   },
-  "revision": "20230117",
+  "revision": "20230221",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -380,7 +380,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels associated with this execution. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+          "description": "Labels associated with this execution. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed. By default, labels are inherited from the workflow but are overridden by any labels associated with the execution.",
           "type": "object"
         },
         "name": {
