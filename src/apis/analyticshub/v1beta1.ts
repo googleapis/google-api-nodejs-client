@@ -473,6 +473,10 @@ export namespace analyticshub_v1beta1 {
    */
   export interface Schema$RestrictedExportConfig {
     /**
+     * If true, enable restricted export.
+     */
+    enabled?: boolean | null;
+    /**
      * If true, restrict direct table access(read api/tabledata.list) on linked table.
      */
     restrictDirectTableAccess?: boolean | null;
