@@ -838,6 +838,39 @@ export namespace chromemanagement_v1 {
     writeTimeThisSession?: string | null;
   }
   /**
+   * Information of a display device.
+   */
+  export interface Schema$GoogleChromeManagementV1DisplayDevice {
+    /**
+     * Output only. Display height in millimeters.
+     */
+    displayHeightMm?: number | null;
+    /**
+     * Output only. Display device name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Display width in millimeters.
+     */
+    displayWidthMm?: number | null;
+    /**
+     * Output only. Is display internal or not.
+     */
+    internal?: boolean | null;
+    /**
+     * Output only. Three letter manufacturer ID.
+     */
+    manufacturerId?: string | null;
+    /**
+     * Output only. Year of manufacture.
+     */
+    manufactureYear?: number | null;
+    /**
+     * Output only. Manufacturer product code.
+     */
+    modelId?: number | null;
+  }
+  /**
    * Information for a display.
    */
   export interface Schema$GoogleChromeManagementV1DisplayInfo {
@@ -845,6 +878,10 @@ export namespace chromemanagement_v1 {
      * Output only. Represents the graphics card device id.
      */
     deviceId?: string | null;
+    /**
+     * Output only. Display device name.
+     */
+    displayName?: string | null;
     /**
      * Output only. Indicates if display is internal or not.
      */
@@ -904,6 +941,18 @@ export namespace chromemanagement_v1 {
      * Output only. Information about the graphics adapter (GPU).
      */
     adapterInfo?: Schema$GoogleChromeManagementV1GraphicsAdapterInfo;
+    /**
+     * Output only. Information about the display(s) of the device.
+     */
+    displayDevices?: Schema$GoogleChromeManagementV1DisplayDevice[];
+    /**
+     * Output only. Is ePrivacy screen supported or not.
+     */
+    eprivacySupported?: boolean | null;
+    /**
+     * Output only. Information about the internal touch screen(s) of the device.
+     */
+    touchScreenInfo?: Schema$GoogleChromeManagementV1TouchScreenInfo;
   }
   /**
    * Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: 3 hours. * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A
@@ -1545,6 +1594,36 @@ export namespace chromemanagement_v1 {
      * The maximum number of keys that can be used for encryption.
      */
     maxKeys?: string | null;
+  }
+  /**
+   * Information of an internal touch screen device.
+   */
+  export interface Schema$GoogleChromeManagementV1TouchScreenDevice {
+    /**
+     * Output only. Touch screen device display name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Touch screen device is stylus capable or not.
+     */
+    stylusCapable?: boolean | null;
+    /**
+     * Output only. Number of touch points supported on the device.
+     */
+    touchPointCount?: number | null;
+  }
+  /**
+   * Information on the device touch screen.
+   */
+  export interface Schema$GoogleChromeManagementV1TouchScreenInfo {
+    /**
+     * Output only. List of the internal touch screen devices.
+     */
+    devices?: Schema$GoogleChromeManagementV1TouchScreenDevice[];
+    /**
+     * Output only. Touchpad library name used by the input stack.
+     */
+    touchpadLibrary?: string | null;
   }
   /**
    * USB connected peripheral report.
