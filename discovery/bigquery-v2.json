@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20230204",
+  "revision": "20230218",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2800,6 +2800,10 @@
         "defaultPartitionExpirationMs": {
           "description": "[Optional] The default partition expiration for all partitioned tables in the dataset, in milliseconds. Once this property is set, all newly-created partitioned tables in the dataset will have an expirationMs property in the timePartitioning settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of defaultTableExpirationMs for partitioned tables: only one of defaultTableExpirationMs and defaultPartitionExpirationMs will be used for any new partitioned table. If you provide an explicit timePartitioning.expirationMs when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.",
           "format": "int64",
+          "type": "string"
+        },
+        "defaultRoundingMode": {
+          "description": "[Output-only] The default rounding mode of the dataset.",
           "type": "string"
         },
         "defaultTableExpirationMs": {
@@ -6348,6 +6352,10 @@
           "description": "[Output-only] The default collation of the table.",
           "type": "string"
         },
+        "defaultRoundingMode": {
+          "description": "[Output-only] The default rounding mode of the table.",
+          "type": "string"
+        },
         "description": {
           "description": "[Optional] A user-friendly description of this table.",
           "type": "string"
@@ -6690,6 +6698,10 @@
         "precision": {
           "description": "[Optional] Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ \"NUMERIC\" and ≠ \"BIGNUMERIC\". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: - Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] - Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: - If type = \"NUMERIC\": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. - If type = \"BIGNUMERIC\": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): - If type = \"NUMERIC\": 1 ≤ precision ≤ 29. - If type = \"BIGNUMERIC\": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.",
           "format": "int64",
+          "type": "string"
+        },
+        "roundingMode": {
+          "description": "Optional. Rounding Mode specification of the field. It only can be set on NUMERIC or BIGNUMERIC type fields.",
           "type": "string"
         },
         "scale": {
