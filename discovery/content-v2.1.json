@@ -6160,7 +6160,7 @@
       }
     }
   },
-  "revision": "20230217",
+  "revision": "20230223",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -7447,7 +7447,7 @@
       "type": "object"
     },
     "BestSellers": {
-      "description": "Fields related to the [Best Sellers reports](https://support.google.com/merchants/answer/9488679).",
+      "description": "Fields related to the [Best sellers reports](https://support.google.com/merchants/answer/9488679).",
       "id": "BestSellers",
       "properties": {
         "categoryId": {
@@ -13062,7 +13062,7 @@
       "type": "object"
     },
     "PriceCompetitiveness": {
-      "description": "Price Competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`. https://support.google.com/merchants/answer/9626903",
+      "description": "Price competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`. https://support.google.com/merchants/answer/9626903",
       "id": "PriceCompetitiveness",
       "properties": {
         "benchmarkPriceCurrencyCode": {
@@ -13082,7 +13082,7 @@
       "type": "object"
     },
     "PriceInsights": {
-      "description": "Price Insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926",
+      "description": "Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926",
       "id": "PriceInsights",
       "properties": {
         "predictedClicksChangeFraction": {
@@ -15180,7 +15180,7 @@
       "properties": {
         "bestSellers": {
           "$ref": "BestSellers",
-          "description": "Best Sellers fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView` or `BestSellersBrandView`."
+          "description": "Best sellers fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView` or `BestSellersBrandView`."
         },
         "brand": {
           "$ref": "Brand",
@@ -15192,11 +15192,11 @@
         },
         "priceCompetitiveness": {
           "$ref": "PriceCompetitiveness",
-          "description": "Price Competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`."
+          "description": "Price competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`."
         },
         "priceInsights": {
           "$ref": "PriceInsights",
-          "description": "Price Insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`."
+          "description": "Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`."
         },
         "productCluster": {
           "$ref": "ProductCluster",

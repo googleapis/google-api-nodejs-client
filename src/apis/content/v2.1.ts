@@ -1136,7 +1136,7 @@ export namespace content_v2_1 {
     name?: string | null;
   }
   /**
-   * Fields related to the [Best Sellers reports](https://support.google.com/merchants/answer/9488679).
+   * Fields related to the [Best sellers reports](https://support.google.com/merchants/answer/9488679).
    */
   export interface Schema$BestSellers {
     /**
@@ -5291,7 +5291,7 @@ export namespace content_v2_1 {
     value?: string | null;
   }
   /**
-   * Price Competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`. https://support.google.com/merchants/answer/9626903
+   * Price competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`. https://support.google.com/merchants/answer/9626903
    */
   export interface Schema$PriceCompetitiveness {
     /**
@@ -5308,7 +5308,7 @@ export namespace content_v2_1 {
     countryCode?: string | null;
   }
   /**
-   * Price Insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926
+   * Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926
    */
   export interface Schema$PriceInsights {
     /**
@@ -6861,7 +6861,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$ReportRow {
     /**
-     * Best Sellers fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView` or `BestSellersBrandView`.
+     * Best sellers fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView` or `BestSellersBrandView`.
      */
     bestSellers?: Schema$BestSellers;
     /**
@@ -6873,11 +6873,11 @@ export namespace content_v2_1 {
      */
     metrics?: Schema$Metrics;
     /**
-     * Price Competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`.
+     * Price competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`.
      */
     priceCompetitiveness?: Schema$PriceCompetitiveness;
     /**
-     * Price Insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`.
+     * Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`.
      */
     priceInsights?: Schema$PriceInsights;
     /**
