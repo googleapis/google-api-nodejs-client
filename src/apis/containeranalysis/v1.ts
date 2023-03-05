@@ -2655,6 +2655,10 @@ export namespace containeranalysis_v1 {
      */
     cvssScore?: number | null;
     /**
+     * The full description of the v2 CVSS for this vulnerability.
+     */
+    cvssV2?: Schema$CVSS;
+    /**
      * The full description of the CVSSv3 for this vulnerability.
      */
     cvssV3?: Schema$CVSSv3;
@@ -2687,6 +2691,10 @@ export namespace containeranalysis_v1 {
      * Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.
      */
     cvssScore?: number | null;
+    /**
+     * The cvss v2 score for the vulnerability.
+     */
+    cvssV2?: Schema$CVSS;
     /**
      * The cvss v3 score for the vulnerability.
      */

@@ -157,6 +157,39 @@ export namespace containeranalysis_v1alpha1 {
     names?: string[] | null;
   }
   /**
+   * Assessment provides all information that is related to a single vulnerability for this product.
+   */
+  export interface Schema$Assessment {
+    /**
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     */
+    cve?: string | null;
+    /**
+     * A detailed description of this Vex.
+     */
+    longDescription?: string | null;
+    /**
+     * Holds a list of references associated with this vulnerability item and assessment. These uris have additional information about the vulnerability and the assessment itself. E.g. Link to a document which details how this assessment concluded the state of this vulnerability.
+     */
+    relatedUris?: Schema$URI[];
+    /**
+     * Specifies details on how to handle (and presumably, fix) a vulnerability.
+     */
+    remediations?: Schema$Remediation[];
+    /**
+     * A one sentence description of this Vex.
+     */
+    shortDescription?: string | null;
+    /**
+     * Provides the state of this Vulnerability assessment.
+     */
+    state?: string | null;
+    /**
+     * Contains information about this vulnerability, this will change with time.
+     */
+    threats?: Schema$Threat[];
+  }
+  /**
    * Occurrence that represents a single "attestation". The authenticity of an Attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the AttestationAuthority to which this Attestation is attached is primarily useful for look-up (how to find this Attestation if you already know the Authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
    */
   export interface Schema$Attestation {
@@ -2007,6 +2040,19 @@ export namespace containeranalysis_v1alpha1 {
     value?: string | null;
   }
   /**
+   * Helps in identifying the underlying product. This should be treated like a one-of field. Only one field should be set in this proto. This is a workaround because spanner indexes on one-of fields restrict addition and deletion of fields.
+   */
+  export interface Schema$IdentifierHelper {
+    /**
+     * The field that is set in the API proto.
+     */
+    field?: string | null;
+    /**
+     * Contains a URI which is vendor-specific. Example: The artifact repository URL of an image.
+     */
+    genericUri?: string | null;
+  }
+  /**
    * This represents how a particular software package may be installed on a system.
    */
   export interface Schema$Installation {
@@ -2321,6 +2367,10 @@ export namespace containeranalysis_v1alpha1 {
      * A note describing an upgrade.
      */
     upgrade?: Schema$UpgradeNote;
+    /**
+     * A note describing a vulnerability assessment.
+     */
+    vulnerabilityAssessment?: Schema$VulnerabilityAssessmentNote;
     /**
      * A package vulnerability type of note.
      */
@@ -2672,6 +2722,40 @@ export namespace containeranalysis_v1alpha1 {
     version?: number | null;
   }
   /**
+   * Product contains information about a product and how to uniquely identify it.
+   */
+  export interface Schema$Product {
+    /**
+     * Token that identifies a product so that it can be referred to from other parts in the document. There is no predefined format as long as it uniquely identifies a group in the context of the current document.
+     */
+    id?: string | null;
+    /**
+     * Helps in identifying the underlying product.
+     */
+    identifierHelper?: Schema$IdentifierHelper;
+    /**
+     * Name of the product.
+     */
+    name?: string | null;
+  }
+  /**
+   * Publisher contains information about the publisher of this Note.
+   */
+  export interface Schema$Publisher {
+    /**
+     * The context or namespace. Contains a URL which is under control of the issuing party and can be used as a globally unique identifier for that issuing party. Example: https://csaf.io
+     */
+    context?: string | null;
+    /**
+     * Provides information about the authority of the issuing party to release the document, in particular, the party's constituency and responsibilities or other obligations.
+     */
+    issuingAuthority?: string | null;
+    /**
+     * Name of the publisher. Examples: 'Google', 'Google Cloud Platform'.
+     */
+    name?: string | null;
+  }
+  /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
    */
   export interface Schema$Recipe {
@@ -2738,6 +2822,27 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. The type of relationship between the source and target SPDX elements
      */
     type?: string | null;
+  }
+  /**
+   * Specifies details on how to handle (and presumably, fix) a vulnerability.
+   */
+  export interface Schema$Remediation {
+    /**
+     * Contains a comprehensive human-readable discussion of the remediation.
+     */
+    details?: string | null;
+    /**
+     * Contains the date from which the remediation is available.
+     */
+    remediationTime?: string | null;
+    /**
+     * The type of remediation that can be applied.
+     */
+    remediationType?: string | null;
+    /**
+     * Contains the URL where to obtain the remediation.
+     */
+    remediationUri?: Schema$URI;
   }
   /**
    * RepoSource describes the location of the source in a Google Cloud Source Repository.
@@ -3049,6 +3154,19 @@ export namespace containeranalysis_v1alpha1 {
     permissions?: string[] | null;
   }
   /**
+   * Contains the vulnerability kinetic information. This information can change as the vulnerability ages and new information becomes available.
+   */
+  export interface Schema$Threat {
+    /**
+     * Represents a thorough human-readable discussion of the threat.
+     */
+    details?: string | null;
+    /**
+     * The type of threat.
+     */
+    threatType?: string | null;
+  }
+  /**
    * Start and end times for a build execution phase. Next ID: 3
    */
   export interface Schema$TimeSpan {
@@ -3130,6 +3248,19 @@ export namespace containeranalysis_v1alpha1 {
     parsedVersion?: Schema$Version;
   }
   /**
+   * An URI message.
+   */
+  export interface Schema$URI {
+    /**
+     * A label for the URI.
+     */
+    label?: string | null;
+    /**
+     * The unique resource identifier.
+     */
+    uri?: string | null;
+  }
+  /**
    * Version contains structured information about the version of the package. For a discussion of this in Debian/Ubuntu: http://serverfault.com/questions/604541/debian-packages-version-convention For a discussion of this in Redhat/Fedora/Centos: http://blog.jasonantman.com/2014/07/how-yum-and-rpm-compare-versions/
    */
   export interface Schema$Version {
@@ -3155,6 +3286,35 @@ export namespace containeranalysis_v1alpha1 {
     revision?: string | null;
   }
   /**
+   * VexAssessment provides all publisher provided Vex information that is related to this vulnerability.
+   */
+  export interface Schema$VexAssessment {
+    /**
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     */
+    cve?: string | null;
+    /**
+     * The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.
+     */
+    noteName?: string | null;
+    /**
+     * Holds a list of references associated with this vulnerability item and assessment. These uris have additional information about the vulnerability and the assessment itself. E.g. Link to a document which details how this assessment concluded the state of this vulnerability.
+     */
+    relatedUris?: Schema$URI[];
+    /**
+     * Specifies details on how to handle (and presumably, fix) a vulnerability.
+     */
+    remediations?: Schema$Remediation[];
+    /**
+     * Provides the state of this Vulnerability assessment.
+     */
+    state?: string | null;
+    /**
+     * Contains information about this vulnerability, this will change with time.
+     */
+    threats?: Schema$Threat[];
+  }
+  /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3
    */
   export interface Schema$Volume {
@@ -3168,6 +3328,39 @@ export namespace containeranalysis_v1alpha1 {
     path?: string | null;
   }
   /**
+   * A single VulnerabilityAssessmentNote represents one particular product's vulnerability assessment for one CVE. Multiple VulnerabilityAssessmentNotes together form a Vex statement. Please go/sds-vex-example for a sample Vex statement in the CSAF format.
+   */
+  export interface Schema$VulnerabilityAssessmentNote {
+    /**
+     * Represents a vulnerability assessment for the product.
+     */
+    assessment?: Schema$Assessment;
+    /**
+     * Identifies the language used by this document, corresponding to IETF BCP 47 / RFC 5646.
+     */
+    languageCode?: string | null;
+    /**
+     * A detailed description of this Vex.
+     */
+    longDescription?: string | null;
+    /**
+     * The product affected by this vex.
+     */
+    product?: Schema$Product;
+    /**
+     * Publisher details of this Note.
+     */
+    publisher?: Schema$Publisher;
+    /**
+     * A one sentence description of this Vex.
+     */
+    shortDescription?: string | null;
+    /**
+     * The title of the note. E.g. `Vex-Debian-11.4`
+     */
+    title?: string | null;
+  }
+  /**
    * Used by Occurrence to point to where the vulnerability exists and how to fix it.
    */
   export interface Schema$VulnerabilityDetails {
@@ -3176,9 +3369,17 @@ export namespace containeranalysis_v1alpha1 {
      */
     cvssScore?: number | null;
     /**
+     * The CVSS v2 score of this vulnerability.
+     */
+    cvssV2?: Schema$CVSS;
+    /**
      * The CVSS v3 score of this vulnerability.
      */
     cvssV3?: Schema$CVSS;
+    /**
+     * Output only. CVSS version used to populate cvss_score and severity.
+     */
+    cvssVersion?: string | null;
     /**
      * The distro assigned severity for this vulnerability when that is available and note provider assigned severity when distro has not yet assigned a severity for this vulnerability. When there are multiple package issues for this vulnerability, they can have different effective severities because some might come from the distro and some might come from installed language packs (e.g. Maven JARs or Go binaries). For this reason, it is advised to use the effective severity on the PackageIssue level, as this field may eventually be deprecated. In the case where multiple PackageIssues have different effective severities, the one set here will be the highest severity of any of the PackageIssues.
      */
@@ -3195,6 +3396,10 @@ export namespace containeranalysis_v1alpha1 {
      * The type of package; whether native or non native(ruby gems, node.js packages etc). This may be deprecated in the future because we can have multiple PackageIssues with different package types.
      */
     type?: string | null;
+    /**
+     * VexAssessment provides all publisher provided Vex information that is related to this vulnerability for this resource.
+     */
+    vexAssessment?: Schema$VexAssessment;
   }
   /**
    * The location of the vulnerability
@@ -3229,6 +3434,10 @@ export namespace containeranalysis_v1alpha1 {
      * The full description of the CVSS for version 2.
      */
     cvssV2?: Schema$CVSS;
+    /**
+     * CVSS version used to populate cvss_score and severity.
+     */
+    cvssVersion?: string | null;
     /**
      * A list of CWE for this vulnerability. For details, see: https://cwe.mitre.org/index.html
      */
@@ -3325,6 +3534,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
+     *       //   "vulnerabilityAssessment": {},
      *       //   "vulnerabilityType": {}
      *       // }
      *     },
@@ -3354,6 +3564,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
+     *   //   "vulnerabilityAssessment": {},
      *   //   "vulnerabilityType": {}
      *   // }
      * }
@@ -3630,6 +3841,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
+     *   //   "vulnerabilityAssessment": {},
      *   //   "vulnerabilityType": {}
      *   // }
      * }
@@ -4062,6 +4274,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
+     *       //   "vulnerabilityAssessment": {},
      *       //   "vulnerabilityType": {}
      *       // }
      *     },
@@ -4091,6 +4304,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
+     *   //   "vulnerabilityAssessment": {},
      *   //   "vulnerabilityType": {}
      *   // }
      * }
@@ -5410,6 +5624,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
+     *   //   "vulnerabilityAssessment": {},
      *   //   "vulnerabilityType": {}
      *   // }
      * }
@@ -7248,6 +7463,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
+     *       //   "vulnerabilityAssessment": {},
      *       //   "vulnerabilityType": {}
      *       // }
      *     },
@@ -7277,6 +7493,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
+     *   //   "vulnerabilityAssessment": {},
      *   //   "vulnerabilityType": {}
      *   // }
      * }
@@ -7553,6 +7770,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
+     *   //   "vulnerabilityAssessment": {},
      *   //   "vulnerabilityType": {}
      *   // }
      * }
@@ -7985,6 +8203,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
+     *       //   "vulnerabilityAssessment": {},
      *       //   "vulnerabilityType": {}
      *       // }
      *     },
@@ -8014,6 +8233,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
+     *   //   "vulnerabilityAssessment": {},
      *   //   "vulnerabilityType": {}
      *   // }
      * }
