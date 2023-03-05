@@ -308,6 +308,10 @@ export namespace cloudfunctions_v2alpha {
      */
     eventTrigger?: Schema$EventTrigger;
     /**
+     * Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt function resources. It must match the pattern `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
+     */
+    kmsKeyName?: string | null;
+    /**
      * Labels associated with this Cloud Function.
      */
     labels?: {[key: string]: string} | null;
@@ -348,7 +352,12 @@ export namespace cloudfunctions_v2alpha {
   /**
    * Request of `GenerateSourceUploadUrl` method.
    */
-  export interface Schema$GenerateUploadUrlRequest {}
+  export interface Schema$GenerateUploadUrlRequest {
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt function source code objects in intermediate Cloud Storage buckets. When you generate an upload url and upload your source code, it gets copied to an intermediate Cloud Storage bucket. The source code is then copied to a versioned directory in the sources bucket in the consumer project during the function deployment. It must match the pattern `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`. The Google Cloud Functions service account (service-{project_number\}@gcf-admin-robot.iam.gserviceaccount.com) must be granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the Key/KeyRing/Project/Organization (least access preferred).
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * Response of `GenerateSourceUploadUrl` method.
    */
@@ -1297,6 +1306,7 @@ export namespace cloudfunctions_v2alpha {
      *       //   "description": "my_description",
      *       //   "environment": "my_environment",
      *       //   "eventTrigger": {},
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "serviceConfig": {},
@@ -1720,7 +1730,9 @@ export namespace cloudfunctions_v2alpha {
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
-     *         // {}
+     *         // {
+     *         //   "kmsKeyName": "my_kmsKeyName"
+     *         // }
      *       },
      *     });
      *   console.log(res.data);
@@ -1869,6 +1881,7 @@ export namespace cloudfunctions_v2alpha {
      *   //   "description": "my_description",
      *   //   "environment": "my_environment",
      *   //   "eventTrigger": {},
+     *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "serviceConfig": {},
@@ -2288,6 +2301,7 @@ export namespace cloudfunctions_v2alpha {
      *       //   "description": "my_description",
      *       //   "environment": "my_environment",
      *       //   "eventTrigger": {},
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "serviceConfig": {},
