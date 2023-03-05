@@ -556,7 +556,7 @@
       }
     }
   },
-  "revision": "20230213",
+  "revision": "20230226",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -862,7 +862,7 @@
       "id": "Container",
       "properties": {
         "blockExternalNetwork": {
-          "description": "If set to true, external network access to and from container will be blocked. The container will use the default internal network 'goog-internal'.",
+          "description": "If set to true, external network access to and from container will be blocked, containers that are with block_external_network as true can still communicate with each other, network cannot be specified in the `container.options` field.",
           "type": "boolean"
         },
         "commands": {
@@ -903,7 +903,7 @@
       "type": "object"
     },
     "Disk": {
-      "description": "A new persistent disk or a local ssd. A VM can only have one local SSD setting but multiple local SSD partitions. https://cloud.google.com/compute/docs/disks#pdspecs. https://cloud.google.com/compute/docs/disks#localssds.",
+      "description": "A new persistent disk or a local ssd. A VM can only have one local SSD setting but multiple local SSD partitions. See https://cloud.google.com/compute/docs/disks#pdspecs and https://cloud.google.com/compute/docs/disks#localssds.",
       "id": "Disk",
       "properties": {
         "diskInterface": {
@@ -911,7 +911,7 @@
           "type": "string"
         },
         "image": {
-          "description": "Name of a public or custom image used as the data source. For example, the following are all valid URLs: (1) Specify the image by its family name: projects/{project}/global/images/family/{image_family} (2) Specify the image version: projects/{project}/global/images/{image_version} You can also use Batch customized image in short names. The following image values are supported for a boot disk: \"batch-debian\": use Batch Debian images. \"batch-centos\": use Batch CentOS images. \"batch-cos\": use Batch Container-Optimized images.",
+          "description": "Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project}/global/images/family/{image_family} * Specify the image version: projects/{project}/global/images/{image_version} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * \"batch-debian\": use Batch Debian images. * \"batch-centos\": use Batch CentOS images. * \"batch-cos\": use Batch Container-Optimized images.",
           "type": "string"
         },
         "sizeGb": {
@@ -985,7 +985,7 @@
         },
         "bootDisk": {
           "$ref": "Disk",
-          "description": "Book disk to be created and attached to each VM by this InstancePolicy. Boot disk will be deleted when the VM is deleted."
+          "description": "Boot disk to be created and attached to each VM by this InstancePolicy. Boot disk will be deleted when the VM is deleted."
         },
         "disks": {
           "description": "Non-boot disks to be attached for each VM created by this InstancePolicy. New disks will be deleted when the VM is deleted.",
@@ -999,7 +999,7 @@
           "type": "string"
         },
         "minCpuPlatform": {
-          "description": "The minimum CPU platform. See `https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform`. Not yet implemented.",
+          "description": "The minimum CPU platform. See https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform. Not yet implemented.",
           "type": "string"
         },
         "provisioningModel": {
@@ -1487,7 +1487,7 @@
       "id": "NetworkInterface",
       "properties": {
         "network": {
-          "description": "The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network} projects/{project}/global/networks/{network} global/networks/{network}",
+          "description": "The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network} * projects/{project}/global/networks/{network} * global/networks/{network}",
           "type": "string"
         },
         "noExternalIpAddress": {
@@ -1495,7 +1495,7 @@
           "type": "boolean"
         },
         "subnetwork": {
-          "description": "The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork} projects/{project}/regions/{region}/subnetworks/{subnetwork} regions/{region}/subnetworks/{subnetwork}",
+          "description": "The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork} * projects/{project}/regions/{region}/subnetworks/{subnetwork} * regions/{region}/subnetworks/{subnetwork}",
           "type": "string"
         }
       },
@@ -1831,7 +1831,7 @@
           "type": "boolean"
         },
         "taskCount": {
-          "description": "Number of Tasks in the TaskGroup. default is 1",
+          "description": "Number of Tasks in the TaskGroup. Default is 1.",
           "format": "int64",
           "type": "string"
         },
