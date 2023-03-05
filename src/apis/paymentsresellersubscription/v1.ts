@@ -523,7 +523,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem {
     /**
-     * Output only. The price of the product/service in this line item.
+     * Output only. The price of the product/service in this line item. The amount could be the wholesale price, or it can include a cost of sale based on the contract.
      */
     amount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
     /**
@@ -531,7 +531,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     description?: string | null;
     /**
-     * Output only. It is set only if the line item has its own free trial applied. End time of the line item free trial period, in ISO 8061 format. For example, "2019-08-31T17:28:54.564Z". It will be set the same as createTime if no free trial promotion is specified.
+     * Output only. The free trial end time will be populated after the line item is successfully processed. End time of the line item free trial period, in ISO 8061 format. For example, "2019-08-31T17:28:54.564Z". It will be set the same as createTime if no free trial promotion is specified.
      */
     lineItemFreeTrialEndTime?: string | null;
     /**
