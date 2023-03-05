@@ -892,7 +892,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230223",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1679,7 +1679,7 @@
         },
         "state": {
           "$ref": "QueuedResourceState",
-          "description": "Output only. State of the QueuedResource request",
+          "description": "Output only. State of the QueuedResource request.",
           "readOnly": true
         },
         "tpu": {
