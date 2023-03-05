@@ -217,7 +217,7 @@
                   "type": "string"
                 },
                 "revisionId": {
-                  "description": "Required. The revision ID to roll back to. It must be a revision of the same schema. Example: c7cfa2a8",
+                  "description": "Optional. This field is deprecated and should not be used for specifying the revision ID. The revision ID should be specified via the `name` parameter.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1565,7 +1565,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230224",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
