@@ -1087,7 +1087,7 @@
       }
     }
   },
-  "revision": "20230212",
+  "revision": "20230226",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1596,7 +1596,7 @@
           "type": "integer"
         },
         "taskCount": {
-          "description": "Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/",
+          "description": "Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. Defaults to 1.",
           "format": "int32",
           "type": "integer"
         },
@@ -2729,7 +2729,7 @@
           "type": "string"
         },
         "maxRetries": {
-          "description": "Number of retries allowed per Task, before marking this Task failed.",
+          "description": "Number of retries allowed per Task, before marking this Task failed. Defaults to 3.",
           "format": "int32",
           "type": "integer"
         },
@@ -2738,7 +2738,7 @@
           "type": "string"
         },
         "timeout": {
-          "description": "Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout.",
+          "description": "Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.",
           "format": "google-duration",
           "type": "string"
         },

@@ -414,7 +414,7 @@ export namespace run_v2 {
      */
     parallelism?: number | null;
     /**
-     * Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+     * Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. Defaults to 1.
      */
     taskCount?: number | null;
     /**
@@ -1163,7 +1163,7 @@ export namespace run_v2 {
      */
     executionEnvironment?: string | null;
     /**
-     * Number of retries allowed per Task, before marking this Task failed.
+     * Number of retries allowed per Task, before marking this Task failed. Defaults to 3.
      */
     maxRetries?: number | null;
     /**
@@ -1171,7 +1171,7 @@ export namespace run_v2 {
      */
     serviceAccount?: string | null;
     /**
-     * Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout.
+     * Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.
      */
     timeout?: string | null;
     /**
