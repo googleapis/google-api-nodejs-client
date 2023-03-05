@@ -7966,6 +7966,8 @@ export namespace storage_v1 {
      *     endOffset: 'placeholder-value',
      *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      *     includeTrailingDelimiter: 'placeholder-value',
+     *     // Filter results to objects and prefixes that match this glob pattern.
+     *     matchGlob: 'placeholder-value',
      *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      *     maxResults: 'placeholder-value',
      *     // A previously-returned page token representing part of the larger set of results to view.
@@ -9512,6 +9514,10 @@ export namespace storage_v1 {
      * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      */
     includeTrailingDelimiter?: boolean;
+    /**
+     * Filter results to objects and prefixes that match this glob pattern.
+     */
+    matchGlob?: string;
     /**
      * Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      */
