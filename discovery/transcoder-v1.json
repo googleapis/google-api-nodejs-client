@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20221201",
+  "revision": "20230222",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -560,6 +560,14 @@
         },
         "codec": {
           "description": "The codec for this audio stream. The default is `aac`. Supported audio codecs: - `aac` - `aac-he` - `aac-he-v2` - `mp3` - `ac3` - `eac3`",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The name for this particular audio stream that will be added to the HLS/DASH manifest.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
           "type": "string"
         },
         "mapping": {
@@ -1514,6 +1522,14 @@
       "properties": {
         "codec": {
           "description": "The codec for this text stream. The default is `webvtt`. Supported text codecs: - `srt` - `ttml` - `cea608` - `cea708` - `webvtt`",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The name for this particular text stream that will be added to the HLS/DASH manifest.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
           "type": "string"
         },
         "mapping": {

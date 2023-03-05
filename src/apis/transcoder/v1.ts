@@ -260,6 +260,14 @@ export namespace transcoder_v1 {
      */
     codec?: string | null;
     /**
+     * The name for this particular audio stream that will be added to the HLS/DASH manifest.
+     */
+    displayName?: string | null;
+    /**
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string | null;
+    /**
      * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
      */
     mapping?: Schema$AudioMapping[];
@@ -1001,6 +1009,14 @@ export namespace transcoder_v1 {
      * The codec for this text stream. The default is `webvtt`. Supported text codecs: - `srt` - `ttml` - `cea608` - `cea708` - `webvtt`
      */
     codec?: string | null;
+    /**
+     * The name for this particular text stream that will be added to the HLS/DASH manifest.
+     */
+    displayName?: string | null;
+    /**
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string | null;
     /**
      * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
      */
