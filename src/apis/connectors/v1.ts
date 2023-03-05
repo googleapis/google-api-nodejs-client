@@ -288,6 +288,10 @@ export namespace connectors_v1 {
      */
     enumOptions?: Schema$EnumOption[];
     /**
+     * Indicates if current template is part of advanced settings
+     */
+    isAdvanced?: boolean | null;
+    /**
      * Key of the config variable.
      */
     key?: string | null;
@@ -372,6 +376,10 @@ export namespace connectors_v1 {
      * Output only. The name of the Service Directory service name. Used for Private Harpoon to resolve the ILB address. e.g. "projects/cloud-connectors-e2e-testing/locations/us-central1/namespaces/istio-system/services/istio-ingressgateway-connectors"
      */
     serviceDirectory?: string | null;
+    /**
+     * Optional. Ssl config of a connection
+     */
+    sslConfig?: Schema$SslConfig;
     /**
      * Output only. Current status of the connection.
      */
@@ -524,6 +532,10 @@ export namespace connectors_v1 {
      * Output only. Role grant configurations for this connector version.
      */
     roleGrants?: Schema$RoleGrant[];
+    /**
+     * Output only. Ssl configuration supported by the Connector.
+     */
+    sslConfigTemplate?: Schema$SslConfigTemplate;
     /**
      * Output only. Information about the runtime features supported by the Connector.
      */
@@ -1220,6 +1232,76 @@ export namespace connectors_v1 {
     username?: string | null;
   }
   /**
+   * SSL Configuration of a connection
+   */
+  export interface Schema$SslConfig {
+    /**
+     * Additional SSL related field values
+     */
+    additionalVariables?: Schema$ConfigVariable[];
+    /**
+     * Client Certificate
+     */
+    clientCertificate?: Schema$Secret;
+    /**
+     * Type of Client Cert (PEM/JKS/.. etc.)
+     */
+    clientCertType?: string | null;
+    /**
+     * Client Private Key
+     */
+    clientPrivateKey?: Schema$Secret;
+    /**
+     * Secret containing the passphrase protecting the Client Private Key
+     */
+    clientPrivateKeyPass?: Schema$Secret;
+    /**
+     * Private Server Certificate. Needs to be specified if trust model is `PRIVATE`.
+     */
+    privateServerCertificate?: Schema$Secret;
+    /**
+     * Type of Server Cert (PEM/JKS/.. etc.)
+     */
+    serverCertType?: string | null;
+    /**
+     * Trust Model of the SSL connection
+     */
+    trustModel?: string | null;
+    /**
+     * Controls the ssl type for the given connector version.
+     */
+    type?: string | null;
+    /**
+     * Bool for enabling SSL
+     */
+    useSsl?: boolean | null;
+  }
+  /**
+   * Ssl config details of a connector version
+   */
+  export interface Schema$SslConfigTemplate {
+    /**
+     * Any additional fields that need to be rendered
+     */
+    additionalVariables?: Schema$ConfigVariableTemplate[];
+    /**
+     * List of supported Client Cert Types
+     */
+    clientCertType?: string[] | null;
+    /**
+     * Boolean for determining if the connector version mandates TLS.
+     */
+    isTlsMandatory?: boolean | null;
+    /**
+     * List of supported Server Cert Types
+     */
+    serverCertType?: string[] | null;
+    /**
+     * Controls the ssl type for the given connector version
+     */
+    sslType?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1824,6 +1906,7 @@ export namespace connectors_v1 {
      *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceDirectory": "my_serviceDirectory",
+     *       //   "sslConfig": {},
      *       //   "status": {},
      *       //   "suspended": false,
      *       //   "updateTime": "my_updateTime"
@@ -2113,6 +2196,7 @@ export namespace connectors_v1 {
      *   //   "nodeConfig": {},
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "serviceDirectory": "my_serviceDirectory",
+     *   //   "sslConfig": {},
      *   //   "status": {},
      *   //   "suspended": false,
      *   //   "updateTime": "my_updateTime"
@@ -2681,6 +2765,7 @@ export namespace connectors_v1 {
      *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceDirectory": "my_serviceDirectory",
+     *       //   "sslConfig": {},
      *       //   "status": {},
      *       //   "suspended": false,
      *       //   "updateTime": "my_updateTime"
@@ -5421,6 +5506,7 @@ export namespace connectors_v1 {
      *   //   "releaseVersion": "my_releaseVersion",
      *   //   "roleGrant": {},
      *   //   "roleGrants": [],
+     *   //   "sslConfigTemplate": {},
      *   //   "supportedRuntimeFeatures": {},
      *   //   "updateTime": "my_updateTime"
      *   // }

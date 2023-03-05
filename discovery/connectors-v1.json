@@ -1079,7 +1079,7 @@
       }
     }
   },
-  "revision": "20230208",
+  "revision": "20230222",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1327,6 +1327,10 @@
           },
           "type": "array"
         },
+        "isAdvanced": {
+          "description": "Indicates if current template is part of advanced settings",
+          "type": "boolean"
+        },
         "key": {
           "description": "Key of the config variable.",
           "type": "string"
@@ -1456,6 +1460,10 @@
           "description": "Output only. The name of the Service Directory service name. Used for Private Harpoon to resolve the ILB address. e.g. \"projects/cloud-connectors-e2e-testing/locations/us-central1/namespaces/istio-system/services/istio-ingressgateway-connectors\"",
           "readOnly": true,
           "type": "string"
+        },
+        "sslConfig": {
+          "$ref": "SslConfig",
+          "description": "Optional. Ssl config of a connection"
         },
         "status": {
           "$ref": "ConnectionStatus",
@@ -1730,6 +1738,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "sslConfigTemplate": {
+          "$ref": "SslConfigTemplate",
+          "description": "Output only. Ssl configuration supported by the Connector.",
+          "readOnly": true
         },
         "supportedRuntimeFeatures": {
           "$ref": "SupportedRuntimeFeatures",
@@ -2974,6 +2987,154 @@
         },
         "username": {
           "description": "The user account used to authenticate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SslConfig": {
+      "description": "SSL Configuration of a connection",
+      "id": "SslConfig",
+      "properties": {
+        "additionalVariables": {
+          "description": "Additional SSL related field values",
+          "items": {
+            "$ref": "ConfigVariable"
+          },
+          "type": "array"
+        },
+        "clientCertType": {
+          "description": "Type of Client Cert (PEM/JKS/.. etc.)",
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ],
+          "enumDescriptions": [
+            "Cert type unspecified.",
+            "Privacy Enhanced Mail (PEM) Type"
+          ],
+          "type": "string"
+        },
+        "clientCertificate": {
+          "$ref": "Secret",
+          "description": "Client Certificate"
+        },
+        "clientPrivateKey": {
+          "$ref": "Secret",
+          "description": "Client Private Key"
+        },
+        "clientPrivateKeyPass": {
+          "$ref": "Secret",
+          "description": "Secret containing the passphrase protecting the Client Private Key"
+        },
+        "privateServerCertificate": {
+          "$ref": "Secret",
+          "description": "Private Server Certificate. Needs to be specified if trust model is `PRIVATE`."
+        },
+        "serverCertType": {
+          "description": "Type of Server Cert (PEM/JKS/.. etc.)",
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ],
+          "enumDescriptions": [
+            "Cert type unspecified.",
+            "Privacy Enhanced Mail (PEM) Type"
+          ],
+          "type": "string"
+        },
+        "trustModel": {
+          "description": "Trust Model of the SSL connection",
+          "enum": [
+            "PUBLIC",
+            "PRIVATE",
+            "INSECURE"
+          ],
+          "enumDescriptions": [
+            "Public Trust Model. Takes the Default Java trust store.",
+            "Private Trust Model. Takes custom/private trust store.",
+            "Insecure Trust Model. Accept all certificates."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Controls the ssl type for the given connector version.",
+          "enum": [
+            "SSL_TYPE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "No SSL configuration required.",
+            "TLS Handshake",
+            "mutual TLS (MTLS) Handshake"
+          ],
+          "type": "string"
+        },
+        "useSsl": {
+          "description": "Bool for enabling SSL",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SslConfigTemplate": {
+      "description": "Ssl config details of a connector version",
+      "id": "SslConfigTemplate",
+      "properties": {
+        "additionalVariables": {
+          "description": "Any additional fields that need to be rendered",
+          "items": {
+            "$ref": "ConfigVariableTemplate"
+          },
+          "type": "array"
+        },
+        "clientCertType": {
+          "description": "List of supported Client Cert Types",
+          "items": {
+            "enum": [
+              "CERT_TYPE_UNSPECIFIED",
+              "PEM"
+            ],
+            "enumDescriptions": [
+              "Cert type unspecified.",
+              "Privacy Enhanced Mail (PEM) Type"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "isTlsMandatory": {
+          "description": "Boolean for determining if the connector version mandates TLS.",
+          "type": "boolean"
+        },
+        "serverCertType": {
+          "description": "List of supported Server Cert Types",
+          "items": {
+            "enum": [
+              "CERT_TYPE_UNSPECIFIED",
+              "PEM"
+            ],
+            "enumDescriptions": [
+              "Cert type unspecified.",
+              "Privacy Enhanced Mail (PEM) Type"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sslType": {
+          "description": "Controls the ssl type for the given connector version",
+          "enum": [
+            "SSL_TYPE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "No SSL configuration required.",
+            "TLS Handshake",
+            "mutual TLS (MTLS) Handshake"
+          ],
           "type": "string"
         }
       },
