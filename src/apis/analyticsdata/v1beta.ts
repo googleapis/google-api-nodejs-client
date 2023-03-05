@@ -809,7 +809,7 @@ export namespace analyticsdata_v1beta {
      */
     currencyCode?: string | null;
     /**
-     * If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports.
+     * If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports. The metadata parameter dataLossFromOtherRow is populated based on the aggregated data table used in the report. The parameter will be accurately populated regardless of the filters and limits in the report. For example, the (other) row could be dropped from the report because the request contains a filter on sessionSource = google. This parameter will still be populated if data loss from other row was present in the input aggregate data used to generate this report. To learn more, see [About the (other) row and data sampling](https://support.google.com/analytics/answer/13208658#reports).
      */
     dataLossFromOtherRow?: boolean | null;
     /**
@@ -867,7 +867,7 @@ export namespace analyticsdata_v1beta {
      */
     dimensions?: Schema$Dimension[];
     /**
-     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter.
+     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics (GA4) property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0.
      */
     keepEmptyRows?: boolean | null;
     /**
@@ -1035,7 +1035,7 @@ export namespace analyticsdata_v1beta {
      */
     dimensions?: Schema$Dimension[];
     /**
-     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter.
+     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics (GA4) property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0.
      */
     keepEmptyRows?: boolean | null;
     /**
