@@ -79,6 +79,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "acmedns:v1",
+      "name": "acmedns",
+      "version": "v1",
+      "title": "ACME DNS API",
+      "description": "Google Domains ACME DNS API that allows users to complete ACME DNS-01 challenges for a domain.",
+      "discoveryRestUrl": "https://acmedns.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/domains/acme-dns/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "adexchangebuyer2:v2beta1",
       "name": "adexchangebuyer2",
       "version": "v2beta1",
@@ -4494,6 +4509,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "publicca:v1alpha1",
+      "name": "publicca",
+      "version": "v1alpha1",
+      "title": "Public Certificate Authority API",
+      "description": "The Public Certificate Authority API may be used to create and manage ACME external account binding keys associated with Google Trust Services' publicly trusted certificate authority.",
+      "discoveryRestUrl": "https://publicca.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/public-certificate-authority/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "publicca:v1beta1",
+      "name": "publicca",
+      "version": "v1beta1",
+      "title": "Public Certificate Authority API",
+      "description": "The Public Certificate Authority API may be used to create and manage ACME external account binding keys associated with Google Trust Services' publicly trusted certificate authority.",
+      "discoveryRestUrl": "https://publicca.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/public-certificate-authority/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "pubsub:v1beta1a",
       "name": "pubsub",
       "version": "v1beta1a",
@@ -5825,6 +5870,36 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/migrate/virtual-machines",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "vpcaccess:v1beta1",
+      "name": "vpcaccess",
+      "version": "v1beta1",
+      "title": "Serverless VPC Access API",
+      "description": "API for managing VPC access connectors.",
+      "discoveryRestUrl": "https://vpcaccess.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/vpc/docs/configure-serverless-vpc-access",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "vpcaccess:v1",
+      "name": "vpcaccess",
+      "version": "v1",
+      "title": "Serverless VPC Access API",
+      "description": "API for managing VPC access connectors.",
+      "discoveryRestUrl": "https://vpcaccess.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/vpc/docs/configure-serverless-vpc-access",
       "preferred": true
     },
     {

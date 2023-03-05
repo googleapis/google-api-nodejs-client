@@ -28,6 +28,7 @@ import {
   VERSIONS as accesscontextmanagerVersions,
   accesscontextmanager,
 } from './accesscontextmanager';
+import {VERSIONS as acmednsVersions, acmedns} from './acmedns';
 import {
   VERSIONS as adexchangebuyerVersions,
   adexchangebuyer,
@@ -480,6 +481,7 @@ import {
   VERSIONS as prod_tt_sasportalVersions,
   prod_tt_sasportal,
 } from './prod_tt_sasportal';
+import {VERSIONS as publiccaVersions, publicca} from './publicca';
 import {VERSIONS as pubsubVersions, pubsub} from './pubsub';
 import {VERSIONS as pubsubliteVersions, pubsublite} from './pubsublite';
 import {
@@ -609,6 +611,7 @@ import {
 } from './videointelligence';
 import {VERSIONS as visionVersions, vision} from './vision';
 import {VERSIONS as vmmigrationVersions, vmmigration} from './vmmigration';
+import {VERSIONS as vpcaccessVersions, vpcaccess} from './vpcaccess';
 import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
 import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
 import {VERSIONS as webriskVersions, webrisk} from './webrisk';
@@ -646,6 +649,7 @@ export const APIS: APIList = {
   acceleratedmobilepageurl: acceleratedmobilepageurlVersions,
   accessapproval: accessapprovalVersions,
   accesscontextmanager: accesscontextmanagerVersions,
+  acmedns: acmednsVersions,
   adexchangebuyer: adexchangebuyerVersions,
   adexchangebuyer2: adexchangebuyer2Versions,
   adexperiencereport: adexperiencereportVersions,
@@ -837,6 +841,7 @@ export const APIS: APIList = {
   poly: polyVersions,
   privateca: privatecaVersions,
   prod_tt_sasportal: prod_tt_sasportalVersions,
+  publicca: publiccaVersions,
   pubsub: pubsubVersions,
   pubsublite: pubsubliteVersions,
   readerrevenuesubscriptionlinking: readerrevenuesubscriptionlinkingVersions,
@@ -894,6 +899,7 @@ export const APIS: APIList = {
   videointelligence: videointelligenceVersions,
   vision: visionVersions,
   vmmigration: vmmigrationVersions,
+  vpcaccess: vpcaccessVersions,
   webfonts: webfontsVersions,
   webmasters: webmastersVersions,
   webrisk: webriskVersions,
@@ -912,6 +918,7 @@ export class GeneratedAPIs {
   acceleratedmobilepageurl = acceleratedmobilepageurl;
   accessapproval = accessapproval;
   accesscontextmanager = accesscontextmanager;
+  acmedns = acmedns;
   adexchangebuyer = adexchangebuyer;
   adexchangebuyer2 = adexchangebuyer2;
   adexperiencereport = adexperiencereport;
@@ -1103,6 +1110,7 @@ export class GeneratedAPIs {
   poly = poly;
   privateca = privateca;
   prod_tt_sasportal = prod_tt_sasportal;
+  publicca = publicca;
   pubsub = pubsub;
   pubsublite = pubsublite;
   readerrevenuesubscriptionlinking = readerrevenuesubscriptionlinking;
@@ -1160,6 +1168,7 @@ export class GeneratedAPIs {
   videointelligence = videointelligence;
   vision = vision;
   vmmigration = vmmigration;
+  vpcaccess = vpcaccess;
   webfonts = webfonts;
   webmasters = webmasters;
   webrisk = webrisk;
