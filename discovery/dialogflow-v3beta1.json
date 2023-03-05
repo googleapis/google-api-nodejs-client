@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230301",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -4111,7 +4111,7 @@
           "type": "string"
         },
         "versionConfigs": {
-          "description": "Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
+          "description": "A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig"
           },
@@ -6445,7 +6445,7 @@
           "type": "string"
         },
         "versionConfigs": {
-          "description": "Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
+          "description": "A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig"
           },
@@ -7944,6 +7944,10 @@
       "description": "Request of MatchIntent.",
       "id": "GoogleCloudDialogflowCxV3beta1MatchIntentRequest",
       "properties": {
+        "persistParameterChanges": {
+          "description": "Persist session parameter changes from `query_params`.",
+          "type": "boolean"
+        },
         "queryInput": {
           "$ref": "GoogleCloudDialogflowCxV3beta1QueryInput",
           "description": "Required. The input specification."

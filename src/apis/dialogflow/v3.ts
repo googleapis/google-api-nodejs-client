@@ -496,7 +496,7 @@ export namespace dialogflow_v3 {
      */
     updateTime?: string | null;
     /**
-     * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
+     * A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig[];
     /**
@@ -2099,7 +2099,7 @@ export namespace dialogflow_v3 {
      */
     updateTime?: string | null;
     /**
-     * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
+     * A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig[];
     /**
@@ -3165,6 +3165,10 @@ export namespace dialogflow_v3 {
    * Request of MatchIntent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3MatchIntentRequest {
+    /**
+     * Persist session parameter changes from `query_params`.
+     */
+    persistParameterChanges?: boolean | null;
     /**
      * Required. The input specification.
      */
@@ -14237,6 +14241,7 @@ export namespace dialogflow_v3 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "persistParameterChanges": false,
      *           //   "queryInput": {},
      *           //   "queryParams": {}
      *           // }
@@ -20872,6 +20877,7 @@ export namespace dialogflow_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "persistParameterChanges": false,
      *       //   "queryInput": {},
      *       //   "queryParams": {}
      *       // }

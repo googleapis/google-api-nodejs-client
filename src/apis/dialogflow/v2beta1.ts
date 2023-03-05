@@ -370,7 +370,7 @@ export namespace dialogflow_v2beta1 {
      */
     updateTime?: string | null;
     /**
-     * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
+     * A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig[];
     /**
@@ -1733,7 +1733,7 @@ export namespace dialogflow_v2beta1 {
      */
     updateTime?: string | null;
     /**
-     * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
+     * A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig[];
     /**
@@ -3691,6 +3691,10 @@ export namespace dialogflow_v2beta1 {
      * The time zone of this conversational profile from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. Defaults to America/New_York.
      */
     timeZone?: string | null;
+    /**
+     * Configuration for Text-to-Speech synthesization. Used by Phone Gateway to specify synthesization options. If agent defines synthesization options as well, agent settings overrides the option here.
+     */
+    ttsConfig?: Schema$GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig;
     /**
      * Output only. Update time of the conversation profile.
      */
@@ -21278,6 +21282,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
+     *       //   "ttsConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -21299,6 +21304,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
+     *   //   "ttsConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -21583,6 +21589,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
+     *   //   "ttsConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -21882,6 +21889,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
+     *       //   "ttsConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -21903,6 +21911,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
+     *   //   "ttsConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -38754,6 +38763,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
+     *       //   "ttsConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -38775,6 +38785,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
+     *   //   "ttsConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -39061,6 +39072,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
+     *   //   "ttsConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -39362,6 +39374,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
+     *       //   "ttsConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -39383,6 +39396,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
+     *   //   "ttsConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
