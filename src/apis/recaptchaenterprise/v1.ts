@@ -209,6 +209,10 @@ export namespace recaptchaenterprise_v1 {
      */
     event?: Schema$GoogleCloudRecaptchaenterpriseV1Event;
     /**
+     * Assessment returned by Fraud Prevention when TransactionData is provided.
+     */
+    fraudPreventionAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment;
+    /**
      * Output only. The resource name for the Assessment in the format "projects/{project\}/assessments/{assessment\}".
      */
     name?: string | null;
@@ -285,6 +289,10 @@ export namespace recaptchaenterprise_v1 {
      */
     token?: string | null;
     /**
+     * Optional. Data describing a payment transaction to be assessed. Sending this data enables reCAPTCHA Enterprise Fraud Prevention and the FraudPreventionAssessment component in the response.
+     */
+    transactionData?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionData;
+    /**
      * Optional. The user agent present in the request from the user's device related to this event.
      */
     userAgent?: string | null;
@@ -292,6 +300,41 @@ export namespace recaptchaenterprise_v1 {
      * Optional. The IP address in the request from the user's device related to this event.
      */
     userIpAddress?: string | null;
+  }
+  /**
+   * Assessment for Fraud Prevention.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment {
+    /**
+     * Assessment of this transaction for risk of being part of a card testing attack.
+     */
+    cardTestingVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict;
+    /**
+     * Assessment of this transaction for risk of a stolen instrument.
+     */
+    stolenInstrumentVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict;
+    /**
+     * Probability (0-1) of this transaction being fraudulent. Summarizes the combined risk of attack vectors below.
+     */
+    transactionRisk?: number | null;
+  }
+  /**
+   * Information about card testing fraud, where an adversary is testing fraudulently obtained cards or brute forcing their details.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict {
+    /**
+     * Probability (0-1) of this transaction attempt being part of a card testing attack.
+     */
+    risk?: number | null;
+  }
+  /**
+   * Information about stolen instrument fraud, where the user is not the legitimate owner of the instrument being used for the purchase.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict {
+    /**
+     * Probability (0-1) of this transaction being executed with a stolen instrument.
+     */
+    risk?: number | null;
   }
   /**
    * Settings specific to keys that can be used by iOS apps.
@@ -579,6 +622,163 @@ export namespace recaptchaenterprise_v1 {
     valid?: boolean | null;
   }
   /**
+   * Transaction data associated with a payment protected by reCAPTCHA Enterprise. All fields are optional.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionData {
+    /**
+     * Address associated with the payment method when applicable.
+     */
+    billingAddress?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataAddress;
+    /**
+     * The Bank Identification Number - generally the first 6 or 8 digits of the card.
+     */
+    cardBin?: string | null;
+    /**
+     * The last four digits of the card.
+     */
+    cardLastFour?: string | null;
+    /**
+     * The currency code in ISO-4217 format.
+     */
+    currencyCode?: string | null;
+    /**
+     * Information about the payment gateway's response to the transaction.
+     */
+    gatewayInfo?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo;
+    /**
+     * Items purchased in this transaction.
+     */
+    items?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataItem[];
+    /**
+     * Information about the user or users fulfilling the transaction.
+     */
+    merchants?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataUser[];
+    /**
+     * The payment method for the transaction. The allowed values are: * credit-card * debit-card * gift-card * processor-{name\} (If a third-party is used, for example, processor-paypal) * custom-{name\} (If an alternative method is used, for example, custom-crypto)
+     */
+    paymentMethod?: string | null;
+    /**
+     * Destination address if this transaction involves shipping a physical item.
+     */
+    shippingAddress?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataAddress;
+    /**
+     * The value of shipping in the specified currency. 0 for free or no shipping.
+     */
+    shippingValue?: number | null;
+    /**
+     * Unique identifier for the transaction. This custom identifier can be used to reference this transaction in the future, for example, labeling a refund or chargeback event. Two attempts at the same transaction should use the same transaction id.
+     */
+    transactionId?: string | null;
+    /**
+     * Information about the user paying/initiating the transaction.
+     */
+    user?: Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataUser;
+    /**
+     * The decimal value of the transaction in the specified currency.
+     */
+    value?: number | null;
+  }
+  /**
+   * Structured address format for billing and shipping addresses.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataAddress {
+    /**
+     * The first lines of the address. The first line generally contains the street name and number, and further lines may include information such as an apartment number.
+     */
+    address?: string[] | null;
+    /**
+     * The state, province, or otherwise administrative area of the address.
+     */
+    administrativeArea?: string | null;
+    /**
+     * The town/city of the address.
+     */
+    locality?: string | null;
+    /**
+     * The postal or ZIP code of the address.
+     */
+    postalCode?: string | null;
+    /**
+     * The recipient name, potentially including information such as "care of".
+     */
+    recipient?: string | null;
+    /**
+     * The CLDR country/region of the address.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Details about the transaction from the gateway.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo {
+    /**
+     * AVS response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).
+     */
+    avsResponseCode?: string | null;
+    /**
+     * CVV response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization).
+     */
+    cvvResponseCode?: string | null;
+    /**
+     * Gateway response code describing the state of the transaction.
+     */
+    gatewayResponseCode?: string | null;
+    /**
+     * Name of the gateway service (for example, stripe, square, paypal).
+     */
+    name?: string | null;
+  }
+  /**
+   * Line items being purchased in this transaction.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataItem {
+    /**
+     * When a merchant is specified, its corresponding account_id. Necessary to populate marketplace-style transactions.
+     */
+    merchantAccountId?: string | null;
+    /**
+     * The full name of the item.
+     */
+    name?: string | null;
+    /**
+     * The quantity of this item that is being purchased.
+     */
+    quantity?: string | null;
+    /**
+     * The value per item that the user is paying, in the transaction currency, after discounts.
+     */
+    value?: number | null;
+  }
+  /**
+   * Details about a user's account involved in the transaction.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionDataUser {
+    /**
+     * Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.
+     */
+    accountId?: string | null;
+    /**
+     * The epoch milliseconds of the user's account creation.
+     */
+    creationMs?: string | null;
+    /**
+     * The email address of the user.
+     */
+    email?: string | null;
+    /**
+     * Whether the email has been verified to be accessible by the user (OTP or similar).
+     */
+    emailVerified?: boolean | null;
+    /**
+     * The phone number of the user, with country code.
+     */
+    phoneNumber?: string | null;
+    /**
+     * Whether the phone number has been verified to be accessible by the user (OTP or similar).
+     */
+    phoneVerified?: boolean | null;
+  }
+  /**
    * Describes an event in the lifecycle of a payment transaction.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TransactionEvent {
@@ -851,6 +1051,7 @@ export namespace recaptchaenterprise_v1 {
      *       //   "accountDefenderAssessment": {},
      *       //   "accountVerification": {},
      *       //   "event": {},
+     *       //   "fraudPreventionAssessment": {},
      *       //   "name": "my_name",
      *       //   "privatePasswordLeakVerification": {},
      *       //   "riskAnalysis": {},
@@ -865,6 +1066,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "accountDefenderAssessment": {},
      *   //   "accountVerification": {},
      *   //   "event": {},
+     *   //   "fraudPreventionAssessment": {},
      *   //   "name": "my_name",
      *   //   "privatePasswordLeakVerification": {},
      *   //   "riskAnalysis": {},
