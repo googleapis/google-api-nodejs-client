@@ -372,6 +372,10 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Represents the Ekm Provisioning State of the given workload.
+     */
+    ekmProvisioningResponse?: Schema$GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse;
+    /**
      * Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.
      */
     enableSovereignControls?: boolean | null;
@@ -430,6 +434,23 @@ export namespace assuredworkloads_v1 {
     activeViolationCount?: number | null;
   }
   /**
+   * External key management systems(EKM) Provisioning response
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse {
+    /**
+     * Indicates Ekm provisioning error if any.
+     */
+    ekmProvisioningErrorDomain?: string | null;
+    /**
+     * Detailed error message if Ekm provisioning fails
+     */
+    ekmProvisioningErrorMessage?: string | null;
+    /**
+     * Indicates Ekm enrollment Provisioning of a given workload.
+     */
+    ekmProvisioningState?: string | null;
+  }
+  /**
    * Settings specific to the Key Management Service. This message is deprecated. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadKMSSettings {
@@ -447,7 +468,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions {
     /**
-     * Allow partner to view data and logs
+     * Allow the partner to view inspectability logs and monitoring violations.
      */
     dataLogsViewer?: boolean | null;
     /**
@@ -955,6 +976,7 @@ export namespace assuredworkloads_v1 {
      *       //   "compliantButDisallowedServices": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "ekmProvisioningResponse": {},
      *       //   "enableSovereignControls": false,
      *       //   "etag": "my_etag",
      *       //   "kajEnrollmentState": "my_kajEnrollmentState",
@@ -1250,6 +1272,7 @@ export namespace assuredworkloads_v1 {
      *   //   "compliantButDisallowedServices": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "ekmProvisioningResponse": {},
      *   //   "enableSovereignControls": false,
      *   //   "etag": "my_etag",
      *   //   "kajEnrollmentState": "my_kajEnrollmentState",
@@ -1561,6 +1584,7 @@ export namespace assuredworkloads_v1 {
      *   //   "compliantButDisallowedServices": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "ekmProvisioningResponse": {},
      *   //   "enableSovereignControls": false,
      *   //   "etag": "my_etag",
      *   //   "kajEnrollmentState": "my_kajEnrollmentState",
@@ -1719,6 +1743,7 @@ export namespace assuredworkloads_v1 {
      *       //   "compliantButDisallowedServices": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "ekmProvisioningResponse": {},
      *       //   "enableSovereignControls": false,
      *       //   "etag": "my_etag",
      *       //   "kajEnrollmentState": "my_kajEnrollmentState",
@@ -1743,6 +1768,7 @@ export namespace assuredworkloads_v1 {
      *   //   "compliantButDisallowedServices": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "ekmProvisioningResponse": {},
      *   //   "enableSovereignControls": false,
      *   //   "etag": "my_etag",
      *   //   "kajEnrollmentState": "my_kajEnrollmentState",

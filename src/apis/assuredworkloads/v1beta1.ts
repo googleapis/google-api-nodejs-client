@@ -349,6 +349,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Represents the Ekm Provisioning State of the given workload.
+     */
+    ekmProvisioningResponse?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse;
+    /**
      * Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.
      */
     enableSovereignControls?: boolean | null;
@@ -426,6 +430,23 @@ export namespace assuredworkloads_v1beta1 {
      * Count of active Violations which haven't been acknowledged.
      */
     activeViolationCount?: number | null;
+  }
+  /**
+   * External key management systems(EKM) Provisioning response
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse {
+    /**
+     * Indicates Ekm provisioning error if any.
+     */
+    ekmProvisioningErrorDomain?: string | null;
+    /**
+     * Detailed error message if Ekm provisioning fails
+     */
+    ekmProvisioningErrorMessage?: string | null;
+    /**
+     * Indicates Ekm enrollment Provisioning of a given workload.
+     */
+    ekmProvisioningState?: string | null;
   }
   /**
    * Settings specific to resources needed for FedRAMP High.
@@ -969,6 +990,7 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "compliantButDisallowedServices": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "ekmProvisioningResponse": {},
      *       //   "enableSovereignControls": false,
      *       //   "etag": "my_etag",
      *       //   "fedrampHighSettings": {},
@@ -1268,6 +1290,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "compliantButDisallowedServices": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "ekmProvisioningResponse": {},
      *   //   "enableSovereignControls": false,
      *   //   "etag": "my_etag",
      *   //   "fedrampHighSettings": {},
@@ -1572,6 +1595,7 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "compliantButDisallowedServices": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "ekmProvisioningResponse": {},
      *       //   "enableSovereignControls": false,
      *       //   "etag": "my_etag",
      *       //   "fedrampHighSettings": {},
@@ -1600,6 +1624,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "compliantButDisallowedServices": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "ekmProvisioningResponse": {},
      *   //   "enableSovereignControls": false,
      *   //   "etag": "my_etag",
      *   //   "fedrampHighSettings": {},
