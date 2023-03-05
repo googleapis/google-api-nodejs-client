@@ -125,13 +125,30 @@ export namespace contactcenteraiplatform_v1alpha1 {
   }
 
   /**
+   * Message storing info about the first admin user. Next ID: 3
+   */
+  export interface Schema$AdminUser {
+    /**
+     * Optional. Last/family name of the first admin user.
+     */
+    familyName?: string | null;
+    /**
+     * Optional. First/given name of the first admin user.
+     */
+    givenName?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message describing ContactCenter object
+   * Message describing ContactCenter object Next ID: 14
    */
   export interface Schema$ContactCenter {
+    /**
+     * Optional. Info about the first admin user, such as given name and family name.
+     */
+    adminUser?: Schema$AdminUser;
     /**
      * Optional. Whether to enable users to be created in the CCAIP-instance concurrently to having users in Cloud identity
      */
@@ -177,7 +194,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     uris?: Schema$URIs;
     /**
-     * Optional. Email address of the first admin users.
+     * Optional. Email address of the first admin user.
      */
     userEmail?: string | null;
   }
@@ -903,13 +920,14 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *       contactCenterId: 'placeholder-value',
      *       // Required. Value for parent.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "adminUser": {},
      *         //   "ccaipManagedUsers": false,
      *         //   "createTime": "my_createTime",
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
@@ -1059,7 +1077,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *     await contactcenteraiplatform.projects.locations.contactCenters.delete({
      *       // Required. Name of the resource
      *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -1198,6 +1216,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *
      *   // Example response
      *   // {
+     *   //   "adminUser": {},
      *   //   "ccaipManagedUsers": false,
      *   //   "createTime": "my_createTime",
      *   //   "customerDomainPrefix": "my_customerDomainPrefix",
@@ -1480,7 +1499,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *     await contactcenteraiplatform.projects.locations.contactCenters.patch({
      *       // name of resource
      *       name: 'projects/my-project/locations/my-location/contactCenters/my-contactCenter',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
      *       // Required. Field mask is used to specify the fields to be overwritten in the ContactCenter resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *       updateMask: 'placeholder-value',
@@ -1489,6 +1508,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "adminUser": {},
      *         //   "ccaipManagedUsers": false,
      *         //   "createTime": "my_createTime",
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
@@ -1617,7 +1637,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -1633,7 +1653,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -1674,7 +1694,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
