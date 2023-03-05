@@ -973,6 +973,10 @@ export namespace analyticsadmin_v1alpha {
      */
     includeAdvertisingId?: boolean | null;
     /**
+     * If set true, enables intraday export to the linked Google Cloud project.
+     */
+    intradayExportEnabled?: boolean | null;
+    /**
      * Output only. Resource name of this BigQuery link. Format: 'properties/{property_id\}/bigQueryLinks/{bigquery_link_id\}' Format: 'properties/1234/bigQueryLinks/abc567'
      */
     name?: string | null;
@@ -1113,6 +1117,19 @@ export namespace analyticsadmin_v1alpha {
     userActorEmail?: string | null;
   }
   /**
+   * Configuration for a specific Connected Site Tag.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaConnectedSiteTag {
+    /**
+     * Required. User-provided display name for the connected site tag. Must be less than 256 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. "Tag ID to forward events to. Also known as the Measurement ID, or the "G-ID" (For example: G-12345).
+     */
+    tagId?: string | null;
+  }
+  /**
    * A conversion event in a Google Analytics property.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaConversionEvent {
@@ -1125,7 +1142,7 @@ export namespace analyticsadmin_v1alpha {
      */
     custom?: boolean | null;
     /**
-     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     * Output only. If set, this event can currently be deleted with DeleteConversionEvent.
      */
     deletable?: boolean | null;
     /**
@@ -1363,6 +1380,19 @@ export namespace analyticsadmin_v1alpha {
      * Required. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
      */
     name?: string | null;
+  }
+  /**
+   * Request message for DeleteConnectedSiteTag RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest {
+    /**
+     * The Universal Analytics property to delete connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+    /**
+     * Tag ID to forward events to. Also known as the Measurement ID, or the "G-ID" (For example: G-12345).
+     */
+    tagId?: string | null;
   }
   /**
    * Request message for DeleteUserLink RPC.
@@ -1726,6 +1756,36 @@ export namespace analyticsadmin_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Request message for ListConnectedSiteTags RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest {
+    /**
+     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     */
+    pageSize?: number | null;
+    /**
+     * A page token, received from a previous `ListConnectedSiteTags` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectedSiteTags` must match the call that provided the page token.
+     */
+    pageToken?: string | null;
+    /**
+     * The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. Format: `properties/1234`
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for ListConnectedSiteTags RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse {
+    /**
+     * The site tags for the Universal Analytics property
+     */
+    connectedSiteTags?: Schema$GoogleAnalyticsAdminV1alphaConnectedSiteTag[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListConversionEvents RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListConversionEventsResponse {
@@ -1965,7 +2025,7 @@ export namespace analyticsadmin_v1alpha {
      */
     parent?: string | null;
     /**
-     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created via Google Analytics Admin API.
+     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created with the Google Analytics Admin API.
      */
     propertyType?: string | null;
     /**
@@ -2011,7 +2071,7 @@ export namespace analyticsadmin_v1alpha {
      */
     account?: Schema$GoogleAnalyticsAdminV1alphaAccount;
     /**
-     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI.
+     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Cloud Console as a Redirect URI.
      */
     redirectUri?: string | null;
   }
@@ -2061,7 +2121,7 @@ export namespace analyticsadmin_v1alpha {
      */
     orderBys?: Schema$GoogleAnalyticsAdminV1alphaAccessOrderBy[];
     /**
-     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota).
+     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level requests, this field must be false.
      */
     returnEntityQuota?: boolean | null;
     /**
@@ -2082,7 +2142,7 @@ export namespace analyticsadmin_v1alpha {
      */
     metricHeaders?: Schema$GoogleAnalyticsAdminV1alphaAccessMetricHeader[];
     /**
-     * The quota state for this Analytics property including this request.
+     * The quota state for this Analytics property including this request. This field doesn't work with account-level requests.
      */
     quota?: Schema$GoogleAnalyticsAdminV1alphaAccessQuota;
     /**
@@ -3102,6 +3162,169 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.accounts.runAccessReport({
+     *     // The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     *     entity: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dateRanges": [],
+     *       //   "dimensionFilter": {},
+     *       //   "dimensions": [],
+     *       //   "limit": "my_limit",
+     *       //   "metricFilter": {},
+     *       //   "metrics": [],
+     *       //   "offset": "my_offset",
+     *       //   "orderBys": [],
+     *       //   "returnEntityQuota": false,
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dimensionHeaders": [],
+     *   //   "metricHeaders": [],
+     *   //   "quota": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runAccessReport(
+      params?: Params$Resource$Accounts$Runaccessreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Runaccessreport
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Runaccessreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Runaccessreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+entity}:runAccessReport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['entity'],
+        pathParams: ['entity'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Searches through all changes to an account or its children given the specified set of filters.
      * @example
      * ```js
@@ -3310,6 +3533,18 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest;
+  }
+  export interface Params$Resource$Accounts$Runaccessreport
+    extends StandardParameters {
+    /**
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     */
+    entity?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaRunAccessReportRequest;
   }
   export interface Params$Resource$Accounts$Searchchangehistoryevents
     extends StandardParameters {
@@ -6970,6 +7205,144 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Deletes a connected site tag for a Universal Analytics property. Note: this has no effect on GA4 properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.deleteConnectedSiteTag({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "property": "my_property",
+     *       //   "tagId": "my_tagId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteConnectedSiteTag(
+      params?: Params$Resource$Properties$Deleteconnectedsitetag,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteConnectedSiteTag(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteConnectedSiteTag(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Deleteconnectedsitetag
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Deleteconnectedsitetag;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Deleteconnectedsitetag;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:deleteConnectedSiteTag'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * Fetches the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.
      * @example
      * ```js
@@ -7841,6 +8214,152 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Lists the connected site tags for a Universal Analytics property. Note: this has no effect on GA4 property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.listConnectedSiteTags({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "property": "my_property"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectedSiteTags": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listConnectedSiteTags(
+      params?: Params$Resource$Properties$Listconnectedsitetags,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>;
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+    ): void;
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+    ): void;
+    listConnectedSiteTags(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+    ): void;
+    listConnectedSiteTags(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Listconnectedsitetags
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Listconnectedsitetags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Listconnectedsitetags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:listConnectedSiteTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a property.
      * @example
      * ```js
@@ -8039,7 +8558,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.runAccessReport({
-     *     // The Data Access Report is requested for this property. For example if "123" is your GA4 property ID, then entity should be "properties/123".
+     *     // The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
      *     entity: 'properties/my-propertie',
      *
      *     // Request body metadata
@@ -8795,6 +9314,13 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Properties$Deleteconnectedsitetag
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest;
+  }
   export interface Params$Resource$Properties$Fetchautomatedga4configurationoptout
     extends StandardParameters {
     /**
@@ -8847,6 +9373,13 @@ export namespace analyticsadmin_v1alpha {
      */
     showDeleted?: boolean;
   }
+  export interface Params$Resource$Properties$Listconnectedsitetags
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest;
+  }
   export interface Params$Resource$Properties$Patch extends StandardParameters {
     /**
      * Output only. Resource name of this property. Format: properties/{property_id\} Example: "properties/1000"
@@ -8865,7 +9398,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Runaccessreport
     extends StandardParameters {
     /**
-     * The Data Access Report is requested for this property. For example if "123" is your GA4 property ID, then entity should be "properties/123".
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
      */
     entity?: string;
 
@@ -11197,6 +11730,7 @@ export namespace analyticsadmin_v1alpha {
      *   //   "excludedEvents": [],
      *   //   "exportStreams": [],
      *   //   "includeAdvertisingId": false,
+     *   //   "intradayExportEnabled": false,
      *   //   "name": "my_name",
      *   //   "project": "my_project",
      *   //   "streamingExportEnabled": false

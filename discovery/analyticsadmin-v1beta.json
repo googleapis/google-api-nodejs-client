@@ -1536,7 +1536,7 @@
       }
     }
   },
-  "revision": "20230221",
+  "revision": "20230302",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccount": {
@@ -1768,7 +1768,7 @@
           "type": "boolean"
         },
         "deletable": {
-          "description": "Output only. If set, this event can currently be deleted via DeleteConversionEvent.",
+          "description": "Output only. If set, this event can currently be deleted with DeleteConversionEvent.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2457,7 +2457,7 @@
           "type": "string"
         },
         "propertyType": {
-          "description": "Immutable. The property type for this Property resource. When creating a property, if the type is \"PROPERTY_TYPE_UNSPECIFIED\", then \"ORDINARY_PROPERTY\" will be implied. \"SUBPROPERTY\" and \"ROLLUP_PROPERTY\" types cannot yet be created via Google Analytics Admin API.",
+          "description": "Immutable. The property type for this Property resource. When creating a property, if the type is \"PROPERTY_TYPE_UNSPECIFIED\", then \"ORDINARY_PROPERTY\" will be implied. \"SUBPROPERTY\" and \"ROLLUP_PROPERTY\" types cannot yet be created with the Google Analytics Admin API.",
           "enum": [
             "PROPERTY_TYPE_UNSPECIFIED",
             "PROPERTY_TYPE_ORDINARY",
@@ -2544,7 +2544,7 @@
           "description": "The account to create."
         },
         "redirectUri": {
-          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI.",
+          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Cloud Console as a Redirect URI.",
           "type": "string"
         }
       },
