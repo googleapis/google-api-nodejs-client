@@ -148,6 +148,10 @@
     "package": "@google-cloud/documentai"
   },
   {
+    "api": "contentwarehouse",
+    "package": "@google-cloud/contentwarehouse"
+  },
+  {
     "api": "domains",
     "package": "@google-cloud/domains"
   },
@@ -230,6 +234,10 @@
   {
     "api": "iamcredentials",
     "package": "@google-cloud/iam-credentials"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/iam"
   },
   {
     "api": "iap",
@@ -348,6 +356,10 @@
     "package": "@google-cloud/retail"
   },
   {
+    "api": "run",
+    "package": "@google-cloud/run"
+  },
+  {
     "api": "cloudscheduler",
     "package": "@google-cloud/scheduler"
   },
@@ -362,10 +374,6 @@
   {
     "api": "servicecontrol",
     "package": "@google-cloud/service-control"
-  },
-  {
-    "api": "servicedirectory",
-    "package": "@google-cloud/service-directory"
   },
   {
     "api": "servicedirectory",
@@ -404,10 +412,6 @@
     "package": "@google-cloud/storage-transfer"
   },
   {
-    "api": "storagetransfer",
-    "package": "@google-cloud/storage-transfer"
-  },
-  {
     "api": "jobs",
     "package": "@google-cloud/talent"
   },
@@ -440,12 +444,20 @@
     "package": "@google-cloud/video-intelligence"
   },
   {
+    "api": "stitcher",
+    "package": "@google-cloud/video-stitcher"
+  },
+  {
     "api": "vpcaccess",
     "package": "@google-cloud/vpc-access"
   },
   {
     "api": "vision",
     "package": "@google-cloud/vision"
+  },
+  {
+    "api": "vmwareengine",
+    "package": "@google-cloud/vmwareengine"
   },
   {
     "api": "webrisk",
@@ -462,6 +474,10 @@
   {
     "api": "google",
     "package": "@google-cloud/bigquery-datapolicies"
+  },
+  {
+    "api": "advisorynotifications",
+    "package": "@google-cloud/advisorynotifications"
   },
   {
     "api": "bigquerydatapolicy",
@@ -540,10 +556,6 @@
     "package": "@google-cloud/discoveryengine"
   },
   {
-    "api": "contentwarehouse",
-    "package": "@google-cloud/contentwarehouse"
-  },
-  {
     "api": "connectgateway",
     "package": "@google-cloud/gke-connect-gateway"
   },
@@ -568,10 +580,6 @@
     "package": "@google-cloud/gsuiteaddons"
   },
   {
-    "api": "google",
-    "package": "@google-cloud/iam"
-  },
-  {
     "api": "lifesciences",
     "package": "@google-cloud/life-sciences"
   },
@@ -592,19 +600,7 @@
     "package": "@google-cloud/publicca"
   },
   {
-    "api": "run",
-    "package": "@google-cloud/run"
-  },
-  {
     "api": "cloudtrace",
     "package": "@google-cloud/trace-agent"
-  },
-  {
-    "api": "stitcher",
-    "package": "@google-cloud/video-stitcher"
-  },
-  {
-    "api": "vmwareengine",
-    "package": "@google-cloud/vmwareengine"
   }
 ]

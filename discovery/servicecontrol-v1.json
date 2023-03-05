@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20230215",
+  "revision": "20230224",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -1176,12 +1176,14 @@
           "enum": [
             "LOW",
             "HIGH",
-            "DEBUG"
+            "DEBUG",
+            "PROMOTED"
           ],
           "enumDescriptions": [
             "Allows data caching, batching, and aggregation. It provides higher performance with higher data loss risk.",
             "Disables data aggregation to minimize data loss. It is for operations that contains significant monetary value or audit trail. This feature only applies to the client libraries.",
-            "Deprecated. Do not use. Disables data aggregation and enables additional validation logic. It should only be used during the onboarding process. It is only available to Google internal services, and the service must be approved by chemist-dev@google.com in order to use this level."
+            "Deprecated. Do not use. Disables data aggregation and enables additional validation logic. It should only be used during the onboarding process. It is only available to Google internal services, and the service must be approved by chemist-dev@google.com in order to use this level.",
+            "Used internally by Chemist."
           ],
           "type": "string"
         },

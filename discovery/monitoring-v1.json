@@ -806,7 +806,7 @@
       }
     }
   },
-  "revision": "20230206",
+  "revision": "20230227",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1357,6 +1357,27 @@
       },
       "type": "object"
     },
+    "IncidentList": {
+      "description": "A widget that displays a list of incidents",
+      "id": "IncidentList",
+      "properties": {
+        "monitoredResources": {
+          "description": "Optional. The monitored resource for which incidents are listed. The resource doesn't need to be fully specified. That is, you can specify the resource type but not the values of the resource labels. The resource type and labels are used for filtering.",
+          "items": {
+            "$ref": "MonitoredResource"
+          },
+          "type": "array"
+        },
+        "policyNames": {
+          "description": "Optional. A list of alert policy names to filter the incident list by. Don't include the project ID prefix in the policy name. For example, use alertPolicies/utilization.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListDashboardsResponse": {
       "description": "The ListDashboards request.",
       "id": "ListDashboardsResponse",
@@ -1469,6 +1490,24 @@
         },
         "name": {
           "description": "Immutable. The resource name of the MonitoredProject. On input, the resource name includes the scoping project ID and monitored project ID. On output, it contains the equivalent project numbers. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER}/projects/{MONITORED_PROJECT_ID_OR_NUMBER}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MonitoredResource": {
+      "description": "An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for \"gce_instance\" has labels \"project_id\", \"instance_id\" and \"zone\": { \"type\": \"gce_instance\", \"labels\": { \"project_id\": \"my-project\", \"instance_id\": \"12345678901234\", \"zone\": \"us-central1-a\" }} ",
+      "id": "MonitoredResource",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels \"project_id\", \"instance_id\", and \"zone\".",
+          "type": "object"
+        },
+        "type": {
+          "description": "Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).",
           "type": "string"
         }
       },
@@ -2212,6 +2251,10 @@
         "collapsibleGroup": {
           "$ref": "CollapsibleGroup",
           "description": "A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets."
+        },
+        "incidentList": {
+          "$ref": "IncidentList",
+          "description": "A widget that shows list of incidents."
         },
         "logsPanel": {
           "$ref": "LogsPanel",
