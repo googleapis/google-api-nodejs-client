@@ -997,7 +997,7 @@
                   ]
                 },
                 "listen": {
-                  "description": "Listens to changes.",
+                  "description": "Listens to changes. This method is only available via the gRPC API (not REST).",
                   "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/documents:listen",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.documents.listen",
@@ -1194,7 +1194,7 @@
                   ]
                 },
                 "write": {
-                  "description": "Streams batches of document updates and deletes, in order.",
+                  "description": "Streams batches of document updates and deletes, in order. This method is only available via the gRPC API (not REST).",
                   "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/documents:write",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.documents.write",
@@ -1428,7 +1428,7 @@
       }
     }
   },
-  "revision": "20230126",
+  "revision": "20230214",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2029,6 +2029,12 @@
           ],
           "type": "string"
         },
+        "createTime": {
+          "description": "Output only. The timestamp at which this database was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "etag": {
           "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
@@ -2058,6 +2064,17 @@
             "Firestore Native Mode",
             "Firestore in Datastore Mode."
           ],
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The system-generated UUID4 for this Database.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp at which this database was most recently updated. Note this only includes updates to the database resource and not data contained by the database.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
