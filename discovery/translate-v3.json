@@ -1286,7 +1286,7 @@
       }
     }
   },
-  "revision": "20230210",
+  "revision": "20230224",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -1352,11 +1352,11 @@
           "description": "Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs."
         },
         "sourceLanguageCode": {
-          "description": "Required. The BCP-47 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
+          "description": "Required. The ISO-639 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
           "type": "string"
         },
         "targetLanguageCodes": {
-          "description": "Required. The BCP-47 language code to use for translation of the input document. Specify up to 10 language codes here.",
+          "description": "Required. The ISO-639 language code to use for translation of the input document. Specify up to 10 language codes here.",
           "items": {
             "type": "string"
           },
@@ -1555,7 +1555,7 @@
           "type": "number"
         },
         "languageCode": {
-          "description": "The BCP-47 language code of the source content in the request, detected automatically.",
+          "description": "The ISO-639 language code of the source content in the request, detected automatically.",
           "type": "string"
         }
       },
@@ -1874,11 +1874,11 @@
       "id": "LanguageCodePair",
       "properties": {
         "sourceLanguageCode": {
-          "description": "Required. The BCP-47 language code of the input text, for example, \"en-US\". Expected to be an exact match for GlossaryTerm.language_code.",
+          "description": "Required. The ISO-639 language code of the input text, for example, \"en-US\". Expected to be an exact match for GlossaryTerm.language_code.",
           "type": "string"
         },
         "targetLanguageCode": {
-          "description": "Required. The BCP-47 language code for translation output, for example, \"zh-CN\". Expected to be an exact match for GlossaryTerm.language_code.",
+          "description": "Required. The ISO-639 language code for translation output, for example, \"zh-CN\". Expected to be an exact match for GlossaryTerm.language_code.",
           "type": "string"
         }
       },
@@ -1889,7 +1889,7 @@
       "id": "LanguageCodesSet",
       "properties": {
         "languageCodes": {
-          "description": "The BCP-47 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.",
+          "description": "The ISO-639 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.",
           "items": {
             "type": "string"
           },
@@ -2205,7 +2205,7 @@
           "type": "string"
         },
         "languageCode": {
-          "description": "Supported language code, generally consisting of its ISO 639-1 identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes including language and region identifiers are returned (for example, 'zh-TW' and 'zh-CN').",
+          "description": "Supported language code, generally consisting of its ISO 639-1 identifier, for example, 'en', 'ja'. In certain cases, ISO-639 codes including language and region identifiers are returned (for example, 'zh-TW' and 'zh-CN').",
           "type": "string"
         },
         "supportSource": {
@@ -2273,11 +2273,11 @@
           "type": "string"
         },
         "sourceLanguageCode": {
-          "description": "Optional. The BCP-47 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.",
+          "description": "Optional. The ISO-639 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.",
           "type": "string"
         },
         "targetLanguageCode": {
-          "description": "Required. The BCP-47 language code to use for translation of the input document, set to one of the language codes listed in Language Support.",
+          "description": "Required. The ISO-639 language code to use for translation of the input document, set to one of the language codes listed in Language Support.",
           "type": "string"
         }
       },
@@ -2352,11 +2352,11 @@
           "type": "string"
         },
         "sourceLanguageCode": {
-          "description": "Optional. The BCP-47 language code of the input text if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.",
+          "description": "Optional. The ISO-639 language code of the input text if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.",
           "type": "string"
         },
         "targetLanguageCode": {
-          "description": "Required. The BCP-47 language code to use for translation of the input text, set to one of the language codes listed in Language Support.",
+          "description": "Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in Language Support.",
           "type": "string"
         }
       },
@@ -2387,7 +2387,7 @@
       "id": "Translation",
       "properties": {
         "detectedLanguageCode": {
-          "description": "The BCP-47 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.",
+          "description": "The ISO-639 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.",
           "type": "string"
         },
         "glossaryConfig": {
