@@ -700,6 +700,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any subresource from this Membership will also be deleted. Otherwise, the request will only work if the Membership has no subresource.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The Membership resource name in the format `projects/*/locations/*/memberships/*`.",
                       "location": "path",
@@ -1049,6 +1054,481 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "bindings": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a MembershipBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/bindings",
+                      "httpMethod": "POST",
+                      "id": "gkehub.projects.locations.memberships.bindings.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "membershipBindingId": {
+                          "description": "Required. The ID to use for the MembershipBinding.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent (project and location) where the MembershipBinding will be created. Specified in the format `projects/*/locations/*/memberships/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/bindings",
+                      "request": {
+                        "$ref": "MembershipBinding"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a MembershipBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/bindings/{bindingsId}",
+                      "httpMethod": "DELETE",
+                      "id": "gkehub.projects.locations.memberships.bindings.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The MembershipBinding resource name in the format `projects/*/locations/*/memberships/*/bindings/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/bindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Returns the details of a MembershipBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/bindings/{bindingsId}",
+                      "httpMethod": "GET",
+                      "id": "gkehub.projects.locations.memberships.bindings.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The MembershipBinding resource name in the format `projects/*/locations/*/memberships/*/bindings/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/bindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "MembershipBinding"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists MembershipBindings.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/bindings",
+                      "httpMethod": "GET",
+                      "id": "gkehub.projects.locations.memberships.bindings.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Token returned by previous call to `ListMembershipBindings` which specifies the position in the list from where to continue listing the resources.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent Membership for which the MembershipBindings will be listed. Specified in the format `projects/*/locations/*/memberships/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/bindings",
+                      "response": {
+                        "$ref": "ListMembershipBindingsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a MembershipBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/bindings/{bindingsId}",
+                      "httpMethod": "PATCH",
+                      "id": "gkehub.projects.locations.memberships.bindings.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The resource name for the membershipbinding itself `projects/{project}/locations/{location}/memberships/{membership}/bindings/{membershipbinding}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/bindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The fields to be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "MembershipBinding"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "namespaces": {
+              "methods": {
+                "create": {
+                  "description": "Creates a fleet namespace.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.namespaces.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "namespaceId": {
+                      "description": "Required. Client chosen ID for the Namespace. `namespace_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Namespace will be created. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/namespaces",
+                  "request": {
+                    "$ref": "Namespace"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a fleet namespace.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.namespaces.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Namespace resource name in the format `projects/*/locations/*/namespaces/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the details of a fleet namespace.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.namespaces.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Namespace resource name in the format `projects/*/locations/*/namespaces/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Namespace"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists fleet namespaces.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.namespaces.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/namespaces",
+                  "response": {
+                    "$ref": "ListNamespacesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a fleet namespace.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}",
+                  "httpMethod": "PATCH",
+                  "id": "gkehub.projects.locations.namespaces.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The resource name for the namespace `projects/{project}/locations/{location}/namespaces/{namespace}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "Namespace"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "rbacrolebindings": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a RBACRoleBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings",
+                      "httpMethod": "POST",
+                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/*/locations/*/namespaces/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "rbacrolebindingId": {
+                          "description": "Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/rbacrolebindings",
+                      "request": {
+                        "$ref": "RBACRoleBinding"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a RBACRoleBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
+                      "httpMethod": "DELETE",
+                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/namespaces/*/rbacrolebindings/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Returns the details of a RBACRoleBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
+                      "httpMethod": "GET",
+                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/namespaces/*/rbacrolebindings/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "RBACRoleBinding"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists RBACRoleBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings",
+                      "httpMethod": "GET",
+                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Token returned by previous call to `ListRBACRoleBindings` which specifies the position in the list from where to continue listing the resources.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*/namespaces/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/rbacrolebindings",
+                      "response": {
+                        "$ref": "ListRBACRoleBindingsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a RBACRoleBinding.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/namespaces/{namespacesId}/rbacrolebindings/{rbacrolebindingsId}",
+                      "httpMethod": "PATCH",
+                      "id": "gkehub.projects.locations.namespaces.rbacrolebindings.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/namespaces/[^/]+/rbacrolebindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The fields to be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "request": {
+                        "$ref": "RBACRoleBinding"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "operations": {
@@ -1173,13 +1653,170 @@
                   ]
                 }
               }
+            },
+            "scopes": {
+              "methods": {
+                "create": {
+                  "description": "Creates a Scope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.scopes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Scope will be created. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "scopeId": {
+                      "description": "Required. Client chosen ID for the Scope. `scope_id` must be a ????",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/scopes",
+                  "request": {
+                    "$ref": "Scope"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Scope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes/{scopesId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.scopes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Scope resource name in the format `projects/*/locations/*/scopes/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the details of a Scope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes/{scopesId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.scopes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Scope resource name in the format `projects/*/locations/*/scopes/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Scope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Scopes.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.scopes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Token returned by previous call to `ListScopes` which specifies the position in the list from where to continue listing the resources.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Scope will be listed. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/scopes",
+                  "response": {
+                    "$ref": "ListScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a scopes.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes/{scopesId}",
+                  "httpMethod": "PATCH",
+                  "id": "gkehub.projects.locations.scopes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The resource name for the scope `projects/{project}/locations/{location}/scopes/{scope}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "Scope"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20230206",
+  "revision": "20230224",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2964,6 +3601,24 @@
       },
       "type": "object"
     },
+    "ListMembershipBindingsResponse": {
+      "description": "List of MembershipBindings.",
+      "id": "ListMembershipBindingsResponse",
+      "properties": {
+        "membershipBindings": {
+          "description": "The list of membership_bindings",
+          "items": {
+            "$ref": "MembershipBinding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the `ListMembershipBindings` method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListMembershipsResponse": {
       "description": "Response message for the `GkeHub.ListMemberships` method.",
       "id": "ListMembershipsResponse",
@@ -2989,6 +3644,24 @@
       },
       "type": "object"
     },
+    "ListNamespacesResponse": {
+      "description": "List of fleet namespaces.",
+      "id": "ListNamespacesResponse",
+      "properties": {
+        "namespaces": {
+          "description": "The list of fleet namespaces",
+          "items": {
+            "$ref": "Namespace"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the `ListNamespaces` method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -3001,6 +3674,42 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRBACRoleBindingsResponse": {
+      "description": "List of RBACRoleBindings.",
+      "id": "ListRBACRoleBindingsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the `ListRBACRoleBindings` method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        },
+        "rbacrolebindings": {
+          "description": "The list of RBACRoleBindings",
+          "items": {
+            "$ref": "RBACRoleBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListScopesResponse": {
+      "description": "List of Scopes.",
+      "id": "ListScopesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the `ListScopes` method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "The list of Scopes",
+          "items": {
+            "$ref": "Scope"
           },
           "type": "array"
         }
@@ -3105,6 +3814,79 @@
         "updateTime": {
           "description": "Output only. When the Membership was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MembershipBinding": {
+      "description": "MembershipBinding is a subresource of a Membership, representing what Fleet Scopes (or other, future Fleet resources) a Membership is bound to.",
+      "id": "MembershipBinding",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the membership binding was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. When the membership binding was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fleet": {
+          "description": "Whether the membershipbinding is Fleet-wide; true means that this Membership should be bound to all Namespaces in this entire Fleet.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The resource name for the membershipbinding itself `projects/{project}/locations/{location}/memberships/{membership}/bindings/{membershipbinding}`",
+          "type": "string"
+        },
+        "scope": {
+          "description": "A Workspace resource name in the format `projects/*/locations/*/scopes/*`.",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "MembershipBindingLifecycleState",
+          "description": "Output only. State of the membership binding resource.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all membershipbinding resources. If a membershipbinding resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the membership binding was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MembershipBindingLifecycleState": {
+      "description": "MembershipBindingLifecycleState describes the state of a Binding resource.",
+      "id": "MembershipBindingLifecycleState",
+      "properties": {
+        "code": {
+          "description": "Output only. The current state of the MembershipBinding resource.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "The code is not set.",
+            "The membershipbinding is being created.",
+            "The membershipbinding active.",
+            "The membershipbinding is being deleted.",
+            "The membershipbinding is being updated."
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -3336,6 +4118,75 @@
         },
         "configMembership": {
           "description": "Fully-qualified Membership name which hosts the MultiClusterIngress CRD. Example: `projects/foo-proj/locations/global/memberships/bar`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Namespace": {
+      "description": "Namespace represents a namespace across the Fleet",
+      "id": "Namespace",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the namespace was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. When the namespace was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name for the namespace `projects/{project}/locations/{location}/namespaces/{namespace}`",
+          "type": "string"
+        },
+        "scope": {
+          "description": "Required. Scope associated with the namespace",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "NamespaceLifecycleState",
+          "description": "Output only. State of the namespace resource.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all namespace resources. If a namespace resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the namespace was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NamespaceLifecycleState": {
+      "description": "NamespaceLifecycleState describes the state of a Namespace resource.",
+      "id": "NamespaceLifecycleState",
+      "properties": {
+        "code": {
+          "description": "Output only. The current state of the Namespace resource.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "The code is not set.",
+            "The namespace is being created.",
+            "The namespace active.",
+            "The namespace is being deleted.",
+            "The namespace is being updated."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3735,6 +4586,13 @@
           "description": "Pod anti-affinity enablement.",
           "type": "boolean"
         },
+        "podTolerations": {
+          "description": "Pod tolerations of node taints.",
+          "items": {
+            "$ref": "PolicyControllerToleration"
+          },
+          "type": "array"
+        },
         "replicaCount": {
           "description": "Pod replica count.",
           "format": "int64",
@@ -3784,6 +4642,106 @@
       },
       "type": "object"
     },
+    "PolicyControllerToleration": {
+      "description": "Toleration of a node taint.",
+      "id": "PolicyControllerToleration",
+      "properties": {
+        "effect": {
+          "description": "Matches a taint effect.",
+          "type": "string"
+        },
+        "key": {
+          "description": "Matches a taint key (not necessarily unique).",
+          "type": "string"
+        },
+        "operator": {
+          "description": "Matches a taint operator.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Matches a taint value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RBACRoleBinding": {
+      "description": "RBACRoleBinding represents a rbacrolebinding across the Fleet",
+      "id": "RBACRoleBinding",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the rbacrolebinding was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. When the rbacrolebinding was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "group": {
+          "description": "group is the group, as seen by the kubernetes cluster.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/namespaces/{namespace}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+          "type": "string"
+        },
+        "role": {
+          "$ref": "Role",
+          "description": "Required. Role to bind to the principal"
+        },
+        "state": {
+          "$ref": "RBACRoleBindingLifecycleState",
+          "description": "Output only. State of the rbacrolebinding resource.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all rbacrolebinding resources. If a rbacrolebinding resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the rbacrolebinding was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "user": {
+          "description": "user is the name of the user as seen by the kubernetes cluster, example \"alice\" or \"alice@domain.tld\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RBACRoleBindingLifecycleState": {
+      "description": "RBACRoleBindingLifecycleState describes the state of a RbacRoleBinding resource.",
+      "id": "RBACRoleBindingLifecycleState",
+      "properties": {
+        "code": {
+          "description": "Output only. The current state of the rbacrolebinding resource.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "The code is not set.",
+            "The rbacrolebinding is being created.",
+            "The rbacrolebinding active.",
+            "The rbacrolebinding is being deleted.",
+            "The rbacrolebinding is being updated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResourceManifest": {
       "description": "ResourceManifest represents a single Kubernetes resource to be applied to the cluster.",
       "id": "ResourceManifest",
@@ -3818,6 +4776,70 @@
       },
       "type": "object"
     },
+    "Role": {
+      "description": "Role is the type for Kubernetes roles",
+      "id": "Role",
+      "properties": {
+        "predefinedRole": {
+          "description": "predefined_role is the Kubernetes default role to use",
+          "enum": [
+            "UNKNOWN",
+            "ADMIN",
+            "EDIT",
+            "VIEW",
+            "ANTHOS_SUPPORT"
+          ],
+          "enumDescriptions": [
+            "UNKNOWN",
+            "ADMIN has EDIT and RBAC permissions",
+            "EDIT can edit all resources except RBAC",
+            "VIEW can only read resources",
+            "ANTHOS_SUPPORT gives Google Support read-only access to a number of cluster resources."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Scope": {
+      "description": "Scope represents a Scope in a Fleet.",
+      "id": "Scope",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the scope was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. When the scope was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name for the scope `projects/{project}/locations/{location}/scopes/{scope}`",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "ScopeLifecycleState",
+          "description": "Output only. State of the scope resource.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all scope resources. If a scope resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the scope was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ScopeFeatureSpec": {
       "description": "ScopeFeatureSpec contains feature specs for a fleet scope.",
       "id": "ScopeFeatureSpec",
@@ -3832,6 +4854,32 @@
           "$ref": "FeatureState",
           "description": "Output only. The \"running state\" of the Feature in this Scope.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ScopeLifecycleState": {
+      "description": "ScopeLifecycleState describes the state of a Scope resource.",
+      "id": "ScopeLifecycleState",
+      "properties": {
+        "code": {
+          "description": "Output only. The current state of the scope resource.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "The code is not set.",
+            "The scope is being created.",
+            "The scope active.",
+            "The scope is being deleted.",
+            "The scope is being updated."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

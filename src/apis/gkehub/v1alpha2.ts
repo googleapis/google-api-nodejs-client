@@ -1396,6 +1396,8 @@ export namespace gkehub_v1alpha2 {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.memberships.delete({
+     *     // Optional. If set to true, any subresource from this Membership will also be deleted. Otherwise, the request will only work if the Membership has no subresource.
+     *     force: 'placeholder-value',
      *     // Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
      *     name: 'projects/my-project/locations/my-location/memberships/my-membership',
      *   });
@@ -2528,6 +2530,10 @@ export namespace gkehub_v1alpha2 {
   }
   export interface Params$Resource$Projects$Locations$Memberships$Delete
     extends StandardParameters {
+    /**
+     * Optional. If set to true, any subresource from this Membership will also be deleted. Otherwise, the request will only work if the Membership has no subresource.
+     */
+    force?: boolean;
     /**
      * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
      */
