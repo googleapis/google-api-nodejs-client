@@ -2502,7 +2502,7 @@
       }
     }
   },
-  "revision": "20230220",
+  "revision": "20230227",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -3312,9 +3312,18 @@
       "type": "object"
     },
     "SasPortalProvisionDeploymentRequest": {
-      "description": "Request for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]. No input is needed, because GCP Project, Organization Info, and caller’s GAIA ID should be retrieved from the RPC handler, and used as inputs to create a new SAS organization (if not exists) and a new SAS deployment.",
+      "description": "Request for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]. GCP Project, Organization Info, and caller’s GAIA ID should be retrieved from the RPC handler, and used as inputs to create a new SAS organization (if not exists) and a new SAS deployment.",
       "id": "SasPortalProvisionDeploymentRequest",
-      "properties": {},
+      "properties": {
+        "newDeploymentDisplayName": {
+          "description": "Optional. If this field is set, and a new SAS Portal Deployment needs to be created, its display name will be set to the value of this field.",
+          "type": "string"
+        },
+        "newOrganizationDisplayName": {
+          "description": "Optional. If this field is set, and a new SAS Portal Organization needs to be created, its display name will be set to the value of this field.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SasPortalProvisionDeploymentResponse": {
