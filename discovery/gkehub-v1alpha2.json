@@ -257,6 +257,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any subresource from this Membership will also be deleted. Otherwise, the request will only work if the Membership has no subresource.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The Membership resource name in the format `projects/*/locations/*/memberships/*`.",
                       "location": "path",
@@ -652,7 +657,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230224",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "ApplianceCluster": {
