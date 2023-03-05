@@ -685,9 +685,18 @@ export namespace prod_tt_sasportal_v1alpha1 {
     etag?: string | null;
   }
   /**
-   * Request for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]. No input is needed, because GCP Project, Organization Info, and caller’s GAIA ID should be retrieved from the RPC handler, and used as inputs to create a new SAS organization (if not exists) and a new SAS deployment.
+   * Request for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]. GCP Project, Organization Info, and caller’s GAIA ID should be retrieved from the RPC handler, and used as inputs to create a new SAS organization (if not exists) and a new SAS deployment.
    */
-  export interface Schema$SasPortalProvisionDeploymentRequest {}
+  export interface Schema$SasPortalProvisionDeploymentRequest {
+    /**
+     * Optional. If this field is set, and a new SAS Portal Deployment needs to be created, its display name will be set to the value of this field.
+     */
+    newDeploymentDisplayName?: string | null;
+    /**
+     * Optional. If this field is set, and a new SAS Portal Organization needs to be created, its display name will be set to the value of this field.
+     */
+    newOrganizationDisplayName?: string | null;
+  }
   /**
    * Response for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment].
    */
@@ -1254,7 +1263,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "newDeploymentDisplayName": "my_newDeploymentDisplayName",
+     *       //   "newOrganizationDisplayName": "my_newOrganizationDisplayName"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
