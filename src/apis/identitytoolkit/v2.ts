@@ -1163,6 +1163,10 @@ export namespace identitytoolkit_v2 {
      */
     phoneNumber?: string | null;
     /**
+     * Android only. Used to assert application identity in place of a recaptcha token (or safety net token). A Play Integrity Token can be generated via the [PlayIntegrity API] (https://developer.android.com/google/play/integrity) with applying SHA256 to the `phone_number` field as the nonce.
+     */
+    playIntegrityToken?: string | null;
+    /**
      * Web only. Recaptcha solution.
      */
     recaptchaToken?: string | null;
