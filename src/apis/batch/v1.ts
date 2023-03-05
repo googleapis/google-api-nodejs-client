@@ -349,7 +349,7 @@ export namespace batch_v1 {
    */
   export interface Schema$Container {
     /**
-     * If set to true, external network access to and from container will be blocked. The container will use the default internal network 'goog-internal'.
+     * If set to true, external network access to and from container will be blocked, containers that are with block_external_network as true can still communicate with each other, network cannot be specified in the `container.options` field.
      */
     blockExternalNetwork?: boolean | null;
     /**
@@ -382,7 +382,7 @@ export namespace batch_v1 {
     volumes?: string[] | null;
   }
   /**
-   * A new persistent disk or a local ssd. A VM can only have one local SSD setting but multiple local SSD partitions. https://cloud.google.com/compute/docs/disks#pdspecs. https://cloud.google.com/compute/docs/disks#localssds.
+   * A new persistent disk or a local ssd. A VM can only have one local SSD setting but multiple local SSD partitions. See https://cloud.google.com/compute/docs/disks#pdspecs and https://cloud.google.com/compute/docs/disks#localssds.
    */
   export interface Schema$Disk {
     /**
@@ -390,7 +390,7 @@ export namespace batch_v1 {
      */
     diskInterface?: string | null;
     /**
-     * Name of a public or custom image used as the data source. For example, the following are all valid URLs: (1) Specify the image by its family name: projects/{project\}/global/images/family/{image_family\} (2) Specify the image version: projects/{project\}/global/images/{image_version\} You can also use Batch customized image in short names. The following image values are supported for a boot disk: "batch-debian": use Batch Debian images. "batch-centos": use Batch CentOS images. "batch-cos": use Batch Container-Optimized images.
+     * Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project\}/global/images/family/{image_family\} * Specify the image version: projects/{project\}/global/images/{image_version\} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * "batch-debian": use Batch Debian images. * "batch-centos": use Batch CentOS images. * "batch-cos": use Batch Container-Optimized images.
      */
     image?: string | null;
     /**
@@ -445,7 +445,7 @@ export namespace batch_v1 {
      */
     accelerators?: Schema$Accelerator[];
     /**
-     * Book disk to be created and attached to each VM by this InstancePolicy. Boot disk will be deleted when the VM is deleted.
+     * Boot disk to be created and attached to each VM by this InstancePolicy. Boot disk will be deleted when the VM is deleted.
      */
     bootDisk?: Schema$Disk;
     /**
@@ -457,7 +457,7 @@ export namespace batch_v1 {
      */
     machineType?: string | null;
     /**
-     * The minimum CPU platform. See `https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform`. Not yet implemented.
+     * The minimum CPU platform. See https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform. Not yet implemented.
      */
     minCpuPlatform?: string | null;
     /**
@@ -735,7 +735,7 @@ export namespace batch_v1 {
    */
   export interface Schema$NetworkInterface {
     /**
-     * The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} projects/{project\}/global/networks/{network\} global/networks/{network\}
+     * The URL of an existing network resource. You can specify the network as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} * projects/{project\}/global/networks/{network\} * global/networks/{network\}
      */
     network?: string | null;
     /**
@@ -743,7 +743,7 @@ export namespace batch_v1 {
      */
     noExternalIpAddress?: boolean | null;
     /**
-     * The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} regions/{region\}/subnetworks/{subnetwork\}
+     * The URL of an existing subnetwork resource in the network. You can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: * https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} * projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} * regions/{region\}/subnetworks/{subnetwork\}
      */
     subnetwork?: string | null;
   }
@@ -1009,7 +1009,7 @@ export namespace batch_v1 {
      */
     requireHostsFile?: boolean | null;
     /**
-     * Number of Tasks in the TaskGroup. default is 1
+     * Number of Tasks in the TaskGroup. Default is 1.
      */
     taskCount?: string | null;
     /**
