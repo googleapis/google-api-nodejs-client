@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230221",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -4736,6 +4736,10 @@
           "format": "float",
           "type": "number"
         },
+        "cvssV2": {
+          "$ref": "CVSS",
+          "description": "The full description of the v2 CVSS for this vulnerability."
+        },
         "cvssV3": {
           "$ref": "CVSSv3",
           "description": "The full description of the CVSSv3 for this vulnerability."
@@ -4804,6 +4808,10 @@
           "description": "Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.",
           "format": "float",
           "type": "number"
+        },
+        "cvssV2": {
+          "$ref": "CVSS",
+          "description": "The cvss v2 score for the vulnerability."
         },
         "cvssVersion": {
           "description": "Output only. CVSS version used to populate cvss_score and severity.",

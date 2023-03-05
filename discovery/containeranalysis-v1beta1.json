@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230221",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -837,6 +837,64 @@
         "artifactRule": {
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Assessment": {
+      "description": "Assessment provides all information that is related to a single vulnerability for this product.",
+      "id": "Assessment",
+      "properties": {
+        "cve": {
+          "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.",
+          "type": "string"
+        },
+        "longDescription": {
+          "description": "A detailed description of this Vex.",
+          "type": "string"
+        },
+        "relatedUris": {
+          "description": "Holds a list of references associated with this vulnerability item and assessment. These uris have additional information about the vulnerability and the assessment itself. E.g. Link to a document which details how this assessment concluded the state of this vulnerability.",
+          "items": {
+            "$ref": "RelatedUrl"
+          },
+          "type": "array"
+        },
+        "remediations": {
+          "description": "Specifies details on how to handle (and presumably, fix) a vulnerability.",
+          "items": {
+            "$ref": "Remediation"
+          },
+          "type": "array"
+        },
+        "shortDescription": {
+          "description": "A one sentence description of this Vex.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Provides the state of this Vulnerability assessment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AFFECTED",
+            "NOT_AFFECTED",
+            "FIXED",
+            "UNDER_INVESTIGATION"
+          ],
+          "enumDescriptions": [
+            "No state is specified.",
+            "This product is known to be affected by this vulnerability.",
+            "This product is known to be not affected by this vulnerability.",
+            "This product contains a fix for this vulnerability.",
+            "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
+          ],
+          "type": "string"
+        },
+        "threats": {
+          "description": "Contains information about this vulnerability, this will change with time.",
+          "items": {
+            "$ref": "Threat"
           },
           "type": "array"
         }
@@ -2942,7 +3000,8 @@
             "SBOM",
             "SPDX_PACKAGE",
             "SPDX_FILE",
-            "SPDX_RELATIONSHIP"
+            "SPDX_RELATIONSHIP",
+            "VULNERABILITY_ASSESSMENT"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2957,7 +3016,8 @@
             "This represents a software bill of materials.",
             "This represents an SPDX Package.",
             "This represents an SPDX File.",
-            "This represents an SPDX Relationship."
+            "This represents an SPDX Relationship.",
+            "This represents a Vulnerability Assessment."
           ],
           "type": "string"
         }
@@ -3575,6 +3635,14 @@
           "format": "float",
           "type": "number"
         },
+        "cvssV2": {
+          "$ref": "CVSS",
+          "description": "The cvss v2 score for the vulnerability."
+        },
+        "cvssV3": {
+          "$ref": "CVSS",
+          "description": "The cvss v3 score for the vulnerability."
+        },
         "cvssVersion": {
           "description": "Output only. CVSS version used to populate cvss_score and severity.",
           "enum": [
@@ -3654,6 +3722,9 @@
         "type": {
           "description": "The type of package; whether native or non native(ruby gems, node.js packages etc)",
           "type": "string"
+        },
+        "vexAssessment": {
+          "$ref": "VexAssessment"
         }
       },
       "type": "object"
@@ -4035,7 +4106,8 @@
             "SBOM",
             "SPDX_PACKAGE",
             "SPDX_FILE",
-            "SPDX_RELATIONSHIP"
+            "SPDX_RELATIONSHIP",
+            "VULNERABILITY_ASSESSMENT"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -4050,7 +4122,8 @@
             "This represents a software bill of materials.",
             "This represents an SPDX Package.",
             "This represents an SPDX File.",
-            "This represents an SPDX Relationship."
+            "This represents an SPDX Relationship.",
+            "This represents a Vulnerability Assessment."
           ],
           "type": "string"
         },
@@ -4108,6 +4181,10 @@
         "vulnerability": {
           "$ref": "Vulnerability",
           "description": "A note describing a package vulnerability."
+        },
+        "vulnerabilityAssessment": {
+          "$ref": "VulnerabilityAssessmentNote",
+          "description": "A note describing a vulnerability assessment."
         }
       },
       "type": "object"
@@ -4168,7 +4245,8 @@
             "SBOM",
             "SPDX_PACKAGE",
             "SPDX_FILE",
-            "SPDX_RELATIONSHIP"
+            "SPDX_RELATIONSHIP",
+            "VULNERABILITY_ASSESSMENT"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -4183,7 +4261,8 @@
             "This represents a software bill of materials.",
             "This represents an SPDX Package.",
             "This represents an SPDX File.",
-            "This represents an SPDX Relationship."
+            "This represents an SPDX Relationship.",
+            "This represents a Vulnerability Assessment."
           ],
           "type": "string"
         },
@@ -4526,6 +4605,25 @@
       },
       "type": "object"
     },
+    "Product": {
+      "description": "Product contains information about a product and how to uniquely identify it.",
+      "id": "Product",
+      "properties": {
+        "genericUri": {
+          "description": "Contains a URI which is vendor-specific. Example: The artifact repository URL of an image.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Token that identifies a product so that it can be referred to from other parts in the document. There is no predefined format as long as it uniquely identifies a group in the context of the current document.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the product.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProjectRepoId": {
       "description": "Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.",
       "id": "ProjectRepoId",
@@ -4536,6 +4634,25 @@
         },
         "repoName": {
           "description": "The name of the repo. Leave empty for the default repo.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Publisher": {
+      "description": "Publisher contains information about the publisher of this Note.",
+      "id": "Publisher",
+      "properties": {
+        "context": {
+          "description": "The context or namespace. Contains a URL which is under control of the issuing party and can be used as a globally unique identifier for that issuing party. Example: https://csaf.io",
+          "type": "string"
+        },
+        "issuingAuthority": {
+          "description": "Provides information about the authority of the issuing party to release the document, in particular, the party's constituency and responsibilities or other obligations.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the publisher. Examples: 'Google', 'Google Cloud Platform'.",
           "type": "string"
         }
       },
@@ -4775,6 +4892,46 @@
       },
       "type": "object"
     },
+    "Remediation": {
+      "description": "Specifies details on how to handle (and presumably, fix) a vulnerability.",
+      "id": "Remediation",
+      "properties": {
+        "details": {
+          "description": "Contains a comprehensive human-readable discussion of the remediation.",
+          "type": "string"
+        },
+        "remediationTime": {
+          "description": "Contains the date from which the remediation is available.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "remediationType": {
+          "description": "The type of remediation that can be applied.",
+          "enum": [
+            "REMEDIATION_TYPE_UNSPECIFIED",
+            "MITIGATION",
+            "NO_FIX_PLANNED",
+            "NONE_AVAILABLE",
+            "VENDOR_FIX",
+            "WORKAROUND"
+          ],
+          "enumDescriptions": [
+            "No remediation type specified.",
+            "A MITIGATION is available.",
+            "No fix is planned.",
+            "Not available.",
+            "A vendor fix is available.",
+            "A workaround is available."
+          ],
+          "type": "string"
+        },
+        "remediationUri": {
+          "$ref": "RelatedUrl",
+          "description": "Contains the URL where to obtain the remediation."
+        }
+      },
+      "type": "object"
+    },
     "RepoId": {
       "description": "A unique identifier for a Cloud Repo.",
       "id": "RepoId",
@@ -4969,6 +5126,31 @@
       },
       "type": "object"
     },
+    "Threat": {
+      "description": "Contains the vulnerability kinetic information. This information can change as the vulnerability ages and new information becomes available.",
+      "id": "Threat",
+      "properties": {
+        "details": {
+          "description": "Represents a thorough human-readable discussion of the threat.",
+          "type": "string"
+        },
+        "threatType": {
+          "description": "The type of threat.",
+          "enum": [
+            "THREAT_TYPE_UNSPECIFIED",
+            "IMPACT",
+            "EXPLOIT_STATUS"
+          ],
+          "enumDescriptions": [
+            "No threat type specified.",
+            "IMPACT",
+            "EXPLOIT_STATUS"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TimeSpan": {
       "description": "Start and end times for a build execution phase. Next ID: 3",
       "id": "TimeSpan",
@@ -5022,6 +5204,60 @@
         "revision": {
           "description": "The iteration of the package build from the above version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VexAssessment": {
+      "description": "VexAssessment provides all publisher provided Vex information that is related to this vulnerability.",
+      "id": "VexAssessment",
+      "properties": {
+        "cve": {
+          "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.",
+          "type": "string"
+        },
+        "noteName": {
+          "description": "The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.",
+          "type": "string"
+        },
+        "relatedUris": {
+          "description": "Holds a list of references associated with this vulnerability item and assessment.",
+          "items": {
+            "$ref": "RelatedUrl"
+          },
+          "type": "array"
+        },
+        "remediations": {
+          "description": "Specifies details on how to handle (and presumably, fix) a vulnerability.",
+          "items": {
+            "$ref": "Remediation"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Provides the state of this Vulnerability assessment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AFFECTED",
+            "NOT_AFFECTED",
+            "FIXED",
+            "UNDER_INVESTIGATION"
+          ],
+          "enumDescriptions": [
+            "No state is specified.",
+            "This product is known to be affected by this vulnerability.",
+            "This product is known to be not affected by this vulnerability.",
+            "This product contains a fix for this vulnerability.",
+            "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
+          ],
+          "type": "string"
+        },
+        "threats": {
+          "description": "Contains information about this vulnerability, this will change with time.",
+          "items": {
+            "$ref": "Threat"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5117,6 +5353,41 @@
             "$ref": "WindowsDetail"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityAssessmentNote": {
+      "description": "A single VulnerabilityAssessmentNote represents one particular product's vulnerability assessment for one CVE.",
+      "id": "VulnerabilityAssessmentNote",
+      "properties": {
+        "assessment": {
+          "$ref": "Assessment",
+          "description": "Represents a vulnerability assessment for the product."
+        },
+        "languageCode": {
+          "description": "Identifies the language used by this document, corresponding to IETF BCP 47 / RFC 5646.",
+          "type": "string"
+        },
+        "longDescription": {
+          "description": "A detailed description of this Vex.",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "Product",
+          "description": "The product affected by this vex."
+        },
+        "publisher": {
+          "$ref": "Publisher",
+          "description": "Publisher details of this Note."
+        },
+        "shortDescription": {
+          "description": "A one sentence description of this Vex.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the note. E.g. `Vex-Debian-11.4`",
+          "type": "string"
         }
       },
       "type": "object"
