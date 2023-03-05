@@ -800,6 +800,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     version?: Schema$Version;
   }
+  export interface Schema$Maintainer {
+    kind?: string | null;
+    name?: string | null;
+  }
   export interface Schema$Material {
     digest?: {[key: string]: string} | null;
     uri?: string | null;
@@ -965,6 +969,10 @@ export namespace ondemandscanning_v1beta1 {
      * HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.
      */
     hashDigest?: string | null;
+    /**
+     * The maintainer of the package.
+     */
+    maintainer?: Schema$Maintainer;
     /**
      * The OS affected by a vulnerability Used to generate the cpe_uri for OS packages
      */

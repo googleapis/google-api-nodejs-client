@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20230213",
+  "revision": "20230227",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1473,6 +1473,18 @@
       },
       "type": "object"
     },
+    "Maintainer": {
+      "id": "Maintainer",
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Material": {
       "id": "Material",
       "properties": {
@@ -1702,6 +1714,10 @@
         "hashDigest": {
           "description": "HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.",
           "type": "string"
+        },
+        "maintainer": {
+          "$ref": "Maintainer",
+          "description": "The maintainer of the package."
         },
         "os": {
           "description": "The OS affected by a vulnerability Used to generate the cpe_uri for OS packages",
