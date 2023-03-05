@@ -528,6 +528,10 @@ export namespace firestore_v1 {
      */
     concurrencyMode?: string | null;
     /**
+     * Output only. The timestamp at which this database was created.
+     */
+    createTime?: string | null;
+    /**
      * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -547,6 +551,14 @@ export namespace firestore_v1 {
      * The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
      */
     type?: string | null;
+    /**
+     * Output only. The system-generated UUID4 for this Database.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The timestamp at which this database was most recently updated. Note this only includes updates to the database resource and not data contained by the database.
+     */
+    updateTime?: string | null;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.ExportDocuments.
@@ -1631,11 +1643,14 @@ export namespace firestore_v1 {
      *       // {
      *       //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *       //   "concurrencyMode": "my_concurrencyMode",
+     *       //   "createTime": "my_createTime",
      *       //   "etag": "my_etag",
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
-     *       //   "type": "my_type"
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -2089,11 +2104,14 @@ export namespace firestore_v1 {
      *   // {
      *   //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *   //   "concurrencyMode": "my_concurrencyMode",
+     *   //   "createTime": "my_createTime",
      *   //   "etag": "my_etag",
      *   //   "keyPrefix": "my_keyPrefix",
      *   //   "locationId": "my_locationId",
      *   //   "name": "my_name",
-     *   //   "type": "my_type"
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2529,11 +2547,14 @@ export namespace firestore_v1 {
      *       // {
      *       //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *       //   "concurrencyMode": "my_concurrencyMode",
+     *       //   "createTime": "my_createTime",
      *       //   "etag": "my_etag",
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
-     *       //   "type": "my_type"
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -5358,7 +5379,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Listens to changes.
+     * Listens to changes. This method is only available via the gRPC API (not REST).
      * @example
      * ```js
      * // Before running the sample:
@@ -6249,7 +6270,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Streams batches of document updates and deletes, in order.
+     * Streams batches of document updates and deletes, in order. This method is only available via the gRPC API (not REST).
      * @example
      * ```js
      * // Before running the sample:

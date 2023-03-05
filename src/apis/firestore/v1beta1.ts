@@ -3152,7 +3152,7 @@ export namespace firestore_v1beta1 {
     }
 
     /**
-     * Listens to changes.
+     * Listens to changes. This method is only available via the gRPC API (not REST).
      * @example
      * ```js
      * // Before running the sample:
@@ -4043,7 +4043,7 @@ export namespace firestore_v1beta1 {
     }
 
     /**
-     * Streams batches of document updates and deletes, in order.
+     * Streams batches of document updates and deletes, in order. This method is only available via the gRPC API (not REST).
      * @example
      * ```js
      * // Before running the sample:
