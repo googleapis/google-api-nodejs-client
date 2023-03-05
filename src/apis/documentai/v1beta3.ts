@@ -3563,7 +3563,7 @@ export namespace documentai_v1beta3 {
      */
     name?: string | null;
     /**
-     * Describing the nested structure, or composition of an entity.
+     * Description the nested structure, or composition of an entity.
      */
     properties?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty[];
   }

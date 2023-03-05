@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20230202",
+  "revision": "20230218",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -3098,7 +3098,7 @@
           "type": "string"
         },
         "properties": {
-          "description": "Describing the nested structure, or composition of an entity.",
+          "description": "Description the nested structure, or composition of an entity.",
           "items": {
             "$ref": "GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty"
           },
@@ -3140,9 +3140,9 @@
           ],
           "enumDescriptions": [
             "Unspecified occurrence type.",
-            "There will be zero or one instance of this entity type.",
+            "There will be zero or one instance of this entity type. The same entity instance may be mentioned multiple times.",
             "The entity type will appear zero or multiple times.",
-            "The entity type will only appear exactly once.",
+            "The entity type will only appear exactly once. The same entity instance may be mentioned multiple times.",
             "The entity type will appear once or more times."
           ],
           "type": "string"
