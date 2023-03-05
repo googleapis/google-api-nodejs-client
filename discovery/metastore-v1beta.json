@@ -1579,7 +1579,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230228",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2761,6 +2761,38 @@
       },
       "type": "object"
     },
+    "ScalingConfig": {
+      "description": "Represents the scaling configuration of a metastore service.",
+      "id": "ScalingConfig",
+      "properties": {
+        "instanceSize": {
+          "description": "An enum of readable instance sizes, with each instance size mapping to a float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))",
+          "enum": [
+            "INSTANCE_SIZE_UNSPECIFIED",
+            "EXTRA_SMALL",
+            "SMALL",
+            "MEDIUM",
+            "LARGE",
+            "EXTRA_LARGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified instance size",
+            "Extra small instance size, maps to a scaling factor of 0.1.",
+            "Small instance size, maps to a scaling factor of 0.5.",
+            "Medium instance size, maps to a scaling factor of 1.0.",
+            "Large instance size, maps to a scaling factor of 3.0.",
+            "Extra large instance size, maps to a scaling factor of 6.0."
+          ],
+          "type": "string"
+        },
+        "scalingFactor": {
+          "description": "Scaling factor, increments of 0.1 for values less than 1.0, and increments of 1.0 for values greater than 1.0.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Secret": {
       "description": "A securely stored value.",
       "id": "Secret",
@@ -2864,6 +2896,10 @@
             "The STABLE release channel contains features that are considered stable and have been validated for production use."
           ],
           "type": "string"
+        },
+        "scalingConfig": {
+          "$ref": "ScalingConfig",
+          "description": "Scaling configuration of the metastore service."
         },
         "state": {
           "description": "Output only. The current state of the metastore service.",
