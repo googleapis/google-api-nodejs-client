@@ -27,7 +27,7 @@
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm install && npm link ../ && pwd && npm test",
     "lint": "gts check",
-    "precompile": "rimraf build",
+    "precompile": "rimraf build; cd samples; npm link ../; npm i",
     "compile": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -p tsconfig.json",
     "prebuild-test": "rimraf build",
     "build-test": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -p tsconfig.test.json",
