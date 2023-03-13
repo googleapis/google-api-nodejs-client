@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import * as fs from 'fs';
+import {mkdir} from 'fs/promises';
 import {Schema, Schemas} from 'googleapis-common';
-import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import * as util from 'util';
@@ -272,7 +272,7 @@ export class Generator {
     this.logResult(apiDiscoveryUrl, 'Generating APIs...');
     const apiPath = path.join(srcPath, 'apis', schema.name);
     const exportFilename = path.join(apiPath, schema.version + '.ts');
-    await mkdirp(path.dirname(exportFilename));
+    await mkdir(path.dirname(exportFilename), {recursive: true});
     // populate the `method.fragment` property with samples
     addFragments(schema);
     // generate the API (ex: src/apis/youtube/v3.ts)
