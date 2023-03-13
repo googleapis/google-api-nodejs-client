@@ -24,7 +24,7 @@ import {
 import * as nunjucks from 'nunjucks';
 import * as filters from './filters';
 import * as fs from 'fs';
-import {mkdir} from 'fs/promises';
+const {mkdir} = require('fs').promises;
 import * as util from 'util';
 
 const writeFile = util.promisify(fs.writeFile);

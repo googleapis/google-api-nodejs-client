@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import * as fs from 'fs';
-import {mkdir} from 'fs/promises';
+const {mkdir} = require('fs').promises;
 import {Schema, Schemas} from 'googleapis-common';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';

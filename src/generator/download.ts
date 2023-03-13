@@ -15,7 +15,7 @@
 import * as minimist from 'yargs-parser';
 import * as path from 'path';
 import * as fs from 'fs';
-import {mkdir} from 'fs/promises';
+const {mkdir} = require('fs').promises;
 import Q from 'p-queue';
 import {request, Headers} from 'gaxios';
 import * as gapi from 'googleapis-common';
