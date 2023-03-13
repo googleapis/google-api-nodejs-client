@@ -24,6 +24,7 @@ import {
 import * as nunjucks from 'nunjucks';
 import * as filters from './filters';
 import * as fs from 'fs';
+import {mkdir} from 'fs/promises';
 import * as util from 'util';
 
 const writeFile = util.promisify(fs.writeFile);
@@ -72,7 +73,7 @@ export async function addFragments(schema: Schema) {
  */
 export async function generateSamples(apiPath: string, schema: Schema) {
   const samplesPath = path.join(apiPath, 'samples', schema.version);
-  await mkdirp(samplesPath);
+  await mkdir(samplesPath, {recursive: true});
   const methods = getAllMethods(schema);
   for (const method of methods) {
     const sampleData = getSample(schema, method);
