@@ -12,7 +12,6 @@
 // limitations under the License.
 
 import * as path from 'path';
-import * as mkdirp from 'mkdirp';
 import * as prettier from 'prettier';
 import {
   Schema,
