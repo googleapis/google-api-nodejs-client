@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v2.0.0...paymentsresellersubscription-v2.0.1) (2023-03-13)
+
+
+### Bug Fixes
+
+* **paymentsresellersubscription:** update the API ([40e0d28](https://github.com/googleapis/google-api-nodejs-client/commit/40e0d28fd8726899439af31099e684c57871fbb3))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v1.0.1...paymentsresellersubscription-v2.0.0) (2023-02-24)
 
 

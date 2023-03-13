@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v12.0.0...chat-v12.1.0) (2023-03-13)
+
+
+### Features
+
+* **chat:** update the API ([736eac5](https://github.com/googleapis/google-api-nodejs-client/commit/736eac5d48549ddb5da6dfd17e78d58fcbed76d0))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v11.0.0...chat-v12.0.0) (2023-02-24)
 
 
