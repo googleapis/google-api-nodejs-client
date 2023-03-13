@@ -13,8 +13,7 @@
   ],
   "scripts": {
     "prepare": "cd typescript && tsc && cd ..",
-    "test": "mocha",
-    "publish": "echo 'samples dir; do not publish'"
+    "test": "mocha"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.0.0",
