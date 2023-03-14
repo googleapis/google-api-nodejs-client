@@ -4,6 +4,7 @@
     "artifactregistry:v1beta2",
     "monitoring:v1",
     "identitytoolkit:v1",
-    "integrations:v1"
+    "integrations:v1",
+    "baremetalsolution:v2"
   ]
 }
