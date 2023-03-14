@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v3.1.0...policysimulator-v4.0.0) (2023-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **policysimulator:** This release has breaking changes.
+
+### Features
+
+* **policysimulator:** update the API ([dd29268](https://github.com/googleapis/google-api-nodejs-client/commit/dd292683e0cf42bd939d12186c2282ad90c2ab1f))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v3.0.0...policysimulator-v3.1.0) (2022-12-22)
 
 

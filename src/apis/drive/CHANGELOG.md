@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v5.0.0...drive-v5.0.1) (2023-03-13)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([f75cf5d](https://github.com/googleapis/google-api-nodejs-client/commit/f75cf5dbccbfa4b73cc4e53a5062ff28d1ed7c65))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v4.0.2...drive-v5.0.0) (2023-02-24)
 
 
