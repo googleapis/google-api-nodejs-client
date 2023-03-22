@@ -383,6 +383,10 @@ export namespace cloudkms_v1 {
      */
     destroyTime?: string | null;
     /**
+     * Output only. The root cause of the most recent external destruction failure. Only present if state is EXTERNAL_DESTRUCTION_FAILED.
+     */
+    externalDestructionFailureReason?: string | null;
+    /**
      * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels.
      */
     externalProtectionLevelOptions?: Schema$ExternalProtectionLevelOptions;
@@ -390,6 +394,10 @@ export namespace cloudkms_v1 {
      * Output only. The time this CryptoKeyVersion's key material was generated.
      */
     generateTime?: string | null;
+    /**
+     * Output only. The root cause of the most recent generation failure. Only present if state is GENERATION_FAILED.
+     */
+    generationFailureReason?: string | null;
     /**
      * Output only. The root cause of the most recent import failure. Only present if state is IMPORT_FAILED.
      */
@@ -496,6 +504,19 @@ export namespace cloudkms_v1 {
     sha512?: string | null;
   }
   /**
+   * An EkmConfig is a singleton resource that represents configuration parameters that apply to all CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC in a given project and location.
+   */
+  export interface Schema$EkmConfig {
+    /**
+     * Optional. Resource name of the default EkmConnection. Setting this field to the empty string removes the default.
+     */
+    defaultEkmConnection?: string | null;
+    /**
+     * Output only. The resource name for the EkmConfig in the format `projects/x/locations/x/ekmConfig`.
+     */
+    name?: string | null;
+  }
+  /**
    * An EkmConnection represents an individual EKM connection. It can be used for creating CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC, as well as performing cryptographic operations using keys created within the EkmConnection.
    */
   export interface Schema$EkmConnection {
@@ -504,9 +525,17 @@ export namespace cloudkms_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Identifies the EKM Crypto Space that this EkmConnection maps to. Note: This field is required if KeyManagementMode is CLOUD_KMS.
+     */
+    cryptoSpacePath?: string | null;
+    /**
      * Optional. Etag of the currently stored EkmConnection.
      */
     etag?: string | null;
+    /**
+     * Optional. Describes who can perform control plane operations on the EKM. If unset, this defaults to MANUAL.
+     */
+    keyManagementMode?: string | null;
     /**
      * Output only. The resource name for the EkmConnection in the format `projects/x/locations/x/ekmConnections/x`.
      */
@@ -1377,6 +1406,136 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Returns the EkmConfig singleton resource for a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.getEkmConfig({
+     *     // Required. The name of the EkmConfig to get.
+     *     name: 'projects/my-project/locations/my-location/ekmConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultEkmConnection": "my_defaultEkmConnection",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEkmConfig(
+      params: Params$Resource$Projects$Locations$Getekmconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEkmConfig(
+      params?: Params$Resource$Projects$Locations$Getekmconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EkmConfig>;
+    getEkmConfig(
+      params: Params$Resource$Projects$Locations$Getekmconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEkmConfig(
+      params: Params$Resource$Projects$Locations$Getekmconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$EkmConfig>,
+      callback: BodyResponseCallback<Schema$EkmConfig>
+    ): void;
+    getEkmConfig(
+      params: Params$Resource$Projects$Locations$Getekmconfig,
+      callback: BodyResponseCallback<Schema$EkmConfig>
+    ): void;
+    getEkmConfig(callback: BodyResponseCallback<Schema$EkmConfig>): void;
+    getEkmConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getekmconfig
+        | BodyResponseCallback<Schema$EkmConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EkmConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EkmConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EkmConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getekmconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getekmconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EkmConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EkmConfig>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      * @example
      * ```js
@@ -1519,6 +1678,147 @@ export namespace cloudkms_v1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the EkmConfig singleton resource for a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.updateEkmConfig({
+     *     // Output only. The resource name for the EkmConfig in the format `projects/x/locations/x/ekmConfig`.
+     *     name: 'projects/my-project/locations/my-location/ekmConfig',
+     *     // Required. List of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "defaultEkmConnection": "my_defaultEkmConnection",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "defaultEkmConnection": "my_defaultEkmConnection",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateEkmConfig(
+      params: Params$Resource$Projects$Locations$Updateekmconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateEkmConfig(
+      params?: Params$Resource$Projects$Locations$Updateekmconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EkmConfig>;
+    updateEkmConfig(
+      params: Params$Resource$Projects$Locations$Updateekmconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateEkmConfig(
+      params: Params$Resource$Projects$Locations$Updateekmconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$EkmConfig>,
+      callback: BodyResponseCallback<Schema$EkmConfig>
+    ): void;
+    updateEkmConfig(
+      params: Params$Resource$Projects$Locations$Updateekmconfig,
+      callback: BodyResponseCallback<Schema$EkmConfig>
+    ): void;
+    updateEkmConfig(callback: BodyResponseCallback<Schema$EkmConfig>): void;
+    updateEkmConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updateekmconfig
+        | BodyResponseCallback<Schema$EkmConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EkmConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EkmConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EkmConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updateekmconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updateekmconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EkmConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EkmConfig>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Generaterandombytes
@@ -1540,6 +1840,13 @@ export namespace cloudkms_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Getekmconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the EkmConfig to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
@@ -1558,6 +1865,22 @@ export namespace cloudkms_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updateekmconfig
+    extends StandardParameters {
+    /**
+     * Output only. The resource name for the EkmConfig in the format `projects/x/locations/x/ekmConfig`.
+     */
+    name?: string;
+    /**
+     * Required. List of fields to be updated in this request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EkmConfig;
   }
 
   export class Resource$Projects$Locations$Ekmconfig {
@@ -2080,7 +2403,9 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoSpacePath": "my_cryptoSpacePath",
      *       //   "etag": "my_etag",
+     *       //   "keyManagementMode": "my_keyManagementMode",
      *       //   "name": "my_name",
      *       //   "serviceResolvers": []
      *       // }
@@ -2091,7 +2416,9 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoSpacePath": "my_cryptoSpacePath",
      *   //   "etag": "my_etag",
+     *   //   "keyManagementMode": "my_keyManagementMode",
      *   //   "name": "my_name",
      *   //   "serviceResolvers": []
      *   // }
@@ -2226,7 +2553,9 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoSpacePath": "my_cryptoSpacePath",
      *   //   "etag": "my_etag",
+     *   //   "keyManagementMode": "my_keyManagementMode",
      *   //   "name": "my_name",
      *   //   "serviceResolvers": []
      *   // }
@@ -2648,7 +2977,9 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoSpacePath": "my_cryptoSpacePath",
      *       //   "etag": "my_etag",
+     *       //   "keyManagementMode": "my_keyManagementMode",
      *       //   "name": "my_name",
      *       //   "serviceResolvers": []
      *       // }
@@ -2659,7 +2990,9 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoSpacePath": "my_cryptoSpacePath",
      *   //   "etag": "my_etag",
+     *   //   "keyManagementMode": "my_keyManagementMode",
      *   //   "name": "my_name",
      *   //   "serviceResolvers": []
      *   // }
@@ -6116,8 +6449,10 @@ export namespace cloudkms_v1 {
      *           //   "createTime": "my_createTime",
      *           //   "destroyEventTime": "my_destroyEventTime",
      *           //   "destroyTime": "my_destroyTime",
+     *           //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *           //   "externalProtectionLevelOptions": {},
      *           //   "generateTime": "my_generateTime",
+     *           //   "generationFailureReason": "my_generationFailureReason",
      *           //   "importFailureReason": "my_importFailureReason",
      *           //   "importJob": "my_importJob",
      *           //   "importTime": "my_importTime",
@@ -6138,8 +6473,10 @@ export namespace cloudkms_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyEventTime": "my_destroyEventTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
+     *   //   "generationFailureReason": "my_generationFailureReason",
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
@@ -6293,8 +6630,10 @@ export namespace cloudkms_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyEventTime": "my_destroyEventTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
+     *   //   "generationFailureReason": "my_generationFailureReason",
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
@@ -6442,8 +6781,10 @@ export namespace cloudkms_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyEventTime": "my_destroyEventTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
+     *   //   "generationFailureReason": "my_generationFailureReason",
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
@@ -6741,8 +7082,10 @@ export namespace cloudkms_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyEventTime": "my_destroyEventTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
+     *   //   "generationFailureReason": "my_generationFailureReason",
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
@@ -7353,8 +7696,10 @@ export namespace cloudkms_v1 {
      *           //   "createTime": "my_createTime",
      *           //   "destroyEventTime": "my_destroyEventTime",
      *           //   "destroyTime": "my_destroyTime",
+     *           //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *           //   "externalProtectionLevelOptions": {},
      *           //   "generateTime": "my_generateTime",
+     *           //   "generationFailureReason": "my_generationFailureReason",
      *           //   "importFailureReason": "my_importFailureReason",
      *           //   "importJob": "my_importJob",
      *           //   "importTime": "my_importTime",
@@ -7375,8 +7720,10 @@ export namespace cloudkms_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyEventTime": "my_destroyEventTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
+     *   //   "generationFailureReason": "my_generationFailureReason",
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",
@@ -7527,8 +7874,10 @@ export namespace cloudkms_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destroyEventTime": "my_destroyEventTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "externalDestructionFailureReason": "my_externalDestructionFailureReason",
      *   //   "externalProtectionLevelOptions": {},
      *   //   "generateTime": "my_generateTime",
+     *   //   "generationFailureReason": "my_generationFailureReason",
      *   //   "importFailureReason": "my_importFailureReason",
      *   //   "importJob": "my_importJob",
      *   //   "importTime": "my_importTime",

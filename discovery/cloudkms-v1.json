@@ -167,6 +167,32 @@
                 "https://www.googleapis.com/auth/cloudkms"
               ]
             },
+            "getEkmConfig": {
+              "description": "Returns the EkmConfig singleton resource for a given project and location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConfig",
+              "httpMethod": "GET",
+              "id": "cloudkms.projects.locations.getEkmConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the EkmConfig to get.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/ekmConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "EkmConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1/projects/{projectsId}/locations",
@@ -203,6 +229,41 @@
               "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms"
+              ]
+            },
+            "updateEkmConfig": {
+              "description": "Updates the EkmConfig singleton resource for a given project and location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConfig",
+              "httpMethod": "PATCH",
+              "id": "cloudkms.projects.locations.updateEkmConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for the EkmConfig in the format `projects/*/locations/*/ekmConfig`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/ekmConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields to be updated in this request.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "EkmConfig"
+              },
+              "response": {
+                "$ref": "EkmConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1676,7 +1737,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230310",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2132,6 +2193,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "externalDestructionFailureReason": {
+          "description": "Output only. The root cause of the most recent external destruction failure. Only present if state is EXTERNAL_DESTRUCTION_FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
         "externalProtectionLevelOptions": {
           "$ref": "ExternalProtectionLevelOptions",
           "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels."
@@ -2139,6 +2205,11 @@
         "generateTime": {
           "description": "Output only. The time this CryptoKeyVersion's key material was generated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generationFailureReason": {
+          "description": "Output only. The root cause of the most recent generation failure. Only present if state is GENERATION_FAILED.",
           "readOnly": true,
           "type": "string"
         },
@@ -2197,7 +2268,10 @@
             "DESTROYED",
             "DESTROY_SCHEDULED",
             "PENDING_IMPORT",
-            "IMPORT_FAILED"
+            "IMPORT_FAILED",
+            "GENERATION_FAILED",
+            "PENDING_EXTERNAL_DESTRUCTION",
+            "EXTERNAL_DESTRUCTION_FAILED"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2207,7 +2281,10 @@
             "This version is destroyed, and the key material is no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
             "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
             "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
-            "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason."
+            "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason.",
+            "This version was not generated successfully. It may not be used, enabled, disabled, or destroyed. Additional details can be found in CryptoKeyVersion.generation_failure_reason.",
+            "This version was destroyed, and it may not be used or enabled again. Cloud KMS is waiting for the corresponding key material residing in an external key manager to be destroyed.",
+            "This version was destroyed, and it may not be used or enabled again. However, Cloud KMS could not confirm that the corresponding key material residing in an external key manager was destroyed. Additional details can be found in CryptoKeyVersion.external_destruction_failure_reason."
           ],
           "type": "string"
         }
@@ -2399,6 +2476,22 @@
       },
       "type": "object"
     },
+    "EkmConfig": {
+      "description": "An EkmConfig is a singleton resource that represents configuration parameters that apply to all CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC in a given project and location.",
+      "id": "EkmConfig",
+      "properties": {
+        "defaultEkmConnection": {
+          "description": "Optional. Resource name of the default EkmConnection. Setting this field to the empty string removes the default.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name for the EkmConfig in the format `projects/*/locations/*/ekmConfig`.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EkmConnection": {
       "description": "An EkmConnection represents an individual EKM connection. It can be used for creating CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC, as well as performing cryptographic operations using keys created within the EkmConnection.",
       "id": "EkmConnection",
@@ -2409,8 +2502,26 @@
           "readOnly": true,
           "type": "string"
         },
+        "cryptoSpacePath": {
+          "description": "Optional. Identifies the EKM Crypto Space that this EkmConnection maps to. Note: This field is required if KeyManagementMode is CLOUD_KMS.",
+          "type": "string"
+        },
         "etag": {
           "description": "Optional. Etag of the currently stored EkmConnection.",
+          "type": "string"
+        },
+        "keyManagementMode": {
+          "description": "Optional. Describes who can perform control plane operations on the EKM. If unset, this defaults to MANUAL.",
+          "enum": [
+            "KEY_MANAGEMENT_MODE_UNSPECIFIED",
+            "MANUAL",
+            "CLOUD_KMS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "EKM-side key management operations on CryptoKeys created with this EkmConnection must be initiated from the EKM directly and cannot be performed from Cloud KMS. This means that: * When creating a CryptoKeyVersion associated with this EkmConnection, the caller must supply the key path of pre-existing external key material that will be linked to the CryptoKeyVersion. * Destruction of external key material cannot be requested via the Cloud KMS API and must be performed directly in the EKM. * Automatic rotation of key material is not supported.",
+            "All CryptoKeys created with this EkmConnection use EKM-side key management operations initiated from Cloud KMS. This means that: * When a CryptoKeyVersion associated with this EkmConnection is created, the EKM automatically generates new key material and a new key path. The caller cannot supply the key path of pre-existing external key material. * Destruction of external key material associated with this EkmConnection can be requested by calling DestroyCryptoKeyVersion. * Automatic rotation of key material is supported."
+          ],
           "type": "string"
         },
         "name": {
