@@ -724,6 +724,10 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$Enum {
     /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
+    /**
      * Enum value definitions.
      */
     enumvalue?: Schema$EnumValue[];
@@ -1999,6 +2003,10 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$Type {
     /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
+    /**
      * The list of fields.
      */
     fields?: Schema$Field[];
@@ -2201,7 +2209,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
