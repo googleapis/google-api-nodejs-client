@@ -777,7 +777,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: \"parameter_value\" HAS \\\"parameter1\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND event_execution_state=\\\"FAILED\\\"",
+                          "description": "Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: \"parameter_type\" HAS \\\"string\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND workflow_name=\\\"testWorkflow\\\"",
                           "location": "query",
                           "type": "string"
                         },
@@ -1690,6 +1690,31 @@
                 },
                 "integrations": {
                   "methods": {
+                    "delete": {
+                      "description": "Delete the selected integration and all versions inside",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "integrations.projects.locations.products.integrations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The location resource of the request.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "execute": {
                       "description": "Executes integrations synchronously by passing the trigger id in the request body. The request is not returned until the requested executions are either fulfilled or experienced an error. If the integration name is not specified (passing `-`), all of the associated integration under the given trigger_id will be executed. Otherwise only the specified integration for the given `trigger_id` is executed. This is helpful for execution the integration from UI.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}:execute",
@@ -1859,7 +1884,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: \"parameter_value\" HAS \\\"parameter1\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND event_execution_state=\\\"FAILED\\\"",
+                              "description": "Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: \"parameter_type\" HAS \\\"string\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND workflow_name=\\\"testWorkflow\\\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -3177,7 +3202,7 @@
       }
     }
   },
-  "revision": "20230124",
+  "revision": "20230308",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -3649,6 +3674,32 @@
         },
         "title": {
           "description": "Title of the issue to be created. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmEventbusProtoCloudKmsConfig": {
+      "id": "EnterpriseCrmEventbusProtoCloudKmsConfig",
+      "properties": {
+        "gcpProjectId": {
+          "description": "Optional. The id of GCP project where the KMS key is stored. If not provided, assume the key is stored in the same GCP project defined in Client (tag 14).",
+          "type": "string"
+        },
+        "keyName": {
+          "description": "A Cloud KMS key is a named object containing one or more key versions, along with metadata for the key. A key exists on exactly one key ring tied to a specific location.",
+          "type": "string"
+        },
+        "keyRingName": {
+          "description": "A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys. A key ring's name does not need to be unique across a Google Cloud project, but must be unique within a given location.",
+          "type": "string"
+        },
+        "keyVersionName": {
+          "description": "Optional. Each version of a key contains key material used for encryption or signing. A key's version is represented by an integer, starting at 1. To decrypt data or verify a signature, you must use the same key version that was used to encrypt or sign the data.",
+          "type": "string"
+        },
+        "locationName": {
+          "description": "Location name of the key ring, e.g. \"us-west1\".",
           "type": "string"
         }
       },
@@ -5499,9 +5550,22 @@
         "audit": {
           "$ref": "EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit"
         },
+        "clientId": {
+          "description": "The event data user sends as request.",
+          "type": "string"
+        },
+        "cloudKmsConfig": {
+          "$ref": "EnterpriseCrmEventbusProtoCloudKmsConfig",
+          "description": "KMS info, used by cmek/gmek integration"
+        },
         "createdTimestamp": {
           "description": "Auto-generated.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "encryptedSuspensionResolutionInfo": {
+          "description": "Encrypted SuspensionResolutionInfo",
+          "format": "byte",
           "type": "string"
         },
         "eventExecutionInfoId": {
@@ -5559,6 +5623,11 @@
         },
         "workflowName": {
           "description": "Required. The name of the originating workflow.",
+          "type": "string"
+        },
+        "wrappedDek": {
+          "description": "Wrapped dek",
+          "format": "byte",
           "type": "string"
         }
       },
@@ -5754,7 +5823,8 @@
             "CONNECTOR",
             "HIDDEN",
             "CLOUD_SYSTEMS",
-            "CUSTOM_TASK_TEMPLATE"
+            "CUSTOM_TASK_TEMPLATE",
+            "TASK_RECOMMENDATIONS"
           ],
           "enumDescriptions": [
             "",
@@ -5765,7 +5835,8 @@
             "",
             "Internal IP tasks that should not be available in the UI.",
             "Tasks that are relevant to cloud systems teams and typically",
-            "include connecting to Vector salesforce, CRM Hub Spanner etc. Task entities that derive from a custom task template."
+            "include connecting to Vector salesforce, CRM Hub Spanner etc. Task entities that derive from a custom task template.",
+            "Category to show task recommendations"
           ],
           "type": "string"
         },
@@ -7019,6 +7090,23 @@
           "description": "If this config contains a TypedTask, allow validation to succeed if an input is read from the output of another TypedTask whose output type is declared as a superclass of the requested input type. For instance, if the previous task declares an output of type Message, any task with this flag enabled will pass validation when attempting to read any proto Message type from the resultant Event parameter.",
           "type": "boolean"
         },
+        "errorCatcherId": {
+          "description": "Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
+        "externalTaskType": {
+          "enum": [
+            "EXTERNAL_TASK_TYPE_UNSPECIFIED",
+            "NORMAL_TASK",
+            "ERROR_TASK"
+          ],
+          "enumDescriptions": [
+            "Default value. External task type is not specified",
+            "Tasks belongs to the normal task flows",
+            "Task belongs to the error catch task flows"
+          ],
+          "type": "string"
+        },
         "failurePolicy": {
           "$ref": "EnterpriseCrmEventbusProtoFailurePolicy",
           "description": "Optional. Determines the number of times the task will be retried on failure and with what retry strategy. This is applicable for asynchronous calls to Eventbus alone (Post To Queue, Schedule etc.)."
@@ -7200,7 +7288,7 @@
       "type": "object"
     },
     "EnterpriseCrmFrontendsEventbusProtoTriggerConfig": {
-      "description": "Configuration detail of a trigger. Next available id: 17",
+      "description": "Configuration detail of a trigger. Next available id: 19",
       "id": "EnterpriseCrmFrontendsEventbusProtoTriggerConfig",
       "properties": {
         "alertConfig": {
@@ -7223,6 +7311,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "errorCatcherId": {
+          "description": "Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
         },
         "label": {
           "description": "The user created label for a particular trigger.",
@@ -7816,6 +7908,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "sslConfig": {
+          "$ref": "GoogleCloudConnectorsV1SslConfig",
+          "description": "Optional. Ssl config of a connection"
+        },
         "status": {
           "$ref": "GoogleCloudConnectorsV1ConnectionStatus",
           "description": "Output only. Current status of the connection.",
@@ -7851,7 +7947,8 @@
             "INACTIVE",
             "DELETING",
             "UPDATING",
-            "ERROR"
+            "ERROR",
+            "AUTHORIZATION_REQUIRED"
           ],
           "enumDescriptions": [
             "Connection does not have a state yet.",
@@ -7860,7 +7957,8 @@
             "Connection is stopped.",
             "Connection is being deleted.",
             "Connection is being updated.",
-            "Connection is not running due to an error."
+            "Connection is not running due to an error.",
+            "Connection is not running due to an auth error for the Oauth2 Auth Code based connector."
           ],
           "type": "string"
         },
@@ -7947,6 +8045,92 @@
         "secretVersion": {
           "description": "The resource name of the secret version in the format, format as: `projects/*/secrets/*/versions/*`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1SslConfig": {
+      "description": "SSL Configuration of a connection",
+      "id": "GoogleCloudConnectorsV1SslConfig",
+      "properties": {
+        "additionalVariables": {
+          "description": "Additional SSL related field values",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "type": "array"
+        },
+        "clientCertType": {
+          "description": "Type of Client Cert (PEM/JKS/.. etc.)",
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ],
+          "enumDescriptions": [
+            "Cert type unspecified.",
+            "Privacy Enhanced Mail (PEM) Type"
+          ],
+          "type": "string"
+        },
+        "clientCertificate": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Client Certificate"
+        },
+        "clientPrivateKey": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Client Private Key"
+        },
+        "clientPrivateKeyPass": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Secret containing the passphrase protecting the Client Private Key"
+        },
+        "privateServerCertificate": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Private Server Certificate. Needs to be specified if trust model is `PRIVATE`."
+        },
+        "serverCertType": {
+          "description": "Type of Server Cert (PEM/JKS/.. etc.)",
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ],
+          "enumDescriptions": [
+            "Cert type unspecified.",
+            "Privacy Enhanced Mail (PEM) Type"
+          ],
+          "type": "string"
+        },
+        "trustModel": {
+          "description": "Trust Model of the SSL connection",
+          "enum": [
+            "PUBLIC",
+            "PRIVATE",
+            "INSECURE"
+          ],
+          "enumDescriptions": [
+            "Public Trust Model. Takes the Default Java trust store.",
+            "Private Trust Model. Takes custom/private trust store.",
+            "Insecure Trust Model. Accept all certificates."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Controls the ssl type for the given connector version.",
+          "enum": [
+            "SSL_TYPE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "No SSL configuration required.",
+            "TLS Handshake",
+            "mutual TLS (MTLS) Handshake"
+          ],
+          "type": "string"
+        },
+        "useSsl": {
+          "description": "Bool for enabling SSL",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8306,6 +8490,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaCoordinate": {
+      "description": "Configuration detail of coordinate, it used for UI",
+      "id": "GoogleCloudIntegrationsV1alphaCoordinate",
+      "properties": {
+        "x": {
+          "description": "Required. X axis of the coordinate",
+          "format": "int32",
+          "type": "integer"
+        },
+        "y": {
+          "description": "Required. Y axis of the coordinate",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest": {
       "description": "Request for CreateAppsScriptProject rpc call.",
       "id": "GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest",
@@ -8437,6 +8638,40 @@
           "description": "All regions where Connector Platform is provisioned.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaErrorCatcherConfig": {
+      "description": "Configuration detail of a error catch task",
+      "id": "GoogleCloudIntegrationsV1alphaErrorCatcherConfig",
+      "properties": {
+        "description": {
+          "description": "Optional. User-provided description intended to give more business context about the error catcher config.",
+          "type": "string"
+        },
+        "errorCatcherId": {
+          "description": "Required. An error catcher id is string representation for the error catcher config. Within a workflow, error_catcher_id uniquely identifies an error catcher config among all error catcher configs for the workflow",
+          "type": "string"
+        },
+        "errorCatcherNumber": {
+          "description": "Required. A number to uniquely identify each error catcher config within the workflow on UI.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Optional. The user created label for a particular error catcher. Optional.",
+          "type": "string"
+        },
+        "position": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
+          "description": "Optional. Informs the front-end application where to draw this error catcher config on the UI."
+        },
+        "startErrorTasks": {
+          "description": "Required. The set of start tasks that are to be executed for the error catch flow",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaNextTask"
           },
           "type": "array"
         }
@@ -9017,6 +9252,13 @@
           "description": "Optional. The templateversion description. Permitted format is alphanumeric with underscores and no spaces.",
           "type": "string"
         },
+        "errorCatcherConfigs": {
+          "description": "Optional. Error Catch Task configuration for the IntegrationTemplateVersion. It's optional.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaErrorCatcherConfig"
+          },
+          "type": "array"
+        },
         "lastModifierEmail": {
           "description": "Optional. The last modifier's email address. Generated based on the End User Credentials/LOAS role of the user making the call.",
           "type": "string"
@@ -9115,6 +9357,13 @@
           "description": "Optional. The integration description.",
           "type": "string"
         },
+        "errorCatcherConfigs": {
+          "description": "Optional. Error Catch Task configuration for the integration. It's optional.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaErrorCatcherConfig"
+          },
+          "type": "array"
+        },
         "integrationParameters": {
           "description": "Optional. Parameters that are expected to be passed to the integration when an event is triggered. This consists of all the parameters that are expected in the integration execution. This gives the user the ability to provide default values, add information like PII and also provide data types of each parameter.",
           "items": {
@@ -9159,6 +9408,10 @@
         },
         "parentTemplateId": {
           "description": "Optional. The id of the template which was used to create this integration_version.",
+          "type": "string"
+        },
+        "runAsServiceAccount": {
+          "description": "Optional. The run-as service account email, if set and auth config is not configured, that will be used to generate auth token to be used in Connector task, Rest caller task and Cloud function task.",
           "type": "string"
         },
         "snapshotNumber": {
@@ -10289,6 +10542,24 @@
           "description": "Optional. User-provided label that is attached to this TaskConfig in the UI.",
           "type": "string"
         },
+        "errorCatcherId": {
+          "description": "Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
+        "externalTaskType": {
+          "description": "Optional. External task type of the task",
+          "enum": [
+            "EXTERNAL_TASK_TYPE_UNSPECIFIED",
+            "NORMAL_TASK",
+            "ERROR_TASK"
+          ],
+          "enumDescriptions": [
+            "Default value. External task type is not specified",
+            "Tasks belongs to the normal task flows",
+            "Task belongs to the error catch task flows"
+          ],
+          "type": "string"
+        },
         "failurePolicy": {
           "$ref": "GoogleCloudIntegrationsV1alphaFailurePolicy",
           "description": "Optional. Determines the number of times the task will be retried on failure and with what retry strategy. This is applicable for asynchronous calls to Eventbus alone (Post To Queue, Schedule etc.)."
@@ -10338,6 +10609,10 @@
           },
           "description": "Optional. The customized parameters the user can pass to this task.",
           "type": "object"
+        },
+        "position": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
+          "description": "Optional. Informs the front-end application where to draw this error catcher config on the UI."
         },
         "successPolicy": {
           "$ref": "GoogleCloudIntegrationsV1alphaSuccessPolicy",
@@ -10449,6 +10724,10 @@
           "description": "Optional. User-provided description intended to give additional business context about the task.",
           "type": "string"
         },
+        "errorCatcherId": {
+          "description": "Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task",
+          "type": "string"
+        },
         "label": {
           "description": "Optional. The user created label for a particular trigger.",
           "type": "string"
@@ -10466,6 +10745,10 @@
             "Execute the first task that satisfies the associated condition."
           ],
           "type": "string"
+        },
+        "position": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
+          "description": "Optional. Informs the front-end application where to draw this error catcher config on the UI."
         },
         "properties": {
           "additionalProperties": {
