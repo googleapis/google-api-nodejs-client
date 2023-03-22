@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20221212",
+  "revision": "20230309",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -1717,6 +1717,10 @@
             "$ref": "ErrorSummary"
           },
           "type": "array"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "Cloud Logging configuration."
         },
         "name": {
           "description": "A globally unique ID assigned by the system.",
