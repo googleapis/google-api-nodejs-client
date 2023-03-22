@@ -300,6 +300,10 @@ export namespace kmsinventory_v1 {
      */
     destroyTime?: string | null;
     /**
+     * Output only. The root cause of the most recent external destruction failure. Only present if state is EXTERNAL_DESTRUCTION_FAILED.
+     */
+    externalDestructionFailureReason?: string | null;
+    /**
      * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels.
      */
     externalProtectionLevelOptions?: Schema$GoogleCloudKmsV1ExternalProtectionLevelOptions;
@@ -307,6 +311,10 @@ export namespace kmsinventory_v1 {
      * Output only. The time this CryptoKeyVersion's key material was generated.
      */
     generateTime?: string | null;
+    /**
+     * Output only. The root cause of the most recent generation failure. Only present if state is GENERATION_FAILED.
+     */
+    generationFailureReason?: string | null;
     /**
      * Output only. The root cause of the most recent import failure. Only present if state is IMPORT_FAILED.
      */
