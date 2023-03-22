@@ -722,6 +722,19 @@ export namespace ondemandscanning_v1 {
      */
     _type?: string | null;
   }
+  /**
+   * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+   */
+  export interface Schema$Justification {
+    /**
+     * Additional details on why this justification was chosen.
+     */
+    details?: string | null;
+    /**
+     * The justification type for this vulnerability.
+     */
+    justificationType?: string | null;
+  }
   export interface Schema$Jwt {
     /**
      * The compact encoding of a JWS, which is always three base64 encoded strings joined by periods. For details, see: https://tools.ietf.org/html/rfc7515.html#section-3.1
@@ -958,6 +971,10 @@ export namespace ondemandscanning_v1 {
   }
   export interface Schema$PackageData {
     /**
+     * The architecture of the package.
+     */
+    architecture?: string | null;
+    /**
      * The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.
      */
     cpeUri?: string | null;
@@ -1131,6 +1148,23 @@ export namespace ondemandscanning_v1 {
      * Specific URL associated with the resource.
      */
     url?: string | null;
+  }
+  /**
+   * Specifies details on how to handle (and presumably, fix) a vulnerability.
+   */
+  export interface Schema$Remediation {
+    /**
+     * Contains a comprehensive human-readable discussion of the remediation.
+     */
+    details?: string | null;
+    /**
+     * The type of remediation that can be applied.
+     */
+    remediationType?: string | null;
+    /**
+     * Contains the URL where to obtain the remediation.
+     */
+    remediationUri?: Schema$RelatedUrl;
   }
   /**
    * A unique identifier for a Cloud Repo.
@@ -1392,6 +1426,39 @@ export namespace ondemandscanning_v1 {
     revision?: string | null;
   }
   /**
+   * VexAssessment provides all publisher provided Vex information that is related to this vulnerability.
+   */
+  export interface Schema$VexAssessment {
+    /**
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     */
+    cve?: string | null;
+    /**
+     * Contains information about the impact of this vulnerability, this will change with time.
+     */
+    impacts?: string[] | null;
+    /**
+     * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+     */
+    justification?: Schema$Justification;
+    /**
+     * The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.
+     */
+    noteName?: string | null;
+    /**
+     * Holds a list of references associated with this vulnerability item and assessment.
+     */
+    relatedUris?: Schema$RelatedUrl[];
+    /**
+     * Specifies details on how to handle (and presumably, fix) a vulnerability.
+     */
+    remediations?: Schema$Remediation[];
+    /**
+     * Provides the state of this Vulnerability assessment.
+     */
+    state?: string | null;
+  }
+  /**
    * An occurrence of a severity vulnerability on a resource.
    */
   export interface Schema$VulnerabilityOccurrence {
@@ -1443,6 +1510,7 @@ export namespace ondemandscanning_v1 {
      * The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
      */
     type?: string | null;
+    vexAssessment?: Schema$VexAssessment;
   }
   /**
    * Windows Update represents the metadata about the update for the Windows operating system. The fields in this message come from the Windows Update API documented at https://docs.microsoft.com/en-us/windows/win32/api/wuapi/nn-wuapi-iupdate.
@@ -1888,7 +1956,7 @@ export namespace ondemandscanning_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:

@@ -187,7 +187,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "ondemandscanning.projects.locations.operations.list",
@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20230227",
+  "revision": "20230313",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1361,6 +1361,37 @@
       },
       "type": "object"
     },
+    "Justification": {
+      "description": "Justification provides the justification when the state of the assessment if NOT_AFFECTED.",
+      "id": "Justification",
+      "properties": {
+        "details": {
+          "description": "Additional details on why this justification was chosen.",
+          "type": "string"
+        },
+        "justificationType": {
+          "description": "The justification type for this vulnerability.",
+          "enum": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED",
+            "COMPONENT_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+            "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+            "INLINE_MITIGATIONS_ALREADY_EXIST"
+          ],
+          "enumDescriptions": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED.",
+            "The vulnerable component is not present in the product.",
+            "The vulnerable code is not present. Typically this case occurs when source code is configured or built in a way that excludes the vulnerable code.",
+            "The vulnerable code can not be executed. Typically this case occurs when the product includes the vulnerable code but does not call or use the vulnerable code.",
+            "The vulnerable code cannot be controlled by an attacker to exploit the vulnerability.",
+            "The product includes built-in protections or features that prevent exploitation of the vulnerability. These built-in protections cannot be subverted by the attacker and cannot be configured or disabled by the user. These mitigations completely prevent exploitation based on known attack vectors."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Jwt": {
       "id": "Jwt",
       "properties": {
@@ -1598,7 +1629,8 @@
             "ATTESTATION",
             "UPGRADE",
             "COMPLIANCE",
-            "DSSE_ATTESTATION"
+            "DSSE_ATTESTATION",
+            "VULNERABILITY_ASSESSMENT"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -1611,7 +1643,8 @@
             "This represents a logical \"role\" that can attest to artifacts.",
             "This represents an available package upgrade.",
             "This represents a Compliance Note",
-            "This represents a DSSE attestation Note"
+            "This represents a DSSE attestation Note",
+            "This represents a Vulnerability Assessment."
           ],
           "type": "string"
         },
@@ -1689,6 +1722,10 @@
     "PackageData": {
       "id": "PackageData",
       "properties": {
+        "architecture": {
+          "description": "The architecture of the package.",
+          "type": "string"
+        },
         "cpeUri": {
           "description": "The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.",
           "type": "string"
@@ -1954,6 +1991,41 @@
         "url": {
           "description": "Specific URL associated with the resource.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Remediation": {
+      "description": "Specifies details on how to handle (and presumably, fix) a vulnerability.",
+      "id": "Remediation",
+      "properties": {
+        "details": {
+          "description": "Contains a comprehensive human-readable discussion of the remediation.",
+          "type": "string"
+        },
+        "remediationType": {
+          "description": "The type of remediation that can be applied.",
+          "enum": [
+            "REMEDIATION_TYPE_UNSPECIFIED",
+            "MITIGATION",
+            "NO_FIX_PLANNED",
+            "NONE_AVAILABLE",
+            "VENDOR_FIX",
+            "WORKAROUND"
+          ],
+          "enumDescriptions": [
+            "No remediation type specified.",
+            "A MITIGATION is available.",
+            "No fix is planned.",
+            "Not available.",
+            "A vendor fix is available.",
+            "A workaround is available."
+          ],
+          "type": "string"
+        },
+        "remediationUri": {
+          "$ref": "RelatedUrl",
+          "description": "Contains the URL where to obtain the remediation."
         }
       },
       "type": "object"
@@ -2329,6 +2401,64 @@
       },
       "type": "object"
     },
+    "VexAssessment": {
+      "description": "VexAssessment provides all publisher provided Vex information that is related to this vulnerability.",
+      "id": "VexAssessment",
+      "properties": {
+        "cve": {
+          "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.",
+          "type": "string"
+        },
+        "impacts": {
+          "description": "Contains information about the impact of this vulnerability, this will change with time.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "justification": {
+          "$ref": "Justification",
+          "description": "Justification provides the justification when the state of the assessment if NOT_AFFECTED."
+        },
+        "noteName": {
+          "description": "The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.",
+          "type": "string"
+        },
+        "relatedUris": {
+          "description": "Holds a list of references associated with this vulnerability item and assessment.",
+          "items": {
+            "$ref": "RelatedUrl"
+          },
+          "type": "array"
+        },
+        "remediations": {
+          "description": "Specifies details on how to handle (and presumably, fix) a vulnerability.",
+          "items": {
+            "$ref": "Remediation"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Provides the state of this Vulnerability assessment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AFFECTED",
+            "NOT_AFFECTED",
+            "FIXED",
+            "UNDER_INVESTIGATION"
+          ],
+          "enumDescriptions": [
+            "No state is specified.",
+            "This product is known to be affected by this vulnerability.",
+            "This product is known to be not affected by this vulnerability.",
+            "This product contains a fix for this vulnerability.",
+            "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "VulnerabilityOccurrence": {
       "description": "An occurrence of a severity vulnerability on a resource.",
       "id": "VulnerabilityOccurrence",
@@ -2429,6 +2559,9 @@
         "type": {
           "description": "The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).",
           "type": "string"
+        },
+        "vexAssessment": {
+          "$ref": "VexAssessment"
         }
       },
       "type": "object"
