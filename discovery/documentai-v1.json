@@ -284,7 +284,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "documentai.projects.locations.operations.list",
@@ -1042,9 +1042,53 @@
       }
     }
   },
-  "revision": "20230218",
+  "revision": "20230320",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
+    "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
+      "description": "Metadata of the auto-labeling documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        },
+        "individualAutoLabelStatuses": {
+          "description": "The list of individual auto-labeling statuses of the dataset documents.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus"
+          },
+          "type": "array"
+        },
+        "totalDocumentCount": {
+          "description": "Total number of the auto-labeling documents.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus": {
+      "description": "The status of individual documents in the auto-labeling process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus",
+      "properties": {
+        "gcsUri": {
+          "description": "The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of the document auto-labeling."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse": {
+      "description": "The response proto of AutoLabelDocuments method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
       "id": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata",
       "properties": {
@@ -2957,7 +3001,7 @@
             "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
             "Add an element.",
             "Remove an element identified by `parent`.",
-            "Updates any fields within the given provenance scope of the message. It 'overwrites' the fields rather than replacing them. This is especially relevant when we just want to update a field value of an entity without also affecting all the child properties.",
+            "Updates any fields within the given provenance scope of the message. It overwrites the fields rather than replacing them. Use this when you want to update a field value of an entity without also updating all the child properties.",
             "Currently unused. Replace an element identified by `parent`.",
             "Deprecated. Request human review for the element identified by `parent`.",
             "Deprecated. Element is reviewed and approved at human review, confidence will be set to 1.0.",
@@ -5187,7 +5231,7 @@
             "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
             "Add an element.",
             "Remove an element identified by `parent`.",
-            "Updates any fields within the given provenance scope of the message. It 'overwrites' the fields rather than replacing them. This is especially relevant when we just want to update a field value of an entity without also affecting all the child properties.",
+            "Updates any fields within the given provenance scope of the message. It overwrites the fields rather than replacing them. Use this when you want to update a field value of an entity without also updating all the child properties.",
             "Currently unused. Replace an element identified by `parent`.",
             "Deprecated. Request human review for the element identified by `parent`.",
             "Deprecated. Element is reviewed and approved at human review, confidence will be set to 1.0.",
@@ -6490,7 +6534,7 @@
             "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
             "Add an element.",
             "Remove an element identified by `parent`.",
-            "Updates any fields within the given provenance scope of the message. It 'overwrites' the fields rather than replacing them. This is especially relevant when we just want to update a field value of an entity without also affecting all the child properties.",
+            "Updates any fields within the given provenance scope of the message. It overwrites the fields rather than replacing them. Use this when you want to update a field value of an entity without also updating all the child properties.",
             "Currently unused. Replace an element identified by `parent`.",
             "Deprecated. Request human review for the element identified by `parent`.",
             "Deprecated. Element is reviewed and approved at human review, confidence will be set to 1.0.",
@@ -7114,6 +7158,28 @@
         },
         "stateMessage": {
           "description": "A message providing more details about the human review state.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata": {
+      "description": "The long running operation metadata for the ImportProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata for the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ImportProcessorVersionResponse": {
+      "description": "The response message for the ImportProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionResponse",
+      "properties": {
+        "processorVersion": {
+          "description": "The destination processor version name.",
           "type": "string"
         }
       },

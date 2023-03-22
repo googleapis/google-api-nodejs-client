@@ -126,6 +126,40 @@ export namespace documentai_v1 {
     }
   }
 
+  /**
+   * Metadata of the auto-labeling documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of individual auto-labeling statuses of the dataset documents.
+     */
+    individualAutoLabelStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus[];
+    /**
+     * Total number of the auto-labeling documents.
+     */
+    totalDocumentCount?: number | null;
+  }
+  /**
+   * The status of individual documents in the auto-labeling process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus {
+    /**
+     * The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.
+     */
+    gcsUri?: string | null;
+    /**
+     * The status of the document auto-labeling.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * The response proto of AutoLabelDocuments method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata {
     /**
      * The basic metadata of the long running operation.
@@ -2794,6 +2828,24 @@ export namespace documentai_v1 {
      * A message providing more details about the human review state.
      */
     stateMessage?: string | null;
+  }
+  /**
+   * The long running operation metadata for the ImportProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata {
+    /**
+     * The basic metadata for the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * The response message for the ImportProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ImportProcessorVersionResponse {
+    /**
+     * The destination processor version name.
+     */
+    processorVersion?: string | null;
   }
   /**
    * The long running operation metadata for review document method.
@@ -5789,7 +5841,7 @@ export namespace documentai_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
