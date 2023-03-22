@@ -729,6 +729,28 @@
             "https://www.googleapis.com/auth/games"
           ]
         },
+        "getMultipleApplicationPlayerIds": {
+          "description": "Get the application player ids for the currently authenticated player across all requested games by the same developer as the calling application. This will only return ids for players that actually have an id (scoped or otherwise) with that game.",
+          "flatPath": "games/v1/players/me/multipleApplicationPlayerIds",
+          "httpMethod": "GET",
+          "id": "games.players.getMultipleApplicationPlayerIds",
+          "parameterOrder": [],
+          "parameters": {
+            "applicationIds": {
+              "description": "Required. The application IDs from the Google Play developer console for the games to return scoped ids for.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            }
+          },
+          "path": "games/v1/players/me/multipleApplicationPlayerIds",
+          "response": {
+            "$ref": "GetMultipleApplicationPlayerIdsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
         "getScopedPlayerIds": {
           "description": "Retrieves scoped player identifiers for currently authenticated user.",
           "flatPath": "games/v1/players/me/scopedIds",
@@ -1244,7 +1266,7 @@
       }
     }
   },
-  "revision": "20220609",
+  "revision": "20230310",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -1651,6 +1673,21 @@
       },
       "type": "object"
     },
+    "ApplicationPlayerId": {
+      "description": "Primary scoped player identifier for an application.",
+      "id": "ApplicationPlayerId",
+      "properties": {
+        "applicationId": {
+          "description": "The application that this player identifier is for.",
+          "type": "string"
+        },
+        "playerId": {
+          "description": "The player identifier for the application.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ApplicationVerifyResponse": {
       "description": "A third party application verification response resource.",
       "id": "ApplicationVerifyResponse",
@@ -2034,6 +2071,21 @@
           "description": "The minimum number of steps for the achievement to be set to.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetMultipleApplicationPlayerIdsResponse": {
+      "description": "Response message for GetMultipleApplicationPlayerIds rpc.",
+      "id": "GetMultipleApplicationPlayerIdsResponse",
+      "properties": {
+        "playerIds": {
+          "description": "Output only. The requested applications along with the scoped ids for tha player, if that player has an id for the application. If not, the application is not included in the response.",
+          "items": {
+            "$ref": "ApplicationPlayerId"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
