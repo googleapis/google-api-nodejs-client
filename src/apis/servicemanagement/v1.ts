@@ -692,6 +692,10 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Enum {
     /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
+    /**
      * Enum value definitions.
      */
     enumvalue?: Schema$EnumValue[];
@@ -1882,6 +1886,10 @@ export namespace servicemanagement_v1 {
    * A protocol buffer message type.
    */
   export interface Schema$Type {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
     /**
      * The list of fields.
      */
