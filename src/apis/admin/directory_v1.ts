@@ -1828,6 +1828,10 @@ export namespace admin_directory_v1 {
      */
     assignedTo?: string | null;
     /**
+     * Output only. The type of the assignee (`USER` or `GROUP`).
+     */
+    assigneeType?: string | null;
+    /**
      * ETag of the resource.
      */
     etag?: string | null;
@@ -2205,7 +2209,7 @@ export namespace admin_directory_v1 {
      */
     thumbnailPhotoEtag?: string | null;
     /**
-     * Output only. Photo Url of the user (Read-only)
+     * Output only. The URL of the user's profile photo. The URL might be temporary or private.
      */
     thumbnailPhotoUrl?: string | null;
     /**
@@ -16467,6 +16471,7 @@ export namespace admin_directory_v1 {
      *   // Example response
      *   // {
      *   //   "assignedTo": "my_assignedTo",
+     *   //   "assigneeType": "my_assigneeType",
      *   //   "etag": "my_etag",
      *   //   "kind": "my_kind",
      *   //   "orgUnitId": "my_orgUnitId",
@@ -16602,6 +16607,7 @@ export namespace admin_directory_v1 {
      *       // request body parameters
      *       // {
      *       //   "assignedTo": "my_assignedTo",
+     *       //   "assigneeType": "my_assigneeType",
      *       //   "etag": "my_etag",
      *       //   "kind": "my_kind",
      *       //   "orgUnitId": "my_orgUnitId",
@@ -16616,6 +16622,7 @@ export namespace admin_directory_v1 {
      *   // Example response
      *   // {
      *   //   "assignedTo": "my_assignedTo",
+     *   //   "assigneeType": "my_assigneeType",
      *   //   "etag": "my_etag",
      *   //   "kind": "my_kind",
      *   //   "orgUnitId": "my_orgUnitId",
@@ -16748,13 +16755,15 @@ export namespace admin_directory_v1 {
      *   const res = await directory.roleAssignments.list({
      *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
+     *     // When set to `true`, fetches indirect role assignments (i.e. role assignment via a group) as well as direct ones. Defaults to `false`. You must specify `user_key` or the indirect role assignments will not be included.
+     *     includeIndirectRoleAssignments: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
      *     // Token to specify the next page in the list.
      *     pageToken: 'placeholder-value',
      *     // Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
      *     roleId: 'placeholder-value',
-     *     // The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
+     *     // The primary email address, alias email address, or unique user or group ID. If included in the request, returns role assignments only for this user or group.
      *     userKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16901,6 +16910,10 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
     /**
+     * When set to `true`, fetches indirect role assignments (i.e. role assignment via a group) as well as direct ones. Defaults to `false`. You must specify `user_key` or the indirect role assignments will not be included.
+     */
+    includeIndirectRoleAssignments?: boolean;
+    /**
      * Maximum number of results to return.
      */
     maxResults?: number;
@@ -16913,7 +16926,7 @@ export namespace admin_directory_v1 {
      */
     roleId?: string;
     /**
-     * The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
+     * The primary email address, alias email address, or unique user or group ID. If included in the request, returns role assignments only for this user or group.
      */
     userKey?: string;
   }

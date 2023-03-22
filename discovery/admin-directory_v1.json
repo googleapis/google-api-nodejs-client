@@ -3284,6 +3284,11 @@
               "required": true,
               "type": "string"
             },
+            "includeIndirectRoleAssignments": {
+              "description": "When set to `true`, fetches indirect role assignments (i.e. role assignment via a group) as well as direct ones. Defaults to `false`. You must specify `user_key` or the indirect role assignments will not be included.",
+              "location": "query",
+              "type": "boolean"
+            },
             "maxResults": {
               "description": "Maximum number of results to return.",
               "format": "int32",
@@ -3303,7 +3308,7 @@
               "type": "string"
             },
             "userKey": {
-              "description": "The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.",
+              "description": "The primary email address, alias email address, or unique user or group ID. If included in the request, returns role assignments only for this user or group.",
               "location": "query",
               "type": "string"
             }
@@ -4630,7 +4635,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230316",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5895,7 +5900,8 @@
             "SET_VOLUME",
             "WIPE_USERS",
             "REMOTE_POWERWASH",
-            "DEVICE_START_CRD_SESSION"
+            "DEVICE_START_CRD_SESSION",
+            "CAPTURE_LOGS"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -5904,7 +5910,8 @@
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
-            "Starts a Chrome Remote Desktop session."
+            "Starts a Chrome Remote Desktop session.",
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in deviceFiles field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         }
@@ -5960,7 +5967,8 @@
             "SET_VOLUME",
             "WIPE_USERS",
             "REMOTE_POWERWASH",
-            "DEVICE_START_CRD_SESSION"
+            "DEVICE_START_CRD_SESSION",
+            "CAPTURE_LOGS"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -5969,7 +5977,8 @@
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
-            "Starts a Chrome Remote Desktop session."
+            "Starts a Chrome Remote Desktop session.",
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in deviceFiles field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         },
@@ -7171,6 +7180,19 @@
           "description": "The unique ID of the entity this role is assigned to—either the `user_id` of a user or the `uniqueId` of a service account, as defined in [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts).",
           "type": "string"
         },
+        "assigneeType": {
+          "description": "Output only. The type of the assignee (`USER` or `GROUP`).",
+          "enum": [
+            "user",
+            "group"
+          ],
+          "enumDescriptions": [
+            "An individual user within the domain.",
+            "A group within the domain."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "etag": {
           "description": "ETag of the resource.",
           "type": "string"
@@ -7695,7 +7717,7 @@
           "type": "string"
         },
         "thumbnailPhotoUrl": {
-          "description": "Output only. Photo Url of the user (Read-only)",
+          "description": "Output only. The URL of the user's profile photo. The URL might be temporary or private.",
           "readOnly": true,
           "type": "string"
         },
