@@ -771,6 +771,10 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$Group {
     /**
+     * Output only. Additional group keys associated with the Group.
+     */
+    additionalGroupKeys?: Schema$EntityKey[];
+    /**
      * Output only. The time when the `Group` was created.
      */
     createTime?: string | null;
@@ -1217,11 +1221,11 @@ export namespace cloudidentity_v1 {
      */
     entityId?: string | null;
     /**
-     * The **Logout Redirect URL** (sign-out page URL) of the identity provider. When a user clicks the sign-out link on a Google page, they will be redirected to this URL. This is a pure redirect with no attached SAML `LogoutRequest` i.e. SAML single logout is currently not supported. Must use `HTTPS`.
+     * The **Logout Redirect URL** (sign-out page URL) of the identity provider. When a user clicks the sign-out link on a Google page, they will be redirected to this URL. This is a pure redirect with no attached SAML `LogoutRequest` i.e. SAML single logout is not supported. Must use `HTTPS`.
      */
     logoutRedirectUri?: string | null;
     /**
-     * Required. The `SingleSignOnService` endpoint location (sign-in page URL) of the identity provider. This is the URL where the `AuthnRequest` will be sent. Must use `HTTPS`. Currently assumed to accept the `HTTP-Redirect` binding.
+     * Required. The `SingleSignOnService` endpoint location (sign-in page URL) of the identity provider. This is the URL where the `AuthnRequest` will be sent. Must use `HTTPS`. Assumed to accept the `HTTP-Redirect` binding.
      */
     singleSignOnServiceUri?: string | null;
   }
@@ -1230,7 +1234,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$SamlSpConfig {
     /**
-     * Output only. The SAML **Assertion Consumer Service (ACS) URL** to be used for the IDP-initiated login. Currently assumed to accept response messages via the `HTTP-POST` binding.
+     * Output only. The SAML **Assertion Consumer Service (ACS) URL** to be used for the IDP-initiated login. Assumed to accept response messages via the `HTTP-POST` binding.
      */
     assertionConsumerServiceUri?: string | null;
     /**
@@ -4992,6 +4996,7 @@ export namespace cloudidentity_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "additionalGroupKeys": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -5275,6 +5280,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "additionalGroupKeys": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -5829,6 +5835,7 @@ export namespace cloudidentity_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "additionalGroupKeys": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -5976,7 +5983,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous search request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793)
+     *     // Required. The search query. * Must be specified in [Common Expression Language](https://opensource.google/projects/cel). * Must contain equality operators on the parent, e.g. `parent == 'customers/{customer_id\}'`. The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793) * Can contain optional inclusion operators on `labels` such as `'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). * Can contain an optional equality operator on `domain_name`. e.g. `domain_name == 'abc.com'` * Can contain optional `startsWith/contains/equality` operators on `group_key`, e.g. `group_key.startsWith('dev')`, `group_key.contains('dev'), group_key == 'dev@abc.com'` * Can contain optional `startsWith/contains/equality` operators on `display_name`, such as `display_name.startsWith('dev')` , `display_name.contains('dev')`, `display_name == 'dev'`
      *     query: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -6318,7 +6325,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793)
+     * Required. The search query. * Must be specified in [Common Expression Language](https://opensource.google/projects/cel). * Must contain equality operators on the parent, e.g. `parent == 'customers/{customer_id\}'`. The `customer_id` must begin with "C" (for example, 'C046psxkn'). [Find your customer ID.] (https://support.google.com/cloudidentity/answer/10070793) * Can contain optional inclusion operators on `labels` such as `'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). * Can contain an optional equality operator on `domain_name`. e.g. `domain_name == 'abc.com'` * Can contain optional `startsWith/contains/equality` operators on `group_key`, e.g. `group_key.startsWith('dev')`, `group_key.contains('dev'), group_key == 'dev@abc.com'` * Can contain optional `startsWith/contains/equality` operators on `display_name`, such as `display_name.startsWith('dev')` , `display_name.contains('dev')`, `display_name == 'dev'`
      */
     query?: string;
     /**
@@ -7535,7 +7542,7 @@ export namespace cloudidentity_v1 {
      *     pageToken: 'placeholder-value',
      *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is always '-' as this API will search across all groups for a given member.
      *     parent: 'groups/my-group',
-     *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels`
+     *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels` Query may optionally contain equality operators on the parent of the group restricting the search within a particular customer, e.g. `parent == 'customers/{customer_id\}'`. The `customer_id` must begin with "C" (for example, 'C046psxkn'). This filtering is only supported for Admins with groups read permissons on the input customer. Example query: `member_key_id == 'member_key_id_value' && in labels && parent == 'customers/C046psxkn'`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7907,7 +7914,7 @@ export namespace cloudidentity_v1 {
      */
     parent?: string;
     /**
-     * Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels`
+     * Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels` Query may optionally contain equality operators on the parent of the group restricting the search within a particular customer, e.g. `parent == 'customers/{customer_id\}'`. The `customer_id` must begin with "C" (for example, 'C046psxkn'). This filtering is only supported for Admins with groups read permissons on the input customer. Example query: `member_key_id == 'member_key_id_value' && in labels && parent == 'customers/C046psxkn'`
      */
     query?: string;
   }
@@ -8374,7 +8381,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.inboundSamlSsoProfiles.list({
-     *     // A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only currently-supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to.
+     *     // A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to.
      *     filter: 'placeholder-value',
      *     // The maximum number of InboundSamlSsoProfiles to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will use a sensible default. This default may change over time. The maximum allowed value is 100. Requests with page_size greater than that will be silently interpreted as having this maximum value.
      *     pageSize: 'placeholder-value',
@@ -8661,7 +8668,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Inboundsamlssoprofiles$List
     extends StandardParameters {
     /**
-     * A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only currently-supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to.
+     * A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to.
      */
     filter?: string;
     /**
@@ -9737,7 +9744,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.inboundSsoAssignments.list({
-     *     // A CEL expression to filter the results. The only currently-supported filter is filtering by customer. For example: `customer==customers/C0123abc`. Omitting the filter or specifying a filter of `customer==customers/my_customer` will return the assignments for the customer that the caller (authenticated user) belongs to.
+     *     // A CEL expression to filter the results. The only supported filter is filtering by customer. For example: `customer==customers/C0123abc`. Omitting the filter or specifying a filter of `customer==customers/my_customer` will return the assignments for the customer that the caller (authenticated user) belongs to.
      *     filter: 'placeholder-value',
      *     // The maximum number of assignments to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will use a sensible default. This default may change over time. The maximum allowed value is 100, though requests with page_size greater than that will be silently interpreted as having this maximum value. This may increase in the futue.
      *     pageSize: 'placeholder-value',
@@ -10027,7 +10034,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Inboundssoassignments$List
     extends StandardParameters {
     /**
-     * A CEL expression to filter the results. The only currently-supported filter is filtering by customer. For example: `customer==customers/C0123abc`. Omitting the filter or specifying a filter of `customer==customers/my_customer` will return the assignments for the customer that the caller (authenticated user) belongs to.
+     * A CEL expression to filter the results. The only supported filter is filtering by customer. For example: `customer==customers/C0123abc`. Omitting the filter or specifying a filter of `customer==customers/my_customer` will return the assignments for the customer that the caller (authenticated user) belongs to.
      */
     filter?: string;
     /**
