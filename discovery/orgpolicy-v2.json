@@ -915,7 +915,7 @@
       }
     }
   },
-  "revision": "20230208",
+  "revision": "20230320",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -970,6 +970,10 @@
         "name": {
           "description": "Immutable. The resource name of the constraint. Must be in one of the following forms: * `projects/{project_number}/constraints/{constraint_name}` * `folders/{folder_id}/constraints/{constraint_name}` * `organizations/{organization_id}/constraints/{constraint_name}` For example, \"/projects/123/constraints/compute.disableSerialPortAccess\".",
           "type": "string"
+        },
+        "supportsDryRun": {
+          "description": "Shows if dry run is supported for this constraint or not.",
+          "type": "boolean"
         }
       },
       "type": "object"

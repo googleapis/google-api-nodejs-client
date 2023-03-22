@@ -169,6 +169,10 @@ export namespace orgpolicy_v2 {
      * Immutable. The resource name of the constraint. Must be in one of the following forms: * `projects/{project_number\}/constraints/{constraint_name\}` * `folders/{folder_id\}/constraints/{constraint_name\}` * `organizations/{organization_id\}/constraints/{constraint_name\}` For example, "/projects/123/constraints/compute.disableSerialPortAccess".
      */
     name?: string | null;
+    /**
+     * Shows if dry run is supported for this constraint or not.
+     */
+    supportsDryRun?: boolean | null;
   }
   /**
    * A constraint that is either enforced or not. For example, a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
