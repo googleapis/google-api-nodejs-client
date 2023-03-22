@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/pubsublite",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "pubsublite",
   "main": "build/index.js",
   "types": "build/index.d.ts",

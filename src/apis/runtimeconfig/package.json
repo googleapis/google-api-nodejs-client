@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/runtimeconfig",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "runtimeconfig",
   "main": "build/index.js",
   "types": "build/index.d.ts",

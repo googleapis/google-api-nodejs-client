@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v5.0.0...chromepolicy-v6.0.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chromepolicy:** This release has breaking changes.
+
+### Features
+
+* **chromepolicy:** update the API ([24b5a08](https://github.com/googleapis/google-api-nodejs-client/commit/24b5a086e13cf97b22acb98bf862484ea38f1016))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v4.1.0...chromepolicy-v5.0.0) (2023-02-24)
 
 
