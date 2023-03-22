@@ -186,7 +186,7 @@
           ]
         },
         "list": {
-          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
           "flatPath": "v1/operations",
           "httpMethod": "GET",
           "id": "serviceconsumermanagement.operations.list",
@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20230301",
+  "revision": "20230314",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -597,11 +597,13 @@
           "description": "The source syntax of the service.",
           "enum": [
             "SYNTAX_PROTO2",
-            "SYNTAX_PROTO3"
+            "SYNTAX_PROTO3",
+            "SYNTAX_EDITIONS"
           ],
           "enumDescriptions": [
             "Syntax `proto2`.",
-            "Syntax `proto3`."
+            "Syntax `proto3`.",
+            "Syntax `editions`."
           ],
           "type": "string"
         },
@@ -1217,6 +1219,10 @@
       "description": "Enum type definition.",
       "id": "Enum",
       "properties": {
+        "edition": {
+          "description": "The source edition string, only valid when syntax is SYNTAX_EDITIONS.",
+          "type": "string"
+        },
         "enumvalue": {
           "description": "Enum value definitions.",
           "items": {
@@ -1243,11 +1249,13 @@
           "description": "The source syntax.",
           "enum": [
             "SYNTAX_PROTO2",
-            "SYNTAX_PROTO3"
+            "SYNTAX_PROTO3",
+            "SYNTAX_EDITIONS"
           ],
           "enumDescriptions": [
             "Syntax `proto2`.",
-            "Syntax `proto3`."
+            "Syntax `proto3`.",
+            "Syntax `editions`."
           ],
           "type": "string"
         }
@@ -1699,11 +1707,13 @@
           "description": "The source syntax of this method.",
           "enum": [
             "SYNTAX_PROTO2",
-            "SYNTAX_PROTO3"
+            "SYNTAX_PROTO3",
+            "SYNTAX_EDITIONS"
           ],
           "enumDescriptions": [
             "Syntax `proto2`.",
-            "Syntax `proto3`."
+            "Syntax `proto3`.",
+            "Syntax `editions`."
           ],
           "type": "string"
         }
@@ -2717,6 +2727,10 @@
       "description": "A protocol buffer message type.",
       "id": "Type",
       "properties": {
+        "edition": {
+          "description": "The source edition string, only valid when syntax is SYNTAX_EDITIONS.",
+          "type": "string"
+        },
         "fields": {
           "description": "The list of fields.",
           "items": {
@@ -2750,11 +2764,13 @@
           "description": "The source syntax.",
           "enum": [
             "SYNTAX_PROTO2",
-            "SYNTAX_PROTO3"
+            "SYNTAX_PROTO3",
+            "SYNTAX_EDITIONS"
           ],
           "enumDescriptions": [
             "Syntax `proto2`.",
-            "Syntax `proto3`."
+            "Syntax `proto3`.",
+            "Syntax `editions`."
           ],
           "type": "string"
         }
