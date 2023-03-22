@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace policysimulator_v1alpha {
+export namespace policysimulator_v1beta {
   export interface Options extends GlobalOptions {
-    version: 'v1alpha';
+    version: 'v1beta';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace policysimulator_v1alpha {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const policysimulator = google.policysimulator('v1alpha');
+   * const policysimulator = google.policysimulator('v1beta');
    * ```
    */
   export class Policysimulator {
@@ -414,7 +414,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -523,7 +523,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -582,7 +582,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -687,7 +687,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -720,7 +720,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -829,7 +829,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -898,7 +898,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1002,7 +1002,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1035,7 +1035,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1142,7 +1142,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1244,7 +1244,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1353,7 +1353,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1412,7 +1412,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1519,7 +1519,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1552,7 +1552,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1662,7 +1662,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1766,7 +1766,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1875,7 +1875,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1934,7 +1934,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2040,7 +2040,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2073,7 +2073,7 @@ export namespace policysimulator_v1alpha {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1alpha');
+     * const policysimulator = google.policysimulator('v1beta');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2182,7 +2182,7 @@ export namespace policysimulator_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
