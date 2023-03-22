@@ -496,10 +496,6 @@ export namespace chromepolicy_v1 {
      */
     policyApiLifecycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
     /**
-     * Deprecated field because of typo.
-     */
-    policyApiLifeycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
-    /**
      * Output only. Description about the policy schema for user consumption.
      */
     policyDescription?: string | null;
@@ -728,7 +724,7 @@ export namespace chromepolicy_v1 {
      */
     pageToken?: string | null;
     /**
-     * The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
+     * Required. The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
      */
     policySchemaFilter?: string | null;
     /**
@@ -2720,7 +2716,6 @@ export namespace chromepolicy_v1 {
      *   //   "name": "my_name",
      *   //   "notices": [],
      *   //   "policyApiLifecycle": {},
-     *   //   "policyApiLifeycle": {},
      *   //   "policyDescription": "my_policyDescription",
      *   //   "schemaName": "my_schemaName",
      *   //   "supportUri": "my_supportUri",
