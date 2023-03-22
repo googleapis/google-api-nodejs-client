@@ -823,7 +823,7 @@
       }
     }
   },
-  "revision": "20230215",
+  "revision": "20230316",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -939,14 +939,18 @@
           "type": "string"
         },
         "edition": {
-          "description": "Do not use.",
+          "description": "Edition of the capacity commitment.",
           "enum": [
             "EDITION_UNSPECIFIED",
-            "ENTERPRISE"
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
           ],
           "enumDescriptions": [
-            "Do not use.",
-            "Do not use."
+            "Default value, which will be treated as ENTERPRISE.",
+            "Standard edition.",
+            "Enterprise edition.",
+            "Enterprise plus edition."
           ],
           "type": "string"
         },
@@ -969,18 +973,26 @@
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
+            "FLEX_FLAT_RATE",
             "TRIAL",
             "MONTHLY",
+            "MONTHLY_FLAT_RATE",
             "ANNUAL",
+            "ANNUAL_FLAT_RATE",
+            "THREE_YEAR",
             "NONE"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
+            "Same as FLEX, should only be used if flat-rate commitments are still available.",
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
+            "Same as MONTHLY, should only be used if flat-rate commitments are still available.",
             "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
-            "Do not use."
+            "Same as ANNUAL, should only be used if flat-rate commitments are still available.",
+            "3-year commitments have a committed period of 1095(3 * 365) days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
+            "Should only be used for `renewal_plan` and is only meaningful if edition is specified to values other than EDITION_UNSPECIFIED. Otherwise CreateCapacityCommitmentRequest or UpdateCapacityCommitmentRequest will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. If the renewal_plan is NONE, capacity commitment will be removed at the end of its commitment period."
           ],
           "type": "string"
         },
@@ -989,18 +1001,26 @@
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
             "FLEX",
+            "FLEX_FLAT_RATE",
             "TRIAL",
             "MONTHLY",
+            "MONTHLY_FLAT_RATE",
             "ANNUAL",
+            "ANNUAL_FLAT_RATE",
+            "THREE_YEAR",
             "NONE"
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
             "Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
+            "Same as FLEX, should only be used if flat-rate commitments are still available.",
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
+            "Same as MONTHLY, should only be used if flat-rate commitments are still available.",
             "Annual commitments have a committed period of 365 days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
-            "Do not use."
+            "Same as ANNUAL, should only be used if flat-rate commitments are still available.",
+            "3-year commitments have a committed period of 1095(3 * 365) days after becoming ACTIVE. After that they are converted to a new commitment based on the renewal_plan.",
+            "Should only be used for `renewal_plan` and is only meaningful if edition is specified to values other than EDITION_UNSPECIFIED. Otherwise CreateCapacityCommitmentRequest or UpdateCapacityCommitmentRequest will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`. If the renewal_plan is NONE, capacity commitment will be removed at the end of its commitment period."
           ],
           "type": "string"
         },
@@ -1107,6 +1127,10 @@
       "description": "The request for ReservationService.MoveAssignment. **Note**: \"bigquery.reservationAssignments.create\" permission is required on the destination_id. **Note**: \"bigquery.reservationAssignments.create\" and \"bigquery.reservationAssignments.delete\" permission are required on the related assignee.",
       "id": "MoveAssignmentRequest",
       "properties": {
+        "assignmentId": {
+          "description": "The optional assignment ID. A new assignment name is generated if this field is empty. This field can contain only lowercase alphanumeric characters or dashes. Max length is 64 characters.",
+          "type": "string"
+        },
         "destinationId": {
           "description": "The new reservation ID, e.g.: `projects/myotherproject/locations/US/reservations/team2-prod`",
           "type": "string"
@@ -1134,14 +1158,18 @@
           "type": "string"
         },
         "edition": {
-          "description": "Do not use.",
+          "description": "Edition of the reservation.",
           "enum": [
             "EDITION_UNSPECIFIED",
-            "ENTERPRISE"
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
           ],
           "enumDescriptions": [
-            "Do not use.",
-            "Do not use."
+            "Default value, which will be treated as ENTERPRISE.",
+            "Standard edition.",
+            "Enterprise edition.",
+            "Enterprise plus edition."
           ],
           "type": "string"
         },
