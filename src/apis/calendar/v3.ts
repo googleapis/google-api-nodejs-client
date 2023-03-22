@@ -5640,6 +5640,8 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
+     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     *     eventTypes: 'placeholder-value',
      *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
      *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
@@ -6650,6 +6652,8 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
+     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     *     eventTypes: 'placeholder-value',
      *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
      *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
@@ -6970,6 +6974,10 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
+     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     */
+    eventTypes?: string[];
+    /**
      * Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      */
     iCalUID?: string;
@@ -7182,6 +7190,10 @@ export namespace calendar_v3 {
      * Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      */
     calendarId?: string;
+    /**
+     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     */
+    eventTypes?: string[];
     /**
      * Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      */
