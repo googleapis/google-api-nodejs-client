@@ -324,7 +324,7 @@ export namespace run_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.
      */
     launchStage?: string | null;
     /**
@@ -355,6 +355,10 @@ export namespace run_v2 {
      * Output only. The number of actively running tasks.
      */
     runningCount?: number | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Represents time when the execution started to run. It is not guaranteed to be set in happens-before order across separate operations.
      */
@@ -530,7 +534,7 @@ export namespace run_v2 {
      */
     latestCreatedExecution?: Schema$GoogleCloudRunV2ExecutionReference;
     /**
-     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed.
+     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.
      */
     launchStage?: string | null;
     /**
@@ -545,6 +549,10 @@ export namespace run_v2 {
      * Output only. Returns true if the Job is currently being acted upon by the system to bring it into the desired state. When a new Job is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Job to the desired state. This process is called reconciliation. While reconciliation is in process, `observed_generation` and `latest_succeeded_execution`, will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the state matches the Job, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `observed_generation` and `generation`, `latest_succeeded_execution` and `latest_created_execution`. If reconciliation failed, `observed_generation` and `latest_succeeded_execution` will have the state of the last succeeded execution or empty for newly created Job. Additional information on the failure can be found in `terminal_condition` and `conditions`.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Required. The template used to create executions for this Job.
      */
@@ -730,7 +738,7 @@ export namespace run_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages).
+     * The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.
      */
     launchStage?: string | null;
     /**
@@ -753,6 +761,10 @@ export namespace run_v2 {
      * Output only. Indicates whether the resource's reconciliation is still in progress. See comments in `Service.reconciling` for additional information on reconciliation process in Cloud Run.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Scaling settings for this revision.
      */
@@ -968,7 +980,7 @@ export namespace run_v2 {
      */
     latestReadyRevision?: string | null;
     /**
-     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed.
+     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.
      */
     launchStage?: string | null;
     /**
@@ -983,6 +995,10 @@ export namespace run_v2 {
      * Output only. Returns true if the Service is currently being acted upon by the system to bring it into the desired state. When a new Service is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Service to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation`, `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Service, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `traffic` and `traffic_statuses`, `observed_generation` and `generation`, `latest_ready_revision` and `latest_created_revision`. If reconciliation failed, `traffic_statuses`, `observed_generation`, and `latest_ready_revision` will have the state of the last serving revision, or empty for newly created Services. Additional information on the failure can be found in `terminal_condition` and `conditions`.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Required. The template used to create revisions for this Service.
      */
@@ -1104,6 +1120,10 @@ export namespace run_v2 {
      * Output only. The number of times this Task was retried. Tasks are retried when they fail up to the maxRetries limit.
      */
     retried?: number | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.
      */
@@ -1574,6 +1594,7 @@ export namespace run_v2 {
      *       //   "name": "my_name",
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
+     *       //   "satisfiesPzs": false,
      *       //   "template": {},
      *       //   "terminalCondition": {},
      *       //   "uid": "my_uid",
@@ -1882,6 +1903,7 @@ export namespace run_v2 {
      *   //   "name": "my_name",
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
+     *   //   "satisfiesPzs": false,
      *   //   "template": {},
      *   //   "terminalCondition": {},
      *   //   "uid": "my_uid",
@@ -2318,6 +2340,7 @@ export namespace run_v2 {
      *       //   "name": "my_name",
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
+     *       //   "satisfiesPzs": false,
      *       //   "template": {},
      *       //   "terminalCondition": {},
      *       //   "uid": "my_uid",
@@ -3207,6 +3230,7 @@ export namespace run_v2 {
      *   //   "reconciling": false,
      *   //   "retriedCount": 0,
      *   //   "runningCount": 0,
+     *   //   "satisfiesPzs": false,
      *   //   "startTime": "my_startTime",
      *   //   "succeededCount": 0,
      *   //   "taskCount": 0,
@@ -3559,6 +3583,7 @@ export namespace run_v2 {
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
      *   //   "retried": 0,
+     *   //   "satisfiesPzs": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "startTime": "my_startTime",
      *   //   "timeout": "my_timeout",
@@ -4109,7 +4134,7 @@ export namespace run_v2 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -4514,6 +4539,7 @@ export namespace run_v2 {
      *       //   "name": "my_name",
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
+     *       //   "satisfiesPzs": false,
      *       //   "template": {},
      *       //   "terminalCondition": {},
      *       //   "traffic": [],
@@ -4830,6 +4856,7 @@ export namespace run_v2 {
      *   //   "name": "my_name",
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
+     *   //   "satisfiesPzs": false,
      *   //   "template": {},
      *   //   "terminalCondition": {},
      *   //   "traffic": [],
@@ -5244,7 +5271,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.patch({
-     *     // If set to true, and if the Service does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.
+     *     // This field is currently not used by Cloud Run; setting it does not have any effect.
      *     allowMissing: 'placeholder-value',
      *     // The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project\}/locations/{location\}/services/{service_id\}
      *     name: 'projects/my-project/locations/my-location/services/my-service',
@@ -5276,6 +5303,7 @@ export namespace run_v2 {
      *       //   "name": "my_name",
      *       //   "observedGeneration": "my_observedGeneration",
      *       //   "reconciling": false,
+     *       //   "satisfiesPzs": false,
      *       //   "template": {},
      *       //   "terminalCondition": {},
      *       //   "traffic": [],
@@ -5762,7 +5790,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Services$Patch
     extends StandardParameters {
     /**
-     * If set to true, and if the Service does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.
+     * This field is currently not used by Cloud Run; setting it does not have any effect.
      */
     allowMissing?: boolean;
     /**
@@ -6005,6 +6033,7 @@ export namespace run_v2 {
      *   //   "name": "my_name",
      *   //   "observedGeneration": "my_observedGeneration",
      *   //   "reconciling": false,
+     *   //   "satisfiesPzs": false,
      *   //   "scaling": {},
      *   //   "service": "my_service",
      *   //   "serviceAccount": "my_serviceAccount",
