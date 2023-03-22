@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20230228",
+  "revision": "20230318",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -2089,6 +2089,10 @@
         "phoneInfo": {
           "description": "Normally this will show the phone number associated with this enrollment. In some situations, such as after a first factor sign in, it will only show the obfuscated version of the associated phone number.",
           "type": "string"
+        },
+        "totpInfo": {
+          "$ref": "GoogleCloudIdentitytoolkitV1TotpInfo",
+          "description": "Contains information specific to TOTP MFA."
         },
         "unobfuscatedPhoneInfo": {
           "description": "Output only. Unobfuscated phone_info.",
@@ -3370,6 +3374,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV1TotpInfo": {
+      "description": "Information about TOTP MFA.",
+      "id": "GoogleCloudIdentitytoolkitV1TotpInfo",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudIdentitytoolkitV1UploadAccountRequest": {

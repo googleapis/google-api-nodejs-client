@@ -614,6 +614,10 @@ export namespace identitytoolkit_v2 {
      */
     enabledProviders?: string[] | null;
     /**
+     * A list of usable second factors for this project along with their configurations. This field does not support phone based MFA, for that use the 'enabled_providers' field.
+     */
+    providerConfigs?: Schema$GoogleCloudIdentitytoolkitAdminV2ProviderConfig[];
+    /**
      * Whether MultiFactor Authentication has been enabled for this project.
      */
     state?: string | null;
@@ -723,6 +727,19 @@ export namespace identitytoolkit_v2 {
      * A map of that can be used for phone auth testing.
      */
     testPhoneNumbers?: {[key: string]: string} | null;
+  }
+  /**
+   * ProviderConfig describes the supported MFA providers along with their configurations.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2ProviderConfig {
+    /**
+     * Describes the state of the MultiFactor Authentication type.
+     */
+    state?: string | null;
+    /**
+     * TOTP MFA provider config for this project.
+     */
+    totpProviderConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2TotpMfaProviderConfig;
   }
   /**
    * Configuration related to quotas.
@@ -985,6 +1002,15 @@ export namespace identitytoolkit_v2 {
     testPhoneNumbers?: {[key: string]: string} | null;
   }
   /**
+   * TotpMFAProviderConfig represents the TOTP based MFA provider.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2TotpMfaProviderConfig {
+    /**
+     * The allowed number of adjacent intervals that will be used for verification to avoid clock skew.
+     */
+    adjacentIntervals?: number | null;
+  }
+  /**
    * Synchronous Cloud Function with HTTP Trigger
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2Trigger {
@@ -1026,6 +1052,10 @@ export namespace identitytoolkit_v2 {
      * The ID of the Identity Platform tenant that the user enrolling MFA belongs to. If not set, the user belongs to the default Identity Platform project.
      */
     tenantId?: string | null;
+    /**
+     * Verification information for TOTP.
+     */
+    totpVerificationInfo?: Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo;
   }
   /**
    * FinalizeMfaEnrollment response.
@@ -1043,6 +1073,10 @@ export namespace identitytoolkit_v2 {
      * Refresh token updated to reflect MFA enrollment.
      */
     refreshToken?: string | null;
+    /**
+     * Auxiliary auth info specific to TOTP auth.
+     */
+    totpAuthInfo?: Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo;
   }
   /**
    * Phone Verification info for a FinalizeMfa request.
@@ -1087,6 +1121,10 @@ export namespace identitytoolkit_v2 {
    */
   export interface Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaSignInRequest {
     /**
+     * The MFA enrollment ID from the user's list of current MFA enrollments.
+     */
+    mfaEnrollmentId?: string | null;
+    /**
      * Required. Pending credential from first factor sign-in.
      */
     mfaPendingCredential?: string | null;
@@ -1098,6 +1136,10 @@ export namespace identitytoolkit_v2 {
      * The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.
      */
     tenantId?: string | null;
+    /**
+     * Proof of completion of the TOTP based MFA challenge.
+     */
+    totpVerificationInfo?: Schema$GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo;
   }
   /**
    * FinalizeMfaSignIn response.
@@ -1117,6 +1159,32 @@ export namespace identitytoolkit_v2 {
     refreshToken?: string | null;
   }
   /**
+   * Mfa request info specific to TOTP auth for FinalizeMfa.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo {
+    /**
+     * An opaque string that represents the enrollment session.
+     */
+    sessionInfo?: string | null;
+    /**
+     * User-entered verification code.
+     */
+    verificationCode?: string | null;
+  }
+  /**
+   * Mfa response info specific to TOTP auth for FinalizeMfa.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo {}
+  /**
+   * TOTP verification info for FinalizeMfaSignInRequest.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo {
+    /**
+     * User-entered verification code.
+     */
+    verificationCode?: string | null;
+  }
+  /**
    * Sends MFA enrollment verification SMS for a user.
    */
   export interface Schema$GoogleCloudIdentitytoolkitV2StartMfaEnrollmentRequest {
@@ -1132,6 +1200,10 @@ export namespace identitytoolkit_v2 {
      * The ID of the Identity Platform tenant that the user enrolling MFA belongs to. If not set, the user belongs to the default Identity Platform project.
      */
     tenantId?: string | null;
+    /**
+     * Sign-in info specific to TOTP auth.
+     */
+    totpEnrollmentInfo?: Schema$GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentRequestInfo;
   }
   /**
    * StartMfaEnrollment response.
@@ -1141,6 +1213,10 @@ export namespace identitytoolkit_v2 {
      * Verification info to authorize sending an SMS for phone verification.
      */
     phoneSessionInfo?: Schema$GoogleCloudIdentitytoolkitV2StartMfaPhoneResponseInfo;
+    /**
+     * Enrollment response info specific to TOTP auth.
+     */
+    totpSessionInfo?: Schema$GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentResponseInfo;
   }
   /**
    * App Verification info for a StartMfa request.
@@ -1213,6 +1289,39 @@ export namespace identitytoolkit_v2 {
      * MultiFactor sign-in session information specific to SMS-type second factors. Along with the one-time code retrieved from the sent SMS, the contents of this session information should be passed to FinalizeMfaSignIn to complete the sign in.
      */
     phoneResponseInfo?: Schema$GoogleCloudIdentitytoolkitV2StartMfaPhoneResponseInfo;
+  }
+  /**
+   * Mfa request info specific to TOTP auth for StartMfa.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentRequestInfo {}
+  /**
+   * Mfa response info specific to TOTP auth for StartMfa.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentResponseInfo {
+    /**
+     * The time by which the enrollment must finish.
+     */
+    finalizeEnrollmentTime?: string | null;
+    /**
+     * The hashing algorithm used to generate the verification code.
+     */
+    hashingAlgorithm?: string | null;
+    /**
+     * Duration in seconds at which the verification code will change.
+     */
+    periodSec?: number | null;
+    /**
+     * An encoded string that represents the enrollment session.
+     */
+    sessionInfo?: string | null;
+    /**
+     * A base 32 encoded string that represents the shared TOTP secret. The base 32 encoding is the one specified by [RFC4648#section-6](https://datatracker.ietf.org/doc/html/rfc4648#section-6). (This is the same as the base 32 encoding from [RFC3548#section-5](https://datatracker.ietf.org/doc/html/rfc3548#section-5).)
+     */
+    sharedSecretKey?: string | null;
+    /**
+     * The length of the verification code that needs to be generated.
+     */
+    verificationCodeLength?: number | null;
   }
   /**
    * Withdraws MFA.
@@ -1434,7 +1543,8 @@ export namespace identitytoolkit_v2 {
      *       //   "displayName": "my_displayName",
      *       //   "idToken": "my_idToken",
      *       //   "phoneVerificationInfo": {},
-     *       //   "tenantId": "my_tenantId"
+     *       //   "tenantId": "my_tenantId",
+     *       //   "totpVerificationInfo": {}
      *       // }
      *     },
      *   });
@@ -1444,7 +1554,8 @@ export namespace identitytoolkit_v2 {
      *   // {
      *   //   "idToken": "my_idToken",
      *   //   "phoneAuthInfo": {},
-     *   //   "refreshToken": "my_refreshToken"
+     *   //   "refreshToken": "my_refreshToken",
+     *   //   "totpAuthInfo": {}
      *   // }
      * }
      *
@@ -1582,7 +1693,8 @@ export namespace identitytoolkit_v2 {
      *       // {
      *       //   "idToken": "my_idToken",
      *       //   "phoneEnrollmentInfo": {},
-     *       //   "tenantId": "my_tenantId"
+     *       //   "tenantId": "my_tenantId",
+     *       //   "totpEnrollmentInfo": {}
      *       // }
      *     },
      *   });
@@ -1590,7 +1702,8 @@ export namespace identitytoolkit_v2 {
      *
      *   // Example response
      *   // {
-     *   //   "phoneSessionInfo": {}
+     *   //   "phoneSessionInfo": {},
+     *   //   "totpSessionInfo": {}
      *   // }
      * }
      *
@@ -1902,9 +2015,11 @@ export namespace identitytoolkit_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "mfaEnrollmentId": "my_mfaEnrollmentId",
      *       //   "mfaPendingCredential": "my_mfaPendingCredential",
      *       //   "phoneVerificationInfo": {},
-     *       //   "tenantId": "my_tenantId"
+     *       //   "tenantId": "my_tenantId",
+     *       //   "totpVerificationInfo": {}
      *       // }
      *     },
      *   });
