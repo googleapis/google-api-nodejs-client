@@ -1507,6 +1507,10 @@ export namespace cloudsearch_v1 {
      * The icon specified by the string name of a list of known icons
      */
     knownIcon?: string | null;
+    /**
+     * Display one of the [Google Material Icons](https://fonts.google.com/icons). For example, to display a [check box icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048), use "material_icon": { "name": "check_box" \}
+     */
+    materialIcon?: Schema$AppsDynamiteStorageMaterialIcon;
   }
   /**
    * An image that is specified by a URL and can have an onClick action.
@@ -1552,6 +1556,27 @@ export namespace cloudsearch_v1 {
      * The crop type.
      */
     type?: string | null;
+  }
+  /**
+   * A [Google Font Icon](https://fonts.google.com/icons), which includes over 2500+ options. For example, to display a [check box icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048) with customized weight and grade, write { "name": "check_box", "fill": true, "weight": 300, "grade": -25 \}
+   */
+  export interface Schema$AppsDynamiteStorageMaterialIcon {
+    /**
+     * Whether it renders a filled icon. Default value is false. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.
+     */
+    fill?: boolean | null;
+    /**
+     * Weight and grade affect a symbol’s thickness. Adjustments to grade are more granular than adjustments to weight and have a small impact on the size of the symbol. Choose from {-25, 0, 200\}. If absent, default value is 0. If any other value is specified, a broken image icon will be displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.
+     */
+    grade?: number | null;
+    /**
+     * The icon name defined in the [Google Material Icon](https://fonts.google.com/icons) in snake_case. e.g. "check_box". Any invalid name will be trimmed as empty string result in the icon falied to render.
+     */
+    name?: string | null;
+    /**
+     * The stroke weight of the icon. Choose from {100, 200, 300, 400, 500, 600, 700\}. If absent, default value is 400. If any other value is specified, a broken image icon will be displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.
+     */
+    weight?: number | null;
   }
   export interface Schema$AppsDynamiteStorageOnClick {
     /**
@@ -12106,7 +12131,7 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
