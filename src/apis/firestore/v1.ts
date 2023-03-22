@@ -125,11 +125,11 @@ export namespace firestore_v1 {
   }
 
   /**
-   * Defines a aggregation that produces a single result.
+   * Defines an aggregation that produces a single result.
    */
   export interface Schema$Aggregation {
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.
+     * Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.
      */
     alias?: string | null;
     /**
@@ -302,7 +302,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$Count {
     /**
-     * Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.
+     * Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency, and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.
      */
     upTo?: string | null;
   }
@@ -1236,7 +1236,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$RunAggregationQueryResponse {
     /**
-     * The time at which the aggregate value is valid for.
+     * The time at which the aggregate result was computed. This is always monotonically increasing; in this case, the previous AggregationResult in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `result` will be sent, and this represents the time at which the query was run.
      */
     readTime?: string | null;
     /**
@@ -1349,7 +1349,7 @@ export namespace firestore_v1 {
      */
     orderBy?: Schema$Order[];
     /**
-     * The projection to return.
+     * Optional sub-set of the fields to return. This acts as a DocumentMask over the documents returned from a query. When not set, assumes that the caller wants all fields returned.
      */
     select?: Schema$Projection;
     /**
@@ -1632,7 +1632,7 @@ export namespace firestore_v1 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.create({
-     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     *     // Required. The ID to use for the database, which will become the final component of the database's resource name. The value must be set to "(default)".
      *     databaseId: 'placeholder-value',
      *     // Required. A parent name of the form `projects/{project_id\}`
      *     parent: 'projects/my-project',
@@ -1798,8 +1798,6 @@ export namespace firestore_v1 {
      *     allowMissing: 'placeholder-value',
      *     // The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
      *     etag: 'placeholder-value',
-     *     // If set, will free the database_id associated with this database. uid will be used as the resource id to identify this deleted database.
-     *     freeId: 'placeholder-value',
      *     // Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
      *     name: 'projects/my-project/databases/my-database',
      *     // If set, validate the request and preview the response, but do not actually delete the database.
@@ -2669,7 +2667,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. The value must be set to "(default)".
      */
     databaseId?: string;
     /**
@@ -2692,10 +2690,6 @@ export namespace firestore_v1 {
      * The current etag of the Database. If an etag is provided and does not match the current etag of the database, deletion will be blocked and a FAILED_PRECONDITION error will be returned.
      */
     etag?: string;
-    /**
-     * If set, will free the database_id associated with this database. uid will be used as the resource id to identify this deleted database.
-     */
-    freeId?: boolean;
     /**
      * Required. A name of the form `projects/{project_id\}/databases/{database_id\}`
      */
@@ -5379,7 +5373,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Listens to changes. This method is only available via the gRPC API (not REST).
+     * Listens to changes. This method is only available via gRPC or WebChannel (not REST).
      * @example
      * ```js
      * // Before running the sample:
@@ -6270,7 +6264,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Streams batches of document updates and deletes, in order. This method is only available via the gRPC API (not REST).
+     * Streams batches of document updates and deletes, in order. This method is only available via gRPC or WebChannel (not REST).
      * @example
      * ```js
      * // Before running the sample:
@@ -7120,7 +7114,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
