@@ -3377,7 +3377,7 @@ export namespace chromemanagement_v1 {
      *   const res = await chromemanagement.customers.reports.countPrintJobsByPrinter({
      *     // Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
      *     customer: 'customers/my-customer',
-     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * complete_time
      *     filter: 'placeholder-value',
      *     // Field used to order results. If omitted, results will be ordered in ascending order of the 'printer' field. Supported order_by fields: * printer * job_count * device_count * user_count
      *     orderBy: 'placeholder-value',
@@ -3530,7 +3530,7 @@ export namespace chromemanagement_v1 {
      *   const res = await chromemanagement.customers.reports.countPrintJobsByUser({
      *     // Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
      *     customer: 'customers/my-customer',
-     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * complete_time
      *     filter: 'placeholder-value',
      *     // Field used to order results. If omitted, results will be ordered in ascending order of the 'user_email' field. Supported order_by fields: * user_email * job_count * printer_count * device_count
      *     orderBy: 'placeholder-value',
@@ -3926,7 +3926,7 @@ export namespace chromemanagement_v1 {
      */
     customer?: string;
     /**
-     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * complete_time
      */
     filter?: string;
     /**
@@ -3953,7 +3953,7 @@ export namespace chromemanagement_v1 {
      */
     customer?: string;
     /**
-     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * completion_time
+     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * complete_time
      */
     filter?: string;
     /**
