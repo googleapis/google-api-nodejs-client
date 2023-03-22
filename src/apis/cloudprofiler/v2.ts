@@ -100,7 +100,7 @@ export namespace cloudprofiler_v2 {
   }
 
   /**
-   * Stackdriver Profiler API
+   * Cloud Profiler API
    *
    * Manages continuous profiling information.
    *

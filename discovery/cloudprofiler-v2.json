@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20220627",
+  "revision": "20230306",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
@@ -338,7 +338,7 @@
     }
   },
   "servicePath": "",
-  "title": "Stackdriver Profiler API",
+  "title": "Cloud Profiler API",
   "version": "v2",
   "version_module": true
 }
