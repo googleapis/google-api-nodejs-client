@@ -383,7 +383,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230320",
   "rootUrl": "https://playdeveloperreporting.googleapis.com/",
   "schemas": {
     "GooglePlayDeveloperReportingV1beta1Anomaly": {
@@ -630,6 +630,22 @@
         "timelineSpec": {
           "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
           "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the default and only supported timezone is `America/Los_Angeles`."
+        },
+        "userCohort": {
+          "description": "User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., \"T1B2.220916.004\".",
+          "enum": [
+            "USER_COHORT_UNSPECIFIED",
+            "OS_PUBLIC",
+            "OS_BETA",
+            "APP_TESTERS"
+          ],
+          "enumDescriptions": [
+            "Unspecified User cohort. This will automatically choose the default value.",
+            "This is default view. Contains data from public released android versions only.",
+            "This is the view with just android beta data excluding released OS version data.",
+            "This is the view with data only from users who have opted in to be testers for a given app, excluding OS beta data."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -686,6 +702,22 @@
         "timelineSpec": {
           "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
           "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the default and only supported timezone is `America/Los_Angeles`."
+        },
+        "userCohort": {
+          "description": "User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., \"T1B2.220916.004\".",
+          "enum": [
+            "USER_COHORT_UNSPECIFIED",
+            "OS_PUBLIC",
+            "OS_BETA",
+            "APP_TESTERS"
+          ],
+          "enumDescriptions": [
+            "Unspecified User cohort. This will automatically choose the default value.",
+            "This is default view. Contains data from public released android versions only.",
+            "This is the view with just android beta data excluding released OS version data.",
+            "This is the view with data only from users who have opted in to be testers for a given app, excluding OS beta data."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -742,6 +774,22 @@
         "timelineSpec": {
           "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
           "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`."
+        },
+        "userCohort": {
+          "description": "User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., \"T1B2.220916.004\".",
+          "enum": [
+            "USER_COHORT_UNSPECIFIED",
+            "OS_PUBLIC",
+            "OS_BETA",
+            "APP_TESTERS"
+          ],
+          "enumDescriptions": [
+            "Unspecified User cohort. This will automatically choose the default value.",
+            "This is default view. Contains data from public released android versions only.",
+            "This is the view with just android beta data excluding released OS version data.",
+            "This is the view with data only from users who have opted in to be testers for a given app, excluding OS beta data."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -798,6 +846,22 @@
         "timelineSpec": {
           "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
           "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`."
+        },
+        "userCohort": {
+          "description": "User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., \"T1B2.220916.004\".",
+          "enum": [
+            "USER_COHORT_UNSPECIFIED",
+            "OS_PUBLIC",
+            "OS_BETA",
+            "APP_TESTERS"
+          ],
+          "enumDescriptions": [
+            "Unspecified User cohort. This will automatically choose the default value.",
+            "This is default view. Contains data from public released android versions only.",
+            "This is the view with just android beta data excluding released OS version data.",
+            "This is the view with data only from users who have opted in to be testers for a given app, excluding OS beta data."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

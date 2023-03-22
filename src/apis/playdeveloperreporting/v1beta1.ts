@@ -308,6 +308,10 @@ export namespace playdeveloperreporting_v1beta1 {
      * Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the default and only supported timezone is `America/Los_Angeles`.
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
+    /**
+     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     */
+    userCohort?: string | null;
   }
   /**
    * Response message for QueryAnrRateMetricSet.
@@ -350,6 +354,10 @@ export namespace playdeveloperreporting_v1beta1 {
      * Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the default and only supported timezone is `America/Los_Angeles`.
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
+    /**
+     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     */
+    userCohort?: string | null;
   }
   /**
    * Response message for QueryCrashRateMetricSet.
@@ -392,6 +400,10 @@ export namespace playdeveloperreporting_v1beta1 {
      * Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`.
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
+    /**
+     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     */
+    userCohort?: string | null;
   }
   /**
    * Response message for QueryExcessiveWakeupRateMetricSet.
@@ -434,6 +446,10 @@ export namespace playdeveloperreporting_v1beta1 {
      * Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`.
      */
     timelineSpec?: Schema$GooglePlayDeveloperReportingV1beta1TimelineSpec;
+    /**
+     * User view to select. The output data will correspond to the selected view. **Supported values:** * `OS_PUBLIC` To select data from all publicly released Android versions. This is the default. Supports all the above dimensions. * `APP_TESTERS` To select data from users who have opted in to be testers. Supports all the above dimensions. * `OS_BETA` To select data from beta android versions only, excluding data from released android versions. Only the following dimensions are supported: * `versionCode` (int64): version of the app that was running on the user's device. * `osBuild` (string): OS build of the user's device, e.g., "T1B2.220916.004".
+     */
+    userCohort?: string | null;
   }
   /**
    * Response message for QueryStuckBackgroundWakelockRateMetricSet.
@@ -913,7 +929,8 @@ export namespace playdeveloperreporting_v1beta1 {
      *       //   "metrics": [],
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
-     *       //   "timelineSpec": {}
+     *       //   "timelineSpec": {},
+     *       //   "userCohort": "my_userCohort"
      *       // }
      *     },
      *   });
@@ -1230,7 +1247,8 @@ export namespace playdeveloperreporting_v1beta1 {
      *       //   "metrics": [],
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
-     *       //   "timelineSpec": {}
+     *       //   "timelineSpec": {},
+     *       //   "userCohort": "my_userCohort"
      *       // }
      *     },
      *   });
@@ -1547,7 +1565,8 @@ export namespace playdeveloperreporting_v1beta1 {
      *       //   "metrics": [],
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
-     *       //   "timelineSpec": {}
+     *       //   "timelineSpec": {},
+     *       //   "userCohort": "my_userCohort"
      *       // }
      *     },
      *   });
@@ -1866,7 +1885,8 @@ export namespace playdeveloperreporting_v1beta1 {
      *         //   "metrics": [],
      *         //   "pageSize": 0,
      *         //   "pageToken": "my_pageToken",
-     *         //   "timelineSpec": {}
+     *         //   "timelineSpec": {},
+     *         //   "userCohort": "my_userCohort"
      *         // }
      *       },
      *     });
