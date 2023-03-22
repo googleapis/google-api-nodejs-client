@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230321",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -3074,7 +3074,7 @@
           "type": "string"
         },
         "responseUrl": {
-          "description": "URL of the form responses document. Only set if respsonses have been recorded and only when the requesting user is an editor of the form. Read-only.",
+          "description": "URL of the form responses document. Only set if responses have been recorded and only when the requesting user is an editor of the form. Read-only.",
           "type": "string"
         },
         "thumbnailUrl": {

@@ -616,7 +616,7 @@ export namespace classroom_v1 {
      */
     formUrl?: string | null;
     /**
-     * URL of the form responses document. Only set if respsonses have been recorded and only when the requesting user is an editor of the form. Read-only.
+     * URL of the form responses document. Only set if responses have been recorded and only when the requesting user is an editor of the form. Read-only.
      */
     responseUrl?: string | null;
     /**
