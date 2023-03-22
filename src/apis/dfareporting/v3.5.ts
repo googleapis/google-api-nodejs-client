@@ -5692,6 +5692,7 @@ export namespace dfareporting_v3_5 {
       repeatsOnWeekDays?: string[];
       runsOnDayOfMonth?: string;
       startDate?: string;
+      timezone?: string;
     } | null;
     /**
      * The subaccount ID to which this report belongs if applicable.
