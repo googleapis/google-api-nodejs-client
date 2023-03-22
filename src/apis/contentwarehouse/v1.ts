@@ -1502,7 +1502,7 @@ export namespace contentwarehouse_v1 {
   export interface Schema$AppsPeopleOzExternalMergedpeopleapiEmailContactGroupPreference {
     contactGroupId?: string | null;
     /**
-     * If the Preference was implicitly set by PeopleApi. A preference with this bit will not be saved. See go/contact-group-email-preference-papi-problem for more info.
+     * If the Preference was implicitly set by PeopleApi/Contacts Service. A preference with this bit will not be saved to storage. See go/contact-group-email-preference-papi-problem for more info.
      */
     isSynthetic?: boolean | null;
     type?: string | null;
@@ -3108,6 +3108,10 @@ export namespace contentwarehouse_v1 {
      * Stats/counters pertaining to followers and incoming edges.
      */
     profileOwnerStats?: Schema$AppsPeopleOzExternalMergedpeopleapiProfileOwnerStats;
+    /**
+     * Returned only when explicitly requested in the request mask as read_only_profile_info.unjoined_email_certificates. Equivalent to fetching the Emails & the Email Certificates with the acls ignored.
+     */
+    unjoinedEmailCertificates?: Schema$AppsPeopleOzExternalMergedpeopleapiEmail[];
   }
   /**
    * DEPRECATED.
@@ -3587,6 +3591,15 @@ export namespace contentwarehouse_v1 {
     mediaTtsMixable?: string | null;
     quality?: string | null;
     volumeProperties?: Schema$AssistantApiVolumeProperties;
+  }
+  /**
+   * Bluetooth capabilities related to usage of a feature.
+   */
+  export interface Schema$AssistantApiBluetoothCapabilities {
+    /**
+     * If this surface needs to bluetooth pair a phone before using a feature.
+     */
+    isBluetoothConnectedProfileRequired?: boolean | null;
   }
   /**
    * CallCapabilities supported by a surface. See go/call-capabilities. Next ID: 7
@@ -4812,7 +4825,7 @@ export namespace contentwarehouse_v1 {
     timeZone?: Schema$AssistantApiTimeZone;
   }
   /**
-   * This message describes roughly what a surface is capable of doing and metadata around those capabilities. These capabilities are determined based on: - device hardware - software - status (e.g. volume level, battery percentage) These capabilities refer to the surface and not the physical device. The list of supported surfaces can be found in the assistant.api.core_types.SurfaceType enum. A surface's capabilities can differ from the device's. An example would be ANDROID_ALLO running on Pixel. Allo does not support AudioInput while the Pixel does. In this case, audio_input will be set to false for Assistant Allo requests while it might be set to true for OPA_NEXUS requests. Next ID: 34
+   * This message describes roughly what a surface is capable of doing and metadata around those capabilities. These capabilities are determined based on: - device hardware - software - status (e.g. volume level, battery percentage) These capabilities refer to the surface and not the physical device. The list of supported surfaces can be found in the assistant.api.core_types.SurfaceType enum. A surface's capabilities can differ from the device's. An example would be ANDROID_ALLO running on Pixel. Allo does not support AudioInput while the Pixel does. In this case, audio_input will be set to false for Assistant Allo requests while it might be set to true for OPA_NEXUS requests. Next ID: 35
    */
   export interface Schema$AssistantApiDeviceCapabilities {
     /**
@@ -4827,6 +4840,10 @@ export namespace contentwarehouse_v1 {
      * These capabilities are scoped to the ability to play audio. It includes information like the type of audio that can be played (e.g. public, private).
      */
     audioOutput?: Schema$AssistantApiAudioOutput;
+    /**
+     * Bluetooth capabilities related to usage of a feature.
+     */
+    bluetoothCapabilities?: Schema$AssistantApiBluetoothCapabilities;
     /**
      * The call capabilities of this device. go/call-capabilities
      */
@@ -6676,14 +6693,6 @@ export namespace contentwarehouse_v1 {
      */
     clickImpersonationSupported?: boolean | null;
     /**
-     * Whether client supports suggestion chips with colored background/border. Deprecated in favor of go/color-token-suggestion-chip.
-     */
-    coloredChipBackgroundBorderSupported?: boolean | null;
-    /**
-     * Whether client supports suggestion chips with colored text. See design doc: http://go/opa-suggestions-ux-eng-design. Deprecated in favor of go/color-token-suggestion-chip.
-     */
-    coloredChipTextSupported?: boolean | null;
-    /**
      * Whether client supports suggestions debug data to be displayed.
      */
     debugDataSupported?: boolean | null;
@@ -7711,9 +7720,17 @@ export namespace contentwarehouse_v1 {
     assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
-   * Features to be passed from Media GP to HGR. Next ID: 6
+   * Features to be passed from Media GP to HGR. Next ID: 9
    */
   export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
+    /**
+     * Release type for an album container.
+     */
+    albumReleaseType?: string | null;
+    /**
+     * True if the argument's type was explicitly mentioned in the query.
+     */
+    hasTypeSemanticEdge?: boolean | null;
     /**
      * Whether the candidate is YouTube CAST_VIDEO candidate. CAST_VIDEO is a deeplink platform. This signal will be used to promote YouTube Music screenful candidates with CAST_VIDEO platform for free users because free users cannot get exact entities in screenless response and can get exact entities with ads in screenful response.
      */
@@ -7734,6 +7751,10 @@ export namespace contentwarehouse_v1 {
      * Scubed predicted SAI value (pSAI) for music populated by a regression model that incorporates a BERT model signal as well as other Scubed signals.
      */
     scubedPSaiMusic?: number | null;
+    /**
+     * Type of the media item.
+     */
+    type?: string | null;
   }
   /**
    * Features to be extracted from Provider GP for ranking in HGR. Next ID: 2
@@ -8274,6 +8295,10 @@ export namespace contentwarehouse_v1 {
      * The timestamp that DeviceArbitration is created in milliseconds.
      */
     deviceArbitrationCreationTimestampMs?: string | null;
+    /**
+     * The timestamp that DeviceTargetingInput is built in milliseconds.
+     */
+    deviceTargetingInputCreationTimestampMs?: string | null;
     eliminatedByFurtherDistance?: number | null;
     eliminatedByLocalClosest?: number | null;
     eliminatedByUnknownDifferentRoom?: number | null;
@@ -8406,7 +8431,7 @@ export namespace contentwarehouse_v1 {
     resultConfidenceLevel?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 41
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 47
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -8446,6 +8471,10 @@ export namespace contentwarehouse_v1 {
      */
     groundingProviderFeatures?: Schema$AssistantGroundingRankerGroundingProviderFeatures;
     /**
+     * Whether the interpretation has a Search answer group object, signifying it came from Search resolution.
+     */
+    hasAnswerGroup?: boolean | null;
+    /**
      * This is a cross-intent feature which is calculated by iterating all intent candidates. This feature should be populated in post-IG stage (before GB).
      */
     inQueryMaxEffectiveArgSpanLength?: number | null;
@@ -8470,9 +8499,17 @@ export namespace contentwarehouse_v1 {
      */
     isFullyGrounded?: boolean | null;
     /**
+     * Whether the intent is a media control intent.
+     */
+    isMediaControlIntent?: boolean | null;
+    /**
      * Whether the intent is a PlayGenericMusic-type intent.
      */
     isPlayGenericMusic?: boolean | null;
+    /**
+     * Whether the intent is a podcast intent.
+     */
+    isPodcastIntent?: boolean | null;
     /**
      * The rank order of the interpretation as determined by kscorer. The kscorer-determined dominant interpretation, if any, gets a rank of 0. The remaining N interpretations get a rank of 1 through N.
      */
@@ -8489,6 +8526,10 @@ export namespace contentwarehouse_v1 {
      * The maximum score assigned by the Horizontal Grounding Ranker (HGR) across all of the intent's binding sets.
      */
     maxHgrScoreAcrossBindingSets?: number | null;
+    /**
+     * Rank of the intent as reported by NSP.
+     */
+    nspRank?: number | null;
     /**
      * Number of alternative hypotheses from speech recognition(S3).
      */
@@ -8518,6 +8559,10 @@ export namespace contentwarehouse_v1 {
      */
     numVariablesGrounded?: number | null;
     /**
+     * A ID corresponding to which bucket a given parsing score belongs in.
+     */
+    parsingScoreMse8BucketId?: number | null;
+    /**
      * Cosine similarity between predicted query-to-term model and assistant intent-type-based salient terms. This is intended to be only used for ACE ranking and only populated for assistant traffic.
      */
     pq2tVsAssistantIbstCosine?: number | null;
@@ -8529,6 +8574,10 @@ export namespace contentwarehouse_v1 {
      * Intent confidence predicted by the AssistantVerticalClassifier QRewrite servlet.
      */
     predictedIntentConfidence?: number | null;
+    /**
+     * Used in HGR to modify the ranker based on input experimental flag and intent name.
+     */
+    rankerName?: string | null;
     /**
      * The determination made by the SearchDispatchingConfig as to whether and how this interpretation should be dispatched to Search.
      */
@@ -12974,9 +13023,6 @@ export namespace contentwarehouse_v1 {
      * The globally unique id for this feature.
      */
     id?: Schema$GeostoreFeatureIdProto;
-    /**
-     * RESERVED
-     */
     inferredGeometry?: Schema$GeostoreInferredGeometryProto;
     /**
      * S2 interior covering that consists of cells completely enclosed within the feature's geometry (for features with polygonal geometry).
@@ -13109,7 +13155,7 @@ export namespace contentwarehouse_v1 {
      */
     status?: Schema$GeostoreExistenceProto;
     /**
-     * Represents information about the store front geoemtry. Only TYPE_ESTABLISHMENT_POI should have this field set.
+     * Represents information about the store front geometry. Only TYPE_ESTABLISHMENT_POI should have this field set.
      */
     storefrontGeometry?: Schema$GeostoreAnchoredGeometryProto[];
     /**
@@ -13178,7 +13224,7 @@ export namespace contentwarehouse_v1 {
     internal?: Schema$GeostoreInternalFieldMetadataProto;
   }
   /**
-   * Proto used to represent rights for a field type. See go/geo-rights for more details. NOTE: Use google3/geostore/provenance/public/rights.h or google3/java/com/google/geostore/provenance/rights/Rights.swig instead of accessing this proto directly.
+   * Proto used to represent rights for a field type. See go/geo-rights for more details. NOTE: Use google3/geostore/provenance/public/rights.h or google3/java/com/google/geostore/provenance/rights/Rights.java instead of accessing this proto directly.
    */
   export interface Schema$GeostoreFieldWithRightsProto {
     /**
@@ -13342,7 +13388,7 @@ export namespace contentwarehouse_v1 {
     type?: string | null;
   }
   /**
-   * Inferred geometry defines the geometry of a feature through the geometry of other features. For instance, the geometry of a timezone can be specified as the union of all the countries it applies to. See: go/inferred-geometry and go/geo-schema:composite-geometry-editor for more details.
+   * Inferred geometry defines the geometry of a feature as the union or exclusion of the geometry of other features. For instance, the geometry of a timezone can be specified as the union of all the countries it applies to. In this scenario, the timezone will can be considered a "composite feature", while the countries are its "composing features". A composite feature must have a bidirectional reference between itself and all its composing features. A composite feature refers to its composing features via `geometry_composition`, while the composing features must refer back to the composing feature via `defines_geometry_for`. See: go/inferred-geometry and go/geo-schema:composite-geometry-editor for more details.
    */
   export interface Schema$GeostoreInferredGeometryProto {
     /**
@@ -13350,7 +13396,7 @@ export namespace contentwarehouse_v1 {
      */
     definesGeometryFor?: Schema$GeostoreFeatureIdProto[];
     /**
-     * Features whose geometry defines the geometry of this feature.
+     * Features whose geometry defines the geometry of this feature (i.e. "composing features").
      */
     geometryComposition?: Schema$GeostoreGeometryComposition;
   }
@@ -13622,6 +13668,10 @@ export namespace contentwarehouse_v1 {
      * This reference to the other segment is weak, since strong would blow up bounds of all segments.
      */
     segment?: Schema$GeostoreFeatureIdProto;
+    /**
+     * The inverse of the primary connection bit that provides a hint that this connection is part of a merge and a vehicle following this connection should yield to vehicles following other incoming connections.
+     */
+    yieldToOtherConnections?: boolean | null;
   }
   /**
    * Represents a piece of text with an associated language.
@@ -14018,7 +14068,7 @@ export namespace contentwarehouse_v1 {
     population?: string | null;
   }
   /**
-   * A general non-self-intersecting spherical polygon, consisting of one or more loops defining multiple disconnected regions possibly with holes. All loops should be oriented CCW around the region they define. This applies to the exterior loop(s) as well as any holes. Within MapFacts (and underlying infrastructure) the data fields may be replaced by a single shape_id; see comments on shape_id below. Any such PolygonProtos shouldn't be expected to work with public functions in //geostore/base/public/polygon.h.
+   * A general non-self-intersecting spherical polygon, consisting of one or more loops defining multiple disconnected regions possibly with holes. All loops should be oriented CCW around the region they define. This applies to the exterior loop(s) as well as any holes. Within MapFacts (and underlying infrastructure) the data fields may be replaced by a single shape_id stored in internal_feature. Any such PolygonProtos shouldn't be expected to work with public functions in //geostore/base/public/polygon.h.
    */
   export interface Schema$GeostorePolygonProto {
     /**
@@ -14045,10 +14095,6 @@ export namespace contentwarehouse_v1 {
      * Field-level metadata for this polygon.
      */
     metadata?: Schema$GeostoreFieldMetadataProto;
-    /**
-     * A unique identifier for this polygon's data which is being held externally in Shapestore (see go/shapestore). This is only ever set internally within MapFacts or underlying infrastructure and if set is set in lieu of other fields. Clients of MapFacts (or anyone downstream of them) can rely on the guarantee that this field will never be set and that the actual data for the polygon will be present instead. This field has been deprecated in favor of FeatureProto.internal.polygon_shape_id
-     */
-    shapeId?: string | null;
     /**
      * A place for clients to attach arbitrary data to a polygon. Never set in MapFacts.
      */
@@ -14488,7 +14534,7 @@ export namespace contentwarehouse_v1 {
     vehicleAttributeFilter?: Schema$GeostoreVehicleAttributeFilterProto;
   }
   /**
-   * Proto used to represent rights for FeatureProto. See go/geo-rights for more details. NOTE: Use google3/geostore/provenance/public/rights.h or google3/java/com/google/geostore/provenance/rights/Rights.swig instead of accessing this proto directly.
+   * Proto used to represent rights for FeatureProto. See go/geo-rights for more details. NOTE: Use google3/geostore/provenance/public/rights.h or google3/java/com/google/geostore/provenance/rights/Rights.java instead of accessing this proto directly.
    */
   export interface Schema$GeostoreRightsStatusProto {
     fieldWithRights?: Schema$GeostoreFieldWithRightsProto[];
@@ -14774,7 +14820,11 @@ export namespace contentwarehouse_v1 {
      */
     sibling?: Schema$GeostoreFeatureIdProto;
     /**
-     * clang-format on LINT.ThenChange(//depot/google3/geostore/base/proto/lane.proto) If this option is missing it means that the surface is unknown. Specific lanes may override this segment-level surface type.
+     * RESERVED
+     */
+    slope?: Schema$GeostoreSlopeProto[];
+    /**
+     * clang-format on LINT.ThenChange(//depot/google3/geostore/base/proto/lane.proto) Specific lanes may override this segment-level surface type.
      */
     surface?: string | null;
     /**
@@ -14841,6 +14891,16 @@ export namespace contentwarehouse_v1 {
   export interface Schema$GeostoreSkiTrailProto {
     difficulty?: string | null;
     type?: string | null;
+  }
+  export interface Schema$GeostoreSlopeProto {
+    /**
+     * Slope value as elevation change divided by horizontal distance, in the format of decimal, e.g., ‘0.1234’ means a 12.34% slope. If a slope_value is unset, it indicates we don’t have enough information to compute slope at this location.
+     */
+    slopeValue?: number | null;
+    /**
+     * Indicates how far along the segment this slope value starts to apply, in the format of decimal between 0 and 1.
+     */
+    startPointFraction?: number | null;
   }
   /**
    * MapFacts GAIA ID assigned to this feature. These values are virtual GAIA IDs from MapFacts, and as such are not stored in Focus.
@@ -14942,6 +15002,10 @@ export namespace contentwarehouse_v1 {
      */
     condition?: Schema$GeostoreRoadConditionalProto[];
     /**
+     * The source of the speed limit.
+     */
+    sourceType?: string | null;
+    /**
      * A constant speed limit.
      */
     speedWithUnit?: Schema$GeostoreSpeedProto;
@@ -14958,7 +15022,13 @@ export namespace contentwarehouse_v1 {
    * A speed value and unit.
    */
   export interface Schema$GeostoreSpeedProto {
+    /**
+     * All speed values are stored in kilometers per hour.
+     */
     speed?: number | null;
+    /**
+     * Mapfacts only allows unit to be KILOMETERS_PER_HOUR.
+     */
     unit?: string | null;
   }
   /**
@@ -16256,10 +16326,6 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleAssistantAccessoryV1DeviceConfig {
     /**
-     * *Required* Identifier for the device which sent the request.
-     */
-    deviceBuild?: Schema$GoogleAssistantEmbeddedV1DeviceBuild;
-    /**
      * Device model capabilities from client to override capabilities in the primary device model.
      */
     deviceModelCapabilitiesOverride?: Schema$GoogleAssistantEmbeddedV1DeviceModelCapabilitiesOverride;
@@ -16267,6 +16333,10 @@ export namespace contentwarehouse_v1 {
      * *Optional* An encrypted heterodyne_experiment_token containing the list of experiment_ids (go/ph-server-tokens).
      */
     heterodyneToken?: string | null;
+    /**
+     * *Required* Identifier for the device which sent the request.
+     */
+    surfaceIdentity?: Schema$GoogleAssistantEmbeddedV1SurfaceIdentity;
   }
   /**
    * Information about the state of the device. This contains any state that Assistant may need to know about in order to fulfill requests, for example which timers and alarms are set. Next ID: 9
@@ -16436,15 +16506,6 @@ export namespace contentwarehouse_v1 {
     stateFetchError?: string | null;
   }
   /**
-   * Contains fields to identify the device which sent the request.
-   */
-  export interface Schema$GoogleAssistantEmbeddedV1DeviceBuild {
-    /**
-     * * Fully formed user agent suffix string.
-     */
-    userAgentSuffix?: string | null;
-  }
-  /**
    * Device model capabilities override from client.
    */
   export interface Schema$GoogleAssistantEmbeddedV1DeviceModelCapabilitiesOverride {
@@ -16490,6 +16551,19 @@ export namespace contentwarehouse_v1 {
      * The type of activity being done.
      */
     type?: string | null;
+  }
+  /**
+   * Contains fields to identify the device which sent the request.
+   */
+  export interface Schema$GoogleAssistantEmbeddedV1SurfaceIdentity {
+    /**
+     * Surface type that the device identifies as.
+     */
+    surfaceType?: string | null;
+    /**
+     * * Fully formed user agent suffix string.
+     */
+    userAgentSuffix?: string | null;
   }
   /**
    * Conceptually, timers are clocks that count down from an initial duration and ring when they reach 0. In practice, as a timer is running, it holds a stable expiration time and computes the remaining duration using the current time. When a timer is paused, it holds a stable remaining duration.
@@ -16723,6 +16797,47 @@ export namespace contentwarehouse_v1 {
      * List of schema and property name. Allows a maximum of 10 schemas to be specified for relevance boosting.
      */
     weightedSchemaProperties?: Schema$GoogleCloudContentwarehouseV1WeightedSchemaProperty[];
+  }
+  /**
+   * Describes a data export job.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1DataExportJob {
+    /**
+     * The create time of the job.
+     */
+    createTime?: string | null;
+    /**
+     * BigQuery dataset name.
+     */
+    dataset?: string | null;
+    /**
+     * Frequency of the data export job.
+     */
+    frequency?: string | null;
+    /**
+     * The data export job ID.
+     */
+    id?: string | null;
+    /**
+     * Location of document warehouse API.
+     */
+    location?: string | null;
+    /**
+     * User project number. The project should have document warehouse API enabled. The BigQuery database should also be in the same project.
+     */
+    projectNumber?: string | null;
+    /**
+     * The current state of the data export job.
+     */
+    state?: string | null;
+    /**
+     * BigQuery table name.
+     */
+    table?: string | null;
+    /**
+     * The last update time of the job.
+     */
+    updateTime?: string | null;
   }
   /**
    * Represents the action responsible for properties update operations.
@@ -17117,9 +17232,9 @@ export namespace contentwarehouse_v1 {
      */
     inputPath?: string | null;
     /**
-     * The Cloud Storage folder path used to store the raw results from processors. Format: gs:///.
+     * The Doc AI processor type name. Only used when the format of ingested files is Doc AI Document proto format. Reference: https://source.corp.google.com/piper///depot/google3/cloud/ai/documentai/core/c/proto/processor.proto;l=21
      */
-    processorResultsFolderPath?: string | null;
+    processorType?: string | null;
     /**
      * The Document Warehouse schema resource name. All documents processed by this pipeline will use this schema. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
      */
@@ -17351,6 +17466,19 @@ export namespace contentwarehouse_v1 {
     synonymSets?: Schema$GoogleCloudContentwarehouseV1SynonymSet[];
   }
   /**
+   * Request message for DocumentService.LockDocument.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1LockDocumentRequest {
+    /**
+     * The collection the document connects to.
+     */
+    collectionId?: string | null;
+    /**
+     * The user information who locks the document.
+     */
+    lockingUser?: Schema$GoogleCloudContentwarehouseV1UserInfo;
+  }
+  /**
    * Map property value. Represents a structured entries of key value pairs, consisting of field names which map to dynamically typed values.
    */
   export interface Schema$GoogleCloudContentwarehouseV1MapProperty {
@@ -17396,7 +17524,7 @@ export namespace contentwarehouse_v1 {
   /**
    * The configuration of processing documents in Document Warehouse with DocAi processors pipeline.
    */
-  export interface Schema$GoogleCloudContentwarehouseV1ProcessWithDocAi {
+  export interface Schema$GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline {
     /**
      * The list of all the resource names of the documents to be processed. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\}.
      */
@@ -17751,7 +17879,11 @@ export namespace contentwarehouse_v1 {
     /**
      * Use a DocAI processor to process documents in Document Warehouse, and re-ingest the updated results into Document Warehouse.
      */
-    processWithDocAiPipeline?: Schema$GoogleCloudContentwarehouseV1ProcessWithDocAi;
+    processWithDocAiPipeline?: Schema$GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline;
+    /**
+     * The meta information collected about the end user, used to enforce access control for the service.
+     */
+    requestMetadata?: Schema$GoogleCloudContentwarehouseV1RequestMetadata;
   }
   /**
    * Request message for DocumentService.SearchDocuments.
@@ -19135,6 +19267,10 @@ export namespace contentwarehouse_v1 {
      * Experimental. Can change or disappear without warning or notice. The floor id. For example "11".
      */
     experimentalFloorId?: string | null;
+    /**
+     * The display label of this office location. For example a building name.
+     */
+    label?: string | null;
   }
   /**
    * The status indicating the user is out of office.
@@ -20614,6 +20750,14 @@ export namespace contentwarehouse_v1 {
      * LINT.IfChange
      */
     type?: string | null;
+    /**
+     * The end timestamp of the video segment in microseconds that this preview is generated from. Used for segmented video previews.
+     */
+    videoSegmentEndUs?: string | null;
+    /**
+     * The start timestamp of the video segment in microseconds that this preview is generated from. Used for segmented video previews.
+     */
+    videoSegmentStartUs?: string | null;
     /**
      * Width of the stored preview.
      */
@@ -22901,27 +23045,20 @@ export namespace contentwarehouse_v1 {
     acceleratedShoppingSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     chromeCounts?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     /**
-     * LINT.ThenChange(//depot/google3/indexing/ames/spanner/schema/websearch_main.sdl)
+     * LINT.ThenChange(//depot/google3/indexing/ames/spanner/schema/web-version.proto)
      */
+    creator?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     instantNavboost?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     localyp?: Schema$IndexingDocjoinerDataVersionVersionInfo;
-    localypVersion?: string | null;
     modernFormatContent?: Schema$IndexingDocjoinerDataVersionVersionInfo;
-    modernFormatContentVersion?: string | null;
     /**
      * LINT.IfChange
      */
     navboost?: Schema$IndexingDocjoinerDataVersionVersionInfo;
-    /**
-     * DEPRECATED
-     */
-    navboostVersion?: string | null;
     rankembed?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     universalFacts?: Schema$IndexingDocjoinerDataVersionVersionInfo;
     videoScoringSignal?: Schema$IndexingDocjoinerDataVersionVersionInfo;
-    videoScoringSignalVersion?: string | null;
     volt?: Schema$IndexingDocjoinerDataVersionVersionInfo;
-    voltVersion?: string | null;
   }
   export interface Schema$IndexingDocjoinerDataVersionVersionInfo {
     humanReadableVersion?: string | null;
@@ -26365,7 +26502,7 @@ export namespace contentwarehouse_v1 {
     y2?: number | null;
   }
   /**
-   * This message holds person attributes from the LookNet-Person model (go/looknet-person) and the Style AI Iconic Person Scorer (http://go/styleai-indexing-g3doc#iconic-person-scorer) for the most iconic person in a style image. There is an ongoing collaboration with the Human Sensing team on LookNet-Person v3 (go/looknet-person-v3-collaboration) that deals with some of these signals together. Hence, the combined proto definition. Discretization of float values is recommended by CDS for cheaper and more efficient storage. Next ID: 11
+   * This message holds person attributes from the Person Interpreter model (go/person-interpreter) and the Style AI Iconic Person Scorer (go/styleai-indexing-g3doc#iconic-person-scorer) for the most iconic person in a style image. Discretization of float values is recommended by CDS for cheaper and more efficient storage. Next ID: 11
    */
   export interface Schema$LensDiscoveryStylePersonAttributes {
     /**
@@ -35372,7 +35509,7 @@ export namespace contentwarehouse_v1 {
   export interface Schema$QualityNsrNsrChunksWithSourceInfo {
     nsrChunks?: Schema$QualityNsrNsrChunksProto;
     /**
-     * These are annotated in the Goldmine NSR annotator.
+     * Annotated in the SitechunksAnnotator and copied over in NsrAnnotator.
      */
     siteChunkSource?: string | null;
   }
@@ -35573,6 +35710,10 @@ export namespace contentwarehouse_v1 {
      * This is an internal field set by Raffia, to indicate which lookup keys have been attempted to populate the NsrData for this document. This will allow us to determine which key has been used to populate each field in the proto. The keys are ordered by lookup priority; raffia will give priority to earlier keys, and only take fields from later keys if they are missing.
      */
     raffiaLookupKeys?: string[] | null;
+    /**
+     * The url used by NsrSignalMerger (http://google3/indexing/signals/signal-merger.h;l=1801;rcl=509297232) to select which NsrData value to keep. The SignalMerger merges all the NsrData coming from the dup url cluster, and select the NsrData value to return by choosing a single url in the cluster (see NsrSignalMerger class for details). NOTE: This field is populated only when there *is* a cluster. If there is no cluster, this is empty and the key used is the canonical (and only) url.
+     */
+    raffiaSignalMergerUrl?: string | null;
   }
   /**
    * Versioned NSR score data.
@@ -35655,7 +35796,15 @@ export namespace contentwarehouse_v1 {
      */
     versionId?: number | null;
   }
+  /**
+   * Next ID: 7
+   */
   export interface Schema$QualityOrbitAsteroidBeltDocumentIntentScores {
+    /**
+     * Same as above, but for intents below triggering threshold. It can be assumed that any intent in this list has trigger=false. Most intents do not have below-threshold annotations.
+     */
+    belowThresholdIntents?: string[] | null;
+    belowThresholdScores?: number[] | null;
     /**
      * Map of imageid key to ImageIntentScores, for images on cdoc.doc_images
      */
@@ -37807,10 +37956,6 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$RepositoryWebrefDocumentMetadata {
     /**
-     * A copy of selected extensions from cdoc.doc_attachments and cdoc.per_doc_data, controlled by: --webref_doc_metadata_copy_instant_navboost_document (copies doc_attachments[quality_freshness_abacus::InstantNavBoostDocument] (TypeId 105421467), defined in quality/freshness/abacus/public/abacus.proto). Used in Querybase to have navboost associated with relevant cdocs. --webref_doc_metadata_copy_per_doc_navboost (copies per_doc_data[navboostdata]) (TypeId 4256936), defined in mustang/repository/navboost/proto/navboostmustang.proto. Used in Querybase to have navboost associated with relevant docs. Note that it is not present in the original doc_attachments, but in per_doc_data, and we copy it over here so as not to depend on the proto directly, as they are not compatible due to different app_engine compatibility. --webref_doc_metadata_copy_images (copies doc_attachments[indexing::images::RelatedImageSignal]) (TypeId 21265426), defined in indexing/images/proto/image-linker.proto.
-     */
-    cdocAttachments?: Schema$Proto2BridgeMessageSet;
-    /**
      * The timestamp of when the document was crawled (if known). Copied from CompositeDoc.Content.CrawlTime.
      */
     crawlTime?: string | null;
@@ -37838,10 +37983,6 @@ export namespace contentwarehouse_v1 {
      * The (weighted) number of incoming anchors (links from other documents).
      */
     numIncomingAnchors?: number | null;
-    /**
-     * Copies of selected repeated extensions from cdoc, controlled by: --webref_doc_metadata_copy_images (copies the repeated doc_images field (TypeId 8798074), defined in image/search/imagedoc.proto).
-     */
-    repeatedCdocAttachments?: Schema$Proto2BridgeMessageSet[];
     /**
      * The salient terms for this document. Only set if --webref_doc_metadata_copy_salient_terms is true. Same motivation as the title field above.
      */
@@ -38525,11 +38666,11 @@ export namespace contentwarehouse_v1 {
     lexicalRange?: Schema$RepositoryWebrefLexicalRange[];
   }
   /**
-   * A single understood lexicon of the |category| on byte range from |begin_offset| (inclusive) to |end_offset| (exclusive). The byte range could be a subtoken range or span across multiple tokens.
+   * A single understood lexicon of the |category| on byte range from |begin_offset| (inclusive) to |end_offset| (exclusive). The offsets are all byte offsets relative to the full original query and cover both the mentions and surrounding markers.
    */
   export interface Schema$RepositoryWebrefLexicalRange {
     /**
-     * Byte offset of the begin of the |category|.
+     * Begin byte offset relative to the full original query.
      */
     beginOffset?: number | null;
     category?: string | null;
@@ -38538,7 +38679,7 @@ export namespace contentwarehouse_v1 {
      */
     direction?: string | null;
     /**
-     * Byte offset of the end of the |category|.
+     * End byte offset relative to the full original query.
      */
     endOffset?: number | null;
     /**
@@ -41215,6 +41356,10 @@ export namespace contentwarehouse_v1 {
    * SafeSearch video content classification scores are computed based on go/golden7 video features. To access these scores see the library at: google3/quality/safesearch/video/api/video_score_info.h
    */
   export interface Schema$SafesearchVideoContentSignals {
+    /**
+     * This is used by Amarna to determine whether it should notify Raffia for immediate reprocessing. This field will be generated in Amarna's image_metadata corpus and exported to references_video_search corpus and written to ExportState.module_state.critical_metadata_checksum for determining whether Amarna should immediately notify Raffia whenever is_abuse_with_high_confidence's value changes.
+     */
+    isAbuseWithHighConfidence?: boolean | null;
     scores?: {[key: string]: number} | null;
     versionTag?: string | null;
     /**
@@ -42064,6 +42209,7 @@ export namespace contentwarehouse_v1 {
      */
     dasherUser?: boolean | null;
     followon?: Schema$SearchPolicyRankableSensitivityFollowOn;
+    groundingProvider?: Schema$SearchPolicyRankableSensitivityGroundingProvider;
     prefilter?: Schema$SearchPolicyRankableSensitivityPrefilter;
     qu?: Schema$SearchPolicyRankableSensitivityQueryUnderstanding;
     /**
@@ -42097,6 +42243,10 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$SearchPolicyRankableSensitivityFulfillment {}
   /**
+   * Marks that sensitivity is from a Grounding Provider.
+   */
+  export interface Schema$SearchPolicyRankableSensitivityGroundingProvider {}
+  /**
    * Deprecated, do not use.
    */
   export interface Schema$SearchPolicyRankableSensitivityPrefilter {
@@ -42116,7 +42266,7 @@ export namespace contentwarehouse_v1 {
     rewrittenQuery?: string | null;
   }
   /**
-   * Marks that this sensitivity is form a synthetic intent.
+   * Marks that this sensitivity is from a synthetic intent.
    */
   export interface Schema$SearchPolicyRankableSensitivitySyntheticIntent {}
   /**
@@ -42595,6 +42745,14 @@ export namespace contentwarehouse_v1 {
     inferredImageId?: string | null;
     inferredImageSource?: string | null;
     inferredImageType?: string | null;
+    /**
+     * This field will only be populated if the inferred image is a neardup of an inferred image. It stores the type and source of the images it is a neardup of.
+     */
+    neardupInfo?: Schema$ShoppingWebentityShoppingAnnotationInferredImageNeardupInfo[];
+  }
+  export interface Schema$ShoppingWebentityShoppingAnnotationInferredImageNeardupInfo {
+    inferredImageSource?: string | null;
+    inferredImageType?: string | null;
   }
   /**
    * Information about a rating provided for a product. This can represent an aggregated rating if count is set. Next Id: 7
@@ -42823,13 +42981,14 @@ export namespace contentwarehouse_v1 {
     snippetsbrainModelInfo?: Schema$SnippetExtraInfoSnippetsBrainModelInfo;
   }
   /**
-   * Next ID: 14
+   * Next ID: 15
    */
   export interface Schema$SnippetExtraInfoSnippetCandidateInfo {
     /**
      * Bolded ranges in the printed snippet lines.
      */
     boldedRanges?: Schema$QualitySnippetsTruncationSnippetBoldedRange[];
+    extendedSnippet?: Schema$SnippetExtraInfoSnippetCandidateInfoExtendedSnippet;
     /**
      * Candidate identifier number, unique among all snippet candidates under each document in each request. What does this number mean: - Muppet candidates: This equals to the candidate's rank by Muppet snippets scorer. - Superroot candidates: No specific meaning, this number should be larger than that of Muppet candidates. This field is used to: - Verify whether snippet brain chooses a different snippet from Muppet (the one chosen by Muppet is always in id 0). - Print debugging information and sort candidates in debug output.
      */
@@ -42860,6 +43019,13 @@ export namespace contentwarehouse_v1 {
      */
     snippetText?: string | null;
     snippetType?: string | null;
+  }
+  /**
+   * The extended version of this snippet.
+   */
+  export interface Schema$SnippetExtraInfoSnippetCandidateInfoExtendedSnippet {
+    numChars?: number | null;
+    snippetText?: string | null;
   }
   /**
    * Log model name, partition and input processor used to generate SnippetsBrain scores, if SnippetsBrain debugging is enabled.
@@ -44091,6 +44257,10 @@ export namespace contentwarehouse_v1 {
      * Policy metadata fields for LMS data. Only expected to be used by LMS providers -- please consult ke-data-governance@ before populating this field.
      */
     lmsPolicyMetadata?: Schema$StorageGraphBfgLmsPolicyMetadata;
+    /**
+     * This triple is protected by the policies with PolicyDataScope identified by these global unique ids.
+     */
+    policyDataScopeKeys?: number[] | null;
     /**
      * Policy metadata are VERTICAL by default. Vertical policy makers / providers does not need to set this field explicitly.
      */
@@ -45948,13 +46118,21 @@ export namespace contentwarehouse_v1 {
     videoHasClosedCaptions?: boolean | null;
   }
   /**
-   * Contains anchor level features that apply to all anchor types. Next id: 18.
+   * Contains anchor level features that apply to all anchor types. Next id: 22.
    */
   export interface Schema$VideoContentSearchAnchorCommonFeatureSet {
     /**
      * QBST distance between the anchor and the top navboost query of the video if exists, or the video title otherwise.
      */
     anchorQbstDistance?: number | null;
+    /**
+     * Average of babel similarity between the anchor and all asr sentences.
+     */
+    asrAverageBabelSimilarityScore?: number | null;
+    /**
+     * Maximum babel similarity between the anchor and the asr sentences.
+     */
+    asrMaximumBabelSimilarityScore?: number | null;
     /**
      * Features needed for Bleurt inference.
      */
@@ -45967,6 +46145,14 @@ export namespace contentwarehouse_v1 {
      * Descartes similarity score between video title and anchor label.
      */
     descartesScoreWithTitle?: number | null;
+    /**
+     * Average of babel similarity between the anchor and all description sentences.
+     */
+    descriptionAverageBabelSimilarityScore?: number | null;
+    /**
+     * Maximum babel similarity between the anchor and the description sentences.
+     */
+    descriptionMaximumBabelSimilarityScore?: number | null;
     /**
      * The predicted descriptiveness and usefulness rating scores generated by the Unified Dolphin model. Rating template: experimental/video/video_anchors_oneside_without_thumbnail/template.jhtml
      */
@@ -51047,7 +51233,7 @@ export namespace contentwarehouse_v1 {
      *
      *   // Do the magic
      *   const res = await contentwarehouse.projects.fetchAcl({
-     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      *     resource: 'projects/my-project',
      *
      *     // Request body metadata
@@ -51196,7 +51382,7 @@ export namespace contentwarehouse_v1 {
      *
      *   // Do the magic
      *   const res = await contentwarehouse.projects.setAcl({
-     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      *     resource: 'projects/my-project',
      *
      *     // Request body metadata
@@ -51322,7 +51508,7 @@ export namespace contentwarehouse_v1 {
   export interface Params$Resource$Projects$Fetchacl
     extends StandardParameters {
     /**
-     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      */
     resource?: string;
 
@@ -51333,7 +51519,7 @@ export namespace contentwarehouse_v1 {
   }
   export interface Params$Resource$Projects$Setacl extends StandardParameters {
     /**
-     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      */
     resource?: string;
 
@@ -51345,6 +51531,7 @@ export namespace contentwarehouse_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    dataExportJobs: Resource$Projects$Locations$Dataexportjobs;
     documents: Resource$Projects$Locations$Documents;
     documentSchemas: Resource$Projects$Locations$Documentschemas;
     operations: Resource$Projects$Locations$Operations;
@@ -51352,6 +51539,9 @@ export namespace contentwarehouse_v1 {
     synonymSets: Resource$Projects$Locations$Synonymsets;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.dataExportJobs = new Resource$Projects$Locations$Dataexportjobs(
+        this.context
+      );
       this.documents = new Resource$Projects$Locations$Documents(this.context);
       this.documentSchemas = new Resource$Projects$Locations$Documentschemas(
         this.context
@@ -51554,7 +51744,8 @@ export namespace contentwarehouse_v1 {
      *       //   "exportCdwPipeline": {},
      *       //   "gcsIngestPipeline": {},
      *       //   "gcsIngestWithDocAiProcessorsPipeline": {},
-     *       //   "processWithDocAiPipeline": {}
+     *       //   "processWithDocAiPipeline": {},
+     *       //   "requestMetadata": {}
      *       // }
      *     },
      *   });
@@ -51693,6 +51884,344 @@ export namespace contentwarehouse_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1RunPipelineRequest;
+  }
+
+  export class Resource$Projects$Locations$Dataexportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Archives a data export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contentwarehouse.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contentwarehouse = google.contentwarehouse('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contentwarehouse.projects.locations.dataExportJobs.archiveDataExportJob(
+     *       {
+     *         // Required. The resource name.
+     *         name: 'projects/my-project/locations/my-location/dataExportJobs/my-dataExportJob',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "frequency": "my_frequency",
+     *   //   "id": "my_id",
+     *   //   "location": "my_location",
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "state": "my_state",
+     *   //   "table": "my_table",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    archiveDataExportJob(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    archiveDataExportJob(
+      params?: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>;
+    archiveDataExportJob(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    archiveDataExportJob(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+    ): void;
+    archiveDataExportJob(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+    ): void;
+    archiveDataExportJob(
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+    ): void;
+    archiveDataExportJob(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contentwarehouse.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a data export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contentwarehouse.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contentwarehouse = google.contentwarehouse('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contentwarehouse.projects.locations.dataExportJobs.create({
+     *     // Required. The resource parent name.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataset": "my_dataset",
+     *       //   "frequency": "my_frequency",
+     *       //   "id": "my_id",
+     *       //   "location": "my_location",
+     *       //   "projectNumber": "my_projectNumber",
+     *       //   "state": "my_state",
+     *       //   "table": "my_table",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "frequency": "my_frequency",
+     *   //   "id": "my_id",
+     *   //   "location": "my_location",
+     *   //   "projectNumber": "my_projectNumber",
+     *   //   "state": "my_state",
+     *   //   "table": "my_table",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Dataexportjobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>;
+    create(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexportjobs$Create
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexportjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dataexportjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contentwarehouse.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dataExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob
+    extends StandardParameters {
+    /**
+     * Required. The resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dataexportjobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource parent name.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContentwarehouseV1DataExportJob;
   }
 
   export class Resource$Projects$Locations$Documents {
@@ -52025,7 +52554,7 @@ export namespace contentwarehouse_v1 {
      *
      *   // Do the magic
      *   const res = await contentwarehouse.projects.locations.documents.fetchAcl({
-     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      *     resource: 'projects/my-project/locations/my-location/documents/my-document',
      *
      *     // Request body metadata
@@ -52614,6 +53143,169 @@ export namespace contentwarehouse_v1 {
     }
 
     /**
+     * Lock the document so the document cannot be updated by other users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contentwarehouse.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contentwarehouse = google.contentwarehouse('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contentwarehouse.projects.locations.documents.lock({
+     *     // Required. The name of the document to lock. Format: projects/{project_number\}/locations/{location\}/documents/{document\}.
+     *     name: 'projects/my-project/locations/my-location/documents/my-document',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "collectionId": "my_collectionId",
+     *       //   "lockingUser": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cloudAiDocument": {},
+     *   //   "contentCategory": "my_contentCategory",
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "displayName": "my_displayName",
+     *   //   "displayUri": "my_displayUri",
+     *   //   "documentSchemaName": "my_documentSchemaName",
+     *   //   "inlineRawDocument": "my_inlineRawDocument",
+     *   //   "name": "my_name",
+     *   //   "plainText": "my_plainText",
+     *   //   "properties": [],
+     *   //   "rawDocumentFileType": "my_rawDocumentFileType",
+     *   //   "rawDocumentPath": "my_rawDocumentPath",
+     *   //   "referenceId": "my_referenceId",
+     *   //   "textExtractionDisabled": false,
+     *   //   "textExtractionEnabled": false,
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "updater": "my_updater"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lock(
+      params: Params$Resource$Projects$Locations$Documents$Lock,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lock(
+      params?: Params$Resource$Projects$Locations$Documents$Lock,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>;
+    lock(
+      params: Params$Resource$Projects$Locations$Documents$Lock,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lock(
+      params: Params$Resource$Projects$Locations$Documents$Lock,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1Document>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1Document>
+    ): void;
+    lock(
+      params: Params$Resource$Projects$Locations$Documents$Lock,
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1Document>
+    ): void;
+    lock(
+      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1Document>
+    ): void;
+    lock(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Documents$Lock
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1Document>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1Document>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1Document>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1Document>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Documents$Lock;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Documents$Lock;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contentwarehouse.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:lock').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContentwarehouseV1Document>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContentwarehouseV1Document>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a document. Returns INVALID_ARGUMENT if the name of the document is non-empty and does not equal the existing name.
      * @example
      * ```js
@@ -52949,7 +53641,7 @@ export namespace contentwarehouse_v1 {
      *
      *   // Do the magic
      *   const res = await contentwarehouse.projects.locations.documents.setAcl({
-     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     *     // Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      *     resource: 'projects/my-project/locations/my-location/documents/my-document',
      *
      *     // Request body metadata
@@ -53100,7 +53792,7 @@ export namespace contentwarehouse_v1 {
   export interface Params$Resource$Projects$Locations$Documents$Fetchacl
     extends StandardParameters {
     /**
-     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      */
     resource?: string;
 
@@ -53145,6 +53837,18 @@ export namespace contentwarehouse_v1 {
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1ListLinkedTargetsRequest;
   }
+  export interface Params$Resource$Projects$Locations$Documents$Lock
+    extends StandardParameters {
+    /**
+     * Required. The name of the document to lock. Format: projects/{project_number\}/locations/{location\}/documents/{document\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContentwarehouseV1LockDocumentRequest;
+  }
   export interface Params$Resource$Projects$Locations$Documents$Patch
     extends StandardParameters {
     /**
@@ -53172,7 +53876,7 @@ export namespace contentwarehouse_v1 {
   export interface Params$Resource$Projects$Locations$Documents$Setacl
     extends StandardParameters {
     /**
-     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for project: projects/{project_number\}.
+     * Required. REQUIRED: The resource for which the policy is being requested. Format for document: projects/{project_number\}/locations/{location\}/documents/{document_id\}. Format for collection: projects/{project_number\}/locations/{location\}/collections/{collection_id\}. Format for project: projects/{project_number\}.
      */
     resource?: string;
 
