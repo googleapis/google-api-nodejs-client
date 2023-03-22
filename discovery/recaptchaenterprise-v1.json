@@ -514,7 +514,7 @@
       }
     }
   },
-  "revision": "20230219",
+  "revision": "20230312",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -791,15 +791,35 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1Event": {
+      "description": "The event being assessed.",
       "id": "GoogleCloudRecaptchaenterpriseV1Event",
       "properties": {
         "expectedAction": {
           "description": "Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise.",
           "type": "string"
         },
+        "express": {
+          "description": "Optional. Optional flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.",
+          "type": "boolean"
+        },
         "hashedAccountId": {
           "description": "Optional. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.",
           "format": "byte",
+          "type": "string"
+        },
+        "headers": {
+          "description": "Optional. Optional HTTP header information about the request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ja3": {
+          "description": "Optional. Optional JA3 fingerprint for SSL clients.",
+          "type": "string"
+        },
+        "requestedUri": {
+          "description": "Optional. The URI resource the user requested that triggered an assessment.",
           "type": "string"
         },
         "siteKey": {
@@ -896,8 +916,9 @@
           "description": "Settings for keys that can be used by Android apps."
         },
         "createTime": {
-          "description": "The timestamp corresponding to the creation of this Key.",
+          "description": "Output only. The timestamp corresponding to the creation of this Key.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
@@ -1238,6 +1259,7 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1TokenProperties": {
+      "description": "Properties of the provided event token.",
       "id": "GoogleCloudRecaptchaenterpriseV1TokenProperties",
       "properties": {
         "action": {
@@ -1548,13 +1570,15 @@
             "WAF_FEATURE_UNSPECIFIED",
             "CHALLENGE_PAGE",
             "SESSION_TOKEN",
-            "ACTION_TOKEN"
+            "ACTION_TOKEN",
+            "EXPRESS"
           ],
           "enumDescriptions": [
             "Undefined feature.",
             "Redirects suspicious traffic to reCAPTCHA.",
             "Use reCAPTCHA session-tokens to protect the whole user session on the site's domain.",
-            "Use reCAPTCHA action-tokens to protect user actions."
+            "Use reCAPTCHA action-tokens to protect user actions.",
+            "Use reCAPTCHA WAF express protection to protect any context other than web pages, like APIs and IoT devices."
           ],
           "type": "string"
         },

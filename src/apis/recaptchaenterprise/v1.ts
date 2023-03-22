@@ -271,15 +271,34 @@ export namespace recaptchaenterprise_v1 {
      */
     requestToken?: string | null;
   }
+  /**
+   * The event being assessed.
+   */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Event {
     /**
      * Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise.
      */
     expectedAction?: string | null;
     /**
+     * Optional. Optional flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.
+     */
+    express?: boolean | null;
+    /**
      * Optional. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
      */
     hashedAccountId?: string | null;
+    /**
+     * Optional. Optional HTTP header information about the request.
+     */
+    headers?: string[] | null;
+    /**
+     * Optional. Optional JA3 fingerprint for SSL clients.
+     */
+    ja3?: string | null;
+    /**
+     * Optional. The URI resource the user requested that triggered an assessment.
+     */
+    requestedUri?: string | null;
     /**
      * Optional. The site key that was used to invoke reCAPTCHA Enterprise on your site and generate the token.
      */
@@ -358,7 +377,7 @@ export namespace recaptchaenterprise_v1 {
      */
     androidSettings?: Schema$GoogleCloudRecaptchaenterpriseV1AndroidKeySettings;
     /**
-     * The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this Key.
      */
     createTime?: string | null;
     /**
@@ -591,6 +610,9 @@ export namespace recaptchaenterprise_v1 {
      */
     testingScore?: number | null;
   }
+  /**
+   * Properties of the provided event token.
+   */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TokenProperties {
     /**
      * Action name provided at token generation.
