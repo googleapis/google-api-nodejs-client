@@ -520,7 +520,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * channel partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.",
+                  "description": "Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Channel Partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs",
                   "httpMethod": "GET",
                   "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.list",
@@ -1249,7 +1249,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.",
+                  "description": "Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.",
                   "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs",
                   "httpMethod": "GET",
                   "id": "cloudchannel.accounts.customers.customerRepricingConfigs.list",
@@ -1550,6 +1550,47 @@
                     "https://www.googleapis.com/auth/apps.order"
                   ]
                 },
+                "listEntitlementChanges": {
+                  "description": "List entitlement history. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different. * INVALID_ARGUMENT: Missing or invalid required fields in the request. * NOT_FOUND: The parent resource doesn't exist. Usually the result of an invalid name parameter. * INTERNAL: Any non-user error related to a technical issue in the backend. In this case, contact CloudChannel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. In this case, contact Cloud Channel support. Return value: List of EntitlementChanges.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/entitlements/{entitlementsId}:listEntitlementChanges",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.customers.entitlements.listEntitlementChanges",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filters applied to the list results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of entitlement changes to return. The service may return fewer than this value. If unspecified, returns at most 10 entitlement changes. The maximum value is 50; the server will coerce values above 50.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous CloudChannelService.ListEntitlementChanges call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CloudChannelService.ListEntitlementChanges must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the entitlement for which to list entitlement changes. The `-` wildcard may be used to match entitlements across a customer. Formats: * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id} * accounts/{account_id}/customers/{customer_id}/entitlements/-",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+/entitlements/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:listEntitlementChanges",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ListEntitlementChangesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
                 "lookupOffer": {
                   "description": "Returns the requested Offer resource. Possible error codes: * PERMISSION_DENIED: The entitlement doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement or offer was not found. Return value: The Offer resource.",
                   "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/entitlements/{entitlementsId}:lookupOffer",
@@ -1673,6 +1714,11 @@
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "showFutureOffers": {
+                  "description": "Optional. A boolean flag that determines if a response returns future offers 30 days from now. If the show_future_offers is true, the response will only contain offers that are scheduled to be available 30 days from now.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/offers",
@@ -1873,7 +1919,7 @@
           ]
         },
         "list": {
-          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
           "flatPath": "v1/operations",
           "httpMethod": "GET",
           "id": "cloudchannel.operations.list",
@@ -2009,7 +2055,7 @@
       }
     }
   },
-  "revision": "20230301",
+  "revision": "20230320",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2788,6 +2834,155 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1EntitlementChange": {
+      "description": "Change event entry for Entitlement order history",
+      "id": "GoogleCloudChannelV1EntitlementChange",
+      "properties": {
+        "activationReason": {
+          "description": "The Entitlement's activation reason",
+          "enum": [
+            "ACTIVATION_REASON_UNSPECIFIED",
+            "RESELLER_REVOKED_SUSPENSION",
+            "CUSTOMER_ACCEPTED_PENDING_TOS",
+            "RENEWAL_SETTINGS_CHANGED",
+            "OTHER_ACTIVATION_REASON"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Reseller reactivated a suspended Entitlement.",
+            "Customer accepted pending terms of service.",
+            "Reseller updated the renewal settings on an entitlement that was suspended due to cancellation, and this update reactivated the entitlement.",
+            "Other reasons (Activated temporarily for cancellation, added a payment plan to a trial entitlement, etc.)"
+          ],
+          "type": "string"
+        },
+        "cancellationReason": {
+          "description": "Cancellation reason for the Entitlement.",
+          "enum": [
+            "CANCELLATION_REASON_UNSPECIFIED",
+            "SERVICE_TERMINATED",
+            "RELATIONSHIP_ENDED",
+            "PARTIAL_TRANSFER"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Reseller triggered a cancellation of the service.",
+            "Relationship between the reseller and customer has ended due to a transfer.",
+            "Entitlement transferred away from reseller while still keeping other entitlement(s) with the reseller."
+          ],
+          "type": "string"
+        },
+        "changeType": {
+          "description": "The change action type.",
+          "enum": [
+            "CHANGE_TYPE_UNSPECIFIED",
+            "CREATED",
+            "PRICE_PLAN_SWITCHED",
+            "COMMITMENT_CHANGED",
+            "RENEWED",
+            "SUSPENDED",
+            "ACTIVATED",
+            "CANCELLED",
+            "SKU_CHANGED",
+            "RENEWAL_SETTING_CHANGED",
+            "PAID_SUBSCRIPTION_STARTED",
+            "LICENSE_CAP_CHANGED",
+            "SUSPENSION_DETAILS_CHANGED",
+            "TRIAL_END_DATE_EXTENDED",
+            "TRIAL_STARTED"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "New Entitlement was created.",
+            "Price plan associated with an Entitlement was changed.",
+            "Number of seats committed for a commitment Entitlement was changed.",
+            "An annual Entitlement was renewed.",
+            "Entitlement was suspended.",
+            "Entitlement was activated.",
+            "Entitlement was cancelled.",
+            "Entitlement was upgraded or downgraded for ex. from Google Workspace Business Standard to Google Workspace Business Plus.",
+            "The settings for renewal of an Entitlement have changed.",
+            "Use for Google Workspace subscription. Either a trial was converted to a paid subscription or a new subscription with no trial is created.",
+            "License cap was changed for the entitlement.",
+            "The suspension details have changed (but it is still suspended).",
+            "The trial end date was extended.",
+            "Entitlement started trial."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The submitted time of the change.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "entitlement": {
+          "description": "Required. Resource name of an entitlement in the form: accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}",
+          "type": "string"
+        },
+        "offer": {
+          "description": "Required. Resource name of the Offer at the time of change. Takes the form: accounts/{account_id}/offers/{offer_id}.",
+          "type": "string"
+        },
+        "operator": {
+          "description": "Human-readable identifier that shows what operator made a change. When the operator_type is RESELLER, this is the user's email address. For all other operator types, this is empty.",
+          "type": "string"
+        },
+        "operatorType": {
+          "description": "Operator type responsible for the change.",
+          "enum": [
+            "OPERATOR_TYPE_UNSPECIFIED",
+            "CUSTOMER_SERVICE_REPRESENTATIVE",
+            "SYSTEM",
+            "CUSTOMER",
+            "RESELLER"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Customer service representative.",
+            "System auto job.",
+            "Customer user.",
+            "Reseller user."
+          ],
+          "type": "string"
+        },
+        "otherChangeReason": {
+          "description": "e.g. purchase_number change reason, entered by CRS.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Extended parameters, such as: purchase_order_number, gcp_details; internal_correlation_id, long_running_operation_id, order_id; etc.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1Parameter"
+          },
+          "type": "array"
+        },
+        "provisionedService": {
+          "$ref": "GoogleCloudChannelV1ProvisionedService",
+          "description": "Service provisioned for an Entitlement."
+        },
+        "suspensionReason": {
+          "description": "Suspension reason for the Entitlement.",
+          "enum": [
+            "SUSPENSION_REASON_UNSPECIFIED",
+            "RESELLER_INITIATED",
+            "TRIAL_ENDED",
+            "RENEWAL_WITH_TYPE_CANCEL",
+            "PENDING_TOS_ACCEPTANCE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Entitlement was manually suspended by the Reseller.",
+            "Trial ended.",
+            "Entitlement renewal was canceled.",
+            "Entitlement was automatically suspended on creation for pending ToS acceptance on customer.",
+            "Other reasons (internal reasons, abuse, etc.)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1EntitlementEvent": {
       "description": "Represents Pub/Sub message content describing entitlement update.",
       "id": "GoogleCloudChannelV1EntitlementEvent",
@@ -2969,6 +3164,24 @@
         },
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Pass to ListCustomersRequest.page_token to obtain that page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ListEntitlementChangesResponse": {
+      "description": "Response message for CloudChannelService.ListEntitlementChanges",
+      "id": "GoogleCloudChannelV1ListEntitlementChangesResponse",
+      "properties": {
+        "entitlementChanges": {
+          "description": "The list of entitlement changes.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1EntitlementChange"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to list the next page of results.",
           "type": "string"
         }
       },
