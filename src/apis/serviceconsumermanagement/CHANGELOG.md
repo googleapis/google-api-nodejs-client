@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v8.1.0...serviceconsumermanagement-v8.2.0) (2023-03-22)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([882713a](https://github.com/googleapis/google-api-nodejs-client/commit/882713a60cf28a3507c423bcbf12510e15cfec35))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v8.0.0...serviceconsumermanagement-v8.1.0) (2023-03-13)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v1.2.0...playdeveloperreporting-v1.3.0) (2023-03-22)
+
+
+### Features
+
+* **playdeveloperreporting:** update the API ([1cf7012](https://github.com/googleapis/google-api-nodejs-client/commit/1cf70126213aa14cc03fb3179adea8be47bff8fe))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v1.1.0...playdeveloperreporting-v1.2.0) (2023-02-24)
 
 

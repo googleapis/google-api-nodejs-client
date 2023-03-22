@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v2.4.0...identitytoolkit-v2.5.0) (2023-03-22)
+
+
+### Features
+
+* **identitytoolkit:** update the API ([231f5a0](https://github.com/googleapis/google-api-nodejs-client/commit/231f5a0f69eca209eb5f2c0df2e51e43561082e7))
+
 ## [2.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v2.3.0...identitytoolkit-v2.4.0) (2023-03-13)
 
 

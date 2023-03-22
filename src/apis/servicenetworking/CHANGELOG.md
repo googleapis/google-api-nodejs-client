@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v9.1.0...servicenetworking-v9.2.0) (2023-03-22)
+
+
+### Features
+
+* **servicenetworking:** update the API ([2b2e4ff](https://github.com/googleapis/google-api-nodejs-client/commit/2b2e4ff6f7c1970ced239d5b3b895b4088af30dc))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v9.0.0...servicenetworking-v9.1.0) (2023-03-13)
 
 

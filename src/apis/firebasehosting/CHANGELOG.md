@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v4.2.0...firebasehosting-v4.2.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **firebasehosting:** update the API ([e8d17f9](https://github.com/googleapis/google-api-nodejs-client/commit/e8d17f90f8941fb586eca41af9d0d6494197c58f))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v4.1.0...firebasehosting-v4.2.0) (2023-02-24)
 
 

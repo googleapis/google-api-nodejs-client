@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v1.1.0...drivelabels-v1.2.0) (2023-03-22)
+
+
+### Features
+
+* **drivelabels:** update the API ([58a402b](https://github.com/googleapis/google-api-nodejs-client/commit/58a402b73881b1d4dfb2fcefebf89ea3000086a9))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v1.0.0...drivelabels-v1.1.0) (2023-03-13)
 
 
