@@ -165,6 +165,14 @@ export namespace containeranalysis_v1alpha1 {
      */
     cve?: string | null;
     /**
+     * Contains information about the impact of this vulnerability, this will change with time.
+     */
+    impacts?: string[] | null;
+    /**
+     * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+     */
+    justification?: Schema$Justification;
+    /**
      * A detailed description of this Vex.
      */
     longDescription?: string | null;
@@ -184,10 +192,6 @@ export namespace containeranalysis_v1alpha1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
-    /**
-     * Contains information about this vulnerability, this will change with time.
-     */
-    threats?: Schema$Threat[];
   }
   /**
    * Occurrence that represents a single "attestation". The authenticity of an Attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the AttestationAuthority to which this Attestation is attached is primarily useful for look-up (how to find this Attestation if you already know the Authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
@@ -817,6 +821,10 @@ export namespace containeranalysis_v1alpha1 {
    * Optional arguments to enable specific features of builds.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions {
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     */
+    defaultLogsBucketBehavior?: string | null;
     /**
      * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.
      */
@@ -2130,6 +2138,19 @@ export namespace containeranalysis_v1alpha1 {
     _type?: string | null;
   }
   /**
+   * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+   */
+  export interface Schema$Justification {
+    /**
+     * Additional details on why this justification was chosen.
+     */
+    details?: string | null;
+    /**
+     * The justification type for this vulnerability.
+     */
+    justificationType?: string | null;
+  }
+  /**
    * Layer holds metadata specific to a layer of a Docker image.
    */
   export interface Schema$Layer {
@@ -2743,10 +2764,6 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Publisher {
     /**
-     * The context or namespace. Contains a URL which is under control of the issuing party and can be used as a globally unique identifier for that issuing party. Example: https://csaf.io
-     */
-    context?: string | null;
-    /**
      * Provides information about the authority of the issuing party to release the document, in particular, the party's constituency and responsibilities or other obligations.
      */
     issuingAuthority?: string | null;
@@ -2754,6 +2771,10 @@ export namespace containeranalysis_v1alpha1 {
      * Name of the publisher. Examples: 'Google', 'Google Cloud Platform'.
      */
     name?: string | null;
+    /**
+     * The context or namespace. Contains a URL which is under control of the issuing party and can be used as a globally unique identifier for that issuing party. Example: https://csaf.io
+     */
+    publisherNamespace?: string | null;
   }
   /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
@@ -2831,10 +2852,6 @@ export namespace containeranalysis_v1alpha1 {
      * Contains a comprehensive human-readable discussion of the remediation.
      */
     details?: string | null;
-    /**
-     * Contains the date from which the remediation is available.
-     */
-    remediationTime?: string | null;
     /**
      * The type of remediation that can be applied.
      */
@@ -3154,19 +3171,6 @@ export namespace containeranalysis_v1alpha1 {
     permissions?: string[] | null;
   }
   /**
-   * Contains the vulnerability kinetic information. This information can change as the vulnerability ages and new information becomes available.
-   */
-  export interface Schema$Threat {
-    /**
-     * Represents a thorough human-readable discussion of the threat.
-     */
-    details?: string | null;
-    /**
-     * The type of threat.
-     */
-    threatType?: string | null;
-  }
-  /**
    * Start and end times for a build execution phase. Next ID: 3
    */
   export interface Schema$TimeSpan {
@@ -3294,6 +3298,14 @@ export namespace containeranalysis_v1alpha1 {
      */
     cve?: string | null;
     /**
+     * Contains information about the impact of this vulnerability, this will change with time.
+     */
+    impacts?: string[] | null;
+    /**
+     * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+     */
+    justification?: Schema$Justification;
+    /**
      * The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.
      */
     noteName?: string | null;
@@ -3309,10 +3321,6 @@ export namespace containeranalysis_v1alpha1 {
      * Provides the state of this Vulnerability assessment.
      */
     state?: string | null;
-    /**
-     * Contains information about this vulnerability, this will change with time.
-     */
-    threats?: Schema$Threat[];
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3

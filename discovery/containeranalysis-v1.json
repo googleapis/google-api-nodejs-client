@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230221",
+  "revision": "20230310",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2068,6 +2068,18 @@
       "description": "Optional arguments to enable specific features of builds.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions",
       "properties": {
+        "defaultLogsBucketBehavior": {
+          "description": "Optional. Option to specify how default logs buckets are setup.",
+          "enum": [
+            "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+            "REGIONAL_USER_OWNED_BUCKET"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to GCS buckets in the build project."
+          ],
+          "type": "string"
+        },
         "diskSizeGb": {
           "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.",
           "format": "int64",
