@@ -592,7 +592,7 @@
                   ]
                 },
                 "listen": {
-                  "description": "Listens to changes. This method is only available via the gRPC API (not REST).",
+                  "description": "Listens to changes. This method is only available via gRPC or WebChannel (not REST).",
                   "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents:listen",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.documents.listen",
@@ -789,7 +789,7 @@
                   ]
                 },
                 "write": {
-                  "description": "Streams batches of document updates and deletes, in order. This method is only available via the gRPC API (not REST).",
+                  "description": "Streams batches of document updates and deletes, in order. This method is only available via gRPC or WebChannel (not REST).",
                   "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents:write",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.documents.write",
@@ -950,15 +950,15 @@
       }
     }
   },
-  "revision": "20230214",
+  "revision": "20230315",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
-      "description": "Defines a aggregation that produces a single result.",
+      "description": "Defines an aggregation that produces a single result.",
       "id": "Aggregation",
       "properties": {
         "alias": {
-          "description": "Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.",
+          "description": "Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.",
           "type": "string"
         },
         "count": {
@@ -1186,11 +1186,13 @@
           "description": "The operator for combining multiple filters.",
           "enum": [
             "OPERATOR_UNSPECIFIED",
-            "AND"
+            "AND",
+            "OR"
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
-            "Documents are required to satisfy all of the combined filters."
+            "Documents are required to satisfy all of the combined filters.",
+            "Documents are required to satisfy at least one of the combined filters."
           ],
           "type": "string"
         }
@@ -1202,7 +1204,7 @@
       "id": "Count",
       "properties": {
         "upTo": {
-          "description": "Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.",
+          "description": "Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency, and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.",
           "format": "int64",
           "type": "string"
         }
@@ -2194,7 +2196,7 @@
       "id": "RunAggregationQueryResponse",
       "properties": {
         "readTime": {
-          "description": "The time at which the aggregate value is valid for.",
+          "description": "The time at which the aggregate result was computed. This is always monotonically increasing; in this case, the previous AggregationResult in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `result` will be sent, and this represents the time at which the query was run.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2344,7 +2346,7 @@
         },
         "select": {
           "$ref": "Projection",
-          "description": "The projection to return."
+          "description": "Optional sub-set of the fields to return. This acts as a DocumentMask over the documents returned from a query. When not set, assumes that the caller wants all fields returned."
         },
         "startAt": {
           "$ref": "Cursor",

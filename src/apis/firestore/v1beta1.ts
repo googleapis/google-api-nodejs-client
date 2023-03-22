@@ -125,11 +125,11 @@ export namespace firestore_v1beta1 {
   }
 
   /**
-   * Defines a aggregation that produces a single result.
+   * Defines an aggregation that produces a single result.
    */
   export interface Schema$Aggregation {
     /**
-     * Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.
+     * Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.
      */
     alias?: string | null;
     /**
@@ -302,7 +302,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$Count {
     /**
-     * Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.
+     * Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency, and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.
      */
     upTo?: string | null;
   }
@@ -984,7 +984,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$RunAggregationQueryResponse {
     /**
-     * The time at which the aggregate value is valid for.
+     * The time at which the aggregate result was computed. This is always monotonically increasing; in this case, the previous AggregationResult in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `result` will be sent, and this represents the time at which the query was run.
      */
     readTime?: string | null;
     /**
@@ -1097,7 +1097,7 @@ export namespace firestore_v1beta1 {
      */
     orderBy?: Schema$Order[];
     /**
-     * The projection to return.
+     * Optional sub-set of the fields to return. This acts as a DocumentMask over the documents returned from a query. When not set, assumes that the caller wants all fields returned.
      */
     select?: Schema$Projection;
     /**
@@ -3152,7 +3152,7 @@ export namespace firestore_v1beta1 {
     }
 
     /**
-     * Listens to changes. This method is only available via the gRPC API (not REST).
+     * Listens to changes. This method is only available via gRPC or WebChannel (not REST).
      * @example
      * ```js
      * // Before running the sample:
@@ -4043,7 +4043,7 @@ export namespace firestore_v1beta1 {
     }
 
     /**
-     * Streams batches of document updates and deletes, in order. This method is only available via the gRPC API (not REST).
+     * Streams batches of document updates and deletes, in order. This method is only available via gRPC or WebChannel (not REST).
      * @example
      * ```js
      * // Before running the sample:
