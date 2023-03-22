@@ -929,7 +929,7 @@
       }
     }
   },
-  "revision": "20230208",
+  "revision": "20230313",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1279,8 +1279,9 @@
       "id": "Repository",
       "properties": {
         "createTime": {
-          "description": "The time when the repository was created.",
+          "description": "Output only. The time when the repository was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -1336,8 +1337,9 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "The time when the repository was last updated.",
+          "description": "Output only. The time when the repository was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
