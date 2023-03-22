@@ -174,6 +174,9 @@ export namespace datastream_v1 {
    * Backfill strategy to disable automatic backfill for the Stream's objects.
    */
   export interface Schema$BackfillNoneStrategy {}
+  /**
+   * BigQuery destination configuration
+   */
   export interface Schema$BigQueryDestinationConfig {
     /**
      * The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost.
@@ -1213,6 +1216,9 @@ export namespace datastream_v1 {
    * Destination datasets are created so that hierarchy of the destination data objects matches the source hierarchy.
    */
   export interface Schema$SourceHierarchyDatasets {
+    /**
+     * The dataset template to use for dynamic dataset creation.
+     */
     datasetTemplate?: Schema$DatasetTemplate;
   }
   /**
@@ -1246,7 +1252,7 @@ export namespace datastream_v1 {
     object?: Schema$StreamObject;
   }
   /**
-   * Static IP address connectivity.
+   * Static IP address connectivity. Used when the source database is configured to allow incoming connections from the Datastream public IP addresses for the region specified in the connection profile.
    */
   export interface Schema$StaticServiceIpConnectivity {}
   /**
@@ -3323,7 +3329,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
