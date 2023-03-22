@@ -1938,6 +1938,10 @@ export namespace bigquery_v2 {
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
+     * [Optional] Specifies whether the query should be executed as a continuous query. The default value is false.
+     */
+    continuous?: boolean | null;
+    /**
      * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
@@ -2710,6 +2714,10 @@ export namespace bigquery_v2 {
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
+     * [Optional] Specifies whether the query should be executed as a continuous query. The default value is false.
+     */
+    continuous?: boolean | null;
+    /**
      * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.
      */
     createSession?: boolean | null;
@@ -3186,6 +3194,10 @@ export namespace bigquery_v2 {
      */
     jarUris?: string[] | null;
     /**
+     * The fully qualified name of a class in jar_uris, for example, com.example.wordcount. Exactly one of main_class and main_jar_uri field should be set for Java/Scala language type.
+     */
+    mainClass?: string | null;
+    /**
      * The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python. Exactly one of main_class and main_file_uri field should be set for Java/Scala language type.
      */
     mainFileUri?: string | null;
@@ -3233,7 +3245,7 @@ export namespace bigquery_v2 {
      */
     structType?: Schema$StandardSqlStructType;
     /**
-     * Required. The top level type of this field. Can be any standard SQL data type (e.g., "INT64", "DATE", "ARRAY").
+     * Required. The top level type of this field. Can be any GoogleSQL data type (e.g., "INT64", "DATE", "ARRAY").
      */
     typeKind?: string | null;
   }
@@ -6003,6 +6015,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "connectionProperties": [],
+     *       //   "continuous": false,
      *       //   "createSession": false,
      *       //   "defaultDataset": {},
      *       //   "dryRun": false,
