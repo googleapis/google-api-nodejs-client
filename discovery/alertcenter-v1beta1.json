@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20230216",
+  "revision": "20230315",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountSuspensionDetails": {
@@ -1145,6 +1145,11 @@
         },
         "recipient": {
           "description": "The recipient of this email.",
+          "type": "string"
+        },
+        "sentTime": {
+          "description": "The sent time of the email.",
+          "format": "google-datetime",
           "type": "string"
         },
         "subjectText": {

@@ -648,6 +648,10 @@ export namespace alertcenter_v1beta1 {
      */
     recipient?: string | null;
     /**
+     * The sent time of the email.
+     */
+    sentTime?: string | null;
+    /**
      * The email subject text (only available for reported emails).
      */
     subjectText?: string | null;
