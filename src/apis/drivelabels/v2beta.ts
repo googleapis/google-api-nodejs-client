@@ -2697,6 +2697,8 @@ export namespace drivelabels_v2beta {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.list({
+     *     // The customer to scope this list request to. For example: "customers/abcd1234". If unset, will return all labels within the current customer.
+     *     customer: 'placeholder-value',
      *     // The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.
      *     languageCode: 'placeholder-value',
      *     // Specifies the level of access the user must have on the returned Labels. The minimum role a user must have on a label. Defaults to `READER`.
@@ -3393,6 +3395,10 @@ export namespace drivelabels_v2beta {
     view?: string;
   }
   export interface Params$Resource$Labels$List extends StandardParameters {
+    /**
+     * The customer to scope this list request to. For example: "customers/abcd1234". If unset, will return all labels within the current customer.
+     */
+    customer?: string;
     /**
      * The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.
      */
@@ -5764,6 +5770,8 @@ export namespace drivelabels_v2beta {
      *
      *   // Do the magic
      *   const res = await drivelabels.users.getCapabilities({
+     *     // The customer to scope this request to. For example: "customers/abcd1234". If unset, will return settings within the current customer.
+     *     customer: 'placeholder-value',
      *     // Required. The resource name of the user. Only "users/me/capabilities" is supported.
      *     name: 'users/my-user/capabilities',
      *   });
@@ -5879,6 +5887,10 @@ export namespace drivelabels_v2beta {
 
   export interface Params$Resource$Users$Getcapabilities
     extends StandardParameters {
+    /**
+     * The customer to scope this request to. For example: "customers/abcd1234". If unset, will return settings within the current customer.
+     */
+    customer?: string;
     /**
      * Required. The resource name of the user. Only "users/me/capabilities" is supported.
      */
