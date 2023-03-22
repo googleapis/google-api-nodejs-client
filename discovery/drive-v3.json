@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/hqr9mhZQTOslZy0RlLi-ua3kvIM\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/osiFRltKRpJmRweetEomRWg64Eg\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -759,7 +759,7 @@
           ]
         },
         "update": {
-          "description": "Updates the metadate for a shared drive.",
+          "description": "Updates the metadata for a shared drive.",
           "httpMethod": "PATCH",
           "id": "drive.drives.update",
           "parameterOrder": [
@@ -774,7 +774,7 @@
             },
             "useDomainAdminAccess": {
               "default": "false",
-              "description": "Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.",
+              "description": "Issue the request as a domain administrator. If set to true, then the requester is granted access if they're an administrator of the domain to which the shared drive belongs.",
               "location": "query",
               "type": "boolean"
             }
@@ -2312,7 +2312,7 @@
       }
     }
   },
-  "revision": "20230219",
+  "revision": "20230307",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2717,7 +2717,7 @@
       "id": "Drive",
       "properties": {
         "backgroundImageFile": {
-          "description": "An image file and cropping parameters from which a background image for this shared drive is set. This is a write only field; it can only be set on drive.drives.update requests that don't set themeId. When specified, all fields of the backgroundImageFile must be set.",
+          "description": "An image file and cropping parameters from which a background image for this shared drive is set. This is a write-only field; it can only be set on drive.drives.update requests that don't set themeId. When specified, all fields of the backgroundImageFile must be set.",
           "properties": {
             "id": {
               "description": "The ID of an image file in Google Drive to use for the background image.",
@@ -2832,7 +2832,7 @@
           "type": "object"
         },
         "colorRgb": {
-          "description": "The color of this shared drive as an RGB hex string. It can only be set on a drive.drives.update request that does not set themeId.",
+          "description": "The color of this shared drive as an RGB hex string. It can only be set on drive.drives.update requests that don't set themeId.",
           "type": "string"
         },
         "createdTime": {
@@ -2893,7 +2893,7 @@
           "type": "object"
         },
         "themeId": {
-          "description": "The ID of the theme from which the background image and color will be set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.",
+          "description": "The ID of the theme from which the background image and color are set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.",
           "type": "string"
         }
       },
