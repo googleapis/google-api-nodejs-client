@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20230222",
+  "revision": "20230308",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -563,11 +563,11 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The name for this particular audio stream that will be added to the HLS/DASH manifest.",
+          "description": "The name for this particular audio stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.",
           "type": "string"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.",
           "type": "string"
         },
         "mapping": {
@@ -1058,7 +1058,7 @@
           "type": "string"
         },
         "templateId": {
-          "description": "Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`. Preset Transcoder templates: - `preset/{preset_id}` - User defined JobTemplate: `{job_template_id}`",
+          "description": "Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`, which is the only supported preset. User defined JobTemplate: `{job_template_id}`",
           "type": "string"
         },
         "ttlAfterCompletionDays": {
@@ -1525,11 +1525,11 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The name for this particular text stream that will be added to the HLS/DASH manifest.",
+          "description": "The name for this particular text stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.",
           "type": "string"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.",
           "type": "string"
         },
         "mapping": {

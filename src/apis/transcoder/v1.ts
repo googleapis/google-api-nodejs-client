@@ -260,11 +260,11 @@ export namespace transcoder_v1 {
      */
     codec?: string | null;
     /**
-     * The name for this particular audio stream that will be added to the HLS/DASH manifest.
+     * The name for this particular audio stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.
      */
     displayName?: string | null;
     /**
-     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.
      */
     languageCode?: string | null;
     /**
@@ -661,7 +661,7 @@ export namespace transcoder_v1 {
      */
     state?: string | null;
     /**
-     * Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`. Preset Transcoder templates: - `preset/{preset_id\}` - User defined JobTemplate: `{job_template_id\}`
+     * Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`, which is the only supported preset. User defined JobTemplate: `{job_template_id\}`
      */
     templateId?: string | null;
     /**
@@ -1010,11 +1010,11 @@ export namespace transcoder_v1 {
      */
     codec?: string | null;
     /**
-     * The name for this particular text stream that will be added to the HLS/DASH manifest.
+     * The name for this particular text stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.
      */
     displayName?: string | null;
     /**
-     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.
      */
     languageCode?: string | null;
     /**
