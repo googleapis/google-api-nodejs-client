@@ -125,6 +125,36 @@ export namespace businessprofileperformance_v1 {
   }
 
   /**
+   * Represents a single datapoint, where each datapoint is a DailyMetric-DailySubEntityType-TimeSeries tuple.
+   */
+  export interface Schema$DailyMetricTimeSeries {
+    /**
+     * The DailyMetric that the TimeSeries represents.
+     */
+    dailyMetric?: string | null;
+    /**
+     * The DailySubEntityType that the TimeSeries represents. Will not be present when breakdown does not exist.
+     */
+    dailySubEntityType?: Schema$DailySubEntityType;
+    /**
+     * List of datapoints where each datapoint is a date-value pair.
+     */
+    timeSeries?: Schema$TimeSeries;
+  }
+  /**
+   * Represents all possible subentity types that are associated with DailyMetrics.
+   */
+  export interface Schema$DailySubEntityType {
+    /**
+     * Represents the day of the week. Eg: MONDAY.
+     */
+    dayOfWeek?: string | null;
+    /**
+     * Represents the time of the day in 24 hour format. Eg: 13:34:20
+     */
+    timeOfDay?: Schema$TimeOfDay;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -153,6 +183,15 @@ export namespace businessprofileperformance_v1 {
      * The value of the datapoint.
      */
     value?: string | null;
+  }
+  /**
+   * Represents the response for FetchMultiDailyMetricsTimeSeries.
+   */
+  export interface Schema$FetchMultiDailyMetricsTimeSeriesResponse {
+    /**
+     * DailyMetrics and their corresponding time series.
+     */
+    multiDailyMetricTimeSeries?: Schema$MultiDailyMetricTimeSeries[];
   }
   /**
    * Represents the response for GetDailyMetricsTimeSeries.
@@ -190,6 +229,15 @@ export namespace businessprofileperformance_v1 {
     searchKeywordsCounts?: Schema$SearchKeywordCount[];
   }
   /**
+   * Represents a list of tuples of DailyMetric-DailySubEntityType-TimeSeries.
+   */
+  export interface Schema$MultiDailyMetricTimeSeries {
+    /**
+     * List of DailyMetric-TimeSeries pairs.
+     */
+    dailyMetricTimeSeries?: Schema$DailyMetricTimeSeries[];
+  }
+  /**
    * Represents a single search keyword and its value.
    */
   export interface Schema$SearchKeywordCount {
@@ -201,6 +249,27 @@ export namespace businessprofileperformance_v1 {
      * The lower-cased string that the user entered.
      */
     searchKeyword?: string | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
   }
   /**
    * Represents a timeseries.
@@ -218,6 +287,162 @@ export namespace businessprofileperformance_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.searchkeywords = new Resource$Locations$Searchkeywords(this.context);
+    }
+
+    /**
+     *  Returns the values for each date from a given time range and optionally the sub entity type, where applicable, that are associated with the specific daily metrics. Example request: `GET https://businessprofileperformance.googleapis.com/v1/locations/12345:fetchMultiDailyMetricsTimeSeries?dailyMetrics=WEBSITE_CLICKS&dailyMetrics=CALL_CLICKS&daily_range.start_date.year=2022&daily_range.start_date.month=1&daily_range.start_date.day=1&daily_range.end_date.year=2022&daily_range.end_date.month=3&daily_range.end_date.day=31`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/businessprofileperformance.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const businessprofileperformance = google.businessprofileperformance('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await businessprofileperformance.locations.fetchMultiDailyMetricsTimeSeries(
+     *       {
+     *         // Required. The metrics to retrieve time series for.
+     *         dailyMetrics: 'placeholder-value',
+     *         // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *         'dailyRange.endDate.day': 'placeholder-value',
+     *         // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *         'dailyRange.endDate.month': 'placeholder-value',
+     *         // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *         'dailyRange.endDate.year': 'placeholder-value',
+     *         // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *         'dailyRange.startDate.day': 'placeholder-value',
+     *         // Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *         'dailyRange.startDate.month': 'placeholder-value',
+     *         // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *         'dailyRange.startDate.year': 'placeholder-value',
+     *         // Required. The location for which the time series should be fetched. Format: locations/{location_id\} where location_id is an unobfuscated listing id.
+     *         location: 'locations/my-location',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "multiDailyMetricTimeSeries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchMultiDailyMetricsTimeSeries(
+      params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchMultiDailyMetricsTimeSeries(
+      params?: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchMultiDailyMetricsTimeSeriesResponse>;
+    fetchMultiDailyMetricsTimeSeries(
+      params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchMultiDailyMetricsTimeSeries(
+      params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchMultiDailyMetricsTimeSeriesResponse>,
+      callback: BodyResponseCallback<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+    ): void;
+    fetchMultiDailyMetricsTimeSeries(
+      params: Params$Resource$Locations$Fetchmultidailymetricstimeseries,
+      callback: BodyResponseCallback<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+    ): void;
+    fetchMultiDailyMetricsTimeSeries(
+      callback: BodyResponseCallback<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+    ): void;
+    fetchMultiDailyMetricsTimeSeries(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Fetchmultidailymetricstimeseries
+        | BodyResponseCallback<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchMultiDailyMetricsTimeSeriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Fetchmultidailymetricstimeseries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Fetchmultidailymetricstimeseries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://businessprofileperformance.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+location}:fetchMultiDailyMetricsTimeSeries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchMultiDailyMetricsTimeSeriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchMultiDailyMetricsTimeSeriesResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -385,6 +610,41 @@ export namespace businessprofileperformance_v1 {
     }
   }
 
+  export interface Params$Resource$Locations$Fetchmultidailymetricstimeseries
+    extends StandardParameters {
+    /**
+     * Required. The metrics to retrieve time series for.
+     */
+    dailyMetrics?: string[];
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'dailyRange.endDate.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'dailyRange.endDate.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'dailyRange.endDate.year'?: number;
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    'dailyRange.startDate.day'?: number;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    'dailyRange.startDate.month'?: number;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    'dailyRange.startDate.year'?: number;
+    /**
+     * Required. The location for which the time series should be fetched. Format: locations/{location_id\} where location_id is an unobfuscated listing id.
+     */
+    location?: string;
+  }
   export interface Params$Resource$Locations$Getdailymetricstimeseries
     extends StandardParameters {
     /**
