@@ -513,6 +513,10 @@ export namespace container_v1beta1 {
      */
     expireTime?: string | null;
     /**
+     * Fleet information for the cluster.
+     */
+    fleet?: Schema$Fleet;
+    /**
      * Output only. Unique id for the cluster.
      */
     id?: string | null;
@@ -1164,6 +1168,23 @@ export namespace container_v1beta1 {
      * Event types to allowlist.
      */
     eventType?: string[] | null;
+  }
+  /**
+   * Fleet is the fleet configuration for the cluster.
+   */
+  export interface Schema$Fleet {
+    /**
+     * [Output only] The full resource name of the registered fleet membership of the cluster, in the format `//gkehub.googleapis.com/projects/x/locations/x/memberships/x`.
+     */
+    membership?: string | null;
+    /**
+     * [Output only] Whether the cluster has been registered through the fleet API.
+     */
+    preRegistered?: boolean | null;
+    /**
+     * The Fleet host project(project ID or project number) where this cluster will be registered to. This field cannot be changed after the cluster has been registered.
+     */
+    project?: string | null;
   }
   /**
    * GatewayAPIConfig contains the desired config of Gateway API on this cluster.
@@ -4555,6 +4576,7 @@ export namespace container_v1beta1 {
      *   //   "endpoint": "my_endpoint",
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
+     *   //   "fleet": {},
      *   //   "id": "my_id",
      *   //   "identityServiceConfig": {},
      *   //   "initialClusterVersion": "my_initialClusterVersion",
@@ -10261,6 +10283,7 @@ export namespace container_v1beta1 {
      *   //   "endpoint": "my_endpoint",
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
+     *   //   "fleet": {},
      *   //   "id": "my_id",
      *   //   "identityServiceConfig": {},
      *   //   "initialClusterVersion": "my_initialClusterVersion",

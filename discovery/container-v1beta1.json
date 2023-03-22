@@ -2512,7 +2512,7 @@
       }
     }
   },
-  "revision": "20230207",
+  "revision": "20230304",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2993,6 +2993,10 @@
           "description": "[Output only] The time the cluster will be automatically deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
           "type": "string"
         },
+        "fleet": {
+          "$ref": "Fleet",
+          "description": "Fleet information for the cluster."
+        },
         "id": {
           "description": "Output only. Unique id for the cluster.",
           "readOnly": true,
@@ -3460,7 +3464,7 @@
             "Default value. Same as DISABLED",
             "No private access to or from Google Services",
             "Enables private IPv6 access to Google Services from GKE",
-            "Enables priate IPv6 access to and from Google Services"
+            "Enables private IPv6 access to and from Google Services"
           ],
           "type": "string"
         },
@@ -3834,6 +3838,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Fleet": {
+      "description": "Fleet is the fleet configuration for the cluster.",
+      "id": "Fleet",
+      "properties": {
+        "membership": {
+          "description": "[Output only] The full resource name of the registered fleet membership of the cluster, in the format `//gkehub.googleapis.com/projects/*/locations/*/memberships/*`.",
+          "type": "string"
+        },
+        "preRegistered": {
+          "description": "[Output only] Whether the cluster has been registered through the fleet API.",
+          "type": "boolean"
+        },
+        "project": {
+          "description": "The Fleet host project(project ID or project number) where this cluster will be registered to. This field cannot be changed after the cluster has been registered.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4773,7 +4796,7 @@
             "Default value. Same as DISABLED",
             "No private access to or from Google Services",
             "Enables private IPv6 access to Google Services from GKE",
-            "Enables priate IPv6 access to and from Google Services"
+            "Enables private IPv6 access to and from Google Services"
           ],
           "type": "string"
         },
