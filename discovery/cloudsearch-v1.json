@@ -886,7 +886,7 @@
         "lro": {
           "methods": {
             "list": {
-              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
               "flatPath": "v1/operations/{operationsId}/lro",
               "httpMethod": "GET",
               "id": "cloudsearch.operations.lro.list",
@@ -2077,7 +2077,7 @@
       }
     }
   },
-  "revision": "20230228",
+  "revision": "20230307",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -4576,6 +4576,10 @@
         "knownIcon": {
           "description": "The icon specified by the string name of a list of known icons",
           "type": "string"
+        },
+        "materialIcon": {
+          "$ref": "AppsDynamiteStorageMaterialIcon",
+          "description": "Display one of the [Google Material Icons](https://fonts.google.com/icons). For example, to display a [check box icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048), use \"material_icon\": { \"name\": \"check_box\" }"
         }
       },
       "type": "object"
@@ -4646,6 +4650,31 @@
             "Applies a rectangular crop with a 4:3 aspect ratio."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppsDynamiteStorageMaterialIcon": {
+      "description": "A [Google Font Icon](https://fonts.google.com/icons), which includes over 2500+ options. For example, to display a [check box icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048) with customized weight and grade, write { \"name\": \"check_box\", \"fill\": true, \"weight\": 300, \"grade\": -25 }",
+      "id": "AppsDynamiteStorageMaterialIcon",
+      "properties": {
+        "fill": {
+          "description": "Whether it renders a filled icon. Default value is false. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.",
+          "type": "boolean"
+        },
+        "grade": {
+          "description": "Weight and grade affect a symbol’s thickness. Adjustments to grade are more granular than adjustments to weight and have a small impact on the size of the symbol. Choose from {-25, 0, 200}. If absent, default value is 0. If any other value is specified, a broken image icon will be displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The icon name defined in the [Google Material Icon](https://fonts.google.com/icons) in snake_case. e.g. \"check_box\". Any invalid name will be trimmed as empty string result in the icon falied to render.",
+          "type": "string"
+        },
+        "weight": {
+          "description": "The stroke weight of the icon. Choose from {100, 200, 300, 400, 500, 600, 700}. If absent, default value is 400. If any other value is specified, a broken image icon will be displayed. See Customization in [Google Font Icon](https://fonts.google.com/icons) for details.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
