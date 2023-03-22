@@ -151,6 +151,10 @@ export namespace translate_v3beta1 {
      */
     customizedAttribution?: string | null;
     /**
+     * Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation. Shadow removal feature can only be enabled when is_translate_native_pdf_only: false && pdf_native_only: false
+     */
+    enableShadowRemovalNativePdf?: boolean | null;
+    /**
      * Optional.
      */
     formatConversions?: {[key: string]: string} | null;
@@ -1246,6 +1250,7 @@ export namespace translate_v3beta1 {
      *       // request body parameters
      *       // {
      *       //   "customizedAttribution": "my_customizedAttribution",
+     *       //   "enableShadowRemovalNativePdf": false,
      *       //   "formatConversions": {},
      *       //   "glossaries": {},
      *       //   "inputConfigs": [],
@@ -3507,7 +3512,7 @@ export namespace translate_v3beta1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
