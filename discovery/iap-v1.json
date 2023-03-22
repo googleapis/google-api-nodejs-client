@@ -632,7 +632,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "The field mask specifying which IAP settings should be updated. If omitted, the all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+              "description": "The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Note: All IAP reauth settings must always be set together, using the field mask: `iapSettings.accessSettings.reauthSettings`.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -652,7 +652,7 @@
       }
     }
   },
-  "revision": "20230127",
+  "revision": "20230317",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -755,7 +755,7 @@
           "type": "boolean"
         },
         "expression": {
-          "description": "Raw string CEL expression. Must return a list of attributes. Maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. Limited functions are supported: - filter: .filter(, ) -> returns a subset of where is true for every item - in: in -> returns true if contains - selectByName: .selectByName() -> returns the attribute in with the given name, otherwise returns empty. - emitAs: .emitAs() -> sets the name field to the given for propagation in selected output credentials. - strict: .strict() -> ignore the `x-goog-iap-attr-` prefix for the provided attribute when propagating via the `HEADER` output credential, i.e. request headers. - append: .append() OR .append() -> append the provided or onto the end of Example expression: attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())",
+          "description": "Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. The following functions are supported: - filter `.filter(, )`: Returns a subset of `` where `` is true for every item. - in ` in `: Returns true if `` contains ``. - selectByName `.selectByName()`: Returns the attribute in `` with the given `` name, otherwise returns empty. - emitAs `.emitAs()`: Sets the `` name field to the given `` for propagation in selected output credentials. - strict `.strict()`: Ignores the `x-goog-iap-attr-` prefix for the provided `` when propagating with the `HEADER` output credential, such as request headers. - append `.append()` OR `.append()`: Appends the provided `` or `` to the end of ``. Example expression: `attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`",
           "type": "string"
         },
         "outputCredentials": {
@@ -768,10 +768,10 @@
               "RCTOKEN"
             ],
             "enumDescriptions": [
-              "No output credential. This is unsupported in IAP, there must be an output credential.",
+              "Output credential not provided. This is unsupported in IAP. An output credential is required.",
               "Propagate attributes in the headers with \"x-goog-iap-attr-\" prefix.",
-              "Propagate attributes in the JWT of the form: \"additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] }",
-              "Propagate attributes in the RCToken of the form: \"additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] }"
+              "Propagate attributes in the JWT of the form: `\"additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] }`",
+              "Propagate attributes in the RCToken of the form: `\"additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] }`"
             ],
             "type": "string"
           },
@@ -1107,7 +1107,7 @@
           "enumDescriptions": [
             "Reauthentication disabled.",
             "Prompts the user to log in again.",
-            "Deprecated, no longer accepted by IAP APIs.",
+            "Deprecated.",
             "User must use their secure key 2nd factor device.",
             "User can use any enabled 2nd factor."
           ],
