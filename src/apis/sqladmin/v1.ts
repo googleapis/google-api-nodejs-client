@@ -100,7 +100,7 @@ export namespace sqladmin_v1 {
   }
 
   /**
-   * sqladmin API (prod)
+   * Cloud SQL Admin API
    *
    * API for Cloud SQL database instance management
    *
@@ -1459,6 +1459,15 @@ export namespace sqladmin_v1 {
     reuseInterval?: number | null;
   }
   /**
+   * Perform disk shrink context.
+   */
+  export interface Schema$PerformDiskShrinkContext {
+    /**
+     * The target disk shrink size in GigaBytes.
+     */
+    targetSizeGb?: string | null;
+  }
+  /**
    * Read-replica configuration for connecting to the primary instance.
    */
   export interface Schema$ReplicaConfiguration {
@@ -1671,6 +1680,19 @@ export namespace sqladmin_v1 {
     type?: string | null;
   }
   /**
+   * Instance get disk shrink config response.
+   */
+  export interface Schema$SqlInstancesGetDiskShrinkConfigResponse {
+    /**
+     * This is always `sql#getDiskShrinkConfig`.
+     */
+    kind?: string | null;
+    /**
+     * The minimum size to which a disk can be shrunk in GigaBytes.
+     */
+    minimalTargetSizeGb?: string | null;
+  }
+  /**
    * Reschedule options for maintenance windows.
    */
   export interface Schema$SqlInstancesRescheduleMaintenanceRequestBody {
@@ -1679,6 +1701,10 @@ export namespace sqladmin_v1 {
      */
     reschedule?: Schema$Reschedule;
   }
+  /**
+   * Instance reset replica size request.
+   */
+  export interface Schema$SqlInstancesResetReplicaSizeRequest {}
   /**
    * Instance start external sync request.
    */
@@ -8207,6 +8233,307 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Get Disk Shrink Config for a given instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.getDiskShrinkConfig({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "minimalTargetSizeGb": "my_minimalTargetSizeGb"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDiskShrinkConfig(
+      params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDiskShrinkConfig(
+      params?: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SqlInstancesGetDiskShrinkConfigResponse>;
+    getDiskShrinkConfig(
+      params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDiskShrinkConfig(
+      params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesGetDiskShrinkConfigResponse>,
+      callback: BodyResponseCallback<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+    ): void;
+    getDiskShrinkConfig(
+      params: Params$Resource$Projects$Instances$Getdiskshrinkconfig,
+      callback: BodyResponseCallback<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+    ): void;
+    getDiskShrinkConfig(
+      callback: BodyResponseCallback<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+    ): void;
+    getDiskShrinkConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Getdiskshrinkconfig
+        | BodyResponseCallback<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SqlInstancesGetDiskShrinkConfigResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Getdiskshrinkconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Getdiskshrinkconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/getDiskShrinkConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesGetDiskShrinkConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SqlInstancesGetDiskShrinkConfigResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Perform Disk Shrink on primary instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.performDiskShrink({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "targetSizeGb": "my_targetSizeGb"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    performDiskShrink(
+      params: Params$Resource$Projects$Instances$Performdiskshrink,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    performDiskShrink(
+      params?: Params$Resource$Projects$Instances$Performdiskshrink,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    performDiskShrink(
+      params: Params$Resource$Projects$Instances$Performdiskshrink,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    performDiskShrink(
+      params: Params$Resource$Projects$Instances$Performdiskshrink,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    performDiskShrink(
+      params: Params$Resource$Projects$Instances$Performdiskshrink,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    performDiskShrink(callback: BodyResponseCallback<Schema$Operation>): void;
+    performDiskShrink(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Performdiskshrink
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Performdiskshrink;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Performdiskshrink;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/performDiskShrink'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Reschedules the maintenance on the given instance.
      * @example
      * ```js
@@ -8345,6 +8672,161 @@ export namespace sqladmin_v1 {
             url: (
               rootUrl +
               '/v1/projects/{project}/instances/{instance}/rescheduleMaintenance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Reset Replica Size to primary instance disk size.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.projects.instances.resetReplicaSize({
+     *     // Cloud SQL read replica instance name.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the read replica.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resetReplicaSize(
+      params: Params$Resource$Projects$Instances$Resetreplicasize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetReplicaSize(
+      params?: Params$Resource$Projects$Instances$Resetreplicasize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    resetReplicaSize(
+      params: Params$Resource$Projects$Instances$Resetreplicasize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resetReplicaSize(
+      params: Params$Resource$Projects$Instances$Resetreplicasize,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resetReplicaSize(
+      params: Params$Resource$Projects$Instances$Resetreplicasize,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resetReplicaSize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resetReplicaSize(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Resetreplicasize
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Resetreplicasize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Resetreplicasize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/resetReplicaSize'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8682,6 +9164,33 @@ export namespace sqladmin_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Getdiskshrinkconfig
+    extends StandardParameters {
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Performdiskshrink
+    extends StandardParameters {
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PerformDiskShrinkContext;
+  }
   export interface Params$Resource$Projects$Instances$Reschedulemaintenance
     extends StandardParameters {
     /**
@@ -8697,6 +9206,22 @@ export namespace sqladmin_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SqlInstancesRescheduleMaintenanceRequestBody;
+  }
+  export interface Params$Resource$Projects$Instances$Resetreplicasize
+    extends StandardParameters {
+    /**
+     * Cloud SQL read replica instance name.
+     */
+    instance?: string;
+    /**
+     * ID of the project that contains the read replica.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SqlInstancesResetReplicaSizeRequest;
   }
   export interface Params$Resource$Projects$Instances$Startexternalsync
     extends StandardParameters {
