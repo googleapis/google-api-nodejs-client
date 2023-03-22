@@ -259,39 +259,9 @@ export namespace webrisk_v1 {
    */
   export interface Schema$GoogleCloudWebriskV1Submission {
     /**
-     * ThreatTypes found to be associated with the submitted URI after reviewing it. This might be empty if the URI was not added to any list.
-     */
-    threatTypes?: string[] | null;
-    /**
      * Required. The URI that is being reported for malicious content to be analyzed.
      */
     uri?: string | null;
-  }
-  /**
-   * Metadata for the Submit URI long-running operation.
-   */
-  export interface Schema$GoogleCloudWebriskV1SubmitUriMetadata {
-    /**
-     * Creation time of the operation.
-     */
-    createTime?: string | null;
-    /**
-     * The state of the operation.
-     */
-    state?: string | null;
-    /**
-     * Latest update time of the operation.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Request to send a potentially malicious URI to WebRisk.
-   */
-  export interface Schema$GoogleCloudWebriskV1SubmitUriRequest {
-    /**
-     * Required. The submission that contains the URI to be scanned.
-     */
-    submission?: Schema$GoogleCloudWebriskV1Submission;
   }
   /**
    * Contains the set of entries to add to a local database. May contain a combination of compressed and raw data in a single response.
@@ -542,12 +512,10 @@ export namespace webrisk_v1 {
     context: APIRequestContext;
     operations: Resource$Projects$Operations;
     submissions: Resource$Projects$Submissions;
-    uris: Resource$Projects$Uris;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Projects$Operations(this.context);
       this.submissions = new Resource$Projects$Submissions(this.context);
-      this.uris = new Resource$Projects$Uris(this.context);
     }
   }
 
@@ -955,7 +923,7 @@ export namespace webrisk_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1186,7 +1154,6 @@ export namespace webrisk_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "threatTypes": [],
      *       //   "uri": "my_uri"
      *       // }
      *     },
@@ -1195,7 +1162,6 @@ export namespace webrisk_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "threatTypes": [],
      *   //   "uri": "my_uri"
      *   // }
      * }
@@ -1312,174 +1278,6 @@ export namespace webrisk_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudWebriskV1Submission;
-  }
-
-  export class Resource$Projects$Uris {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Submits a URI suspected of containing malicious content to be reviewed. Returns a google.longrunning.Operation which, once the review is complete, is updated with its result. You can use the [Pub/Sub API] (https://cloud.google.com/pubsub) to receive notifications for the returned Operation. If the result verifies the existence of malicious content, the site will be added to the [Google's Social Engineering lists] (https://support.google.com/webmasters/answer/6350487/) in order to protect users that could get exposed to this threat in the future. Only allowlisted projects can use this method during Early Access. Please reach out to Sales or your customer engineer to obtain access.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/webrisk.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const webrisk = google.webrisk('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await webrisk.projects.uris.submit({
-     *     // Required. The name of the project that is making the submission. This string is in the format "projects/{project_number\}".
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "submission": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    submit(
-      params: Params$Resource$Projects$Uris$Submit,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    submit(
-      params?: Params$Resource$Projects$Uris$Submit,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    submit(
-      params: Params$Resource$Projects$Uris$Submit,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    submit(
-      params: Params$Resource$Projects$Uris$Submit,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    submit(
-      params: Params$Resource$Projects$Uris$Submit,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    submit(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    submit(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Uris$Submit
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Uris$Submit;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Uris$Submit;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://webrisk.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/uris:submit').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Uris$Submit
-    extends StandardParameters {
-    /**
-     * Required. The name of the project that is making the submission. This string is in the format "projects/{project_number\}".
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudWebriskV1SubmitUriRequest;
   }
 
   export class Resource$Threatlists {
