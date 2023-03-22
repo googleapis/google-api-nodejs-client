@@ -3624,7 +3624,7 @@
                               "type": "string"
                             },
                             "_type": {
-                              "description": "String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.",
+                              "description": "String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned. Specifying multiple `_type` parameters isn't supported. For example, the result of `_type=Observation&_type=Encounter` is undefined. Use `_type=Observation,Encounter` instead.",
                               "location": "query",
                               "type": "string"
                             },
@@ -4890,7 +4890,7 @@
       }
     }
   },
-  "revision": "20230223",
+  "revision": "20230310",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "Action": {

@@ -16972,7 +16972,7 @@ export namespace healthcare_v1 {
      *       _page_token: 'placeholder-value',
      *       // If provided, only resources updated after this time are returned. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
      *       _since: 'placeholder-value',
-     *       // String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.
+     *       // String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned. Specifying multiple `_type` parameters isn't supported. For example, the result of `_type=Observation&_type=Encounter` is undefined. Use `_type=Observation,Encounter` instead.
      *       _type: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -18145,7 +18145,7 @@ export namespace healthcare_v1 {
      */
     _since?: string;
     /**
-     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned.
+     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are returned. Specifying multiple `_type` parameters isn't supported. For example, the result of `_type=Observation&_type=Encounter` is undefined. Use `_type=Observation,Encounter` instead.
      */
     _type?: string;
   }
