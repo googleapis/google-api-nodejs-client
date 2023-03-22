@@ -157,7 +157,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     sectionType?: string | null;
     /**
-     * Optional. Must and can only be set when DeviceProvisioningSectionType is SECTION_TYPE_SIM_LOCK. The unique identifier of the SimLock profile (go/simlock/profiles).
+     * Optional. Must and can only be set when DeviceProvisioningSectionType is SECTION_TYPE_SIM_LOCK. The unique identifier of the SimLock profile.
      */
     simlockProfileId?: string | null;
   }
@@ -735,6 +735,10 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The section type of the device's provisioning record.
      */
     sectionType?: string | null;
+    /**
+     * Optional. Must and can only be set when DeviceProvisioningSectionType is SECTION_TYPE_SIM_LOCK. The unique identifier of the SimLock profile.
+     */
+    simlockProfileId?: string | null;
   }
   /**
    * Identifies one unclaim request.
