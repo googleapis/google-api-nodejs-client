@@ -880,6 +880,19 @@ export namespace metastore_v1alpha {
     restoreType?: string | null;
   }
   /**
+   * Represents the scaling configuration of a metastore service.
+   */
+  export interface Schema$ScalingConfig {
+    /**
+     * An enum of readable instance sizes, with each instance size mapping to a float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))
+     */
+    instanceSize?: string | null;
+    /**
+     * Scaling factor, increments of 0.1 for values less than 1.0, and increments of 1.0 for values greater than 1.0.
+     */
+    scalingFactor?: number | null;
+  }
+  /**
    * A securely stored value.
    */
   export interface Schema$Secret {
@@ -952,6 +965,10 @@ export namespace metastore_v1alpha {
      * Immutable. The release channel of the service. If unspecified, defaults to STABLE.
      */
     releaseChannel?: string | null;
+    /**
+     * Scaling configuration of the metastore service.
+     */
+    scalingConfig?: Schema$ScalingConfig;
     /**
      * Output only. The current state of the metastore service.
      */
@@ -3020,7 +3037,7 @@ export namespace metastore_v1alpha {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x\}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.
      * @example
      * ```js
      * // Before running the sample:
@@ -3420,6 +3437,7 @@ export namespace metastore_v1alpha {
      *       //   "networkConfig": {},
      *       //   "port": 0,
      *       //   "releaseChannel": "my_releaseChannel",
+     *       //   "scalingConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "telemetryConfig": {},
@@ -3857,6 +3875,7 @@ export namespace metastore_v1alpha {
      *   //   "networkConfig": {},
      *   //   "port": 0,
      *   //   "releaseChannel": "my_releaseChannel",
+     *   //   "scalingConfig": {},
      *   //   "state": "my_state",
      *   //   "stateMessage": "my_stateMessage",
      *   //   "telemetryConfig": {},
@@ -4429,6 +4448,7 @@ export namespace metastore_v1alpha {
      *       //   "networkConfig": {},
      *       //   "port": 0,
      *       //   "releaseChannel": "my_releaseChannel",
+     *       //   "scalingConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "telemetryConfig": {},

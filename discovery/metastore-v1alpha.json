@@ -527,7 +527,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "metastore.projects.locations.operations.list",
@@ -1579,7 +1579,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230313",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -1682,11 +1682,13 @@
           "description": "The type of the backend metastore.",
           "enum": [
             "METASTORE_TYPE_UNSPECIFIED",
+            "DATAPLEX",
             "BIGQUERY",
             "DATAPROC_METASTORE"
           ],
           "enumDescriptions": [
             "The metastore type is not set.",
+            "The backend metastore is Dataplex.",
             "The backend metastore is BigQuery.",
             "The backend metastore is Dataproc Metastore."
           ],
@@ -2761,6 +2763,38 @@
       },
       "type": "object"
     },
+    "ScalingConfig": {
+      "description": "Represents the scaling configuration of a metastore service.",
+      "id": "ScalingConfig",
+      "properties": {
+        "instanceSize": {
+          "description": "An enum of readable instance sizes, with each instance size mapping to a float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))",
+          "enum": [
+            "INSTANCE_SIZE_UNSPECIFIED",
+            "EXTRA_SMALL",
+            "SMALL",
+            "MEDIUM",
+            "LARGE",
+            "EXTRA_LARGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified instance size",
+            "Extra small instance size, maps to a scaling factor of 0.1.",
+            "Small instance size, maps to a scaling factor of 0.5.",
+            "Medium instance size, maps to a scaling factor of 1.0.",
+            "Large instance size, maps to a scaling factor of 3.0.",
+            "Extra large instance size, maps to a scaling factor of 6.0."
+          ],
+          "type": "string"
+        },
+        "scalingFactor": {
+          "description": "Scaling factor, increments of 0.1 for values less than 1.0, and increments of 1.0 for values greater than 1.0.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Secret": {
       "description": "A securely stored value.",
       "id": "Secret",
@@ -2864,6 +2898,10 @@
             "The STABLE release channel contains features that are considered stable and have been validated for production use."
           ],
           "type": "string"
+        },
+        "scalingConfig": {
+          "$ref": "ScalingConfig",
+          "description": "Scaling configuration of the metastore service."
         },
         "state": {
           "description": "Output only. The current state of the metastore service.",
