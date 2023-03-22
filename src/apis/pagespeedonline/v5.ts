@@ -238,6 +238,10 @@ export namespace pagespeedonline_v5 {
      */
     benchmarkIndex?: number | null;
     /**
+     * The version of libraries with which these results were generated. Ex: axe-core.
+     */
+    credits?: {[key: string]: string} | null;
+    /**
      * The user agent string of the version of Chrome used.
      */
     hostUserAgent?: string | null;
@@ -254,6 +258,35 @@ export namespace pagespeedonline_v5 {
      * Internationalized strings that are formatted to the locale in configSettings.
      */
     rendererFormattedStrings?: Schema$RendererFormattedStrings;
+  }
+  /**
+   * Message containing an Entity.
+   */
+  export interface Schema$LhrEntity {
+    /**
+     * Optional. An optional category name for the entity.
+     */
+    category?: string | null;
+    /**
+     * Optional. An optional homepage URL of the entity.
+     */
+    homepage?: string | null;
+    /**
+     * Optional. An optional flag indicating if the entity is the first party.
+     */
+    isFirstParty?: boolean | null;
+    /**
+     * Optional. An optional flag indicating if the entity is not recognized.
+     */
+    isUnrecognized?: boolean | null;
+    /**
+     * Required. Name of the entity.
+     */
+    name?: string | null;
+    /**
+     * Required. A list of URL origin strings that belong to this entity.
+     */
+    origins?: string[] | null;
   }
   /**
    * An audit's result object in a Lighthouse result.
@@ -358,6 +391,10 @@ export namespace pagespeedonline_v5 {
      */
     configSettings?: Schema$ConfigSettings;
     /**
+     * Entity classification data.
+     */
+    entities?: Schema$LhrEntity[];
+    /**
      * Environment settings that were used when making this LHR.
      */
     environment?: Schema$Environment;
@@ -366,9 +403,17 @@ export namespace pagespeedonline_v5 {
      */
     fetchTime?: string | null;
     /**
+     * URL displayed on the page after Lighthouse finishes.
+     */
+    finalDisplayedUrl?: string | null;
+    /**
      * The final resolved url that was audited.
      */
     finalUrl?: string | null;
+    /**
+     * Screenshot data of the full page, along with node rects relevant to the audit results.
+     */
+    fullPageScreenshot?: any | null;
     /**
      * The internationalization strings that are required to render the LHR.
      */
@@ -377,6 +422,10 @@ export namespace pagespeedonline_v5 {
      * The lighthouse version that was used to generate this LHR.
      */
     lighthouseVersion?: string | null;
+    /**
+     * URL of the main document request of the final navigation.
+     */
+    mainDocumentUrl?: string | null;
     /**
      * The original requested url.
      */
