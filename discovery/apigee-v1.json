@@ -5876,6 +5876,76 @@
                 }
               }
             },
+            "securityIncidents": {
+              "methods": {
+                "get": {
+                  "description": "GetSecurityIncident gets the specified security incident. Returns NOT_FOUND if security incident is not present for the specified organization and environment.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityIncidents/{securityIncidentsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.securityIncidents.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Security incident in the following format: `organizations/{org}/environments/{environment}/securityIncidents/{incident}'. Example: organizations/testOrg/environments/testEnv/securityIncidents/1234-4567-890-111",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/securityIncidents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1SecurityIncident"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "ListSecurityIncidents lists all the security incident associated with the environment.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/securityIncidents",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.securityIncidents.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression to be used to get the list of security incidents, where filtering can be done on API Proxies. Example: filter = \"api_proxy = /\", \"first_detected_time >\", \"last_detected_time <\"",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of incidents to return. The service may return fewer than this value. If unspecified, at most 50 incidents will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListSecurityIncident` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. For a specific organization, list of all the security incidents. Format: `organizations/{org}/environments/{environment}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/securityIncidents",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListSecurityIncidentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "securityReports": {
               "methods": {
                 "create": {
@@ -7750,7 +7820,7 @@
               ]
             },
             "list": {
-              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
               "flatPath": "v1/organizations/{organizationsId}/operations",
               "httpMethod": "GET",
               "id": "apigee.organizations.operations.list",
@@ -8674,7 +8744,7 @@
       }
     }
   },
-  "revision": "20230217",
+  "revision": "20230312",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -10561,6 +10631,20 @@
       "description": "DeploymentGroupConfig represents a deployment group that should be present in a particular environment.",
       "id": "GoogleCloudApigeeV1DeploymentGroupConfig",
       "properties": {
+        "deploymentGroupType": {
+          "description": "Type of the deployment group, which will be either Standard or Extensible.",
+          "enum": [
+            "DEPLOYMENT_GROUP_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "EXTENSIBLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified type",
+            "Standard type",
+            "Extensible Type"
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Name of the deployment group in the following format: `organizations/{org}/environments/{env}/deploymentGroups/{group}`.",
           "type": "string"
@@ -12333,6 +12417,24 @@
           "description": "List of rate plans in an organization.",
           "items": {
             "$ref": "GoogleCloudApigeeV1RatePlan"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListSecurityIncidentsResponse": {
+      "description": "Response for ListSecurityIncidents.",
+      "id": "GoogleCloudApigeeV1ListSecurityIncidentsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "securityIncidents": {
+          "description": "List of security incidents in the organization",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityIncident"
           },
           "type": "array"
         }
@@ -14190,6 +14292,63 @@
       "properties": {
         "documentationLink": {
           "description": "Documentation link for the action.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityIncident": {
+      "description": "Represents an SecurityIncident resource.",
+      "id": "GoogleCloudApigeeV1SecurityIncident",
+      "properties": {
+        "detectionTypes": {
+          "description": "Output only. Detection types which are part of the incident. Examples: Flooder, OAuth Abuser, Static Content Scraper, Anomaly Detection.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Display name of the security incident.",
+          "type": "string"
+        },
+        "firstDetectedTime": {
+          "description": "Output only. The time when events associated with the incident were first detected.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastDetectedTime": {
+          "description": "Output only. The time when events associated with the incident were last detected.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Name of the security incident resource. Format: organizations/{org}/environments/{environment}/securityIncidents/{incident} Example: organizations/apigee-org/environments/dev/securityIncidents/1234-5678-9101-1111",
+          "type": "string"
+        },
+        "riskLevel": {
+          "description": "Output only. Risk level of the incident.",
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "LOW",
+            "MODERATE",
+            "SEVERE"
+          ],
+          "enumDescriptions": [
+            "Risk Level Unspecified.",
+            "Risk level of the incident is low.",
+            "Risk level of the incident is moderate.",
+            "Risk level of the incident is severe."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "trafficCount": {
+          "description": "Total traffic detected as part of the incident.",
+          "format": "int64",
           "type": "string"
         }
       },

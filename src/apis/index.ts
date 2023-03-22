@@ -225,6 +225,7 @@ import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
 import {VERSIONS as dataformVersions, dataform} from './dataform';
 import {VERSIONS as datafusionVersions, datafusion} from './datafusion';
 import {VERSIONS as datalabelingVersions, datalabeling} from './datalabeling';
+import {VERSIONS as datalineageVersions, datalineage} from './datalineage';
 import {
   VERSIONS as datamigrationVersions,
   datamigration,
@@ -378,6 +379,10 @@ import {
 } from './manufacturers';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
 import {VERSIONS as metastoreVersions, metastore} from './metastore';
+import {
+  VERSIONS as migrationcenterVersions,
+  migrationcenter,
+} from './migrationcenter';
 import {VERSIONS as mlVersions, ml} from './ml';
 import {VERSIONS as monitoringVersions, monitoring} from './monitoring';
 import {
@@ -732,6 +737,7 @@ export const APIS: APIList = {
   dataform: dataformVersions,
   datafusion: datafusionVersions,
   datalabeling: datalabelingVersions,
+  datalineage: datalineageVersions,
   datamigration: datamigrationVersions,
   datapipelines: datapipelinesVersions,
   dataplex: dataplexVersions,
@@ -807,6 +813,7 @@ export const APIS: APIList = {
   manufacturers: manufacturersVersions,
   memcache: memcacheVersions,
   metastore: metastoreVersions,
+  migrationcenter: migrationcenterVersions,
   ml: mlVersions,
   monitoring: monitoringVersions,
   mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
@@ -1001,6 +1008,7 @@ export class GeneratedAPIs {
   dataform = dataform;
   datafusion = datafusion;
   datalabeling = datalabeling;
+  datalineage = datalineage;
   datamigration = datamigration;
   datapipelines = datapipelines;
   dataplex = dataplex;
@@ -1076,6 +1084,7 @@ export class GeneratedAPIs {
   manufacturers = manufacturers;
   memcache = memcache;
   metastore = metastore;
+  migrationcenter = migrationcenter;
   ml = ml;
   monitoring = monitoring;
   mybusinessaccountmanagement = mybusinessaccountmanagement;
