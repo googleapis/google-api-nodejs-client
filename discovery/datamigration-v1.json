@@ -1636,7 +1636,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "datamigration.projects.locations.operations.list",
@@ -1831,7 +1831,7 @@
       }
     }
   },
-  "revision": "20230222",
+  "revision": "20230308",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2309,7 +2309,7 @@
           "type": "integer"
         },
         "setValues": {
-          "description": "Specifies the list of values allowed in the column. List is empty if setValues is not required.",
+          "description": "Specifies the list of values allowed in the column. Only used for set data type.",
           "items": {
             "type": "string"
           },
@@ -2634,7 +2634,8 @@
             "DATABASE_ENTITY_TYPE_SYNONYM",
             "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
             "DATABASE_ENTITY_TYPE_UDT",
-            "DATABASE_ENTITY_TYPE_MATERIAL_VIEW"
+            "DATABASE_ENTITY_TYPE_MATERIAL_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
           ],
           "enumDescriptions": [
             "Unspecified database entity type.",
@@ -2651,7 +2652,8 @@
             "Synonym.",
             "Package.",
             "UDT.",
-            "Material View."
+            "Material View.",
+            "Database."
           ],
           "type": "string"
         },
@@ -4266,7 +4268,8 @@
             "DATABASE_ENTITY_TYPE_SYNONYM",
             "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
             "DATABASE_ENTITY_TYPE_UDT",
-            "DATABASE_ENTITY_TYPE_MATERIAL_VIEW"
+            "DATABASE_ENTITY_TYPE_MATERIAL_VIEW",
+            "DATABASE_ENTITY_TYPE_DATABASE"
           ],
           "enumDescriptions": [
             "Unspecified database entity type.",
@@ -4283,7 +4286,8 @@
             "Synonym.",
             "Package.",
             "UDT.",
-            "Material View."
+            "Material View.",
+            "Database."
           ],
           "type": "string"
         }
