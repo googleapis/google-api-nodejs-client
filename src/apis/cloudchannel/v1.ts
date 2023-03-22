@@ -1057,6 +1057,59 @@ export namespace cloudchannel_v1 {
     updateTime?: string | null;
   }
   /**
+   * Change event entry for Entitlement order history
+   */
+  export interface Schema$GoogleCloudChannelV1EntitlementChange {
+    /**
+     * The Entitlement's activation reason
+     */
+    activationReason?: string | null;
+    /**
+     * Cancellation reason for the Entitlement.
+     */
+    cancellationReason?: string | null;
+    /**
+     * The change action type.
+     */
+    changeType?: string | null;
+    /**
+     * The submitted time of the change.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Resource name of an entitlement in the form: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
+     */
+    entitlement?: string | null;
+    /**
+     * Required. Resource name of the Offer at the time of change. Takes the form: accounts/{account_id\}/offers/{offer_id\}.
+     */
+    offer?: string | null;
+    /**
+     * Human-readable identifier that shows what operator made a change. When the operator_type is RESELLER, this is the user's email address. For all other operator types, this is empty.
+     */
+    operator?: string | null;
+    /**
+     * Operator type responsible for the change.
+     */
+    operatorType?: string | null;
+    /**
+     * e.g. purchase_number change reason, entered by CRS.
+     */
+    otherChangeReason?: string | null;
+    /**
+     * Extended parameters, such as: purchase_order_number, gcp_details; internal_correlation_id, long_running_operation_id, order_id; etc.
+     */
+    parameters?: Schema$GoogleCloudChannelV1Parameter[];
+    /**
+     * Service provisioned for an Entitlement.
+     */
+    provisionedService?: Schema$GoogleCloudChannelV1ProvisionedService;
+    /**
+     * Suspension reason for the Entitlement.
+     */
+    suspensionReason?: string | null;
+  }
+  /**
    * Represents Pub/Sub message content describing entitlement update.
    */
   export interface Schema$GoogleCloudChannelV1EntitlementEvent {
@@ -1177,6 +1230,19 @@ export namespace cloudchannel_v1 {
     customers?: Schema$GoogleCloudChannelV1Customer[];
     /**
      * A token to retrieve the next page of results. Pass to ListCustomersRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for CloudChannelService.ListEntitlementChanges
+   */
+  export interface Schema$GoogleCloudChannelV1ListEntitlementChangesResponse {
+    /**
+     * The list of entitlement changes.
+     */
+    entitlementChanges?: Schema$GoogleCloudChannelV1EntitlementChange[];
+    /**
+     * A token to list the next page of results.
      */
     nextPageToken?: string | null;
   }
@@ -4438,7 +4504,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * channel partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.
+     * Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Channel Partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.
      * @example
      * ```js
      * // Before running the sample:
@@ -8090,7 +8156,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.
+     * Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.
      * @example
      * ```js
      * // Before running the sample:
@@ -9637,6 +9703,154 @@ export namespace cloudchannel_v1 {
     }
 
     /**
+     * List entitlement history. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different. * INVALID_ARGUMENT: Missing or invalid required fields in the request. * NOT_FOUND: The parent resource doesn't exist. Usually the result of an invalid name parameter. * INTERNAL: Any non-user error related to a technical issue in the backend. In this case, contact CloudChannel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. In this case, contact Cloud Channel support. Return value: List of EntitlementChanges.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudchannel.accounts.customers.entitlements.listEntitlementChanges({
+     *       // Optional. Filters applied to the list results.
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of entitlement changes to return. The service may return fewer than this value. If unspecified, returns at most 10 entitlement changes. The maximum value is 50; the server will coerce values above 50.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous CloudChannelService.ListEntitlementChanges call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CloudChannelService.ListEntitlementChanges must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the entitlement for which to list entitlement changes. The `-` wildcard may be used to match entitlements across a customer. Formats: * accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\} * accounts/{account_id\}/customers/{customer_id\}/entitlements/-
+     *       parent:
+     *         'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entitlementChanges": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listEntitlementChanges(
+      params?: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>;
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+    ): void;
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+    ): void;
+    listEntitlementChanges(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+    ): void;
+    listEntitlementChanges(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:listEntitlementChanges').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the requested Offer resource. Possible error codes: * PERMISSION_DENIED: The entitlement doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement or offer was not found. Return value: The Offer resource.
      * @example
      * ```js
@@ -10176,6 +10390,25 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges
+    extends StandardParameters {
+    /**
+     * Optional. Filters applied to the list results.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of entitlement changes to return. The service may return fewer than this value. If unspecified, returns at most 10 entitlement changes. The maximum value is 50; the server will coerce values above 50.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous CloudChannelService.ListEntitlementChanges call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CloudChannelService.ListEntitlementChanges must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the entitlement for which to list entitlement changes. The `-` wildcard may be used to match entitlements across a customer. Formats: * accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\} * accounts/{account_id\}/customers/{customer_id\}/entitlements/-
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Accounts$Customers$Entitlements$Lookupoffer
     extends StandardParameters {
     /**
@@ -10251,6 +10484,8 @@ export namespace cloudchannel_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name of the reseller account from which to list Offers. Parent uses the format: accounts/{account_id\}.
      *     parent: 'accounts/my-account',
+     *     // Optional. A boolean flag that determines if a response returns future offers 30 days from now. If the show_future_offers is true, the response will only contain offers that are scheduled to be available 30 days from now.
+     *     showFutureOffers: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -10384,6 +10619,10 @@ export namespace cloudchannel_v1 {
      * Required. The resource name of the reseller account from which to list Offers. Parent uses the format: accounts/{account_id\}.
      */
     parent?: string;
+    /**
+     * Optional. A boolean flag that determines if a response returns future offers 30 days from now. If the show_future_offers is true, the response will only contain offers that are scheduled to be available 30 days from now.
+     */
+    showFutureOffers?: boolean;
   }
 
   export class Resource$Accounts$Reportjobs {
@@ -11289,7 +11528,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
