@@ -165,78 +165,6 @@ export namespace policysimulator_v1 {
     principal?: string | null;
   }
   /**
-   * A resource describing a `Replay`, or simulation.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1Replay {
-    /**
-     * Required. The configuration used for the `Replay`.
-     */
-    config?: Schema$GoogleCloudPolicysimulatorV1beta1ReplayConfig;
-    /**
-     * Output only. The resource name of the `Replay`, which has the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     */
-    name?: string | null;
-    /**
-     * Output only. Summary statistics about the replayed log entries.
-     */
-    resultsSummary?: Schema$GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary;
-    /**
-     * Output only. The current state of the `Replay`.
-     */
-    state?: string | null;
-  }
-  /**
-   * The configuration used for a Replay.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ReplayConfig {
-    /**
-     * The logs to use as input for the Replay.
-     */
-    logSource?: string | null;
-    /**
-     * A mapping of the resources that you want to simulate policies for and the policies that you want to simulate. Keys are the full resource names for the resources. For example, `//cloudresourcemanager.googleapis.com/projects/my-project`. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names. Values are Policy objects representing the policies that you want to simulate. Replays automatically take into account any IAM policies inherited through the resource hierarchy, and any policies set on descendant resources. You do not need to include these policies in the policy overlay.
-     */
-    policyOverlay?: {[key: string]: Schema$GoogleIamV1Policy} | null;
-  }
-  /**
-   * Metadata about a Replay operation.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ReplayOperationMetadata {
-    /**
-     * Time when the request was received.
-     */
-    startTime?: string | null;
-  }
-  /**
-   * Summary statistics about the replayed log entries.
-   */
-  export interface Schema$GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary {
-    /**
-     * The number of replayed log entries with a difference between baseline and simulated policies.
-     */
-    differenceCount?: number | null;
-    /**
-     * The number of log entries that could not be replayed.
-     */
-    errorCount?: number | null;
-    /**
-     * The total number of log entries replayed.
-     */
-    logCount?: number | null;
-    /**
-     * The date of the newest log entry replayed.
-     */
-    newestDate?: Schema$GoogleTypeDate;
-    /**
-     * The date of the oldest log entry replayed.
-     */
-    oldestDate?: Schema$GoogleTypeDate;
-    /**
-     * The number of replayed log entries with no difference between baseline and simulated policies.
-     */
-    unchangedCount?: number | null;
-  }
-  /**
    * Details about how a binding in a policy affects a principal's ability to use a permission.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1BindingExplanation {
@@ -620,185 +548,11 @@ export namespace policysimulator_v1 {
 
   export class Resource$Folders$Locations {
     context: APIRequestContext;
-    orgPolicyViolationsPreviews: Resource$Folders$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Folders$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.orgPolicyViolationsPreviews =
-        new Resource$Folders$Locations$Orgpolicyviolationspreviews(
-          this.context
-        );
       this.replays = new Resource$Folders$Locations$Replays(this.context);
     }
-  }
-
-  export class Resource$Folders$Locations$Orgpolicyviolationspreviews {
-    context: APIRequestContext;
-    operations: Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await policysimulator.folders.locations.orgPolicyViolationsPreviews.operations.get(
-     *       {
-     *         // The name of the operation resource.
-     *         name: 'folders/my-folder/locations/my-location/orgPolicyViolationsPreviews/my-orgPolicyViolationsPreview/operations/.*',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    get(
-      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Folders$Locations$Orgpolicyviolationspreviews$Operations$Get
-    extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
   }
 
   export class Resource$Folders$Locations$Replays {
@@ -1272,7 +1026,7 @@ export namespace policysimulator_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1754,7 +1508,7 @@ export namespace policysimulator_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1932,185 +1686,11 @@ export namespace policysimulator_v1 {
 
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
-    orgPolicyViolationsPreviews: Resource$Organizations$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Organizations$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.orgPolicyViolationsPreviews =
-        new Resource$Organizations$Locations$Orgpolicyviolationspreviews(
-          this.context
-        );
       this.replays = new Resource$Organizations$Locations$Replays(this.context);
     }
-  }
-
-  export class Resource$Organizations$Locations$Orgpolicyviolationspreviews {
-    context: APIRequestContext;
-    operations: Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await policysimulator.organizations.locations.orgPolicyViolationsPreviews.operations.get(
-     *       {
-     *         // The name of the operation resource.
-     *         name: 'organizations/my-organization/locations/my-location/orgPolicyViolationsPreviews/my-orgPolicyViolationsPreview/operations/.*',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    get(
-      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Orgpolicyviolationspreviews$Operations$Get
-    extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
   }
 
   export class Resource$Organizations$Locations$Replays {
@@ -2586,7 +2166,7 @@ export namespace policysimulator_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -2939,185 +2519,11 @@ export namespace policysimulator_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    orgPolicyViolationsPreviews: Resource$Projects$Locations$Orgpolicyviolationspreviews;
     replays: Resource$Projects$Locations$Replays;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.orgPolicyViolationsPreviews =
-        new Resource$Projects$Locations$Orgpolicyviolationspreviews(
-          this.context
-        );
       this.replays = new Resource$Projects$Locations$Replays(this.context);
     }
-  }
-
-  export class Resource$Projects$Locations$Orgpolicyviolationspreviews {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/policysimulator.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const policysimulator = google.policysimulator('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await policysimulator.projects.locations.orgPolicyViolationsPreviews.operations.get(
-     *       {
-     *         // The name of the operation resource.
-     *         name: 'projects/my-project/locations/my-location/orgPolicyViolationsPreviews/my-orgPolicyViolationsPreview/operations/.*',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    get(
-      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://policysimulator.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Orgpolicyviolationspreviews$Operations$Get
-    extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
   }
 
   export class Resource$Projects$Locations$Replays {
@@ -3592,7 +2998,7 @@ export namespace policysimulator_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:

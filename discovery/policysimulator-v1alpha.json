@@ -172,7 +172,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                       "flatPath": "v1alpha/folders/{foldersId}/locations/{locationsId}/replays/{replaysId}/operations",
                       "httpMethod": "GET",
                       "id": "policysimulator.folders.locations.replays.operations.list",
@@ -248,7 +248,7 @@
           ]
         },
         "list": {
-          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
           "flatPath": "v1alpha/operations",
           "httpMethod": "GET",
           "id": "policysimulator.operations.list",
@@ -357,7 +357,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                       "flatPath": "v1alpha/organizations/{organizationsId}/locations/{locationsId}/replays/{replaysId}/operations",
                       "httpMethod": "GET",
                       "id": "policysimulator.organizations.locations.replays.operations.list",
@@ -472,7 +472,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/replays/{replaysId}/operations",
                       "httpMethod": "GET",
                       "id": "policysimulator.projects.locations.replays.operations.list",
@@ -521,7 +521,7 @@
       }
     }
   },
-  "revision": "20230226",
+  "revision": "20230312",
   "rootUrl": "https://policysimulator.googleapis.com/",
   "schemas": {
     "GoogleCloudPolicysimulatorV1Replay": {
@@ -605,119 +605,6 @@
     "GoogleCloudPolicysimulatorV1ReplayResultsSummary": {
       "description": "Summary statistics about the replayed log entries.",
       "id": "GoogleCloudPolicysimulatorV1ReplayResultsSummary",
-      "properties": {
-        "differenceCount": {
-          "description": "The number of replayed log entries with a difference between baseline and simulated policies.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "errorCount": {
-          "description": "The number of log entries that could not be replayed.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "logCount": {
-          "description": "The total number of log entries replayed.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "newestDate": {
-          "$ref": "GoogleTypeDate",
-          "description": "The date of the newest log entry replayed."
-        },
-        "oldestDate": {
-          "$ref": "GoogleTypeDate",
-          "description": "The date of the oldest log entry replayed."
-        },
-        "unchangedCount": {
-          "description": "The number of replayed log entries with no difference between baseline and simulated policies.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudPolicysimulatorV1beta1Replay": {
-      "description": "A resource describing a `Replay`, or simulation.",
-      "id": "GoogleCloudPolicysimulatorV1beta1Replay",
-      "properties": {
-        "config": {
-          "$ref": "GoogleCloudPolicysimulatorV1beta1ReplayConfig",
-          "description": "Required. The configuration used for the `Replay`."
-        },
-        "name": {
-          "description": "Output only. The resource name of the `Replay`, which has the following format: `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}`, where `{resource-id}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resultsSummary": {
-          "$ref": "GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary",
-          "description": "Output only. Summary statistics about the replayed log entries.",
-          "readOnly": true
-        },
-        "state": {
-          "description": "Output only. The current state of the `Replay`.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "RUNNING",
-            "SUCCEEDED",
-            "FAILED"
-          ],
-          "enumDescriptions": [
-            "The state is unspecified.",
-            "The `Replay` has not started yet.",
-            "The `Replay` is currently running.",
-            "The `Replay` has successfully completed.",
-            "The `Replay` has finished with an error."
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudPolicysimulatorV1beta1ReplayConfig": {
-      "description": "The configuration used for a Replay.",
-      "id": "GoogleCloudPolicysimulatorV1beta1ReplayConfig",
-      "properties": {
-        "logSource": {
-          "description": "The logs to use as input for the Replay.",
-          "enum": [
-            "LOG_SOURCE_UNSPECIFIED",
-            "RECENT_ACCESSES"
-          ],
-          "enumDescriptions": [
-            "An unspecified log source. If the log source is unspecified, the Replay defaults to using `RECENT_ACCESSES`.",
-            "All access logs from the last 90 days. These logs may not include logs from the most recent 7 days."
-          ],
-          "type": "string"
-        },
-        "policyOverlay": {
-          "additionalProperties": {
-            "$ref": "GoogleIamV1Policy"
-          },
-          "description": "A mapping of the resources that you want to simulate policies for and the policies that you want to simulate. Keys are the full resource names for the resources. For example, `//cloudresourcemanager.googleapis.com/projects/my-project`. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names. Values are Policy objects representing the policies that you want to simulate. Replays automatically take into account any IAM policies inherited through the resource hierarchy, and any policies set on descendant resources. You do not need to include these policies in the policy overlay.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudPolicysimulatorV1beta1ReplayOperationMetadata": {
-      "description": "Metadata about a Replay operation.",
-      "id": "GoogleCloudPolicysimulatorV1beta1ReplayOperationMetadata",
-      "properties": {
-        "startTime": {
-          "description": "Time when the request was received.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary": {
-      "description": "Summary statistics about the replayed log entries.",
-      "id": "GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary",
       "properties": {
         "differenceCount": {
           "description": "The number of replayed log entries with a difference between baseline and simulated policies.",
