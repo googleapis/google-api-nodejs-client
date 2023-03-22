@@ -266,6 +266,45 @@ export namespace datacatalog_v1 {
     entryOverview?: Schema$GoogleCloudDatacatalogV1EntryOverview;
   }
   /**
+   * Specification that applies to Instance entries that are part of `CLOUD_BIGTABLE` system. (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec {
+    /**
+     * The list of clusters for the Instance.
+     */
+    cloudBigtableClusterSpecs?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec[];
+  }
+  /**
+   * Spec that applies to clusters of an Instance of Cloud Bigtable.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec {
+    /**
+     * Name of the cluster.
+     */
+    displayName?: string | null;
+    /**
+     * A link back to the parent resource, in this case Instance.
+     */
+    linkedResource?: string | null;
+    /**
+     * Location of the cluster, typically a Cloud zone.
+     */
+    location?: string | null;
+    /**
+     * Type of the resource. For a cluster this would be "CLUSTER".
+     */
+    type?: string | null;
+  }
+  /**
+   * Specification that applies to all entries that are part of `CLOUD_BIGTABLE` system (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableSystemSpec {
+    /**
+     * Display name of the Instance. This is user specified and different from the resource name.
+     */
+    instanceDisplayName?: string | null;
+  }
+  /**
    * Specification for the BigQuery connection to a Cloud SQL instance.
    */
   export interface Schema$GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec {
@@ -509,6 +548,15 @@ export namespace datacatalog_v1 {
     bigqueryConnectionSpec?: Schema$GoogleCloudDatacatalogV1BigQueryConnectionSpec;
   }
   /**
+   * Wrapper for any item that can be contained in the dump.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DumpItem {
+    /**
+     * Entry and its tags.
+     */
+    taggedEntry?: Schema$GoogleCloudDatacatalogV1TaggedEntry;
+  }
+  /**
    * Entry metadata. A Data Catalog entry represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic) or outside of it. You can use the `linked_resource` field in the entry resource to refer to the original resource ID of the source system. An entry resource contains resource details, for example, its schema. Additionally, you can attach flexible metadata to an entry in the form of a Tag.
    */
   export interface Schema$GoogleCloudDatacatalogV1Entry {
@@ -524,6 +572,10 @@ export namespace datacatalog_v1 {
      * Business Context of the entry. Not supported for BigQuery datasets
      */
     businessContext?: Schema$GoogleCloudDatacatalogV1BusinessContext;
+    /**
+     * Specification that applies to Cloud Bigtable system. Only settable when `integrated_system` is equal to `CLOUD_BIGTABLE`
+     */
+    cloudBigtableSystemSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableSystemSpec;
     /**
      * Specification that applies to a table resource. Valid only for entries with the `TABLE` or `EXPLORE` type.
      */
@@ -588,6 +640,10 @@ export namespace datacatalog_v1 {
      * Schema of the entry. An entry might not have any schema attached to it.
      */
     schema?: Schema$GoogleCloudDatacatalogV1Schema;
+    /**
+     * Specification that applies to a Service resource.
+     */
+    serviceSpec?: Schema$GoogleCloudDatacatalogV1ServiceSpec;
     /**
      * Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a system listed in the `IntegratedSystem` enum. For entries with `user_specified_system`, this field is optional and defaults to an empty timestamp.
      */
@@ -1285,6 +1341,15 @@ export namespace datacatalog_v1 {
     policyTags?: Schema$GoogleCloudDatacatalogV1SerializedPolicyTag[];
   }
   /**
+   * Specification that applies to a Service resource. Valid only for entries with the `SERVICE` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ServiceSpec {
+    /**
+     * Specification that applies to Instance entries of `CLOUD_BIGTABLE` system.
+     */
+    cloudBigtableInstanceSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec;
+  }
+  /**
    * Specification that applies to entries that are part `SQL_DATABASE` system (user_specified_type)
    */
   export interface Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec {
@@ -1418,6 +1483,23 @@ export namespace datacatalog_v1 {
      * The display name of the enum value.
      */
     displayName?: string | null;
+  }
+  /**
+   * Wrapper containing Entry and information about Tags that should and should not be attached to it.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1TaggedEntry {
+    /**
+     * Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.
+     */
+    absentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
+    /**
+     * Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.
+     */
+    presentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
+    /**
+     * Non-encrypted Data Catalog v1 Entry.
+     */
+    v1Entry?: Schema$GoogleCloudDatacatalogV1Entry;
   }
   /**
    * A tag template defines a tag that can have one or more typed fields. The template is used to create tags that are attached to Google Cloud resources. [Tag template roles] (https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. For example, see the [TagTemplate User] (https://cloud.google.com/data-catalog/docs/how-to/template-user) role that includes a permission to use the tag template to tag resources.
@@ -1886,6 +1968,7 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "businessContext": {},
+     *   //   "cloudBigtableSystemSpec": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -1902,6 +1985,7 @@ export namespace datacatalog_v1 {
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
+     *   //   "serviceSpec": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
@@ -3369,6 +3453,7 @@ export namespace datacatalog_v1 {
      *       //   "bigqueryDateShardedSpec": {},
      *       //   "bigqueryTableSpec": {},
      *       //   "businessContext": {},
+     *       //   "cloudBigtableSystemSpec": {},
      *       //   "dataSource": {},
      *       //   "dataSourceConnectionSpec": {},
      *       //   "databaseTableSpec": {},
@@ -3385,6 +3470,7 @@ export namespace datacatalog_v1 {
      *       //   "personalDetails": {},
      *       //   "routineSpec": {},
      *       //   "schema": {},
+     *       //   "serviceSpec": {},
      *       //   "sourceSystemTimestamps": {},
      *       //   "sqlDatabaseSystemSpec": {},
      *       //   "type": "my_type",
@@ -3401,6 +3487,7 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "businessContext": {},
+     *   //   "cloudBigtableSystemSpec": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -3417,6 +3504,7 @@ export namespace datacatalog_v1 {
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
+     *   //   "serviceSpec": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
@@ -3689,6 +3777,7 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "businessContext": {},
+     *   //   "cloudBigtableSystemSpec": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -3705,6 +3794,7 @@ export namespace datacatalog_v1 {
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
+     *   //   "serviceSpec": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
@@ -4583,6 +4673,7 @@ export namespace datacatalog_v1 {
      *       //   "bigqueryDateShardedSpec": {},
      *       //   "bigqueryTableSpec": {},
      *       //   "businessContext": {},
+     *       //   "cloudBigtableSystemSpec": {},
      *       //   "dataSource": {},
      *       //   "dataSourceConnectionSpec": {},
      *       //   "databaseTableSpec": {},
@@ -4599,6 +4690,7 @@ export namespace datacatalog_v1 {
      *       //   "personalDetails": {},
      *       //   "routineSpec": {},
      *       //   "schema": {},
+     *       //   "serviceSpec": {},
      *       //   "sourceSystemTimestamps": {},
      *       //   "sqlDatabaseSystemSpec": {},
      *       //   "type": "my_type",
@@ -4615,6 +4707,7 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "businessContext": {},
+     *   //   "cloudBigtableSystemSpec": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -4631,6 +4724,7 @@ export namespace datacatalog_v1 {
      *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
+     *   //   "serviceSpec": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "sqlDatabaseSystemSpec": {},
      *   //   "type": "my_type",
@@ -7120,7 +7214,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:

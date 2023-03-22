@@ -1141,7 +1141,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "datacatalog.projects.locations.operations.list",
@@ -2134,7 +2134,7 @@
       }
     }
   },
-  "revision": "20230221",
+  "revision": "20230317",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2327,6 +2327,54 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1CloudBigtableInstanceSpec": {
+      "description": "Specification that applies to Instance entries that are part of `CLOUD_BIGTABLE` system. (user_specified_type)",
+      "id": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpec",
+      "properties": {
+        "cloudBigtableClusterSpecs": {
+          "description": "The list of clusters for the Instance.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec": {
+      "description": "Spec that applies to clusters of an Instance of Cloud Bigtable.",
+      "id": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec",
+      "properties": {
+        "displayName": {
+          "description": "Name of the cluster.",
+          "type": "string"
+        },
+        "linkedResource": {
+          "description": "A link back to the parent resource, in this case Instance.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of the cluster, typically a Cloud zone.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the resource. For a cluster this would be \"CLUSTER\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1CloudBigtableSystemSpec": {
+      "description": "Specification that applies to all entries that are part of `CLOUD_BIGTABLE` system (user_specified_type)",
+      "id": "GoogleCloudDatacatalogV1CloudBigtableSystemSpec",
+      "properties": {
+        "instanceDisplayName": {
+          "description": "Display name of the Instance. This is user specified and different from the resource name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec": {
       "description": "Specification for the BigQuery connection to a Cloud SQL instance.",
       "id": "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec",
@@ -2433,7 +2481,7 @@
             "DIMENSION_GROUP",
             "FILTER",
             "MEASURE",
-            "PAREMETER"
+            "PARAMETER"
           ],
           "enumDescriptions": [
             "Unspecified.",
@@ -2628,6 +2676,8 @@
             "CLOUD_PUBSUB",
             "DATAPROC_METASTORE",
             "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
             "CLOUD_SQL",
             "LOOKER"
           ],
@@ -2637,6 +2687,8 @@
             "Cloud Pub/Sub.",
             "Dataproc Metastore.",
             "Dataplex.",
+            "Cloud Spanner",
+            "Cloud Bigtable",
             "Cloud Sql",
             "Looker"
           ],
@@ -2701,6 +2753,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1DumpItem": {
+      "description": "Wrapper for any item that can be contained in the dump.",
+      "id": "GoogleCloudDatacatalogV1DumpItem",
+      "properties": {
+        "taggedEntry": {
+          "$ref": "GoogleCloudDatacatalogV1TaggedEntry",
+          "description": "Entry and its tags."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1Entry": {
       "description": "Entry metadata. A Data Catalog entry represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic) or outside of it. You can use the `linked_resource` field in the entry resource to refer to the original resource ID of the source system. An entry resource contains resource details, for example, its schema. Additionally, you can attach flexible metadata to an entry in the form of a Tag.",
       "id": "GoogleCloudDatacatalogV1Entry",
@@ -2718,6 +2781,10 @@
         "businessContext": {
           "$ref": "GoogleCloudDatacatalogV1BusinessContext",
           "description": "Business Context of the entry. Not supported for BigQuery datasets"
+        },
+        "cloudBigtableSystemSpec": {
+          "$ref": "GoogleCloudDatacatalogV1CloudBigtableSystemSpec",
+          "description": "Specification that applies to Cloud Bigtable system. Only settable when `integrated_system` is equal to `CLOUD_BIGTABLE`"
         },
         "dataSource": {
           "$ref": "GoogleCloudDatacatalogV1DataSource",
@@ -2760,6 +2827,8 @@
             "CLOUD_PUBSUB",
             "DATAPROC_METASTORE",
             "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
             "CLOUD_SQL",
             "LOOKER"
           ],
@@ -2769,6 +2838,8 @@
             "Cloud Pub/Sub.",
             "Dataproc Metastore.",
             "Dataplex.",
+            "Cloud Spanner",
+            "Cloud Bigtable",
             "Cloud Sql",
             "Looker"
           ],
@@ -2807,6 +2878,10 @@
         "schema": {
           "$ref": "GoogleCloudDatacatalogV1Schema",
           "description": "Schema of the entry. An entry might not have any schema attached to it."
+        },
+        "serviceSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ServiceSpec",
+          "description": "Specification that applies to a Service resource."
         },
         "sourceSystemTimestamps": {
           "$ref": "GoogleCloudDatacatalogV1SystemTimestamps",
@@ -3717,6 +3792,8 @@
             "CLOUD_PUBSUB",
             "DATAPROC_METASTORE",
             "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
             "CLOUD_SQL",
             "LOOKER"
           ],
@@ -3726,6 +3803,8 @@
             "Cloud Pub/Sub.",
             "Dataproc Metastore.",
             "Dataplex.",
+            "Cloud Spanner",
+            "Cloud Bigtable",
             "Cloud Sql",
             "Looker"
           ],
@@ -3831,6 +3910,17 @@
             "$ref": "GoogleCloudDatacatalogV1SerializedPolicyTag"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ServiceSpec": {
+      "description": "Specification that applies to a Service resource. Valid only for entries with the `SERVICE` type.",
+      "id": "GoogleCloudDatacatalogV1ServiceSpec",
+      "properties": {
+        "cloudBigtableInstanceSpec": {
+          "$ref": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpec",
+          "description": "Specification that applies to Instance entries of `CLOUD_BIGTABLE` system."
         }
       },
       "type": "object"
@@ -4060,6 +4150,31 @@
         "type": {
           "$ref": "GoogleCloudDatacatalogV1FieldType",
           "description": "Required. The type of value this tag field can contain."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1TaggedEntry": {
+      "description": "Wrapper containing Entry and information about Tags that should and should not be attached to it.",
+      "id": "GoogleCloudDatacatalogV1TaggedEntry",
+      "properties": {
+        "absentTags": {
+          "description": "Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1Tag"
+          },
+          "type": "array"
+        },
+        "presentTags": {
+          "description": "Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1Tag"
+          },
+          "type": "array"
+        },
+        "v1Entry": {
+          "$ref": "GoogleCloudDatacatalogV1Entry",
+          "description": "Non-encrypted Data Catalog v1 Entry."
         }
       },
       "type": "object"
