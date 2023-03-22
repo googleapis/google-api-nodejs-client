@@ -808,6 +808,10 @@ export namespace storagetransfer_v1 {
      */
     errorBreakdowns?: Schema$ErrorSummary[];
     /**
+     * Cloud Logging configuration.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
      * A globally unique ID assigned by the system.
      */
     name?: string | null;
