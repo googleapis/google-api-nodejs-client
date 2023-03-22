@@ -510,7 +510,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * completion_time",
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * complete_time",
                   "location": "query",
                   "type": "string"
                 },
@@ -561,7 +561,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * completion_time",
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * complete_time",
                   "location": "query",
                   "type": "string"
                 },
@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20230302",
+  "revision": "20230321",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
