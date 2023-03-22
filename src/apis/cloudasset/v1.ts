@@ -693,11 +693,11 @@ export namespace cloudasset_v1 {
      */
     attachedResource?: string | null;
     /**
-     * The folder(s) that this IAM policy belongs to, in the form of folders/{FOLDER_NUMBER\}. This field is available when the IAM policy belongs(directly or cascadingly) to one or more folders.
+     * The folder(s) that this IAM policy belongs to, in the format of folders/{FOLDER_NUMBER\}. This field is available when the IAM policy belongs (directly or cascadingly) to one or more folders.
      */
     folders?: string[] | null;
     /**
-     * The organization that this IAM policy belongs to, in the form of organizations/{ORGANIZATION_NUMBER\}. This field is available when the IAM policy belongs(directly or cascadingly) to an organization.
+     * The organization that this IAM policy belongs to, in the format of organizations/{ORGANIZATION_NUMBER\}. This field is available when the IAM policy belongs (directly or cascadingly) to an organization.
      */
     organization?: string | null;
     /**
@@ -705,7 +705,7 @@ export namespace cloudasset_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * The project that this IAM policy belongs to, in the form of projects/{PROJECT_NUMBER\}. This field is available when the IAM policy belongs to a project.
+     * The project that this IAM policy belongs to, in the format of projects/{PROJECT_NUMBER\}. This field is available when the IAM policy belongs to a project.
      */
     project?: string | null;
   }
@@ -714,7 +714,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource {
     /**
-     * The folder(s) that this resource belongs to, in the form of folders/{FOLDER_NUMBER\}. This field is available when the resource belongs(directly or cascadingly) to one or more folders.
+     * The folder(s) that this resource belongs to, in the format of folders/{FOLDER_NUMBER\}. This field is available when the resource belongs (directly or cascadingly) to one or more folders.
      */
     folders?: string[] | null;
     /**
@@ -722,7 +722,7 @@ export namespace cloudasset_v1 {
      */
     fullResourceName?: string | null;
     /**
-     * The organization that this resource belongs to, in the form of organizations/{ORGANIZATION_NUMBER\}. This field is available when the resource belongs(directly or cascadingly) to an organization.
+     * The organization that this resource belongs to, in the format of organizations/{ORGANIZATION_NUMBER\}. This field is available when the resource belongs (directly or cascadingly) to an organization.
      */
     organization?: string | null;
     /**
@@ -730,7 +730,7 @@ export namespace cloudasset_v1 {
      */
     parent?: string | null;
     /**
-     * The project that this resource belongs to, in the form of projects/{PROJECT_NUMBER\}. This field is available when the resource belongs to a project.
+     * The project that this resource belongs to, in the format of projects/{PROJECT_NUMBER\}. This field is available when the resource belongs to a project.
      */
     project?: string | null;
   }

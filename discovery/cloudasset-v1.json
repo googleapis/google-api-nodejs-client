@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20230211",
+  "revision": "20230318",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1872,14 +1872,14 @@
           "type": "string"
         },
         "folders": {
-          "description": "The folder(s) that this IAM policy belongs to, in the form of folders/{FOLDER_NUMBER}. This field is available when the IAM policy belongs(directly or cascadingly) to one or more folders.",
+          "description": "The folder(s) that this IAM policy belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the IAM policy belongs (directly or cascadingly) to one or more folders.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "organization": {
-          "description": "The organization that this IAM policy belongs to, in the form of organizations/{ORGANIZATION_NUMBER}. This field is available when the IAM policy belongs(directly or cascadingly) to an organization.",
+          "description": "The organization that this IAM policy belongs to, in the format of organizations/{ORGANIZATION_NUMBER}. This field is available when the IAM policy belongs (directly or cascadingly) to an organization.",
           "type": "string"
         },
         "policy": {
@@ -1887,7 +1887,7 @@
           "description": "The IAM policy directly set on the given resource."
         },
         "project": {
-          "description": "The project that this IAM policy belongs to, in the form of projects/{PROJECT_NUMBER}. This field is available when the IAM policy belongs to a project.",
+          "description": "The project that this IAM policy belongs to, in the format of projects/{PROJECT_NUMBER}. This field is available when the IAM policy belongs to a project.",
           "type": "string"
         }
       },
@@ -1898,7 +1898,7 @@
       "id": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource",
       "properties": {
         "folders": {
-          "description": "The folder(s) that this resource belongs to, in the form of folders/{FOLDER_NUMBER}. This field is available when the resource belongs(directly or cascadingly) to one or more folders.",
+          "description": "The folder(s) that this resource belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the resource belongs (directly or cascadingly) to one or more folders.",
           "items": {
             "type": "string"
           },
@@ -1909,7 +1909,7 @@
           "type": "string"
         },
         "organization": {
-          "description": "The organization that this resource belongs to, in the form of organizations/{ORGANIZATION_NUMBER}. This field is available when the resource belongs(directly or cascadingly) to an organization.",
+          "description": "The organization that this resource belongs to, in the format of organizations/{ORGANIZATION_NUMBER}. This field is available when the resource belongs (directly or cascadingly) to an organization.",
           "type": "string"
         },
         "parent": {
@@ -1917,7 +1917,7 @@
           "type": "string"
         },
         "project": {
-          "description": "The project that this resource belongs to, in the form of projects/{PROJECT_NUMBER}. This field is available when the resource belongs to a project.",
+          "description": "The project that this resource belongs to, in the format of projects/{PROJECT_NUMBER}. This field is available when the resource belongs to a project.",
           "type": "string"
         }
       },
