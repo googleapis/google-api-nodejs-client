@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230221",
+  "revision": "20230310",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -851,6 +851,17 @@
           "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.",
           "type": "string"
         },
+        "impacts": {
+          "description": "Contains information about the impact of this vulnerability, this will change with time.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "justification": {
+          "$ref": "Justification",
+          "description": "Justification provides the justification when the state of the assessment if NOT_AFFECTED."
+        },
         "longDescription": {
           "description": "A detailed description of this Vex.",
           "type": "string"
@@ -890,13 +901,6 @@
             "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
           ],
           "type": "string"
-        },
-        "threats": {
-          "description": "Contains information about this vulnerability, this will change with time.",
-          "items": {
-            "$ref": "Threat"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -2057,6 +2061,18 @@
       "description": "Optional arguments to enable specific features of builds.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions",
       "properties": {
+        "defaultLogsBucketBehavior": {
+          "description": "Optional. Option to specify how default logs buckets are setup.",
+          "enum": [
+            "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+            "REGIONAL_USER_OWNED_BUCKET"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to GCS buckets in the build project."
+          ],
+          "type": "string"
+        },
         "diskSizeGb": {
           "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.",
           "format": "int64",
@@ -3860,6 +3876,37 @@
       },
       "type": "object"
     },
+    "Justification": {
+      "description": "Justification provides the justification when the state of the assessment if NOT_AFFECTED.",
+      "id": "Justification",
+      "properties": {
+        "details": {
+          "description": "Additional details on why this justification was chosen.",
+          "type": "string"
+        },
+        "justificationType": {
+          "description": "The justification type for this vulnerability.",
+          "enum": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED",
+            "COMPONENT_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+            "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+            "INLINE_MITIGATIONS_ALREADY_EXIST"
+          ],
+          "enumDescriptions": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED.",
+            "The vulnerable component is not present in the product.",
+            "The vulnerable code is not present. Typically this case occurs when source code is configured or built in a way that excludes the vulnerable code.",
+            "The vulnerable code can not be executed. Typically this case occurs when the product includes the vulnerable code but does not call or use the vulnerable code.",
+            "The vulnerable code cannot be controlled by an attacker to exploit the vulnerability.",
+            "The product includes built-in protections or features that prevent exploitation of the vulnerability. These built-in protections cannot be subverted by the attacker and cannot be configured or disabled by the user. These mitigations completely prevent exploitation based on known attack vectors."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "KnowledgeBase": {
       "id": "KnowledgeBase",
       "properties": {
@@ -4643,16 +4690,16 @@
       "description": "Publisher contains information about the publisher of this Note.",
       "id": "Publisher",
       "properties": {
-        "context": {
-          "description": "The context or namespace. Contains a URL which is under control of the issuing party and can be used as a globally unique identifier for that issuing party. Example: https://csaf.io",
-          "type": "string"
-        },
         "issuingAuthority": {
           "description": "Provides information about the authority of the issuing party to release the document, in particular, the party's constituency and responsibilities or other obligations.",
           "type": "string"
         },
         "name": {
           "description": "Name of the publisher. Examples: 'Google', 'Google Cloud Platform'.",
+          "type": "string"
+        },
+        "publisherNamespace": {
+          "description": "The context or namespace. Contains a URL which is under control of the issuing party and can be used as a globally unique identifier for that issuing party. Example: https://csaf.io",
           "type": "string"
         }
       },
@@ -4900,11 +4947,6 @@
           "description": "Contains a comprehensive human-readable discussion of the remediation.",
           "type": "string"
         },
-        "remediationTime": {
-          "description": "Contains the date from which the remediation is available.",
-          "format": "google-datetime",
-          "type": "string"
-        },
         "remediationType": {
           "description": "The type of remediation that can be applied.",
           "enum": [
@@ -5126,31 +5168,6 @@
       },
       "type": "object"
     },
-    "Threat": {
-      "description": "Contains the vulnerability kinetic information. This information can change as the vulnerability ages and new information becomes available.",
-      "id": "Threat",
-      "properties": {
-        "details": {
-          "description": "Represents a thorough human-readable discussion of the threat.",
-          "type": "string"
-        },
-        "threatType": {
-          "description": "The type of threat.",
-          "enum": [
-            "THREAT_TYPE_UNSPECIFIED",
-            "IMPACT",
-            "EXPLOIT_STATUS"
-          ],
-          "enumDescriptions": [
-            "No threat type specified.",
-            "IMPACT",
-            "EXPLOIT_STATUS"
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "TimeSpan": {
       "description": "Start and end times for a build execution phase. Next ID: 3",
       "id": "TimeSpan",
@@ -5216,6 +5233,17 @@
           "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.",
           "type": "string"
         },
+        "impacts": {
+          "description": "Contains information about the impact of this vulnerability, this will change with time.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "justification": {
+          "$ref": "Justification",
+          "description": "Justification provides the justification when the state of the assessment if NOT_AFFECTED."
+        },
         "noteName": {
           "description": "The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.",
           "type": "string"
@@ -5251,13 +5279,6 @@
             "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
           ],
           "type": "string"
-        },
-        "threats": {
-          "description": "Contains information about this vulnerability, this will change with time.",
-          "items": {
-            "$ref": "Threat"
-          },
-          "type": "array"
         }
       },
       "type": "object"
