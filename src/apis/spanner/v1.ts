@@ -698,6 +698,10 @@ export namespace spanner_v1 {
    */
   export interface Schema$ExecuteSqlRequest {
     /**
+     * If this is for a partitioned query and this field is set to `true`, the request will be executed via Spanner independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     */
+    dataBoostEnabled?: boolean | null;
+    /**
      * Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names must conform to the naming requirements of identifiers as specified at https://cloud.google.com/spanner/docs/lexical#identifiers. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `"WHERE id \> @msg_id AND id < @msg_id + 100"` It is an error to execute a SQL statement with unbound parameters.
      */
     params?: {[key: string]: any} | null;
@@ -875,11 +879,11 @@ export namespace spanner_v1 {
      */
     name?: string | null;
     /**
-     * The number of nodes allocated to this instance. At most one of either node_count or processing_units should be present in the message. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.
+     * The number of nodes allocated to this instance. At most one of either node_count or processing_units should be present in the message. Users can set the node_count field to specify the target number of nodes allocated to the instance. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.
      */
     nodeCount?: number | null;
     /**
-     * The number of processing units allocated to this instance. At most one of processing_units or node_count should be present in the message. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.
+     * The number of processing units allocated to this instance. At most one of processing_units or node_count should be present in the message. Users can set the processing_units field to specify the target number of processing units allocated to the instance. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.
      */
     processingUnits?: number | null;
     /**
@@ -1620,6 +1624,10 @@ export namespace spanner_v1 {
      * Required. The columns of table to be returned for each row matching this request.
      */
     columns?: string[] | null;
+    /**
+     * If this is for a partitioned read and this field is set to `true`, the request will be executed via Spanner independent compute resources. If the field is set to `true` but the request does not set `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     */
+    dataBoostEnabled?: boolean | null;
     /**
      * If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information.
      */
@@ -3585,7 +3593,7 @@ export namespace spanner_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -7040,7 +7048,7 @@ export namespace spanner_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -9833,7 +9841,7 @@ export namespace spanner_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -10928,6 +10936,7 @@ export namespace spanner_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "dataBoostEnabled": false,
      *       //   "paramTypes": {},
      *       //   "params": {},
      *       //   "partitionToken": "my_partitionToken",
@@ -11082,6 +11091,7 @@ export namespace spanner_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "dataBoostEnabled": false,
      *         //   "paramTypes": {},
      *         //   "params": {},
      *         //   "partitionToken": "my_partitionToken",
@@ -11827,6 +11837,7 @@ export namespace spanner_v1 {
      *       // request body parameters
      *       // {
      *       //   "columns": [],
+     *       //   "dataBoostEnabled": false,
      *       //   "index": "my_index",
      *       //   "keySet": {},
      *       //   "limit": "my_limit",
@@ -12120,6 +12131,7 @@ export namespace spanner_v1 {
      *         // request body parameters
      *         // {
      *         //   "columns": [],
+     *         //   "dataBoostEnabled": false,
      *         //   "index": "my_index",
      *         //   "keySet": {},
      *         //   "limit": "my_limit",
@@ -12811,7 +12823,7 @@ export namespace spanner_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
