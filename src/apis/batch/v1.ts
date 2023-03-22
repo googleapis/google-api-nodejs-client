@@ -398,7 +398,7 @@ export namespace batch_v1 {
      */
     sizeGb?: string | null;
     /**
-     * Name of a snapshot used as the data source.
+     * Name of a snapshot used as the data source. Snapshot is not supported as boot disk now.
      */
     snapshot?: string | null;
     /**
@@ -445,7 +445,7 @@ export namespace batch_v1 {
      */
     accelerators?: Schema$Accelerator[];
     /**
-     * Boot disk to be created and attached to each VM by this InstancePolicy. Boot disk will be deleted when the VM is deleted.
+     * Boot disk to be created and attached to each VM by this InstancePolicy. Boot disk will be deleted when the VM is deleted. Batch API now only supports booting from image.
      */
     bootDisk?: Schema$Disk;
     /**
@@ -997,7 +997,7 @@ export namespace batch_v1 {
      */
     name?: string | null;
     /**
-     * Max number of tasks that can run in parallel. Default to min(task_count, 1000).
+     * Max number of tasks that can run in parallel. Default to min(task_count, 1000). Field parallelism must be 1 if the scheduling_policy is IN_ORDER.
      */
     parallelism?: string | null;
     /**
@@ -2777,7 +2777,7 @@ export namespace batch_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
