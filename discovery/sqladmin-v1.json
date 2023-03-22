@@ -1396,6 +1396,73 @@
       "resources": {
         "instances": {
           "methods": {
+            "getDiskShrinkConfig": {
+              "description": "Get Disk Shrink Config for a given instance.",
+              "flatPath": "v1/projects/{project}/instances/{instance}/getDiskShrinkConfig",
+              "httpMethod": "GET",
+              "id": "sql.projects.instances.getDiskShrinkConfig",
+              "parameterOrder": [
+                "project",
+                "instance"
+              ],
+              "parameters": {
+                "instance": {
+                  "description": "Cloud SQL instance ID. This does not include the project ID.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "project": {
+                  "description": "Project ID of the project that contains the instance.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/projects/{project}/instances/{instance}/getDiskShrinkConfig",
+              "response": {
+                "$ref": "SqlInstancesGetDiskShrinkConfigResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/sqlservice.admin"
+              ]
+            },
+            "performDiskShrink": {
+              "description": "Perform Disk Shrink on primary instance.",
+              "flatPath": "v1/projects/{project}/instances/{instance}/performDiskShrink",
+              "httpMethod": "POST",
+              "id": "sql.projects.instances.performDiskShrink",
+              "parameterOrder": [
+                "project",
+                "instance"
+              ],
+              "parameters": {
+                "instance": {
+                  "description": "Cloud SQL instance ID. This does not include the project ID.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "project": {
+                  "description": "Project ID of the project that contains the instance.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/projects/{project}/instances/{instance}/performDiskShrink",
+              "request": {
+                "$ref": "PerformDiskShrinkContext"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/sqlservice.admin"
+              ]
+            },
             "rescheduleMaintenance": {
               "description": "Reschedules the maintenance on the given instance.",
               "flatPath": "v1/projects/{project}/instances/{instance}/rescheduleMaintenance",
@@ -1422,6 +1489,41 @@
               "path": "v1/projects/{project}/instances/{instance}/rescheduleMaintenance",
               "request": {
                 "$ref": "SqlInstancesRescheduleMaintenanceRequestBody"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/sqlservice.admin"
+              ]
+            },
+            "resetReplicaSize": {
+              "description": "Reset Replica Size to primary instance disk size.",
+              "flatPath": "v1/projects/{project}/instances/{instance}/resetReplicaSize",
+              "httpMethod": "POST",
+              "id": "sql.projects.instances.resetReplicaSize",
+              "parameterOrder": [
+                "project",
+                "instance"
+              ],
+              "parameters": {
+                "instance": {
+                  "description": "Cloud SQL read replica instance name.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "project": {
+                  "description": "ID of the project that contains the read replica.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/projects/{project}/instances/{instance}/resetReplicaSize",
+              "request": {
+                "$ref": "SqlInstancesResetReplicaSizeRequest"
               },
               "response": {
                 "$ref": "Operation"
@@ -1921,7 +2023,7 @@
       }
     }
   },
-  "revision": "20230302",
+  "revision": "20230320",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3784,7 +3886,8 @@
             "RESCHEDULE_MAINTENANCE",
             "START_EXTERNAL_SYNC",
             "LOG_CLEANUP",
-            "AUTO_RESTART"
+            "AUTO_RESTART",
+            "REENCRYPT"
           ],
           "enumDescriptions": [
             "Unknown operation type.",
@@ -3823,7 +3926,8 @@
             "Reschedule maintenance to another time.",
             "Starts external sync of a Cloud SQL EM replica to an external primary instance.",
             "Recovers logs from an instance's old data disk.",
-            "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery."
+            "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
+            "Re-encrypts CMEK instances with latest key version."
           ],
           "type": "string"
         },
@@ -4027,6 +4131,18 @@
           "description": "Number of previous passwords that cannot be reused.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PerformDiskShrinkContext": {
+      "description": "Perform disk shrink context.",
+      "id": "PerformDiskShrinkContext",
+      "properties": {
+        "targetSizeGb": {
+          "description": "The target disk shrink size in GigaBytes.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4375,7 +4491,8 @@
             "UNSUPPORTED_BINLOG_FORMAT",
             "BINLOG_RETENTION_SETTING",
             "UNSUPPORTED_STORAGE_ENGINE",
-            "LIMITED_SUPPORT_TABLES"
+            "LIMITED_SUPPORT_TABLES",
+            "EXISTING_DATA_IN_REPLICA"
           ],
           "enumDescriptions": [
             "",
@@ -4405,8 +4522,25 @@
             "The primary instance has unsupported binary log format.",
             "The primary instance's binary log retention setting.",
             "The primary instance has tables with unsupported storage engine.",
-            "Source has tables with limited support eg: PostgreSQL tables without primary keys"
+            "Source has tables with limited support eg: PostgreSQL tables without primary keys",
+            "The replica instance contains existing data."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlInstancesGetDiskShrinkConfigResponse": {
+      "description": "Instance get disk shrink config response.",
+      "id": "SqlInstancesGetDiskShrinkConfigResponse",
+      "properties": {
+        "kind": {
+          "description": "This is always `sql#getDiskShrinkConfig`.",
+          "type": "string"
+        },
+        "minimalTargetSizeGb": {
+          "description": "The minimum size to which a disk can be shrunk in GigaBytes.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -4421,6 +4555,12 @@
           "description": "Required. The type of the reschedule the user wants."
         }
       },
+      "type": "object"
+    },
+    "SqlInstancesResetReplicaSizeRequest": {
+      "description": "Instance reset replica size request.",
+      "id": "SqlInstancesResetReplicaSizeRequest",
+      "properties": {},
       "type": "object"
     },
     "SqlInstancesStartExternalSyncRequest": {
@@ -4952,6 +5092,6 @@
     }
   },
   "servicePath": "",
-  "title": "sqladmin API (prod)",
+  "title": "Cloud SQL Admin API",
   "version": "v1"
 }
