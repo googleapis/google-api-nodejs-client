@@ -236,7 +236,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230319",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -544,6 +544,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "externalDestructionFailureReason": {
+          "description": "Output only. The root cause of the most recent external destruction failure. Only present if state is EXTERNAL_DESTRUCTION_FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
         "externalProtectionLevelOptions": {
           "$ref": "GoogleCloudKmsV1ExternalProtectionLevelOptions",
           "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels."
@@ -551,6 +556,11 @@
         "generateTime": {
           "description": "Output only. The time this CryptoKeyVersion's key material was generated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generationFailureReason": {
+          "description": "Output only. The root cause of the most recent generation failure. Only present if state is GENERATION_FAILED.",
           "readOnly": true,
           "type": "string"
         },
@@ -609,7 +619,10 @@
             "DESTROYED",
             "DESTROY_SCHEDULED",
             "PENDING_IMPORT",
-            "IMPORT_FAILED"
+            "IMPORT_FAILED",
+            "GENERATION_FAILED",
+            "PENDING_EXTERNAL_DESTRUCTION",
+            "EXTERNAL_DESTRUCTION_FAILED"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -619,7 +632,10 @@
             "This version is destroyed, and the key material is no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
             "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
             "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
-            "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason."
+            "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason.",
+            "This version was not generated successfully. It may not be used, enabled, disabled, or destroyed. Additional details can be found in CryptoKeyVersion.generation_failure_reason.",
+            "This version was destroyed, and it may not be used or enabled again. Cloud KMS is waiting for the corresponding key material residing in an external key manager to be destroyed.",
+            "This version was destroyed, and it may not be used or enabled again. However, Cloud KMS could not confirm that the corresponding key material residing in an external key manager was destroyed. Additional details can be found in CryptoKeyVersion.external_destruction_failure_reason."
           ],
           "type": "string"
         }
