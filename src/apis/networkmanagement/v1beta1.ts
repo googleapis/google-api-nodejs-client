@@ -424,6 +424,14 @@ export namespace networkmanagement_v1beta1 {
      */
     cloudSqlInstance?: string | null;
     /**
+     * Forwarding rule URI. Forwarding rules are frontends for load balancers, PSC endpoints and Protocol Forwarding. Format: projects/{project\}/global/forwardingRules/{id\} or projects/{project\}/regions/{region\}/forwardingRules/{id\}
+     */
+    forwardingRule?: string | null;
+    /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     */
+    forwardingRuleTarget?: string | null;
+    /**
      * A cluster URI for [Google Kubernetes Engine master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      */
     gkeMasterCluster?: string | null;
@@ -435,6 +443,14 @@ export namespace networkmanagement_v1beta1 {
      * The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test's destination is a [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      */
     ipAddress?: string | null;
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty for forwarding rules not related to load balancers.
+     */
+    loadBalancerId?: string | null;
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     */
+    loadBalancerType?: string | null;
     /**
      * A Compute Engine network URI.
      */
@@ -3435,7 +3451,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
