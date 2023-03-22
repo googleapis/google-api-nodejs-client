@@ -1059,6 +1059,10 @@ export namespace analyticsadmin_v1alpha {
      */
     displayVideo360AdvertiserLinkProposal?: Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal;
     /**
+     * A snapshot of EnhancedMeasurementSettings resource in change history.
+     */
+    enhancedMeasurementSettings?: Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings;
+    /**
      * A snapshot of an ExpandedDataSet resource in change history.
      */
     expandedDataSet?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet;
@@ -1167,6 +1171,23 @@ export namespace analyticsadmin_v1alpha {
      */
     parent?: string | null;
   }
+  /**
+   * Request message for CreateConnectedSiteTag RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest {
+    /**
+     * Required. The tag to add to the Universal Analytics property
+     */
+    connectedSiteTag?: Schema$GoogleAnalyticsAdminV1alphaConnectedSiteTag;
+    /**
+     * The Universal Analytics property to create connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for CreateConnectedSiteTag RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse {}
   /**
    * Request message for CreateUserLink RPC. Users can have multiple email addresses associated with their Google account, and one of these email addresses is the "primary" email address. Any of the email addresses associated with a Google account may be used for a new UserLink, but the returned UserLink will always contain the "primary" email address. As a result, the input and output email address for this request may differ.
    */
@@ -1470,6 +1491,55 @@ export namespace analyticsadmin_v1alpha {
     validationEmail?: string | null;
   }
   /**
+   * Singleton resource under a WebDataStream, configuring measurement of additional site interactions and content.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings {
+    /**
+     * If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.
+     */
+    fileDownloadsEnabled?: boolean | null;
+    /**
+     * If enabled, capture a form interaction event each time a visitor interacts with a form on your website. False by default.
+     */
+    formInteractionsEnabled?: boolean | null;
+    /**
+     * Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
+     */
+    name?: string | null;
+    /**
+     * If enabled, capture an outbound click event each time a visitor clicks a link that leads them away from your domain.
+     */
+    outboundClicksEnabled?: boolean | null;
+    /**
+     * If enabled, capture a page view event each time the website changes the browser history state.
+     */
+    pageChangesEnabled?: boolean | null;
+    /**
+     * If enabled, capture scroll events each time a visitor gets to the bottom of a page.
+     */
+    scrollsEnabled?: boolean | null;
+    /**
+     * Required. URL query parameters to interpret as site search parameters. Max length is 1024 characters. Must not be empty.
+     */
+    searchQueryParameter?: string | null;
+    /**
+     * If enabled, capture a view search results event each time a visitor performs a search on your site (based on a query parameter).
+     */
+    siteSearchEnabled?: boolean | null;
+    /**
+     * Indicates whether Enhanced Measurement Settings will be used to automatically measure interactions and content on this web stream. Changing this value does not affect the settings themselves, but determines whether they are respected.
+     */
+    streamEnabled?: boolean | null;
+    /**
+     * Additional URL query parameters. Max length is 1024 characters.
+     */
+    uriQueryParameter?: string | null;
+    /**
+     * If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.
+     */
+    videoEngagementEnabled?: boolean | null;
+  }
+  /**
    * A resource message representing a GA4 ExpandedDataSet.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet {
@@ -1760,15 +1830,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest {
     /**
-     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     */
-    pageSize?: number | null;
-    /**
-     * A page token, received from a previous `ListConnectedSiteTags` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectedSiteTags` must match the call that provided the page token.
-     */
-    pageToken?: string | null;
-    /**
-     * The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. Format: `properties/1234`
+     * The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. A maximum of 20 connected site tags will be returned. Example Format: `properties/1234`
      */
     property?: string | null;
   }
@@ -1777,13 +1839,9 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse {
     /**
-     * The site tags for the Universal Analytics property
+     * The site tags for the Universal Analytics property. A maximum of 20 connected site tags will be returned.
      */
     connectedSiteTags?: Schema$GoogleAnalyticsAdminV1alphaConnectedSiteTag[];
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
   }
   /**
    * Response message for ListConversionEvents RPC.
@@ -3738,7 +3796,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.accounts.accessBindings.batchDelete({
-     *     // Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     *     // Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      *     parent: 'accounts/my-account',
      *
      *     // Request body metadata
@@ -4021,7 +4079,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.accounts.accessBindings.batchUpdate({
-     *     // Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     *     // Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      *     parent: 'accounts/my-account',
      *
      *     // Request body metadata
@@ -4871,7 +4929,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Accounts$Accessbindings$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     * Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      */
     parent?: string;
 
@@ -4894,7 +4952,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Accounts$Accessbindings$Batchupdate
     extends StandardParameters {
     /**
-     * Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     * Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      */
     parent?: string;
 
@@ -7057,6 +7115,148 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Creates a connected site tag for a Universal Analytics property. You can create a maximum of 20 connected site tags per property. Note: This API cannot be used on GA4 properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.createConnectedSiteTag({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectedSiteTag": {},
+     *       //   "property": "my_property"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createConnectedSiteTag(
+      params?: Params$Resource$Properties$Createconnectedsitetag,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>;
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+    ): void;
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+    ): void;
+    createConnectedSiteTag(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+    ): void;
+    createConnectedSiteTag(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Createconnectedsitetag
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Createconnectedsitetag;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Createconnectedsitetag;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:createConnectedSiteTag'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.
      * @example
      * ```js
@@ -7222,7 +7422,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8214,7 +8414,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lists the connected site tags for a Universal Analytics property. Note: this has no effect on GA4 property.
+     * Lists the connected site tags for a Universal Analytics property. A maximum of 20 connected site tags will be returned. Note: this has no effect on GA4 property.
      * @example
      * ```js
      * // Before running the sample:
@@ -8231,7 +8431,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8244,8 +8447,6 @@ export namespace analyticsadmin_v1alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
      *       //   "property": "my_property"
      *       // }
      *     },
@@ -8254,8 +8455,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "connectedSiteTags": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "connectedSiteTags": []
      *   // }
      * }
      *
@@ -9307,6 +9507,13 @@ export namespace analyticsadmin_v1alpha {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaProperty;
   }
+  export interface Params$Resource$Properties$Createconnectedsitetag
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest;
+  }
   export interface Params$Resource$Properties$Delete
     extends StandardParameters {
     /**
@@ -9642,7 +9849,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.accessBindings.batchDelete({
-     *     // Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     *     // Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      *     parent: 'properties/my-propertie',
      *
      *     // Request body metadata
@@ -9925,7 +10132,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.accessBindings.batchUpdate({
-     *     // Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     *     // Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      *     parent: 'properties/my-propertie',
      *
      *     // Request body metadata
@@ -10775,7 +10982,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Accessbindings$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     * Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      */
     parent?: string;
 
@@ -10798,7 +11005,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Accessbindings$Batchupdate
     extends StandardParameters {
     /**
-     * Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     * Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
      */
     parent?: string;
 
@@ -14702,6 +14909,157 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Returns the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.dataStreams.getEnhancedMeasurementSettings({
+     *       // Required. The name of the settings to lookup. Format: properties/{property\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
+     *       name: 'properties/my-propertie/dataStreams/my-dataStream/enhancedMeasurementSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileDownloadsEnabled": false,
+     *   //   "formInteractionsEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outboundClicksEnabled": false,
+     *   //   "pageChangesEnabled": false,
+     *   //   "scrollsEnabled": false,
+     *   //   "searchQueryParameter": "my_searchQueryParameter",
+     *   //   "siteSearchEnabled": false,
+     *   //   "streamEnabled": false,
+     *   //   "uriQueryParameter": "my_uriQueryParameter",
+     *   //   "videoEngagementEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEnhancedMeasurementSettings(
+      params?: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    getEnhancedMeasurementSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    getEnhancedMeasurementSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.
      * @example
      * ```js
@@ -15147,6 +15505,176 @@ export namespace analyticsadmin_v1alpha {
         );
       }
     }
+
+    /**
+     * Updates the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.dataStreams.updateEnhancedMeasurementSettings(
+     *       {
+     *         // Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
+     *         name: 'properties/my-propertie/dataStreams/my-dataStream/enhancedMeasurementSettings',
+     *         // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "fileDownloadsEnabled": false,
+     *           //   "formInteractionsEnabled": false,
+     *           //   "name": "my_name",
+     *           //   "outboundClicksEnabled": false,
+     *           //   "pageChangesEnabled": false,
+     *           //   "scrollsEnabled": false,
+     *           //   "searchQueryParameter": "my_searchQueryParameter",
+     *           //   "siteSearchEnabled": false,
+     *           //   "streamEnabled": false,
+     *           //   "uriQueryParameter": "my_uriQueryParameter",
+     *           //   "videoEngagementEnabled": false
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fileDownloadsEnabled": false,
+     *   //   "formInteractionsEnabled": false,
+     *   //   "name": "my_name",
+     *   //   "outboundClicksEnabled": false,
+     *   //   "pageChangesEnabled": false,
+     *   //   "scrollsEnabled": false,
+     *   //   "searchQueryParameter": "my_searchQueryParameter",
+     *   //   "siteSearchEnabled": false,
+     *   //   "streamEnabled": false,
+     *   //   "uriQueryParameter": "my_uriQueryParameter",
+     *   //   "videoEngagementEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateEnhancedMeasurementSettings(
+      params?: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Properties$Datastreams$Create
@@ -15172,6 +15700,13 @@ export namespace analyticsadmin_v1alpha {
     extends StandardParameters {
     /**
      * Required. The name of the DataStream to get. Example format: properties/1234/dataStreams/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the settings to lookup. Format: properties/{property\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
      */
     name?: string;
   }
@@ -15212,6 +15747,22 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaDataStream;
+  }
+  export interface Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings;
   }
 
   export class Resource$Properties$Datastreams$Measurementprotocolsecrets {

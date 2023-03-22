@@ -304,6 +304,35 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
+        "runAccessReport": {
+          "description": "Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).",
+          "flatPath": "v1beta/accounts/{accountsId}:runAccessReport",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.accounts.runAccessReport",
+          "parameterOrder": [
+            "entity"
+          ],
+          "parameters": {
+            "entity": {
+              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your GA4 Account ID.",
+              "location": "path",
+              "pattern": "^accounts/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+entity}:runAccessReport",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1betaRunAccessReportRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1betaRunAccessReportResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "searchChangeHistoryEvents": {
           "description": "Searches through all changes to an account or its children given the specified set of filters.",
           "flatPath": "v1beta/accounts/{accountsId}:searchChangeHistoryEvents",
@@ -529,6 +558,35 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "runAccessReport": {
+          "description": "Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).",
+          "flatPath": "v1beta/properties/{propertiesId}:runAccessReport",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.runAccessReport",
+          "parameterOrder": [
+            "entity"
+          ],
+          "parameters": {
+            "entity": {
+              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your GA4 Account ID.",
+              "location": "path",
+              "pattern": "^properties/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+entity}:runAccessReport",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1betaRunAccessReportRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1betaRunAccessReportResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
         "updateDataRetentionSettings": {
@@ -1536,9 +1594,377 @@
       }
     }
   },
-  "revision": "20230302",
+  "revision": "20230321",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
+    "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
+      "description": "To express that the result needs to be between two numbers (inclusive).",
+      "id": "GoogleAnalyticsAdminV1betaAccessBetweenFilter",
+      "properties": {
+        "fromValue": {
+          "$ref": "GoogleAnalyticsAdminV1betaNumericValue",
+          "description": "Begins with this number."
+        },
+        "toValue": {
+          "$ref": "GoogleAnalyticsAdminV1betaNumericValue",
+          "description": "Ends with this number."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessDateRange": {
+      "description": "A contiguous range of days: startDate, startDate + 1, ..., endDate.",
+      "id": "GoogleAnalyticsAdminV1betaAccessDateRange",
+      "properties": {
+        "endDate": {
+          "description": "The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot be before `startDate`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the current time in the request's time zone.",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "The inclusive start date for the query in the format `YYYY-MM-DD`. Cannot be after `endDate`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the current time in the request's time zone.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessDimension": {
+      "description": "Dimensions are attributes of your data. For example, the dimension `userEmail` indicates the email of the user that accessed reporting data. Dimension values in report responses are strings.",
+      "id": "GoogleAnalyticsAdminV1betaAccessDimension",
+      "properties": {
+        "dimensionName": {
+          "description": "The API name of the dimension. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of dimensions supported in this API. Dimensions are referenced by name in `dimensionFilter` and `orderBys`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessDimensionHeader": {
+      "description": "Describes a dimension column in the report. Dimensions requested in a report produce column entries within rows and DimensionHeaders. However, dimensions used exclusively within filters or expressions do not produce columns in a report; correspondingly, those dimensions do not produce headers.",
+      "id": "GoogleAnalyticsAdminV1betaAccessDimensionHeader",
+      "properties": {
+        "dimensionName": {
+          "description": "The dimension's name; for example 'userEmail'.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessDimensionValue": {
+      "description": "The value of a dimension.",
+      "id": "GoogleAnalyticsAdminV1betaAccessDimensionValue",
+      "properties": {
+        "value": {
+          "description": "The dimension value. For example, this value may be 'France' for the 'country' dimension.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessFilter": {
+      "description": "An expression to filter dimension or metric values.",
+      "id": "GoogleAnalyticsAdminV1betaAccessFilter",
+      "properties": {
+        "betweenFilter": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessBetweenFilter",
+          "description": "A filter for two values."
+        },
+        "fieldName": {
+          "description": "The dimension name or metric name.",
+          "type": "string"
+        },
+        "inListFilter": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessInListFilter",
+          "description": "A filter for in list values."
+        },
+        "numericFilter": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessNumericFilter",
+          "description": "A filter for numeric or date values."
+        },
+        "stringFilter": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessStringFilter",
+          "description": "Strings related filter."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessFilterExpression": {
+      "description": "Expresses dimension or metric filters. The fields in the same expression need to be either all dimensions or all metrics.",
+      "id": "GoogleAnalyticsAdminV1betaAccessFilterExpression",
+      "properties": {
+        "accessFilter": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessFilter",
+          "description": "A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all dimensions or all metrics."
+        },
+        "andGroup": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessFilterExpressionList",
+          "description": "Each of the FilterExpressions in the and_group has an AND relationship."
+        },
+        "notExpression": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessFilterExpression",
+          "description": "The FilterExpression is NOT of not_expression."
+        },
+        "orGroup": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessFilterExpressionList",
+          "description": "Each of the FilterExpressions in the or_group has an OR relationship."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessFilterExpressionList": {
+      "description": "A list of filter expressions.",
+      "id": "GoogleAnalyticsAdminV1betaAccessFilterExpressionList",
+      "properties": {
+        "expressions": {
+          "description": "A list of filter expressions.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessFilterExpression"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessInListFilter": {
+      "description": "The result needs to be in a list of string values.",
+      "id": "GoogleAnalyticsAdminV1betaAccessInListFilter",
+      "properties": {
+        "caseSensitive": {
+          "description": "If true, the string value is case sensitive.",
+          "type": "boolean"
+        },
+        "values": {
+          "description": "The list of string values. Must be non-empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessMetric": {
+      "description": "The quantitative measurements of a report. For example, the metric `accessCount` is the total number of data access records.",
+      "id": "GoogleAnalyticsAdminV1betaAccessMetric",
+      "properties": {
+        "metricName": {
+          "description": "The API name of the metric. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of metrics supported in this API. Metrics are referenced by name in `metricFilter` & `orderBys`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessMetricHeader": {
+      "description": "Describes a metric column in the report. Visible metrics requested in a report produce column entries within rows and MetricHeaders. However, metrics used exclusively within filters or expressions do not produce columns in a report; correspondingly, those metrics do not produce headers.",
+      "id": "GoogleAnalyticsAdminV1betaAccessMetricHeader",
+      "properties": {
+        "metricName": {
+          "description": "The metric's name; for example 'accessCount'.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessMetricValue": {
+      "description": "The value of a metric.",
+      "id": "GoogleAnalyticsAdminV1betaAccessMetricValue",
+      "properties": {
+        "value": {
+          "description": "The measurement value. For example, this value may be '13'.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessNumericFilter": {
+      "description": "Filters for numeric or date values.",
+      "id": "GoogleAnalyticsAdminV1betaAccessNumericFilter",
+      "properties": {
+        "operation": {
+          "description": "The operation type for this filter.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "EQUAL",
+            "LESS_THAN",
+            "LESS_THAN_OR_EQUAL",
+            "GREATER_THAN",
+            "GREATER_THAN_OR_EQUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Equal",
+            "Less than",
+            "Less than or equal",
+            "Greater than",
+            "Greater than or equal"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "$ref": "GoogleAnalyticsAdminV1betaNumericValue",
+          "description": "A numeric value or a date value."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessOrderBy": {
+      "description": "Order bys define how rows will be sorted in the response. For example, ordering rows by descending access count is one ordering, and ordering rows by the country string is a different ordering.",
+      "id": "GoogleAnalyticsAdminV1betaAccessOrderBy",
+      "properties": {
+        "desc": {
+          "description": "If true, sorts by descending order. If false or unspecified, sorts in ascending order.",
+          "type": "boolean"
+        },
+        "dimension": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy",
+          "description": "Sorts results by a dimension's values."
+        },
+        "metric": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy",
+          "description": "Sorts results by a metric's values."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy": {
+      "description": "Sorts by dimension values.",
+      "id": "GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy",
+      "properties": {
+        "dimensionName": {
+          "description": "A dimension name in the request to order by.",
+          "type": "string"
+        },
+        "orderType": {
+          "description": "Controls the rule for dimension value ordering.",
+          "enum": [
+            "ORDER_TYPE_UNSPECIFIED",
+            "ALPHANUMERIC",
+            "CASE_INSENSITIVE_ALPHANUMERIC",
+            "NUMERIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Alphanumeric sort by Unicode code point. For example, \"2\" < \"A\" < \"X\" < \"b\" < \"z\".",
+            "Case insensitive alphanumeric sort by lower case Unicode code point. For example, \"2\" < \"A\" < \"b\" < \"X\" < \"z\".",
+            "Dimension values are converted to numbers before sorting. For example in NUMERIC sort, \"25\" < \"100\", and in `ALPHANUMERIC` sort, \"100\" < \"25\". Non-numeric dimension values all have equal ordering value below all numeric values."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy": {
+      "description": "Sorts by metric values.",
+      "id": "GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy",
+      "properties": {
+        "metricName": {
+          "description": "A metric name in the request to order by.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessQuota": {
+      "description": "Current state of all quotas for this Analytics property. If any quota for a property is exhausted, all requests to that property will return Resource Exhausted errors.",
+      "id": "GoogleAnalyticsAdminV1betaAccessQuota",
+      "properties": {
+        "concurrentRequests": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessQuotaStatus",
+          "description": "Properties can use up to 50 concurrent requests."
+        },
+        "serverErrorsPerProjectPerHour": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessQuotaStatus",
+          "description": "Properties and cloud project pairs can have up to 50 server errors per hour."
+        },
+        "tokensPerDay": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessQuotaStatus",
+          "description": "Properties can use 250,000 tokens per day. Most requests consume fewer than 10 tokens."
+        },
+        "tokensPerHour": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessQuotaStatus",
+          "description": "Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas."
+        },
+        "tokensPerProjectPerHour": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessQuotaStatus",
+          "description": "Properties can use up to 25% of their tokens per project per hour. This amounts to Analytics 360 Properties can use 12,500 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessQuotaStatus": {
+      "description": "Current state for a particular quota group.",
+      "id": "GoogleAnalyticsAdminV1betaAccessQuotaStatus",
+      "properties": {
+        "consumed": {
+          "description": "Quota consumed by this request.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "remaining": {
+          "description": "Quota remaining after this request.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessRow": {
+      "description": "Access report data for each row.",
+      "id": "GoogleAnalyticsAdminV1betaAccessRow",
+      "properties": {
+        "dimensionValues": {
+          "description": "List of dimension values. These values are in the same order as specified in the request.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessDimensionValue"
+          },
+          "type": "array"
+        },
+        "metricValues": {
+          "description": "List of metric values. These values are in the same order as specified in the request.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessMetricValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaAccessStringFilter": {
+      "description": "The filter for strings.",
+      "id": "GoogleAnalyticsAdminV1betaAccessStringFilter",
+      "properties": {
+        "caseSensitive": {
+          "description": "If true, the string value is case sensitive.",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "The match type for this filter.",
+          "enum": [
+            "MATCH_TYPE_UNSPECIFIED",
+            "EXACT",
+            "BEGINS_WITH",
+            "ENDS_WITH",
+            "CONTAINS",
+            "FULL_REGEXP",
+            "PARTIAL_REGEXP"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Exact match of the string value.",
+            "Begins with the string value.",
+            "Ends with the string value.",
+            "Contains the string value.",
+            "Full match for the regular expression with the string value.",
+            "Partial match for the regular expression with the string value."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "The string value used for the matching.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1betaAccount": {
       "description": "A resource message representing a Google Analytics account.",
       "id": "GoogleAnalyticsAdminV1betaAccount",
@@ -2351,6 +2777,23 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1betaNumericValue": {
+      "description": "To represent a number.",
+      "id": "GoogleAnalyticsAdminV1betaNumericValue",
+      "properties": {
+        "doubleValue": {
+          "description": "Double value",
+          "format": "double",
+          "type": "number"
+        },
+        "int64Value": {
+          "description": "Integer value",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1betaProperty": {
       "description": "A resource message representing a Google Analytics GA4 property.",
       "id": "GoogleAnalyticsAdminV1betaProperty",
@@ -2557,6 +3000,104 @@
         "accountTicketId": {
           "description": "The param to be passed in the ToS link.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaRunAccessReportRequest": {
+      "description": "The request for a Data Access Record Report.",
+      "id": "GoogleAnalyticsAdminV1betaRunAccessReportRequest",
+      "properties": {
+        "dateRanges": {
+          "description": "Date ranges of access records to read. If multiple date ranges are requested, each response row will contain a zero based date range index. If two date ranges overlap, the access records for the overlapping days is included in the response rows for both date ranges. Requests are allowed up to 2 date ranges.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessDateRange"
+          },
+          "type": "array"
+        },
+        "dimensionFilter": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessFilterExpression",
+          "description": "Dimension filters let you restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter."
+        },
+        "dimensions": {
+          "description": "The dimensions requested and displayed in the response. Requests are allowed up to 9 dimensions.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessDimension"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "description": "The number of rows to return. If unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for. `limit` must be positive. The API may return fewer rows than the requested `limit`, if there aren't as many remaining rows as the `limit`. For instance, there are fewer than 300 possible values for the dimension `country`, so when reporting on only `country`, you can't get more than 300 rows, even if you set `limit` to a higher value. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
+          "format": "int64",
+          "type": "string"
+        },
+        "metricFilter": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessFilterExpression",
+          "description": "Metric filters allow you to restrict report response to specific metric values which match the filter. Metric filters are applied after aggregating the report's rows, similar to SQL having-clause. Dimensions cannot be used in this filter."
+        },
+        "metrics": {
+          "description": "The metrics requested and displayed in the response. Requests are allowed up to 10 metrics.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessMetric"
+          },
+          "type": "array"
+        },
+        "offset": {
+          "description": "The row count of the start row. The first row is counted as row 0. If offset is unspecified, it is treated as 0. If offset is zero, then this method will return the first page of results with `limit` entries. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
+          "format": "int64",
+          "type": "string"
+        },
+        "orderBys": {
+          "description": "Specifies how rows are ordered in the response.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessOrderBy"
+          },
+          "type": "array"
+        },
+        "returnEntityQuota": {
+          "description": "Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level requests, this field must be false.",
+          "type": "boolean"
+        },
+        "timeZone": {
+          "description": "This request's time zone if specified. If unspecified, the property's time zone is used. The request's time zone is used to interpret the start & end dates of the report. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example \"America/New_York\" or \"Asia/Tokyo\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1betaRunAccessReportResponse": {
+      "description": "The customized Data Access Record Report response.",
+      "id": "GoogleAnalyticsAdminV1betaRunAccessReportResponse",
+      "properties": {
+        "dimensionHeaders": {
+          "description": "The header for a column in the report that corresponds to a specific dimension. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessDimensionHeader"
+          },
+          "type": "array"
+        },
+        "metricHeaders": {
+          "description": "The header for a column in the report that corresponds to a specific metric. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessMetricHeader"
+          },
+          "type": "array"
+        },
+        "quota": {
+          "$ref": "GoogleAnalyticsAdminV1betaAccessQuota",
+          "description": "The quota state for this Analytics property including this request. This field doesn't work with account-level requests."
+        },
+        "rowCount": {
+          "description": "The total number of rows in the query result. `rowCount` is independent of the number of rows returned in the response, the `limit` request parameter, and the `offset` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rows": {
+          "description": "Rows of dimension value combinations and metric values in the report.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1betaAccessRow"
+          },
+          "type": "array"
         }
       },
       "type": "object"
