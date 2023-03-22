@@ -9172,7 +9172,7 @@
       }
     }
   },
-  "revision": "20230302",
+  "revision": "20230316",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -13922,7 +13922,9 @@
             "EXCHANGE_JCD",
             "EXCHANGE_PLACE_EXCHANGE",
             "EXCHANGE_APPLOVIN",
-            "EXCHANGE_CONNATIX"
+            "EXCHANGE_CONNATIX",
+            "EXCHANGE_RESET_DIGITAL",
+            "EXCHANGE_HIVESTACK"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -13997,7 +13999,9 @@
             "JCD.",
             "Place Exchange.",
             "AppLovin.",
-            "Connatix."
+            "Connatix.",
+            "Reset Digital.",
+            "Hivestack."
           ],
           "type": "string"
         }
@@ -14097,7 +14101,9 @@
             "EXCHANGE_JCD",
             "EXCHANGE_PLACE_EXCHANGE",
             "EXCHANGE_APPLOVIN",
-            "EXCHANGE_CONNATIX"
+            "EXCHANGE_CONNATIX",
+            "EXCHANGE_RESET_DIGITAL",
+            "EXCHANGE_HIVESTACK"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14172,7 +14178,9 @@
             "JCD.",
             "Place Exchange.",
             "AppLovin.",
-            "Connatix."
+            "Connatix.",
+            "Reset Digital.",
+            "Hivestack."
           ],
           "type": "string"
         },
@@ -14273,7 +14281,9 @@
             "EXCHANGE_JCD",
             "EXCHANGE_PLACE_EXCHANGE",
             "EXCHANGE_APPLOVIN",
-            "EXCHANGE_CONNATIX"
+            "EXCHANGE_CONNATIX",
+            "EXCHANGE_RESET_DIGITAL",
+            "EXCHANGE_HIVESTACK"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14348,7 +14358,9 @@
             "JCD.",
             "Place Exchange.",
             "AppLovin.",
-            "Connatix."
+            "Connatix.",
+            "Reset Digital.",
+            "Hivestack."
           ],
           "type": "string"
         },
@@ -14450,7 +14462,9 @@
             "EXCHANGE_JCD",
             "EXCHANGE_PLACE_EXCHANGE",
             "EXCHANGE_APPLOVIN",
-            "EXCHANGE_CONNATIX"
+            "EXCHANGE_CONNATIX",
+            "EXCHANGE_RESET_DIGITAL",
+            "EXCHANGE_HIVESTACK"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14525,7 +14539,9 @@
             "JCD.",
             "Place Exchange.",
             "AppLovin.",
-            "Connatix."
+            "Connatix.",
+            "Reset Digital.",
+            "Hivestack."
           ],
           "readOnly": true,
           "type": "string"
@@ -15389,7 +15405,9 @@
             "EXCHANGE_JCD",
             "EXCHANGE_PLACE_EXCHANGE",
             "EXCHANGE_APPLOVIN",
-            "EXCHANGE_CONNATIX"
+            "EXCHANGE_CONNATIX",
+            "EXCHANGE_RESET_DIGITAL",
+            "EXCHANGE_HIVESTACK"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15464,7 +15482,9 @@
             "JCD.",
             "Place Exchange.",
             "AppLovin.",
-            "Connatix."
+            "Connatix.",
+            "Reset Digital.",
+            "Hivestack."
           ],
           "type": "string"
         },
@@ -16276,7 +16296,9 @@
             "EXCHANGE_JCD",
             "EXCHANGE_PLACE_EXCHANGE",
             "EXCHANGE_APPLOVIN",
-            "EXCHANGE_CONNATIX"
+            "EXCHANGE_CONNATIX",
+            "EXCHANGE_RESET_DIGITAL",
+            "EXCHANGE_HIVESTACK"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16351,7 +16373,9 @@
             "JCD.",
             "Place Exchange.",
             "AppLovin.",
-            "Connatix."
+            "Connatix.",
+            "Reset Digital.",
+            "Hivestack."
           ],
           "type": "string"
         },
@@ -16997,7 +17021,7 @@
         },
         "targetingExpansion": {
           "$ref": "TargetingExpansionConfig",
-          "description": "The [targeting expansion](//support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item."
+          "description": "The [targeting expansion](//support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item. Beginning **March 25, 2023**, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by mid-April 2023."
         },
         "updateTime": {
           "description": "Output only. The timestamp when the line item was last updated. Assigned by the system.",
@@ -17019,7 +17043,8 @@
               "APP_INVENTORY_INVALID_AUDIENCE_LISTS",
               "NO_VALID_CREATIVE",
               "PARENT_INSERTION_ORDER_PAUSED",
-              "PARENT_INSERTION_ORDER_EXPIRED"
+              "PARENT_INSERTION_ORDER_EXPIRED",
+              "DEPRECATED_FIRST_PARTY_AUDIENCE_EXCLUSION"
             ],
             "enumDescriptions": [
               "Not specified or is unknown.",
@@ -17032,7 +17057,8 @@
               "This line item isn't targeting any mobile users. This line item's type requires you to target a user list with mobile users. The line item will not run.",
               "This line item does not contain any valid creative. The line item will not run.",
               "The insertion order of this line item is paused. The line item will not run.",
-              "The insertion order of this line item has its end date set in the past. The line item will not run."
+              "The insertion order of this line item has its end date set in the past. The line item will not run.",
+              "This line item uses the exclude_first_party_audience setting, which is deprecated and scheduled to sunset after **March 25, 2023**. Update your API integration to directly exclude any first-party audiences using audience targeting before **March 25, 2023** to account for the sunset of the exclude_first_party_audience field."
             ],
             "type": "string"
           },
@@ -19766,15 +19792,15 @@
       "type": "object"
     },
     "TargetingExpansionConfig": {
-      "description": "Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level.",
+      "description": "Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level. Beginning **March 25, 2023**, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by mid-April 2023.",
       "id": "TargetingExpansionConfig",
       "properties": {
         "excludeFirstPartyAudience": {
-          "description": "Required. Whether to exclude first-party audiences from use in targeting expansion or optimized targeting. Similar audiences of the excluded first-party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.",
+          "description": "Required. Whether to exclude first-party audiences from use in targeting expansion or optimized targeting. Similar audiences of the excluded first-party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored. Beginning **March 25, 2023**, this field may be deprecated with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859). Upon deprecation, this field will be set to `false`. If this field is set to `true` when deprecated, all positive first-party audience targeting assigned to this line item will be replaced with negative targeting of the same first-party audiences to ensure the continued exclusion of those audiences. This field will be deprecated for all partners by mid-April 2023.",
           "type": "boolean"
         },
         "targetingExpansionLevel": {
-          "description": "Required. Magnitude of expansion for applicable targeting under this line item.",
+          "description": "Required. Magnitude of expansion for applicable targeting under this line item. Beginning **March 25, 2023**, the behavior of this field may change in the following ways with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859): * This field will represent the optimized targeting checkbox, with a `NO_EXPANSION` value representing optimized targeting turned off and a `LEAST_EXPANSION` value representing optimized targeting turned on. * `NO_EXPANSION` will be the default value for the field and will be automatically assigned if you do not set the field. * If you set the field to any value other than `NO_EXPANSION`, it will automatically be set to `LEAST_EXPANSION`. This behavior will be rolled out to all partners by mid-April 2023.",
           "enum": [
             "TARGETING_EXPANSION_LEVEL_UNSPECIFIED",
             "NO_EXPANSION",
