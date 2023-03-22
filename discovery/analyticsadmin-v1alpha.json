@@ -409,7 +409,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -469,7 +469,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -981,6 +981,24 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
+        "createConnectedSiteTag": {
+          "description": "Creates a connected site tag for a Universal Analytics property. You can create a maximum of 20 connected site tags per property. Note: This API cannot be used on GA4 properties.",
+          "flatPath": "v1alpha/properties:createConnectedSiteTag",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.createConnectedSiteTag",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:createConnectedSiteTag",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
         "delete": {
           "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
@@ -1019,7 +1037,10 @@
           },
           "response": {
             "$ref": "GoogleProtobufEmpty"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
         },
         "fetchAutomatedGa4ConfigurationOptOut": {
           "description": "Fetches the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.",
@@ -1183,7 +1204,7 @@
           ]
         },
         "listConnectedSiteTags": {
-          "description": "Lists the connected site tags for a Universal Analytics property. Note: this has no effect on GA4 property.",
+          "description": "Lists the connected site tags for a Universal Analytics property. A maximum of 20 connected site tags will be returned. Note: this has no effect on GA4 property.",
           "flatPath": "v1alpha/properties:listConnectedSiteTags",
           "httpMethod": "POST",
           "id": "analyticsadmin.properties.listConnectedSiteTags",
@@ -1195,7 +1216,11 @@
           },
           "response": {
             "$ref": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
         },
         "patch": {
           "description": "Updates a property.",
@@ -1422,7 +1447,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The account or property that owns the access bindings. The parent field in the DeleteAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
@@ -1482,7 +1507,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The account or property that owns the access bindings. The parent field in the UpdateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
@@ -2385,6 +2410,32 @@
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
+            "getEnhancedMeasurementSettings": {
+              "description": "Returns the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/enhancedMeasurementSettings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.dataStreams.getEnhancedMeasurementSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the settings to lookup. Format: properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings Example: \"properties/1000/dataStreams/2000/enhancedMeasurementSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+/enhancedMeasurementSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
             "getGlobalSiteTag": {
               "description": "Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.",
               "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/globalSiteTag",
@@ -2477,6 +2528,40 @@
               },
               "response": {
                 "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "updateEnhancedMeasurementSettings": {
+              "description": "Updates the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/enhancedMeasurementSettings",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.dataStreams.updateEnhancedMeasurementSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id}/dataStreams/{data_stream}/enhancedMeasurementSettings Example: \"properties/1000/dataStreams/2000/enhancedMeasurementSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+/enhancedMeasurementSettings$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit"
@@ -3801,7 +3886,7 @@
       }
     }
   },
-  "revision": "20230302",
+  "revision": "20230321",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5159,6 +5244,10 @@
           "$ref": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal",
           "description": "A snapshot of a DisplayVideo360AdvertiserLinkProposal resource in change history."
         },
+        "enhancedMeasurementSettings": {
+          "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
+          "description": "A snapshot of EnhancedMeasurementSettings resource in change history."
+        },
         "expandedDataSet": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
           "description": "A snapshot of an ExpandedDataSet resource in change history."
@@ -5297,6 +5386,27 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest": {
+      "description": "Request message for CreateConnectedSiteTag RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest",
+      "properties": {
+        "connectedSiteTag": {
+          "$ref": "GoogleAnalyticsAdminV1alphaConnectedSiteTag",
+          "description": "Required. The tag to add to the Universal Analytics property"
+        },
+        "property": {
+          "description": "The Universal Analytics property to create connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId} Example: properties/1234",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse": {
+      "description": "Response message for CreateConnectedSiteTag RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest": {
@@ -5732,6 +5842,58 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings": {
+      "description": "Singleton resource under a WebDataStream, configuring measurement of additional site interactions and content.",
+      "id": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
+      "properties": {
+        "fileDownloadsEnabled": {
+          "description": "If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.",
+          "type": "boolean"
+        },
+        "formInteractionsEnabled": {
+          "description": "If enabled, capture a form interaction event each time a visitor interacts with a form on your website. False by default.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id}/dataStreams/{data_stream}/enhancedMeasurementSettings Example: \"properties/1000/dataStreams/2000/enhancedMeasurementSettings\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "outboundClicksEnabled": {
+          "description": "If enabled, capture an outbound click event each time a visitor clicks a link that leads them away from your domain.",
+          "type": "boolean"
+        },
+        "pageChangesEnabled": {
+          "description": "If enabled, capture a page view event each time the website changes the browser history state.",
+          "type": "boolean"
+        },
+        "scrollsEnabled": {
+          "description": "If enabled, capture scroll events each time a visitor gets to the bottom of a page.",
+          "type": "boolean"
+        },
+        "searchQueryParameter": {
+          "description": "Required. URL query parameters to interpret as site search parameters. Max length is 1024 characters. Must not be empty.",
+          "type": "string"
+        },
+        "siteSearchEnabled": {
+          "description": "If enabled, capture a view search results event each time a visitor performs a search on your site (based on a query parameter).",
+          "type": "boolean"
+        },
+        "streamEnabled": {
+          "description": "Indicates whether Enhanced Measurement Settings will be used to automatically measure interactions and content on this web stream. Changing this value does not affect the settings themselves, but determines whether they are respected.",
+          "type": "boolean"
+        },
+        "uriQueryParameter": {
+          "description": "Additional URL query parameters. Max length is 1024 characters.",
+          "type": "string"
+        },
+        "videoEngagementEnabled": {
+          "description": "If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaExpandedDataSet": {
       "description": "A resource message representing a GA4 ExpandedDataSet.",
       "id": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
@@ -6162,17 +6324,8 @@
       "description": "Request message for ListConnectedSiteTags RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest",
       "properties": {
-        "pageSize": {
-          "description": "The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
-          "format": "int32",
-          "type": "integer"
-        },
-        "pageToken": {
-          "description": "A page token, received from a previous `ListConnectedSiteTags` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectedSiteTags` must match the call that provided the page token.",
-          "type": "string"
-        },
         "property": {
-          "description": "The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. Format: `properties/1234`",
+          "description": "The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. A maximum of 20 connected site tags will be returned. Example Format: `properties/1234`",
           "type": "string"
         }
       },
@@ -6183,15 +6336,11 @@
       "id": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse",
       "properties": {
         "connectedSiteTags": {
-          "description": "The site tags for the Universal Analytics property",
+          "description": "The site tags for the Universal Analytics property. A maximum of 20 connected site tags will be returned.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaConnectedSiteTag"
           },
           "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -6887,7 +7036,8 @@
               "DATA_STREAM",
               "ATTRIBUTION_SETTINGS",
               "EXPANDED_DATA_SET",
-              "CHANNEL_GROUP"
+              "CHANNEL_GROUP",
+              "ENHANCED_MEASUREMENT_SETTINGS"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -6907,7 +7057,8 @@
               "DataStream resource",
               "AttributionSettings resource",
               "ExpandedDataSet resource",
-              "ChannelGroup resource"
+              "ChannelGroup resource",
+              "EnhancedMeasurementSettings resource"
             ],
             "type": "string"
           },

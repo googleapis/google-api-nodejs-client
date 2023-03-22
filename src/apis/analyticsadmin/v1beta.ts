@@ -129,6 +129,274 @@ export namespace analyticsadmin_v1beta {
   }
 
   /**
+   * To express that the result needs to be between two numbers (inclusive).
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessBetweenFilter {
+    /**
+     * Begins with this number.
+     */
+    fromValue?: Schema$GoogleAnalyticsAdminV1betaNumericValue;
+    /**
+     * Ends with this number.
+     */
+    toValue?: Schema$GoogleAnalyticsAdminV1betaNumericValue;
+  }
+  /**
+   * A contiguous range of days: startDate, startDate + 1, ..., endDate.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessDateRange {
+    /**
+     * The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot be before `startDate`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the current time in the request's time zone.
+     */
+    endDate?: string | null;
+    /**
+     * The inclusive start date for the query in the format `YYYY-MM-DD`. Cannot be after `endDate`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the current time in the request's time zone.
+     */
+    startDate?: string | null;
+  }
+  /**
+   * Dimensions are attributes of your data. For example, the dimension `userEmail` indicates the email of the user that accessed reporting data. Dimension values in report responses are strings.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessDimension {
+    /**
+     * The API name of the dimension. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of dimensions supported in this API. Dimensions are referenced by name in `dimensionFilter` and `orderBys`.
+     */
+    dimensionName?: string | null;
+  }
+  /**
+   * Describes a dimension column in the report. Dimensions requested in a report produce column entries within rows and DimensionHeaders. However, dimensions used exclusively within filters or expressions do not produce columns in a report; correspondingly, those dimensions do not produce headers.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessDimensionHeader {
+    /**
+     * The dimension's name; for example 'userEmail'.
+     */
+    dimensionName?: string | null;
+  }
+  /**
+   * The value of a dimension.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessDimensionValue {
+    /**
+     * The dimension value. For example, this value may be 'France' for the 'country' dimension.
+     */
+    value?: string | null;
+  }
+  /**
+   * An expression to filter dimension or metric values.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessFilter {
+    /**
+     * A filter for two values.
+     */
+    betweenFilter?: Schema$GoogleAnalyticsAdminV1betaAccessBetweenFilter;
+    /**
+     * The dimension name or metric name.
+     */
+    fieldName?: string | null;
+    /**
+     * A filter for in list values.
+     */
+    inListFilter?: Schema$GoogleAnalyticsAdminV1betaAccessInListFilter;
+    /**
+     * A filter for numeric or date values.
+     */
+    numericFilter?: Schema$GoogleAnalyticsAdminV1betaAccessNumericFilter;
+    /**
+     * Strings related filter.
+     */
+    stringFilter?: Schema$GoogleAnalyticsAdminV1betaAccessStringFilter;
+  }
+  /**
+   * Expresses dimension or metric filters. The fields in the same expression need to be either all dimensions or all metrics.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessFilterExpression {
+    /**
+     * A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all dimensions or all metrics.
+     */
+    accessFilter?: Schema$GoogleAnalyticsAdminV1betaAccessFilter;
+    /**
+     * Each of the FilterExpressions in the and_group has an AND relationship.
+     */
+    andGroup?: Schema$GoogleAnalyticsAdminV1betaAccessFilterExpressionList;
+    /**
+     * The FilterExpression is NOT of not_expression.
+     */
+    notExpression?: Schema$GoogleAnalyticsAdminV1betaAccessFilterExpression;
+    /**
+     * Each of the FilterExpressions in the or_group has an OR relationship.
+     */
+    orGroup?: Schema$GoogleAnalyticsAdminV1betaAccessFilterExpressionList;
+  }
+  /**
+   * A list of filter expressions.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessFilterExpressionList {
+    /**
+     * A list of filter expressions.
+     */
+    expressions?: Schema$GoogleAnalyticsAdminV1betaAccessFilterExpression[];
+  }
+  /**
+   * The result needs to be in a list of string values.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessInListFilter {
+    /**
+     * If true, the string value is case sensitive.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * The list of string values. Must be non-empty.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * The quantitative measurements of a report. For example, the metric `accessCount` is the total number of data access records.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessMetric {
+    /**
+     * The API name of the metric. See [Data Access Schema](https://developers.google.com/analytics/devguides/config/admin/v1/access-api-schema) for the list of metrics supported in this API. Metrics are referenced by name in `metricFilter` & `orderBys`.
+     */
+    metricName?: string | null;
+  }
+  /**
+   * Describes a metric column in the report. Visible metrics requested in a report produce column entries within rows and MetricHeaders. However, metrics used exclusively within filters or expressions do not produce columns in a report; correspondingly, those metrics do not produce headers.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessMetricHeader {
+    /**
+     * The metric's name; for example 'accessCount'.
+     */
+    metricName?: string | null;
+  }
+  /**
+   * The value of a metric.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessMetricValue {
+    /**
+     * The measurement value. For example, this value may be '13'.
+     */
+    value?: string | null;
+  }
+  /**
+   * Filters for numeric or date values.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessNumericFilter {
+    /**
+     * The operation type for this filter.
+     */
+    operation?: string | null;
+    /**
+     * A numeric value or a date value.
+     */
+    value?: Schema$GoogleAnalyticsAdminV1betaNumericValue;
+  }
+  /**
+   * Order bys define how rows will be sorted in the response. For example, ordering rows by descending access count is one ordering, and ordering rows by the country string is a different ordering.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessOrderBy {
+    /**
+     * If true, sorts by descending order. If false or unspecified, sorts in ascending order.
+     */
+    desc?: boolean | null;
+    /**
+     * Sorts results by a dimension's values.
+     */
+    dimension?: Schema$GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy;
+    /**
+     * Sorts results by a metric's values.
+     */
+    metric?: Schema$GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy;
+  }
+  /**
+   * Sorts by dimension values.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy {
+    /**
+     * A dimension name in the request to order by.
+     */
+    dimensionName?: string | null;
+    /**
+     * Controls the rule for dimension value ordering.
+     */
+    orderType?: string | null;
+  }
+  /**
+   * Sorts by metric values.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy {
+    /**
+     * A metric name in the request to order by.
+     */
+    metricName?: string | null;
+  }
+  /**
+   * Current state of all quotas for this Analytics property. If any quota for a property is exhausted, all requests to that property will return Resource Exhausted errors.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessQuota {
+    /**
+     * Properties can use up to 50 concurrent requests.
+     */
+    concurrentRequests?: Schema$GoogleAnalyticsAdminV1betaAccessQuotaStatus;
+    /**
+     * Properties and cloud project pairs can have up to 50 server errors per hour.
+     */
+    serverErrorsPerProjectPerHour?: Schema$GoogleAnalyticsAdminV1betaAccessQuotaStatus;
+    /**
+     * Properties can use 250,000 tokens per day. Most requests consume fewer than 10 tokens.
+     */
+    tokensPerDay?: Schema$GoogleAnalyticsAdminV1betaAccessQuotaStatus;
+    /**
+     * Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas.
+     */
+    tokensPerHour?: Schema$GoogleAnalyticsAdminV1betaAccessQuotaStatus;
+    /**
+     * Properties can use up to 25% of their tokens per project per hour. This amounts to Analytics 360 Properties can use 12,500 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas.
+     */
+    tokensPerProjectPerHour?: Schema$GoogleAnalyticsAdminV1betaAccessQuotaStatus;
+  }
+  /**
+   * Current state for a particular quota group.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessQuotaStatus {
+    /**
+     * Quota consumed by this request.
+     */
+    consumed?: number | null;
+    /**
+     * Quota remaining after this request.
+     */
+    remaining?: number | null;
+  }
+  /**
+   * Access report data for each row.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessRow {
+    /**
+     * List of dimension values. These values are in the same order as specified in the request.
+     */
+    dimensionValues?: Schema$GoogleAnalyticsAdminV1betaAccessDimensionValue[];
+    /**
+     * List of metric values. These values are in the same order as specified in the request.
+     */
+    metricValues?: Schema$GoogleAnalyticsAdminV1betaAccessMetricValue[];
+  }
+  /**
+   * The filter for strings.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaAccessStringFilter {
+    /**
+     * If true, the string value is case sensitive.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * The match type for this filter.
+     */
+    matchType?: string | null;
+    /**
+     * The string value used for the matching.
+     */
+    value?: string | null;
+  }
+  /**
    * A resource message representing a Google Analytics account.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaAccount {
@@ -697,6 +965,19 @@ export namespace analyticsadmin_v1beta {
     secretValue?: string | null;
   }
   /**
+   * To represent a number.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaNumericValue {
+    /**
+     * Double value
+     */
+    doubleValue?: number | null;
+    /**
+     * Integer value
+     */
+    int64Value?: string | null;
+  }
+  /**
    * A resource message representing a Google Analytics GA4 property.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaProperty {
@@ -795,6 +1076,76 @@ export namespace analyticsadmin_v1beta {
      * The param to be passed in the ToS link.
      */
     accountTicketId?: string | null;
+  }
+  /**
+   * The request for a Data Access Record Report.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaRunAccessReportRequest {
+    /**
+     * Date ranges of access records to read. If multiple date ranges are requested, each response row will contain a zero based date range index. If two date ranges overlap, the access records for the overlapping days is included in the response rows for both date ranges. Requests are allowed up to 2 date ranges.
+     */
+    dateRanges?: Schema$GoogleAnalyticsAdminV1betaAccessDateRange[];
+    /**
+     * Dimension filters let you restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter.
+     */
+    dimensionFilter?: Schema$GoogleAnalyticsAdminV1betaAccessFilterExpression;
+    /**
+     * The dimensions requested and displayed in the response. Requests are allowed up to 9 dimensions.
+     */
+    dimensions?: Schema$GoogleAnalyticsAdminV1betaAccessDimension[];
+    /**
+     * The number of rows to return. If unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for. `limit` must be positive. The API may return fewer rows than the requested `limit`, if there aren't as many remaining rows as the `limit`. For instance, there are fewer than 300 possible values for the dimension `country`, so when reporting on only `country`, you can't get more than 300 rows, even if you set `limit` to a higher value. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     */
+    limit?: string | null;
+    /**
+     * Metric filters allow you to restrict report response to specific metric values which match the filter. Metric filters are applied after aggregating the report's rows, similar to SQL having-clause. Dimensions cannot be used in this filter.
+     */
+    metricFilter?: Schema$GoogleAnalyticsAdminV1betaAccessFilterExpression;
+    /**
+     * The metrics requested and displayed in the response. Requests are allowed up to 10 metrics.
+     */
+    metrics?: Schema$GoogleAnalyticsAdminV1betaAccessMetric[];
+    /**
+     * The row count of the start row. The first row is counted as row 0. If offset is unspecified, it is treated as 0. If offset is zero, then this method will return the first page of results with `limit` entries. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     */
+    offset?: string | null;
+    /**
+     * Specifies how rows are ordered in the response.
+     */
+    orderBys?: Schema$GoogleAnalyticsAdminV1betaAccessOrderBy[];
+    /**
+     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level requests, this field must be false.
+     */
+    returnEntityQuota?: boolean | null;
+    /**
+     * This request's time zone if specified. If unspecified, the property's time zone is used. The request's time zone is used to interpret the start & end dates of the report. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example "America/New_York" or "Asia/Tokyo".
+     */
+    timeZone?: string | null;
+  }
+  /**
+   * The customized Data Access Record Report response.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse {
+    /**
+     * The header for a column in the report that corresponds to a specific dimension. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows.
+     */
+    dimensionHeaders?: Schema$GoogleAnalyticsAdminV1betaAccessDimensionHeader[];
+    /**
+     * The header for a column in the report that corresponds to a specific metric. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows.
+     */
+    metricHeaders?: Schema$GoogleAnalyticsAdminV1betaAccessMetricHeader[];
+    /**
+     * The quota state for this Analytics property including this request. This field doesn't work with account-level requests.
+     */
+    quota?: Schema$GoogleAnalyticsAdminV1betaAccessQuota;
+    /**
+     * The total number of rows in the query result. `rowCount` is independent of the number of rows returned in the response, the `limit` request parameter, and the `offset` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     */
+    rowCount?: number | null;
+    /**
+     * Rows of dimension value combinations and metric values in the report.
+     */
+    rows?: Schema$GoogleAnalyticsAdminV1betaAccessRow[];
   }
   /**
    * Request message for SearchChangeHistoryEvents RPC.
@@ -1715,6 +2066,169 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.accounts.runAccessReport({
+     *     // The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     *     entity: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dateRanges": [],
+     *       //   "dimensionFilter": {},
+     *       //   "dimensions": [],
+     *       //   "limit": "my_limit",
+     *       //   "metricFilter": {},
+     *       //   "metrics": [],
+     *       //   "offset": "my_offset",
+     *       //   "orderBys": [],
+     *       //   "returnEntityQuota": false,
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dimensionHeaders": [],
+     *   //   "metricHeaders": [],
+     *   //   "quota": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runAccessReport(
+      params?: Params$Resource$Accounts$Runaccessreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Runaccessreport
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Runaccessreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Runaccessreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+entity}:runAccessReport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['entity'],
+        pathParams: ['entity'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Searches through all changes to an account or its children given the specified set of filters.
      * @example
      * ```js
@@ -1923,6 +2437,18 @@ export namespace analyticsadmin_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest;
+  }
+  export interface Params$Resource$Accounts$Runaccessreport
+    extends StandardParameters {
+    /**
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     */
+    entity?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1betaRunAccessReportRequest;
   }
   export interface Params$Resource$Accounts$Searchchangehistoryevents
     extends StandardParameters {
@@ -3188,6 +3714,169 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.runAccessReport({
+     *     // The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     *     entity: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dateRanges": [],
+     *       //   "dimensionFilter": {},
+     *       //   "dimensions": [],
+     *       //   "limit": "my_limit",
+     *       //   "metricFilter": {},
+     *       //   "metrics": [],
+     *       //   "offset": "my_offset",
+     *       //   "orderBys": [],
+     *       //   "returnEntityQuota": false,
+     *       //   "timeZone": "my_timeZone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dimensionHeaders": [],
+     *   //   "metricHeaders": [],
+     *   //   "quota": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runAccessReport(
+      params: Params$Resource$Properties$Runaccessreport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runAccessReport(
+      params?: Params$Resource$Properties$Runaccessreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>;
+    runAccessReport(
+      params: Params$Resource$Properties$Runaccessreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Properties$Runaccessreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Properties$Runaccessreport,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Runaccessreport
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Runaccessreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Runaccessreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+entity}:runAccessReport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['entity'],
+        pathParams: ['entity'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1betaRunAccessReportResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the singleton data retention settings for this property.
      * @example
      * ```js
@@ -3409,6 +4098,18 @@ export namespace analyticsadmin_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaProperty;
+  }
+  export interface Params$Resource$Properties$Runaccessreport
+    extends StandardParameters {
+    /**
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     */
+    entity?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1betaRunAccessReportRequest;
   }
   export interface Params$Resource$Properties$Updatedataretentionsettings
     extends StandardParameters {
