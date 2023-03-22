@@ -251,6 +251,28 @@ export namespace integrations_v1alpha {
      */
     title?: string | null;
   }
+  export interface Schema$EnterpriseCrmEventbusProtoCloudKmsConfig {
+    /**
+     * Optional. The id of GCP project where the KMS key is stored. If not provided, assume the key is stored in the same GCP project defined in Client (tag 14).
+     */
+    gcpProjectId?: string | null;
+    /**
+     * A Cloud KMS key is a named object containing one or more key versions, along with metadata for the key. A key exists on exactly one key ring tied to a specific location.
+     */
+    keyName?: string | null;
+    /**
+     * A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys. A key ring's name does not need to be unique across a Google Cloud project, but must be unique within a given location.
+     */
+    keyRingName?: string | null;
+    /**
+     * Optional. Each version of a key contains key material used for encryption or signing. A key's version is represented by an integer, starting at 1. To decrypt data or verify a signature, you must use the same key version that was used to encrypt or sign the data.
+     */
+    keyVersionName?: string | null;
+    /**
+     * Location name of the key ring, e.g. "us-west1".
+     */
+    locationName?: string | null;
+  }
   /**
    * Cloud Scheduler Trigger configuration
    */
@@ -1013,9 +1035,21 @@ export namespace integrations_v1alpha {
   export interface Schema$EnterpriseCrmEventbusProtoSuspensionResolutionInfo {
     audit?: Schema$EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit;
     /**
+     * The event data user sends as request.
+     */
+    clientId?: string | null;
+    /**
+     * KMS info, used by cmek/gmek integration
+     */
+    cloudKmsConfig?: Schema$EnterpriseCrmEventbusProtoCloudKmsConfig;
+    /**
      * Auto-generated.
      */
     createdTimestamp?: string | null;
+    /**
+     * Encrypted SuspensionResolutionInfo
+     */
+    encryptedSuspensionResolutionInfo?: string | null;
     /**
      * Required. ID of the associated execution.
      */
@@ -1046,6 +1080,10 @@ export namespace integrations_v1alpha {
      * Required. The name of the originating workflow.
      */
     workflowName?: string | null;
+    /**
+     * Wrapped dek
+     */
+    wrappedDek?: string | null;
   }
   export interface Schema$EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit {
     resolvedBy?: string | null;
@@ -1726,6 +1764,11 @@ export namespace integrations_v1alpha {
      */
     disableStrictTypeValidation?: boolean | null;
     /**
+     * Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
+    externalTaskType?: string | null;
+    /**
      * Optional. Determines the number of times the task will be retried on failure and with what retry strategy. This is applicable for asynchronous calls to Eventbus alone (Post To Queue, Schedule etc.).
      */
     failurePolicy?: Schema$EnterpriseCrmEventbusProtoFailurePolicy;
@@ -1842,7 +1885,7 @@ export namespace integrations_v1alpha {
     uiConfig?: Schema$EnterpriseCrmEventbusProtoTaskUiConfig;
   }
   /**
-   * Configuration detail of a trigger. Next available id: 17
+   * Configuration detail of a trigger. Next available id: 19
    */
   export interface Schema$EnterpriseCrmFrontendsEventbusProtoTriggerConfig {
     /**
@@ -1858,6 +1901,10 @@ export namespace integrations_v1alpha {
      * Required. The list of client ids which are enabled to execute the workflow using this trigger. In other words, these clients have the workflow execution privledges for this trigger. For API trigger, the client id in the incoming request is validated against the list of enabled clients. For non-API triggers, one workflow execution is triggered on behalf of each enabled client.
      */
     enabledClients?: string[] | null;
+    /**
+     * Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
     /**
      * The user created label for a particular trigger.
      */
@@ -2182,6 +2229,10 @@ export namespace integrations_v1alpha {
      */
     serviceDirectory?: string | null;
     /**
+     * Optional. Ssl config of a connection
+     */
+    sslConfig?: Schema$GoogleCloudConnectorsV1SslConfig;
+    /**
      * Output only. Current status of the connection.
      */
     status?: Schema$GoogleCloudConnectorsV1ConnectionStatus;
@@ -2272,6 +2323,51 @@ export namespace integrations_v1alpha {
      * The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
      */
     secretVersion?: string | null;
+  }
+  /**
+   * SSL Configuration of a connection
+   */
+  export interface Schema$GoogleCloudConnectorsV1SslConfig {
+    /**
+     * Additional SSL related field values
+     */
+    additionalVariables?: Schema$GoogleCloudConnectorsV1ConfigVariable[];
+    /**
+     * Client Certificate
+     */
+    clientCertificate?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Type of Client Cert (PEM/JKS/.. etc.)
+     */
+    clientCertType?: string | null;
+    /**
+     * Client Private Key
+     */
+    clientPrivateKey?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Secret containing the passphrase protecting the Client Private Key
+     */
+    clientPrivateKeyPass?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Private Server Certificate. Needs to be specified if trust model is `PRIVATE`.
+     */
+    privateServerCertificate?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Type of Server Cert (PEM/JKS/.. etc.)
+     */
+    serverCertType?: string | null;
+    /**
+     * Trust Model of the SSL connection
+     */
+    trustModel?: string | null;
+    /**
+     * Controls the ssl type for the given connector version.
+     */
+    type?: string | null;
+    /**
+     * Bool for enabling SSL
+     */
+    useSsl?: boolean | null;
   }
   /**
    * The access token represents the authorization of a specific application to access specific parts of a user’s data.
@@ -2512,6 +2608,19 @@ export namespace integrations_v1alpha {
     entities?: string[] | null;
   }
   /**
+   * Configuration detail of coordinate, it used for UI
+   */
+  export interface Schema$GoogleCloudIntegrationsV1alphaCoordinate {
+    /**
+     * Required. X axis of the coordinate
+     */
+    x?: number | null;
+    /**
+     * Required. Y axis of the coordinate
+     */
+    y?: number | null;
+  }
+  /**
    * Request for CreateAppsScriptProject rpc call.
    */
   export interface Schema$GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest {
@@ -2600,6 +2709,35 @@ export namespace integrations_v1alpha {
      * All regions where Connector Platform is provisioned.
      */
     regions?: string[] | null;
+  }
+  /**
+   * Configuration detail of a error catch task
+   */
+  export interface Schema$GoogleCloudIntegrationsV1alphaErrorCatcherConfig {
+    /**
+     * Optional. User-provided description intended to give more business context about the error catcher config.
+     */
+    description?: string | null;
+    /**
+     * Required. An error catcher id is string representation for the error catcher config. Within a workflow, error_catcher_id uniquely identifies an error catcher config among all error catcher configs for the workflow
+     */
+    errorCatcherId?: string | null;
+    /**
+     * Required. A number to uniquely identify each error catcher config within the workflow on UI.
+     */
+    errorCatcherNumber?: string | null;
+    /**
+     * Optional. The user created label for a particular error catcher. Optional.
+     */
+    label?: string | null;
+    /**
+     * Optional. Informs the front-end application where to draw this error catcher config on the UI.
+     */
+    position?: Schema$GoogleCloudIntegrationsV1alphaCoordinate;
+    /**
+     * Required. The set of start tasks that are to be executed for the error catch flow
+     */
+    startErrorTasks?: Schema$GoogleCloudIntegrationsV1alphaNextTask[];
   }
   /**
    * This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus.
@@ -2951,6 +3089,10 @@ export namespace integrations_v1alpha {
      */
     description?: string | null;
     /**
+     * Optional. Error Catch Task configuration for the IntegrationTemplateVersion. It's optional.
+     */
+    errorCatcherConfigs?: Schema$GoogleCloudIntegrationsV1alphaErrorCatcherConfig[];
+    /**
      * Optional. The last modifier's email address. Generated based on the End User Credentials/LOAS role of the user making the call.
      */
     lastModifierEmail?: string | null;
@@ -3012,6 +3154,10 @@ export namespace integrations_v1alpha {
      */
     description?: string | null;
     /**
+     * Optional. Error Catch Task configuration for the integration. It's optional.
+     */
+    errorCatcherConfigs?: Schema$GoogleCloudIntegrationsV1alphaErrorCatcherConfig[];
+    /**
      * Optional. Parameters that are expected to be passed to the integration when an event is triggered. This consists of all the parameters that are expected in the integration execution. This gives the user the ability to provide default values, add information like PII and also provide data types of each parameter.
      */
     integrationParameters?: Schema$GoogleCloudIntegrationsV1alphaIntegrationParameter[];
@@ -3039,6 +3185,10 @@ export namespace integrations_v1alpha {
      * Optional. The id of the template which was used to create this integration_version.
      */
     parentTemplateId?: string | null;
+    /**
+     * Optional. The run-as service account email, if set and auth config is not configured, that will be used to generate auth token to be used in Connector task, Rest caller task and Cloud function task.
+     */
+    runAsServiceAccount?: string | null;
     /**
      * Optional. An increasing sequence that is set when a new snapshot is created. The last created snapshot can be identified by [workflow_name, org_id latest(snapshot_number)]. However, last created snapshot need not be same as the HEAD. So users should always use "HEAD" tag to identify the head.
      */
@@ -3848,6 +3998,14 @@ export namespace integrations_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
+    /**
+     * Optional. External task type of the task
+     */
+    externalTaskType?: string | null;
+    /**
      * Optional. Determines the number of times the task will be retried on failure and with what retry strategy. This is applicable for asynchronous calls to Eventbus alone (Post To Queue, Schedule etc.).
      */
     failurePolicy?: Schema$GoogleCloudIntegrationsV1alphaFailurePolicy;
@@ -3869,6 +4027,10 @@ export namespace integrations_v1alpha {
     parameters?: {
       [key: string]: Schema$GoogleCloudIntegrationsV1alphaEventParameter;
     } | null;
+    /**
+     * Optional. Informs the front-end application where to draw this error catcher config on the UI.
+     */
+    position?: Schema$GoogleCloudIntegrationsV1alphaCoordinate;
     /**
      * Optional. Determines what action to take upon successful task completion.
      */
@@ -3928,6 +4090,10 @@ export namespace integrations_v1alpha {
      */
     description?: string | null;
     /**
+     * Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
+    /**
      * Optional. The user created label for a particular trigger.
      */
     label?: string | null;
@@ -3935,6 +4101,10 @@ export namespace integrations_v1alpha {
      * Optional. Dictates how next tasks will be executed.
      */
     nextTasksExecutionPolicy?: string | null;
+    /**
+     * Optional. Informs the front-end application where to draw this error catcher config on the UI.
+     */
+    position?: Schema$GoogleCloudIntegrationsV1alphaCoordinate;
     /**
      * Optional. Configurable properties of the trigger, not to be confused with integration parameters. E.g. "name" is a property for API triggers and "subscription" is a property for Pub/sub triggers.
      */
@@ -7196,7 +7366,7 @@ export namespace integrations_v1alpha {
      *   // Do the magic
      *   const res =
      *     await integrations.projects.locations.integrations.executions.list({
-     *       // Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     *       // Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      *       filter: 'placeholder-value',
      *       // Optional user-provided custom filter.
      *       'filterParams.customFilter': 'placeholder-value',
@@ -7353,7 +7523,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Integrations$Executions$List
     extends StandardParameters {
     /**
-     * Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     * Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      */
     filter?: string;
     /**
@@ -7986,6 +8156,7 @@ export namespace integrations_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *         //   "description": "my_description",
+     *         //   "errorCatcherConfigs": [],
      *         //   "integrationParameters": [],
      *         //   "integrationParametersInternal": {},
      *         //   "lastModifierEmail": "my_lastModifierEmail",
@@ -7993,6 +8164,7 @@ export namespace integrations_v1alpha {
      *         //   "name": "my_name",
      *         //   "origin": "my_origin",
      *         //   "parentTemplateId": "my_parentTemplateId",
+     *         //   "runAsServiceAccount": "my_runAsServiceAccount",
      *         //   "snapshotNumber": "my_snapshotNumber",
      *         //   "state": "my_state",
      *         //   "status": "my_status",
@@ -8013,6 +8185,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8020,6 +8193,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -8442,6 +8616,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8449,6 +8624,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -8752,6 +8928,7 @@ export namespace integrations_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *         //   "description": "my_description",
+     *         //   "errorCatcherConfigs": [],
      *         //   "integrationParameters": [],
      *         //   "integrationParametersInternal": {},
      *         //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8759,6 +8936,7 @@ export namespace integrations_v1alpha {
      *         //   "name": "my_name",
      *         //   "origin": "my_origin",
      *         //   "parentTemplateId": "my_parentTemplateId",
+     *         //   "runAsServiceAccount": "my_runAsServiceAccount",
      *         //   "snapshotNumber": "my_snapshotNumber",
      *         //   "state": "my_state",
      *         //   "status": "my_status",
@@ -8780,6 +8958,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8787,6 +8966,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -11376,6 +11556,135 @@ export namespace integrations_v1alpha {
     }
 
     /**
+     * Delete the selected integration and all versions inside
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const integrations = google.integrations('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await integrations.projects.locations.products.integrations.delete({
+     *       // Required. The location resource of the request.
+     *       name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Products$Integrations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Products$Integrations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Products$Integrations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Products$Integrations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * Executes integrations synchronously by passing the trigger id in the request body. The request is not returned until the requested executions are either fulfilled or experienced an error. If the integration name is not specified (passing `-`), all of the associated integration under the given trigger_id will be executed. Otherwise only the specified integration for the given `trigger_id` is executed. This is helpful for execution the integration from UI.
      * @example
      * ```js
@@ -11835,6 +12144,13 @@ export namespace integrations_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Products$Integrations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The location resource of the request.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Products$Integrations$Execute
     extends StandardParameters {
     /**
@@ -12219,7 +12535,7 @@ export namespace integrations_v1alpha {
      *   const res =
      *     await integrations.projects.locations.products.integrations.executions.list(
      *       {
-     *         // Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     *         // Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      *         filter: 'placeholder-value',
      *         // Optional user-provided custom filter.
      *         'filterParams.customFilter': 'placeholder-value',
@@ -12396,7 +12712,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Products$Integrations$Executions$List
     extends StandardParameters {
     /**
-     * Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     * Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      */
     filter?: string;
     /**
@@ -13030,6 +13346,7 @@ export namespace integrations_v1alpha {
      *           //   "createTime": "my_createTime",
      *           //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *           //   "description": "my_description",
+     *           //   "errorCatcherConfigs": [],
      *           //   "integrationParameters": [],
      *           //   "integrationParametersInternal": {},
      *           //   "lastModifierEmail": "my_lastModifierEmail",
@@ -13037,6 +13354,7 @@ export namespace integrations_v1alpha {
      *           //   "name": "my_name",
      *           //   "origin": "my_origin",
      *           //   "parentTemplateId": "my_parentTemplateId",
+     *           //   "runAsServiceAccount": "my_runAsServiceAccount",
      *           //   "snapshotNumber": "my_snapshotNumber",
      *           //   "state": "my_state",
      *           //   "status": "my_status",
@@ -13058,6 +13376,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -13065,6 +13384,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -13492,6 +13812,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -13499,6 +13820,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -13803,6 +14125,7 @@ export namespace integrations_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *         //   "description": "my_description",
+     *         //   "errorCatcherConfigs": [],
      *         //   "integrationParameters": [],
      *         //   "integrationParametersInternal": {},
      *         //   "lastModifierEmail": "my_lastModifierEmail",
@@ -13810,6 +14133,7 @@ export namespace integrations_v1alpha {
      *         //   "name": "my_name",
      *         //   "origin": "my_origin",
      *         //   "parentTemplateId": "my_parentTemplateId",
+     *         //   "runAsServiceAccount": "my_runAsServiceAccount",
      *         //   "snapshotNumber": "my_snapshotNumber",
      *         //   "state": "my_state",
      *         //   "status": "my_status",
@@ -13830,6 +14154,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -13837,6 +14162,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -14726,6 +15052,7 @@ export namespace integrations_v1alpha {
      *           //   "createTime": "my_createTime",
      *           //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *           //   "description": "my_description",
+     *           //   "errorCatcherConfigs": [],
      *           //   "lastModifierEmail": "my_lastModifierEmail",
      *           //   "name": "my_name",
      *           //   "parentIntegrationVersionId": "my_parentIntegrationVersionId",
@@ -14748,6 +15075,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "lastModifierEmail": "my_lastModifierEmail",
      *   //   "name": "my_name",
      *   //   "parentIntegrationVersionId": "my_parentIntegrationVersionId",
@@ -14903,6 +15231,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "lastModifierEmail": "my_lastModifierEmail",
      *   //   "name": "my_name",
      *   //   "parentIntegrationVersionId": "my_parentIntegrationVersionId",
