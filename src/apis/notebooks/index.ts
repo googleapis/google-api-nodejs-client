@@ -15,18 +15,24 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {notebooks_v1} from './v1';
+import {notebooks_v2} from './v2';
 
 export const VERSIONS = {
   v1: notebooks_v1.Notebooks,
+  v2: notebooks_v2.Notebooks,
 };
 
 export function notebooks(version: 'v1'): notebooks_v1.Notebooks;
 export function notebooks(
   options: notebooks_v1.Options
 ): notebooks_v1.Notebooks;
-export function notebooks<T = notebooks_v1.Notebooks>(
+export function notebooks(version: 'v2'): notebooks_v2.Notebooks;
+export function notebooks(
+  options: notebooks_v2.Options
+): notebooks_v2.Notebooks;
+export function notebooks<T = notebooks_v1.Notebooks | notebooks_v2.Notebooks>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | notebooks_v1.Options
+  versionOrOptions: 'v1' | notebooks_v1.Options | 'v2' | notebooks_v2.Options
 ) {
   return getAPI<T>('notebooks', versionOrOptions, VERSIONS, this);
 }
@@ -34,6 +40,7 @@ export function notebooks<T = notebooks_v1.Notebooks>(
 const auth = new AuthPlus();
 export {auth};
 export {notebooks_v1};
+export {notebooks_v2};
 export {
   AuthPlus,
   GlobalOptions,
