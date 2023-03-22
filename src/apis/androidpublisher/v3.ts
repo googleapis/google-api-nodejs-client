@@ -520,7 +520,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$DeveloperInitiatedCancellation {}
   /**
-   * LINT.IfChange A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).
+   * A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).
    */
   export interface Schema$DeviceGroup {
     /**
@@ -663,7 +663,7 @@ export namespace androidpublisher_v3 {
     level?: number | null;
   }
   /**
-   * LINT.IfChange Configuration describing device targeting criteria for the content of an app.
+   * Configuration describing device targeting criteria for the content of an app.
    */
   export interface Schema$DeviceTierConfig {
     /**
@@ -14325,6 +14325,133 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Consumes a purchase for an inapp item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.products.consume({
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The inapp product SKU (for example, 'com.some.thing.inapp1').
+     *     productId: 'placeholder-value',
+     *     // The token provided to the user's device when the inapp product was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    consume(
+      params: Params$Resource$Purchases$Products$Consume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    consume(
+      params?: Params$Resource$Purchases$Products$Consume,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    consume(
+      params: Params$Resource$Purchases$Products$Consume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    consume(
+      params: Params$Resource$Purchases$Products$Consume,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    consume(
+      params: Params$Resource$Purchases$Products$Consume,
+      callback: BodyResponseCallback<void>
+    ): void;
+    consume(callback: BodyResponseCallback<void>): void;
+    consume(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Products$Consume
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Products$Consume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Purchases$Products$Consume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'token'],
+        pathParams: ['packageName', 'productId', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * Checks the purchase and consumption status of an inapp item.
      * @example
      * ```js
@@ -14491,6 +14618,21 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$ProductPurchasesAcknowledgeRequest;
+  }
+  export interface Params$Resource$Purchases$Products$Consume
+    extends StandardParameters {
+    /**
+     * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * The inapp product SKU (for example, 'com.some.thing.inapp1').
+     */
+    productId?: string;
+    /**
+     * The token provided to the user's device when the inapp product was purchased.
+     */
+    token?: string;
   }
   export interface Params$Resource$Purchases$Products$Get
     extends StandardParameters {

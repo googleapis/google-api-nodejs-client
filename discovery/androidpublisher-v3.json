@@ -3155,6 +3155,41 @@
                 "https://www.googleapis.com/auth/androidpublisher"
               ]
             },
+            "consume": {
+              "description": "Consumes a purchase for an inapp item.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.products.consume",
+              "parameterOrder": [
+                "packageName",
+                "productId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application the inapp product was sold in (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productId": {
+                  "description": "The inapp product SKU (for example, 'com.some.thing.inapp1').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the inapp product was purchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
             "get": {
               "description": "Checks the purchase and consumption status of an inapp item.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}",
@@ -3920,7 +3955,7 @@
       }
     }
   },
-  "revision": "20230208",
+  "revision": "20230321",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "AcquisitionTargetingRule": {
@@ -4437,7 +4472,7 @@
       "type": "object"
     },
     "DeviceGroup": {
-      "description": "LINT.IfChange A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).",
+      "description": "A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).",
       "id": "DeviceGroup",
       "properties": {
         "deviceSelectors": {
@@ -4627,7 +4662,7 @@
       "type": "object"
     },
     "DeviceTierConfig": {
-      "description": "LINT.IfChange Configuration describing device targeting criteria for the content of an app.",
+      "description": "Configuration describing device targeting criteria for the content of an app.",
       "id": "DeviceTierConfig",
       "properties": {
         "deviceGroups": {
