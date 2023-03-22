@@ -435,6 +435,19 @@ export namespace games_v1 {
     secondary?: string | null;
   }
   /**
+   * Primary scoped player identifier for an application.
+   */
+  export interface Schema$ApplicationPlayerId {
+    /**
+     * The application that this player identifier is for.
+     */
+    applicationId?: string | null;
+    /**
+     * The player identifier for the application.
+     */
+    playerId?: string | null;
+  }
+  /**
    * A third party application verification response resource.
    */
   export interface Schema$ApplicationVerifyResponse {
@@ -717,6 +730,15 @@ export namespace games_v1 {
      * The minimum number of steps for the achievement to be set to.
      */
     steps?: number | null;
+  }
+  /**
+   * Response message for GetMultipleApplicationPlayerIds rpc.
+   */
+  export interface Schema$GetMultipleApplicationPlayerIdsResponse {
+    /**
+     * Output only. The requested applications along with the scoped ids for tha player, if that player has an id for the application. If not, the application is not included in the response.
+     */
+    playerIds?: Schema$ApplicationPlayerId[];
   }
   /**
    * An image asset object.
@@ -4486,6 +4508,143 @@ export namespace games_v1 {
     }
 
     /**
+     * Get the application player ids for the currently authenticated player across all requested games by the same developer as the calling application. This will only return ids for players that actually have an id (scoped or otherwise) with that game.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.players.getMultipleApplicationPlayerIds({
+     *     // Required. The application IDs from the Google Play developer console for the games to return scoped ids for.
+     *     applicationIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "playerIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getMultipleApplicationPlayerIds(
+      params: Params$Resource$Players$Getmultipleapplicationplayerids,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getMultipleApplicationPlayerIds(
+      params?: Params$Resource$Players$Getmultipleapplicationplayerids,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetMultipleApplicationPlayerIdsResponse>;
+    getMultipleApplicationPlayerIds(
+      params: Params$Resource$Players$Getmultipleapplicationplayerids,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getMultipleApplicationPlayerIds(
+      params: Params$Resource$Players$Getmultipleapplicationplayerids,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetMultipleApplicationPlayerIdsResponse>,
+      callback: BodyResponseCallback<Schema$GetMultipleApplicationPlayerIdsResponse>
+    ): void;
+    getMultipleApplicationPlayerIds(
+      params: Params$Resource$Players$Getmultipleapplicationplayerids,
+      callback: BodyResponseCallback<Schema$GetMultipleApplicationPlayerIdsResponse>
+    ): void;
+    getMultipleApplicationPlayerIds(
+      callback: BodyResponseCallback<Schema$GetMultipleApplicationPlayerIdsResponse>
+    ): void;
+    getMultipleApplicationPlayerIds(
+      paramsOrCallback?:
+        | Params$Resource$Players$Getmultipleapplicationplayerids
+        | BodyResponseCallback<Schema$GetMultipleApplicationPlayerIdsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetMultipleApplicationPlayerIdsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetMultipleApplicationPlayerIdsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetMultipleApplicationPlayerIdsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Players$Getmultipleapplicationplayerids;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Players$Getmultipleapplicationplayerids;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/games/v1/players/me/multipleApplicationPlayerIds'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetMultipleApplicationPlayerIdsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetMultipleApplicationPlayerIdsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Retrieves scoped player identifiers for currently authenticated user.
      * @example
      * ```js
@@ -4766,6 +4925,13 @@ export namespace games_v1 {
      * Consistency token of the player id. The call returns a 'not found' result when the token is present and invalid. Empty value is ignored. See also GlobalPlayerIdConsistencyTokenProto
      */
     playerIdConsistencyToken?: string;
+  }
+  export interface Params$Resource$Players$Getmultipleapplicationplayerids
+    extends StandardParameters {
+    /**
+     * Required. The application IDs from the Google Play developer console for the games to return scoped ids for.
+     */
+    applicationIds?: string[];
   }
   export interface Params$Resource$Players$Getscopedplayerids
     extends StandardParameters {}
