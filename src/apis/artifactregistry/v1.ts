@@ -226,6 +226,15 @@ export namespace artifactregistry_v1 {
     publicRepository?: string | null;
   }
   /**
+   * DockerRepositoryConfig is docker related repository details. Provides additional configuration details for repositories of the docker format type.
+   */
+  export interface Schema$DockerRepositoryConfig {
+    /**
+     * The repository which enabled this flag prevents all tags from being modified, moved or deleted. This does not prevent tags from being created.
+     */
+    immutableTags?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -401,7 +410,7 @@ export namespace artifactregistry_v1 {
     yumArtifacts?: Schema$YumArtifact[];
   }
   /**
-   * A detailed representation of a GooGet artifact.
+   * A detailed representation of a KFP artifact.
    */
   export interface Schema$KfpArtifact {
     /**
@@ -809,13 +818,17 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$Repository {
     /**
-     * The time when the repository was created.
+     * Output only. The time when the repository was created.
      */
     createTime?: string | null;
     /**
      * The user-provided description of the repository.
      */
     description?: string | null;
+    /**
+     * Docker repository config contains repository level configuration for the repositories of docker type.
+     */
+    dockerConfig?: Schema$DockerRepositoryConfig;
     /**
      * The format of packages that are stored in the repository.
      */
@@ -853,7 +866,7 @@ export namespace artifactregistry_v1 {
      */
     sizeBytes?: string | null;
     /**
-     * The time when the repository was last updated.
+     * Output only. The time when the repository was last updated.
      */
     updateTime?: string | null;
     /**
@@ -2233,6 +2246,7 @@ export namespace artifactregistry_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "dockerConfig": {},
      *       //   "format": "my_format",
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
@@ -2521,6 +2535,7 @@ export namespace artifactregistry_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "dockerConfig": {},
      *   //   "format": "my_format",
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
@@ -2945,6 +2960,7 @@ export namespace artifactregistry_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "dockerConfig": {},
      *       //   "format": "my_format",
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
@@ -2965,6 +2981,7 @@ export namespace artifactregistry_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "dockerConfig": {},
      *   //   "format": "my_format",
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},

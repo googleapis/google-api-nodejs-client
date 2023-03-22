@@ -379,7 +379,7 @@ export namespace artifactregistry_v1beta1 {
    */
   export interface Schema$Repository {
     /**
-     * The time when the repository was created.
+     * Output only. The time when the repository was created.
      */
     createTime?: string | null;
     /**
@@ -411,7 +411,7 @@ export namespace artifactregistry_v1beta1 {
      */
     sizeBytes?: string | null;
     /**
-     * The time when the repository was last updated.
+     * Output only. The time when the repository was last updated.
      */
     updateTime?: string | null;
   }

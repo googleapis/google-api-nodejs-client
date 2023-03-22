@@ -1517,7 +1517,7 @@
       }
     }
   },
-  "revision": "20230208",
+  "revision": "20230313",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1666,6 +1666,17 @@
             "Docker Hub."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DockerRepositoryConfig": {
+      "description": "DockerRepositoryConfig is docker related repository details. Provides additional configuration details for repositories of the docker format type.",
+      "id": "DockerRepositoryConfig",
+      "properties": {
+        "immutableTags": {
+          "description": "The repository which enabled this flag prevents all tags from being modified, moved or deleted. This does not prevent tags from being created.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1913,7 +1924,7 @@
       "type": "object"
     },
     "KfpArtifact": {
-      "description": "A detailed representation of a GooGet artifact.",
+      "description": "A detailed representation of a KFP artifact.",
       "id": "KfpArtifact",
       "properties": {
         "name": {
@@ -2485,13 +2496,18 @@
       "id": "Repository",
       "properties": {
         "createTime": {
-          "description": "The time when the repository was created.",
+          "description": "Output only. The time when the repository was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
           "description": "The user-provided description of the repository.",
           "type": "string"
+        },
+        "dockerConfig": {
+          "$ref": "DockerRepositoryConfig",
+          "description": "Docker repository config contains repository level configuration for the repositories of docker type."
         },
         "format": {
           "description": "The format of packages that are stored in the repository.",
@@ -2568,8 +2584,9 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "The time when the repository was last updated.",
+          "description": "Output only. The time when the repository was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "virtualRepositoryConfig": {
