@@ -251,6 +251,53 @@ export namespace dataform_v1beta1 {
     name?: string | null;
   }
   /**
+   * Represents a single commit log.
+   */
+  export interface Schema$CommitLogEntry {
+    /**
+     * The commit author for this commit log entry.
+     */
+    author?: Schema$CommitAuthor;
+    /**
+     * The commit message for this commit log entry.
+     */
+    commitMessage?: string | null;
+    /**
+     * The commit SHA for this commit log entry.
+     */
+    commitSha?: string | null;
+    /**
+     * Commit timestamp.
+     */
+    commitTime?: string | null;
+  }
+  /**
+   * Represents a Dataform Git commit.
+   */
+  export interface Schema$CommitMetadata {
+    /**
+     * Required. The commit's author.
+     */
+    author?: Schema$CommitAuthor;
+    /**
+     * Optional. The commit's message.
+     */
+    commitMessage?: string | null;
+  }
+  /**
+   * `CommitRepositoryChanges` request message.
+   */
+  export interface Schema$CommitRepositoryChangesRequest {
+    /**
+     * Required. The changes to commit to the repository.
+     */
+    commitMetadata?: Schema$CommitMetadata;
+    /**
+     * A map to the path of the file to the operation. The path is the ull file path including filename, from repository root.
+     */
+    fileOperations?: {[key: string]: Schema$FileOperation} | null;
+  }
+  /**
    * `CommitWorkspaceChanges` request message.
    */
   export interface Schema$CommitWorkspaceChangesRequest {
@@ -359,6 +406,15 @@ export namespace dataform_v1beta1 {
     target?: Schema$Target;
   }
   /**
+   * `ComputeRepositoryAccessTokenStatus` response message.
+   */
+  export interface Schema$ComputeRepositoryAccessTokenStatusResponse {
+    /**
+     * Indicates the status of the Git access token.
+     */
+    tokenStatus?: string | null;
+  }
+  /**
    * Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.
    */
   export interface Schema$Declaration {
@@ -368,7 +424,11 @@ export namespace dataform_v1beta1 {
     relationDescriptor?: Schema$RelationDescriptor;
   }
   /**
-   * Represents a single entry in a workspace directory.
+   * Represents the delete file operation.
+   */
+  export interface Schema$DeleteFile {}
+  /**
+   * Represents a single entry in a directory.
    */
   export interface Schema$DirectoryEntry {
     /**
@@ -444,6 +504,32 @@ export namespace dataform_v1beta1 {
      * The remote repository's branch names.
      */
     branches?: string[] | null;
+  }
+  /**
+   * `FetchRepositoryHistory` response message.
+   */
+  export interface Schema$FetchRepositoryHistoryResponse {
+    /**
+     * A list of commit logs, ordered by 'git log' default order.
+     */
+    commits?: Schema$CommitLogEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Represents a single file operation to the repository.
+   */
+  export interface Schema$FileOperation {
+    /**
+     * Represents the delete operation.
+     */
+    deleteFile?: Schema$DeleteFile;
+    /**
+     * Represents the write operation.
+     */
+    writeFile?: Schema$WriteFile;
   }
   /**
    * Controls Git remote configuration for a repository.
@@ -856,6 +942,19 @@ export namespace dataform_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * `QueryRepositoryDirectoryContents` response message.
+   */
+  export interface Schema$QueryRepositoryDirectoryContentsResponse {
+    /**
+     * List of entries in the directory.
+     */
+    directoryEntries?: Schema$DirectoryEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * `QueryWorkflowInvocationActions` response message.
    */
   export interface Schema$QueryWorkflowInvocationActionsResponse {
@@ -876,6 +975,15 @@ export namespace dataform_v1beta1 {
      * The file's contents.
      */
     fileContents?: string | null;
+  }
+  /**
+   * `ReadRepositoryFile` response message.
+   */
+  export interface Schema$ReadRepositoryFileResponse {
+    /**
+     * The file's contents.
+     */
+    contents?: string | null;
   }
   /**
    * Represents a database relation.
@@ -1014,6 +1122,18 @@ export namespace dataform_v1beta1 {
      * Optional. If set, configures this repository to be linked to a Git remote.
      */
     gitRemoteSettings?: Schema$GitRemoteSettings;
+    /**
+     * Optional. Input only. The initial commit file contents. Represented as map from file path to contents. The path is the full file path to commit including filename, from repository root.
+     */
+    initialCommitFileContents?: {[key: string]: string} | null;
+    /**
+     * Optional. Input only. An optional initial commit metadata for the Repository. The Repository must not have a value for `git_remote_settings.url`.
+     */
+    initialCommitMetadata?: Schema$CommitMetadata;
+    /**
+     * Optional. Repository user labels.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The repository's name.
      */
@@ -1260,6 +1380,15 @@ export namespace dataform_v1beta1 {
      * Optional. The prefix that should be prepended to all table names.
      */
     tablePrefix?: string | null;
+  }
+  /**
+   * Represents the write file operation (for files added or modified).
+   */
+  export interface Schema$WriteFile {
+    /**
+     * The file's contents.
+     */
+    contents?: string | null;
   }
   /**
    * `WriteFile` request message.
@@ -1634,6 +1763,281 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Applies a Git commit to a Repository. The Repository must not have a value for `git_remote_settings.url`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.repositories.commit({
+     *     // Required. The repository's name.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commitMetadata": {},
+     *       //   "fileOperations": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commit(
+      params?: Params$Resource$Projects$Locations$Repositories$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    commit(
+      params: Params$Resource$Projects$Locations$Repositories$Commit,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    commit(callback: BodyResponseCallback<Schema$Empty>): void;
+    commit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Commit
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Repositories$Commit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:commit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Computes a Repository's Git access token status.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.computeAccessTokenStatus({
+     *       // Required. The repository's name.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "tokenStatus": "my_tokenStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeAccessTokenStatus(
+      params: Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    computeAccessTokenStatus(
+      params?: Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ComputeRepositoryAccessTokenStatusResponse>;
+    computeAccessTokenStatus(
+      params: Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeAccessTokenStatus(
+      params: Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeRepositoryAccessTokenStatusResponse>,
+      callback: BodyResponseCallback<Schema$ComputeRepositoryAccessTokenStatusResponse>
+    ): void;
+    computeAccessTokenStatus(
+      params: Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus,
+      callback: BodyResponseCallback<Schema$ComputeRepositoryAccessTokenStatusResponse>
+    ): void;
+    computeAccessTokenStatus(
+      callback: BodyResponseCallback<Schema$ComputeRepositoryAccessTokenStatusResponse>
+    ): void;
+    computeAccessTokenStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus
+        | BodyResponseCallback<Schema$ComputeRepositoryAccessTokenStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeRepositoryAccessTokenStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeRepositoryAccessTokenStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ComputeRepositoryAccessTokenStatusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+name}:computeAccessTokenStatus'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeRepositoryAccessTokenStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeRepositoryAccessTokenStatusResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates a new Repository in a given project and location.
      * @example
      * ```js
@@ -1670,6 +2074,9 @@ export namespace dataform_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "gitRemoteSettings": {},
+     *       //   "initialCommitFileContents": {},
+     *       //   "initialCommitMetadata": {},
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *       //   "workspaceCompilationOverrides": {}
@@ -1681,6 +2088,9 @@ export namespace dataform_v1beta1 {
      *   // Example response
      *   // {
      *   //   "gitRemoteSettings": {},
+     *   //   "initialCommitFileContents": {},
+     *   //   "initialCommitMetadata": {},
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *   //   "workspaceCompilationOverrides": {}
@@ -1905,6 +2315,150 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Fetches a Repository's history of commits. The Repository must not have a value for `git_remote_settings.url`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.repositories.fetchHistory({
+     *     // Required. The repository's name.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     // Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commits": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchHistory(
+      params?: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchRepositoryHistoryResponse>;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>,
+      callback: BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+    ): void;
+    fetchHistory(
+      params: Params$Resource$Projects$Locations$Repositories$Fetchhistory,
+      callback: BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+    ): void;
+    fetchHistory(
+      callback: BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+    ): void;
+    fetchHistory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Fetchhistory
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchRepositoryHistoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchRepositoryHistoryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Fetchhistory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Fetchhistory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:fetchHistory').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchRepositoryHistoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchRepositoryHistoryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Fetches a Repository's remote branches.
      * @example
      * ```js
@@ -2077,6 +2631,9 @@ export namespace dataform_v1beta1 {
      *   // Example response
      *   // {
      *   //   "gitRemoteSettings": {},
+     *   //   "initialCommitFileContents": {},
+     *   //   "initialCommitMetadata": {},
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *   //   "workspaceCompilationOverrides": {}
@@ -2487,6 +3044,9 @@ export namespace dataform_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "gitRemoteSettings": {},
+     *       //   "initialCommitFileContents": {},
+     *       //   "initialCommitMetadata": {},
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *       //   "workspaceCompilationOverrides": {}
@@ -2498,6 +3058,9 @@ export namespace dataform_v1beta1 {
      *   // Example response
      *   // {
      *   //   "gitRemoteSettings": {},
+     *   //   "initialCommitFileContents": {},
+     *   //   "initialCommitMetadata": {},
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *   //   "workspaceCompilationOverrides": {}
@@ -2589,6 +3152,295 @@ export namespace dataform_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Repository>(parameters);
+      }
+    }
+
+    /**
+     * Returns the contents of a given Repository directory. The Repository must not have a value for `git_remote_settings.url`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataform.projects.locations.repositories.queryDirectoryContents({
+     *       // Optional. The Commit SHA for the commit to query from. If unset, the directory will be queried from HEAD.
+     *       commitSha: 'placeholder-value',
+     *       // Required. The repository's name.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *       // Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Optional. The directory's full path including directory name, relative to root. If left unset, the root is used.
+     *       path: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "directoryEntries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryDirectoryContents(
+      params?: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryRepositoryDirectoryContentsResponse>;
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>,
+      callback: BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+    ): void;
+    queryDirectoryContents(
+      params: Params$Resource$Projects$Locations$Repositories$Querydirectorycontents,
+      callback: BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+    ): void;
+    queryDirectoryContents(
+      callback: BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+    ): void;
+    queryDirectoryContents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Querydirectorycontents
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryRepositoryDirectoryContentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$QueryRepositoryDirectoryContentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Querydirectorycontents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Querydirectorycontents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:queryDirectoryContents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryRepositoryDirectoryContentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryRepositoryDirectoryContentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the contents of a file (inside a Repository). The Repository must not have a value for `git_remote_settings.url`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.repositories.readFile({
+     *     // Optional. The commit SHA for the commit to read from. If unset, the file will be read from HEAD.
+     *     commitSha: 'placeholder-value',
+     *     // Required. The repository's name.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     // Required. Full file path to read including filename, from repository root.
+     *     path: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contents": "my_contents"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    readFile(
+      params?: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReadRepositoryFileResponse>;
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>,
+      callback: BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+    ): void;
+    readFile(
+      params: Params$Resource$Projects$Locations$Repositories$Readfile,
+      callback: BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+    ): void;
+    readFile(
+      callback: BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+    ): void;
+    readFile(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Readfile
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReadRepositoryFileResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Readfile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Repositories$Readfile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:readFile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReadRepositoryFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReadRepositoryFileResponse>(parameters);
       }
     }
 
@@ -2882,6 +3734,25 @@ export namespace dataform_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Commit
+    extends StandardParameters {
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitRepositoryChangesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Computeaccesstokenstatus
+    extends StandardParameters {
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Create
     extends StandardParameters {
     /**
@@ -2908,6 +3779,21 @@ export namespace dataform_v1beta1 {
      * Required. The repository's name.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Fetchhistory
+    extends StandardParameters {
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Fetchremotebranches
     extends StandardParameters {
@@ -2972,6 +3858,44 @@ export namespace dataform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Repository;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Querydirectorycontents
+    extends StandardParameters {
+    /**
+     * Optional. The Commit SHA for the commit to query from. If unset, the directory will be queried from HEAD.
+     */
+    commitSha?: string;
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The directory's full path including directory name, relative to root. If left unset, the root is used.
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Readfile
+    extends StandardParameters {
+    /**
+     * Optional. The commit SHA for the commit to read from. If unset, the file will be read from HEAD.
+     */
+    commitSha?: string;
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+    /**
+     * Required. Full file path to read including filename, from repository root.
+     */
+    path?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy
     extends StandardParameters {

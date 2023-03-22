@@ -183,6 +183,59 @@
           "resources": {
             "repositories": {
               "methods": {
+                "commit": {
+                  "description": "Applies a Git commit to a Repository. The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:commit",
+                  "httpMethod": "POST",
+                  "id": "dataform.projects.locations.repositories.commit",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:commit",
+                  "request": {
+                    "$ref": "CommitRepositoryChangesRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "computeAccessTokenStatus": {
+                  "description": "Computes a Repository's Git access token status.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:computeAccessTokenStatus",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.computeAccessTokenStatus",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:computeAccessTokenStatus",
+                  "response": {
+                    "$ref": "ComputeRepositoryAccessTokenStatusResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a new Repository in a given project and location.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories",
@@ -241,6 +294,42 @@
                   "path": "v1beta1/{+name}",
                   "response": {
                     "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetchHistory": {
+                  "description": "Fetches a Repository's history of commits. The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:fetchHistory",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.fetchHistory",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of commits to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:fetchHistory",
+                  "response": {
+                    "$ref": "FetchRepositoryHistoryResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -402,6 +491,87 @@
                   },
                   "response": {
                     "$ref": "Repository"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "queryDirectoryContents": {
+                  "description": "Returns the contents of a given Repository directory. The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:queryDirectoryContents",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.queryDirectoryContents",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "commitSha": {
+                      "description": "Optional. The Commit SHA for the commit to query from. If unset, the directory will be queried from HEAD.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "path": {
+                      "description": "Optional. The directory's full path including directory name, relative to root. If left unset, the root is used.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:queryDirectoryContents",
+                  "response": {
+                    "$ref": "QueryRepositoryDirectoryContentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "readFile": {
+                  "description": "Returns the contents of a file (inside a Repository). The Repository must not have a value for `git_remote_settings.url`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:readFile",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.readFile",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "commitSha": {
+                      "description": "Optional. The commit SHA for the commit to read from. If unset, the file will be read from HEAD.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "path": {
+                      "description": "Required. Full file path to read including filename, from repository root.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:readFile",
+                  "response": {
+                    "$ref": "ReadRepositoryFileResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1796,7 +1966,7 @@
       }
     }
   },
-  "revision": "20230225",
+  "revision": "20230311",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -1958,6 +2128,63 @@
       },
       "type": "object"
     },
+    "CommitLogEntry": {
+      "description": "Represents a single commit log.",
+      "id": "CommitLogEntry",
+      "properties": {
+        "author": {
+          "$ref": "CommitAuthor",
+          "description": "The commit author for this commit log entry."
+        },
+        "commitMessage": {
+          "description": "The commit message for this commit log entry.",
+          "type": "string"
+        },
+        "commitSha": {
+          "description": "The commit SHA for this commit log entry.",
+          "type": "string"
+        },
+        "commitTime": {
+          "description": "Commit timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommitMetadata": {
+      "description": "Represents a Dataform Git commit.",
+      "id": "CommitMetadata",
+      "properties": {
+        "author": {
+          "$ref": "CommitAuthor",
+          "description": "Required. The commit's author."
+        },
+        "commitMessage": {
+          "description": "Optional. The commit's message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommitRepositoryChangesRequest": {
+      "description": "`CommitRepositoryChanges` request message.",
+      "id": "CommitRepositoryChangesRequest",
+      "properties": {
+        "commitMetadata": {
+          "$ref": "CommitMetadata",
+          "description": "Required. The changes to commit to the repository."
+        },
+        "fileOperations": {
+          "additionalProperties": {
+            "$ref": "FileOperation"
+          },
+          "description": "A map to the path of the file to the operation. The path is the ull file path including filename, from repository root.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "CommitWorkspaceChangesRequest": {
       "description": "`CommitWorkspaceChanges` request message.",
       "id": "CommitWorkspaceChangesRequest",
@@ -2088,6 +2315,29 @@
       },
       "type": "object"
     },
+    "ComputeRepositoryAccessTokenStatusResponse": {
+      "description": "`ComputeRepositoryAccessTokenStatus` response message.",
+      "id": "ComputeRepositoryAccessTokenStatusResponse",
+      "properties": {
+        "tokenStatus": {
+          "description": "Indicates the status of the Git access token.",
+          "enum": [
+            "TOKEN_STATUS_UNSPECIFIED",
+            "NOT_FOUND",
+            "INVALID",
+            "VALID"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The token could not be found in Secret Manager (or the Dataform Service Account did not have permission to access it).",
+            "The token could not be used to authenticate against the Git remote.",
+            "The token was used successfully to authenticate against the Git remote."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Declaration": {
       "description": "Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.",
       "id": "Declaration",
@@ -2099,8 +2349,14 @@
       },
       "type": "object"
     },
+    "DeleteFile": {
+      "description": "Represents the delete file operation.",
+      "id": "DeleteFile",
+      "properties": {},
+      "type": "object"
+    },
     "DirectoryEntry": {
-      "description": "Represents a single entry in a workspace directory.",
+      "description": "Represents a single entry in a directory.",
       "id": "DirectoryEntry",
       "properties": {
         "directory": {
@@ -2195,6 +2451,39 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FetchRepositoryHistoryResponse": {
+      "description": "`FetchRepositoryHistory` response message.",
+      "id": "FetchRepositoryHistoryResponse",
+      "properties": {
+        "commits": {
+          "description": "A list of commit logs, ordered by 'git log' default order.",
+          "items": {
+            "$ref": "CommitLogEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FileOperation": {
+      "description": "Represents a single file operation to the repository.",
+      "id": "FileOperation",
+      "properties": {
+        "deleteFile": {
+          "$ref": "DeleteFile",
+          "description": "Represents the delete operation."
+        },
+        "writeFile": {
+          "$ref": "WriteFile",
+          "description": "Represents the write operation."
         }
       },
       "type": "object"
@@ -2768,6 +3057,24 @@
       },
       "type": "object"
     },
+    "QueryRepositoryDirectoryContentsResponse": {
+      "description": "`QueryRepositoryDirectoryContents` response message.",
+      "id": "QueryRepositoryDirectoryContentsResponse",
+      "properties": {
+        "directoryEntries": {
+          "description": "List of entries in the directory.",
+          "items": {
+            "$ref": "DirectoryEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "QueryWorkflowInvocationActionsResponse": {
       "description": "`QueryWorkflowInvocationActions` response message.",
       "id": "QueryWorkflowInvocationActionsResponse",
@@ -2791,6 +3098,18 @@
       "id": "ReadFileResponse",
       "properties": {
         "fileContents": {
+          "description": "The file's contents.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReadRepositoryFileResponse": {
+      "description": "`ReadRepositoryFile` response message.",
+      "id": "ReadRepositoryFileResponse",
+      "properties": {
+        "contents": {
           "description": "The file's contents.",
           "format": "byte",
           "type": "string"
@@ -2988,6 +3307,25 @@
         "gitRemoteSettings": {
           "$ref": "GitRemoteSettings",
           "description": "Optional. If set, configures this repository to be linked to a Git remote."
+        },
+        "initialCommitFileContents": {
+          "additionalProperties": {
+            "format": "byte",
+            "type": "string"
+          },
+          "description": "Optional. Input only. The initial commit file contents. Represented as map from file path to contents. The path is the full file path to commit including filename, from repository root.",
+          "type": "object"
+        },
+        "initialCommitMetadata": {
+          "$ref": "CommitMetadata",
+          "description": "Optional. Input only. An optional initial commit metadata for the Repository. The Repository must not have a value for `git_remote_settings.url`."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Repository user labels.",
+          "type": "object"
         },
         "name": {
           "description": "Output only. The repository's name.",
@@ -3344,6 +3682,18 @@
         },
         "tablePrefix": {
           "description": "Optional. The prefix that should be prepended to all table names.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WriteFile": {
+      "description": "Represents the write file operation (for files added or modified).",
+      "id": "WriteFile",
+      "properties": {
+        "contents": {
+          "description": "The file's contents.",
+          "format": "byte",
           "type": "string"
         }
       },
