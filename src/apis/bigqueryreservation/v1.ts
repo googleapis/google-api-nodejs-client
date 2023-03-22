@@ -192,7 +192,7 @@ export namespace bigqueryreservation_v1 {
      */
     commitmentStartTime?: string | null;
     /**
-     * Do not use.
+     * Edition of the capacity commitment.
      */
     edition?: string | null;
     /**
@@ -281,6 +281,10 @@ export namespace bigqueryreservation_v1 {
    */
   export interface Schema$MoveAssignmentRequest {
     /**
+     * The optional assignment ID. A new assignment name is generated if this field is empty. This field can contain only lowercase alphanumeric characters or dashes. Max length is 64 characters.
+     */
+    assignmentId?: string | null;
+    /**
      * The new reservation ID, e.g.: `projects/myotherproject/locations/US/reservations/team2-prod`
      */
     destinationId?: string | null;
@@ -302,7 +306,7 @@ export namespace bigqueryreservation_v1 {
      */
     creationTime?: string | null;
     /**
-     * Do not use.
+     * Edition of the reservation.
      */
     edition?: string | null;
     /**
@@ -3509,6 +3513,7 @@ export namespace bigqueryreservation_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "assignmentId": "my_assignmentId",
      *         //   "destinationId": "my_destinationId"
      *         // }
      *       },
