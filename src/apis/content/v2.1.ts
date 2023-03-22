@@ -1891,7 +1891,7 @@ export namespace content_v2_1 {
      */
     excludedDestinations?: string[] | null;
     /**
-     * Feed label for the DatafeedTarget. Either `country` or `feedLabel` is required. If both `feedLabel` and `country` is specified, the values must match.
+     * Feed label for the DatafeedTarget. Either `country` or `feedLabel` is required. If both `feedLabel` and `country` is specified, the values must match. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-).
      */
     feedLabel?: string | null;
     /**
@@ -5477,7 +5477,7 @@ export namespace content_v2_1 {
      */
     externalSellerId?: string | null;
     /**
-     * Feed label for the item. Either `targetCountry` or `feedLabel` is required.
+     * Feed label for the item. Either `targetCountry` or `feedLabel` is required. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-).
      */
     feedLabel?: string | null;
     /**
@@ -6246,7 +6246,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   * Product fields. Values are only set for fields requested explicitly in the request's search query. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access.
+   * Product fields. Values are only set for fields requested explicitly in the request's search query.
    */
   export interface Schema$ProductView {
     /**
@@ -6885,7 +6885,7 @@ export namespace content_v2_1 {
      */
     productCluster?: Schema$ProductCluster;
     /**
-     * Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access.
+     * Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`.
      */
     productView?: Schema$ProductView;
     /**
@@ -8775,7 +8775,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Claims the website of a Merchant Center sub-account.
+     * Claims the website of a Merchant Center sub-account. Merchant accounts with approved third-party CSSs aren't required to claim a website.
      * @example
      * ```js
      * // Before running the sample:
