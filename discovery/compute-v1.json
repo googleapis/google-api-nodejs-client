@@ -15712,6 +15712,56 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "simulateMaintenanceEvent": {
+          "description": "Simulates maintenance event on specified nodes from the node group.",
+          "flatPath": "projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/simulateMaintenanceEvent",
+          "httpMethod": "POST",
+          "id": "compute.nodeGroups.simulateMaintenanceEvent",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "nodeGroup"
+          ],
+          "parameters": {
+            "nodeGroup": {
+              "description": "Name of the NodeGroup resource whose nodes will go under maintenance simulation.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/simulateMaintenanceEvent",
+          "request": {
+            "$ref": "NodeGroupsSimulateMaintenanceEventRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "testIamPermissions": {
           "description": "Returns permissions that a caller has on the specified resource.",
           "flatPath": "projects/{project}/zones/{zone}/nodeGroups/{resource}/testIamPermissions",
@@ -33123,7 +33173,7 @@
       }
     }
   },
-  "revision": "20230221",
+  "revision": "20230307",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -40874,19 +40924,21 @@
       "id": "GuestOsFeature",
       "properties": {
         "type": {
-          "description": "The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_SNP_CAPABLE For more information, see Enabling guest operating system features.",
+          "description": "The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_SNP_CAPABLE - TDX_CAPABLE For more information, see Enabling guest operating system features.",
           "enum": [
             "FEATURE_TYPE_UNSPECIFIED",
             "GVNIC",
             "MULTI_IP_SUBNET",
             "SECURE_BOOT",
             "SEV_CAPABLE",
+            "SEV_LIVE_MIGRATABLE",
             "SEV_SNP_CAPABLE",
             "UEFI_COMPATIBLE",
             "VIRTIO_SCSI_MULTIQUEUE",
             "WINDOWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -41830,10 +41882,10 @@
             "UNKNOWN"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Endpoint is being drained.",
+            "Endpoint is healthy.",
+            "Endpoint is unhealthy.",
+            "Health status of the endpoint is unknown."
           ],
           "type": "string"
         }
@@ -42079,7 +42131,7 @@
           "type": "integer"
         },
         "requestPath": {
-          "description": "The request path of the HTTP health check request. The default value is /. This field does not support query parameters.",
+          "description": "The request path of the HTTP health check request. The default value is /. This field does not support query parameters. Must comply with RFC3986.",
           "type": "string"
         },
         "selfLink": {
@@ -42481,7 +42533,7 @@
           "type": "integer"
         },
         "requestPath": {
-          "description": "The request path of the HTTPS health check request. The default value is \"/\".",
+          "description": "The request path of the HTTPS health check request. The default value is \"/\". Must comply with RFC3986.",
           "type": "string"
         },
         "selfLink": {
@@ -52004,6 +52056,19 @@
         "nodeTemplate": {
           "description": "Full or partial URL of the node template resource to be updated for this node group.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodeGroupsSimulateMaintenanceEventRequest": {
+      "id": "NodeGroupsSimulateMaintenanceEventRequest",
+      "properties": {
+        "nodes": {
+          "description": "Names of the nodes to go under maintenance simulation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
