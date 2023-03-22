@@ -1326,7 +1326,7 @@
       "id": "cloudprofiler:v2",
       "name": "cloudprofiler",
       "version": "v2",
-      "title": "Stackdriver Profiler API",
+      "title": "Cloud Profiler API",
       "description": "Manages continuous profiling information.",
       "discoveryRestUrl": "https://cloudprofiler.googleapis.com/$discovery/rest?version=v2",
       "icons": {
@@ -1937,6 +1937,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/data-labeling/docs/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "datalineage:v1",
+      "name": "datalineage",
+      "version": "v1",
+      "title": "Data Lineage API",
+      "description": "",
+      "discoveryRestUrl": "https://datalineage.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/data-catalog",
       "preferred": true
     },
     {
@@ -3788,6 +3803,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "migrationcenter:v1alpha1",
+      "name": "migrationcenter",
+      "version": "v1alpha1",
+      "title": "Migration Center API",
+      "description": "",
+      "discoveryRestUrl": "https://migrationcenter.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/migration-center",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "ml:v1",
       "name": "ml",
       "version": "v1",
@@ -4079,6 +4109,21 @@
       "title": "Notebooks API",
       "description": "Notebooks API is used to manage notebook resources in Google Cloud.",
       "discoveryRestUrl": "https://notebooks.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/notebooks/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "notebooks:v2",
+      "name": "notebooks",
+      "version": "v2",
+      "title": "Notebooks API",
+      "description": "Notebooks API is used to manage notebook resources in Google Cloud.",
+      "discoveryRestUrl": "https://notebooks.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4378,7 +4423,7 @@
       "name": "policysimulator",
       "version": "v1alpha",
       "title": "Policy Simulator API",
-      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1beta1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
+      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
       "discoveryRestUrl": "https://policysimulator.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4389,12 +4434,12 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "policysimulator:v1beta1",
+      "id": "policysimulator:v1beta",
       "name": "policysimulator",
-      "version": "v1beta1",
+      "version": "v1beta",
       "title": "Policy Simulator API",
-      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1beta1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
-      "discoveryRestUrl": "https://policysimulator.googleapis.com/$discovery/rest?version=v1beta1",
+      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
+      "discoveryRestUrl": "https://policysimulator.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4408,7 +4453,7 @@
       "name": "policysimulator",
       "version": "v1",
       "title": "Policy Simulator API",
-      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1beta1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
+      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
       "discoveryRestUrl": "https://policysimulator.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5307,7 +5352,7 @@
       "id": "sqladmin:v1beta4",
       "name": "sqladmin",
       "version": "v1beta4",
-      "title": "sqladmin API (prod)",
+      "title": "Cloud SQL Admin API",
       "description": "API for Cloud SQL database instance management",
       "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1beta4",
       "icons": {
@@ -5322,7 +5367,7 @@
       "id": "sqladmin:v1",
       "name": "sqladmin",
       "version": "v1",
-      "title": "sqladmin API (prod)",
+      "title": "Cloud SQL Admin API",
       "description": "API for Cloud SQL database instance management",
       "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1",
       "icons": {

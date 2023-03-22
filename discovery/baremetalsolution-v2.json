@@ -420,7 +420,7 @@
                   ]
                 },
                 "rename": {
-                  "description": "RenameInstance sets a new name for an instance.",
+                  "description": "RenameInstance sets a new name for an instance. Use with caution, previous names become immediately invalidated.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:rename",
                   "httpMethod": "POST",
                   "id": "baremetalsolution.projects.locations.instances.rename",
@@ -659,6 +659,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "rename": {
+                  "description": "RenameNetwork sets a new name for a network. Use with caution, previous names become immediately invalidated.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/networks/{networksId}:rename",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.networks.rename",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the network. Format: projects/{project}/locations/{location}/networks/{network}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/networks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:rename",
+                  "request": {
+                    "$ref": "RenameNetworkRequest"
+                  },
+                  "response": {
+                    "$ref": "Network"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -816,13 +844,41 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "rename": {
+                  "description": "RenameNfsShare sets a new name for an nfsshare. Use with caution, previous names become immediately invalidated.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/nfsShares/{nfsSharesId}:rename",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.nfsShares.rename",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the nfsshare. Format: projects/{project}/locations/{location}/nfsshares/{nfsshare}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/nfsShares/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:rename",
+                  "request": {
+                    "$ref": "RenameNfsShareRequest"
+                  },
+                  "response": {
+                    "$ref": "NfsShare"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
             "operations": {
               "methods": {
                 "get": {
-                  "description": "Get details about an operation. This method used only to work around CCFE lack of passthrough LRO support (b/221498758).",
+                  "description": "Get details about an operation.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "baremetalsolution.projects.locations.operations.get",
@@ -1245,6 +1301,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "rename": {
+                  "description": "RenameVolume sets a new name for a volume. Use with caution, previous names become immediately invalidated.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:rename",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.volumes.rename",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the volume. Format: projects/{project}/locations/{location}/volumes/{volume}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:rename",
+                  "request": {
+                    "$ref": "RenameVolumeRequest"
+                  },
+                  "response": {
+                    "$ref": "Volume"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "resize": {
                   "description": "Emergency Volume resize.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:resize",
@@ -1521,7 +1605,7 @@
       }
     }
   },
-  "revision": "20230215",
+  "revision": "20230315",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1693,6 +1777,11 @@
         "createTime": {
           "description": "Output only. Create a time stamp.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firmwareVersion": {
+          "description": "Output only. The firmware version for the instance.",
           "readOnly": true,
           "type": "string"
         },
@@ -2238,6 +2327,14 @@
         "id": {
           "description": "An identifier for the LUN, generated by the backend.",
           "type": "string"
+        },
+        "instances": {
+          "description": "Output only. Instances this Lun is attached to.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "multiprotocolType": {
           "description": "The LUN multiprotocol type ensures the characteristics of the LUN are optimized for each operating system.",
@@ -2974,8 +3071,41 @@
       "description": "Message requesting rename of a server.",
       "id": "RenameInstanceRequest",
       "properties": {
-        "newName": {
-          "description": "Required. The new `name` of the instance. Format: {instancename}",
+        "newInstanceId": {
+          "description": "Required. The new `id` of the instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenameNetworkRequest": {
+      "description": "Message requesting rename of a server.",
+      "id": "RenameNetworkRequest",
+      "properties": {
+        "newNetworkId": {
+          "description": "Required. The new `id` of the network.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenameNfsShareRequest": {
+      "description": "Message requesting rename of a server.",
+      "id": "RenameNfsShareRequest",
+      "properties": {
+        "newNfsshareId": {
+          "description": "Required. The new `id` of the nfsshare.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenameVolumeRequest": {
+      "description": "Message requesting rename of a server.",
+      "id": "RenameVolumeRequest",
+      "properties": {
+        "newVolumeId": {
+          "description": "Required. The new `id` of the volume.",
           "type": "string"
         }
       },
@@ -3211,6 +3341,11 @@
       "description": "A storage volume.",
       "id": "Volume",
       "properties": {
+        "attached": {
+          "description": "Output only. Is the Volume attached at at least one instance. This field is a lightweight counterpart of `instances` field. It is filled in List responses as well.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "autoGrownSizeGib": {
           "description": "The size, in GiB, that this storage volume has expanded as a result of an auto grow policy. In the absence of auto-grow, the value is 0.",
           "format": "int64",
@@ -3240,6 +3375,14 @@
         "id": {
           "description": "An identifier for the `Volume`, generated by the backend.",
           "type": "string"
+        },
+        "instances": {
+          "description": "Output only. Instances this Volume is attached to. This field is set only in Get requests.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "labels": {
           "additionalProperties": {

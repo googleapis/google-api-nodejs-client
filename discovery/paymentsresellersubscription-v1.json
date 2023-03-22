@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230302",
+  "revision": "20230321",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -1010,8 +1010,8 @@
             "The state is unspecified.",
             "The subscription is created, a state before it is moved to STATE_ACTIVE.",
             "The subscription is active.",
-            "The subscription is cancelled.",
-            "The subscription has not been extended by the partner after the end of current cycle.",
+            "The subscription is cancelled. This is the final state of the subscription, as it can no longer be modified or reactivated.",
+            "The subscription is in grace period. It can happen: 1) in manual extend mode, the subscription is not extended by the partner at the end of current cycle. 2) for outbound authorization enabled partners, a renewal purchase order is rejected.",
             "The subscription is waiting to be cancelled by the next recurrence cycle.",
             "The subscription is suspended."
           ],
@@ -1132,7 +1132,7 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "The line item is in ACTIVE state.",
+            "The line item is in ACTIVE state. If the subscription is cancelled or suspended, the line item will not be charged even if the line item is active.",
             "The line item is in INACTIVE state.",
             "The line item is new, and is not activated or charged yet.",
             "The line item is being activated in order to be charged. If a free trial applies to the line item, the line item is pending a prorated charge at the end of the free trial period, as indicated by `line_item_free_trial_end_time`.",

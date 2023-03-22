@@ -674,7 +674,7 @@
       }
     }
   },
-  "revision": "20210921",
+  "revision": "20230320",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {
@@ -782,7 +782,7 @@
           "description": "Image belonging to a custom search result.",
           "properties": {
             "byteSize": {
-              "description": "The size of the image, in pixels.",
+              "description": "The size of the image, in bytes.",
               "format": "int32",
               "type": "integer"
             },
