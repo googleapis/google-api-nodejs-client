@@ -442,6 +442,10 @@ export namespace accesscontextmanager_v1 {
      */
     accessLevels?: string[] | null;
     /**
+     * Optional. Dry run access level that will be evaluated but will not be enforced. The access denial based on dry run policy will be logged. Only one access level is supported, not multiple. This list must have exactly one element. Example: "accessPolicies/9522/accessLevels/device_trusted"
+     */
+    dryRunAccessLevels?: string[] | null;
+    /**
      * Required. Immutable. Google Group id whose members are subject to this binding's restrictions. See "id" in the [G Suite Directory API's Groups resource] (https://developers.google.com/admin-sdk/directory/v1/reference/groups#resource). If a group's email address/alias is changed, this resource will continue to point at the changed group. This field does not accept group email addresses or aliases. Example: "01d520gv4vjcrht"
      */
     groupKey?: string | null;
@@ -5568,7 +5572,7 @@ export namespace accesscontextmanager_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -5802,6 +5806,7 @@ export namespace accesscontextmanager_v1 {
      *         // request body parameters
      *         // {
      *         //   "accessLevels": [],
+     *         //   "dryRunAccessLevels": [],
      *         //   "groupKey": "my_groupKey",
      *         //   "name": "my_name"
      *         // }
@@ -6081,6 +6086,7 @@ export namespace accesscontextmanager_v1 {
      *   // Example response
      *   // {
      *   //   "accessLevels": [],
+     *   //   "dryRunAccessLevels": [],
      *   //   "groupKey": "my_groupKey",
      *   //   "name": "my_name"
      *   // }
@@ -6363,6 +6369,7 @@ export namespace accesscontextmanager_v1 {
      *         // request body parameters
      *         // {
      *         //   "accessLevels": [],
+     *         //   "dryRunAccessLevels": [],
      *         //   "groupKey": "my_groupKey",
      *         //   "name": "my_name"
      *         // }
