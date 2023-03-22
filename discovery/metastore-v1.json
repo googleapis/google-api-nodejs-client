@@ -527,7 +527,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "metastore.projects.locations.operations.list",
@@ -1255,7 +1255,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230313",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1301,6 +1301,29 @@
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuxiliaryVersionConfig": {
+      "description": "Configuration information for the auxiliary service versions.",
+      "id": "AuxiliaryVersionConfig",
+      "properties": {
+        "configOverrides": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A mapping of Hive metastore configuration key-value pairs to apply to the auxiliary Hive metastore (configured in hive-site.xml) in addition to the primary version's overrides. If keys are present in both the auxiliary version's overrides and the primary version's overrides, the value from the auxiliary version's overrides takes precedence.",
+          "type": "object"
+        },
+        "networkConfig": {
+          "$ref": "NetworkConfig",
+          "description": "Output only. The network configuration contains the endpoint URI(s) of the auxiliary Hive metastore service.",
+          "readOnly": true
+        },
+        "version": {
+          "description": "The Hive metastore version of the auxiliary service. It must be less than the primary Hive metastore service's version.",
           "type": "string"
         }
       },
@@ -1625,6 +1648,13 @@
       "description": "Specifies configuration information specific to running Hive metastore software as the metastore service.",
       "id": "HiveMetastoreConfig",
       "properties": {
+        "auxiliaryVersions": {
+          "additionalProperties": {
+            "$ref": "AuxiliaryVersionConfig"
+          },
+          "description": "A mapping of Hive metastore version to the auxiliary version configuration. When specified, a secondary Hive metastore service is created along with the primary service. All auxiliary versions must be less than the service's primary version. The key is the auxiliary service name and it must match the regular expression a-z?. This means that the first character must be a lowercase letter, and all the following characters must be hyphens, lowercase letters, or digits, except the last character, which cannot be a hyphen.",
+          "type": "object"
+        },
         "configOverrides": {
           "additionalProperties": {
             "type": "string"
@@ -2250,6 +2280,38 @@
       },
       "type": "object"
     },
+    "ScalingConfig": {
+      "description": "Represents the scaling configuration of a metastore service.",
+      "id": "ScalingConfig",
+      "properties": {
+        "instanceSize": {
+          "description": "An enum of readable instance sizes, with each instance size mapping to a float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))",
+          "enum": [
+            "INSTANCE_SIZE_UNSPECIFIED",
+            "EXTRA_SMALL",
+            "SMALL",
+            "MEDIUM",
+            "LARGE",
+            "EXTRA_LARGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified instance size",
+            "Extra small instance size, maps to a scaling factor of 0.1.",
+            "Small instance size, maps to a scaling factor of 0.5.",
+            "Medium instance size, maps to a scaling factor of 1.0.",
+            "Large instance size, maps to a scaling factor of 3.0.",
+            "Extra large instance size, maps to a scaling factor of 6.0."
+          ],
+          "type": "string"
+        },
+        "scalingFactor": {
+          "description": "Scaling factor, increments of 0.1 for values less than 1.0, and increments of 1.0 for values greater than 1.0.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Secret": {
       "description": "A securely stored value.",
       "id": "Secret",
@@ -2349,6 +2411,10 @@
             "The STABLE release channel contains features that are considered stable and have been validated for production use."
           ],
           "type": "string"
+        },
+        "scalingConfig": {
+          "$ref": "ScalingConfig",
+          "description": "Scaling configuration of the metastore service."
         },
         "state": {
           "description": "Output only. The current state of the metastore service.",

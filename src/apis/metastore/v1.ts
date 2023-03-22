@@ -151,6 +151,23 @@ export namespace metastore_v1 {
     logType?: string | null;
   }
   /**
+   * Configuration information for the auxiliary service versions.
+   */
+  export interface Schema$AuxiliaryVersionConfig {
+    /**
+     * A mapping of Hive metastore configuration key-value pairs to apply to the auxiliary Hive metastore (configured in hive-site.xml) in addition to the primary version's overrides. If keys are present in both the auxiliary version's overrides and the primary version's overrides, the value from the auxiliary version's overrides takes precedence.
+     */
+    configOverrides?: {[key: string]: string} | null;
+    /**
+     * Output only. The network configuration contains the endpoint URI(s) of the auxiliary Hive metastore service.
+     */
+    networkConfig?: Schema$NetworkConfig;
+    /**
+     * The Hive metastore version of the auxiliary service. It must be less than the primary Hive metastore service's version.
+     */
+    version?: string | null;
+  }
+  /**
    * Represents a backend metastore for the federation.
    */
   export interface Schema$BackendMetastore {
@@ -351,6 +368,10 @@ export namespace metastore_v1 {
    * Specifies configuration information specific to running Hive metastore software as the metastore service.
    */
   export interface Schema$HiveMetastoreConfig {
+    /**
+     * A mapping of Hive metastore version to the auxiliary version configuration. When specified, a secondary Hive metastore service is created along with the primary service. All auxiliary versions must be less than the service's primary version. The key is the auxiliary service name and it must match the regular expression a-z?. This means that the first character must be a lowercase letter, and all the following characters must be hyphens, lowercase letters, or digits, except the last character, which cannot be a hyphen.
+     */
+    auxiliaryVersions?: {[key: string]: Schema$AuxiliaryVersionConfig} | null;
     /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the Hive metastore (configured in hive-site.xml). The mappings override system defaults (some keys cannot be overridden). These overrides are also applied to auxiliary versions and can be further customized in the auxiliary version's AuxiliaryVersionConfig.
      */
@@ -741,6 +762,19 @@ export namespace metastore_v1 {
     restoreType?: string | null;
   }
   /**
+   * Represents the scaling configuration of a metastore service.
+   */
+  export interface Schema$ScalingConfig {
+    /**
+     * An enum of readable instance sizes, with each instance size mapping to a float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))
+     */
+    instanceSize?: string | null;
+    /**
+     * Scaling factor, increments of 0.1 for values less than 1.0, and increments of 1.0 for values greater than 1.0.
+     */
+    scalingFactor?: number | null;
+  }
+  /**
    * A securely stored value.
    */
   export interface Schema$Secret {
@@ -809,6 +843,10 @@ export namespace metastore_v1 {
      * Immutable. The release channel of the service. If unspecified, defaults to STABLE.
      */
     releaseChannel?: string | null;
+    /**
+     * Scaling configuration of the metastore service.
+     */
+    scalingConfig?: Schema$ScalingConfig;
     /**
      * Output only. The current state of the metastore service.
      */
@@ -2874,7 +2912,7 @@ export namespace metastore_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x\}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.
      * @example
      * ```js
      * // Before running the sample:
@@ -3126,6 +3164,7 @@ export namespace metastore_v1 {
      *       //   "networkConfig": {},
      *       //   "port": 0,
      *       //   "releaseChannel": "my_releaseChannel",
+     *       //   "scalingConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "telemetryConfig": {},
@@ -3562,6 +3601,7 @@ export namespace metastore_v1 {
      *   //   "networkConfig": {},
      *   //   "port": 0,
      *   //   "releaseChannel": "my_releaseChannel",
+     *   //   "scalingConfig": {},
      *   //   "state": "my_state",
      *   //   "stateMessage": "my_stateMessage",
      *   //   "telemetryConfig": {},
@@ -3989,6 +4029,7 @@ export namespace metastore_v1 {
      *       //   "networkConfig": {},
      *       //   "port": 0,
      *       //   "releaseChannel": "my_releaseChannel",
+     *       //   "scalingConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "telemetryConfig": {},
