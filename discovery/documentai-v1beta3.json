@@ -255,7 +255,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "documentai.projects.locations.operations.list",
@@ -788,6 +788,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "importProcessorVersion": {
+                      "description": "Imports a processor version from source processor version.",
+                      "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions:importProcessorVersion",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.processors.processorVersions.importProcessorVersion",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The destination processor name to create the processor version in. Format: `projects/{project}/locations/{location}/processors/{processor}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta3/{+parent}/processorVersions:importProcessorVersion",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists all versions of a processor.",
                       "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions",
@@ -984,9 +1012,53 @@
       }
     }
   },
-  "revision": "20230218",
+  "revision": "20230320",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
+    "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
+      "description": "Metadata of the auto-labeling documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        },
+        "individualAutoLabelStatuses": {
+          "description": "The list of individual auto-labeling statuses of the dataset documents.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus"
+          },
+          "type": "array"
+        },
+        "totalDocumentCount": {
+          "description": "Total number of the auto-labeling documents.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus": {
+      "description": "The status of individual documents in the auto-labeling process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus",
+      "properties": {
+        "gcsUri": {
+          "description": "The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of the document auto-labeling."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse": {
+      "description": "The response proto of AutoLabelDocuments method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
       "id": "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata",
       "properties": {
@@ -3030,7 +3102,7 @@
             "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
             "Add an element.",
             "Remove an element identified by `parent`.",
-            "Updates any fields within the given provenance scope of the message. It 'overwrites' the fields rather than replacing them. This is especially relevant when we just want to update a field value of an entity without also affecting all the child properties.",
+            "Updates any fields within the given provenance scope of the message. It overwrites the fields rather than replacing them. Use this when you want to update a field value of an entity without also updating all the child properties.",
             "Currently unused. Replace an element identified by `parent`.",
             "Deprecated. Request human review for the element identified by `parent`.",
             "Deprecated. Element is reviewed and approved at human review, confidence will be set to 1.0.",
@@ -4333,7 +4405,7 @@
             "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
             "Add an element.",
             "Remove an element identified by `parent`.",
-            "Updates any fields within the given provenance scope of the message. It 'overwrites' the fields rather than replacing them. This is especially relevant when we just want to update a field value of an entity without also affecting all the child properties.",
+            "Updates any fields within the given provenance scope of the message. It overwrites the fields rather than replacing them. Use this when you want to update a field value of an entity without also updating all the child properties.",
             "Currently unused. Replace an element identified by `parent`.",
             "Deprecated. Request human review for the element identified by `parent`.",
             "Deprecated. Element is reviewed and approved at human review, confidence will be set to 1.0.",
@@ -5919,7 +5991,7 @@
             "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
             "Add an element.",
             "Remove an element identified by `parent`.",
-            "Updates any fields within the given provenance scope of the message. It 'overwrites' the fields rather than replacing them. This is especially relevant when we just want to update a field value of an entity without also affecting all the child properties.",
+            "Updates any fields within the given provenance scope of the message. It overwrites the fields rather than replacing them. Use this when you want to update a field value of an entity without also updating all the child properties.",
             "Currently unused. Replace an element identified by `parent`.",
             "Deprecated. Request human review for the element identified by `parent`.",
             "Deprecated. Element is reviewed and approved at human review, confidence will be set to 1.0.",
@@ -6636,6 +6708,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata": {
+      "description": "The long running operation metadata for the ImportProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata for the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest": {
+      "description": "The request message for the ImportProcessorVersion method. This method requires Document AI Service Agent of the destination project in the source project's IAM with [Document AI Editor role](https://cloud.google.com/document-ai/docs/access-control/iam-roles). The destination project is specified as part of the `parent` field. The source project is specified as part of `source` field. The Service Agent for Document AI can be found in https://cloud.google.com/iam/docs/service-agents.",
+      "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest",
+      "properties": {
+        "processorVersionSource": {
+          "description": "Required. The source processor version to import from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ImportProcessorVersionResponse": {
+      "description": "The response message for the ImportProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionResponse",
+      "properties": {
+        "processorVersion": {
+          "description": "The destination processor version name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse": {
       "description": "The response from ListEvaluations.",
       "id": "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse",
@@ -6736,9 +6841,35 @@
           },
           "type": "array"
         },
+        "enableImageQualityScores": {
+          "description": "Enables intelligent document quality scores after OCR. Can help with diagnosing why OCR responses are of poor quality for a given input. Adds additional latency comparable to regular OCR to the process call.",
+          "type": "boolean"
+        },
         "enableNativePdfParsing": {
           "description": "Enables special handling for PDFs with existing text information. Results in better text extraction quality in such PDF inputs.",
           "type": "boolean"
+        },
+        "enableSymbol": {
+          "description": "Includes symbol level OCR information if set to true.",
+          "type": "boolean"
+        },
+        "hints": {
+          "$ref": "GoogleCloudDocumentaiV1beta3OcrConfigHints",
+          "description": "Hints for the OCR model."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3OcrConfigHints": {
+      "description": "Hints for OCR Engine",
+      "id": "GoogleCloudDocumentaiV1beta3OcrConfigHints",
+      "properties": {
+        "languageHints": {
+          "description": "List of BCP-47 language codes to use for OCR. In most cases, not specifying it yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting hints is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
