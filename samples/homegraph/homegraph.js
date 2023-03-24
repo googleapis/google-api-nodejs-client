@@ -14,7 +14,7 @@
 'use strict';
 
 const path = require('path');
-const { google } = require('googleapis');
+const {google} = require('googleapis');
 
 // a very simple example of listing locations from the Homegraph API
 async function runSample() {
