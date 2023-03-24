@@ -13,81 +13,90 @@
 
 'use strict';
 
+const path = require('path');
 const {google} = require('googleapis');
 
-// Import necessary modules for the Express server and Firebase functions
-const express = require('express');
-const functions = require('firebase-functions');
+// a very simple example of listing locations from the Homegraph API
+async function runSample() {
+    // Obtain user credentials to use for the request
+    // Configure the Google Home Graph client
+    const homegraphClient = google.homegraph({
+        version: 'v1',
+        auth: new google.auth.GoogleAuth({
+        // Path to the authentication credentials JSON file
+        //key: path.join(__dirname, '../oauth2.keys.json'),
+        keyFile: './smart-home-key-bot.json',
+        // Required Google scopes for accessing Home Graph
+        scopes: 'https://www.googleapis.com/auth/homegraph'
+        })
+    });
+    
 
-// Create an instance of Express
-const app = express();
+    // Replace 'YOUR_USERID' with the ID of the user you want to request the sync for
+    const userId = 'YOUR_USERID';
 
-// Configure the Google Home Graph client
-const homegraphClient = google.homegraph({
-    version: 'v1',
-    auth: new google.auth.GoogleAuth({
-    // Path to the authentication credentials JSON file
-    keyFile: './google_example_key.json',
-    // Required Google scopes for accessing Home Graph
-    scopes: 'https://www.googleapis.com/auth/homegraph'
-    })
-});
-
-// Define the function that will be executed when a HTTPS request is received at the URL of this function
-exports.requestsync = functions.https.onRequest(async (request, response) => {
-    // Get the ID of the user making the request
-    const idUser = request.body.agentUserId;
-
-    // Allow access to this function from any origin (CORS)
-    response.set('Access-Control-Allow-Origin', '*');
-
-    // Log information to Firebase logs
-    functions.logger.info(`Request SYNC for user ${idUser}`);
-
+    /* RequestSync
+    *This is a very simple example of requesting a sync for a user's devices using the Google Home Graph API.
+    *
+    *For more information on how to implement this correctly in production, please refer to the official documentation:
+    *https://developers.google.com/assistant/smarthome/develop/report-state#request_sync
+    */
     try {
         // Make a request to Home Graph to sync the user's devices
         const res = await homegraphClient.devices.requestSync({
         requestBody: {
-            agentUserId: idUser, // Use the user ID obtained earlier
-            async: request.body.async
+            agentUserId: userId, // Use the user ID obtained earlier
+            async: false
         }
         });
 
         // Send the Home Graph response to the client that made the request
-        response.json(res.data);
-        functions.logger.log('Request sync completed');
+        console.log(res.data);
+        // NOTE: Uncomment the following line in production to send the Home Graph response to the client making the request
+        //response.json(res.data);
     } catch (err) {
         // If there is an error, log it and send an error response to the client
-        functions.logger.error(err);
-        response.status(500).send(`Error requesting sync: ${err}`);
+        console.log(`Error requesting sync: ${err}`);
     }
-});
 
-// Define another function that will be executed when a HTTPS request is received at the URL of this function
-exports.reportstate = functions.https.onRequest(async (request, response) => {
-    // Get the ID of the user making the request
-    const idUser = request.body.agentUserId;
-    
-    // Allow access to this function from any origin (CORS)
-    response.set('Access-Control-Allow-Origin', '*');
-    
-    // Log information to Firebase logs
-    functions.logger.info(`Report state for user ${idUser}`);
-    
+    /*
+    * Use the reportState() function instead of this one to report device states.
+    * This function is intended to report device notifications only.
+    * 
+    * See the official documentation for more information:
+    * https://developers.google.com/assistant/smarthome/develop/report-state
+    */
     try {
-        // Make a request to Home Graph to report the state and notifications of the user's devices
         const res = await homegraphClient.devices.reportStateAndNotification({
-            requestBody: request.body
+            // NOTE: Uncomment the following line in production to send the Home Graph response to the client making the request
+            //requestBody: request.body
+            requestBody: {
+                "requestId": "123ABC",
+                "agentUserId": userId,
+                "payload": {
+                    "devices": {
+                      "states": {
+                        "light-123": {
+                          "on": true
+                        }
+                      }
+                    }
+                  }
+              }
         });
         // Send the Home Graph response to the client that made the request
-        response.json(res.data);
-        functions.logger.log('Report state completed');
+        console.log('Report state completed');
+        console.log(res.data);
+        // NOTE: Uncomment the following line in production to send the Home Graph response to the client making the request
+        //response.json(res.data);
     } catch (err) {
-    // If there is an error, log it and send an error response to the client
-    functions.logger.error(err);
-    response.status(500).send(`Error reporting state: ${err}`);
+        // If there is an error, log it and send an error response to the client
+        console.log(`Error reporting state: ${err}`);
     }
-    });
+}
 
-// Export the instance of Express so it can be used by Firebase
-exports.app = functions.https.onRequest(app);
+if (module === require.main) {
+  runSample().catch(console.error);
+}
+
+module.exports = runSample;
