@@ -204,7 +204,7 @@
       }
     }
   },
-  "revision": "20230226",
+  "revision": "20230402",
   "rootUrl": "https://advisorynotifications.googleapis.com/",
   "schemas": {
     "GoogleCloudAdvisorynotificationsV1Attachment": {
@@ -338,6 +338,20 @@
         },
         "name": {
           "description": "The resource name of the notification. Format: organizations/{organization}/locations/{location}/notifications/{notification}.",
+          "type": "string"
+        },
+        "notificationType": {
+          "description": "Type of notification",
+          "enum": [
+            "NOTIFICATION_TYPE_UNSPECIFIED",
+            "NOTIFICATION_TYPE_SECURITY_PRIVACY_ADVISORY",
+            "NOTIFICATION_TYPE_SENSITIVE_ACTIONS"
+          ],
+          "enumDescriptions": [
+            "Default type",
+            "Security and privacy advisory notifications",
+            "Sensitive action notifications"
+          ],
           "type": "string"
         },
         "subject": {
