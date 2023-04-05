@@ -728,6 +728,10 @@ export namespace eventarc_v1 {
      */
     etag?: string | null;
     /**
+     * Optional. EventDataContentType specifies the type of payload in MIME format that is expected from the CloudEvent data field. This will be set to `application/json` if the value is not defined.
+     */
+    eventDataContentType?: string | null;
+    /**
      * Required. Unordered list. The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.
      */
     eventFilters?: Schema$EventFilter[];
@@ -4699,6 +4703,7 @@ export namespace eventarc_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "eventDataContentType": "my_eventDataContentType",
      *       //   "eventFilters": [],
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -5001,6 +5006,7 @@ export namespace eventarc_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destination": {},
      *   //   "etag": "my_etag",
+     *   //   "eventDataContentType": "my_eventDataContentType",
      *   //   "eventFilters": [],
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -5422,6 +5428,7 @@ export namespace eventarc_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "eventDataContentType": "my_eventDataContentType",
      *       //   "eventFilters": [],
      *       //   "labels": {},
      *       //   "name": "my_name",
