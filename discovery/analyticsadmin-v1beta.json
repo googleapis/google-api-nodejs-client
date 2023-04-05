@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230404",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -3170,11 +3170,8 @@
               "DATA_RETENTION_SETTINGS",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
-              "SEARCH_ADS_360_LINK",
               "DATA_STREAM",
-              "ATTRIBUTION_SETTINGS",
-              "EXPANDED_DATA_SET",
-              "CHANNEL_GROUP"
+              "ATTRIBUTION_SETTINGS"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -3188,11 +3185,8 @@
               "DataRetentionSettings resource",
               "DisplayVideo360AdvertiserLink resource",
               "DisplayVideo360AdvertiserLinkProposal resource",
-              "SearchAds360Link resource",
               "DataStream resource",
-              "AttributionSettings resource",
-              "ExpandedDataSet resource",
-              "ChannelGroup resource"
+              "AttributionSettings resource"
             ],
             "type": "string"
           },
