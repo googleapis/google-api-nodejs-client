@@ -318,9 +318,13 @@ export namespace chromepolicy_v1 {
    */
   export interface Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest {
     /**
-     * Required. The namespace of the policy type for the request.
+     * The namespace of the policy type for the request.
      */
     policyNamespace?: string | null;
+    /**
+     * The schema name of the policy for the request.
+     */
+    policySchema?: string | null;
     /**
      * Required. The key of the target for which we want to retrieve the group priority ordering. The target resource must point to an app.
      */
@@ -338,6 +342,10 @@ export namespace chromepolicy_v1 {
      * Output only. The namespace of the policy type of the group IDs.
      */
     policyNamespace?: string | null;
+    /**
+     * Output only. The schema name of the policy for the group IDs.
+     */
+    policySchema?: string | null;
     /**
      * Output only. The target resource for which the group priority ordering has been retrieved.
      */
@@ -754,9 +762,13 @@ export namespace chromepolicy_v1 {
      */
     groupIds?: string[] | null;
     /**
-     * Required. The namespace of the policy type for the request.
+     * The namespace of the policy type for the request.
      */
     policyNamespace?: string | null;
+    /**
+     * The schema name of the policy for the request.
+     */
+    policySchema?: string | null;
     /**
      * Required. The key of the target for which we want to update the group priority ordering. The target resource must point to an app.
      */
@@ -1399,6 +1411,7 @@ export namespace chromepolicy_v1 {
      *         // request body parameters
      *         // {
      *         //   "policyNamespace": "my_policyNamespace",
+     *         //   "policySchema": "my_policySchema",
      *         //   "policyTargetKey": {}
      *         // }
      *       },
@@ -1409,6 +1422,7 @@ export namespace chromepolicy_v1 {
      *   // {
      *   //   "groupIds": [],
      *   //   "policyNamespace": "my_policyNamespace",
+     *   //   "policySchema": "my_policySchema",
      *   //   "policyTargetKey": {}
      *   // }
      * }
@@ -1551,6 +1565,7 @@ export namespace chromepolicy_v1 {
      *         // {
      *         //   "groupIds": [],
      *         //   "policyNamespace": "my_policyNamespace",
+     *         //   "policySchema": "my_policySchema",
      *         //   "policyTargetKey": {}
      *         // }
      *       },
