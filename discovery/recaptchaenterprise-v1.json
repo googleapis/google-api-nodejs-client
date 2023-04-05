@@ -167,6 +167,158 @@
             }
           }
         },
+        "firewallpolicies": {
+          "methods": {
+            "create": {
+              "description": "Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA Enterprise actions can be executed. A project may have a maximum of 1000 policies.",
+              "flatPath": "v1/projects/{projectsId}/firewallpolicies",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.firewallpolicies.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the project this policy will apply to, in the format \"projects/{project}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/firewallpolicies",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the specified firewall policy.",
+              "flatPath": "v1/projects/{projectsId}/firewallpolicies/{firewallpoliciesId}",
+              "httpMethod": "DELETE",
+              "id": "recaptchaenterprise.projects.firewallpolicies.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the policy to be deleted, in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/firewallpolicies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Returns the specified firewall policy.",
+              "flatPath": "v1/projects/{projectsId}/firewallpolicies/{firewallpoliciesId}",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.firewallpolicies.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the requested policy, in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/firewallpolicies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Returns the list of all firewall policies that belong to a project.",
+              "flatPath": "v1/projects/{projectsId}/firewallpolicies",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.firewallpolicies.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of policies to return. Default is 10. Max limit is 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The next_page_token value returned from a previous. ListFirewallPoliciesRequest, if any.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the project to list the policies for, in the format \"projects/{project}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/firewallpolicies",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates the specified firewall policy.",
+              "flatPath": "v1/projects/{projectsId}/firewallpolicies/{firewallpoliciesId}",
+              "httpMethod": "PATCH",
+              "id": "recaptchaenterprise.projects.firewallpolicies.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The resource name for the FirewallPolicy in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/firewallpolicies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "keys": {
           "methods": {
             "create": {
@@ -514,7 +666,7 @@
       }
     }
   },
-  "revision": "20230312",
+  "revision": "20230402",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -610,6 +762,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "supportNonGoogleAppStoreDistribution": {
+          "description": "Set to true for keys that are used in an Android application that is available for download in app stores in addition to the Google Play Store.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -711,6 +867,10 @@
           "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
           "description": "The event being assessed."
         },
+        "firewallPolicyAssessment": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment",
+          "description": "Assessment returned when firewall policies belonging to the project are evaluated using the field firewall_policy_evaluation."
+        },
         "fraudPreventionAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment",
           "description": "Assessment returned by Fraud Prevention when TransactionData is provided."
@@ -799,7 +959,11 @@
           "type": "string"
         },
         "express": {
-          "description": "Optional. Optional flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.",
+          "description": "Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.",
+          "type": "boolean"
+        },
+        "firewallPolicyEvaluation": {
+          "description": "Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy will be evaluated and a suggested firewall action will be returned in the response.",
           "type": "boolean"
         },
         "hashedAccountId": {
@@ -808,7 +972,7 @@
           "type": "string"
         },
         "headers": {
-          "description": "Optional. Optional HTTP header information about the request.",
+          "description": "Optional. HTTP header information about the request.",
           "items": {
             "type": "string"
           },
@@ -841,6 +1005,127 @@
         "userIpAddress": {
           "description": "Optional. The IP address in the request from the user's device related to this event.",
           "type": "string"
+        },
+        "wafTokenAssessment": {
+          "description": "Optional. Flag for running WAF token assessment. If enabled, the token must be specified, and have been created by a WAF-enabled key.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallAction": {
+      "description": "An individual action. Each action represents what to do if a policy matches.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallAction",
+      "properties": {
+        "allow": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction",
+          "description": "The user request did not match any policy and should be allowed access to the requested resource."
+        },
+        "block": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction",
+          "description": "This action will deny access to a given page. The user will get an HTTP error code."
+        },
+        "redirect": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction",
+          "description": "This action will redirect the request to a ReCaptcha interstitial to attach a token."
+        },
+        "setHeader": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction",
+          "description": "This action will set a custom header but allow the request to continue to the customer backend."
+        },
+        "substitute": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction",
+          "description": "This action will transparently serve a different page to an offending user."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction": {
+      "description": "An allow action continues processing a request unimpeded.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction": {
+      "description": "A block action serves an HTTP error code a prevents the request from hitting the backend.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction": {
+      "description": "A redirect action returns a 307 (temporary redirect) response, pointing the user to a ReCaptcha interstitial page to attach a token.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction": {
+      "description": "A set header action sets a header and forwards the request to the backend. This can be used to trigger custom protection implemented on the backend.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction",
+      "properties": {
+        "key": {
+          "description": "The header key to set in the request to the backend server.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The header value to set in the request to the backend server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction": {
+      "description": "A substitute action transparently serves a different page than the one requested.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction",
+      "properties": {
+        "path": {
+          "description": "The address to redirect to. The target is a relative path in the current host. Example: \"/blog/404.html\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallPolicy": {
+      "description": "A FirewallPolicy represents a single matching pattern and resulting actions to take.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
+      "properties": {
+        "actions": {
+          "description": "The actions that the caller should take regarding user access. There should be at most one terminal action. A terminal action is any action that forces a response, such as AllowAction, BlockAction or SubstituteAction. Zero or more non-terminal actions such as SetHeader might be specified. A single policy can contain up to 16 actions.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallAction"
+          },
+          "type": "array"
+        },
+        "condition": {
+          "description": "A CEL (Common Expression Language) conditional expression that specifies if this policy applies to an incoming user request. If this condition evaluates to true and the requested path matched the path pattern, the associated actions should be executed by the caller. The condition string is checked for CEL syntax correctness on creation. For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md). A condition has a max length of 500 characters.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of what this policy aims to achieve, for convenience purposes. The description can at most include 256 UTF-8 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name for the FirewallPolicy in the format \"projects/{project}/firewallpolicies/{firewallpolicy}\".",
+          "type": "string"
+        },
+        "path": {
+          "description": "The path for which this policy applies, specified as a glob pattern. For more information on glob, see the [manual page](https://man7.org/linux/man-pages/man7/glob.7.html). A path has a max length of 200 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment": {
+      "description": "Policy config assessment.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty."
+        },
+        "firewallPolicy": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
+          "description": "Output only. The policy that matched the request. If more than one policy may match, this is the first match. If no policy matches the incoming request, the policy field will be left empty.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -849,6 +1134,10 @@
       "description": "Assessment for Fraud Prevention.",
       "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment",
       "properties": {
+        "behavioralTrustVerdict": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict",
+          "description": "Assessment of this transaction for behavioral trust."
+        },
         "cardTestingVerdict": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict",
           "description": "Assessment of this transaction for risk of being part of a card testing attack."
@@ -859,6 +1148,18 @@
         },
         "transactionRisk": {
           "description": "Probability (0-1) of this transaction being fraudulent. Summarizes the combined risk of attack vectors below.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict": {
+      "description": "Information about behavioral trust of the transaction.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict",
+      "properties": {
+        "trust": {
+          "description": "Probability (0-1) of this transaction attempt being executed in a behaviorally trustworthy way.",
           "format": "float",
           "type": "number"
         }
@@ -916,7 +1217,7 @@
           "description": "Settings for keys that can be used by Android apps."
         },
         "createTime": {
-          "description": "Output only. The timestamp corresponding to the creation of this Key.",
+          "description": "Output only. The timestamp corresponding to the creation of this key.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -951,6 +1252,24 @@
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
           "description": "Settings for keys that can be used by websites."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse": {
+      "description": "Response to request to list firewall policies belonging to a key.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse",
+      "properties": {
+        "firewallPolicies": {
+          "description": "Policy details.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results. It is set to empty if no policies remain in results.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1125,6 +1444,13 @@
       "description": "Risk analysis result for an event.",
       "id": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
       "properties": {
+        "extendedVerdictReasons": {
+          "description": "Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "reasons": {
           "description": "Reasons contributing to the risk analysis verdict.",
           "items": {
@@ -1578,7 +1904,7 @@
             "Redirects suspicious traffic to reCAPTCHA.",
             "Use reCAPTCHA session-tokens to protect the whole user session on the site's domain.",
             "Use reCAPTCHA action-tokens to protect user actions.",
-            "Use reCAPTCHA WAF express protection to protect any context other than web pages, like APIs and IoT devices."
+            "Use reCAPTCHA WAF express protection to protect any content other than web pages, like APIs and IoT devices."
           ],
           "type": "string"
         },
@@ -1657,6 +1983,33 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleRpcStatus": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "GoogleRpcStatus",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
       "type": "object"
     }
   },
