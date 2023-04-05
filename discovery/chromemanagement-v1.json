@@ -596,7 +596,7 @@
               ]
             },
             "findInstalledAppDevices": {
-              "description": "Generate report of devices that have a specified app installed.",
+              "description": "Generate report of managed Chrome browser devices that have a specified app installed.",
               "flatPath": "v1/customers/{customersId}/reports:findInstalledAppDevices",
               "httpMethod": "GET",
               "id": "chromemanagement.customers.reports.findInstalledAppDevices",
@@ -719,7 +719,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id ",
+                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The \"reports_timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
                       "location": "query",
                       "type": "string"
                     },
@@ -770,7 +770,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The \"timestamp\" filter accepts either Epoch milliseconds or RFC 3339 formatted time surrounded by simple double quotes.",
+                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The \"timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
                       "location": "query",
                       "type": "string"
                     },
@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230402",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
