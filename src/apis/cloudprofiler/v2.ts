@@ -129,11 +129,11 @@ export namespace cloudprofiler_v2 {
    */
   export interface Schema$CreateProfileRequest {
     /**
-     * Required. Deployment details.
+     * Deployment details.
      */
     deployment?: Schema$Deployment;
     /**
-     * Required. One or more profile types that the agent is capable of providing.
+     * One or more profile types that the agent is capable of providing.
      */
     profileType?: string[] | null;
   }
