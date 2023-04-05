@@ -1153,6 +1153,10 @@ export namespace drivelabels_v2 {
      */
     creator?: Schema$GoogleAppsDriveLabelsV2UserInfo;
     /**
+     * Output only. The customer this label belongs to. For example: "customers/123abc789."
+     */
+    customer?: string | null;
+    /**
      * Output only. The user who disabled this label. This value has no meaning when the label is not disabled.
      */
     disabler?: Schema$GoogleAppsDriveLabelsV2UserInfo;
@@ -1750,6 +1754,7 @@ export namespace drivelabels_v2 {
      *       //   "appliedLabelPolicy": {},
      *       //   "createTime": "my_createTime",
      *       //   "creator": {},
+     *       //   "customer": "my_customer",
      *       //   "disableTime": "my_disableTime",
      *       //   "disabler": {},
      *       //   "displayHints": {},
@@ -1778,6 +1783,7 @@ export namespace drivelabels_v2 {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2221,6 +2227,7 @@ export namespace drivelabels_v2 {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2388,6 +2395,7 @@ export namespace drivelabels_v2 {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2548,6 +2556,7 @@ export namespace drivelabels_v2 {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2691,6 +2700,8 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.list({
+     *     // The customer to scope this list request to. For example: "customers/abcd1234". If unset, will return all labels within the current customer.
+     *     customer: 'placeholder-value',
      *     // The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.
      *     languageCode: 'placeholder-value',
      *     // Specifies the level of access the user must have on the returned Labels. The minimum role a user must have on a label. Defaults to `READER`.
@@ -2859,6 +2870,7 @@ export namespace drivelabels_v2 {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -3027,6 +3039,7 @@ export namespace drivelabels_v2 {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -3387,6 +3400,10 @@ export namespace drivelabels_v2 {
     view?: string;
   }
   export interface Params$Resource$Labels$List extends StandardParameters {
+    /**
+     * The customer to scope this list request to. For example: "customers/abcd1234". If unset, will return all labels within the current customer.
+     */
+    customer?: string;
     /**
      * The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.
      */
@@ -5759,6 +5776,8 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.users.getCapabilities({
+     *     // The customer to scope this request to. For example: "customers/abcd1234". If unset, will return settings within the current customer.
+     *     customer: 'placeholder-value',
      *     // Required. The resource name of the user. Only "users/me/capabilities" is supported.
      *     name: 'users/my-user/capabilities',
      *   });
@@ -5874,6 +5893,10 @@ export namespace drivelabels_v2 {
 
   export interface Params$Resource$Users$Getcapabilities
     extends StandardParameters {
+    /**
+     * The customer to scope this request to. For example: "customers/abcd1234". If unset, will return settings within the current customer.
+     */
+    customer?: string;
     /**
      * Required. The resource name of the user. Only "users/me/capabilities" is supported.
      */
