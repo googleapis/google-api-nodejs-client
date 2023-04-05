@@ -233,6 +233,7 @@ export {file_v1beta1} from './apis/file/v1beta1';
 export {firebase_v1beta1} from './apis/firebase/v1beta1';
 export {firebaseappcheck_v1} from './apis/firebaseappcheck/v1';
 export {firebaseappcheck_v1beta} from './apis/firebaseappcheck/v1beta';
+export {firebaseappdistribution_v1} from './apis/firebaseappdistribution/v1';
 export {firebasedatabase_v1beta} from './apis/firebasedatabase/v1beta';
 export {firebasedynamiclinks_v1} from './apis/firebasedynamiclinks/v1';
 export {firebasehosting_v1} from './apis/firebasehosting/v1';

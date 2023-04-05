@@ -309,7 +309,7 @@
       }
     }
   },
-  "revision": "20230221",
+  "revision": "20230323",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -350,12 +350,14 @@
           "enum": [
             "CALL_LOG_LEVEL_UNSPECIFIED",
             "LOG_ALL_CALLS",
-            "LOG_ERRORS_ONLY"
+            "LOG_ERRORS_ONLY",
+            "LOG_NONE"
           ],
           "enumDescriptions": [
             "No call logging level specified.",
             "Log all call steps within workflows, all call returns, and all exceptions raised.",
-            "Log only exceptions that are raised from call steps within workflows."
+            "Log only exceptions that are raised from call steps within workflows.",
+            "Explicitly log nothing."
           ],
           "type": "string"
         },

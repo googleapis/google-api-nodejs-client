@@ -480,6 +480,10 @@
     "package": "@google-cloud/advisorynotifications"
   },
   {
+    "api": "alloydb",
+    "package": "@google-cloud/alloydb"
+  },
+  {
     "api": "bigquerydatapolicy",
     "package": "@google-cloud/bigquery-data-exchange"
   },
@@ -602,5 +606,9 @@
   {
     "api": "cloudtrace",
     "package": "@google-cloud/trace-agent"
+  },
+  {
+    "api": "workstations",
+    "package": "@google-cloud/workstations"
   }
 ]

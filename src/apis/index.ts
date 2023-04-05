@@ -292,6 +292,10 @@ import {
   firebaseappcheck,
 } from './firebaseappcheck';
 import {
+  VERSIONS as firebaseappdistributionVersions,
+  firebaseappdistribution,
+} from './firebaseappdistribution';
+import {
   VERSIONS as firebasedatabaseVersions,
   firebasedatabase,
 } from './firebasedatabase';
@@ -770,6 +774,7 @@ export const APIS: APIList = {
   file: fileVersions,
   firebase: firebaseVersions,
   firebaseappcheck: firebaseappcheckVersions,
+  firebaseappdistribution: firebaseappdistributionVersions,
   firebasedatabase: firebasedatabaseVersions,
   firebasedynamiclinks: firebasedynamiclinksVersions,
   firebasehosting: firebasehostingVersions,
@@ -1041,6 +1046,7 @@ export class GeneratedAPIs {
   file = file;
   firebase = firebase;
   firebaseappcheck = firebaseappcheck;
+  firebaseappdistribution = firebaseappdistribution;
   firebasedatabase = firebasedatabase;
   firebasedynamiclinks = firebasedynamiclinks;
   firebasehosting = firebasehosting;
