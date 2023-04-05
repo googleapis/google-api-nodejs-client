@@ -2150,6 +2150,168 @@
                 }
               }
             },
+            "tlsInspectionPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new TlsInspectionPolicy in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tlsInspectionPolicies",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.tlsInspectionPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the TlsInspectionPolicy. Must be in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "tlsInspectionPolicyId": {
+                      "description": "Required. Short name of the TlsInspectionPolicy resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. \"tls_inspection_policy1\".",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/tlsInspectionPolicies",
+                  "request": {
+                    "$ref": "TlsInspectionPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single TlsInspectionPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tlsInspectionPolicies/{tlsInspectionPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.tlsInspectionPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "If set to true, any rules for this TlsInspectionPolicy will also be deleted. (Otherwise, the request will only work if the TlsInspectionPolicy has no rules.)",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. A name of the TlsInspectionPolicy to delete. Must be in the format `projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/tlsInspectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single TlsInspectionPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tlsInspectionPolicies/{tlsInspectionPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.tlsInspectionPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the TlsInspectionPolicy to get. Must be in the format `projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/tlsInspectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "TlsInspectionPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists TlsInspectionPolicies in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tlsInspectionPolicies",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.tlsInspectionPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of TlsInspectionPolicies to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last 'ListTlsInspectionPoliciesResponse' Indicates that this is a continuation of a prior 'ListTlsInspectionPolicies' call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the TlsInspectionPolicies should be listed, specified in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/tlsInspectionPolicies",
+                  "response": {
+                    "$ref": "ListTlsInspectionPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single TlsInspectionPolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tlsInspectionPolicies/{tlsInspectionPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.tlsInspectionPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource. Name is of the form projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy} tls_inspection_policy should match the pattern:(^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/tlsInspectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the TlsInspectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "TlsInspectionPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "urlLists": {
               "methods": {
                 "create": {
@@ -2312,7 +2474,7 @@
       }
     }
   },
-  "revision": "20230309",
+  "revision": "20230327",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -2614,6 +2776,10 @@
           "description": "Required. Name of the resource. Name is of the form projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy} gateway_security_policy should match the pattern:(^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).",
           "type": "string"
         },
+        "tlsInspectionPolicy": {
+          "description": "Optional. Name of a TLS Inspection Policy resource that defines how TLS inspection will be performed for any rule(s) which enables it.",
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was updated.",
           "format": "google-datetime",
@@ -2671,6 +2837,10 @@
         "sessionMatcher": {
           "description": "Required. CEL expression for matching on session criteria.",
           "type": "string"
+        },
+        "tlsInspectionEnabled": {
+          "description": "Optional. Flag to enable TLS inspection of traffic matching on , can only be true if the parent GatewaySecurityPolicy references a TLSInspectionConfig.",
+          "type": "boolean"
         },
         "updateTime": {
           "description": "Output only. Time when the rule was updated.",
@@ -3045,6 +3215,24 @@
       },
       "type": "object"
     },
+    "ListTlsInspectionPoliciesResponse": {
+      "description": "Response returned by the ListTlsInspectionPolicies method.",
+      "id": "ListTlsInspectionPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then 'next_page_token' is included. To get the next set of results, call this method again using the value of 'next_page_token' as 'page_token'.",
+          "type": "string"
+        },
+        "tlsInspectionPolicies": {
+          "description": "List of TlsInspectionPolicies resources.",
+          "items": {
+            "$ref": "TlsInspectionPolicy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListUrlListsResponse": {
       "description": "Response returned by the ListUrlLists method.",
       "id": "ListUrlListsResponse",
@@ -3325,6 +3513,37 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TlsInspectionPolicy": {
+      "description": "The TlsInspectionPolicy resource contains references to CA pools in Certificate Authority Service and associated metadata.",
+      "id": "TlsInspectionPolicy",
+      "properties": {
+        "caPool": {
+          "description": "Required. A CA pool resource used to issue interception certificates. The CA pool string has a relative resource path following the form \"projects/{project}/locations/{location}/caPools/{ca_pool}\".",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Free-text description of the resource.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the resource. Name is of the form projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy} tls_inspection_policy should match the pattern:(^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
