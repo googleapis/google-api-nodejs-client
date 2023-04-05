@@ -410,6 +410,10 @@ export namespace cloudchannel_v1 {
      * If true and enable_renewal = true, the unit (for example seats or licenses) will be set to the number of active units at renewal time.
      */
     resizeUnitCount?: boolean | null;
+    /**
+     * Output only. The offer resource name that the entitlement will renew on at the end date. Takes the form: accounts/{account_id\}/offers/{offer_id\}.
+     */
+    scheduledRenewalOffer?: string | null;
   }
   /**
    * The ID and description of a report that was used to generate report data. For example, "GCP Daily Spend", "Google Workspace License Activity", etc.
