@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230322",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -648,6 +648,22 @@
       "description": "Workflow program to be executed by Workflows.",
       "id": "Workflow",
       "properties": {
+        "callLogLevel": {
+          "description": "Optional. Describes the level of platform logging to apply to calls and call responses during executions of this workflow. If both the workflow and the execution specify a logging level, the execution level takes precedence.",
+          "enum": [
+            "CALL_LOG_LEVEL_UNSPECIFIED",
+            "LOG_ALL_CALLS",
+            "LOG_ERRORS_ONLY",
+            "LOG_NONE"
+          ],
+          "enumDescriptions": [
+            "No call logging level specified.",
+            "Log all call steps within workflows, all call returns, and all exceptions raised.",
+            "Log only exceptions that are raised from call steps within workflows.",
+            "Explicitly log nothing."
+          ],
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The timestamp for when the workflow was created.",
           "format": "google-datetime",
