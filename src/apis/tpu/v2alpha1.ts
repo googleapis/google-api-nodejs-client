@@ -663,6 +663,10 @@ export namespace tpu_v2alpha1 {
      */
     queueingPolicy?: Schema$QueueingPolicy;
     /**
+     * Name of the reservation in which the resource should be provisioned. Format: projects/{project\}/locations/{zone\}/reservations/{reservation\}
+     */
+    reservationName?: string | null;
+    /**
      * Output only. State of the QueuedResource request.
      */
     state?: Schema$QueuedResourceState;
@@ -3717,7 +3721,7 @@ export namespace tpu_v2alpha1 {
      *   const res = await tpu.projects.locations.queuedResources.create({
      *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format.
+     *     // The unqualified resource name. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format.
      *     queuedResourceId: 'placeholder-value',
      *     // Idempotent request UUID.
      *     requestId: 'placeholder-value',
@@ -3730,6 +3734,7 @@ export namespace tpu_v2alpha1 {
      *       //   "guaranteed": {},
      *       //   "name": "my_name",
      *       //   "queueingPolicy": {},
+     *       //   "reservationName": "my_reservationName",
      *       //   "state": {},
      *       //   "tpu": {}
      *       // }
@@ -4010,6 +4015,7 @@ export namespace tpu_v2alpha1 {
      *   //   "guaranteed": {},
      *   //   "name": "my_name",
      *   //   "queueingPolicy": {},
+     *   //   "reservationName": "my_reservationName",
      *   //   "state": {},
      *   //   "tpu": {}
      *   // }
@@ -4392,7 +4398,7 @@ export namespace tpu_v2alpha1 {
      */
     parent?: string;
     /**
-     * The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format.
+     * The unqualified resource name. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format.
      */
     queuedResourceId?: string;
     /**

@@ -635,6 +635,35 @@
                 }
               }
             },
+            "global": {
+              "methods": {
+                "getSettings": {
+                  "description": "GetGlobalSettings gets settings of a project. GlobalSettings is a singleton resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/global/settings",
+                  "httpMethod": "GET",
+                  "id": "connectors.projects.locations.global.getSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Settings.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/global/settings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Settings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -716,7 +745,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "connectors.projects.locations.operations.list",
@@ -1079,7 +1108,7 @@
       }
     }
   },
-  "revision": "20230222",
+  "revision": "20230322",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2942,6 +2971,27 @@
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Settings": {
+      "description": "Global Settings details.",
+      "id": "Settings",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/global/settings}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "payg": {
+          "description": "Output only. Flag indicates if user is in PayG model",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "vpcsc": {
+          "description": "Optional. Flag indicates whether vpc-sc is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"

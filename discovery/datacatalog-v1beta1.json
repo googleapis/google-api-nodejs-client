@@ -1813,7 +1813,7 @@
       }
     }
   },
-  "revision": "20230313",
+  "revision": "20230324",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2006,6 +2006,54 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1CloudBigtableInstanceSpec": {
+      "description": "Specification that applies to Instance entries that are part of `CLOUD_BIGTABLE` system. (user_specified_type)",
+      "id": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpec",
+      "properties": {
+        "cloudBigtableClusterSpecs": {
+          "description": "The list of clusters for the Instance.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec": {
+      "description": "Spec that applies to clusters of an Instance of Cloud Bigtable.",
+      "id": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec",
+      "properties": {
+        "displayName": {
+          "description": "Name of the cluster.",
+          "type": "string"
+        },
+        "linkedResource": {
+          "description": "A link back to the parent resource, in this case Instance.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of the cluster, typically a Cloud zone.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the resource. For a cluster this would be \"CLUSTER\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1CloudBigtableSystemSpec": {
+      "description": "Specification that applies to all entries that are part of `CLOUD_BIGTABLE` system (user_specified_type)",
+      "id": "GoogleCloudDatacatalogV1CloudBigtableSystemSpec",
+      "properties": {
+        "instanceDisplayName": {
+          "description": "Display name of the Instance. This is user specified and different from the resource name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec": {
       "description": "Specification for the BigQuery connection to a Cloud SQL instance.",
       "id": "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec",
@@ -2112,7 +2160,7 @@
             "DIMENSION_GROUP",
             "FILTER",
             "MEASURE",
-            "PAREMETER"
+            "PARAMETER"
           ],
           "enumDescriptions": [
             "Unspecified.",
@@ -2297,6 +2345,7 @@
             "DATAPROC_METASTORE",
             "DATAPLEX",
             "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
             "CLOUD_SQL",
             "LOOKER"
           ],
@@ -2307,6 +2356,7 @@
             "Dataproc Metastore.",
             "Dataplex.",
             "Cloud Spanner",
+            "Cloud Bigtable",
             "Cloud Sql",
             "Looker"
           ],
@@ -2400,6 +2450,10 @@
           "$ref": "GoogleCloudDatacatalogV1BusinessContext",
           "description": "Business Context of the entry. Not supported for BigQuery datasets"
         },
+        "cloudBigtableSystemSpec": {
+          "$ref": "GoogleCloudDatacatalogV1CloudBigtableSystemSpec",
+          "description": "Specification that applies to Cloud Bigtable system. Only settable when `integrated_system` is equal to `CLOUD_BIGTABLE`"
+        },
         "dataSource": {
           "$ref": "GoogleCloudDatacatalogV1DataSource",
           "description": "Output only. Physical location of the entry.",
@@ -2442,6 +2496,7 @@
             "DATAPROC_METASTORE",
             "DATAPLEX",
             "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
             "CLOUD_SQL",
             "LOOKER"
           ],
@@ -2452,6 +2507,7 @@
             "Dataproc Metastore.",
             "Dataplex.",
             "Cloud Spanner",
+            "Cloud Bigtable",
             "Cloud Sql",
             "Looker"
           ],
@@ -2490,6 +2546,10 @@
         "schema": {
           "$ref": "GoogleCloudDatacatalogV1Schema",
           "description": "Schema of the entry. An entry might not have any schema attached to it."
+        },
+        "serviceSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ServiceSpec",
+          "description": "Specification that applies to a Service resource."
         },
         "sourceSystemTimestamps": {
           "$ref": "GoogleCloudDatacatalogV1SystemTimestamps",
@@ -2935,6 +2995,17 @@
             "$ref": "GoogleCloudDatacatalogV1ColumnSchema"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ServiceSpec": {
+      "description": "Specification that applies to a Service resource. Valid only for entries with the `SERVICE` type.",
+      "id": "GoogleCloudDatacatalogV1ServiceSpec",
+      "properties": {
+        "cloudBigtableInstanceSpec": {
+          "$ref": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpec",
+          "description": "Specification that applies to Instance entries of `CLOUD_BIGTABLE` system."
         }
       },
       "type": "object"

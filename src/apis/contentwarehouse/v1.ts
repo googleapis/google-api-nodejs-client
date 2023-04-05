@@ -4284,6 +4284,76 @@ export namespace contentwarehouse_v1 {
     red?: number | null;
   }
   /**
+   * The identification information for third party devices that integrates with the assistant. All of these fields will be populated by the third party when the query is sent from the third party device. Next Id: 5
+   */
+  export interface Schema$AssistantApiCoreTypesGovernedDeviceConfig {
+    /**
+     * Pantheon Project ID that uniquely identifies the consumer project ID. Required
+     */
+    agentId?: string | null;
+    /**
+     * Unique identifier for the device. Example: DBCDW098234. Required
+     */
+    deviceId?: string | null;
+  }
+  /**
+   * LINT.IfChange Specifies identifier of a device AKA surface. Note there may be multiple device ids for the same physical device E.g. Allo app and Assistant app on Nexus. Note: DeviceId usage is complicated. Please do not depend on it for surface specific logic. Please use google3/assistant/api/capabilities.proto instead. IMPORTANT: When checking for equality between two `DeviceId`s, you should always use an `isSameDevice{As\}` function to check for equality, as deep equality between `DeviceId`'s is not guaranteed. * C++: http://google3/assistant/assistant_server/util/device_id_util.cc;l=23;rcl=421295740 * Dart: http://google3/assistant/context/util/lib/device_id.dart;l=26;rcl=442126145 * Java: http://google3/java/com/google/assistant/assistantserver/utils/DeviceIdHelper.java;l=9;rcl=390378522 See http://go/deviceid-equality for more details. Next ID: 14
+   */
+  export interface Schema$AssistantApiCoreTypesGovernedDeviceId {
+    /**
+     * The client_instance_id on devices with GSA. See 'client_instance_field' in go/androidids.
+     */
+    agsaClientInstanceId?: string | null;
+    /**
+     * Allo Id. Corresponds to the GBotRequest.Sender.sender. NOTE(dychen): This may change to standard android/ios physical device ids in order to enable shared data (e.g. installed app on physical device shared between Allo and Opa apps on Nexus).
+     */
+    alloDeviceId?: string | null;
+    /**
+     * A unique device ID for Assistant devices as proposed by go/ocelot-team to solve the device id fragmentation problem. The value of this id is the HomeGraph id of the device. See go/ocelot-track-0-registry-design. New surfaces should use the canonical_device_id instead of using other ids, and the registration should utilize the DeviceDataLayer (go/ddl-v0). Please contact the assistant-state-management@ team for guidance. Note: We didn't reuse |home_graph_device_id| because in Assistant code base |home_graph_device_id| is common to associate it with 3P devices. See go/project-yellowstone for more context.
+     */
+    canonicalDeviceId?: string | null;
+    /**
+     * If set, indicates that the device is a cast device, and contains the UUID of the cast device. Corresponds to the device_id field of the CastDevice proto.
+     */
+    castDeviceId?: string | null;
+    /**
+     * DUSI (go/dusi) is used as the identifier here. This identifier is unique to the user and device. This will help identify which device or application the user's request originated from. This is not to be confused with the client_instance_id that android devices provide. This is currently used by surfaces that use the assistant-legacy-nexus and assistant-legacy-clockwork pipelines. DUSI is created and set in S3. This field is only filled for GAIA requests.
+     */
+    clientInstanceId?: string | null;
+    /**
+     * A device ID produced by a connected dock, which is registered in HomeGraph.
+     */
+    connectedDockId?: string | null;
+    /**
+     * The unique DeviceConfig to the specific third party device. It is also used by Android Auto Embedded first party device. See go/opa-ids.
+     */
+    deviceConfig?: Schema$AssistantApiCoreTypesGovernedDeviceConfig;
+    /**
+     * The device's surface type. This is the string version of surface_type. The server should use the SurfaceType value derived from this string. If the device_type isn't supported within the SurfaceType enum, it will be set as UNKNOWN. Developers should use the enum in ServerParams instead of this string.
+     */
+    deviceType?: string | null;
+    /**
+     * The unique device ID for HomeGraph devices. This is the HomeGraph ID, created when the device is registered into HomeGraph. It is immutable for the same device unless it is completely deleted and recreated. See go/home-graph for details.
+     */
+    homeGraphDeviceId?: string | null;
+    /**
+     * The unique ID for libassistant based devices. See go/libassistant-id for details.
+     */
+    libassistantDeviceId?: string | null;
+    /**
+     * If set, indicates that the device is participating the multi-hotword arbitration and the id is an UUID to distinguish it from other devices. It should also be consistent between requests from a single device within a session (or short duration).
+     */
+    multiHotwordArbitrationDeviceId?: string | null;
+    /**
+     * The unique device ID for the Assistant App on iOS. See go/opa-ios-design for details.
+     */
+    opaIosDeviceId?: string | null;
+    /**
+     * The unique ID of a Quartz device. See go/quartz-design-doc for more details. Quartz ID is a hash of (android_id + gaia).
+     */
+    quartzDeviceId?: string | null;
+  }
+  /**
    * Task metadata information describing the ringtone. Next id: 11
    */
   export interface Schema$AssistantApiCoreTypesGovernedRingtoneTaskMetadata {
@@ -7240,6 +7310,122 @@ export namespace contentwarehouse_v1 {
     veryLowVolumePercentage?: number | null;
   }
   /**
+   * LINT.IfChanged Identifier for an application provider. NOTE: AppProviderId contains surface-specific info, such as the Android package name of the application. This was necessary for supporting current use cases that rely on surface-specific info in feature code. Eventually we want to deprecate AppProviderId and fetch surface-specific info in some other way (e.g. in a surface-translation layer). But until then, we may continue extending AppProviderId with other surface-specific info.
+   */
+  export interface Schema$AssistantContextAppProviderId {
+    /**
+     * The activity class name. E.g. com.google.android.gm.ui.MailActivityGmail
+     */
+    activityClassName?: string | null;
+    /**
+     * Unique package name that identifies an Android app of the provider.
+     */
+    androidPackageName?: string | null;
+    /**
+     * Version code of the application.
+     */
+    versionCode?: number | null;
+  }
+  /**
+   * IMPORTANT: This proto is being migrated to ProviderId. If you are adding new field, please add to ProviderId as well.
+   */
+  export interface Schema$AssistantContextMediaProviderId {
+    /**
+     * Unique package name that identifies a Android app of the provider.
+     */
+    androidPackageName?: string | null;
+    /**
+     * Unique app id that identifies a Cast app of the provider.
+     */
+    castAppId?: string | null;
+    /**
+     * Unique package name that identifies a ChromeOS app of the provider.
+     */
+    chromeOsPackageName?: string | null;
+    /**
+     * Unique package name that identifies a Home app of the provider.
+     */
+    homeAppPackageName?: string | null;
+    /**
+     * Bundle identifier that identifies an iOS app of the provider.
+     */
+    iosBundleIdentifier?: string | null;
+    /**
+     * Unique package name that identifies a KaiOS app of the provider.
+     */
+    kaiOsPackageName?: string | null;
+    /**
+     * Each onboarded provider has a unique provider key. KG provider keys are string identifiers used to identify a provider in some Media backends since mids, names, etc can change.
+     */
+    kgProviderKey?: string | null;
+    /**
+     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in it's graph.
+     */
+    mid?: string | null;
+    /**
+     * Provider variant corresponding to the current MediaProviderId.
+     */
+    providerVariant?: Schema$AssistantContextProviderVariant;
+    /**
+     * Bundle id that identifies an Session Initiation Protocol (SIP) provider.
+     */
+    sipProviderId?: string | null;
+  }
+  /**
+   * Identifier used to represent a single application (a.k.a. provider). This model represents the surface-agnostic counterpart for assistant.api.core_types.Provider. E.g. it should avoid directly using package names for Android, bundle identifiers for iOS, etc. We require the transformation between assistant.context.ProviderId and assistant.api.core_types.Provider to either be lossless, or "lossy yet retrievable" (e.g. if package name is not available in ProviderId, it can still be retrieved using the ProviderMappingsModule). NOTE: 1. As of May 2021, verticals are highly fragmented in terms of how they represent/identify a provider, and so we may need to accommodate some vertical-specific representations. However, these should be generalized as much as possible so that they can be used by other verticals if needed. 2. If we need to differentiate between whether a provider is a media provider, app actions provider, timer provider, etc. we should capture this information in the context proto that contains a ProviderId field, rather than in the ProviderId message itself. 3. Any common fields across different provider identifier representations (e.g. ecosystem type) should be part of assistant.context.ProviderId directly.
+   */
+  export interface Schema$AssistantContextProviderId {
+    /**
+     * TODO(b/241170835) Deprecate this field.
+     */
+    appProviderId?: Schema$AssistantContextAppProviderId;
+    /**
+     * Ecosystem type for this provider.
+     */
+    ecosystemType?: string | null;
+    /**
+     * DEPRECATED. Fields in MediaProviderId have been pulled out into separate fields in ProviderId and ProviderMetadata. TODO(b/243953766) Deprecate this field.
+     */
+    mediaProviderId?: Schema$AssistantContextMediaProviderId;
+    /**
+     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in it's graph.
+     */
+    mid?: string | null;
+    /**
+     * Natural Provider Id returned from Provider Corpus. Note that feature teams should almost always use provider_corpus_id which is the canonical representation for provider. Surface-specific identiers should only be used in final surface rendering.
+     */
+    naturalProviderId?: Schema$AssistantContextProviderIdNaturalProviderId;
+    /**
+     * ID issued by the Provider Corpus to uniquely identify a provider entity e.g. an Android app, a Cast app or a Cloud provider. In practice, a single partner can have multiple providers entities. For more detail, see go/se-storage-provider-id. This is the preferred/ standardized ID to use for ProviderId that all use-cases should eventually migrate to.
+     */
+    providerCorpusId?: string | null;
+    /**
+     * Provider variant corresponding to the current provider. It's used together with mid to uniquely identify provider.
+     */
+    providerVariant?: Schema$AssistantContextProviderVariant;
+  }
+  /**
+   * Represents how to naturally identify a provider. A copy of google3/assistant/serviceengine/proto/serving/natural_provider_id.proto.
+   */
+  export interface Schema$AssistantContextProviderIdNaturalProviderId {
+    /**
+     * ProviderType is an enum to represent the category of where this id is from.
+     */
+    providerType?: string | null;
+    /**
+     * String of provider_id_value is the actual value of the id.
+     */
+    value?: string | null;
+  }
+  /**
+   * Note: As of May 2021, multiple providers use the same mids (e.g. YouTube Main, YouTube Go, and YouTube Music all have the same mids). However, quite often we end up using surface specific identifiers (e.g. Android package names, iOS bundle identifiers, etc.) to differentiate amongst them. This field allows us to move away from surface specific identifiers towards a surface-agnostic enum representing the same information.
+   */
+  export interface Schema$AssistantContextProviderVariant {
+    emptyMidVariant?: string | null;
+    spotifyVariant?: string | null;
+    youtubeVariant?: string | null;
+  }
+  /**
    * Capability with regard to support of alarms by the client.
    */
   export interface Schema$AssistantDevicesPlatformProtoAlarmCapability {
@@ -7693,10 +7879,20 @@ export namespace contentwarehouse_v1 {
     messageAffinity?: number | null;
   }
   /**
-   * Next ID: 4
+   * Features to be extracted from Device GP for ranking in HGR. Next ID: 2
+   */
+  export interface Schema$AssistantGroundingRankerDeviceGroundingProviderFeatures {
+    /**
+     * ID for the device. PRR specific feature.
+     */
+    deviceId?: Schema$AssistantApiCoreTypesGovernedDeviceId;
+  }
+  /**
+   * Next ID: 5
    */
   export interface Schema$AssistantGroundingRankerGroundingProviderFeatures {
     contactGroundingProviderFeatures?: Schema$AssistantGroundingRankerContactGroundingProviderFeatures;
+    deviceGroundingProviderFeatures?: Schema$AssistantGroundingRankerDeviceGroundingProviderFeatures;
     mediaGroundingProviderFeatures?: Schema$AssistantGroundingRankerMediaGroundingProviderFeatures;
     providerGroundingProviderFeatures?: Schema$AssistantGroundingRankerProviderGroundingProviderFeatures;
   }
@@ -7720,13 +7916,17 @@ export namespace contentwarehouse_v1 {
     assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
-   * Features to be passed from Media GP to HGR. Next ID: 9
+   * Features to be passed from Media GP to HGR. Next ID: 12
    */
   export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
     /**
      * Release type for an album container.
      */
     albumReleaseType?: string | null;
+    /**
+     * Temporary ambiguity classifier signal.
+     */
+    ambiguityClassifier?: string | null;
     /**
      * True if the argument's type was explicitly mentioned in the query.
      */
@@ -7735,6 +7935,10 @@ export namespace contentwarehouse_v1 {
      * Whether the candidate is YouTube CAST_VIDEO candidate. CAST_VIDEO is a deeplink platform. This signal will be used to promote YouTube Music screenful candidates with CAST_VIDEO platform for free users because free users cannot get exact entities in screenless response and can get exact entities with ads in screenful response.
      */
     isCastVideo?: boolean | null;
+    /**
+     * True if the media search query is included in the entity name and artists.
+     */
+    isMediaSearchQuerySubsetOfEntityNameAndArtist?: boolean | null;
     /**
      * True if the media deeplink has tag SEED_RADIO.
      */
@@ -7755,11 +7959,24 @@ export namespace contentwarehouse_v1 {
      * Type of the media item.
      */
     type?: string | null;
+    youtubeConfidenceScore?: number | null;
   }
   /**
-   * Features to be extracted from Provider GP for ranking in HGR. Next ID: 2
+   * Features to be extracted from Provider GP for ranking in HGR. Next ID: 5
    */
   export interface Schema$AssistantGroundingRankerProviderGroundingProviderFeatures {
+    /**
+     * Indicates that fulfillment on this provider will happen within the provider app.
+     */
+    isInAppProvider?: boolean | null;
+    /**
+     * Cluster IDs for the provider. This field is repeated because some providers can be associated with multiple clusters. PRR specific feature.
+     */
+    providerClusterId?: string[] | null;
+    /**
+     * ProviderId for the provider in the binding set. PRR specific feature.
+     */
+    providerId?: Schema$AssistantContextProviderId;
     /**
      * Provider quality score in the range [0,1] that can be used for ranking providers. Incorporates both policy rules and quality considerations.
      */
@@ -7874,7 +8091,7 @@ export namespace contentwarehouse_v1 {
      */
     fuzzyNgramMatch?: Schema$AssistantLogsCommunicationFuzzyNgramMatchLog[];
     /**
-     * Contact owner's gaia id from cs/symbol::symbol:quality_qrewrite.PersonalContactData.shared_contact_owner_gaia_id. Only populated for is_shared = true and non sign-out mode and user is not the owner of the contact(shared contact from other user).
+     * Contact owner's gaia id from cs/symbol::symbol:quality_qrewrite.PersonalContactData.shared_contact_owner_gaia_id. Only populated for is_shared = true and non sign-out mode and user is not the owner of the contact(shared contact from other user). This field is not being logged in P2.
      */
     gaiaId?: string | null;
     /**
@@ -7882,7 +8099,7 @@ export namespace contentwarehouse_v1 {
      */
     isContactFromSecondaryAccount?: boolean | null;
     /**
-     * If this is a shared contact. This is true in 2 cases: - User is calling their own contacts that have been marked as shared. - User is calling shared contacts from some other user's contact list.
+     * If this is a shared contact. This is true in 2 cases: - User is calling their own contacts that have been marked as shared. - User is calling shared contacts from some other user's contact list. This field is not being logged in P2.
      */
     isShared?: boolean | null;
     /**
@@ -16799,47 +17016,6 @@ export namespace contentwarehouse_v1 {
     weightedSchemaProperties?: Schema$GoogleCloudContentwarehouseV1WeightedSchemaProperty[];
   }
   /**
-   * Describes a data export job.
-   */
-  export interface Schema$GoogleCloudContentwarehouseV1DataExportJob {
-    /**
-     * The create time of the job.
-     */
-    createTime?: string | null;
-    /**
-     * BigQuery dataset name.
-     */
-    dataset?: string | null;
-    /**
-     * Frequency of the data export job.
-     */
-    frequency?: string | null;
-    /**
-     * The data export job ID.
-     */
-    id?: string | null;
-    /**
-     * Location of document warehouse API.
-     */
-    location?: string | null;
-    /**
-     * User project number. The project should have document warehouse API enabled. The BigQuery database should also be in the same project.
-     */
-    projectNumber?: string | null;
-    /**
-     * The current state of the data export job.
-     */
-    state?: string | null;
-    /**
-     * BigQuery table name.
-     */
-    table?: string | null;
-    /**
-     * The last update time of the job.
-     */
-    updateTime?: string | null;
-  }
-  /**
    * Represents the action responsible for properties update operations.
    */
   export interface Schema$GoogleCloudContentwarehouseV1DataUpdateAction {
@@ -17155,27 +17331,6 @@ export namespace contentwarehouse_v1 {
     value?: string | null;
   }
   /**
-   * The configuration of exporting documents from the Document Warehouse to CDW pipeline.
-   */
-  export interface Schema$GoogleCloudContentwarehouseV1ExportToCdwPipeline {
-    /**
-     * The CDW dataset resource name. Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
-     */
-    docAiDataset?: string | null;
-    /**
-     * The list of all the resource names of the documents to be processed. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\}.
-     */
-    documents?: string[] | null;
-    /**
-     * The Cloud Storage folder path used to store the exported documents before being sent to CDW. Format: gs:///.
-     */
-    exportFolderPath?: string | null;
-    /**
-     * Ratio of training dataset split. When importing into Document AI Workbench, documents will be automatically split into training and test split category with the specified ratio.
-     */
-    trainingSplitRatio?: number | null;
-  }
-  /**
    * Request message for DocumentService.FetchAcl
    */
   export interface Schema$GoogleCloudContentwarehouseV1FetchAclRequest {
@@ -17223,44 +17378,6 @@ export namespace contentwarehouse_v1 {
    * Configurations for a float property.
    */
   export interface Schema$GoogleCloudContentwarehouseV1FloatTypeOptions {}
-  /**
-   * The configuration of the Cloud Storage ingestion pipeline.
-   */
-  export interface Schema$GoogleCloudContentwarehouseV1GcsIngestPipeline {
-    /**
-     * The input Cloud Storage folder. All files under this folder will be imported to Document Warehouse. Format: gs:///.
-     */
-    inputPath?: string | null;
-    /**
-     * The Doc AI processor type name. Only used when the format of ingested files is Doc AI Document proto format. Reference: https://source.corp.google.com/piper///depot/google3/cloud/ai/documentai/core/c/proto/processor.proto;l=21
-     */
-    processorType?: string | null;
-    /**
-     * The Document Warehouse schema resource name. All documents processed by this pipeline will use this schema. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
-     */
-    schemaName?: string | null;
-  }
-  /**
-   * The configuration of the document classify/split and entity/kvp extraction pipeline.
-   */
-  export interface Schema$GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline {
-    /**
-     * The extract processors information. One matched extract processor will be used to process documents based on the classify processor result. If no classify processor is specificied, the first extract processor will be used.
-     */
-    extractProcessorInfos?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo[];
-    /**
-     * The input Cloud Storage folder. All files under this folder will be imported to Document Warehouse. Format: gs:///.
-     */
-    inputPath?: string | null;
-    /**
-     * The Cloud Storage folder path used to store the raw results from processors. Format: gs:///.
-     */
-    processorResultsFolderPath?: string | null;
-    /**
-     * The split and classify processor information. The split and classify result will be used to find a matched extract processor.
-     */
-    splitClassifyProcessorInfo?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
-  }
   /**
    * Request message for DocumentService.GetDocument.
    */
@@ -17520,27 +17637,6 @@ export namespace contentwarehouse_v1 {
      * The Document schema resource name. All documents processed by this processor will use this schema. Format: projects/{project_number\}/locations/{location\}/documentSchemas/{document_schema_id\}.
      */
     schemaName?: string | null;
-  }
-  /**
-   * The configuration of processing documents in Document Warehouse with DocAi processors pipeline.
-   */
-  export interface Schema$GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline {
-    /**
-     * The list of all the resource names of the documents to be processed. Format: projects/{project_number\}/locations/{location\}/documents/{document_id\}.
-     */
-    documents?: string[] | null;
-    /**
-     * The Cloud Storage folder path used to store the exported documents before being sent to CDW. Format: gs:///.
-     */
-    exportFolderPath?: string | null;
-    /**
-     * The CDW processor information.
-     */
-    processorInfo?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
-    /**
-     * The Cloud Storage folder path used to store the raw results from processors. Format: gs:///.
-     */
-    processorResultsFolderPath?: string | null;
   }
   /**
    * Property of a document.
@@ -17861,29 +17957,85 @@ export namespace contentwarehouse_v1 {
     source?: string | null;
   }
   /**
-   * Request message for DocumentService.RunPipeline.
+   * Metadata message of RunPipeline method.
    */
-  export interface Schema$GoogleCloudContentwarehouseV1RunPipelineRequest {
+  export interface Schema$GoogleCloudContentwarehouseV1RunPipelineMetadata {
     /**
-     * Export docuemnts from Document Warehouse to CDW for training purpose.
+     * The pipeline metadata for Export-to-CDW pipeline.
      */
-    exportCdwPipeline?: Schema$GoogleCloudContentwarehouseV1ExportToCdwPipeline;
+    exportToCdwPipelineMetadata?: Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata;
     /**
-     * Cloud Storage ingestion pipeline.
+     * Number of files that have failed at some point in the pipeline.
      */
-    gcsIngestPipeline?: Schema$GoogleCloudContentwarehouseV1GcsIngestPipeline;
+    failedFileCount?: number | null;
     /**
-     * Use DocAI processors to process documents in Cloud Storage and ingest them to Document Warehouse.
+     * The pipeline metadata for GcsIngest pipeline.
      */
-    gcsIngestWithDocAiProcessorsPipeline?: Schema$GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline;
+    gcsIngestPipelineMetadata?: Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata;
     /**
-     * Use a DocAI processor to process documents in Document Warehouse, and re-ingest the updated results into Document Warehouse.
+     * The list of response details of each document.
      */
-    processWithDocAiPipeline?: Schema$GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline;
+    individualDocumentStatuses?: Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataIndividualDocumentStatus[];
     /**
-     * The meta information collected about the end user, used to enforce access control for the service.
+     * The pipeline metadata for Process-with-DocAi pipeline.
      */
-    requestMetadata?: Schema$GoogleCloudContentwarehouseV1RequestMetadata;
+    processWithDocAiPipelineMetadata?: Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMetadata;
+    /**
+     * Number of files that were processed by the pipeline.
+     */
+    totalFileCount?: number | null;
+    /**
+     * User unique identification and groups information.
+     */
+    userInfo?: Schema$GoogleCloudContentwarehouseV1UserInfo;
+  }
+  /**
+   * The metadata message for Export-to-CDW pipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata {
+    /**
+     * The output CDW dataset resource name.
+     */
+    docAiDataset?: string | null;
+    /**
+     * The input list of all the resource names of the documents to be exported.
+     */
+    documents?: string[] | null;
+  }
+  /**
+   * The metadata message for GcsIngest pipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata {
+    /**
+     * The input Cloud Storage folder in this pipeline. Format: `gs:///`.
+     */
+    inputPath?: string | null;
+  }
+  /**
+   * The status of processing a document.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataIndividualDocumentStatus {
+    /**
+     * Document identifier of an existing document.
+     */
+    documentId?: string | null;
+    /**
+     * The status processing the document.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * The metadata message for Process-with-DocAi pipeline.
+   */
+  export interface Schema$GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMetadata {
+    /**
+     * The input list of all the resource names of the documents to be processed.
+     */
+    documents?: string[] | null;
+    /**
+     * The DocAI processor to process the documents with.
+     */
+    processorInfo?: Schema$GoogleCloudContentwarehouseV1ProcessorInfo;
   }
   /**
    * Request message for DocumentService.SearchDocuments.
@@ -19130,7 +19282,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GoogleInternalAppsWaldoV1alphaAvailabilityPeriod {
     /**
-     * Day of week, 0 for Sunday, 1 for Monday, ...
+     * Day of week, 1 for Monday, ..., 7 for Sunday.
      */
     dayOfWeek?: number | null;
     /**
@@ -19150,10 +19302,6 @@ export namespace contentwarehouse_v1 {
      * The time when the user will either stop being committed or change commitment type (i.e. InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh). Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh).
      */
     committedUntil?: string | null;
-    /**
-     * TODO(b/265939748) To be removed, always false.
-     */
-    committedUntilIsMixed?: boolean | null;
     /**
      * The summary of the corresponding event in Calendar.
      */
@@ -19193,10 +19341,6 @@ export namespace contentwarehouse_v1 {
      */
     committedUntil?: string | null;
     /**
-     * TODO(b/265939748) To be removed, always false.
-     */
-    committedUntilIsMixed?: boolean | null;
-    /**
      * The next time when the user will be available, i.e., when their status will be neither InMeeting, CalendarBusy, DoNotDisturb, OutsideWorkingHours, nor OutOfOffice.
      */
     nextAvailable?: string | null;
@@ -19221,10 +19365,6 @@ export namespace contentwarehouse_v1 {
      * The time when the user will either stop being committed or change commitment type (i.e. InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh). Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh).
      */
     committedUntil?: string | null;
-    /**
-     * TODO(b/265939748) To be removed, always false.
-     */
-    committedUntilIsMixed?: boolean | null;
     /**
      * The summary of the corresponding event in Calendar.
      */
@@ -19284,10 +19424,6 @@ export namespace contentwarehouse_v1 {
      * The time when the user will either stop being committed or change commitment type (i.e. InMeeting, DoNotDisturb, Busy or OutOfOffice < Xh). Note that the goal of this field is to provide information to help users decide how to communicate with a user (see also http://shortn/_wXYXtZScgh). Note that if this OOO block is large (\>=Xh), committed_until is not set.
      */
     committedUntil?: string | null;
-    /**
-     * TODO(b/265939748) To be removed, always false.
-     */
-    committedUntilIsMixed?: boolean | null;
     /**
      * The summary of the corresponding OOO block in Calendar. This is entered by the user, so we return it "as is" - no i18n.
      */
@@ -32845,7 +32981,7 @@ export namespace contentwarehouse_v1 {
     state?: string | null;
   }
   /**
-   * =========================================================================== # Make sure you read the comments in the bottom before you add any new field. NB: As noted in the comments, this protocol buffer is used in both indexing and serving. In mustang serving implementations we only decode perdocdata during the search phase, and so this protocol should only contain data used during search. See mustang/repos_www/attachments.proto:{MustangBasicInfo,MustangContentInfo\} for protocols used during search and/or docinfo. Next available tag deprecated, use this (and look for commented out fields): blaze-bin/net/proto_compiler/protocol-compiler --freetags \ indexer/perdocdata/perdocdata.proto Next tag: 220
+   * =========================================================================== # Make sure you read the comments in the bottom before you add any new field. NB: As noted in the comments, this protocol buffer is used in both indexing and serving. In mustang serving implementations we only decode perdocdata during the search phase, and so this protocol should only contain data used during search. See mustang/repos_www/attachments.proto:{MustangBasicInfo,MustangContentInfo\} for protocols used during search and/or docinfo. Next available tag deprecated, use this (and look for commented out fields): blaze-bin/net/proto_compiler/protocol-compiler --freetags \ indexer/perdocdata/perdocdata.proto Next tag: 221
    */
   export interface Schema$PerDocData {
     /**
@@ -34535,7 +34671,7 @@ export namespace contentwarehouse_v1 {
     score?: number | null;
   }
   /**
-   * Next id: 32
+   * Next id: 33
    */
   export interface Schema$QualityActionsReminder {
     /**
@@ -34596,6 +34732,10 @@ export namespace contentwarehouse_v1 {
     description?: string | null;
     documentAssignmentSource?: Schema$QualityActionsReminderDocument;
     dynamiteGroupAssignmentSource?: Schema$QualityActionsReminderDynamiteGroup;
+    /**
+     * OPTIONAL. Device ID for home notification which should have loud notification. See go/device-id-storage-in-tasks
+     */
+    extraNotificationDeviceId?: string | null;
     /**
      * DEPRECATED. Use `client_id` or `server_id` instead.
      */
@@ -35820,7 +35960,7 @@ export namespace contentwarehouse_v1 {
      */
     scores?: number[] | null;
     /**
-     * Version 0: Presence of an intent label in the 'intents' field represents our best-effort classification. The 'scores' field is not meaningful. Version 1: Values in the 'scores' field represent the estimated precision of the classifier for a threshold at that score.
+     * DEPRECATED. DO NOT USE IT FOR ANY REASON! contact orbit@ if necessary.
      */
     version?: number | null;
   }
@@ -36729,6 +36869,10 @@ export namespace contentwarehouse_v1 {
      */
     fingerprintOfOfferUrls?: string[] | null;
     /**
+     * Global trade item number (GTIN).
+     */
+    gtinValue?: string[] | null;
+    /**
      * image_id is sorted and distinct for efficient search during serving.
      */
     imageId?: string[] | null;
@@ -36813,6 +36957,10 @@ export namespace contentwarehouse_v1 {
      * Client needs to make decision on which field to use when both non_displayable_title and pblock.final_title are present.
      */
     pblock?: Schema$QualityShoppingShoppingAttachmentPBlock;
+    /**
+     * Product level Browseonomy ids from shopping_annotation.product.browseonomy.
+     */
+    productBrowseonomyIds?: number[] | null;
     productClusterMid?: string | null;
     /**
      * Organic product popularity.
@@ -38946,7 +39094,7 @@ export namespace contentwarehouse_v1 {
      */
     matchingText?: string | null;
     /**
-     * Metadata attatched to the name.
+     * Metadata attached to the name.
      */
     nameMetadata?: Schema$RepositoryWebrefConceptNameMetadata;
     /**
@@ -40593,6 +40741,22 @@ export namespace contentwarehouse_v1 {
      */
     treeXHybridLeavesSearchedOverride?: number | null;
   }
+  export interface Schema$ResearchScamNumericRestrictNamespace {
+    /**
+     * The name of this namespace.
+     */
+    namespace?: string | null;
+    /**
+     * This MUST be specified for queries and must NOT be specified for database points.
+     */
+    op?: string | null;
+    valueDouble?: number | null;
+    valueFloat?: number | null;
+    /**
+     * NOTE: Integers are represented in 64 bits here, but if all integer values for a given namespace fit in a narrower integer type (e.g. int8), we use the narrower integer type internally, increasing performance.
+     */
+    valueInt?: string | null;
+  }
   /**
    * Structure to hold the response time for a node. Last used: 3
    */
@@ -40687,6 +40851,10 @@ export namespace contentwarehouse_v1 {
      * //////////////////////////////////////////////////////////////////////////// NAMESPACES - a repeating field, where each entry specifies the set of tokens, within a single namespace, that apply to the query, or database point, on which this V3Restrict proto is defined. Note that: * Your overall query is an AND across namespaces. * Explicitly specifying a namespace with 0 tokens is identical to omitting that namespace. ie, "{ns:\}" == "". * It is an error to specify the same namespace more than once per instance of the V3Restrict proto.
      */
     namespaces?: Schema$ResearchScamTokenNamespace[];
+    /**
+     * This field allows restricts to be based on numeric comparisons rather than categorical tokens. HINT: To allow a range of values in a namespace (e.g. 42 <= x < 128), specify the same namespace twice in the query, e.g.: {namespace: "x" op: LESS value_int: 128 \} {namespace: "x" op: GREATER_EQUAL value_int: 42 \}
+     */
+    numericNamespaces?: Schema$ResearchScamNumericRestrictNamespace[];
   }
   /**
    * Information on the catalog that this dataset comes from. Next ID: 5
@@ -41991,6 +42159,10 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$ScienceCitationFundingExtractionInfo {
     /**
+     * Set when we clear all extracted funding from this citation in the parser.
+     */
+    ClearedFunding?: string | null;
+    /**
      * Text block context from which the funding entry was extracted. Optionally filled and intended to be used for offline analysis.
      */
     DebugFundingTextBlock?: string | null;
@@ -42863,10 +43035,6 @@ export namespace contentwarehouse_v1 {
      * The ratio of the area of the largest Flash to the render area.
      */
     maximumFlashRatio?: number | null;
-    /**
-     * Mobile friendliness score in the range of [0, 100]. See go/modena-ranking.
-     */
-    mobileFriendlyScore?: number | null;
     /**
      * Indicates if the page is violating mobile interstitial policy and should be demoted. See go/interstitials-ranking-dd for details.
      */
@@ -44794,7 +44962,7 @@ export namespace contentwarehouse_v1 {
     /**
      * Populated using airlines_company_ids.csv for AdWords company map
      */
-    adwordsCid?: number | null;
+    adwordsCid?: string | null;
     /**
      * STAR_ALLIANCE
      */
@@ -50435,7 +50603,7 @@ export namespace contentwarehouse_v1 {
     name?: string | null;
   }
   /**
-   * The following message contains info of sub image docs, it is populated in query_state and consumed in web image boost twiddler: (go/WebImageBoostTwiddler).
+   * The following message contains info of sub image docs, it is populated in query_state and consumed in web image boost twiddler: (go/WebImageBoostTwiddler). NextID: 25
    */
   export interface Schema$WWWResultInfoSubImageDocInfo {
     additionalSafesearchSignals?: number[] | null;
@@ -50448,6 +50616,10 @@ export namespace contentwarehouse_v1 {
      * Deepcrop thumbnail cropping hints.
      */
     deepCropBytes?: string | null;
+    /**
+     * EQ* v3: Deep Image Engagingness(DImE) go/deep-image-engagingness-slides
+     */
+    dimeScore?: number | null;
     docid?: string | null;
     documentTrust?: number | null;
     /**
@@ -51531,7 +51703,6 @@ export namespace contentwarehouse_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    dataExportJobs: Resource$Projects$Locations$Dataexportjobs;
     documents: Resource$Projects$Locations$Documents;
     documentSchemas: Resource$Projects$Locations$Documentschemas;
     operations: Resource$Projects$Locations$Operations;
@@ -51539,9 +51710,6 @@ export namespace contentwarehouse_v1 {
     synonymSets: Resource$Projects$Locations$Synonymsets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.dataExportJobs = new Resource$Projects$Locations$Dataexportjobs(
-        this.context
-      );
       this.documents = new Resource$Projects$Locations$Documents(this.context);
       this.documentSchemas = new Resource$Projects$Locations$Documentschemas(
         this.context
@@ -51706,159 +51874,6 @@ export namespace contentwarehouse_v1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
-    /**
-     * Run a predefined pipeline.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contentwarehouse.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contentwarehouse = google.contentwarehouse('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contentwarehouse.projects.locations.runPipeline({
-     *     // Required. The resource name which owns the resources of the pipeline. Format: projects/{project_number\}/locations/{location\}.
-     *     name: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "exportCdwPipeline": {},
-     *       //   "gcsIngestPipeline": {},
-     *       //   "gcsIngestWithDocAiProcessorsPipeline": {},
-     *       //   "processWithDocAiPipeline": {},
-     *       //   "requestMetadata": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    runPipeline(
-      params: Params$Resource$Projects$Locations$Runpipeline,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    runPipeline(
-      params?: Params$Resource$Projects$Locations$Runpipeline,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    runPipeline(
-      params: Params$Resource$Projects$Locations$Runpipeline,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    runPipeline(
-      params: Params$Resource$Projects$Locations$Runpipeline,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    runPipeline(
-      params: Params$Resource$Projects$Locations$Runpipeline,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    runPipeline(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    runPipeline(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Runpipeline
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Runpipeline;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Runpipeline;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://contentwarehouse.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:runPipeline').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Initialize
@@ -51872,356 +51887,6 @@ export namespace contentwarehouse_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudContentwarehouseV1InitializeProjectRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Runpipeline
-    extends StandardParameters {
-    /**
-     * Required. The resource name which owns the resources of the pipeline. Format: projects/{project_number\}/locations/{location\}.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudContentwarehouseV1RunPipelineRequest;
-  }
-
-  export class Resource$Projects$Locations$Dataexportjobs {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Archives a data export job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contentwarehouse.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contentwarehouse = google.contentwarehouse('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await contentwarehouse.projects.locations.dataExportJobs.archiveDataExportJob(
-     *       {
-     *         // Required. The resource name.
-     *         name: 'projects/my-project/locations/my-location/dataExportJobs/my-dataExportJob',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataset": "my_dataset",
-     *   //   "frequency": "my_frequency",
-     *   //   "id": "my_id",
-     *   //   "location": "my_location",
-     *   //   "projectNumber": "my_projectNumber",
-     *   //   "state": "my_state",
-     *   //   "table": "my_table",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    archiveDataExportJob(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    archiveDataExportJob(
-      params?: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>;
-    archiveDataExportJob(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    archiveDataExportJob(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>,
-      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-    ): void;
-    archiveDataExportJob(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob,
-      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-    ): void;
-    archiveDataExportJob(
-      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-    ): void;
-    archiveDataExportJob(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://contentwarehouse.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Creates a data export job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/contentwarehouse.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const contentwarehouse = google.contentwarehouse('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await contentwarehouse.projects.locations.dataExportJobs.create({
-     *     // Required. The resource parent name.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "dataset": "my_dataset",
-     *       //   "frequency": "my_frequency",
-     *       //   "id": "my_id",
-     *       //   "location": "my_location",
-     *       //   "projectNumber": "my_projectNumber",
-     *       //   "state": "my_state",
-     *       //   "table": "my_table",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataset": "my_dataset",
-     *   //   "frequency": "my_frequency",
-     *   //   "id": "my_id",
-     *   //   "location": "my_location",
-     *   //   "projectNumber": "my_projectNumber",
-     *   //   "state": "my_state",
-     *   //   "table": "my_table",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Dataexportjobs$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>;
-    create(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>,
-      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Dataexportjobs$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Dataexportjobs$Create
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudContentwarehouseV1DataExportJob>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Dataexportjobs$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Dataexportjobs$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://contentwarehouse.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/dataExportJobs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudContentwarehouseV1DataExportJob>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Dataexportjobs$Archivedataexportjob
-    extends StandardParameters {
-    /**
-     * Required. The resource name.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Dataexportjobs$Create
-    extends StandardParameters {
-    /**
-     * Required. The resource parent name.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudContentwarehouseV1DataExportJob;
   }
 
   export class Resource$Projects$Locations$Documents {

@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230404",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -825,7 +825,11 @@
       "id": "GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest",
       "properties": {
         "policyNamespace": {
-          "description": "Required. The namespace of the policy type for the request.",
+          "description": "The namespace of the policy type for the request.",
+          "type": "string"
+        },
+        "policySchema": {
+          "description": "The schema name of the policy for the request.",
           "type": "string"
         },
         "policyTargetKey": {
@@ -849,6 +853,11 @@
         },
         "policyNamespace": {
           "description": "Output only. The namespace of the policy type of the group IDs.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policySchema": {
+          "description": "Output only. The schema name of the policy for the group IDs.",
           "readOnly": true,
           "type": "string"
         },
@@ -1436,7 +1445,11 @@
           "type": "array"
         },
         "policyNamespace": {
-          "description": "Required. The namespace of the policy type for the request.",
+          "description": "The namespace of the policy type for the request.",
+          "type": "string"
+        },
+        "policySchema": {
+          "description": "The schema name of the policy for the request.",
           "type": "string"
         },
         "policyTargetKey": {

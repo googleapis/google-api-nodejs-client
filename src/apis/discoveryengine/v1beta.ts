@@ -232,104 +232,6 @@ export namespace discoveryengine_v1beta {
     functionName?: string | null;
   }
   /**
-   * Defines circumstances to be checked before allowing a behavior
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaCondition {
-    /**
-     * Optional. Range of time(s) specifying when condition is active. Maximum of 10 time ranges.
-     */
-    activeTimeRange?: Schema$GoogleCloudDiscoveryengineV1alphaConditionTimeRange[];
-    /**
-     * Optional. Search only A list of terms to match the query on. Maximum of 10 query terms.
-     */
-    queryTerms?: Schema$GoogleCloudDiscoveryengineV1alphaConditionQueryTerm[];
-  }
-  /**
-   * Matcher for search request query
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaConditionQueryTerm {
-    /**
-     * Whether the search query needs to exactly match the query term.
-     */
-    fullMatch?: boolean | null;
-    /**
-     * The specific query value to match against Must be lowercase, must be UTF-8. Can have at most 3 space separated terms if full_match is true. Cannot be an empty string. Maximum length of 5000 characters.
-     */
-    value?: string | null;
-  }
-  /**
-   * Used for time-dependent conditions.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaConditionTimeRange {
-    /**
-     * End of time range. Range is inclusive. Must be in the future.
-     */
-    endTime?: string | null;
-    /**
-     * Start of time range. Range is inclusive.
-     */
-    startTime?: string | null;
-  }
-  /**
-   * Defines a conditioned behavior to employ during serving. Must be attached to a [ServingConfig] to be considered at serving time. Permitted actions dependent on Solution Type.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaControl {
-    /**
-     * Output only. List of all [ServingConfig] ids this control is attached to. May take up to 10 minutes to update after changes.
-     */
-    associatedServingConfigIds?: string[] | null;
-    /**
-     * Defines a boost-type control
-     */
-    boostAction?: Schema$GoogleCloudDiscoveryengineV1alphaControlBoostAction;
-    /**
-     * Determines when the associated action will trigger. Omit to always apply the action. Currently only a single condition may be specified. Otherwise an INVALID ARGUMENT error is thrown.
-     */
-    conditions?: Schema$GoogleCloudDiscoveryengineV1alphaCondition[];
-    /**
-     * Required. Human readable name. The identifier used in UI views. Must be UTF-8 encoded string. Length limit is 128 characters. Otherwise an INVALID ARGUMENT error is thrown.
-     */
-    displayName?: string | null;
-    /**
-     * Defines a filter-type control Currently not supported by Recommendation
-     */
-    filterAction?: Schema$GoogleCloudDiscoveryengineV1alphaControlFilterAction;
-    /**
-     * Immutable. Fully qualified name `projects/x/locations/global/dataStore/x/controls/x`
-     */
-    name?: string | null;
-    /**
-     * Required. What solution the control belongs to. Must be compatible with vertical of resource. Otherwise an INVALID ARGUMENT error is thrown.
-     */
-    solutionType?: string | null;
-    /**
-     * Specifies the use case for the control. Affects what condition fields can be set. Only applies to SOLUTION_TYPE_SEARCH. Currently only allow one use case per control. Must be set when solution_type is SolutionType.SOLUTION_TYPE_SEARCH.
-     */
-    useCases?: string[] | null;
-  }
-  /**
-   * Adjusts order of products in returned list.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaControlBoostAction {
-    /**
-     * Required. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).
-     */
-    boost?: number | null;
-    /**
-     * Required. Specifies which products to apply the boost to. If no filter is provided all products will be boosted (No-op). Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.
-     */
-    filter?: string | null;
-  }
-  /**
-   * Specified which products may be included in results. Uses same filter as boost.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaControlFilterAction {
-    /**
-     * Required. A filter to apply on the matching condition results. Required Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.
-     */
-    filter?: string | null;
-  }
-  /**
    * Metadata related to the progress of the ImportDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata {
@@ -415,11 +317,28 @@ export namespace discoveryengine_v1beta {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * Defines the structure and layout of a type of document data.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSchema {
+    /**
+     * The JSON representation of the schema.
+     */
+    jsonSchema?: string | null;
+    /**
+     * Immutable. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The structured representation of the schema.
+     */
+    structSchema?: {[key: string]: any} | null;
+  }
+  /**
    * BigQuery source import data from.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaBigQuerySource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for imports: * `user_event` (default): One JSON UserEvent per line. * `document` (default): One JSON Document per line. Each document must have a valid document.id.
+     * The schema to use when parsing the data from the source. Supported values for user event imports: * `user_event` (default): One UserEvent per row. Supported values for document imports: * `document` (default): One Document format per row. Each document must have a valid Document.id and one of Document.json_data or Document.struct_data. * `custom`: One custom data per row in arbitrary format that conforms the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical.
      */
     dataSchema?: string | null;
     /**
@@ -490,7 +409,7 @@ export namespace discoveryengine_v1beta {
      */
     parentDocumentId?: string | null;
     /**
-     * Required. The identifier of the schema located in the same data store.
+     * The identifier of the schema located in the same data store.
      */
     schemaId?: string | null;
     /**
@@ -524,11 +443,11 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaGcsSource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` will become a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. Supported values for user even imports: * `user_event` (default): One JSON UserEvent per line.
+     * The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` will become a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. * `custom`: One custom data JSON per row in arbitrary format that conforms the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical. Supported values for user even imports: * `user_event` (default): One JSON UserEvent per line.
      */
     dataSchema?: string | null;
     /**
-     * Required. Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/x.json`. A request can contain at most 100 files or 100000 files if the data_schema is `content`. And each file can be up to 2 GB.
+     * Required. Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/x.json`. A request can contain at most 100 files (or 100,000 files if `data_schema` is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is `content`).
      */
     inputUris?: string[] | null;
   }
@@ -815,6 +734,23 @@ export namespace discoveryengine_v1beta {
      * Additional Document metadata / annotations. Possible values: * `score`: Recommendation score in double value. Is set if `returnScore` is set to true in RecommendRequest.params.
      */
     metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Defines the structure and layout of a type of document data.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSchema {
+    /**
+     * The JSON representation of the schema.
+     */
+    jsonSchema?: string | null;
+    /**
+     * Immutable. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The structured representation of the schema.
+     */
+    structSchema?: {[key: string]: any} | null;
   }
   /**
    * Detailed search information.

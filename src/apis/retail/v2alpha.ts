@@ -712,6 +712,19 @@ export namespace retail_v2alpha {
     solutionTypes?: string[] | null;
   }
   /**
+   * Common metadata related to the progress of the operations.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCreateMerchantCenterAccountLinkMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata associated with a create operation.
    */
   export interface Schema$GoogleCloudRetailV2alphaCreateModelMetadata {
@@ -1080,6 +1093,15 @@ export namespace retail_v2alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response for MerchantCenterAccountLinkService.ListMerchantCenterAccountLinks method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse {
+    /**
+     * The links.
+     */
+    merchantCenterAccountLinks?: Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLink[];
+  }
+  /**
    * Response to a ListModelRequest.
    */
   export interface Schema$GoogleCloudRetailV2alphaListModelsResponse {
@@ -1144,6 +1166,60 @@ export namespace retail_v2alpha {
      * Product price and cost information. Google Merchant Center property [price](https://support.google.com/merchants/answer/6324371).
      */
     priceInfo?: Schema$GoogleCloudRetailV2alphaPriceInfo;
+  }
+  /**
+   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch. LINT.IfChange(MerchantCenterAccountLink)
+   */
+  export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLink {
+    /**
+     * Required. The branch id (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch id can only have one linked merchant center account id.
+     */
+    branchId?: string | null;
+    /**
+     * Criteria for the Merchant Center feeds to be ingested via the link. All offers will be ingested if the list is empty. Otherwise the offers will be ingested from selected feeds.
+     */
+    feedFilters?: Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter[];
+    /**
+     * The FeedLabel used to perform filtering. Note: this replaces [region_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.feed_label). Example value: `US`. Example value: `FeedLabel1`.
+     */
+    feedLabel?: string | null;
+    /**
+     * Output only. Immutable. MerchantCenterAccountLink identifier, which is the final component of name. This field is auto generated and follows the convention: `BranchId_MerchantCenterAccountId`. `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/id_1`.
+     */
+    id?: string | null;
+    /**
+     * Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). ISO 639-1. This specifies the language of offers in Merchant Center that will be accepted. If empty, no language filtering will be performed. Example value: `en`.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The linked [Merchant center account id](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
+     */
+    merchantCenterAccountId?: string | null;
+    /**
+     * Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
+     */
+    name?: string | null;
+    /**
+     * Output only. GCP project ID.
+     */
+    projectId?: string | null;
+    /**
+     * Output only. Represents the state of the link.
+     */
+    state?: string | null;
+  }
+  /**
+   * Merchant Center Feed filter criterion.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter {
+    /**
+     * Merchant Center primary feed ID.
+     */
+    primaryFeedId?: string | null;
+    /**
+     * Merchant Center primary feed name. The name is used for the display purposes only.
+     */
+    primaryFeedName?: string | null;
   }
   /**
    * Merchant Center Feed filter criterion.
@@ -1335,7 +1411,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaPredictRequest {
     /**
-     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of "EXPIRED" or "DELETED" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones")) * (brands: ANY("Pixel")) AND (colors: ANY("Red") OR categories: ANY("Phones")) For more information, see [Filter recommendations](https://cloud.google.com/retail/docs/filter-recs).
+     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, the API will return *no* results. If instead you want empty result sets to return generic (unfiltered) popular products, set `strictFiltering` to False in `PredictRequest.params`. Note that the API will never return items with storageStatus of "EXPIRED" or "DELETED" regardless of filter choices. If `filterSyntaxV2` is set to true under the `params` field, then attribute-based expressions are expected instead of the above described tag-based syntax. Examples: * (colors: ANY("Red", "Blue")) AND NOT (categories: ANY("Phones")) * (availability: ANY("IN_STOCK")) AND (colors: ANY("Red") OR categories: ANY("Phones")) For more information, see [Filter recommendations](https://cloud.google.com/retail/docs/filter-recs).
      */
     filter?: string | null;
     /**
@@ -2019,6 +2095,10 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequest {
     /**
+     * Represents the banner in request, for projects that combine banners. For example: a retailer can sell products under different banners like retailer-main, retailer-baby, retailer-meds, etc. under one project.
+     */
+    banner?: string | null;
+    /**
      * Boost specification to boost certain products. See more details at this [user guide](https://cloud.google.com/retail/docs/boosting). Notice that if both ServingConfig.boost_control_ids and SearchRequest.boost_spec are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions.
      */
     boostSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestBoostSpec;
@@ -2536,6 +2616,10 @@ export namespace retail_v2alpha {
      */
     attributionToken?: string | null;
     /**
+     * Represents the banner of the user event, for projects that combine banners. For example: retailer can have events from multiple banners like retailer-main, retailer-baby, retailer-meds, etc. under one project.
+     */
+    banner?: string | null;
+    /**
      * The ID or name of the associated shopping cart. This ID is used to associate multiple items added or present in the cart before purchase. This can only be set for `add-to-cart`, `purchase-complete`, or `shopping-cart-page-view` events.
      */
     cartId?: string | null;
@@ -2543,10 +2627,6 @@ export namespace retail_v2alpha {
      * The main auto-completion details related to the event. This field should be set for `search` event when autocomplete function is enabled and the user clicks a suggestion for search.
      */
     completionDetail?: Schema$GoogleCloudRetailV2alphaCompletionDetail;
-    /**
-     * Represents the domain of the user event, for projects that combine domains. For example: retailer can have events from multiple domains like retailer-main, retailer-baby, retailer-meds, etc. under one project.
-     */
-    domain?: string | null;
     /**
      * Only required for UserEventService.ImportUserEvents method. Timestamp of when the user event happened.
      */
@@ -2702,6 +2782,19 @@ export namespace retail_v2alpha {
     tableId?: string | null;
   }
   /**
+   * Common metadata related to the progress of the operations.
+   */
+  export interface Schema$GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata associated with a create operation.
    */
   export interface Schema$GoogleCloudRetailV2betaCreateModelMetadata {
@@ -2851,6 +2944,60 @@ export namespace retail_v2alpha {
      * Aggregated statistics of user event import status.
      */
     importSummary?: Schema$GoogleCloudRetailV2betaUserEventImportSummary;
+  }
+  /**
+   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch. LINT.IfChange(MerchantCenterAccountLink)
+   */
+  export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLink {
+    /**
+     * Required. The branch id (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch id can only have one linked merchant center account id.
+     */
+    branchId?: string | null;
+    /**
+     * Criteria for the Merchant Center feeds to be ingested via the link. All offers will be ingested if the list is empty. Otherwise the offers will be ingested from selected feeds.
+     */
+    feedFilters?: Schema$GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter[];
+    /**
+     * The FeedLabel used to perform filtering. Note: this replaces [region_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.feed_label). Example value: `US`. Example value: `FeedLabel1`.
+     */
+    feedLabel?: string | null;
+    /**
+     * Output only. Immutable. MerchantCenterAccountLink identifier, which is the final component of name. This field is auto generated and follows the convention: `BranchId_MerchantCenterAccountId`. `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/id_1`.
+     */
+    id?: string | null;
+    /**
+     * Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). ISO 639-1. This specifies the language of offers in Merchant Center that will be accepted. If empty, no language filtering will be performed. Example value: `en`.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The linked [Merchant center account id](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
+     */
+    merchantCenterAccountId?: string | null;
+    /**
+     * Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
+     */
+    name?: string | null;
+    /**
+     * Output only. GCP project ID.
+     */
+    projectId?: string | null;
+    /**
+     * Output only. Represents the state of the link.
+     */
+    state?: string | null;
+  }
+  /**
+   * Merchant Center Feed filter criterion.
+   */
+  export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter {
+    /**
+     * Merchant Center primary feed ID.
+     */
+    primaryFeedId?: string | null;
+    /**
+     * Merchant Center primary feed name. The name is used for the display purposes only.
+     */
+    primaryFeedName?: string | null;
   }
   /**
    * Metadata that describes the training and serving parameters of a Model. A Model can be associated with a ServingConfig and then queried through the Predict API.
@@ -3350,6 +3497,7 @@ export namespace retail_v2alpha {
     branches: Resource$Projects$Locations$Catalogs$Branches;
     completionData: Resource$Projects$Locations$Catalogs$Completiondata;
     controls: Resource$Projects$Locations$Catalogs$Controls;
+    merchantCenterAccountLinks: Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks;
     models: Resource$Projects$Locations$Catalogs$Models;
     operations: Resource$Projects$Locations$Catalogs$Operations;
     placements: Resource$Projects$Locations$Catalogs$Placements;
@@ -3367,6 +3515,10 @@ export namespace retail_v2alpha {
       this.controls = new Resource$Projects$Locations$Catalogs$Controls(
         this.context
       );
+      this.merchantCenterAccountLinks =
+        new Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks(
+          this.context
+        );
       this.models = new Resource$Projects$Locations$Catalogs$Models(
         this.context
       );
@@ -3410,6 +3562,8 @@ export namespace retail_v2alpha {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.completeQuery({
+     *     // The banner context for completion suggestions.
+     *     banner: 'placeholder-value',
      *     // Required. Catalog for which the completion is performed. Full resource name of catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
      *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *     // Determines which dataset to use for fetching completion. "user-data" will use the imported dataset through CompletionService.ImportCompletionData. "cloud-retail" will use the dataset generated by cloud retail based on user events. If leave empty, it will use the "user-data". Current supported values: * user-data * cloud-retail: This option requires enabling auto-learning function first. See [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
@@ -4720,6 +4874,10 @@ export namespace retail_v2alpha {
 
   export interface Params$Resource$Projects$Locations$Catalogs$Completequery
     extends StandardParameters {
+    /**
+     * The banner context for completion suggestions.
+     */
+    banner?: string;
     /**
      * Required. Catalog for which the completion is performed. Full resource name of catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
      */
@@ -8973,6 +9131,471 @@ export namespace retail_v2alpha {
     requestBody?: Schema$GoogleCloudRetailV2alphaControl;
   }
 
+  export class Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a MerchantCenterAccountLink. MerchantCenterAccountLink cannot be set to a different oneof field, if so an INVALID_ARGUMENT is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.createMerchantCenterAccountLink(
+     *       {
+     *         // Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
+     *         name: 'projects/my-project/locations/my-location/catalogs/my-catalog/merchantCenterAccountLinks/my-merchantCenterAccountLink',
+     *         // Required. The branch resource where this MerchantCenterAccountLink will be created. Format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}\}
+     *         parent: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "branchId": "my_branchId",
+     *           //   "feedFilters": [],
+     *           //   "feedLabel": "my_feedLabel",
+     *           //   "id": "my_id",
+     *           //   "languageCode": "my_languageCode",
+     *           //   "merchantCenterAccountId": "my_merchantCenterAccountId",
+     *           //   "name": "my_name",
+     *           //   "projectId": "my_projectId",
+     *           //   "state": "my_state"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createMerchantCenterAccountLink(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createMerchantCenterAccountLink(
+      params?: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    createMerchantCenterAccountLink(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createMerchantCenterAccountLink(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    createMerchantCenterAccountLink(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    createMerchantCenterAccountLink(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    createMerchantCenterAccountLink(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a MerchantCenterAccountLink. If the MerchantCenterAccountLink to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.delete({
+     *       // Required. Full resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/merchantCenterAccountLinks/{merchant_center_account_link_id\}
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/merchantCenterAccountLinks/my-merchantCenterAccountLink',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lists all MerchantCenterAccountLinks under the specified parent Catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.list({
+     *       // Required. The parent Catalog of the resource. It must match this format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}
+     *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "merchantCenterAccountLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+parent}/merchantCenterAccountLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink
+    extends StandardParameters {
+    /**
+     * Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
+     */
+    name?: string;
+    /**
+     * Required. The branch resource where this MerchantCenterAccountLink will be created. Format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLink;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete
+    extends StandardParameters {
+    /**
+     * Required. Full resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/merchantCenterAccountLinks/{merchant_center_account_link_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List
+    extends StandardParameters {
+    /**
+     * Required. The parent Catalog of the resource. It must match this format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Catalogs$Models {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -10815,6 +11438,7 @@ export namespace retail_v2alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "banner": "my_banner",
      *       //   "boostSpec": {},
      *       //   "branch": "my_branch",
      *       //   "canonicalFilter": "my_canonicalFilter",
@@ -12309,6 +12933,7 @@ export namespace retail_v2alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "banner": "my_banner",
      *       //   "boostSpec": {},
      *       //   "branch": "my_branch",
      *       //   "canonicalFilter": "my_canonicalFilter",
@@ -13201,9 +13826,9 @@ export namespace retail_v2alpha {
      *       // {
      *       //   "attributes": {},
      *       //   "attributionToken": "my_attributionToken",
+     *       //   "banner": "my_banner",
      *       //   "cartId": "my_cartId",
      *       //   "completionDetail": {},
-     *       //   "domain": "my_domain",
      *       //   "eventTime": "my_eventTime",
      *       //   "eventType": "my_eventType",
      *       //   "experimentIds": [],
@@ -13229,9 +13854,9 @@ export namespace retail_v2alpha {
      *   // {
      *   //   "attributes": {},
      *   //   "attributionToken": "my_attributionToken",
+     *   //   "banner": "my_banner",
      *   //   "cartId": "my_cartId",
      *   //   "completionDetail": {},
-     *   //   "domain": "my_domain",
      *   //   "eventTime": "my_eventTime",
      *   //   "eventType": "my_eventType",
      *   //   "experimentIds": [],

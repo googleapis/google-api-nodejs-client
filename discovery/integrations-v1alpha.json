@@ -3202,7 +3202,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230322",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -5601,9 +5601,11 @@
           "enum": [
             "PENDING_UNSPECIFIED",
             "REJECTED",
-            "LIFTED"
+            "LIFTED",
+            "CANCELED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""

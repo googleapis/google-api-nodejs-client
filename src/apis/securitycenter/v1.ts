@@ -261,23 +261,6 @@ export namespace securitycenter_v1 {
     projectIds?: string[] | null;
   }
   /**
-   * A finding that is associated with this node in the exposure path.
-   */
-  export interface Schema$AssociatedFinding {
-    /**
-     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
-     */
-    canonicalFindingName?: string | null;
-    /**
-     * The additional taxonomy group within findings from a given source.
-     */
-    findingCategory?: string | null;
-    /**
-     * Full resource name of the finding.
-     */
-    name?: string | null;
-  }
-  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -332,6 +315,36 @@ export namespace securitycenter_v1 {
      * This can be a mute configuration name or any identifier for mute/unmute of findings based on the filter.
      */
     muteAnnotation?: string | null;
+  }
+  /**
+   * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
+   */
+  export interface Schema$CloudDlpDataProfile {
+    /**
+     * Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.
+     */
+    dataProfile?: string | null;
+  }
+  /**
+   * Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.
+   */
+  export interface Schema$CloudDlpInspection {
+    /**
+     * Whether Cloud DLP scanned the complete resource or a sampled subset.
+     */
+    fullScan?: boolean | null;
+    /**
+     * The [type of information](https://cloud.google.com/dlp/docs/infotypes-reference) found, for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
+     */
+    infoType?: string | null;
+    /**
+     * The number of times Cloud DLP found this infoType within this job and resource.
+     */
+    infoTypeCount?: string | null;
+    /**
+     * Name of the inspection job, for example, `projects/123/locations/europe/dlpJobs/i-8383929`.
+     */
+    inspectJob?: string | null;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -515,19 +528,6 @@ export namespace securitycenter_v1 {
     percentPagesMatched?: number | null;
   }
   /**
-   * Represents a connection between a source node and a destination node in this exposure path.
-   */
-  export interface Schema$Edge {
-    /**
-     * This is the resource name of the destination node.
-     */
-    destination?: string | null;
-    /**
-     * This is the resource name of the source node.
-     */
-    source?: string | null;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -637,6 +637,14 @@ export namespace securitycenter_v1 {
      */
     category?: string | null;
     /**
+     * Cloud DLP data profile associated with the finding.
+     */
+    cloudDlpDataProfile?: Schema$CloudDlpDataProfile;
+    /**
+     * Cloud DLP inspection associated with the finding.
+     */
+    cloudDlpInspection?: Schema$CloudDlpInspection;
+    /**
      * Contains compliance information for security standards associated to the finding.
      */
     compliances?: Schema$Compliance[];
@@ -710,6 +718,10 @@ export namespace securitycenter_v1 {
      * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
      */
     mitreAttack?: Schema$MitreAttack;
+    /**
+     * Unique identifier of the module which generated the finding. Example: folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
+     */
+    moduleName?: string | null;
     /**
      * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
@@ -882,56 +894,6 @@ export namespace securitycenter_v1 {
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
-  /**
-   * A resource that is exposed as a result of a finding.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1ExposedResource {
-    /**
-     * Human readable name of the resource that is exposed.
-     */
-    displayName?: string | null;
-    /**
-     * The ways in which this resource is exposed. Examples: Read, Write
-     */
-    methods?: string[] | null;
-    /**
-     * Exposed Resource Name e.g.: `organizations/123/attackExposureResults/456/exposedResources/789`
-     */
-    name?: string | null;
-    /**
-     * The name of the resource that is exposed. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resource?: string | null;
-    /**
-     * The resource type of the exposed resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
-     */
-    resourceType?: string | null;
-    /**
-     * How valuable this resource is.
-     */
-    resourceValue?: string | null;
-  }
-  /**
-   * A path that an attacker could take to reach an exposed resource.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1ExposurePath {
-    /**
-     * A list of the edges between nodes in this exposure path.
-     */
-    edges?: Schema$Edge[];
-    /**
-     * The leaf node of this exposure path.
-     */
-    exposedResource?: Schema$GoogleCloudSecuritycenterV1ExposedResource;
-    /**
-     * Exposure Path Name e.g.: `organizations/123/attackExposureResults/456/exposurePaths/789`
-     */
-    name?: string | null;
-    /**
-     * A list of nodes that exist in this exposure path.
-     */
-    pathNodes?: Schema$PathNode[];
-  }
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
    */
@@ -1185,31 +1147,6 @@ export namespace securitycenter_v1 {
      * The full resource type of the resource.
      */
     type?: string | null;
-  }
-  /**
-   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
-    /**
-     * Name for the resource value config
-     */
-    name?: string | null;
-    /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
-     */
-    resourceType?: string | null;
-    /**
-     * Required. Resource value level this expression represents
-     */
-    resourceValue?: string | null;
-    /**
-     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
-     */
-    scope?: string | null;
-    /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
-     */
-    tagValues?: string[] | null;
   }
   /**
    * Response of asset discovery run
@@ -1730,27 +1667,6 @@ export namespace securitycenter_v1 {
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/organizationSettings".
      */
     name?: string | null;
-  }
-  /**
-   * Represents one point that an attacker passes through in this exposure path.
-   */
-  export interface Schema$PathNode {
-    /**
-     * The findings associated with this node in the exposure path.
-     */
-    associatedFindings?: Schema$AssociatedFinding[];
-    /**
-     * Human readable name of this resource.
-     */
-    displayName?: string | null;
-    /**
-     * The name of the resource at this point in the exposure path. The format of the name is: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resource?: string | null;
-    /**
-     * The resource type of this resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
-     */
-    resourceType?: string | null;
   }
   /**
    * Kubernetes Pod.
@@ -5715,6 +5631,8 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "cloudDlpDataProfile": {},
+     *       //   "cloudDlpInspection": {},
      *       //   "compliances": [],
      *       //   "connections": [],
      *       //   "contacts": {},
@@ -5733,6 +5651,7 @@ export namespace securitycenter_v1 {
      *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
+     *       //   "moduleName": "my_moduleName",
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -5757,6 +5676,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -5775,6 +5696,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -5926,6 +5848,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -5944,6 +5868,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -6099,6 +6024,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -6117,6 +6044,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -11895,6 +11823,8 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "cloudDlpDataProfile": {},
+     *       //   "cloudDlpInspection": {},
      *       //   "compliances": [],
      *       //   "connections": [],
      *       //   "contacts": {},
@@ -11913,6 +11843,7 @@ export namespace securitycenter_v1 {
      *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
+     *       //   "moduleName": "my_moduleName",
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -11937,6 +11868,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -11955,6 +11888,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -12406,6 +12340,8 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "cloudDlpDataProfile": {},
+     *       //   "cloudDlpInspection": {},
      *       //   "compliances": [],
      *       //   "connections": [],
      *       //   "contacts": {},
@@ -12424,6 +12360,7 @@ export namespace securitycenter_v1 {
      *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
+     *       //   "moduleName": "my_moduleName",
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -12448,6 +12385,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -12466,6 +12405,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -12617,6 +12557,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -12635,6 +12577,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -12790,6 +12733,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -12808,6 +12753,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -16956,6 +16902,8 @@ export namespace securitycenter_v1 {
      *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
+     *       //   "cloudDlpDataProfile": {},
+     *       //   "cloudDlpInspection": {},
      *       //   "compliances": [],
      *       //   "connections": [],
      *       //   "contacts": {},
@@ -16974,6 +16922,7 @@ export namespace securitycenter_v1 {
      *       //   "kernelRootkit": {},
      *       //   "kubernetes": {},
      *       //   "mitreAttack": {},
+     *       //   "moduleName": "my_moduleName",
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -16998,6 +16947,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -17016,6 +16967,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -17167,6 +17119,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -17185,6 +17139,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -17340,6 +17295,8 @@ export namespace securitycenter_v1 {
      *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
+     *   //   "cloudDlpDataProfile": {},
+     *   //   "cloudDlpInspection": {},
      *   //   "compliances": [],
      *   //   "connections": [],
      *   //   "contacts": {},
@@ -17358,6 +17315,7 @@ export namespace securitycenter_v1 {
      *   //   "kernelRootkit": {},
      *   //   "kubernetes": {},
      *   //   "mitreAttack": {},
+     *   //   "moduleName": "my_moduleName",
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",

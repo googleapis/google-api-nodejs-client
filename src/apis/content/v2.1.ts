@@ -137,6 +137,7 @@ export namespace content_v2_1 {
     promotions: Resource$Promotions;
     pubsubnotificationsettings: Resource$Pubsubnotificationsettings;
     quotas: Resource$Quotas;
+    recommendations: Resource$Recommendations;
     regionalinventory: Resource$Regionalinventory;
     regions: Resource$Regions;
     reports: Resource$Reports;
@@ -184,6 +185,7 @@ export namespace content_v2_1 {
         this.context
       );
       this.quotas = new Resource$Quotas(this.context);
+      this.recommendations = new Resource$Recommendations(this.context);
       this.regionalinventory = new Resource$Regionalinventory(this.context);
       this.regions = new Resource$Regions(this.context);
       this.reports = new Resource$Reports(this.context);
@@ -2142,6 +2144,19 @@ export namespace content_v2_1 {
      * This timestamp represents end of cooldown period for review ineligbility reason `IN_COOLDOWN_PERIOD`.
      */
     cooldownTime?: string | null;
+  }
+  /**
+   * Response containing generated recommendations.
+   */
+  export interface Schema$GenerateRecommendationsResponse {
+    /**
+     * Recommendations generated for a request.
+     */
+    recommendations?: Schema$Recommendation[];
+    /**
+     * Output only. Response token is a string created for each `GenerateRecommendationsResponse`. This token doesn't expire, and is globally unique. This token must be used when reporting interactions for recommendations.
+     */
+    responseToken?: string | null;
   }
   export interface Schema$GmbAccounts {
     /**
@@ -5525,7 +5540,7 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the Help Center article for more information.
+     * Additional URLs of lifestyle images of the item. Used to explicitly identify images that showcase your item in a real-world context. See the Help Center article for more information.
      */
     lifestyleImageLinks?: string[] | null;
     /**
@@ -6683,6 +6698,98 @@ export namespace content_v2_1 {
      */
     subtables?: Schema$Table[];
   }
+  /**
+   * Recommendations are suggested ways to improve your merchant account's performance. For example, to engage with a feature, or start using a new Google product.
+   */
+  export interface Schema$Recommendation {
+    /**
+     * Output only. CTAs of this recommendation. Repeated.
+     */
+    additionalCallToAction?: Schema$RecommendationCallToAction[];
+    /**
+     * Output only. List of additional localized descriptions for a recommendation. Localication uses the `languageCode` field in `GenerateRecommendations` requests. Not all description types are guaranteed to be present and we recommend to rely on default description.
+     */
+    additionalDescriptions?: Schema$RecommendationDescription[];
+    /**
+     * Output only. Any creatives attached to the recommendation. Repeated.
+     */
+    creative?: Schema$RecommendationCreative[];
+    /**
+     * Optional. Default CTA of the recommendation.
+     */
+    defaultCallToAction?: Schema$RecommendationCallToAction;
+    /**
+     * Optional. Localized recommendation description. The localization the {@link `GenerateRecommendationsRequest.language_code`\} field in {@link `GenerateRecommendationsRequest`\} requests.
+     */
+    defaultDescription?: string | null;
+    /**
+     * Optional. A numerical score of the impact from the recommendation's description. For example, a recommendation might suggest an upward trend in sales for a certain product. Higher number means larger impact.
+     */
+    numericalImpact?: number | null;
+    /**
+     * Optional. Indicates whether a user needs to pay when they complete the user journey suggested by the recommendation.
+     */
+    paid?: boolean | null;
+    /**
+     * Optional. Localized recommendation name. The localization uses the {@link `GenerateRecommendationsRequest.language_code`\} field in {@link `GenerateRecommendationsRequest`\} requests.
+     */
+    recommendationName?: string | null;
+    /**
+     * Optional. Subtype of the recommendations. Only applicable when multiple recommendations can be generated per type, and is used as an identifier of recommendation under the same recommendation type.
+     */
+    subType?: string | null;
+    /**
+     * Optional. Localized Recommendation Title. Localization uses the {@link `GenerateRecommendationsRequest.language_code`\} field in {@link `GenerateRecommendationsRequest`\} requests.
+     */
+    title?: string | null;
+    /**
+     * Output only. Type of the recommendation. List of currently available recommendation types: - OPPORTUNITY_CREATE_NEW_COLLECTION - OPPORTUNITY_CREATE_EMAIL_CAMPAIGN
+     */
+    type?: string | null;
+  }
+  /**
+   * Call to action (CTA) that explains how a merchant can implement this recommendation
+   */
+  export interface Schema$RecommendationCallToAction {
+    /**
+     * Output only. Intent of the action. This value describes the intent (for example, `OPEN_CREATE_EMAIL_CAMPAIGN_FLOW`) and can vary from recommendation to recommendation. This value can change over time for the same recommendation. Currently available intent values: - OPEN_CREATE_EMAIL_CAMPAIGN_FLOW: Opens a user journey where they can create a marketing email campaign. (No default URL) - OPEN_CREATE_COLLECTION_TAB: Opens a user journey where they can [create a collection](https://support.google.com/merchants/answer/9703228) for their Merchant account. (No default URL)
+     */
+    intent?: string | null;
+    /**
+     * Output only. Localized text of the CTA. Optional.
+     */
+    localizedText?: string | null;
+    /**
+     * Optional. URL of the CTA. This field will only be set for some recommendations where there is a suggested landing URL. Otherwise it will be set to an empty string. We recommend developers to use their own custom landing page according to the description of the intent field above when this uri field is empty.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Creative is a multimedia attachment to recommendation that can be used on the frontend.
+   */
+  export interface Schema$RecommendationCreative {
+    /**
+     * Type of the creative.
+     */
+    type?: string | null;
+    /**
+     * URL of the creative.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Google-provided description for the recommendation.
+   */
+  export interface Schema$RecommendationDescription {
+    /**
+     * Output only. Text of the description.
+     */
+    text?: string | null;
+    /**
+     * Output only. Type of the description.
+     */
+    type?: string | null;
+  }
   export interface Schema$RefundReason {
     /**
      * Description of the reason.
@@ -6855,6 +6962,27 @@ export namespace content_v2_1 {
      * Optional. A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.
      */
     end?: string | null;
+  }
+  /**
+   * Request to report interactions on a recommendation.
+   */
+  export interface Schema$ReportInteractionRequest {
+    /**
+     * Required. Type of the interaction that is reported, for example INTERACTION_CLICK.
+     */
+    interactionType?: string | null;
+    /**
+     * Required. Token of the response when recommendation was returned.
+     */
+    responseToken?: string | null;
+    /**
+     * Optional. Subtype of the recommendations this interaction happened on. This field must be set only to the value that is returned by {@link `RecommendationsService.GenerateRecommendations`\} call.
+     */
+    subtype?: string | null;
+    /**
+     * Required. Type of the recommendations on which this interaction happened. This field must be set only to the value that is returned by {@link `GenerateRecommendationsResponse`\} call.
+     */
+    type?: string | null;
   }
   /**
    * Result row returned from the search query.
@@ -30350,6 +30478,318 @@ export namespace content_v2_1 {
      * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Recommendations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates recommendations for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.recommendations.generate({
+     *     // Optional. List of allowed tags. Tags are a set of predefined strings that describe the category that individual recommendation types. User can specify zero or more tags in this field to indicate what group of recommendations they want to receive. Current list of supported tags: - TREND
+     *     allowedTag: 'placeholder-value',
+     *     // Optional. Language code of the client. If not set, the result will be in default language (English). This language code affects all fields prefixed with "localized". This should be set to ISO 639-1 country code. List of currently verified supported language code: en, fr, cs, da, de, es, it, nl, no, pl, pt, pt, fi, sv, vi, tr, th, ko, zh-CN, zh-TW, ja, id, hi
+     *     languageCode: 'placeholder-value',
+     *     // Required. The ID of the account to fetch recommendations for.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "recommendations": [],
+     *   //   "responseToken": "my_responseToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generate(
+      params: Params$Resource$Recommendations$Generate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generate(
+      params?: Params$Resource$Recommendations$Generate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateRecommendationsResponse>;
+    generate(
+      params: Params$Resource$Recommendations$Generate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generate(
+      params: Params$Resource$Recommendations$Generate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateRecommendationsResponse>,
+      callback: BodyResponseCallback<Schema$GenerateRecommendationsResponse>
+    ): void;
+    generate(
+      params: Params$Resource$Recommendations$Generate,
+      callback: BodyResponseCallback<Schema$GenerateRecommendationsResponse>
+    ): void;
+    generate(
+      callback: BodyResponseCallback<Schema$GenerateRecommendationsResponse>
+    ): void;
+    generate(
+      paramsOrCallback?:
+        | Params$Resource$Recommendations$Generate
+        | BodyResponseCallback<Schema$GenerateRecommendationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateRecommendationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateRecommendationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateRecommendationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recommendations$Generate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recommendations$Generate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/recommendations/generate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateRecommendationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateRecommendationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Reports an interaction on a recommendation for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.recommendations.reportInteraction({
+     *     // Required. The ID of the account that wants to report an interaction.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "interactionType": "my_interactionType",
+     *       //   "responseToken": "my_responseToken",
+     *       //   "subtype": "my_subtype",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reportInteraction(
+      params: Params$Resource$Recommendations$Reportinteraction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportInteraction(
+      params?: Params$Resource$Recommendations$Reportinteraction,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    reportInteraction(
+      params: Params$Resource$Recommendations$Reportinteraction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reportInteraction(
+      params: Params$Resource$Recommendations$Reportinteraction,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reportInteraction(
+      params: Params$Resource$Recommendations$Reportinteraction,
+      callback: BodyResponseCallback<void>
+    ): void;
+    reportInteraction(callback: BodyResponseCallback<void>): void;
+    reportInteraction(
+      paramsOrCallback?:
+        | Params$Resource$Recommendations$Reportinteraction
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recommendations$Reportinteraction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recommendations$Reportinteraction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/recommendations/reportInteraction'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Recommendations$Generate
+    extends StandardParameters {
+    /**
+     * Optional. List of allowed tags. Tags are a set of predefined strings that describe the category that individual recommendation types. User can specify zero or more tags in this field to indicate what group of recommendations they want to receive. Current list of supported tags: - TREND
+     */
+    allowedTag?: string[];
+    /**
+     * Optional. Language code of the client. If not set, the result will be in default language (English). This language code affects all fields prefixed with "localized". This should be set to ISO 639-1 country code. List of currently verified supported language code: en, fr, cs, da, de, es, it, nl, no, pl, pt, pt, fi, sv, vi, tr, th, ko, zh-CN, zh-TW, ja, id, hi
+     */
+    languageCode?: string;
+    /**
+     * Required. The ID of the account to fetch recommendations for.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Recommendations$Reportinteraction
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account that wants to report an interaction.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportInteractionRequest;
   }
 
   export class Resource$Regionalinventory {

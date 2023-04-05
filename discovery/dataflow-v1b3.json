@@ -251,7 +251,7 @@
                   "enumDescriptions": [
                     "The job view to return isn't specified, or is unknown. Responses will contain at least the `JOB_VIEW_SUMMARY` information, and may contain additional information.",
                     "Request summary information only: Project ID, Job ID, job name, job type, job status, start/end time, and Cloud SDK version details.",
-                    "Request all information available for this job.",
+                    "Request all information available for this job. When the job is in `JOB_STATE_PENDING`, the job has been created but is not yet running, and not all job information is available. For complete job information, wait until the job in is `JOB_STATE_RUNNING`. For more information, see [JobState](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#jobstate).",
                     "Request summary info and limited job description data for steps, labels and environment."
                   ],
                   "location": "query",
@@ -305,7 +305,7 @@
                   "enumDescriptions": [
                     "The job view to return isn't specified, or is unknown. Responses will contain at least the `JOB_VIEW_SUMMARY` information, and may contain additional information.",
                     "Request summary information only: Project ID, Job ID, job name, job type, job status, start/end time, and Cloud SDK version details.",
-                    "Request all information available for this job.",
+                    "Request all information available for this job. When the job is in `JOB_STATE_PENDING`, the job has been created but is not yet running, and not all job information is available. For complete job information, wait until the job in is `JOB_STATE_RUNNING`. For more information, see [JobState](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#jobstate).",
                     "Request summary info and limited job description data for steps, labels and environment."
                   ],
                   "location": "query",
@@ -364,7 +364,7 @@
                   "enumDescriptions": [
                     "The job view to return isn't specified, or is unknown. Responses will contain at least the `JOB_VIEW_SUMMARY` information, and may contain additional information.",
                     "Request summary information only: Project ID, Job ID, job name, job type, job status, start/end time, and Cloud SDK version details.",
-                    "Request all information available for this job.",
+                    "Request all information available for this job. When the job is in `JOB_STATE_PENDING`, the job has been created but is not yet running, and not all job information is available. For complete job information, wait until the job in is `JOB_STATE_RUNNING`. For more information, see [JobState](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#jobstate).",
                     "Request summary info and limited job description data for steps, labels and environment."
                   ],
                   "location": "query",
@@ -491,7 +491,7 @@
                   "enumDescriptions": [
                     "The job view to return isn't specified, or is unknown. Responses will contain at least the `JOB_VIEW_SUMMARY` information, and may contain additional information.",
                     "Request summary information only: Project ID, Job ID, job name, job type, job status, start/end time, and Cloud SDK version details.",
-                    "Request all information available for this job.",
+                    "Request all information available for this job. When the job is in `JOB_STATE_PENDING`, the job has been created but is not yet running, and not all job information is available. For complete job information, wait until the job in is `JOB_STATE_RUNNING`. For more information, see [JobState](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#jobstate).",
                     "Request summary info and limited job description data for steps, labels and environment."
                   ],
                   "location": "query",
@@ -571,6 +571,12 @@
                   "description": "The ID of the Cloud Platform project that the job belongs to.",
                   "location": "path",
                   "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -957,7 +963,7 @@
                       "enumDescriptions": [
                         "The job view to return isn't specified, or is unknown. Responses will contain at least the `JOB_VIEW_SUMMARY` information, and may contain additional information.",
                         "Request summary information only: Project ID, Job ID, job name, job type, job status, start/end time, and Cloud SDK version details.",
-                        "Request all information available for this job.",
+                        "Request all information available for this job. When the job is in `JOB_STATE_PENDING`, the job has been created but is not yet running, and not all job information is available. For complete job information, wait until the job in is `JOB_STATE_RUNNING`. For more information, see [JobState](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#jobstate).",
                         "Request summary info and limited job description data for steps, labels and environment."
                       ],
                       "location": "query",
@@ -1018,7 +1024,7 @@
                       "enumDescriptions": [
                         "The job view to return isn't specified, or is unknown. Responses will contain at least the `JOB_VIEW_SUMMARY` information, and may contain additional information.",
                         "Request summary information only: Project ID, Job ID, job name, job type, job status, start/end time, and Cloud SDK version details.",
-                        "Request all information available for this job.",
+                        "Request all information available for this job. When the job is in `JOB_STATE_PENDING`, the job has been created but is not yet running, and not all job information is available. For complete job information, wait until the job in is `JOB_STATE_RUNNING`. For more information, see [JobState](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#jobstate).",
                         "Request summary info and limited job description data for steps, labels and environment."
                       ],
                       "location": "query",
@@ -1201,7 +1207,7 @@
                       "enumDescriptions": [
                         "The job view to return isn't specified, or is unknown. Responses will contain at least the `JOB_VIEW_SUMMARY` information, and may contain additional information.",
                         "Request summary information only: Project ID, Job ID, job name, job type, job status, start/end time, and Cloud SDK version details.",
-                        "Request all information available for this job.",
+                        "Request all information available for this job. When the job is in `JOB_STATE_PENDING`, the job has been created but is not yet running, and not all job information is available. For complete job information, wait until the job in is `JOB_STATE_RUNNING`. For more information, see [JobState](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#jobstate).",
                         "Request summary info and limited job description data for steps, labels and environment."
                       ],
                       "location": "query",
@@ -1290,6 +1296,12 @@
                       "description": "The ID of the Cloud Platform project that the job belongs to.",
                       "location": "path",
                       "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -2199,7 +2211,7 @@
       }
     }
   },
-  "revision": "20230119",
+  "revision": "20230327",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4019,6 +4031,13 @@
             "$ref": "SpannerIODetails"
           },
           "type": "array"
+        },
+        "userDisplayProperties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "List of display properties to help UI filter jobs.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -4674,6 +4693,10 @@
           "description": "Optional. Additional metadata for describing this parameter.",
           "type": "object"
         },
+        "groupName": {
+          "description": "Optional. Specifies a group name for this parameter to be rendered under. Group header text will be rendered exactly as specified in this field. Only considered when parent_name is NOT provided.",
+          "type": "string"
+        },
         "helpText": {
           "description": "Required. The help text to display for the parameter.",
           "type": "string"
@@ -4721,6 +4744,17 @@
             "The parameter specifies a JavaScript UDF in Cloud Storage."
           ],
           "type": "string"
+        },
+        "parentName": {
+          "description": "Optional. Specifies the name of the parent parameter. Used in conjunction with 'parent_trigger_values' to make this parameter conditional (will only be rendered conditionally). Should be mappable to a ParameterMetadata.name field.",
+          "type": "string"
+        },
+        "parentTriggerValues": {
+          "description": "Optional. The value(s) of the 'parent_name' parameter which will trigger this parameter to be shown. If left empty, ANY non-empty value in parent_name will trigger this parameter to be shown. Only considered when this parameter is conditional (when 'parent_name' has been provided).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "regexes": {
           "description": "Optional. Regexes that the parameter must match.",

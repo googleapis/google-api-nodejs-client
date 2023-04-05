@@ -1071,6 +1071,10 @@ export namespace cloudidentity_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Delivery setting associated with the membership.
+     */
+    deliverySetting?: string | null;
+    /**
      * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group\}/memberships/{membership\}`.
      */
     name?: string | null;
@@ -1103,6 +1107,39 @@ export namespace cloudidentity_v1 {
      * Resource name of the group that the members belong to.
      */
     group?: string | null;
+  }
+  /**
+   * Message containing membership relation.
+   */
+  export interface Schema$MembershipRelation {
+    /**
+     * An extended description to help users determine the purpose of a `Group`.
+     */
+    description?: string | null;
+    /**
+     * The display name of the `Group`.
+     */
+    displayName?: string | null;
+    /**
+     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
+     */
+    group?: string | null;
+    /**
+     * The `EntityKey` of the `Group`.
+     */
+    groupKey?: Schema$EntityKey;
+    /**
+     * One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group_id\}/memberships/{membership_id\}`.
+     */
+    membership?: string | null;
+    /**
+     * The `MembershipRole`s that apply to the `Membership`.
+     */
+    roles?: Schema$MembershipRole[];
   }
   /**
    * A membership role within the Cloud Identity Groups API. A `MembershipRole` defines the privileges granted to a `Membership`.
@@ -1250,6 +1287,19 @@ export namespace cloudidentity_v1 {
      * Required. Name of the `InboundSamlSsoProfile` to use. Must be of the form `inboundSamlSsoProfiles/{inbound_saml_sso_profile\}`.
      */
     inboundSamlSsoProfile?: string | null;
+  }
+  /**
+   * The response message for MembershipsService.SearchDirectGroups.
+   */
+  export interface Schema$SearchDirectGroupsResponse {
+    /**
+     * List of direct groups satisfying the query.
+     */
+    memberships?: Schema$MembershipRelation[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results available for listing.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for GroupsService.SearchGroups.
@@ -6539,6 +6589,7 @@ export namespace cloudidentity_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "deliverySetting": "my_deliverySetting",
      *       //   "name": "my_name",
      *       //   "preferredMemberKey": {},
      *       //   "roles": [],
@@ -6824,6 +6875,7 @@ export namespace cloudidentity_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "deliverySetting": "my_deliverySetting",
      *   //   "name": "my_name",
      *   //   "preferredMemberKey": {},
      *   //   "roles": [],
@@ -7506,6 +7558,151 @@ export namespace cloudidentity_v1 {
     }
 
     /**
+     * Searches direct groups of a member.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.memberships.searchDirectGroups({
+     *     // The ordering of membership relation for the display name or email in the response. The syntax for this field can be found at https://cloud.google.com/apis/design/design_patterns#sorting_order. Example: Sort by the ascending display name: order_by="group_name" or order_by="group_name asc". Sort by the descending display name: order_by="group_name desc". Sort by the ascending group key: order_by="group_key" or order_by="group_key asc". Sort by the descending group key: order_by="group_key desc".
+     *     orderBy: 'placeholder-value',
+     *     // The default page size is 200 (max 1000).
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous list request, if any
+     *     pageToken: 'placeholder-value',
+     *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: groups/{group_id\}, where group_id is always '-' as this API will search across all groups for a given member.
+     *     parent: 'groups/my-group',
+     *     // Required. A CEL expression that MUST include member specification AND label(s). Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && 'label_value' in labels`
+     *     query: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchDirectGroups(
+      params: Params$Resource$Groups$Memberships$Searchdirectgroups,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchDirectGroups(
+      params?: Params$Resource$Groups$Memberships$Searchdirectgroups,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchDirectGroupsResponse>;
+    searchDirectGroups(
+      params: Params$Resource$Groups$Memberships$Searchdirectgroups,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchDirectGroups(
+      params: Params$Resource$Groups$Memberships$Searchdirectgroups,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchDirectGroupsResponse>,
+      callback: BodyResponseCallback<Schema$SearchDirectGroupsResponse>
+    ): void;
+    searchDirectGroups(
+      params: Params$Resource$Groups$Memberships$Searchdirectgroups,
+      callback: BodyResponseCallback<Schema$SearchDirectGroupsResponse>
+    ): void;
+    searchDirectGroups(
+      callback: BodyResponseCallback<Schema$SearchDirectGroupsResponse>
+    ): void;
+    searchDirectGroups(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Searchdirectgroups
+        | BodyResponseCallback<Schema$SearchDirectGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchDirectGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchDirectGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchDirectGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Searchdirectgroups;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Memberships$Searchdirectgroups;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/memberships:searchDirectGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchDirectGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchDirectGroupsResponse>(parameters);
+      }
+    }
+
+    /**
      * Search transitive groups of a member. **Note:** This feature is only available to Google Workspace Enterprise Standard, Enterprise Plus, and Enterprise for Education; and Cloud Identity Premium accounts. If the account of the member is not one of these, a 403 (PERMISSION_DENIED) HTTP status code will be returned. A transitive group is any group that has a direct or indirect membership to the member. Actor must have view permissions all transitive groups.
      * @example
      * ```js
@@ -7898,6 +8095,29 @@ export namespace cloudidentity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ModifyMembershipRolesRequest;
+  }
+  export interface Params$Resource$Groups$Memberships$Searchdirectgroups
+    extends StandardParameters {
+    /**
+     * The ordering of membership relation for the display name or email in the response. The syntax for this field can be found at https://cloud.google.com/apis/design/design_patterns#sorting_order. Example: Sort by the ascending display name: order_by="group_name" or order_by="group_name asc". Sort by the descending display name: order_by="group_name desc". Sort by the ascending group key: order_by="group_key" or order_by="group_key asc". Sort by the descending group key: order_by="group_key desc".
+     */
+    orderBy?: string;
+    /**
+     * The default page size is 200 (max 1000).
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any
+     */
+    pageToken?: string;
+    /**
+     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: groups/{group_id\}, where group_id is always '-' as this API will search across all groups for a given member.
+     */
+    parent?: string;
+    /**
+     * Required. A CEL expression that MUST include member specification AND label(s). Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && 'label_value' in labels`
+     */
+    query?: string;
   }
   export interface Params$Resource$Groups$Memberships$Searchtransitivegroups
     extends StandardParameters {

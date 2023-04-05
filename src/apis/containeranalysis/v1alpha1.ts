@@ -2365,6 +2365,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     sbom?: Schema$DocumentNote;
     /**
+     * A note describing a reference to an SBOM.
+     */
+    sbomReference?: Schema$SBOMReferenceNote;
+    /**
      * A one sentence description of this `Note`.
      */
     shortDescription?: string | null;
@@ -2469,6 +2473,10 @@ export namespace containeranalysis_v1alpha1 {
      * Describes a specific software bill of materials document.
      */
     sbom?: Schema$DocumentOccurrence;
+    /**
+     * This represents an SBOM reference occurrence
+     */
+    sbomReference?: Schema$SBOMReferenceOccurrence;
     /**
      * Describes a specific SPDX File.
      */
@@ -2902,6 +2910,78 @@ export namespace containeranalysis_v1alpha1 {
      * The unique URI of the resource. E.g., "https://gcr.io/project/image@sha256:foo" for a Docker image.
      */
     uri?: string | null;
+  }
+  /**
+   * The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.
+   */
+  export interface Schema$SbomReferenceIntotoPayload {
+    /**
+     * Additional parameters of the Predicate. Includes the actual data about the SBOM.
+     */
+    predicate?: Schema$SbomReferenceIntotoPredicate;
+    /**
+     * URI identifying the type of the Predicate.
+     */
+    predicateType?: string | null;
+    /**
+     * Set of software artifacts that the attestation applies to. Each element represents a single software artifact.
+     */
+    subject?: Schema$Subject[];
+    /**
+     * Identifier for the schema of the Statement.
+     */
+    _type?: string | null;
+  }
+  /**
+   * A predicate which describes the SBOM being referenced.
+   */
+  export interface Schema$SbomReferenceIntotoPredicate {
+    /**
+     * A map of algorithm to digest of the contents of the SBOM.
+     */
+    digest?: {[key: string]: string} | null;
+    /**
+     * The location of the SBOM.
+     */
+    location?: string | null;
+    /**
+     * The mime type of the SBOM.
+     */
+    mimeType?: string | null;
+    /**
+     * The person or system referring this predicate to the consumer.
+     */
+    referrerId?: string | null;
+  }
+  /**
+   * The note representing an SBOM reference.
+   */
+  export interface Schema$SBOMReferenceNote {
+    /**
+     * The format that SBOM takes. E.g. may be spdx, cyclonedx, etc...
+     */
+    format?: string | null;
+    /**
+     * The version of the format that the SBOM takes. E.g. if the format is spdx, the version may be 2.3.
+     */
+    version?: string | null;
+  }
+  /**
+   * The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.
+   */
+  export interface Schema$SBOMReferenceOccurrence {
+    /**
+     * The actual payload that contains the SBOM reference data.
+     */
+    payload?: Schema$SbomReferenceIntotoPayload;
+    /**
+     * The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'.
+     */
+    payloadType?: string | null;
+    /**
+     * The signatures over the payload.
+     */
+    signatures?: Schema$EnvelopeSignature[];
   }
   /**
    * Indicates various scans and whether they are turned on or off.
@@ -3536,6 +3616,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "package": {},
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
+     *       //   "sbomReference": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -3566,6 +3647,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "package": {},
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -3843,6 +3925,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "package": {},
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -4276,6 +4359,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "package": {},
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
+     *       //   "sbomReference": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -4306,6 +4390,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "package": {},
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -5032,6 +5117,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "resource": {},
      *       //   "resourceUrl": "my_resourceUrl",
      *       //   "sbom": {},
+     *       //   "sbomReference": {},
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
      *       //   "spdxRelationship": {},
@@ -5062,6 +5148,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "resource": {},
      *   //   "resourceUrl": "my_resourceUrl",
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -5339,6 +5426,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "resource": {},
      *   //   "resourceUrl": "my_resourceUrl",
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -5626,6 +5714,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "package": {},
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -6070,6 +6159,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "resource": {},
      *       //   "resourceUrl": "my_resourceUrl",
      *       //   "sbom": {},
+     *       //   "sbomReference": {},
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
      *       //   "spdxRelationship": {},
@@ -6100,6 +6190,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "resource": {},
      *   //   "resourceUrl": "my_resourceUrl",
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -7465,6 +7556,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "package": {},
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
+     *       //   "sbomReference": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -7495,6 +7587,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "package": {},
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -7772,6 +7865,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "package": {},
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -8205,6 +8299,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "package": {},
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
+     *       //   "sbomReference": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -8235,6 +8330,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "package": {},
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},

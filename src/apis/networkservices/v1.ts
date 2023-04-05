@@ -285,6 +285,14 @@ export namespace networkservices_v1 {
    */
   export interface Schema$Gateway {
     /**
+     * Optional. Zero or one IPv4-address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated This field only applies to gateways of type 'SECURE_WEB_GATEWAY'. Gateways of type 'OPEN_MESH' listen on 0.0.0.0.
+     */
+    addresses?: string[] | null;
+    /**
+     * Optional. A fully-qualified Certificates URL reference. The proxy presents a Certificate (selected based on SNI) when establishing a TLS connection. This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     */
+    certificateUrls?: string[] | null;
+    /**
      * Output only. The timestamp when the resource was created.
      */
     createTime?: string | null;
@@ -293,6 +301,10 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
+     * Optional. A fully-qualified GatewaySecurityPolicy URL reference. Defines how a server should apply security policy to inbound (VM to Proxy) initiated connections. For example: `projects/x/locations/x/gatewaySecurityPolicies/swg-policy`. This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     */
+    gatewaySecurityPolicy?: string | null;
+    /**
      * Optional. Set of label tags associated with the Gateway resource.
      */
     labels?: {[key: string]: string} | null;
@@ -300,6 +312,10 @@ export namespace networkservices_v1 {
      * Required. Name of the Gateway resource. It matches pattern `projects/x/locations/x/gateways/`.
      */
     name?: string | null;
+    /**
+     * Optional. The relative resource name identifying the VPC network that is using this configuration. For example: `projects/x/global/networks/network-1`. Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     */
+    network?: string | null;
     /**
      * Required. One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 and support multiple ports.
      */
@@ -316,6 +332,10 @@ export namespace networkservices_v1 {
      * Optional. A fully-qualified ServerTLSPolicy URL reference. Specifies how TLS traffic is terminated. If empty, TLS termination is disabled.
      */
     serverTlsPolicy?: string | null;
+    /**
+     * Optional. The relative resource name identifying the subnetwork in which this SWG is allocated. For example: `projects/x/regions/us-central1/subnetworks/network-1` Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
+     */
+    subnetwork?: string | null;
     /**
      * Immutable. The type of the customer managed gateway. This field is required. If unspecified, an error is returned.
      */
@@ -4536,14 +4556,19 @@ export namespace networkservices_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "addresses": [],
+     *       //   "certificateUrls": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "gatewaySecurityPolicy": "my_gatewaySecurityPolicy",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "network": "my_network",
      *       //   "ports": [],
      *       //   "scope": "my_scope",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverTlsPolicy": "my_serverTlsPolicy",
+     *       //   "subnetwork": "my_subnetwork",
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -4818,14 +4843,19 @@ export namespace networkservices_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "addresses": [],
+     *   //   "certificateUrls": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "gatewaySecurityPolicy": "my_gatewaySecurityPolicy",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "network": "my_network",
      *   //   "ports": [],
      *   //   "scope": "my_scope",
      *   //   "selfLink": "my_selfLink",
      *   //   "serverTlsPolicy": "my_serverTlsPolicy",
+     *   //   "subnetwork": "my_subnetwork",
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -5231,14 +5261,19 @@ export namespace networkservices_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "addresses": [],
+     *       //   "certificateUrls": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "gatewaySecurityPolicy": "my_gatewaySecurityPolicy",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "network": "my_network",
      *       //   "ports": [],
      *       //   "scope": "my_scope",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverTlsPolicy": "my_serverTlsPolicy",
+     *       //   "subnetwork": "my_subnetwork",
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -11303,7 +11338,7 @@ export namespace networkservices_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:

@@ -698,7 +698,7 @@
                       "type": "string"
                     },
                     "queuedResourceId": {
-                      "description": "The unqualified resource name. Should follow the ^[A-Za-z0-9_.~+%-]+$ regex format.",
+                      "description": "The unqualified resource name. Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format.",
                       "location": "query",
                       "type": "string"
                     },
@@ -920,7 +920,7 @@
       }
     }
   },
-  "revision": "20230316",
+  "revision": "20230330",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1704,6 +1704,10 @@
         "queueingPolicy": {
           "$ref": "QueueingPolicy",
           "description": "The queueing policy of the QueuedRequest."
+        },
+        "reservationName": {
+          "description": "Name of the reservation in which the resource should be provisioned. Format: projects/{project}/locations/{zone}/reservations/{reservation}",
+          "type": "string"
         },
         "state": {
           "$ref": "QueuedResourceState",

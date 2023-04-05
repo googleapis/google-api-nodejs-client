@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230322",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -1023,6 +1023,20 @@
           },
           "description": "The labels associated with this job. You can use these to organize and group your jobs.",
           "type": "object"
+        },
+        "mode": {
+          "description": "The processing mode of the job. The default is `PROCESSING_MODE_INTERACTIVE`.",
+          "enum": [
+            "PROCESSING_MODE_UNSPECIFIED",
+            "PROCESSING_MODE_INTERACTIVE",
+            "PROCESSING_MODE_BATCH"
+          ],
+          "enumDescriptions": [
+            "The job processing mode is not specified.",
+            "The job processing mode is interactive mode. Interactive job will either be ran or rejected if quota does not allow for it.",
+            "The job processing mode is batch mode. Batch mode allows queuing of jobs."
+          ],
+          "type": "string"
         },
         "name": {
           "description": "The resource name of the job. Format: `projects/{project_number}/locations/{location}/jobs/{job}`",

@@ -215,6 +215,10 @@ export namespace monitoring_v3 {
      */
     autoClose?: string | null;
     /**
+     * Control how notifications will be sent out, on a per-channel basis.
+     */
+    notificationChannelStrategy?: Schema$NotificationChannelStrategy[];
+    /**
      * Required for alert policies with a LogMatch condition.This limit is not implemented for alert policies that are not log-based.
      */
     notificationRateLimit?: Schema$NotificationRateLimit;
@@ -654,7 +658,7 @@ export namespace monitoring_v3 {
     bounds?: number[] | null;
   }
   /**
-   * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): scale * (growth_factor ^ i). Lower bound (1 <= i < N): scale * (growth_factor ^ (i - 1)).
+   * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): scale * (growth_factor ^ i).Lower bound (1 <= i < N): scale * (growth_factor ^ (i - 1)).
    */
   export interface Schema$Exponential {
     /**
@@ -1019,7 +1023,7 @@ export namespace monitoring_v3 {
     threshold?: string | null;
   }
   /**
-   * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): offset + (width * i). Lower bound (1 <= i < N): offset + (width * (i - 1)).
+   * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): offset + (width * i).Lower bound (1 <= i < N): offset + (width * (i - 1)).
    */
   export interface Schema$Linear {
     /**
@@ -1584,6 +1588,19 @@ export namespace monitoring_v3 {
     type?: string | null;
   }
   /**
+   * Control over how the notification channels in notification_channels are notified when this alert fires, on a per-channel basis.
+   */
+  export interface Schema$NotificationChannelStrategy {
+    /**
+     * The full REST resource name for the notification channels that these settings apply to. Each of these correspond to the name field in one of the NotificationChannel objects referenced in the notification_channels field of this AlertPolicy. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
+     */
+    notificationChannelNames?: string[] | null;
+    /**
+     * The frequency at which to send reminder notifications for open incidents.
+     */
+    renotifyInterval?: string | null;
+  }
+  /**
    * Control over the rate of notifications sent to this alert policy's notification channels.
    */
   export interface Schema$NotificationRateLimit {
@@ -2067,6 +2084,10 @@ export namespace monitoring_v3 {
    * A protocol buffer message type.
    */
   export interface Schema$Type {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
     /**
      * The list of fields.
      */

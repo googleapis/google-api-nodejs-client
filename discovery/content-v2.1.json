@@ -4825,6 +4825,71 @@
         }
       }
     },
+    "recommendations": {
+      "methods": {
+        "generate": {
+          "description": "Generates recommendations for a merchant.",
+          "flatPath": "{merchantId}/recommendations/generate",
+          "httpMethod": "GET",
+          "id": "content.recommendations.generate",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "allowedTag": {
+              "description": "Optional. List of allowed tags. Tags are a set of predefined strings that describe the category that individual recommendation types. User can specify zero or more tags in this field to indicate what group of recommendations they want to receive. Current list of supported tags: - TREND",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "languageCode": {
+              "description": "Optional. Language code of the client. If not set, the result will be in default language (English). This language code affects all fields prefixed with \"localized\". This should be set to ISO 639-1 country code. List of currently verified supported language code: en, fr, cs, da, de, es, it, nl, no, pl, pt, pt, fi, sv, vi, tr, th, ko, zh-CN, zh-TW, ja, id, hi",
+              "location": "query",
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account to fetch recommendations for.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/recommendations/generate",
+          "response": {
+            "$ref": "GenerateRecommendationsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "reportInteraction": {
+          "description": "Reports an interaction on a recommendation for a merchant.",
+          "flatPath": "{merchantId}/recommendations/reportInteraction",
+          "httpMethod": "POST",
+          "id": "content.recommendations.reportInteraction",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account that wants to report an interaction.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/recommendations/reportInteraction",
+          "request": {
+            "$ref": "ReportInteractionRequest"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "regionalinventory": {
       "methods": {
         "custombatch": {
@@ -6160,7 +6225,7 @@
       }
     }
   },
-  "revision": "20230309",
+  "revision": "20230328",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8925,6 +8990,25 @@
         "cooldownTime": {
           "description": "This timestamp represents end of cooldown period for review ineligbility reason `IN_COOLDOWN_PERIOD`.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateRecommendationsResponse": {
+      "description": "Response containing generated recommendations.",
+      "id": "GenerateRecommendationsResponse",
+      "properties": {
+        "recommendations": {
+          "description": "Recommendations generated for a request.",
+          "items": {
+            "$ref": "Recommendation"
+          },
+          "type": "array"
+        },
+        "responseToken": {
+          "description": "Output only. Response token is a string created for each `GenerateRecommendationsResponse`. This token doesn't expire, and is globally unique. This token must be used when reporting interactions for recommendations.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -13326,7 +13410,7 @@
           "type": "string"
         },
         "lifestyleImageLinks": {
-          "description": "Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the Help Center article for more information.",
+          "description": "Additional URLs of lifestyle images of the item. Used to explicitly identify images that showcase your item in a real-world context. See the Help Center article for more information.",
           "items": {
             "type": "string"
           },
@@ -14951,6 +15035,144 @@
       },
       "type": "object"
     },
+    "Recommendation": {
+      "description": "Recommendations are suggested ways to improve your merchant account's performance. For example, to engage with a feature, or start using a new Google product.",
+      "id": "Recommendation",
+      "properties": {
+        "additionalCallToAction": {
+          "description": "Output only. CTAs of this recommendation. Repeated.",
+          "items": {
+            "$ref": "RecommendationCallToAction"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "additionalDescriptions": {
+          "description": "Output only. List of additional localized descriptions for a recommendation. Localication uses the `languageCode` field in `GenerateRecommendations` requests. Not all description types are guaranteed to be present and we recommend to rely on default description.",
+          "items": {
+            "$ref": "RecommendationDescription"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "creative": {
+          "description": "Output only. Any creatives attached to the recommendation. Repeated.",
+          "items": {
+            "$ref": "RecommendationCreative"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "defaultCallToAction": {
+          "$ref": "RecommendationCallToAction",
+          "description": "Optional. Default CTA of the recommendation."
+        },
+        "defaultDescription": {
+          "description": "Optional. Localized recommendation description. The localization the {@link `GenerateRecommendationsRequest.language_code`} field in {@link `GenerateRecommendationsRequest`} requests.",
+          "type": "string"
+        },
+        "numericalImpact": {
+          "description": "Optional. A numerical score of the impact from the recommendation's description. For example, a recommendation might suggest an upward trend in sales for a certain product. Higher number means larger impact.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "paid": {
+          "description": "Optional. Indicates whether a user needs to pay when they complete the user journey suggested by the recommendation.",
+          "type": "boolean"
+        },
+        "recommendationName": {
+          "description": "Optional. Localized recommendation name. The localization uses the {@link `GenerateRecommendationsRequest.language_code`} field in {@link `GenerateRecommendationsRequest`} requests.",
+          "type": "string"
+        },
+        "subType": {
+          "description": "Optional. Subtype of the recommendations. Only applicable when multiple recommendations can be generated per type, and is used as an identifier of recommendation under the same recommendation type.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Localized Recommendation Title. Localization uses the {@link `GenerateRecommendationsRequest.language_code`} field in {@link `GenerateRecommendationsRequest`} requests.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Type of the recommendation. List of currently available recommendation types: - OPPORTUNITY_CREATE_NEW_COLLECTION - OPPORTUNITY_CREATE_EMAIL_CAMPAIGN",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecommendationCallToAction": {
+      "description": "Call to action (CTA) that explains how a merchant can implement this recommendation",
+      "id": "RecommendationCallToAction",
+      "properties": {
+        "intent": {
+          "description": "Output only. Intent of the action. This value describes the intent (for example, `OPEN_CREATE_EMAIL_CAMPAIGN_FLOW`) and can vary from recommendation to recommendation. This value can change over time for the same recommendation. Currently available intent values: - OPEN_CREATE_EMAIL_CAMPAIGN_FLOW: Opens a user journey where they can create a marketing email campaign. (No default URL) - OPEN_CREATE_COLLECTION_TAB: Opens a user journey where they can [create a collection](https://support.google.com/merchants/answer/9703228) for their Merchant account. (No default URL)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "localizedText": {
+          "description": "Output only. Localized text of the CTA. Optional.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Optional. URL of the CTA. This field will only be set for some recommendations where there is a suggested landing URL. Otherwise it will be set to an empty string. We recommend developers to use their own custom landing page according to the description of the intent field above when this uri field is empty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecommendationCreative": {
+      "description": "Creative is a multimedia attachment to recommendation that can be used on the frontend.",
+      "id": "RecommendationCreative",
+      "properties": {
+        "type": {
+          "description": "Type of the creative.",
+          "enum": [
+            "CREATIVE_TYPE_UNSPECIFIED",
+            "VIDEO",
+            "PHOTO"
+          ],
+          "enumDescriptions": [
+            "Default value. If provided, shall be considered invalid.",
+            "Video creatives.",
+            "Photo creatives."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "URL of the creative.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecommendationDescription": {
+      "description": "Google-provided description for the recommendation.",
+      "id": "RecommendationDescription",
+      "properties": {
+        "text": {
+          "description": "Output only. Text of the description.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Type of the description.",
+          "enum": [
+            "DESCRIPTION_TYPE_UNSPECIFIED",
+            "SHORT",
+            "LONG"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Short description.",
+            "Long description."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RefundReason": {
       "id": "RefundReason",
       "properties": {
@@ -15170,6 +15392,37 @@
         "regionalInventory": {
           "$ref": "RegionalInventory",
           "description": "Price and availability of the product."
+        }
+      },
+      "type": "object"
+    },
+    "ReportInteractionRequest": {
+      "description": "Request to report interactions on a recommendation.",
+      "id": "ReportInteractionRequest",
+      "properties": {
+        "interactionType": {
+          "description": "Required. Type of the interaction that is reported, for example INTERACTION_CLICK.",
+          "enum": [
+            "INTERACTION_TYPE_UNSPECIFIED",
+            "INTERACTION_CLICK"
+          ],
+          "enumDescriptions": [
+            "Default value. If provided, the service will throw ApiError with description \"Required parameter: interactionType\".",
+            "When a recommendation is clicked."
+          ],
+          "type": "string"
+        },
+        "responseToken": {
+          "description": "Required. Token of the response when recommendation was returned.",
+          "type": "string"
+        },
+        "subtype": {
+          "description": "Optional. Subtype of the recommendations this interaction happened on. This field must be set only to the value that is returned by {@link `RecommendationsService.GenerateRecommendations`} call.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of the recommendations on which this interaction happened. This field must be set only to the value that is returned by {@link `GenerateRecommendationsResponse`} call.",
+          "type": "string"
         }
       },
       "type": "object"

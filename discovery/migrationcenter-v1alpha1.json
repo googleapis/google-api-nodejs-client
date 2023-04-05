@@ -1491,6 +1491,333 @@
                 }
               }
             },
+            "reportConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a report configuration.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs",
+                  "httpMethod": "POST",
+                  "id": "migrationcenter.projects.locations.reportConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "reportConfigId": {
+                      "description": "Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: [a-z]([a-z0-9-]{0,61}[a-z0-9])?.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/reportConfigs",
+                  "request": {
+                    "$ref": "ReportConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a ReportConfig.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "migrationcenter.projects.locations.reportConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to `true`, any child `Reports` of this entity will also be deleted. If set to `false`, the request only works if the resource has no children.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ReportConfig.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.reportConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}",
+                  "response": {
+                    "$ref": "ReportConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ReportConfigs in a given project and location.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.reportConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for `ListReportConfigsRequest`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/reportConfigs",
+                  "response": {
+                    "$ref": "ListReportConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "reports": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a report.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
+                      "httpMethod": "POST",
+                      "id": "migrationcenter.projects.locations.reportConfigs.reports.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Value for parent.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "reportId": {
+                          "description": "Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: [a-z]([a-z0-9-]{0,61}[a-z0-9])?.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+parent}/reports",
+                      "request": {
+                        "$ref": "Report"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Report.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}",
+                      "httpMethod": "DELETE",
+                      "id": "migrationcenter.projects.locations.reportConfigs.reports.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single Report.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports/{reportsId}",
+                      "httpMethod": "GET",
+                      "id": "migrationcenter.projects.locations.reportConfigs.reports.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+/reports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Determines what information to retrieve for the Report.",
+                          "enum": [
+                            "REPORT_VIEW_UNSPECIFIED",
+                            "REPORT_VIEW_BASIC",
+                            "REPORT_VIEW_FULL",
+                            "REPORT_VIEW_STANDARD"
+                          ],
+                          "enumDescriptions": [
+                            "The report view is not specified. The API displays the basic view by default.",
+                            "The report view includes only basic metadata of the Report. Useful for list views.",
+                            "The report view includes all the metadata of the Report. Useful for preview.",
+                            "The report view includes the standard metadata of an report. Useful for detail view."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}",
+                      "response": {
+                        "$ref": "Report"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Reports in a given ReportConfig.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/reportConfigs/{reportConfigsId}/reports",
+                      "httpMethod": "GET",
+                      "id": "migrationcenter.projects.locations.reportConfigs.reports.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filtering results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A token identifying a page of results that the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value for `ListReportsRequest`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reportConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Determines what information to retrieve for each Report.",
+                          "enum": [
+                            "REPORT_VIEW_UNSPECIFIED",
+                            "REPORT_VIEW_BASIC",
+                            "REPORT_VIEW_FULL",
+                            "REPORT_VIEW_STANDARD"
+                          ],
+                          "enumDescriptions": [
+                            "The report view is not specified. The API displays the basic view by default.",
+                            "The report view includes only basic metadata of the Report. Useful for list views.",
+                            "The report view includes all the metadata of the Report. Useful for preview.",
+                            "The report view includes the standard metadata of an report. Useful for detail view."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+parent}/reports",
+                      "response": {
+                        "$ref": "ListReportsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "sources": {
               "methods": {
                 "create": {
@@ -1678,7 +2005,7 @@
       }
     }
   },
-  "revision": "20230311",
+  "revision": "20230324",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2686,7 +3013,6 @@
             "IMPORT_JOB_FORMAT_CMDB",
             "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
-            "IMPORT_JOB_FORMAT_JSON_FRAME",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
             "IMPORT_JOB_FORMAT_MANUAL_CSV"
@@ -2696,7 +3022,6 @@
             "Configuration management DB format.",
             "RVTools format (XLSX).",
             "RVTools format (CSV).",
-            "`AssetFrame` list in JSON format.",
             "CSV format exported from AWS using the AWS collection script.",
             "CSV format exported from Azure using the Azure collection script.",
             "CSV format created manually. For more information, see Manually create and upload data tables."
@@ -2798,7 +3123,7 @@
       "id": "GuestInstalledApplication",
       "properties": {
         "name": {
-          "description": "Installed application name .",
+          "description": "Installed application name.",
           "type": "string"
         },
         "path": {
@@ -2941,7 +3266,6 @@
             "IMPORT_JOB_FORMAT_CMDB",
             "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
-            "IMPORT_JOB_FORMAT_JSON_FRAME",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
             "IMPORT_JOB_FORMAT_MANUAL_CSV"
@@ -2951,7 +3275,6 @@
             "Configuration management DB format.",
             "RVTools format (XLSX).",
             "RVTools format (CSV).",
-            "`AssetFrame` list in JSON format.",
             "CSV format exported from AWS using the AWS collection script.",
             "CSV format exported from Azure using the Azure collection script.",
             "CSV format created manually. For more information, see Manually create and upload data tables."
@@ -3138,7 +3461,6 @@
             "IMPORT_JOB_FORMAT_CMDB",
             "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
-            "IMPORT_JOB_FORMAT_JSON_FRAME",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
             "IMPORT_JOB_FORMAT_MANUAL_CSV"
@@ -3148,7 +3470,6 @@
             "Configuration management DB format.",
             "RVTools format (XLSX).",
             "RVTools format (CSV).",
-            "`AssetFrame` list in JSON format.",
             "CSV format exported from AWS using the AWS collection script.",
             "CSV format exported from Azure using the Azure collection script.",
             "CSV format created manually. For more information, see Manually create and upload data tables."
@@ -3359,6 +3680,56 @@
       },
       "type": "object"
     },
+    "ListReportConfigsResponse": {
+      "description": "Response message for listing report configs.",
+      "id": "ListReportConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "reportConfigs": {
+          "description": "A list of report configs.",
+          "items": {
+            "$ref": "ReportConfig"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListReportsResponse": {
+      "description": "Response message for listing Reports.",
+      "id": "ListReportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "reports": {
+          "description": "The list of Reports.",
+          "items": {
+            "$ref": "Report"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSourcesResponse": {
       "description": "Response message for listing sources.",
       "id": "ListSourcesResponse",
@@ -3478,6 +3849,27 @@
           "$ref": "VmwareEngineMigrationTarget",
           "description": "Output only. A VMWare Engine target.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "Money": {
+      "description": "Represents an amount of money with its currency type.",
+      "id": "Money",
+      "properties": {
+        "currencyCode": {
+          "description": "The three-letter currency code defined in ISO 4217.",
+          "type": "string"
+        },
+        "nanos": {
+          "description": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "units": {
+          "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3937,10 +4329,444 @@
       },
       "type": "object"
     },
+    "Report": {
+      "description": "Report represents a point-in-time rendering of the ReportConfig results.",
+      "id": "Report",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Free-text description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User-friendly display name. Maximum length is 63 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Report creation state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default Report creation state.",
+            "Creating Report.",
+            "Successfully created Report.",
+            "Failed to create Report."
+          ],
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "ReportSummary",
+          "description": "Output only. Summary view of the Report.",
+          "readOnly": true
+        },
+        "type": {
+          "description": "Report type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TOTAL_COST_OF_OWNERSHIP"
+          ],
+          "enumDescriptions": [
+            "Default Report type.",
+            "Total cost of ownership Report type."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReportAssetFramesResponse": {
       "description": "A response to a call to `ReportAssetFrame`.",
       "id": "ReportAssetFramesResponse",
       "properties": {},
+      "type": "object"
+    },
+    "ReportConfig": {
+      "description": "The groups and associated preference sets on which we can generate reports.",
+      "id": "ReportConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Free-text description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User-friendly display name. Maximum length is 63 characters.",
+          "type": "string"
+        },
+        "groupPreferencesetAssignments": {
+          "description": "Collection of combinations of groups and preference sets.",
+          "items": {
+            "$ref": "ReportConfigGroupPreferenceSetAssignment"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Name of resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportConfigGroupPreferenceSetAssignment": {
+      "description": "Represents a combination of a group with a preference set.",
+      "id": "ReportConfigGroupPreferenceSetAssignment",
+      "properties": {
+        "group": {
+          "description": "Name of the group.",
+          "type": "string"
+        },
+        "preferenceSet": {
+          "description": "Name of the Preference Set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummary": {
+      "description": "Describes the Summary view of a Report, which contains aggregated values for all the groups and preference sets included in this Report.",
+      "id": "ReportSummary",
+      "properties": {
+        "allAssetsStats": {
+          "$ref": "ReportSummaryAssetAggregateStats",
+          "description": "Aggregate statistics for all the assets across all the groups."
+        },
+        "groupFindings": {
+          "description": "Findings for each Group included in this report.",
+          "items": {
+            "$ref": "ReportSummaryGroupFinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryAssetAggregateStats": {
+      "description": "Aggregate statistics for a collection of assets.",
+      "id": "ReportSummaryAssetAggregateStats",
+      "properties": {
+        "assetAge": {
+          "$ref": "ReportSummaryChartData",
+          "description": "Count of assets grouped by age."
+        },
+        "coreCountHistogram": {
+          "$ref": "ReportSummaryHistogramChartData",
+          "description": "Histogram showing a distribution of CPU core counts."
+        },
+        "memoryBytesHistogram": {
+          "$ref": "ReportSummaryHistogramChartData",
+          "description": "Histogram showing a distribution of memory sizes."
+        },
+        "memoryUtilization": {
+          "$ref": "ReportSummaryChartData",
+          "description": "Total memory split into Used/Free buckets."
+        },
+        "memoryUtilizationChart": {
+          "$ref": "ReportSummaryUtilizationChartData",
+          "description": "Total memory split into Used/Free buckets."
+        },
+        "operatingSystem": {
+          "$ref": "ReportSummaryChartData",
+          "description": "Count of assets grouped by Operating System families."
+        },
+        "storageBytesHistogram": {
+          "$ref": "ReportSummaryHistogramChartData",
+          "description": "Histogram showing a distribution of memory sizes."
+        },
+        "storageUtilization": {
+          "$ref": "ReportSummaryChartData",
+          "description": "Total storage split into Used/Free buckets."
+        },
+        "storageUtilizationChart": {
+          "$ref": "ReportSummaryUtilizationChartData",
+          "description": "Total memory split into Used/Free buckets."
+        },
+        "totalAssets": {
+          "description": "Count of the number of unique assets in this collection.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalCores": {
+          "description": "Sum of the CPU core count of all the assets in this collection.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalMemoryBytes": {
+          "description": "Sum of the memory in bytes of all the assets in this collection.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalStorageBytes": {
+          "description": "Sum of persistent storage in bytes of all the assets in this collection.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryChartData": {
+      "description": "Describes a collection of data points rendered as a Chart.",
+      "id": "ReportSummaryChartData",
+      "properties": {
+        "dataPoints": {
+          "description": "Each data point in the chart is represented as a name-value pair with the name being the x-axis label, and the value being the y-axis value.",
+          "items": {
+            "$ref": "ReportSummaryChartDataDataPoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryChartDataDataPoint": {
+      "description": "Describes a single data point in the Chart.",
+      "id": "ReportSummaryChartDataDataPoint",
+      "properties": {
+        "label": {
+          "description": "The X-axis label for this data point.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The Y-axis value for this data point.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryGroupFinding": {
+      "description": "Summary Findings for a specific Group.",
+      "id": "ReportSummaryGroupFinding",
+      "properties": {
+        "assetAggregateStats": {
+          "$ref": "ReportSummaryAssetAggregateStats",
+          "description": "Summary statistics for all the assets in this group."
+        },
+        "description": {
+          "description": "Description for the Group.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name for the Group.",
+          "type": "string"
+        },
+        "overlappingAssetCount": {
+          "description": "Count of the number of assets in this group which are also included in another group within the same report.",
+          "format": "int64",
+          "type": "string"
+        },
+        "preferenceSetFindings": {
+          "description": "Findings for each of the PreferenceSets for this group.",
+          "items": {
+            "$ref": "ReportSummaryGroupPreferenceSetFinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryGroupPreferenceSetFinding": {
+      "description": "Summary Findings for a specific Group/PreferenceSet combination.",
+      "id": "ReportSummaryGroupPreferenceSetFinding",
+      "properties": {
+        "description": {
+          "description": "Description for the Preference Set.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name of the Preference Set",
+          "type": "string"
+        },
+        "machineFinding": {
+          "$ref": "ReportSummaryMachineFinding",
+          "description": "A set of findings that applies to all machines in the input."
+        },
+        "machinePreferences": {
+          "$ref": "VirtualMachinePreferences",
+          "description": "A set of preferences that applies to all machines in the context."
+        },
+        "monthlyCostCompute": {
+          "$ref": "Money",
+          "description": "Compute monthly cost for this preference set."
+        },
+        "monthlyCostNetworkEgress": {
+          "$ref": "Money",
+          "description": "Network Egress monthly cost for this preference set."
+        },
+        "monthlyCostOsLicense": {
+          "$ref": "Money",
+          "description": "Licensing monthly cost for this preference set."
+        },
+        "monthlyCostOther": {
+          "$ref": "Money",
+          "description": "Miscellaneous monthly cost for this preference set."
+        },
+        "monthlyCostStorage": {
+          "$ref": "Money",
+          "description": "Storage monthly cost for this preference set."
+        },
+        "monthlyCostTotal": {
+          "$ref": "Money",
+          "description": "Total monthly cost for this preference set."
+        },
+        "preferredRegion": {
+          "description": "Target region for this Preference Set",
+          "type": "string"
+        },
+        "pricingTrack": {
+          "description": "Text describing the pricing track specified for this Preference Set",
+          "type": "string"
+        },
+        "topPriority": {
+          "description": "Text describing the business priority specified for this Preference Set",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryHistogramChartData": {
+      "description": "A Histogram Chart shows a distribution of values into buckets, showing a count of values which fall into a bucket.",
+      "id": "ReportSummaryHistogramChartData",
+      "properties": {
+        "buckets": {
+          "description": "Buckets in the histogram. There will be `n+1` buckets matching `n` lower bounds in the request. The first bucket will be from -infinity to the first bound. Subsequent buckets will be between one bound and the next. The final bucket will be from the final bound to infinity.",
+          "items": {
+            "$ref": "ReportSummaryHistogramChartDataBucket"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryHistogramChartDataBucket": {
+      "description": "A histogram bucket with a lower and upper bound, and a count of items with a field value between those bounds. The lower bound is inclusive and the upper bound is exclusive. Lower bound may be -infinity and upper bound may be infinity.",
+      "id": "ReportSummaryHistogramChartDataBucket",
+      "properties": {
+        "count": {
+          "description": "Count of items in the bucket.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lowerBound": {
+          "description": "Lower bound - inclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "upperBound": {
+          "description": "Upper bound - exclusive.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryMachineFinding": {
+      "description": "A set of findings that applies to assets of type Virtual/Physical Machine.",
+      "id": "ReportSummaryMachineFinding",
+      "properties": {
+        "allocatedAssetCount": {
+          "description": "Count of assets which were allocated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "allocatedDiskTypes": {
+          "description": "Set of disk types allocated to assets.",
+          "items": {
+            "enum": [
+              "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+              "PERSISTENT_DISK_TYPE_STANDARD",
+              "PERSISTENT_DISK_TYPE_BALANCED",
+              "PERSISTENT_DISK_TYPE_SSD"
+            ],
+            "enumDescriptions": [
+              "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+              "Standard HDD Persistent Disk.",
+              "Balanced Persistent Disk.",
+              "SSD Persistent Disk."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "allocatedRegions": {
+          "description": "Set of regions in which the assets were allocated.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "machineSeriesAllocations": {
+          "description": "Distribution of assets based on the Machine Series.",
+          "items": {
+            "$ref": "ReportSummaryMachineSeriesAllocation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryMachineSeriesAllocation": {
+      "description": "Represents a data point tracking the count of assets allocated for a specific Machine Series.",
+      "id": "ReportSummaryMachineSeriesAllocation",
+      "properties": {
+        "allocatedAssetCount": {
+          "description": "Count of assets allocated to this machine series.",
+          "format": "int64",
+          "type": "string"
+        },
+        "machineSeries": {
+          "$ref": "MachineSeries",
+          "description": "The Machine Series (e.g. \"E2\", \"N2\")"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryUtilizationChartData": {
+      "description": "Utilization Chart is a specific type of visualization which displays a metric classified into \"Used\" and \"Free\" buckets.",
+      "id": "ReportSummaryUtilizationChartData",
+      "properties": {
+        "free": {
+          "description": "Aggregate value which falls into the \"Free\" bucket.",
+          "format": "int64",
+          "type": "string"
+        },
+        "used": {
+          "description": "Aggregate value which falls into the \"Used\" bucket.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RunImportJobRequest": {
@@ -4230,6 +5056,19 @@
       "description": "A resource that contains a URI to which a data file can be uploaded.",
       "id": "UploadFileInfo",
       "properties": {
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The headers that were used to sign the URL.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "signedUri": {
+          "description": "Output only. Upload URI for the file.",
+          "readOnly": true,
+          "type": "string"
+        },
         "uri": {
           "description": "Output only. Upload URI for the file.",
           "readOnly": true,

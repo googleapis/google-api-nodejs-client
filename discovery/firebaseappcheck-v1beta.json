@@ -1397,7 +1397,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of Services to return in the response. Only explicitly configured services are returned. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.",
+                  "description": "The maximum number of Services to return in the response. Only explicitly configured services are returned. The server may return fewer than this at its own discretion. If no value is specified or set to zero (or too large a value is specified), the server will impose its own limit.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1464,7 +1464,7 @@
       }
     }
   },
-  "revision": "20220604",
+  "revision": "20230327",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {

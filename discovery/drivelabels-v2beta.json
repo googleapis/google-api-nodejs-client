@@ -898,7 +898,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230327",
   "rootUrl": "https://drivelabels.googleapis.com/",
   "schemas": {
     "GoogleAppsDriveLabelsV2betaBadgeColors": {
@@ -2147,6 +2147,11 @@
           "$ref": "GoogleAppsDriveLabelsV2betaUserInfo",
           "description": "Output only. The user who created this label.",
           "readOnly": true
+        },
+        "customer": {
+          "description": "Output only. The customer this label belongs to. For example: \"customers/123abc789.\"",
+          "readOnly": true,
+          "type": "string"
         },
         "disableTime": {
           "description": "Output only. The time this label was disabled. This value has no meaning when the label is not disabled.",

@@ -915,7 +915,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230404",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1053,7 +1053,7 @@
           "type": "string"
         },
         "resourceTypes": {
-          "description": "Immutable. The resource instance type on which this policy applies. Format will be of the form : \"/\" Example: * `compute.googleapis.com/Instance`.",
+          "description": "Immutable. The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.",
           "items": {
             "type": "string"
           },

@@ -248,7 +248,7 @@ export namespace workstations_v1beta {
    */
   export interface Schema$GceInstance {
     /**
-     * Size of the boot disk in GB.
+     * Size of the boot disk in GB. Defaults to 50.
      */
     bootDiskSizeGb?: number | null;
     /**
@@ -268,7 +268,7 @@ export namespace workstations_v1beta {
      */
     poolSize?: number | null;
     /**
-     * Email address of the service account that will be used on VM instances used to support this config. This service account must have permission to pull the specified container image. If not set, VMs will run without a service account, in which case the image must be publicly accessible.
+     * Email address of the service account that will be used on VM instances used to support this config. If not set, VMs will run with a Google-managed service account. This service account must have permission to pull the specified container image, otherwise the image must be publicly accessible.
      */
     serviceAccount?: string | null;
     /**
@@ -285,11 +285,11 @@ export namespace workstations_v1beta {
    */
   export interface Schema$GceRegionalPersistentDisk {
     /**
-     * Type of the disk to use.
+     * Type of the disk to use. Defaults to pd-standard.
      */
     diskType?: string | null;
     /**
-     * Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set.
+     * Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to ext4.
      */
     fsType?: string | null;
     /**
@@ -297,7 +297,7 @@ export namespace workstations_v1beta {
      */
     reclaimPolicy?: string | null;
     /**
-     * Size of the disk in GB. Must be empty if source_snapshot is set.
+     * Size of the disk in GB. Must be empty if source_snapshot is set. Defaults to 200.
      */
     sizeGb?: number | null;
     /**
@@ -1265,7 +1265,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:

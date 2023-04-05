@@ -236,7 +236,7 @@
       }
     }
   },
-  "revision": "20230319",
+  "revision": "20230402",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -508,9 +508,9 @@
             "RSAES-OAEP 2048 bit key with a SHA1 digest.",
             "RSAES-OAEP 3072 bit key with a SHA1 digest.",
             "RSAES-OAEP 4096 bit key with a SHA1 digest.",
-            "ECDSA on the NIST P-256 curve with a SHA256 digest.",
-            "ECDSA on the NIST P-384 curve with a SHA384 digest.",
-            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",
@@ -700,9 +700,9 @@
             "RSAES-OAEP 2048 bit key with a SHA1 digest.",
             "RSAES-OAEP 3072 bit key with a SHA1 digest.",
             "RSAES-OAEP 4096 bit key with a SHA1 digest.",
-            "ECDSA on the NIST P-256 curve with a SHA256 digest.",
-            "ECDSA on the NIST P-384 curve with a SHA384 digest.",
-            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "HMAC-SHA256 signing with a 256 bit key.",
             "HMAC-SHA1 signing with a 160 bit key.",
             "HMAC-SHA384 signing with a 384 bit key.",

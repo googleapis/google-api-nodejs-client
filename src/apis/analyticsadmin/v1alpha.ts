@@ -1552,7 +1552,7 @@ export namespace analyticsadmin_v1alpha {
      */
     description?: string | null;
     /**
-     * Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`.
+     * Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the chance of encountering `other` row.
      */
     dimensionFilterExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
     /**
@@ -1602,7 +1602,7 @@ export namespace analyticsadmin_v1alpha {
      */
     filter?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilter;
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression.
+     * A filter expression to be NOT'ed (that is, inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression.
      */
     notExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
   }

@@ -1088,7 +1088,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. The default is [\"default\", \"outOfOffice\", \"focusTime\"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.",
+              "description": "Event types to return. Optional. The default is [\"default\", \"outOfOffice\", \"focusTime\"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1491,7 +1491,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. The default is [\"default\", \"outOfOffice\", \"focusTime\"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.",
+              "description": "Event types to return. Optional. The default is [\"default\", \"outOfOffice\", \"focusTime\"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1735,7 +1735,7 @@
       }
     }
   },
-  "revision": "20230313",
+  "revision": "20230331",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2392,7 +2392,7 @@
         },
         "eventType": {
           "default": "default",
-          "description": "Specific type of the event. Read-only. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event. \n- \"workingLocation\" - A working location event.",
+          "description": "Specific type of the event. Read-only. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event. \n- \"workingLocation\" - A working location event. Developer Preview.",
           "type": "string"
         },
         "extendedProperties": {
@@ -2626,7 +2626,7 @@
         },
         "workingLocationProperties": {
           "$ref": "EventWorkingLocationProperties",
-          "description": "Working Location event data. Read-only."
+          "description": "Developer Preview: Working Location event data. Read-only."
         }
       },
       "type": "object"

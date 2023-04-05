@@ -2080,7 +2080,7 @@ export namespace spanner_v1 {
      */
     statements?: string[] | null;
     /**
-     * Output only. When true, indicates that the operation is throttled e.g due to resource constraints. When resources become available the operation will resume and this field will be false again.
+     * Output only. When true, indicates that the operation is throttled e.g. due to resource constraints. When resources become available the operation will resume and this field will be false again.
      */
     throttled?: boolean | null;
   }

@@ -268,6 +268,10 @@ export namespace workflows_v1 {
    */
   export interface Schema$Workflow {
     /**
+     * Optional. Describes the level of platform logging to apply to calls and call responses during executions of this workflow. If both the workflow and the execution specify a logging level, the execution level takes precedence.
+     */
+    callLogLevel?: string | null;
+    /**
      * Output only. The timestamp for when the workflow was created.
      */
     createTime?: string | null;
@@ -1107,6 +1111,7 @@ export namespace workflows_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "callLogLevel": "my_callLogLevel",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "labels": {},
@@ -1389,6 +1394,7 @@ export namespace workflows_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "callLogLevel": "my_callLogLevel",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "labels": {},
@@ -1670,6 +1676,7 @@ export namespace workflows_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "callLogLevel": "my_callLogLevel",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "labels": {},

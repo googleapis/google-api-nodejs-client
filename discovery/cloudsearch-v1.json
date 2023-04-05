@@ -2077,7 +2077,7 @@
       }
     }
   },
-  "revision": "20230307",
+  "revision": "20230321",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AbuseReportingConfig": {
@@ -2322,7 +2322,7 @@
       "type": "object"
     },
     "Annotation": {
-      "description": "NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 31",
+      "description": "NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 32",
       "id": "Annotation",
       "properties": {
         "babelPlaceholderMetadata": {
@@ -2347,6 +2347,10 @@
             "Client should not render the annotation as a preview chip."
           ],
           "type": "string"
+        },
+        "componentSearchInfo": {
+          "$ref": "AppsDynamiteSharedMessageComponentSearchInfo",
+          "description": "Contains additional metadata that further enhances the annotation when it is returned as part of search response. For example, this can be used to define how the annotation matches the search. Information can be used to highlight in rendering search results. The following are the different annotation text fields that can be highlighted by this field: 1. DriveMetadata.title 2. UploadMetadata.content_name 3. GsuiteIntegrationMetadata.TasksMessageIntegrationRenderData.title 4. GsuiteIntegrationMetadata.CalendarEventAnnotationData.title"
         },
         "consentedAppUnfurlMetadata": {
           "$ref": "ConsentedAppUnfurlMetadata"
@@ -3552,6 +3556,21 @@
       },
       "type": "object"
     },
+    "AppsDynamiteSharedMessageComponentSearchInfo": {
+      "description": "Metadata used to describe search information in a specific component of a chat message, for example an annotation or an attachment.",
+      "id": "AppsDynamiteSharedMessageComponentSearchInfo",
+      "properties": {
+        "matchedSearch": {
+          "description": "Whether the whole component matched the search.",
+          "type": "boolean"
+        },
+        "titleTextWithDescription": {
+          "$ref": "AppsDynamiteSharedTextWithDescription",
+          "description": "Backend should always set TextWithDescription.text_body based on the title (or its snippet) of the annotation or attachment."
+        }
+      },
+      "type": "object"
+    },
     "AppsDynamiteSharedMessageInfo": {
       "description": "Information that references a Dynamite chat message. This is only used for Activity Feed messages.",
       "id": "AppsDynamiteSharedMessageInfo",
@@ -3923,6 +3942,63 @@
       "description": "A payload containing Tasks metadata for rendering a live card. Currently not used by the Tasks integration.",
       "id": "AppsDynamiteSharedTasksMessageIntegrationPayload",
       "properties": {},
+      "type": "object"
+    },
+    "AppsDynamiteSharedTextSegment": {
+      "description": "Defines a segment in a text.",
+      "id": "AppsDynamiteSharedTextSegment",
+      "properties": {
+        "length": {
+          "description": "Length of the segment in the text.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "Start index (0-indexed and inclusive) of the segment in the text.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AppsDynamiteSharedTextSegmentsWithDescription": {
+      "description": "Defines text segments with description type associated.",
+      "id": "AppsDynamiteSharedTextSegmentsWithDescription",
+      "properties": {
+        "descriptionType": {
+          "enum": [
+            "DESCRIPTION_TYPE_UNSPECIFIED",
+            "KEYWORD_MATCH"
+          ],
+          "enumDescriptions": [
+            "",
+            "Indicates the text segments contain matched keywords. Client can highlight them in search results page."
+          ],
+          "type": "string"
+        },
+        "textSegment": {
+          "items": {
+            "$ref": "AppsDynamiteSharedTextSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AppsDynamiteSharedTextWithDescription": {
+      "description": "Defines a text with descriptive text segments associated.",
+      "id": "AppsDynamiteSharedTextWithDescription",
+      "properties": {
+        "textBody": {
+          "type": "string"
+        },
+        "textSegmentsWithDescription": {
+          "items": {
+            "$ref": "AppsDynamiteSharedTextSegmentsWithDescription"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "AppsDynamiteSharedUserBlockRelationship": {
@@ -7194,10 +7270,38 @@
       "properties": {},
       "type": "object"
     },
+    "DlpAction": {
+      "id": "DlpAction",
+      "properties": {
+        "actionType": {
+          "enum": [
+            "NO_ACTION",
+            "BLOCK",
+            "AUDIT_ONLY",
+            "WARN"
+          ],
+          "enumDescriptions": [
+            "LINT.IfChange",
+            "",
+            "",
+            "LINT.ThenChange(//depot/google3/java/com/google/apps/dynamite/v1/external/dlp/ApplicableDlpActionEvaluator.java)"
+          ],
+          "type": "string"
+        },
+        "unsafeHtmlMessageBody": {
+          "description": "The custom error message defined by the customer administrator.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DlpScanSummary": {
       "description": "A summary of a DLP scan event. This is a summary and should contain the minimum amount of data required to identify and process DLP scans. It is written to Starcast and encoded & returned to the client on attachment upload.",
       "id": "DlpScanSummary",
       "properties": {
+        "dlpAction": {
+          "$ref": "DlpAction"
+        },
         "scanId": {
           "description": "The scan ID of the corresponding {@link DlpViolationScanRecord} in the {@link EphemeralDlpScans} Spanner table. This can be used to fetch additional details about the scan, e.g. for audit logging.",
           "type": "string"
@@ -7691,6 +7795,10 @@
         "lastReadTimestampSecs": {
           "format": "int64",
           "type": "string"
+        },
+        "memberCountScore": {
+          "format": "double",
+          "type": "number"
         },
         "memberMetadataCount": {
           "format": "double",
@@ -10178,7 +10286,7 @@
       "type": "object"
     },
     "GsuiteIntegrationMetadata": {
-      "description": "Annotation metadata for an GsuiteIntegration artifact.",
+      "description": "Annotation metadata for a GsuiteIntegration artifact.",
       "id": "GsuiteIntegrationMetadata",
       "properties": {
         "activityFeedData": {
@@ -10598,7 +10706,7 @@
       "id": "Id",
       "properties": {
         "creatorUserId": {
-          "description": "The User account in which the DirEntry was originally created. If name_space==GAIA, then it's the gaia_id of the user this id is referring to.",
+          "description": "The User account in which the DirEntry was originally created. If name_space==GAIA, then it's the gaia_id of the user this id is referring to. This field should really be called the \"bucket ID\", not the creator ID. In some circumstances, such as copying a Google Docs file, a user can create an item in a different user's bucket, so it should not be relied upon for anything other than bucket location. To look up the requesting user who initially created item, use the `creator_id` DirEntry field instead.",
           "format": "uint64",
           "type": "string"
         },

@@ -3886,7 +3886,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230404",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5910,7 +5910,7 @@
         },
         "dimensionFilterExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
-          "description": "Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`."
+          "description": "Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the chance of encountering `other` row."
         },
         "dimensionNames": {
           "description": "Immutable. The list of dimensions included in the ExpandedDataSet. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names.",
@@ -5971,7 +5971,7 @@
         },
         "notExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
-          "description": "A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression."
+          "description": "A filter expression to be NOT'ed (that is, inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression."
         }
       },
       "type": "object"
@@ -7036,7 +7036,6 @@
               "DATA_STREAM",
               "ATTRIBUTION_SETTINGS",
               "EXPANDED_DATA_SET",
-              "CHANNEL_GROUP",
               "ENHANCED_MEASUREMENT_SETTINGS"
             ],
             "enumDescriptions": [
@@ -7057,7 +7056,6 @@
               "DataStream resource",
               "AttributionSettings resource",
               "ExpandedDataSet resource",
-              "ChannelGroup resource",
               "EnhancedMeasurementSettings resource"
             ],
             "type": "string"

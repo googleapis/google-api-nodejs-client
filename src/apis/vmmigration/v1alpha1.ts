@@ -136,6 +136,10 @@ export namespace vmmigration_v1alpha1 {
      * Input only. AWS secret access key.
      */
     secretAccessKey?: string | null;
+    /**
+     * Input only. AWS session token. Used only when AWS security token service (STS) is responsible for creating the temporary credentials.
+     */
+    sessionToken?: string | null;
   }
   /**
    * AdaptingOSStep contains specific step details.

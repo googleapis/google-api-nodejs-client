@@ -2151,7 +2151,7 @@ export namespace androidpublisher_v3 {
      */
     releases?: Schema$TrackRelease[];
     /**
-     * Identifier of the track.
+     * Identifier of the track. Form factor tracks have a special prefix as an identifier, for example `wear:production`, `automotive:production`. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string | null;
   }
@@ -8226,7 +8226,7 @@ export namespace androidpublisher_v3 {
      *     editId: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // Identifier of the track.
+     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      *     track: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8496,7 +8496,7 @@ export namespace androidpublisher_v3 {
      *     editId: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // Identifier of the track.
+     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8640,7 +8640,7 @@ export namespace androidpublisher_v3 {
      *     editId: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // Identifier of the track.
+     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8764,7 +8764,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Identifier of the track.
+     * Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string;
   }
@@ -8790,7 +8790,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Identifier of the track.
+     * Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string;
 
@@ -8810,7 +8810,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Identifier of the track.
+     * Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string;
 

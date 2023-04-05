@@ -2032,7 +2032,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "networkservices.projects.locations.operations.list",
@@ -2603,7 +2603,7 @@
       }
     }
   },
-  "revision": "20230227",
+  "revision": "20230323",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2837,6 +2837,20 @@
       "description": "Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway.",
       "id": "Gateway",
       "properties": {
+        "addresses": {
+          "description": "Optional. Zero or one IPv4-address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated This field only applies to gateways of type 'SECURE_WEB_GATEWAY'. Gateways of type 'OPEN_MESH' listen on 0.0.0.0.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "certificateUrls": {
+          "description": "Optional. A fully-qualified Certificates URL reference. The proxy presents a Certificate (selected based on SNI) when establishing a TLS connection. This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. The timestamp when the resource was created.",
           "format": "google-datetime",
@@ -2845,6 +2859,10 @@
         },
         "description": {
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
+          "type": "string"
+        },
+        "gatewaySecurityPolicy": {
+          "description": "Optional. A fully-qualified GatewaySecurityPolicy URL reference. Defines how a server should apply security policy to inbound (VM to Proxy) initiated connections. For example: `projects/*/locations/*/gatewaySecurityPolicies/swg-policy`. This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.",
           "type": "string"
         },
         "labels": {
@@ -2856,6 +2874,10 @@
         },
         "name": {
           "description": "Required. Name of the Gateway resource. It matches pattern `projects/*/locations/*/gateways/`.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Optional. The relative resource name identifying the VPC network that is using this configuration. For example: `projects/*/global/networks/network-1`. Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.",
           "type": "string"
         },
         "ports": {
@@ -2877,6 +2899,10 @@
         },
         "serverTlsPolicy": {
           "description": "Optional. A fully-qualified ServerTLSPolicy URL reference. Specifies how TLS traffic is terminated. If empty, TLS termination is disabled.",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Optional. The relative resource name identifying the subnetwork in which this SWG is allocated. For example: `projects/*/regions/us-central1/subnetworks/network-1` Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY\".",
           "type": "string"
         },
         "type": {

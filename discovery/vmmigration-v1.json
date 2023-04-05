@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230316",
+  "revision": "20230323",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -1985,6 +1985,10 @@
         },
         "secretAccessKey": {
           "description": "Input only. AWS secret access key.",
+          "type": "string"
+        },
+        "sessionToken": {
+          "description": "Input only. AWS session token. Used only when AWS security token service (STS) is responsible for creating the temporary credentials.",
           "type": "string"
         }
       },

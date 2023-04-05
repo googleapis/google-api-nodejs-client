@@ -1153,6 +1153,10 @@ export namespace drivelabels_v2beta {
      */
     creator?: Schema$GoogleAppsDriveLabelsV2betaUserInfo;
     /**
+     * Output only. The customer this label belongs to. For example: "customers/123abc789."
+     */
+    customer?: string | null;
+    /**
      * Output only. The user who disabled this label. This value has no meaning when the label is not disabled.
      */
     disabler?: Schema$GoogleAppsDriveLabelsV2betaUserInfo;
@@ -1750,6 +1754,7 @@ export namespace drivelabels_v2beta {
      *       //   "appliedLabelPolicy": {},
      *       //   "createTime": "my_createTime",
      *       //   "creator": {},
+     *       //   "customer": "my_customer",
      *       //   "disableTime": "my_disableTime",
      *       //   "disabler": {},
      *       //   "displayHints": {},
@@ -1778,6 +1783,7 @@ export namespace drivelabels_v2beta {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2224,6 +2230,7 @@ export namespace drivelabels_v2beta {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2391,6 +2398,7 @@ export namespace drivelabels_v2beta {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2554,6 +2562,7 @@ export namespace drivelabels_v2beta {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -2867,6 +2876,7 @@ export namespace drivelabels_v2beta {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},
@@ -3035,6 +3045,7 @@ export namespace drivelabels_v2beta {
      *   //   "appliedLabelPolicy": {},
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
+     *   //   "customer": "my_customer",
      *   //   "disableTime": "my_disableTime",
      *   //   "disabler": {},
      *   //   "displayHints": {},

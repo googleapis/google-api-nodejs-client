@@ -164,6 +164,15 @@ export namespace dlp_v2 {
     saveFindings?: Schema$GooglePrivacyDlpV2SaveFindings;
   }
   /**
+   * The results of an Action.
+   */
+  export interface Schema$GooglePrivacyDlpV2ActionDetails {
+    /**
+     * Outcome of a de-identification action.
+     */
+    deidentifyDetails?: Schema$GooglePrivacyDlpV2DeidentifyDataSourceDetails;
+  }
+  /**
    * Request message for ActivateJobTrigger.
    */
   export interface Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest {}
@@ -1069,6 +1078,36 @@ export namespace dlp_v2 {
     overview?: Schema$GooglePrivacyDlpV2TransformationOverview;
   }
   /**
+   * The results of a Deidentify action from an Inspect job.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeidentifyDataSourceDetails {
+    /**
+     * Stats about de-identification.
+     */
+    deidentifyStats?: Schema$GooglePrivacyDlpV2DeidentifyDataSourceStats;
+    /**
+     * De-identification config used for the request.
+     */
+    requestedOptions?: Schema$GooglePrivacyDlpV2RequestedDeidentifyOptions;
+  }
+  /**
+   * Summary of what was modified during a transformation.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeidentifyDataSourceStats {
+    /**
+     * Number of successfully applied transformations.
+     */
+    transformationCount?: string | null;
+    /**
+     * Number of errors encountered while trying to apply transformations.
+     */
+    transformationErrorCount?: string | null;
+    /**
+     * Total size in bytes that were transformed in some way.
+     */
+    transformedBytes?: string | null;
+  }
+  /**
    * DeidentifyTemplates contains instructions on how to de-identify content. See https://cloud.google.com/dlp/docs/concepts-templates to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2DeidentifyTemplate {
@@ -1187,6 +1226,10 @@ export namespace dlp_v2 {
    * Combines all of the information about a DLP job.
    */
   export interface Schema$GooglePrivacyDlpV2DlpJob {
+    /**
+     * Events that should occur after the job has completed.
+     */
+    actionDetails?: Schema$GooglePrivacyDlpV2ActionDetails[];
     /**
      * Time when the job was created.
      */
@@ -2878,6 +2921,23 @@ export namespace dlp_v2 {
    * Replace each matching finding with the name of the info_type.
    */
   export interface Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig {}
+  /**
+   * De-id options.
+   */
+  export interface Schema$GooglePrivacyDlpV2RequestedDeidentifyOptions {
+    /**
+     * Snapshot of the state of the DeidentifyTemplate from the Deidentify action at the time this job was run.
+     */
+    snapshotDeidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
+    /**
+     * Snapshot of the state of the image redact DeidentifyTemplate from the Deidentify action at the time this job was run.
+     */
+    snapshotImageRedactTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
+    /**
+     * Snapshot of the state of the structured DeidentifyTemplate from the Deidentify action at the time this job was run.
+     */
+    snapshotStructuredDeidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
+  }
   /**
    * Snapshot of the inspection configuration.
    */
@@ -11308,6 +11368,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -11580,6 +11641,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -12911,6 +12973,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -15336,6 +15399,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -15741,6 +15805,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -17243,6 +17308,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],

@@ -1302,7 +1302,7 @@
       }
     }
   },
-  "revision": "20230310",
+  "revision": "20230324",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -3259,14 +3259,14 @@
       "id": "PolicyControllerBundleInstallSpec",
       "properties": {
         "exemptedNamespaces": {
-          "description": "the set of namespaces to be exempted from the bundle",
+          "description": "the set of namespaces to be exempted from the bundle TODO (b/271878194): Decrement this",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "management": {
-          "description": "Management specifies how the bundle will be managed by the controller.",
+          "description": "Management specifies how the bundle will be managed by the controller. TODO (b/271878194): Remove this",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "INSTALLED"
@@ -3346,7 +3346,7 @@
         },
         "templateLibraryConfig": {
           "$ref": "PolicyControllerTemplateLibraryConfig",
-          "description": "Configures the library templates to install along with Policy Controller."
+          "description": "Configures the library templates to install along with Policy Controller. TODO (b/271878194): Remove this"
         }
       },
       "type": "object"
@@ -3381,8 +3381,12 @@
           "additionalProperties": {
             "$ref": "PolicyControllerOnClusterState"
           },
-          "description": "The state of the template library and any bundles included in the chosen version of the manifest",
+          "description": "The state of the template library and any bundles included in the chosen version of the manifest TODO (b/271878194): Remove this",
           "type": "object"
+        },
+        "policyContentState": {
+          "$ref": "PolicyControllerPolicyContentState",
+          "description": "The overall content state observed by the Hub Feature controller. TODO (b/271878194): Decrement this"
         },
         "state": {
           "description": "The overall Policy Controller lifecycle state observed by the Hub Feature controller.",
@@ -3484,6 +3488,28 @@
           },
           "description": "map of bundle name to BundleInstallSpec. The bundle name maps to the `bundleName` key in the `policycontroller.gke.io/constraintData` annotation on a constraint.",
           "type": "object"
+        },
+        "templateLibrary": {
+          "$ref": "PolicyControllerTemplateLibraryConfig",
+          "description": "Configures the installation of the Template Library."
+        }
+      },
+      "type": "object"
+    },
+    "PolicyControllerPolicyContentState": {
+      "description": "The state of the policy controller policy content",
+      "id": "PolicyControllerPolicyContentState",
+      "properties": {
+        "bundleStates": {
+          "additionalProperties": {
+            "$ref": "PolicyControllerOnClusterState"
+          },
+          "description": "The state of the any bundles included in the chosen version of the manifest",
+          "type": "object"
+        },
+        "templateLibraryState": {
+          "$ref": "PolicyControllerOnClusterState",
+          "description": "The state of the template library"
         }
       },
       "type": "object"
@@ -3550,8 +3576,22 @@
       "id": "PolicyControllerTemplateLibraryConfig",
       "properties": {
         "included": {
-          "description": "Whether the standard template library should be installed or not.",
+          "description": "Whether the standard template library should be installed or not. TODO (b/271878194): Remove this",
           "type": "boolean"
+        },
+        "installation": {
+          "description": "Configures the manner in which the template library is installed on the cluster. TODO (b/271878194): Decrement this",
+          "enum": [
+            "INSTALLATION_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "ALL"
+          ],
+          "enumDescriptions": [
+            "No installation strategy has been specified.",
+            "Do not install the template library.",
+            "Install the entire template library."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

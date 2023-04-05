@@ -815,7 +815,7 @@ export namespace dialogflow_v3 {
      */
     enableWordInfo?: boolean | null;
     /**
-     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.
+     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)
      */
     model?: string | null;
     /**
@@ -903,7 +903,7 @@ export namespace dialogflow_v3 {
     redact?: boolean | null;
   }
   /**
-   * Represents an example that the agent is trained on to identify the intent.
+   * Represents an example that the agent is trained on to identify the intent. Next ID: 15
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase {
     /**
@@ -1511,6 +1511,10 @@ export namespace dialogflow_v3 {
      * Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.
      */
     detectIntentResponseId?: string | null;
+    /**
+     * If DTMF was provided as input, this field will contain the DTMF digits.
+     */
+    dtmfDigits?: string | null;
     /**
      * Always present. Information about the fulfillment that triggered this webhook call.
      */
@@ -2746,7 +2750,7 @@ export namespace dialogflow_v3 {
      */
     enableWordInfo?: boolean | null;
     /**
-     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.
+     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)
      */
     model?: string | null;
     /**
@@ -2767,7 +2771,7 @@ export namespace dialogflow_v3 {
     singleUtterance?: boolean | null;
   }
   /**
-   * An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent.
+   * An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent. Next ID: 15
    */
   export interface Schema$GoogleCloudDialogflowCxV3Intent {
     /**
@@ -3416,7 +3420,7 @@ export namespace dialogflow_v3 {
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
-     * If a DTMF was provided as input, this field will contain a copy of the DTMFInput.
+     * If a DTMF was provided as input, this field will contain a copy of the DtmfInput.
      */
     dtmf?: Schema$GoogleCloudDialogflowCxV3DtmfInput;
     /**
@@ -4433,6 +4437,10 @@ export namespace dialogflow_v3 {
      * Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.
      */
     detectIntentResponseId?: string | null;
+    /**
+     * If DTMF was provided as input, this field will contain the DTMF digits.
+     */
+    dtmfDigits?: string | null;
     /**
      * Always present. Information about the fulfillment that triggered this webhook call.
      */

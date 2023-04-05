@@ -717,6 +717,10 @@ export namespace metastore_v1beta {
      * Immutable. The consumer-side network configuration for the Dataproc Metastore instance.
      */
     consumers?: Schema$Consumer[];
+    /**
+     * Enables custom routes to be imported and exported for the Dataproc Metastore service's peered VPC network.
+     */
+    customRoutesEnabled?: boolean | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.

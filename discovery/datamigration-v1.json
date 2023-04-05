@@ -1831,7 +1831,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230320",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -1853,6 +1853,10 @@
       "description": "Settings for creating an AlloyDB cluster.",
       "id": "AlloyDbSettings",
       "properties": {
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. The encryption config can be specified to encrypt the data disks and other persistent data resources of a cluster with a customer-managed encryption key (CMEK). When this field is not specified, the cluster will then use default encryption scheme to protect the user data."
+        },
         "initialUser": {
           "$ref": "UserPassword",
           "description": "Required. Input only. Initial user to setup during cluster creation. Required."
@@ -2821,6 +2825,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionConfig": {
+      "description": "EncryptionConfig describes the encryption config of a cluster that is encrypted with a CMEK (customer-managed encryption key).",
+      "id": "EncryptionConfig",
+      "properties": {
+        "kmsKeyName": {
+          "description": "The fully-qualified resource name of the KMS key. Each Cloud KMS key is regionalized and has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EntityMapping": {

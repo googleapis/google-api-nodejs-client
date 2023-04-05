@@ -1713,7 +1713,7 @@
                   "type": "string"
                 },
                 "track": {
-                  "description": "Identifier of the track.",
+                  "description": "Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1782,7 +1782,7 @@
                   "type": "string"
                 },
                 "track": {
-                  "description": "Identifier of the track.",
+                  "description": "Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1823,7 +1823,7 @@
                   "type": "string"
                 },
                 "track": {
-                  "description": "Identifier of the track.",
+                  "description": "Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -3955,7 +3955,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230330",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "AcquisitionTargetingRule": {
@@ -6660,7 +6660,7 @@
           "type": "array"
         },
         "track": {
-          "description": "Identifier of the track.",
+          "description": "Identifier of the track. Form factor tracks have a special prefix as an identifier, for example `wear:production`, `automotive:production`. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
           "type": "string"
         }
       },

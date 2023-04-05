@@ -3990,7 +3990,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230313",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -4795,7 +4795,7 @@
           "type": "string"
         },
         "paths": {
-          "description": "Optional. The list of paths for items within the associated resource (eg. columns within a table) along with attribute bindings.",
+          "description": "Optional. The list of paths for items within the associated resource (eg. columns and partitions within a table) along with attribute bindings.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataAttributeBindingPath"
           },
@@ -4820,7 +4820,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataAttributeBindingPath": {
-      "description": "Represents a subresource of a given resource, and associated bindings with it.",
+      "description": "Represents a subresource of the given resource, and associated bindings with it. Currently supported subresources are column and partition schema fields within a table.",
       "id": "GoogleCloudDataplexV1DataAttributeBindingPath",
       "properties": {
         "attributes": {
@@ -4831,7 +4831,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. The name identifier of the path. Nested columns should be of the form: 'country.state.city'.",
+          "description": "Required. The name identifier of the path. Nested columns should be of the form: 'address.city'.",
           "type": "string"
         }
       },

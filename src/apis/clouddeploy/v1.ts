@@ -150,6 +150,19 @@ export namespace clouddeploy_v1 {
     rolloutPhaseId?: string | null;
   }
   /**
+   * The request object used by `AdvanceRollout`.
+   */
+  export interface Schema$AdvanceRolloutRequest {
+    /**
+     * Required. The phase ID to advance the `Rollout` to.
+     */
+    phaseId?: string | null;
+  }
+  /**
+   * The response object from `AdvanceRollout`.
+   */
+  export interface Schema$AdvanceRolloutResponse {}
+  /**
    * Information specifying an Anthos Cluster.
    */
   export interface Schema$AnthosCluster {
@@ -228,9 +241,47 @@ export namespace clouddeploy_v1 {
     tag?: string | null;
   }
   /**
+   * Canary represents the canary deployment strategy.
+   */
+  export interface Schema$Canary {
+    /**
+     * Configures the progressive based deployment for a Target.
+     */
+    canaryDeployment?: Schema$CanaryDeployment;
+    /**
+     * Configures the progressive based deployment for a Target, but allows customizing at the phase level where a phase represents each of the percentage deployments.
+     */
+    customCanaryDeployment?: Schema$CustomCanaryDeployment;
+    /**
+     * Optional. Runtime specific configurations for the deployment strategy. The runtime configuration is used to determine how Cloud Deploy will split traffic to enable a progressive deployment.
+     */
+    runtimeConfig?: Schema$RuntimeConfig;
+  }
+  /**
+   * CanaryDeployment represents the canary deployment configuration
+   */
+  export interface Schema$CanaryDeployment {
+    /**
+     * Required. The percentage based deployments that will occur as a part of a `Rollout`. List is expected in ascending order and each integer n is 0 <= n < 100.
+     */
+    percentages?: number[] | null;
+    /**
+     * Whether to run verify tests after each percentage deployment.
+     */
+    verify?: boolean | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * The request object used by `CancelRollout`.
+   */
+  export interface Schema$CancelRolloutRequest {}
+  /**
+   * The response object from `CancelRollout`.
+   */
+  export interface Schema$CancelRolloutResponse {}
   /**
    * ChildRollouts job composition
    */
@@ -243,6 +294,15 @@ export namespace clouddeploy_v1 {
      * Output only. List of CreateChildRolloutJobs
      */
     createRolloutJobs?: Schema$Job[];
+  }
+  /**
+   * CloudRunConfig contains the Cloud Run runtime configuration.
+   */
+  export interface Schema$CloudRunConfig {
+    /**
+     * Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.
+     */
+    automaticTrafficControl?: boolean | null;
   }
   /**
    * Information specifying where to deploy a Cloud Run Service.
@@ -269,6 +329,15 @@ export namespace clouddeploy_v1 {
      * Output only. The Cloud Run Service urls that are associated with a `Rollout`.
      */
     serviceUrls?: string[] | null;
+  }
+  /**
+   * CloudRunRenderMetadata contains Cloud Run information associated with a `Release` render.
+   */
+  export interface Schema$CloudRunRenderMetadata {
+    /**
+     * Output only. The name of the Cloud Run Service in the rendered manifest. Format is projects/{project\}/locations/{location\}/services/{service\}.
+     */
+    service?: string | null;
   }
   /**
    * Service-wide configuration.
@@ -303,6 +372,15 @@ export namespace clouddeploy_v1 {
      * Output only. The ID of the childRollout Phase initiated by this JobRun.
      */
     rolloutPhaseId?: string | null;
+  }
+  /**
+   * CustomCanaryDeployment represents the custom canary deployment configuration.
+   */
+  export interface Schema$CustomCanaryDeployment {
+    /**
+     * Required. Configuration for each phase in the canary deployment in the order executed.
+     */
+    phaseConfigs?: Schema$PhaseConfig[];
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -506,6 +584,23 @@ export namespace clouddeploy_v1 {
     title?: string | null;
   }
   /**
+   * Information about the Kubernetes Gateway API service mesh configuration.
+   */
+  export interface Schema$GatewayServiceMesh {
+    /**
+     * Required. Name of the Kubernetes Deployment whose traffic is managed by the specified HTTPRoute and Service.
+     */
+    deployment?: string | null;
+    /**
+     * Required. Name of the Gateway API HTTPRoute.
+     */
+    httpRoute?: string | null;
+    /**
+     * Required. Name of the Kubernetes Service.
+     */
+    service?: string | null;
+  }
+  /**
    * Information specifying a GKE Cluster.
    */
   export interface Schema$GkeCluster {
@@ -518,6 +613,23 @@ export namespace clouddeploy_v1 {
      */
     internalIp?: boolean | null;
   }
+  /**
+   * The request object used by `IgnoreJob`.
+   */
+  export interface Schema$IgnoreJobRequest {
+    /**
+     * Required. The job ID for the Job to ignore.
+     */
+    jobId?: string | null;
+    /**
+     * Required. The phase ID the Job to ignore belongs to.
+     */
+    phaseId?: string | null;
+  }
+  /**
+   * The response object from `IgnoreJob`.
+   */
+  export interface Schema$IgnoreJobResponse {}
   /**
    * Job represents an operation for a `Rollout`.
    */
@@ -542,6 +654,10 @@ export namespace clouddeploy_v1 {
      * Output only. The name of the `JobRun` responsible for the most recent invocation of this Job.
      */
     jobRun?: string | null;
+    /**
+     * Output only. Additional information on why the Job was skipped, if available.
+     */
+    skipMessage?: string | null;
     /**
      * Output only. The current state of the Job.
      */
@@ -640,6 +756,19 @@ export namespace clouddeploy_v1 {
      * Type of this notification, e.g. for a Pub/Sub failure.
      */
     type?: string | null;
+  }
+  /**
+   * KubernetesConfig contains the Kubernetes runtime configuration.
+   */
+  export interface Schema$KubernetesConfig {
+    /**
+     * Kubernetes Gateway API service mesh configuration.
+     */
+    gatewayServiceMesh?: Schema$GatewayServiceMesh;
+    /**
+     * Kubernetes Service networking configuration.
+     */
+    serviceNetworking?: Schema$ServiceNetworking;
   }
   /**
    * The response object from `ListDeliveryPipelines`.
@@ -870,9 +999,47 @@ export namespace clouddeploy_v1 {
      */
     id?: string | null;
     /**
+     * Output only. Additional information on why the Phase was skipped, if available.
+     */
+    skipMessage?: string | null;
+    /**
      * Output only. Current state of the Phase.
      */
     state?: string | null;
+  }
+  /**
+   * Contains the paths to the artifacts, relative to the URI, for a phase.
+   */
+  export interface Schema$PhaseArtifact {
+    /**
+     * Output only. File path of the rendered manifest relative to the URI.
+     */
+    manifestPath?: string | null;
+    /**
+     * Output only. File path of the resolved Skaffold configuration relative to the URI.
+     */
+    skaffoldConfigPath?: string | null;
+  }
+  /**
+   * PhaseConfig represents the configuration for a phase in the custom canary deployment.
+   */
+  export interface Schema$PhaseConfig {
+    /**
+     * Required. Percentage deployment for the phase.
+     */
+    percentage?: number | null;
+    /**
+     * Required. The ID to assign to the `Rollout` phase. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    phaseId?: string | null;
+    /**
+     * Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.
+     */
+    profiles?: string[] | null;
+    /**
+     * Whether to run verify tests after the deployment.
+     */
+    verify?: boolean | null;
   }
   /**
    * PipelineCondition contains all conditions relevant to a Delivery Pipeline.
@@ -1080,6 +1247,15 @@ export namespace clouddeploy_v1 {
     release?: string | null;
   }
   /**
+   * RenderMetadata includes information associated with a `Release` render.
+   */
+  export interface Schema$RenderMetadata {
+    /**
+     * Output only. Metadata associated with rendering for Cloud Run.
+     */
+    cloudRun?: Schema$CloudRunRenderMetadata;
+  }
+  /**
    * RetryJobRequest is the request object used by `RetryJob`.
    */
   export interface Schema$RetryJobRequest {
@@ -1211,6 +1387,19 @@ export namespace clouddeploy_v1 {
     type?: string | null;
   }
   /**
+   * RuntimeConfig contains the runtime specific configurations for a deployment strategy.
+   */
+  export interface Schema$RuntimeConfig {
+    /**
+     * Cloud Run runtime configuration.
+     */
+    cloudRun?: Schema$CloudRunConfig;
+    /**
+     * Kubernetes runtime configuration.
+     */
+    kubernetes?: Schema$KubernetesConfig;
+  }
+  /**
    * SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
    */
   export interface Schema$SerialPipeline {
@@ -1218,6 +1407,19 @@ export namespace clouddeploy_v1 {
      * Each stage specifies configuration for a `Target`. The ordering of this list defines the promotion flow.
      */
     stages?: Schema$Stage[];
+  }
+  /**
+   * Information about the Kubernetes Service networking configuration.
+   */
+  export interface Schema$ServiceNetworking {
+    /**
+     * Required. Name of the Kubernetes Deployment whose traffic is managed by the specified Service.
+     */
+    deployment?: string | null;
+    /**
+     * Required. Name of the Kubernetes Service.
+     */
+    service?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1322,6 +1524,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Strategy {
     /**
+     * Canary deployment strategy provides progressive percentage based deployments to a Target.
+     */
+    canary?: Schema$Canary;
+    /**
      * Standard deployment strategy executes a single deploy and allows verifying the deployment.
      */
     standard?: Schema$Standard;
@@ -1404,6 +1610,10 @@ export namespace clouddeploy_v1 {
      */
     manifestPath?: string | null;
     /**
+     * Output only. Map from the phase ID to the phase artifacts for the `Target`.
+     */
+    phaseArtifacts?: {[key: string]: Schema$PhaseArtifact} | null;
+    /**
      * Output only. File path of the resolved Skaffold configuration relative to the URI.
      */
     skaffoldConfigPath?: string | null;
@@ -1437,6 +1647,10 @@ export namespace clouddeploy_v1 {
      * Output only. Additional information about the render failure, if available.
      */
     failureMessage?: string | null;
+    /**
+     * Output only. Metadata related to the `Release` render for this Target.
+     */
+    metadata?: Schema$RenderMetadata;
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is used to render the manifest for this target. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
@@ -1476,6 +1690,14 @@ export namespace clouddeploy_v1 {
      */
     status?: boolean | null;
   }
+  /**
+   * The request object used by `TerminateJobRun`.
+   */
+  export interface Schema$TerminateJobRunRequest {}
+  /**
+   * The response object from `TerminateJobRun`.
+   */
+  export interface Schema$TerminateJobRunResponse {}
   /**
    * Request message for `TestIamPermissions` method.
    */
@@ -4004,6 +4226,152 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Advances a Rollout in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.advance(
+     *       {
+     *         // Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "phaseId": "my_phaseId"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    advance(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvanceRolloutResponse>;
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>,
+      callback: BodyResponseCallback<Schema$AdvanceRolloutResponse>
+    ): void;
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      callback: BodyResponseCallback<Schema$AdvanceRolloutResponse>
+    ): void;
+    advance(
+      callback: BodyResponseCallback<Schema$AdvanceRolloutResponse>
+    ): void;
+    advance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdvanceRolloutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:advance').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdvanceRolloutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdvanceRolloutResponse>(parameters);
+      }
+    }
+
+    /**
      * Approves a Rollout.
      * @example
      * ```js
@@ -4146,6 +4514,145 @@ export namespace clouddeploy_v1 {
         );
       } else {
         return createAPIRequest<Schema$ApproveRolloutResponse>(parameters);
+      }
+    }
+
+    /**
+     * Cancels a Rollout in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.cancel(
+     *       {
+     *         // Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CancelRolloutResponse>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelRolloutResponse>,
+      callback: BodyResponseCallback<Schema$CancelRolloutResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      callback: BodyResponseCallback<Schema$CancelRolloutResponse>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$CancelRolloutResponse>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel
+        | BodyResponseCallback<Schema$CancelRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelRolloutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CancelRolloutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelRolloutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelRolloutResponse>(parameters);
       }
     }
 
@@ -4472,6 +4979,150 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Ignores the specified Job in a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.ignoreJob(
+     *       {
+     *         // Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     *         rollout:
+     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "jobId": "my_jobId",
+     *           //   "phaseId": "my_phaseId"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    ignoreJob(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IgnoreJobResponse>;
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options: MethodOptions | BodyResponseCallback<Schema$IgnoreJobResponse>,
+      callback: BodyResponseCallback<Schema$IgnoreJobResponse>
+    ): void;
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      callback: BodyResponseCallback<Schema$IgnoreJobResponse>
+    ): void;
+    ignoreJob(callback: BodyResponseCallback<Schema$IgnoreJobResponse>): void;
+    ignoreJob(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob
+        | BodyResponseCallback<Schema$IgnoreJobResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IgnoreJobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IgnoreJobResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IgnoreJobResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+rollout}:ignoreJob').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['rollout'],
+        pathParams: ['rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IgnoreJobResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IgnoreJobResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists Rollouts in a given project and location.
      * @example
      * ```js
@@ -4762,6 +5413,18 @@ export namespace clouddeploy_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance
+    extends StandardParameters {
+    /**
+     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdvanceRolloutRequest;
+  }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve
     extends StandardParameters {
     /**
@@ -4773,6 +5436,18 @@ export namespace clouddeploy_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ApproveRolloutRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel
+    extends StandardParameters {
+    /**
+     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelRolloutRequest;
   }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create
     extends StandardParameters {
@@ -4808,6 +5483,18 @@ export namespace clouddeploy_v1 {
      * Required. Name of the `Rollout`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob
+    extends StandardParameters {
+    /**
+     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     */
+    rollout?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IgnoreJobRequest;
   }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List
     extends StandardParameters {
@@ -5139,6 +5826,150 @@ export namespace clouddeploy_v1 {
         return createAPIRequest<Schema$ListJobRunsResponse>(parameters);
       }
     }
+
+    /**
+     * Terminates a Job Run in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const clouddeploy = google.clouddeploy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.terminate(
+     *       {
+     *         // Required. Name of the `JobRun`. Format must be projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}/jobRuns/{jobRun\}.
+     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout/jobRuns/my-jobRun',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    terminate(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TerminateJobRunResponse>;
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>,
+      callback: BodyResponseCallback<Schema$TerminateJobRunResponse>
+    ): void;
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      callback: BodyResponseCallback<Schema$TerminateJobRunResponse>
+    ): void;
+    terminate(
+      callback: BodyResponseCallback<Schema$TerminateJobRunResponse>
+    ): void;
+    terminate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TerminateJobRunResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:terminate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TerminateJobRunResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TerminateJobRunResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get
@@ -5170,6 +6001,18 @@ export namespace clouddeploy_v1 {
      * Required. The `Rollout` which owns this collection of `JobRun` objects.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate
+    extends StandardParameters {
+    /**
+     * Required. Name of the `JobRun`. Format must be projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}/jobRuns/{jobRun\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TerminateJobRunRequest;
   }
 
   export class Resource$Projects$Locations$Operations {

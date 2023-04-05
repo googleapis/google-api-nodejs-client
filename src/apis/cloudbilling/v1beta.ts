@@ -257,7 +257,7 @@ export namespace cloudbilling_v1beta {
      */
     region?: Schema$Regional;
     /**
-     * The [storage class](https://cloud.google.com/storage/docs/storage-classes#classes) of the data and operation. For example: "standard" or "nearline".
+     * The [storage class](https://cloud.google.com/storage/docs/storage-classes#classes) of the data and operation. For example: "standard" and "nearline".
      */
     storageClass?: string | null;
   }
