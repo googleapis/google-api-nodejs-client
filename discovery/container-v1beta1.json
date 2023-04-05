@@ -2512,7 +2512,7 @@
       }
     }
   },
-  "revision": "20230304",
+  "revision": "20230322",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2542,6 +2542,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AdditionalPodRangesConfig": {
+      "description": "AdditionalPodRangesConfig is the configuration for additional pod secondary ranges supporting the ClusterUpdate message.",
+      "id": "AdditionalPodRangesConfig",
+      "properties": {},
       "type": "object"
     },
     "AddonsConfig": {
@@ -3303,6 +3309,10 @@
       "description": "ClusterUpdate describes an update to the cluster. Exactly one update can be applied to a cluster with each request, so at most one field can be provided.",
       "id": "ClusterUpdate",
       "properties": {
+        "additionalPodRangesConfig": {
+          "$ref": "AdditionalPodRangesConfig",
+          "description": "The additional pod ranges to be added to the cluster. These pod ranges can be used by node pools to allocate pod IPs."
+        },
         "desiredAddonsConfig": {
           "$ref": "AddonsConfig",
           "description": "Configurations for the various addons available to run in the cluster."
@@ -3525,6 +3535,10 @@
         "etag": {
           "description": "The current etag of the cluster. If an etag is provided and does not match the current etag of the cluster, update will be blocked and an ABORTED error will be returned.",
           "type": "string"
+        },
+        "removedAdditionalPodRangesConfig": {
+          "$ref": "AdditionalPodRangesConfig",
+          "description": "The additional pod ranges that are to be removed from the cluster. The pod ranges specified here must have been specified earlier in the 'additional_pod_ranges_config' argument."
         }
       },
       "type": "object"
@@ -4081,6 +4095,11 @@
       "description": "Configuration for controlling how IPs are allocated in the cluster.",
       "id": "IPAllocationPolicy",
       "properties": {
+        "additionalPodRangesConfig": {
+          "$ref": "AdditionalPodRangesConfig",
+          "description": "Output only. [Output only] The additional pod ranges that are added to the cluster. These pod ranges can be used by new node pools to allocate pod IPs automatically. Once the range is removed it will not show up in IPAllocationPolicy.",
+          "readOnly": true
+        },
         "allowRouteOverlap": {
           "description": "If true, allow allocation of cluster CIDR ranges that overlap with certain kinds of network routes. By default we do not allow cluster CIDR ranges to intersect with any user declared routes. With allow_route_overlap == true, we allow overlapping with CIDR ranges that are larger than the cluster CIDR range. If this field is set to true, then cluster and services CIDRs must be fully-specified (e.g. `10.96.0.0/14`, but not `/14`), which means: 1) When `use_ip_aliases` is true, `cluster_ipv4_cidr_block` and `services_ipv4_cidr_block` must be fully-specified. 2) When `use_ip_aliases` is false, `cluster.cluster_ipv4_cidr` muse be fully-specified.",
           "type": "boolean"
@@ -4122,6 +4141,10 @@
         "nodeIpv4CidrBlock": {
           "description": "The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
           "type": "string"
+        },
+        "podCidrOverprovisionConfig": {
+          "$ref": "PodCIDROverprovisionConfig",
+          "description": "[PRIVATE FIELD] Pod CIDR size overprovisioning config for the cluster. Pod CIDR size per node depends on max_pods_per_node. By default, the value of max_pods_per_node is doubled and then rounded off to next power of 2 to get the size of pod CIDR block per node. Example: max_pods_per_node of 30 would result in 64 IPs (/26). This config can disable the doubling of IPs (we still round off to next power of 2) Example: max_pods_per_node of 30 will result in 32 IPs (/27) when overprovisioning is disabled."
         },
         "servicesIpv4Cidr": {
           "description": "This field is deprecated, use services_ipv4_cidr_block.",
@@ -5144,6 +5167,10 @@
           "$ref": "NetworkPerformanceConfig",
           "description": "Network bandwidth tier configuration."
         },
+        "podCidrOverprovisionConfig": {
+          "$ref": "PodCIDROverprovisionConfig",
+          "description": "[PRIVATE FIELD] Pod CIDR size overprovisioning config for the nodepool. Pod CIDR size per node depends on max_pods_per_node. By default, the value of max_pods_per_node is rounded off to next power of 2 and we then double that to get the size of pod CIDR block per node. Example: max_pods_per_node of 30 would result in 64 IPs (/26). This config can disable the doubling of IPs (we still round off to next power of 2) Example: max_pods_per_node of 30 will result in 32 IPs (/27) when overprovisioning is disabled."
+        },
         "podIpv4CidrBlock": {
           "description": "The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
           "type": "string"
@@ -5591,6 +5618,17 @@
             "COMPACT specifies node placement in the same availability domain to ensure low communication latency."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PodCIDROverprovisionConfig": {
+      "description": "[PRIVATE FIELD] Config for pod CIDR size overprovisioning.",
+      "id": "PodCIDROverprovisionConfig",
+      "properties": {
+        "disable": {
+          "description": "Whether Pod CIDR overprovisioning is disabled. Note: Pod CIDR overprovisioning is enabled by default.",
+          "type": "boolean"
         }
       },
       "type": "object"
