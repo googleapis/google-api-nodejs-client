@@ -169,7 +169,7 @@ export namespace appengine_v1 {
      */
     authDomain?: string | null;
     /**
-     * Google Cloud Storage bucket that can be used for storing files associated with this application. This bucket is associated with the application and can be used by the gcloud deployment commands.@OutputOnly
+     * Output only. Google Cloud Storage bucket that can be used for storing files associated with this application. This bucket is associated with the application and can be used by the gcloud deployment commands.@OutputOnly
      */
     codeBucket?: string | null;
     /**
@@ -177,7 +177,7 @@ export namespace appengine_v1 {
      */
     databaseType?: string | null;
     /**
-     * Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly
+     * Output only. Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly
      */
     defaultBucket?: string | null;
     /**
@@ -185,7 +185,7 @@ export namespace appengine_v1 {
      */
     defaultCookieExpiration?: string | null;
     /**
-     * Hostname used to reach this application, as resolved by App Engine.@OutputOnly
+     * Output only. Hostname used to reach this application, as resolved by App Engine.@OutputOnly
      */
     defaultHostname?: string | null;
     /**
@@ -197,7 +197,7 @@ export namespace appengine_v1 {
      */
     featureSettings?: Schema$FeatureSettings;
     /**
-     * The Google Container Registry domain used for storing managed build docker images for this application.
+     * Output only. The Google Container Registry domain used for storing managed build docker images for this application.
      */
     gcrDomain?: string | null;
     iap?: Schema$IdentityAwareProxy;
@@ -210,7 +210,7 @@ export namespace appengine_v1 {
      */
     locationId?: string | null;
     /**
-     * Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly
+     * Output only. Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly
      */
     name?: string | null;
     /**
@@ -693,7 +693,7 @@ export namespace appengine_v1 {
      */
     oauth2ClientSecret?: string | null;
     /**
-     * Hex-encoded SHA-256 hash of the client secret.@OutputOnly
+     * Output only. Hex-encoded SHA-256 hash of the client secret.@OutputOnly
      */
     oauth2ClientSecretSha256?: string | null;
   }
@@ -1806,6 +1806,9 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.create({
+     *     // The project and location in which the application should be created, specified in the format projects/x/locations/x
+     *     parent: 'placeholder-value',
+     *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
@@ -2363,6 +2366,11 @@ export namespace appengine_v1 {
   }
 
   export interface Params$Resource$Apps$Create extends StandardParameters {
+    /**
+     * The project and location in which the application should be created, specified in the format projects/x/locations/x
+     */
+    parent?: string;
+
     /**
      * Request body metadata
      */
@@ -8072,6 +8080,163 @@ export namespace appengine_v1 {
     }
 
     /**
+     * Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.projects.locations.applications.create({
+     *     // Part of `parent`. See documentation of `projectsId`.
+     *     locationsId: 'placeholder-value',
+     *     // Part of `parent`. The project and location in which the application should be created, specified in the format projects/x/locations/x
+     *     projectsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authDomain": "my_authDomain",
+     *       //   "codeBucket": "my_codeBucket",
+     *       //   "databaseType": "my_databaseType",
+     *       //   "defaultBucket": "my_defaultBucket",
+     *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
+     *       //   "defaultHostname": "my_defaultHostname",
+     *       //   "dispatchRules": [],
+     *       //   "featureSettings": {},
+     *       //   "gcrDomain": "my_gcrDomain",
+     *       //   "iap": {},
+     *       //   "id": "my_id",
+     *       //   "locationId": "my_locationId",
+     *       //   "name": "my_name",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "servingStatus": "my_servingStatus"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Applications$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Applications$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Applications$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{projectsId}/locations/{locationsId}/applications'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectsId', 'locationsId'],
+        pathParams: ['locationsId', 'projectsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets information about an application.
      * @example
      * ```js
@@ -8223,6 +8388,22 @@ export namespace appengine_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Applications$Create
+    extends StandardParameters {
+    /**
+     * Part of `parent`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `parent`. The project and location in which the application should be created, specified in the format projects/x/locations/x
+     */
+    projectsId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Application;
+  }
   export interface Params$Resource$Projects$Locations$Applications$Get
     extends StandardParameters {
     /**

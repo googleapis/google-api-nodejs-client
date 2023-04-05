@@ -118,7 +118,13 @@
           "httpMethod": "POST",
           "id": "appengine.apps.create",
           "parameterOrder": [],
-          "parameters": {},
+          "parameters": {
+            "parent": {
+              "description": "The project and location in which the application should be created, specified in the format projects/*/locations/*",
+              "location": "query",
+              "type": "string"
+            }
+          },
           "path": "v1/apps",
           "request": {
             "$ref": "Application"
@@ -1600,6 +1606,40 @@
           "resources": {
             "applications": {
               "methods": {
+                "create": {
+                  "description": "Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications",
+                  "httpMethod": "POST",
+                  "id": "appengine.projects.locations.applications.create",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId"
+                  ],
+                  "parameters": {
+                    "locationsId": {
+                      "description": "Part of `parent`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `parent`. The project and location in which the application should be created, specified in the format projects/*/locations/*",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/projects/{projectsId}/locations/{locationsId}/applications",
+                  "request": {
+                    "$ref": "Application"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets information about an application.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}",
@@ -1647,7 +1687,7 @@
       }
     }
   },
-  "revision": "20230309",
+  "revision": "20230320",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -1733,7 +1773,8 @@
           "type": "string"
         },
         "codeBucket": {
-          "description": "Google Cloud Storage bucket that can be used for storing files associated with this application. This bucket is associated with the application and can be used by the gcloud deployment commands.@OutputOnly",
+          "description": "Output only. Google Cloud Storage bucket that can be used for storing files associated with this application. This bucket is associated with the application and can be used by the gcloud deployment commands.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "databaseType": {
@@ -1753,7 +1794,8 @@
           "type": "string"
         },
         "defaultBucket": {
-          "description": "Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly",
+          "description": "Output only. Google Cloud Storage bucket that can be used by this application to store content.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "defaultCookieExpiration": {
@@ -1762,7 +1804,8 @@
           "type": "string"
         },
         "defaultHostname": {
-          "description": "Hostname used to reach this application, as resolved by App Engine.@OutputOnly",
+          "description": "Output only. Hostname used to reach this application, as resolved by App Engine.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "dispatchRules": {
@@ -1777,7 +1820,8 @@
           "description": "The feature specific settings to be used in the application."
         },
         "gcrDomain": {
-          "description": "The Google Container Registry domain used for storing managed build docker images for this application.",
+          "description": "Output only. The Google Container Registry domain used for storing managed build docker images for this application.",
+          "readOnly": true,
           "type": "string"
         },
         "iap": {
@@ -1792,7 +1836,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly",
+          "description": "Output only. Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "serviceAccount": {
@@ -2421,7 +2466,8 @@
           "type": "string"
         },
         "oauth2ClientSecretSha256": {
-          "description": "Hex-encoded SHA-256 hash of the client secret.@OutputOnly",
+          "description": "Output only. Hex-encoded SHA-256 hash of the client secret.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         }
       },
