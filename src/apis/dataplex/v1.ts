@@ -677,7 +677,7 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Optional. The list of paths for items within the associated resource (eg. columns within a table) along with attribute bindings.
+     * Optional. The list of paths for items within the associated resource (eg. columns and partitions within a table) along with attribute bindings.
      */
     paths?: Schema$GoogleCloudDataplexV1DataAttributeBindingPath[];
     /**
@@ -694,7 +694,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Represents a subresource of a given resource, and associated bindings with it.
+   * Represents a subresource of the given resource, and associated bindings with it. Currently supported subresources are column and partition schema fields within a table.
    */
   export interface Schema$GoogleCloudDataplexV1DataAttributeBindingPath {
     /**
@@ -702,7 +702,7 @@ export namespace dataplex_v1 {
      */
     attributes?: string[] | null;
     /**
-     * Required. The name identifier of the path. Nested columns should be of the form: 'country.state.city'.
+     * Required. The name identifier of the path. Nested columns should be of the form: 'address.city'.
      */
     name?: string | null;
   }
