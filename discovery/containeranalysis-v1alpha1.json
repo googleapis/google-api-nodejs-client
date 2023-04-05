@@ -610,7 +610,8 @@
                     "SPDX_FILE",
                     "SPDX_RELATIONSHIP",
                     "DSSE_ATTESTATION",
-                    "VULNERABILITY_ASSESSMENT"
+                    "VULNERABILITY_ASSESSMENT",
+                    "SBOM_REFERENCE"
                   ],
                   "enumDescriptions": [
                     "Unknown",
@@ -628,7 +629,8 @@
                     "This represents an SPDX File.",
                     "This represents an SPDX Relationship.",
                     "This represents a DSSE attestation Note",
-                    "This represents a Vulnerability Assessment."
+                    "This represents a Vulnerability Assessment.",
+                    "This represents a reference to an SBOM."
                   ],
                   "location": "query",
                   "type": "string"
@@ -1231,7 +1233,7 @@
       }
     }
   },
-  "revision": "20230310",
+  "revision": "20230331",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -3438,7 +3440,8 @@
             "SPDX_FILE",
             "SPDX_RELATIONSHIP",
             "DSSE_ATTESTATION",
-            "VULNERABILITY_ASSESSMENT"
+            "VULNERABILITY_ASSESSMENT",
+            "SBOM_REFERENCE"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -3456,7 +3459,8 @@
             "This represents an SPDX File.",
             "This represents an SPDX Relationship.",
             "This represents a DSSE attestation Note",
-            "This represents a Vulnerability Assessment."
+            "This represents a Vulnerability Assessment.",
+            "This represents a reference to an SBOM."
           ],
           "type": "string"
         }
@@ -4615,7 +4619,8 @@
             "SPDX_FILE",
             "SPDX_RELATIONSHIP",
             "DSSE_ATTESTATION",
-            "VULNERABILITY_ASSESSMENT"
+            "VULNERABILITY_ASSESSMENT",
+            "SBOM_REFERENCE"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -4633,7 +4638,8 @@
             "This represents an SPDX File.",
             "This represents an SPDX Relationship.",
             "This represents a DSSE attestation Note",
-            "This represents a Vulnerability Assessment."
+            "This represents a Vulnerability Assessment.",
+            "This represents a reference to an SBOM."
           ],
           "type": "string"
         },
@@ -4659,6 +4665,10 @@
         "sbom": {
           "$ref": "DocumentNote",
           "description": "A note describing a software bill of materials."
+        },
+        "sbomReference": {
+          "$ref": "SBOMReferenceNote",
+          "description": "A note describing a reference to an SBOM."
         },
         "shortDescription": {
           "description": "A one sentence description of this `Note`.",
@@ -4759,7 +4769,8 @@
             "SPDX_FILE",
             "SPDX_RELATIONSHIP",
             "DSSE_ATTESTATION",
-            "VULNERABILITY_ASSESSMENT"
+            "VULNERABILITY_ASSESSMENT",
+            "SBOM_REFERENCE"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -4777,7 +4788,8 @@
             "This represents an SPDX File.",
             "This represents an SPDX Relationship.",
             "This represents a DSSE attestation Note",
-            "This represents a Vulnerability Assessment."
+            "This represents a Vulnerability Assessment.",
+            "This represents a reference to an SBOM."
           ],
           "type": "string"
         },
@@ -4804,6 +4816,10 @@
         "sbom": {
           "$ref": "DocumentOccurrence",
           "description": "Describes a specific software bill of materials document."
+        },
+        "sbomReference": {
+          "$ref": "SBOMReferenceOccurrence",
+          "description": "This represents an SBOM reference occurrence"
         },
         "spdxFile": {
           "$ref": "FileOccurrence",
@@ -5552,6 +5568,95 @@
         },
         "uri": {
           "description": "The unique URI of the resource. E.g., \"https://gcr.io/project/image@sha256:foo\" for a Docker image.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMReferenceNote": {
+      "description": "The note representing an SBOM reference.",
+      "id": "SBOMReferenceNote",
+      "properties": {
+        "format": {
+          "description": "The format that SBOM takes. E.g. may be spdx, cyclonedx, etc...",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the format that the SBOM takes. E.g. if the format is spdx, the version may be 2.3.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMReferenceOccurrence": {
+      "description": "The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.",
+      "id": "SBOMReferenceOccurrence",
+      "properties": {
+        "payload": {
+          "$ref": "SbomReferenceIntotoPayload",
+          "description": "The actual payload that contains the SBOM reference data."
+        },
+        "payloadType": {
+          "description": "The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'.",
+          "type": "string"
+        },
+        "signatures": {
+          "description": "The signatures over the payload.",
+          "items": {
+            "$ref": "EnvelopeSignature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SbomReferenceIntotoPayload": {
+      "description": "The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.",
+      "id": "SbomReferenceIntotoPayload",
+      "properties": {
+        "_type": {
+          "description": "Identifier for the schema of the Statement.",
+          "type": "string"
+        },
+        "predicate": {
+          "$ref": "SbomReferenceIntotoPredicate",
+          "description": "Additional parameters of the Predicate. Includes the actual data about the SBOM."
+        },
+        "predicateType": {
+          "description": "URI identifying the type of the Predicate.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Set of software artifacts that the attestation applies to. Each element represents a single software artifact.",
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SbomReferenceIntotoPredicate": {
+      "description": "A predicate which describes the SBOM being referenced.",
+      "id": "SbomReferenceIntotoPredicate",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of algorithm to digest of the contents of the SBOM.",
+          "type": "object"
+        },
+        "location": {
+          "description": "The location of the SBOM.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the SBOM.",
+          "type": "string"
+        },
+        "referrerId": {
+          "description": "The person or system referring this predicate to the consumer.",
           "type": "string"
         }
       },

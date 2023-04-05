@@ -161,6 +161,43 @@ export namespace containeranalysis_v1 {
     names?: string[] | null;
   }
   /**
+   * Assessment provides all information that is related to a single vulnerability for this product.
+   */
+  export interface Schema$Assessment {
+    /**
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     */
+    cve?: string | null;
+    /**
+     * Contains information about the impact of this vulnerability, this will change with time.
+     */
+    impacts?: string[] | null;
+    /**
+     * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+     */
+    justification?: Schema$Justification;
+    /**
+     * A detailed description of this Vex.
+     */
+    longDescription?: string | null;
+    /**
+     * Holds a list of references associated with this vulnerability item and assessment. These uris have additional information about the vulnerability and the assessment itself. E.g. Link to a document which details how this assessment concluded the state of this vulnerability.
+     */
+    relatedUris?: Schema$RelatedUrl[];
+    /**
+     * Specifies details on how to handle (and presumably, fix) a vulnerability.
+     */
+    remediations?: Schema$Remediation[];
+    /**
+     * A one sentence description of this Vex.
+     */
+    shortDescription?: string | null;
+    /**
+     * Provides the state of this Vulnerability assessment.
+     */
+    state?: string | null;
+  }
+  /**
    * Note kind that represents a logical attestation "role" or "authority". For example, an organization might have one `Authority` for "QA" and one for "build". This note is intended to act strictly as a grouping mechanism for the attached occurrences (Attestations). This grouping mechanism also provides a security boundary, since IAM ACLs gate the ability for a principle to attach an occurrence to a given note. It also provides a single point of lookup to find all attached attestation occurrences, even if they don't all live in the same project.
    */
   export interface Schema$AttestationNote {
@@ -1599,6 +1636,10 @@ export namespace containeranalysis_v1 {
     totalCount?: string | null;
   }
   /**
+   * GeneratePackagesSummaryRequest is the request body for the GeneratePackagesSummary API method. It just takes a single name argument, referring to the resource.
+   */
+  export interface Schema$GeneratePackagesSummaryRequest {}
+  /**
    * A SourceContext referring to a Gerrit project.
    */
   export interface Schema$GerritSourceContext {
@@ -1820,6 +1861,19 @@ export namespace containeranalysis_v1 {
      */
     _type?: string | null;
   }
+  /**
+   * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+   */
+  export interface Schema$Justification {
+    /**
+     * Additional details on why this justification was chosen.
+     */
+    details?: string | null;
+    /**
+     * The justification type for this vulnerability.
+     */
+    justificationType?: string | null;
+  }
   export interface Schema$Jwt {
     /**
      * The compact encoding of a JWS, which is always three base64 encoded strings joined by periods. For details, see: https://tools.ietf.org/html/rfc7515.html#section-3.1
@@ -1861,6 +1915,19 @@ export namespace containeranalysis_v1 {
      * Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: "LGPL-2.1-only OR MIT", "LGPL-2.1-only AND MIT", "GPL-2.0-or-later WITH Bison-exception-2.2".
      */
     expression?: string | null;
+  }
+  /**
+   * Per license count
+   */
+  export interface Schema$LicensesSummary {
+    /**
+     * The number of fixable vulnerabilities associated with this resource.
+     */
+    count?: string | null;
+    /**
+     * The license of the package. Note that the format of this value is not guaranteed. It may be nil, an empty string, a boolean value (A | B), a differently formed boolean value (A OR B), etc...
+     */
+    license?: string | null;
   }
   /**
    * Response for listing occurrences for a note.
@@ -2044,6 +2111,10 @@ export namespace containeranalysis_v1 {
      * A note describing a package vulnerability.
      */
     vulnerability?: Schema$VulnerabilityNote;
+    /**
+     * A note describing a vulnerability assessment.
+     */
+    vulnerabilityAssessment?: Schema$VulnerabilityAssessmentNote;
   }
   /**
    * An instance of an analysis type that has been found on a resource.
@@ -2250,6 +2321,19 @@ export namespace containeranalysis_v1 {
     version?: Schema$Version;
   }
   /**
+   * A summary of the packages found within the given resource.
+   */
+  export interface Schema$PackagesSummaryResponse {
+    /**
+     * A listing by license name of each of the licenses and their counts.
+     */
+    licensesSummary?: Schema$LicensesSummary[];
+    /**
+     * The unique URL of the image or the container for which this summary applies.
+     */
+    resourceUrl?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -2267,6 +2351,23 @@ export namespace containeranalysis_v1 {
     version?: number | null;
   }
   /**
+   * Product contains information about a product and how to uniquely identify it.
+   */
+  export interface Schema$Product {
+    /**
+     * Contains a URI which is vendor-specific. Example: The artifact repository URL of an image.
+     */
+    genericUri?: string | null;
+    /**
+     * Token that identifies a product so that it can be referred to from other parts in the document. There is no predefined format as long as it uniquely identifies a group in the context of the current document.
+     */
+    id?: string | null;
+    /**
+     * Name of the product.
+     */
+    name?: string | null;
+  }
+  /**
    * Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.
    */
   export interface Schema$ProjectRepoId {
@@ -2278,6 +2379,23 @@ export namespace containeranalysis_v1 {
      * The name of the repo. Leave empty for the default repo.
      */
     repoName?: string | null;
+  }
+  /**
+   * Publisher contains information about the publisher of this Note.
+   */
+  export interface Schema$Publisher {
+    /**
+     * Provides information about the authority of the issuing party to release the document, in particular, the party's constituency and responsibilities or other obligations.
+     */
+    issuingAuthority?: string | null;
+    /**
+     * Name of the publisher. Examples: 'Google', 'Google Cloud Platform'.
+     */
+    name?: string | null;
+    /**
+     * The context or namespace. Contains a URL which is under control of the issuing party and can be used as a globally unique identifier for that issuing party. Example: https://csaf.io
+     */
+    publisherNamespace?: string | null;
   }
   /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
@@ -2316,6 +2434,23 @@ export namespace containeranalysis_v1 {
      * Specific URL associated with the resource.
      */
     url?: string | null;
+  }
+  /**
+   * Specifies details on how to handle (and presumably, fix) a vulnerability.
+   */
+  export interface Schema$Remediation {
+    /**
+     * Contains a comprehensive human-readable discussion of the remediation.
+     */
+    details?: string | null;
+    /**
+     * The type of remediation that can be applied.
+     */
+    remediationType?: string | null;
+    /**
+     * Contains the URL where to obtain the remediation.
+     */
+    remediationUri?: Schema$RelatedUrl;
   }
   /**
    * A unique identifier for a Cloud Repo.
@@ -2638,6 +2773,39 @@ export namespace containeranalysis_v1 {
     revision?: string | null;
   }
   /**
+   * VexAssessment provides all publisher provided Vex information that is related to this vulnerability.
+   */
+  export interface Schema$VexAssessment {
+    /**
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability.
+     */
+    cve?: string | null;
+    /**
+     * Contains information about the impact of this vulnerability, this will change with time.
+     */
+    impacts?: string[] | null;
+    /**
+     * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+     */
+    justification?: Schema$Justification;
+    /**
+     * The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.
+     */
+    noteName?: string | null;
+    /**
+     * Holds a list of references associated with this vulnerability item and assessment.
+     */
+    relatedUris?: Schema$RelatedUrl[];
+    /**
+     * Specifies details on how to handle (and presumably, fix) a vulnerability.
+     */
+    remediations?: Schema$Remediation[];
+    /**
+     * Provides the state of this Vulnerability assessment.
+     */
+    state?: string | null;
+  }
+  /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. Next ID: 3
    */
   export interface Schema$Volume {
@@ -2649,6 +2817,39 @@ export namespace containeranalysis_v1 {
      * Path at which to mount the volume. Paths must be absolute and cannot conflict with other volume paths on the same build step or with certain reserved volume paths.
      */
     path?: string | null;
+  }
+  /**
+   * A single VulnerabilityAssessmentNote represents one particular product's vulnerability assessment for one CVE.
+   */
+  export interface Schema$VulnerabilityAssessmentNote {
+    /**
+     * Represents a vulnerability assessment for the product.
+     */
+    assessment?: Schema$Assessment;
+    /**
+     * Identifies the language used by this document, corresponding to IETF BCP 47 / RFC 5646.
+     */
+    languageCode?: string | null;
+    /**
+     * A detailed description of this Vex.
+     */
+    longDescription?: string | null;
+    /**
+     * The product affected by this vex.
+     */
+    product?: Schema$Product;
+    /**
+     * Publisher details of this Note.
+     */
+    publisher?: Schema$Publisher;
+    /**
+     * A one sentence description of this Vex.
+     */
+    shortDescription?: string | null;
+    /**
+     * The title of the note. E.g. `Vex-Debian-11.4`
+     */
+    title?: string | null;
   }
   /**
    * A security vulnerability that can be found in resources.
@@ -2739,6 +2940,7 @@ export namespace containeranalysis_v1 {
      * The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
      */
     type?: string | null;
+    vexAssessment?: Schema$VexAssessment;
   }
   /**
    * A summary of how many vulnerability occurrences there are per resource and severity type.
@@ -2805,10 +3007,12 @@ export namespace containeranalysis_v1 {
     context: APIRequestContext;
     notes: Resource$Projects$Notes;
     occurrences: Resource$Projects$Occurrences;
+    resources: Resource$Projects$Resources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.notes = new Resource$Projects$Notes(this.context);
       this.occurrences = new Resource$Projects$Occurrences(this.context);
+      this.resources = new Resource$Projects$Resources(this.context);
     }
   }
 
@@ -3019,7 +3223,8 @@ export namespace containeranalysis_v1 {
      *       //   "shortDescription": "my_shortDescription",
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
-     *       //   "vulnerability": {}
+     *       //   "vulnerability": {},
+     *       //   "vulnerabilityAssessment": {}
      *       // }
      *     },
      *   });
@@ -3045,7 +3250,8 @@ export namespace containeranalysis_v1 {
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
-     *   //   "vulnerability": {}
+     *   //   "vulnerability": {},
+     *   //   "vulnerabilityAssessment": {}
      *   // }
      * }
      *
@@ -3318,7 +3524,8 @@ export namespace containeranalysis_v1 {
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
-     *   //   "vulnerability": {}
+     *   //   "vulnerability": {},
+     *   //   "vulnerabilityAssessment": {}
      *   // }
      * }
      *
@@ -3745,7 +3952,8 @@ export namespace containeranalysis_v1 {
      *       //   "shortDescription": "my_shortDescription",
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
-     *       //   "vulnerability": {}
+     *       //   "vulnerability": {},
+     *       //   "vulnerabilityAssessment": {}
      *       // }
      *     },
      *   });
@@ -3771,7 +3979,8 @@ export namespace containeranalysis_v1 {
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
-     *   //   "vulnerability": {}
+     *   //   "vulnerability": {},
+     *   //   "vulnerabilityAssessment": {}
      *   // }
      * }
      *
@@ -5221,7 +5430,8 @@ export namespace containeranalysis_v1 {
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
-     *   //   "vulnerability": {}
+     *   //   "vulnerability": {},
+     *   //   "vulnerabilityAssessment": {}
      *   // }
      * }
      *
@@ -6181,5 +6391,171 @@ export namespace containeranalysis_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Resources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a summary of the packages within a given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await containeranalysis.projects.resources.generatePackagesSummary({
+     *       // Required. The name of the resource to get a packages summary for in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
+     *       name: 'projects/my-project/resources/.*',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "licensesSummary": [],
+     *   //   "resourceUrl": "my_resourceUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generatePackagesSummary(
+      params?: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PackagesSummaryResponse>;
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>,
+      callback: BodyResponseCallback<Schema$PackagesSummaryResponse>
+    ): void;
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      callback: BodyResponseCallback<Schema$PackagesSummaryResponse>
+    ): void;
+    generatePackagesSummary(
+      callback: BodyResponseCallback<Schema$PackagesSummaryResponse>
+    ): void;
+    generatePackagesSummary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Resources$Generatepackagessummary
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PackagesSummaryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Resources$Generatepackagessummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Resources$Generatepackagessummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generatePackagesSummary').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PackagesSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PackagesSummaryResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Resources$Generatepackagessummary
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource to get a packages summary for in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GeneratePackagesSummaryRequest;
   }
 }
