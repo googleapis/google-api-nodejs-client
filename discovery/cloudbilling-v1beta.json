@@ -170,7 +170,7 @@
       }
     }
   },
-  "revision": "20230130",
+  "revision": "20230402",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -453,7 +453,7 @@
           "description": "Specify a single region."
         },
         "storageClass": {
-          "description": "The [storage class](https://cloud.google.com/storage/docs/storage-classes#classes) of the data and operation. For example: \"standard\" or \"nearline\".",
+          "description": "The [storage class](https://cloud.google.com/storage/docs/storage-classes#classes) of the data and operation. For example: \"standard\" and \"nearline\".",
           "type": "string"
         }
       },
