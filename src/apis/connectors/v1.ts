@@ -1198,6 +1198,23 @@ export namespace connectors_v1 {
     updateMask?: string | null;
   }
   /**
+   * Global Settings details.
+   */
+  export interface Schema$Settings {
+    /**
+     * Output only. Resource name of the Connection. Format: projects/{project\}/locations/global/settings\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Flag indicates if user is in PayG model
+     */
+    payg?: boolean | null;
+    /**
+     * Optional. Flag indicates whether vpc-sc is enabled.
+     */
+    vpcsc?: boolean | null;
+  }
+  /**
    * Source to extract the backend from.
    */
   export interface Schema$Source {
@@ -1379,6 +1396,7 @@ export namespace connectors_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     connections: Resource$Projects$Locations$Connections;
+    global: Resource$Projects$Locations$Global;
     operations: Resource$Projects$Locations$Operations;
     providers: Resource$Projects$Locations$Providers;
     constructor(context: APIRequestContext) {
@@ -1386,6 +1404,7 @@ export namespace connectors_v1 {
       this.connections = new Resource$Projects$Locations$Connections(
         this.context
       );
+      this.global = new Resource$Projects$Locations$Global(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -3796,6 +3815,149 @@ export namespace connectors_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Global {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * GetGlobalSettings gets settings of a project. GlobalSettings is a singleton resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.global.getSettings({
+     *     // Required. The resource name of the Settings.
+     *     name: 'projects/my-project/locations/global/settings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "payg": false,
+     *   //   "vpcsc": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSettings(
+      params?: Params$Resource$Projects$Locations$Global$Getsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Settings>;
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
+    getSettings(callback: BodyResponseCallback<Schema$Settings>): void;
+    getSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Getsettings
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Getsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Getsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Settings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Settings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Getsettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Settings.
+     */
+    name?: string;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4187,7 +4349,7 @@ export namespace connectors_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
