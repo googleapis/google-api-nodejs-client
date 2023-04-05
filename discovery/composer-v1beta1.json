@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20230316",
+  "revision": "20230323",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -729,6 +729,11 @@
       "description": "Configuration information for an environment.",
       "id": "EnvironmentConfig",
       "properties": {
+        "airflowByoidUri": {
+          "description": "Output only. The 'bring your own identity' variant of the URI of the Apache Airflow Web UI hosted within this environment, to be accessed with external identities using workforce identity federation (see [Access environments with workforce identity federation](/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).",
+          "readOnly": true,
+          "type": "string"
+        },
         "airflowUri": {
           "description": "Output only. The URI of the Apache Airflow Web UI hosted within this environment (see [Airflow web interface](/composer/docs/how-to/accessing/airflow-web-interface)).",
           "readOnly": true,
