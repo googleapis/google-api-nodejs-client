@@ -1579,7 +1579,7 @@
       }
     }
   },
-  "revision": "20230313",
+  "revision": "20230323",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2513,6 +2513,10 @@
             "$ref": "Consumer"
           },
           "type": "array"
+        },
+        "customRoutesEnabled": {
+          "description": "Enables custom routes to be imported and exported for the Dataproc Metastore service's peered VPC network.",
+          "type": "boolean"
         }
       },
       "type": "object"
