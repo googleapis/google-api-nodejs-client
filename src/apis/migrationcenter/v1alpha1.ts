@@ -937,7 +937,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$GuestInstalledApplication {
     /**
-     * Installed application name .
+     * Installed application name.
      */
     name?: string | null;
     /**
@@ -1301,6 +1301,40 @@ export namespace migrationcenter_v1alpha1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response message for listing report configs.
+   */
+  export interface Schema$ListReportConfigsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of report configs.
+     */
+    reportConfigs?: Schema$ReportConfig[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for listing Reports.
+   */
+  export interface Schema$ListReportsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of Reports.
+     */
+    reports?: Schema$Report[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for listing sources.
    */
   export interface Schema$ListSourcesResponse {
@@ -1389,6 +1423,23 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. A VMWare Engine target.
      */
     vmwareEngineTarget?: Schema$VmwareEngineMigrationTarget;
+  }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$Money {
+    /**
+     * The three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
   }
   /**
    * Details of network adapter.
@@ -1744,9 +1795,335 @@ export namespace migrationcenter_v1alpha1 {
     requestId?: string | null;
   }
   /**
+   * Report represents a point-in-time rendering of the ReportConfig results.
+   */
+  export interface Schema$Report {
+    /**
+     * Output only. Creation timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Free-text description.
+     */
+    description?: string | null;
+    /**
+     * User-friendly display name. Maximum length is 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Name of resource.
+     */
+    name?: string | null;
+    /**
+     * Report creation state.
+     */
+    state?: string | null;
+    /**
+     * Output only. Summary view of the Report.
+     */
+    summary?: Schema$ReportSummary;
+    /**
+     * Report type.
+     */
+    type?: string | null;
+    /**
+     * Output only. Last update timestamp.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A response to a call to `ReportAssetFrame`.
    */
   export interface Schema$ReportAssetFramesResponse {}
+  /**
+   * The groups and associated preference sets on which we can generate reports.
+   */
+  export interface Schema$ReportConfig {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Free-text description.
+     */
+    description?: string | null;
+    /**
+     * User-friendly display name. Maximum length is 63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Collection of combinations of groups and preference sets.
+     */
+    groupPreferencesetAssignments?: Schema$ReportConfigGroupPreferenceSetAssignment[];
+    /**
+     * Output only. Name of resource.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when the resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a combination of a group with a preference set.
+   */
+  export interface Schema$ReportConfigGroupPreferenceSetAssignment {
+    /**
+     * Name of the group.
+     */
+    group?: string | null;
+    /**
+     * Name of the Preference Set.
+     */
+    preferenceSet?: string | null;
+  }
+  /**
+   * Describes the Summary view of a Report, which contains aggregated values for all the groups and preference sets included in this Report.
+   */
+  export interface Schema$ReportSummary {
+    /**
+     * Aggregate statistics for all the assets across all the groups.
+     */
+    allAssetsStats?: Schema$ReportSummaryAssetAggregateStats;
+    /**
+     * Findings for each Group included in this report.
+     */
+    groupFindings?: Schema$ReportSummaryGroupFinding[];
+  }
+  /**
+   * Aggregate statistics for a collection of assets.
+   */
+  export interface Schema$ReportSummaryAssetAggregateStats {
+    /**
+     * Count of assets grouped by age.
+     */
+    assetAge?: Schema$ReportSummaryChartData;
+    /**
+     * Histogram showing a distribution of CPU core counts.
+     */
+    coreCountHistogram?: Schema$ReportSummaryHistogramChartData;
+    /**
+     * Histogram showing a distribution of memory sizes.
+     */
+    memoryBytesHistogram?: Schema$ReportSummaryHistogramChartData;
+    /**
+     * Total memory split into Used/Free buckets.
+     */
+    memoryUtilization?: Schema$ReportSummaryChartData;
+    /**
+     * Total memory split into Used/Free buckets.
+     */
+    memoryUtilizationChart?: Schema$ReportSummaryUtilizationChartData;
+    /**
+     * Count of assets grouped by Operating System families.
+     */
+    operatingSystem?: Schema$ReportSummaryChartData;
+    /**
+     * Histogram showing a distribution of memory sizes.
+     */
+    storageBytesHistogram?: Schema$ReportSummaryHistogramChartData;
+    /**
+     * Total storage split into Used/Free buckets.
+     */
+    storageUtilization?: Schema$ReportSummaryChartData;
+    /**
+     * Total memory split into Used/Free buckets.
+     */
+    storageUtilizationChart?: Schema$ReportSummaryUtilizationChartData;
+    /**
+     * Count of the number of unique assets in this collection.
+     */
+    totalAssets?: string | null;
+    /**
+     * Sum of the CPU core count of all the assets in this collection.
+     */
+    totalCores?: string | null;
+    /**
+     * Sum of the memory in bytes of all the assets in this collection.
+     */
+    totalMemoryBytes?: string | null;
+    /**
+     * Sum of persistent storage in bytes of all the assets in this collection.
+     */
+    totalStorageBytes?: string | null;
+  }
+  /**
+   * Describes a collection of data points rendered as a Chart.
+   */
+  export interface Schema$ReportSummaryChartData {
+    /**
+     * Each data point in the chart is represented as a name-value pair with the name being the x-axis label, and the value being the y-axis value.
+     */
+    dataPoints?: Schema$ReportSummaryChartDataDataPoint[];
+  }
+  /**
+   * Describes a single data point in the Chart.
+   */
+  export interface Schema$ReportSummaryChartDataDataPoint {
+    /**
+     * The X-axis label for this data point.
+     */
+    label?: string | null;
+    /**
+     * The Y-axis value for this data point.
+     */
+    value?: number | null;
+  }
+  /**
+   * Summary Findings for a specific Group.
+   */
+  export interface Schema$ReportSummaryGroupFinding {
+    /**
+     * Summary statistics for all the assets in this group.
+     */
+    assetAggregateStats?: Schema$ReportSummaryAssetAggregateStats;
+    /**
+     * Description for the Group.
+     */
+    description?: string | null;
+    /**
+     * Display Name for the Group.
+     */
+    displayName?: string | null;
+    /**
+     * Count of the number of assets in this group which are also included in another group within the same report.
+     */
+    overlappingAssetCount?: string | null;
+    /**
+     * Findings for each of the PreferenceSets for this group.
+     */
+    preferenceSetFindings?: Schema$ReportSummaryGroupPreferenceSetFinding[];
+  }
+  /**
+   * Summary Findings for a specific Group/PreferenceSet combination.
+   */
+  export interface Schema$ReportSummaryGroupPreferenceSetFinding {
+    /**
+     * Description for the Preference Set.
+     */
+    description?: string | null;
+    /**
+     * Display Name of the Preference Set
+     */
+    displayName?: string | null;
+    /**
+     * A set of findings that applies to all machines in the input.
+     */
+    machineFinding?: Schema$ReportSummaryMachineFinding;
+    /**
+     * A set of preferences that applies to all machines in the context.
+     */
+    machinePreferences?: Schema$VirtualMachinePreferences;
+    /**
+     * Compute monthly cost for this preference set.
+     */
+    monthlyCostCompute?: Schema$Money;
+    /**
+     * Network Egress monthly cost for this preference set.
+     */
+    monthlyCostNetworkEgress?: Schema$Money;
+    /**
+     * Licensing monthly cost for this preference set.
+     */
+    monthlyCostOsLicense?: Schema$Money;
+    /**
+     * Miscellaneous monthly cost for this preference set.
+     */
+    monthlyCostOther?: Schema$Money;
+    /**
+     * Storage monthly cost for this preference set.
+     */
+    monthlyCostStorage?: Schema$Money;
+    /**
+     * Total monthly cost for this preference set.
+     */
+    monthlyCostTotal?: Schema$Money;
+    /**
+     * Target region for this Preference Set
+     */
+    preferredRegion?: string | null;
+    /**
+     * Text describing the pricing track specified for this Preference Set
+     */
+    pricingTrack?: string | null;
+    /**
+     * Text describing the business priority specified for this Preference Set
+     */
+    topPriority?: string | null;
+  }
+  /**
+   * A Histogram Chart shows a distribution of values into buckets, showing a count of values which fall into a bucket.
+   */
+  export interface Schema$ReportSummaryHistogramChartData {
+    /**
+     * Buckets in the histogram. There will be `n+1` buckets matching `n` lower bounds in the request. The first bucket will be from -infinity to the first bound. Subsequent buckets will be between one bound and the next. The final bucket will be from the final bound to infinity.
+     */
+    buckets?: Schema$ReportSummaryHistogramChartDataBucket[];
+  }
+  /**
+   * A histogram bucket with a lower and upper bound, and a count of items with a field value between those bounds. The lower bound is inclusive and the upper bound is exclusive. Lower bound may be -infinity and upper bound may be infinity.
+   */
+  export interface Schema$ReportSummaryHistogramChartDataBucket {
+    /**
+     * Count of items in the bucket.
+     */
+    count?: string | null;
+    /**
+     * Lower bound - inclusive.
+     */
+    lowerBound?: string | null;
+    /**
+     * Upper bound - exclusive.
+     */
+    upperBound?: string | null;
+  }
+  /**
+   * A set of findings that applies to assets of type Virtual/Physical Machine.
+   */
+  export interface Schema$ReportSummaryMachineFinding {
+    /**
+     * Count of assets which were allocated.
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * Set of disk types allocated to assets.
+     */
+    allocatedDiskTypes?: string[] | null;
+    /**
+     * Set of regions in which the assets were allocated.
+     */
+    allocatedRegions?: string[] | null;
+    /**
+     * Distribution of assets based on the Machine Series.
+     */
+    machineSeriesAllocations?: Schema$ReportSummaryMachineSeriesAllocation[];
+  }
+  /**
+   * Represents a data point tracking the count of assets allocated for a specific Machine Series.
+   */
+  export interface Schema$ReportSummaryMachineSeriesAllocation {
+    /**
+     * Count of assets allocated to this machine series.
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * The Machine Series (e.g. "E2", "N2")
+     */
+    machineSeries?: Schema$MachineSeries;
+  }
+  /**
+   * Utilization Chart is a specific type of visualization which displays a metric classified into "Used" and "Free" buckets.
+   */
+  export interface Schema$ReportSummaryUtilizationChartData {
+    /**
+     * Aggregate value which falls into the "Free" bucket.
+     */
+    free?: string | null;
+    /**
+     * Aggregate value which falls into the "Used" bucket.
+     */
+    used?: string | null;
+  }
   /**
    * A request to run an import job.
    */
@@ -1967,6 +2344,14 @@ export namespace migrationcenter_v1alpha1 {
    * A resource that contains a URI to which a data file can be uploaded.
    */
   export interface Schema$UploadFileInfo {
+    /**
+     * Output only. The headers that were used to sign the URL.
+     */
+    headers?: {[key: string]: string} | null;
+    /**
+     * Output only. Upload URI for the file.
+     */
+    signedUri?: string | null;
     /**
      * Output only. Upload URI for the file.
      */
@@ -2238,6 +2623,7 @@ export namespace migrationcenter_v1alpha1 {
     importJobs: Resource$Projects$Locations$Importjobs;
     operations: Resource$Projects$Locations$Operations;
     preferenceSets: Resource$Projects$Locations$Preferencesets;
+    reportConfigs: Resource$Projects$Locations$Reportconfigs;
     sources: Resource$Projects$Locations$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2250,6 +2636,9 @@ export namespace migrationcenter_v1alpha1 {
         this.context
       );
       this.preferenceSets = new Resource$Projects$Locations$Preferencesets(
+        this.context
+      );
+      this.reportConfigs = new Resource$Projects$Locations$Reportconfigs(
         this.context
       );
       this.sources = new Resource$Projects$Locations$Sources(this.context);
@@ -8403,6 +8792,1302 @@ export namespace migrationcenter_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$PreferenceSet;
+  }
+
+  export class Resource$Projects$Locations$Reportconfigs {
+    context: APIRequestContext;
+    reports: Resource$Projects$Locations$Reportconfigs$Reports;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.reports = new Resource$Projects$Locations$Reportconfigs$Reports(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a report configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.reportConfigs.create({
+     *     // Required. Value for parent.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     *     reportConfigId: 'placeholder-value',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "groupPreferencesetAssignments": [],
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Reportconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/reportConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a ReportConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.reportConfigs.delete({
+     *     // Optional. If set to `true`, any child `Reports` of this entity will also be deleted. If set to `false`, the request only works if the resource has no children.
+     *     force: 'placeholder-value',
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Reportconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single ReportConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.reportConfigs.get({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "groupPreferencesetAssignments": [],
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReportConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReportConfig>,
+      callback: BodyResponseCallback<Schema$ReportConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Get,
+      callback: BodyResponseCallback<Schema$ReportConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ReportConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Get
+        | BodyResponseCallback<Schema$ReportConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReportConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReportConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ReportConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Reportconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReportConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReportConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists ReportConfigs in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.reportConfigs.list({
+     *     // Filtering results.
+     *     filter: 'placeholder-value',
+     *     // Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent value for `ListReportConfigsRequest`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reportConfigs": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReportConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReportConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListReportConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$List,
+      callback: BodyResponseCallback<Schema$ListReportConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListReportConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$List
+        | BodyResponseCallback<Schema$ListReportConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReportConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReportConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReportConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Reportconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/reportConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReportConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReportConfigsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Required. User specified ID for the report config. It will become the last component of the report config name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     */
+    reportConfigId?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReportConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to `true`, any child `Reports` of this entity will also be deleted. If set to `false`, the request only works if the resource has no children.
+     */
+    force?: boolean;
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$List
+    extends StandardParameters {
+    /**
+     * Filtering results.
+     */
+    filter?: string;
+    /**
+     * Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for `ListReportConfigsRequest`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Reportconfigs$Reports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.create({
+     *       // Required. Value for parent.
+     *       parent:
+     *         'projects/my-project/locations/my-location/reportConfigs/my-reportConfig',
+     *       // Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     *       reportId: 'placeholder-value',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "name": "my_name",
+     *         //   "state": "my_state",
+     *         //   "summary": {},
+     *         //   "type": "my_type",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.delete({
+     *       // Required. Name of the resource.
+     *       name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Report.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.get({
+     *       // Required. Name of the resource.
+     *       name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
+     *       // Determines what information to retrieve for the Report.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "summary": {},
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Get,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Report>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Get
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Report>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Report> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Report>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Report>(parameters);
+      }
+    }
+
+    /**
+     * Lists Reports in a given ReportConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await migrationcenter.projects.locations.reportConfigs.reports.list({
+     *       // Filtering results.
+     *       filter: 'placeholder-value',
+     *       // Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results that the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value for `ListReportsRequest`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/reportConfigs/my-reportConfig',
+     *       // Determines what information to retrieve for each Report.
+     *       view: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reports": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReportsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$List,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reportconfigs$Reports$List
+        | BodyResponseCallback<Schema$ListReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReportsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Create
+    extends StandardParameters {
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Required. User specified id for the report. It will become the last component of the report name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The id must match the regular expression: [a-z]([a-z0-9-]{0,61\}[a-z0-9])?.
+     */
+    reportId?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Report;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Determines what information to retrieve for the Report.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$List
+    extends StandardParameters {
+    /**
+     * Filtering results.
+     */
+    filter?: string;
+    /**
+     * Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results that the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for `ListReportsRequest`.
+     */
+    parent?: string;
+    /**
+     * Determines what information to retrieve for each Report.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Sources {
