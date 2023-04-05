@@ -656,7 +656,7 @@ export namespace calendar_v3 {
      * - "default" - A regular event or not further specified.
      * - "outOfOffice" - An out-of-office event.
      * - "focusTime" - A focus-time event.
-     * - "workingLocation" - A working location event.
+     * - "workingLocation" - A working location event. Developer Preview.
      */
     eventType?: string | null;
     /**
@@ -805,7 +805,7 @@ export namespace calendar_v3 {
      */
     visibility?: string | null;
     /**
-     * Working Location event data. Read-only.
+     * Developer Preview: Working Location event data. Read-only.
      */
     workingLocationProperties?: Schema$EventWorkingLocationProperties;
   }
@@ -5640,7 +5640,7 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
-     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
      *     eventTypes: 'placeholder-value',
      *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
@@ -6652,7 +6652,7 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
-     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
      *     eventTypes: 'placeholder-value',
      *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
@@ -6974,7 +6974,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
      */
     eventTypes?: string[];
     /**
@@ -7191,7 +7191,7 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. This is used by the Working Location developer preview and only the default value is allowed for non-opted-in users.
+     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
      */
     eventTypes?: string[];
     /**
