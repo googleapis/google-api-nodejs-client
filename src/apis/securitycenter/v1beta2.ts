@@ -207,21 +207,34 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
-   * A finding that is associated with this node in the exposure path.
+   * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
    */
-  export interface Schema$AssociatedFinding {
+  export interface Schema$CloudDlpDataProfile {
     /**
-     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
+     * Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.
      */
-    canonicalFindingName?: string | null;
+    dataProfile?: string | null;
+  }
+  /**
+   * Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.
+   */
+  export interface Schema$CloudDlpInspection {
     /**
-     * The additional taxonomy group within findings from a given source.
+     * Whether Cloud DLP scanned the complete resource or a sampled subset.
      */
-    findingCategory?: string | null;
+    fullScan?: boolean | null;
     /**
-     * Full resource name of the finding.
+     * The [type of information](https://cloud.google.com/dlp/docs/infotypes-reference) found, for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
      */
-    name?: string | null;
+    infoType?: string | null;
+    /**
+     * The number of times Cloud DLP found this infoType within this job and resource.
+     */
+    infoTypeCount?: string | null;
+    /**
+     * Name of the inspection job, for example, `projects/123/locations/europe/dlpJobs/i-8383929`.
+     */
+    inspectJob?: string | null;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -460,19 +473,6 @@ export namespace securitycenter_v1beta2 {
     percentPagesMatched?: number | null;
   }
   /**
-   * Represents a connection between a source node and a destination node in this exposure path.
-   */
-  export interface Schema$Edge {
-    /**
-     * This is the resource name of the destination node.
-     */
-    destination?: string | null;
-    /**
-     * This is the resource name of the source node.
-     */
-    source?: string | null;
-  }
-  /**
    * EnvironmentVariable is a name-value pair to store environment variables for Process.
    */
   export interface Schema$EnvironmentVariable {
@@ -578,6 +578,14 @@ export namespace securitycenter_v1beta2 {
      */
     category?: string | null;
     /**
+     * Cloud DLP data profile associated with the finding.
+     */
+    cloudDlpDataProfile?: Schema$CloudDlpDataProfile;
+    /**
+     * Cloud DLP inspection associated with the finding.
+     */
+    cloudDlpInspection?: Schema$CloudDlpInspection;
+    /**
      * Contains compliance information for security standards associated to the finding.
      */
     compliances?: Schema$Compliance[];
@@ -651,6 +659,10 @@ export namespace securitycenter_v1beta2 {
      * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
      */
     mitreAttack?: Schema$MitreAttack;
+    /**
+     * Unique identifier of the module which generated the finding. Example: folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
+     */
+    moduleName?: string | null;
     /**
      * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
@@ -805,56 +817,6 @@ export namespace securitycenter_v1beta2 {
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
-  /**
-   * A resource that is exposed as a result of a finding.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1ExposedResource {
-    /**
-     * Human readable name of the resource that is exposed.
-     */
-    displayName?: string | null;
-    /**
-     * The ways in which this resource is exposed. Examples: Read, Write
-     */
-    methods?: string[] | null;
-    /**
-     * Exposed Resource Name e.g.: `organizations/123/attackExposureResults/456/exposedResources/789`
-     */
-    name?: string | null;
-    /**
-     * The name of the resource that is exposed. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resource?: string | null;
-    /**
-     * The resource type of the exposed resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
-     */
-    resourceType?: string | null;
-    /**
-     * How valuable this resource is.
-     */
-    resourceValue?: string | null;
-  }
-  /**
-   * A path that an attacker could take to reach an exposed resource.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1ExposurePath {
-    /**
-     * A list of the edges between nodes in this exposure path.
-     */
-    edges?: Schema$Edge[];
-    /**
-     * The leaf node of this exposure path.
-     */
-    exposedResource?: Schema$GoogleCloudSecuritycenterV1ExposedResource;
-    /**
-     * Exposure Path Name e.g.: `organizations/123/attackExposureResults/456/exposurePaths/789`
-     */
-    name?: string | null;
-    /**
-     * A list of nodes that exist in this exposure path.
-     */
-    pathNodes?: Schema$PathNode[];
-  }
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
    */
@@ -1110,31 +1072,6 @@ export namespace securitycenter_v1beta2 {
     type?: string | null;
   }
   /**
-   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
-    /**
-     * Name for the resource value config
-     */
-    name?: string | null;
-    /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
-     */
-    resourceType?: string | null;
-    /**
-     * Required. Resource value level this expression represents
-     */
-    resourceValue?: string | null;
-    /**
-     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
-     */
-    scope?: string | null;
-    /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
-     */
-    tagValues?: string[] | null;
-  }
-  /**
    * Response of asset discovery run
    */
   export interface Schema$GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse {
@@ -1340,27 +1277,6 @@ export namespace securitycenter_v1beta2 {
      * Describes the level a given organization, folder, or project is onboarded with SCC. If the resource wasn't onboarded, NOT_FOUND would have been thrown.
      */
     onboardingLevel?: string | null;
-  }
-  /**
-   * Represents one point that an attacker passes through in this exposure path.
-   */
-  export interface Schema$PathNode {
-    /**
-     * The findings associated with this node in the exposure path.
-     */
-    associatedFindings?: Schema$AssociatedFinding[];
-    /**
-     * Human readable name of this resource.
-     */
-    displayName?: string | null;
-    /**
-     * The name of the resource at this point in the exposure path. The format of the name is: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resource?: string | null;
-    /**
-     * The resource type of this resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
-     */
-    resourceType?: string | null;
   }
   /**
    * Kubernetes Pod.
