@@ -8143,7 +8143,7 @@
       }
     }
   },
-  "revision": "20230314",
+  "revision": "20230402",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -8877,7 +8877,7 @@
           "type": "boolean"
         },
         "model": {
-          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.",
+          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
           "type": "string"
         },
         "modelVariant": {
@@ -8916,7 +8916,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3Intent": {
-      "description": "An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent.",
+      "description": "An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent. Next ID: 15",
       "id": "GoogleCloudDialogflowCxV3Intent",
       "properties": {
         "description": {
@@ -9799,6 +9799,10 @@
       "properties": {
         "detectIntentResponseId": {
           "description": "Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.",
+          "type": "string"
+        },
+        "dtmfDigits": {
+          "description": "If DTMF was provided as input, this field will contain the DTMF digits.",
           "type": "string"
         },
         "fulfillmentInfo": {
@@ -10738,7 +10742,7 @@
           "type": "boolean"
         },
         "model": {
-          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.",
+          "description": "Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
           "type": "string"
         },
         "modelVariant": {
@@ -10860,7 +10864,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase": {
-      "description": "Represents an example that the agent is trained on to identify the intent.",
+      "description": "Represents an example that the agent is trained on to identify the intent. Next ID: 15",
       "id": "GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase",
       "properties": {
         "id": {
@@ -11660,6 +11664,10 @@
       "properties": {
         "detectIntentResponseId": {
           "description": "Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.",
+          "type": "string"
+        },
+        "dtmfDigits": {
+          "description": "If DTMF was provided as input, this field will contain the DTMF digits.",
           "type": "string"
         },
         "fulfillmentInfo": {
@@ -14198,7 +14206,7 @@
           "type": "string"
         },
         "model": {
-          "description": "Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.",
+          "description": "Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search (best for very short utterances and commands)",
           "type": "string"
         },
         "modelVariant": {
