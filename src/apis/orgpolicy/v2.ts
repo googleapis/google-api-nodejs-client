@@ -220,7 +220,7 @@ export namespace orgpolicy_v2 {
      */
     name?: string | null;
     /**
-     * Immutable. The resource instance type on which this policy applies. Format will be of the form : "/" Example: * `compute.googleapis.com/Instance`.
+     * Immutable. The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.
      */
     resourceTypes?: string[] | null;
     /**
