@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20230312",
+  "revision": "20230326",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3446,6 +3446,17 @@
         "saveFindings": {
           "$ref": "GooglePrivacyDlpV2SaveFindings",
           "description": "Save resulting findings in a provided location."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ActionDetails": {
+      "description": "The results of an Action.",
+      "id": "GooglePrivacyDlpV2ActionDetails",
+      "properties": {
+        "deidentifyDetails": {
+          "$ref": "GooglePrivacyDlpV2DeidentifyDataSourceDetails",
+          "description": "Outcome of a de-identification action."
         }
       },
       "type": "object"
@@ -4767,6 +4778,43 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2DeidentifyDataSourceDetails": {
+      "description": "The results of a Deidentify action from an Inspect job.",
+      "id": "GooglePrivacyDlpV2DeidentifyDataSourceDetails",
+      "properties": {
+        "deidentifyStats": {
+          "$ref": "GooglePrivacyDlpV2DeidentifyDataSourceStats",
+          "description": "Stats about de-identification."
+        },
+        "requestedOptions": {
+          "$ref": "GooglePrivacyDlpV2RequestedDeidentifyOptions",
+          "description": "De-identification config used for the request."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DeidentifyDataSourceStats": {
+      "description": "Summary of what was modified during a transformation.",
+      "id": "GooglePrivacyDlpV2DeidentifyDataSourceStats",
+      "properties": {
+        "transformationCount": {
+          "description": "Number of successfully applied transformations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "transformationErrorCount": {
+          "description": "Number of errors encountered while trying to apply transformations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "transformedBytes": {
+          "description": "Total size in bytes that were transformed in some way.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2DeidentifyTemplate": {
       "description": "DeidentifyTemplates contains instructions on how to de-identify content. See https://cloud.google.com/dlp/docs/concepts-templates to learn more.",
       "id": "GooglePrivacyDlpV2DeidentifyTemplate",
@@ -4925,6 +4973,13 @@
       "description": "Combines all of the information about a DLP job.",
       "id": "GooglePrivacyDlpV2DlpJob",
       "properties": {
+        "actionDetails": {
+          "description": "Events that should occur after the job has completed.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2ActionDetails"
+          },
+          "type": "array"
+        },
         "createTime": {
           "description": "Time when the job was created.",
           "format": "google-datetime",
@@ -7400,6 +7455,25 @@
       "description": "Replace each matching finding with the name of the info_type.",
       "id": "GooglePrivacyDlpV2ReplaceWithInfoTypeConfig",
       "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2RequestedDeidentifyOptions": {
+      "description": "De-id options.",
+      "id": "GooglePrivacyDlpV2RequestedDeidentifyOptions",
+      "properties": {
+        "snapshotDeidentifyTemplate": {
+          "$ref": "GooglePrivacyDlpV2DeidentifyTemplate",
+          "description": "Snapshot of the state of the DeidentifyTemplate from the Deidentify action at the time this job was run."
+        },
+        "snapshotImageRedactTemplate": {
+          "$ref": "GooglePrivacyDlpV2DeidentifyTemplate",
+          "description": "Snapshot of the state of the image redact DeidentifyTemplate from the Deidentify action at the time this job was run."
+        },
+        "snapshotStructuredDeidentifyTemplate": {
+          "$ref": "GooglePrivacyDlpV2DeidentifyTemplate",
+          "description": "Snapshot of the state of the structured DeidentifyTemplate from the Deidentify action at the time this job was run."
+        }
+      },
       "type": "object"
     },
     "GooglePrivacyDlpV2RequestedOptions": {
