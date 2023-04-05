@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20230319",
+  "revision": "20230402",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1192,7 +1192,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1BorderStyle": {
-      "description": "Represents the complete border style applied to items in a widget.",
+      "description": "The style options for the border of a card or widget, including the border type and color.",
       "id": "GoogleAppsCardV1BorderStyle",
       "properties": {
         "cornerRadius": {
@@ -1863,7 +1863,7 @@
       "properties": {
         "autoCompleteAction": {
           "$ref": "GoogleAppsCardV1Action",
-          "description": "Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. Supported by Google Workspace Add-ons, but not Chat apps. Support by Chat apps coming soon."
+          "description": "Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. Supported by Google Workspace Add-ons, but not Chat apps."
         },
         "hintText": {
           "description": "Text that appears below the text input field meant to assist users by prompting them to enter a certain value. This text is always visible. Required if `label` is unspecified. Otherwise, optional.",
