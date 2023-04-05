@@ -1480,11 +1480,11 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$PolicyControllerBundleInstallSpec {
     /**
-     * the set of namespaces to be exempted from the bundle
+     * the set of namespaces to be exempted from the bundle TODO (b/271878194): Decrement this
      */
     exemptedNamespaces?: string[] | null;
     /**
-     * Management specifies how the bundle will be managed by the controller.
+     * Management specifies how the bundle will be managed by the controller. TODO (b/271878194): Remove this
      */
     management?: string | null;
   }
@@ -1535,7 +1535,7 @@ export namespace gkehub_v1beta {
      */
     referentialRulesEnabled?: boolean | null;
     /**
-     * Configures the library templates to install along with Policy Controller.
+     * Configures the library templates to install along with Policy Controller. TODO (b/271878194): Remove this
      */
     templateLibraryConfig?: Schema$PolicyControllerTemplateLibraryConfig;
   }
@@ -1563,11 +1563,15 @@ export namespace gkehub_v1beta {
       [key: string]: Schema$PolicyControllerOnClusterState;
     } | null;
     /**
-     * The state of the template library and any bundles included in the chosen version of the manifest
+     * The state of the template library and any bundles included in the chosen version of the manifest TODO (b/271878194): Remove this
      */
     contentStates?: {
       [key: string]: Schema$PolicyControllerOnClusterState;
     } | null;
+    /**
+     * The overall content state observed by the Hub Feature controller. TODO (b/271878194): Decrement this
+     */
+    policyContentState?: Schema$PolicyControllerPolicyContentState;
     /**
      * The overall Policy Controller lifecycle state observed by the Hub Feature controller.
      */
@@ -1603,6 +1607,25 @@ export namespace gkehub_v1beta {
      * map of bundle name to BundleInstallSpec. The bundle name maps to the `bundleName` key in the `policycontroller.gke.io/constraintData` annotation on a constraint.
      */
     bundles?: {[key: string]: Schema$PolicyControllerBundleInstallSpec} | null;
+    /**
+     * Configures the installation of the Template Library.
+     */
+    templateLibrary?: Schema$PolicyControllerTemplateLibraryConfig;
+  }
+  /**
+   * The state of the policy controller policy content
+   */
+  export interface Schema$PolicyControllerPolicyContentState {
+    /**
+     * The state of the any bundles included in the chosen version of the manifest
+     */
+    bundleStates?: {
+      [key: string]: Schema$PolicyControllerOnClusterState;
+    } | null;
+    /**
+     * The state of the template library
+     */
+    templateLibraryState?: Schema$PolicyControllerOnClusterState;
   }
   /**
    * Deployment-specific configuration.
@@ -1656,9 +1679,13 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$PolicyControllerTemplateLibraryConfig {
     /**
-     * Whether the standard template library should be installed or not.
+     * Whether the standard template library should be installed or not. TODO (b/271878194): Remove this
      */
     included?: boolean | null;
+    /**
+     * Configures the manner in which the template library is installed on the cluster. TODO (b/271878194): Decrement this
+     */
+    installation?: string | null;
   }
   /**
    * Toleration of a node taint.
