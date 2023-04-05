@@ -477,10 +477,6 @@ export namespace analyticshub_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * If true, restrict direct table access(read api/tabledata.list) on linked table.
-     */
-    restrictDirectTableAccess?: boolean | null;
-    /**
      * If true, restrict export of query result derived from restricted linked dataset table.
      */
     restrictQueryResult?: boolean | null;
