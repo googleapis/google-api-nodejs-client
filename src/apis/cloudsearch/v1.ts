@@ -233,7 +233,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$AllAuthenticatedUsersProto {}
   /**
-   * NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 31
+   * NOTE WHEN ADDING NEW PROTO FIELDS: Be sure to add datapol annotations to new fields with potential PII, so they get scrubbed when logging protos for errors. NEXT TAG: 32
    */
   export interface Schema$Annotation {
     babelPlaceholderMetadata?: Schema$BabelPlaceholderMetadata;
@@ -245,6 +245,10 @@ export namespace cloudsearch_v1 {
      * Whether the annotation should be rendered as a preview chip. If this is missing or unspecified, fallback to should_not_render on the metadata.
      */
     chipRenderType?: string | null;
+    /**
+     * Contains additional metadata that further enhances the annotation when it is returned as part of search response. For example, this can be used to define how the annotation matches the search. Information can be used to highlight in rendering search results. The following are the different annotation text fields that can be highlighted by this field: 1. DriveMetadata.title 2. UploadMetadata.content_name 3. GsuiteIntegrationMetadata.TasksMessageIntegrationRenderData.title 4. GsuiteIntegrationMetadata.CalendarEventAnnotationData.title
+     */
+    componentSearchInfo?: Schema$AppsDynamiteSharedMessageComponentSearchInfo;
     consentedAppUnfurlMetadata?: Schema$ConsentedAppUnfurlMetadata;
     customEmojiMetadata?: Schema$CustomEmojiMetadata;
     dataLossPreventionMetadata?: Schema$DataLossPreventionMetadata;
@@ -887,6 +891,19 @@ export namespace cloudsearch_v1 {
     meetingUrl?: string | null;
   }
   /**
+   * Metadata used to describe search information in a specific component of a chat message, for example an annotation or an attachment.
+   */
+  export interface Schema$AppsDynamiteSharedMessageComponentSearchInfo {
+    /**
+     * Whether the whole component matched the search.
+     */
+    matchedSearch?: boolean | null;
+    /**
+     * Backend should always set TextWithDescription.text_body based on the title (or its snippet) of the annotation or attachment.
+     */
+    titleTextWithDescription?: Schema$AppsDynamiteSharedTextWithDescription;
+  }
+  /**
    * Information that references a Dynamite chat message. This is only used for Activity Feed messages.
    */
   export interface Schema$AppsDynamiteSharedMessageInfo {
@@ -1088,6 +1105,33 @@ export namespace cloudsearch_v1 {
    * A payload containing Tasks metadata for rendering a live card. Currently not used by the Tasks integration.
    */
   export interface Schema$AppsDynamiteSharedTasksMessageIntegrationPayload {}
+  /**
+   * Defines a segment in a text.
+   */
+  export interface Schema$AppsDynamiteSharedTextSegment {
+    /**
+     * Length of the segment in the text.
+     */
+    length?: number | null;
+    /**
+     * Start index (0-indexed and inclusive) of the segment in the text.
+     */
+    startIndex?: number | null;
+  }
+  /**
+   * Defines text segments with description type associated.
+   */
+  export interface Schema$AppsDynamiteSharedTextSegmentsWithDescription {
+    descriptionType?: string | null;
+    textSegment?: Schema$AppsDynamiteSharedTextSegment[];
+  }
+  /**
+   * Defines a text with descriptive text segments associated.
+   */
+  export interface Schema$AppsDynamiteSharedTextWithDescription {
+    textBody?: string | null;
+    textSegmentsWithDescription?: Schema$AppsDynamiteSharedTextSegmentsWithDescription[];
+  }
   /**
    * User-block relationship
    */
@@ -3253,10 +3297,18 @@ export namespace cloudsearch_v1 {
     propertyName?: string | null;
   }
   export interface Schema$Divider {}
+  export interface Schema$DlpAction {
+    actionType?: string | null;
+    /**
+     * The custom error message defined by the customer administrator.
+     */
+    unsafeHtmlMessageBody?: string | null;
+  }
   /**
    * A summary of a DLP scan event. This is a summary and should contain the minimum amount of data required to identify and process DLP scans. It is written to Starcast and encoded & returned to the client on attachment upload.
    */
   export interface Schema$DlpScanSummary {
+    dlpAction?: Schema$DlpAction;
     /**
      * The scan ID of the corresponding {@link DlpViolationScanRecord\} in the {@link EphemeralDlpScans\} Spanner table. This can be used to fetch additional details about the scan, e.g. for audit logging.
      */
@@ -3466,6 +3518,7 @@ export namespace cloudsearch_v1 {
     joinedSpacesAffinityScore?: number | null;
     lastMessagePostedTimestampSecs?: string | null;
     lastReadTimestampSecs?: string | null;
+    memberCountScore?: number | null;
     memberMetadataCount?: number | null;
     messageScore?: number | null;
     numAucContacts?: string | null;
@@ -4390,7 +4443,7 @@ export namespace cloudsearch_v1 {
     retentionSettings?: Schema$AppsDynamiteSharedRetentionSettings;
   }
   /**
-   * Annotation metadata for an GsuiteIntegration artifact.
+   * Annotation metadata for a GsuiteIntegration artifact.
    */
   export interface Schema$GsuiteIntegrationMetadata {
     activityFeedData?: Schema$AppsDynamiteSharedActivityFeedAnnotationData;
@@ -4556,7 +4609,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$Id {
     /**
-     * The User account in which the DirEntry was originally created. If name_space==GAIA, then it's the gaia_id of the user this id is referring to.
+     * The User account in which the DirEntry was originally created. If name_space==GAIA, then it's the gaia_id of the user this id is referring to. This field should really be called the "bucket ID", not the creator ID. In some circumstances, such as copying a Google Docs file, a user can create an item in a different user's bucket, so it should not be relied upon for anything other than bucket location. To look up the requesting user who initially created item, use the `creator_id` DirEntry field instead.
      */
     creatorUserId?: string | null;
     /**
