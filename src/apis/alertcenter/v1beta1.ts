@@ -140,7 +140,7 @@ export namespace alertcenter_v1beta1 {
     productName?: string | null;
   }
   /**
-   * A warning that the customer's account is about to be suspended.
+   * LINT.IfChange A warning that the customer's account is about to be suspended.
    */
   export interface Schema$AccountSuspensionWarning {
     /**
