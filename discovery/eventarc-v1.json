@@ -1197,7 +1197,7 @@
       }
     }
   },
-  "revision": "20230324",
+  "revision": "20230331",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1286,7 +1286,7 @@
           "type": "string"
         },
         "cryptoKeyName": {
-          "description": "Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "description": "Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "type": "string"
         },
         "name": {
@@ -2058,7 +2058,7 @@
           "type": "string"
         },
         "eventDataContentType": {
-          "description": "Optional. EventDataContentType specifies the type of payload in MIME format that is expected from the CloudEvent data field. This will be set to `application/json` if the value is not defined.",
+          "description": "Optional. EventDataContentType specifies the type of payload in MIME format that is expected from the CloudEvent data field. This is set to `application/json` if the value is not defined.",
           "type": "string"
         },
         "eventFilters": {
