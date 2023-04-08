@@ -975,7 +975,7 @@ export namespace ondemandscanning_v1beta1 {
      */
     architecture?: string | null;
     /**
-     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See https://b.corp.google.com/issues/175908657#comment15
+     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15.
      */
     binary?: Schema$Binary;
     /**
