@@ -542,7 +542,7 @@
       }
     }
   },
-  "revision": "20230404",
+  "revision": "20230405",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "AddTenantProjectRequest": {
@@ -2214,7 +2214,7 @@
           "type": "array"
         },
         "newIssueUri": {
-          "description": "Link to a place that API users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103",
+          "description": "Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103",
           "type": "string"
         },
         "organization": {
