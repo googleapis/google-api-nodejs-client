@@ -526,6 +526,10 @@ export namespace tagmanager_v2 {
      */
     numTags?: string | null;
     /**
+     * Number of transformations in the container version.
+     */
+    numTransformations?: string | null;
+    /**
      * Number of triggers in the container version.
      */
     numTriggers?: string | null;
@@ -6329,6 +6333,7 @@ export namespace tagmanager_v2 {
      *   //   "numMacros": "my_numMacros",
      *   //   "numRules": "my_numRules",
      *   //   "numTags": "my_numTags",
+     *   //   "numTransformations": "my_numTransformations",
      *   //   "numTriggers": "my_numTriggers",
      *   //   "numVariables": "my_numVariables",
      *   //   "numZones": "my_numZones",
