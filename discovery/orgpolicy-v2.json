@@ -915,7 +915,7 @@
       }
     }
   },
-  "revision": "20230404",
+  "revision": "20230405",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -1162,7 +1162,7 @@
           "type": "boolean"
         },
         "rules": {
-          "description": "Up to 10 policy rules are allowed. In policies for boolean constraints, the following requirements apply: - There must be one and only one policy rule where condition is unset. - Boolean policy rules with conditions must set `enforced` to the opposite of the policy rule without a condition. - During policy evaluation, policy rules with conditions that are true for a target resource take precedence.",
+          "description": "In policies for boolean constraints, the following requirements apply: - There must be one and only one policy rule where condition is unset. - Boolean policy rules with conditions must set `enforced` to the opposite of the policy rule without a condition. - During policy evaluation, policy rules with conditions that are true for a target resource take precedence.",
           "items": {
             "$ref": "GoogleCloudOrgpolicyV2PolicySpecPolicyRule"
           },
