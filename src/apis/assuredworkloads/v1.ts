@@ -189,7 +189,7 @@ export namespace assuredworkloads_v1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1Workload[];
   }
   /**
-   * Request of updating permission settings for a partner workload.
+   * Request for updating permission settings for a partner workload.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest {
     /**
@@ -451,7 +451,7 @@ export namespace assuredworkloads_v1 {
     ekmProvisioningState?: string | null;
   }
   /**
-   * Settings specific to the Key Management Service. This message is deprecated. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
+   * Settings specific to the Key Management Service.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadKMSSettings {
     /**
@@ -506,7 +506,7 @@ export namespace assuredworkloads_v1 {
      */
     resourceId?: string | null;
     /**
-     * Indicates the type of resource. This field should be specified to correspond the id to the right resource type (CONSUMER_FOLDER or ENCRYPTION_KEYS_PROJECT)
+     * Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)
      */
     resourceType?: string | null;
   }
@@ -1103,7 +1103,7 @@ export namespace assuredworkloads_v1 {
     }
 
     /**
-     * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error.
+     * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error. In addition to assuredworkloads.workload.delete permission, the user should also have orgpolicy.policy.set permission on the deleted folder to remove Assured Workloads OrgPolicies.
      * @example
      * ```js
      * // Before running the sample:
@@ -1259,7 +1259,7 @@ export namespace assuredworkloads_v1 {
      *
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.get({
-     *     // Required. The resource name of the Workload to fetch. This is the workload's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     *     // Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
      *   });
      *   console.log(res.data);
@@ -2061,7 +2061,7 @@ export namespace assuredworkloads_v1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Workload to fetch. This is the workload's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     * Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      */
     name?: string;
   }
