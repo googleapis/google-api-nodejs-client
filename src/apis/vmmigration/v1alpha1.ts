@@ -609,6 +609,15 @@ export namespace vmmigration_v1alpha1 {
     restartType?: string | null;
   }
   /**
+   * CutoverForecast holds information about future CutoverJobs of a MigratingVm.
+   */
+  export interface Schema$CutoverForecast {
+    /**
+     * Output only. Estimation of the CutoverJob duration.
+     */
+    estimatedCutoverJobDuration?: string | null;
+  }
+  /**
    * CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.
    */
   export interface Schema$CutoverJob {
@@ -1100,6 +1109,10 @@ export namespace vmmigration_v1alpha1 {
      * Output only. Details of the current running replication cycle.
      */
     currentSyncInfo?: Schema$ReplicationCycle;
+    /**
+     * Output only. Provides details of future CutoverJobs of a MigratingVm. Set to empty when cutover forecast is unavailable.
+     */
+    cutoverForecast?: Schema$CutoverForecast;
     /**
      * The description attached to the migrating VM by the user.
      */
@@ -5733,6 +5746,7 @@ export namespace vmmigration_v1alpha1 {
      *       //   "computeEngineVmDefaults": {},
      *       //   "createTime": "my_createTime",
      *       //   "currentSyncInfo": {},
+     *       //   "cutoverForecast": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "error": {},
@@ -6171,6 +6185,7 @@ export namespace vmmigration_v1alpha1 {
      *   //   "computeEngineVmDefaults": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentSyncInfo": {},
+     *   //   "cutoverForecast": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "error": {},
@@ -6469,6 +6484,7 @@ export namespace vmmigration_v1alpha1 {
      *       //   "computeEngineVmDefaults": {},
      *       //   "createTime": "my_createTime",
      *       //   "currentSyncInfo": {},
+     *       //   "cutoverForecast": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "error": {},
