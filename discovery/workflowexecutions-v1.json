@@ -309,7 +309,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230328",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -408,17 +408,24 @@
             "ACTIVE",
             "SUCCEEDED",
             "FAILED",
-            "CANCELLED"
+            "CANCELLED",
+            "UNAVAILABLE"
           ],
           "enumDescriptions": [
             "Invalid state.",
             "The execution is in progress.",
             "The execution finished successfully.",
             "The execution failed with an error.",
-            "The execution was stopped intentionally."
+            "The execution was stopped intentionally.",
+            "Execution data is unavailable. See the `state_error` field."
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "stateError": {
+          "$ref": "StateError",
+          "description": "Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the Execution data is unavailable due to revoked KMS key permissions.",
+          "readOnly": true
         },
         "status": {
           "$ref": "Status",
@@ -533,6 +540,29 @@
         },
         "step": {
           "description": "The step the error occurred at.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StateError": {
+      "description": "Describes an error related to the current state of the Execution resource.",
+      "id": "StateError",
+      "properties": {
+        "details": {
+          "description": "Provides specifics about the error.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of this state error.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "KMS_ERROR"
+          ],
+          "enumDescriptions": [
+            "No type specified.",
+            "Caused by an issue with KMS."
+          ],
           "type": "string"
         }
       },
