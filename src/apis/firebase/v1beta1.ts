@@ -668,7 +668,7 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$StatusProto {
     /**
-     * The canonical error code (see codes.proto) that most closely corresponds to this status. May be missing.
+     * The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be.
      */
     canonicalCode?: number | null;
     /**

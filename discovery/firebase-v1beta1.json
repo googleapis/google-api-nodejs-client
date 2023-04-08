@@ -1320,7 +1320,7 @@
       }
     }
   },
-  "revision": "20230207",
+  "revision": "20230405",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -2130,7 +2130,7 @@
       "id": "StatusProto",
       "properties": {
         "canonicalCode": {
-          "description": "The canonical error code (see codes.proto) that most closely corresponds to this status. May be missing.",
+          "description": "The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be.",
           "format": "int32",
           "type": "integer"
         },
