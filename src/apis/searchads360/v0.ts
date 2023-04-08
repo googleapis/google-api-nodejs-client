@@ -582,35 +582,6 @@ export namespace searchads360_v0 {
     optIn?: boolean | null;
   }
   /**
-   * A Search Ads 360 text ad.
-   */
-  export interface Schema$GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo {
-    /**
-     * The tracking id of the ad.
-     */
-    adTrackId?: string | null;
-    /**
-     * The first line of the ad's description.
-     */
-    description1?: string | null;
-    /**
-     * The second line of the ad's description.
-     */
-    description2?: string | null;
-    /**
-     * The displayed mobile URL of the ad.
-     */
-    displayMobileUrl?: string | null;
-    /**
-     * The displayed URL of the ad.
-     */
-    displayUrl?: string | null;
-    /**
-     * The headline of the ad.
-     */
-    headline?: string | null;
-  }
-  /**
    * Segment only fields.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__Segments {
@@ -1161,10 +1132,6 @@ export namespace searchads360_v0 {
      * Immutable. The resource name of the ad. Ad resource names have the form: `customers/{customer_id\}/ads/{ad_id\}`
      */
     resourceName?: string | null;
-    /**
-     * Immutable. Details pertaining to a text ad.
-     */
-    textAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo;
     /**
      * Output only. The type of ad.
      */

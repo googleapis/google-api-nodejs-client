@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20230315",
+  "revision": "20230403",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountSuspensionDetails": {
@@ -464,7 +464,7 @@
       "type": "object"
     },
     "AccountSuspensionWarning": {
-      "description": "A warning that the customer's account is about to be suspended.",
+      "description": "LINT.IfChange A warning that the customer's account is about to be suspended.",
       "id": "AccountSuspensionWarning",
       "properties": {
         "appealWindow": {

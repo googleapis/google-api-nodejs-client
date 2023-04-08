@@ -1816,7 +1816,7 @@
       }
     }
   },
-  "revision": "20230324",
+  "revision": "20230329",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -5079,7 +5079,7 @@
       "id": "ServiceMeshMembershipSpec",
       "properties": {
         "controlPlane": {
-          "description": "Enables automatic control plane management.",
+          "description": "Deprecated: use `management` instead Enables automatic control plane management.",
           "enum": [
             "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
             "AUTOMATIC",

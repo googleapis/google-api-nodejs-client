@@ -3716,7 +3716,7 @@
       }
     }
   },
-  "revision": "20230130",
+  "revision": "20230405",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4534,6 +4534,10 @@
         },
         "numTags": {
           "description": "Number of tags in the container version.",
+          "type": "string"
+        },
+        "numTransformations": {
+          "description": "Number of transformations in the container version.",
           "type": "string"
         },
         "numTriggers": {

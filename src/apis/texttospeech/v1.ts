@@ -700,7 +700,7 @@ export namespace texttospeech_v1 {
      *
      *   // Do the magic
      *   const res = await texttospeech.projects.locations.synthesizeLongAudio({
-     *     // The resource states of the request in the form of `projects/x/locations/x/voices/x`.
+     *     // The resource states of the request in the form of `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -821,7 +821,7 @@ export namespace texttospeech_v1 {
   export interface Params$Resource$Projects$Locations$Synthesizelongaudio
     extends StandardParameters {
     /**
-     * The resource states of the request in the form of `projects/x/locations/x/voices/x`.
+     * The resource states of the request in the form of `projects/x/locations/x`.
      */
     parent?: string;
 

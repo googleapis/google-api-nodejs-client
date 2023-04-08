@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230406",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -433,6 +433,7 @@
             "CANCELLATION_REASON_ACCOUNT_CLOSED",
             "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
             "CANCELLATION_REASON_USER_DELINQUENCY",
+            "CANCELLATION_REASON_SYSTEM_ERROR",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -444,6 +445,7 @@
             "User account closed.",
             "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Cancellation due to user delinquency",
+            "Cancellation due to an unrecoverable system error.",
             "Other reason."
           ],
           "type": "string"
@@ -1046,6 +1048,7 @@
             "CANCELLATION_REASON_ACCOUNT_CLOSED",
             "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
             "CANCELLATION_REASON_USER_DELINQUENCY",
+            "CANCELLATION_REASON_SYSTEM_ERROR",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -1057,6 +1060,7 @@
             "User account closed.",
             "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Cancellation due to user delinquency",
+            "Cancellation due to an unrecoverable system error.",
             "Other reason."
           ],
           "type": "string"
@@ -1128,7 +1132,8 @@
             "LINE_ITEM_STATE_NEW",
             "LINE_ITEM_STATE_ACTIVATING",
             "LINE_ITEM_STATE_DEACTIVATING",
-            "LINE_ITEM_STATE_WAITING_TO_DEACTIVATE"
+            "LINE_ITEM_STATE_WAITING_TO_DEACTIVATE",
+            "LINE_ITEM_STATE_OFF_CYCLE_CHARGING"
           ],
           "enumDescriptions": [
             "Unspecified state.",
@@ -1137,7 +1142,8 @@
             "The line item is new, and is not activated or charged yet.",
             "The line item is being activated in order to be charged. If a free trial applies to the line item, the line item is pending a prorated charge at the end of the free trial period, as indicated by `line_item_free_trial_end_time`.",
             "The line item is being deactivated, and a prorated refund in being processed.",
-            "The line item is scheduled to be deactivated at the end of the current cycle."
+            "The line item is scheduled to be deactivated at the end of the current cycle.",
+            "Line item is being charged off-cycle."
           ],
           "readOnly": true,
           "type": "string"

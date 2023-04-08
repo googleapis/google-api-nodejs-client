@@ -1273,6 +1273,28 @@
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         },
+        "getNamespaced": {
+          "description": "Retrieves a TagKey by its namespaced name. This method will return `PERMISSION_DENIED` if the key does not exist or the user does not have permission to view it.",
+          "flatPath": "v3/tagKeys/namespaced",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.tagKeys.getNamespaced",
+          "parameterOrder": [],
+          "parameters": {
+            "name": {
+              "description": "Required. A namespaced tag key name in the format `{parentId}/{tagKeyShort}`, such as `42/foo` for a key with short name \"foo\" under the organization with ID 42 or `r2-d2/bar` for a key with short name \"bar\" under the project `r2-d2`.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3/tagKeys/namespaced",
+          "response": {
+            "$ref": "TagKey"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
         "list": {
           "description": "Lists all TagKeys for a parent resource.",
           "flatPath": "v3/tagKeys",
@@ -1513,6 +1535,28 @@
           },
           "response": {
             "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "getNamespaced": {
+          "description": "Retrieves a TagValue by its namespaced name. This method will return `PERMISSION_DENIED` if the value does not exist or the user does not have permission to view it.",
+          "flatPath": "v3/tagValues/namespaced",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.tagValues.getNamespaced",
+          "parameterOrder": [],
+          "parameters": {
+            "name": {
+              "description": "Required. A namespaced tag value name in the following format: `{parentId}/{tagKeyShort}/{tagValueShort}` Examples: - `42/foo/abc` for a value with short name \"abc\" under the key with short name \"foo\" under the organization with ID 42 - `r2-d2/bar/xyz` for a value with short name \"xyz\" under the key with short name \"bar\" under the project with ID \"r2-d2\"",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3/tagValues/namespaced",
+          "response": {
+            "$ref": "TagValue"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -1761,7 +1805,7 @@
       }
     }
   },
-  "revision": "20230219",
+  "revision": "20230403",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2750,6 +2794,10 @@
         },
         "tagValue": {
           "description": "The TagValue of the TagBinding. Must be of the form `tagValues/456`.",
+          "type": "string"
+        },
+        "tagValueNamespacedName": {
+          "description": "The namespaced name for the TagValue of the TagBinding. Must be in the format `{parent_id}/{tag_key_short_name}/{short_name}`. For methods that support TagValue namespaced name, only one of tag_value_namespaced_name or tag_value may be filled. Requests with both fields will be rejected.",
           "type": "string"
         }
       },

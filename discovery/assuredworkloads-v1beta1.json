@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20230310",
+  "revision": "20230331",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -627,6 +627,73 @@
           "description": "A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata": {
+      "description": "Operation metadata to give request details of CreateWorkload.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata",
+      "properties": {
+        "complianceRegime": {
+          "description": "Optional. Compliance controls that should be applied to the resources managed by the workload.",
+          "enum": [
+            "COMPLIANCE_REGIME_UNSPECIFIED",
+            "IL4",
+            "CJIS",
+            "FEDRAMP_HIGH",
+            "FEDRAMP_MODERATE",
+            "US_REGIONAL_ACCESS",
+            "HIPAA",
+            "HITRUST",
+            "EU_REGIONS_AND_SUPPORT",
+            "CA_REGIONS_AND_SUPPORT",
+            "ITAR",
+            "AU_REGIONS_AND_US_SUPPORT",
+            "ASSURED_WORKLOADS_FOR_PARTNERS",
+            "ISR_REGIONS",
+            "ISR_REGIONS_AND_SUPPORT",
+            "CA_PROTECTED_B"
+          ],
+          "enumDescriptions": [
+            "Unknown compliance regime.",
+            "Information protection as per DoD IL4 requirements.",
+            "Criminal Justice Information Services (CJIS) Security policies.",
+            "FedRAMP High data protection controls",
+            "FedRAMP Moderate data protection controls",
+            "Assured Workloads For US Regions data protection controls",
+            "Health Insurance Portability and Accountability Act controls",
+            "Health Information Trust Alliance controls",
+            "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For Canada Regions and Support controls",
+            "International Traffic in Arms Regulations",
+            "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
+            "Assured Workloads for Partners;",
+            "Assured Workloads for Israel",
+            "Assured Workloads for Israel Regions",
+            "Assured Workloads for Canada Protected B regime"
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Optional. Time when the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name of the workload.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Optional. The parent of the workload.",
+          "type": "string"
+        },
+        "resourceSettings": {
+          "description": "Optional. Resource properties in the input that are used for creating/customizing workload resources.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings"
           },
           "type": "array"
         }
@@ -1035,8 +1102,8 @@
           ],
           "enumDescriptions": [
             "",
-            "Enum representing S3NS partner.",
-            "Enum representing T_SYSTEM partner."
+            "Enum representing S3NS (Thales) partner.",
+            "Enum representing T_SYSTEM (TSI) partner."
           ],
           "type": "string"
         },

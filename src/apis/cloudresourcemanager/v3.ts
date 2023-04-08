@@ -832,6 +832,10 @@ export namespace cloudresourcemanager_v3 {
      * The TagValue of the TagBinding. Must be of the form `tagValues/456`.
      */
     tagValue?: string | null;
+    /**
+     * The namespaced name for the TagValue of the TagBinding. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`. For methods that support TagValue namespaced name, only one of tag_value_namespaced_name or tag_value may be filled. Requests with both fields will be rejected.
+     */
+    tagValueNamespacedName?: string | null;
   }
   /**
    * A TagHold represents the use of a TagValue that is not captured by TagBindings. If a TagValue has any TagHolds, deletion will be blocked. This resource is intended to be created in the same cloud location as the `holder`.
@@ -6073,7 +6077,8 @@ export namespace cloudresourcemanager_v3 {
      *       // {
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
-     *       //   "tagValue": "my_tagValue"
+     *       //   "tagValue": "my_tagValue",
+     *       //   "tagValueNamespacedName": "my_tagValueNamespacedName"
      *       // }
      *     },
      *   });
@@ -7053,6 +7058,148 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
+     * Retrieves a TagKey by its namespaced name. This method will return `PERMISSION_DENIED` if the key does not exist or the user does not have permission to view it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.tagKeys.getNamespaced({
+     *     // Required. A namespaced tag key name in the format `{parentId\}/{tagKeyShort\}`, such as `42/foo` for a key with short name "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short name "bar" under the project `r2-d2`.
+     *     name: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "namespacedName": "my_namespacedName",
+     *   //   "parent": "my_parent",
+     *   //   "purpose": "my_purpose",
+     *   //   "purposeData": {},
+     *   //   "shortName": "my_shortName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getNamespaced(
+      params: Params$Resource$Tagkeys$Getnamespaced,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getNamespaced(
+      params?: Params$Resource$Tagkeys$Getnamespaced,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TagKey>;
+    getNamespaced(
+      params: Params$Resource$Tagkeys$Getnamespaced,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getNamespaced(
+      params: Params$Resource$Tagkeys$Getnamespaced,
+      options: MethodOptions | BodyResponseCallback<Schema$TagKey>,
+      callback: BodyResponseCallback<Schema$TagKey>
+    ): void;
+    getNamespaced(
+      params: Params$Resource$Tagkeys$Getnamespaced,
+      callback: BodyResponseCallback<Schema$TagKey>
+    ): void;
+    getNamespaced(callback: BodyResponseCallback<Schema$TagKey>): void;
+    getNamespaced(
+      paramsOrCallback?:
+        | Params$Resource$Tagkeys$Getnamespaced
+        | BodyResponseCallback<Schema$TagKey>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TagKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TagKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TagKey> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tagkeys$Getnamespaced;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tagkeys$Getnamespaced;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/tagKeys/namespaced').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TagKey>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TagKey>(parameters);
+      }
+    }
+
+    /**
      * Lists all TagKeys for a parent resource.
      * @example
      * ```js
@@ -7670,6 +7817,13 @@ export namespace cloudresourcemanager_v3 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Tagkeys$Getnamespaced
+    extends StandardParameters {
+    /**
+     * Required. A namespaced tag key name in the format `{parentId\}/{tagKeyShort\}`, such as `42/foo` for a key with short name "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short name "bar" under the project `r2-d2`.
+     */
+    name?: string;
   }
   export interface Params$Resource$Tagkeys$List extends StandardParameters {
     /**
@@ -8297,6 +8451,146 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
+     * Retrieves a TagValue by its namespaced name. This method will return `PERMISSION_DENIED` if the value does not exist or the user does not have permission to view it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudresourcemanager = google.cloudresourcemanager('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudresourcemanager.tagValues.getNamespaced({
+     *     // Required. A namespaced tag value name in the following format: `{parentId\}/{tagKeyShort\}/{tagValueShort\}` Examples: - `42/foo/abc` for a value with short name "abc" under the key with short name "foo" under the organization with ID 42 - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with short name "bar" under the project with ID "r2-d2"
+     *     name: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "namespacedName": "my_namespacedName",
+     *   //   "parent": "my_parent",
+     *   //   "shortName": "my_shortName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getNamespaced(
+      params: Params$Resource$Tagvalues$Getnamespaced,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getNamespaced(
+      params?: Params$Resource$Tagvalues$Getnamespaced,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TagValue>;
+    getNamespaced(
+      params: Params$Resource$Tagvalues$Getnamespaced,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getNamespaced(
+      params: Params$Resource$Tagvalues$Getnamespaced,
+      options: MethodOptions | BodyResponseCallback<Schema$TagValue>,
+      callback: BodyResponseCallback<Schema$TagValue>
+    ): void;
+    getNamespaced(
+      params: Params$Resource$Tagvalues$Getnamespaced,
+      callback: BodyResponseCallback<Schema$TagValue>
+    ): void;
+    getNamespaced(callback: BodyResponseCallback<Schema$TagValue>): void;
+    getNamespaced(
+      paramsOrCallback?:
+        | Params$Resource$Tagvalues$Getnamespaced
+        | BodyResponseCallback<Schema$TagValue>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TagValue>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TagValue>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TagValue> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tagvalues$Getnamespaced;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tagvalues$Getnamespaced;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/tagValues/namespaced').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TagValue>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TagValue>(parameters);
+      }
+    }
+
+    /**
      * Lists all TagValues for a specific TagKey.
      * @example
      * ```js
@@ -8914,6 +9208,13 @@ export namespace cloudresourcemanager_v3 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Tagvalues$Getnamespaced
+    extends StandardParameters {
+    /**
+     * Required. A namespaced tag value name in the following format: `{parentId\}/{tagKeyShort\}/{tagValueShort\}` Examples: - `42/foo/abc` for a value with short name "abc" under the key with short name "foo" under the organization with ID 42 - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with short name "bar" under the project with ID "r2-d2"
+     */
+    name?: string;
   }
   export interface Params$Resource$Tagvalues$List extends StandardParameters {
     /**

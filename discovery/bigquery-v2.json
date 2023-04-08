@@ -1710,7 +1710,7 @@
       }
     }
   },
-  "revision": "20230325",
+  "revision": "20230401",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -6166,7 +6166,7 @@
           "type": "string"
         },
         "mainFileUri": {
-          "description": "The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python.",
+          "description": "The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python. Exactly one of main_class and main_file_uri field should be set for Java/Scala language type.",
           "type": "string"
         },
         "properties": {
