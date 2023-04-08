@@ -545,6 +545,10 @@ export namespace spanner_v1 {
      */
     earliestVersionTime?: string | null;
     /**
+     * Whether drop protection is enabled for this database. Defaults to false, if not set.
+     */
+    enableDropProtection?: boolean | null;
+    /**
      * Output only. For databases that are using customer managed encryption, this field contains the encryption configuration for the database. For databases that are using Google default or other types of encryption, this field is empty.
      */
     encryptionConfig?: Schema$EncryptionConfig;
@@ -556,6 +560,10 @@ export namespace spanner_v1 {
      * Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.
      */
     name?: string | null;
+    /**
+     * Output only. If true, the database is being updated. If false, there are no ongoing update operations for the database.
+     */
+    reconciling?: boolean | null;
     /**
      * Output only. Applicable only for restored databases. Contains information about the restore source.
      */
@@ -2100,6 +2108,36 @@ export namespace spanner_v1 {
      * Required. DDL statements to be applied to the database.
      */
     statements?: string[] | null;
+  }
+  /**
+   * Metadata type for the operation returned by UpdateDatabase.
+   */
+  export interface Schema$UpdateDatabaseMetadata {
+    /**
+     * The time at which this operation was cancelled. If set, this operation is in the process of undoing itself (which is best-effort).
+     */
+    cancelTime?: string | null;
+    /**
+     * The progress of the UpdateDatabase operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
+     * The request for UpdateDatabase.
+     */
+    request?: Schema$UpdateDatabaseRequest;
+  }
+  /**
+   * The request for UpdateDatabase.
+   */
+  export interface Schema$UpdateDatabaseRequest {
+    /**
+     * Required. The database to update. The `name` field of the database is of the form `projects//instances//databases/`.
+     */
+    database?: Schema$Database;
+    /**
+     * Required. The list of fields to update. Currently, only `enable_drop_protection` field can be updated.
+     */
+    updateMask?: string | null;
   }
   /**
    * Metadata type for the operation returned by UpdateInstanceConfig.
@@ -7741,9 +7779,11 @@ export namespace spanner_v1 {
      *   //   "databaseDialect": "my_databaseDialect",
      *   //   "defaultLeader": "my_defaultLeader",
      *   //   "earliestVersionTime": "my_earliestVersionTime",
+     *   //   "enableDropProtection": false,
      *   //   "encryptionConfig": {},
      *   //   "encryptionInfo": [],
      *   //   "name": "my_name",
+     *   //   "reconciling": false,
      *   //   "restoreInfo": {},
      *   //   "state": "my_state",
      *   //   "versionRetentionPeriod": "my_versionRetentionPeriod"
@@ -8397,6 +8437,160 @@ export namespace spanner_v1 {
         );
       } else {
         return createAPIRequest<Schema$ListDatabasesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a Cloud Spanner database. The returned long-running operation can be used to track the progress of updating the database. If the named database does not exist, returns `NOT_FOUND`. While the operation is pending: * The database's reconciling field is set to true. * Cancelling the operation is best-effort. If the cancellation succeeds, the operation metadata's cancel_time is set, the updates are reverted, and the operation terminates with a `CANCELLED` status. * New UpdateDatabase requests will return a `FAILED_PRECONDITION` error until the pending operation is done (returns successfully or with error). * Reading the database via the API continues to give the pre-request values. Upon completion of the returned operation: * The new values are in effect and readable via the API. * The database's reconciling field becomes false. The returned long-running operation will have a name of the format `projects//instances//databases//operations/` and can be used to track the database modification. The metadata field type is UpdateDatabaseMetadata. The response field type is Database, if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/spanner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const spanner = google.spanner('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/spanner.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await spanner.projects.instances.databases.patch({
+     *     // Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.
+     *     name: 'projects/my-project/instances/my-instance/databases/my-database',
+     *     // Required. The list of fields to update. Currently, only `enable_drop_protection` field can be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "databaseDialect": "my_databaseDialect",
+     *       //   "defaultLeader": "my_defaultLeader",
+     *       //   "earliestVersionTime": "my_earliestVersionTime",
+     *       //   "enableDropProtection": false,
+     *       //   "encryptionConfig": {},
+     *       //   "encryptionInfo": [],
+     *       //   "name": "my_name",
+     *       //   "reconciling": false,
+     *       //   "restoreInfo": {},
+     *       //   "state": "my_state",
+     *       //   "versionRetentionPeriod": "my_versionRetentionPeriod"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Instances$Databases$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Instances$Databases$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Instances$Databases$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Databases$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Databases$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -9062,6 +9256,22 @@ export namespace spanner_v1 {
      * Required. The instance whose databases should be listed. Values are of the form `projects//instances/`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Patch
+    extends StandardParameters {
+    /**
+     * Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update. Currently, only `enable_drop_protection` field can be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Database;
   }
   export interface Params$Resource$Projects$Instances$Databases$Restore
     extends StandardParameters {

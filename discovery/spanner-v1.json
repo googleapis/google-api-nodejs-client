@@ -1452,6 +1452,41 @@
                     "https://www.googleapis.com/auth/spanner.admin"
                   ]
                 },
+                "patch": {
+                  "description": "Updates a Cloud Spanner database. The returned long-running operation can be used to track the progress of updating the database. If the named database does not exist, returns `NOT_FOUND`. While the operation is pending: * The database's reconciling field is set to true. * Cancelling the operation is best-effort. If the cancellation succeeds, the operation metadata's cancel_time is set, the updates are reverted, and the operation terminates with a `CANCELLED` status. * New UpdateDatabase requests will return a `FAILED_PRECONDITION` error until the pending operation is done (returns successfully or with error). * Reading the database via the API continues to give the pre-request values. Upon completion of the returned operation: * The new values are in effect and readable via the API. * The database's reconciling field becomes false. The returned long-running operation will have a name of the format `projects//instances//databases//operations/` and can be used to track the database modification. The metadata field type is UpdateDatabaseMetadata. The response field type is Database, if successful.",
+                  "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}",
+                  "httpMethod": "PATCH",
+                  "id": "spanner.projects.instances.databases.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update. Currently, only `enable_drop_protection` field can be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Database"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/spanner.admin"
+                  ]
+                },
                 "restore": {
                   "description": "Create a new database by restoring from a completed backup. The new database must be in the same project and in an instance with the same instance configuration as the instance containing the backup. The returned database long-running operation has a name of the format `projects//instances//databases//operations/`, and can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreDatabaseMetadata. The response type is Database, if successful. Cancelling the returned operation will stop the restore and delete the database. There can be only one database being restored into an instance at a time. Once the restore operation completes, a new restore operation can be initiated, without waiting for the optimize operation associated with the first restore to complete.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases:restore",
@@ -2402,7 +2437,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230403",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2986,6 +3021,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "enableDropProtection": {
+          "description": "Whether drop protection is enabled for this database. Defaults to false, if not set.",
+          "type": "boolean"
+        },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
           "description": "Output only. For databases that are using customer managed encryption, this field contains the encryption configuration for the database. For databases that are using Google default or other types of encryption, this field is empty.",
@@ -3002,6 +3041,11 @@
         "name": {
           "description": "Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.",
           "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. If true, the database is being updated. If false, there are no ongoing update operations for the database.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "restoreInfo": {
           "$ref": "RestoreInfo",
@@ -5251,6 +5295,42 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateDatabaseMetadata": {
+      "description": "Metadata type for the operation returned by UpdateDatabase.",
+      "id": "UpdateDatabaseMetadata",
+      "properties": {
+        "cancelTime": {
+          "description": "The time at which this operation was cancelled. If set, this operation is in the process of undoing itself (which is best-effort).",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "progress": {
+          "$ref": "OperationProgress",
+          "description": "The progress of the UpdateDatabase operation."
+        },
+        "request": {
+          "$ref": "UpdateDatabaseRequest",
+          "description": "The request for UpdateDatabase."
+        }
+      },
+      "type": "object"
+    },
+    "UpdateDatabaseRequest": {
+      "description": "The request for UpdateDatabase.",
+      "id": "UpdateDatabaseRequest",
+      "properties": {
+        "database": {
+          "$ref": "Database",
+          "description": "Required. The database to update. The `name` field of the database is of the form `projects//instances//databases/`."
+        },
+        "updateMask": {
+          "description": "Required. The list of fields to update. Currently, only `enable_drop_protection` field can be updated.",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"
