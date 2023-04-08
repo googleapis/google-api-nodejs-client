@@ -4500,7 +4500,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.messages.list({
      *     // Include messages from `SPAM` and `TRASH` in the results.
      *     includeSpamTrash: 'placeholder-value',
-     *     // Only return messages with labels that match all of the specified label IDs.
+     *     // Only return messages with labels that match all of the specified label IDs. Messages in a thread might have labels that other messages in the same thread don't have. To learn more, see [Manage labels on messages and threads](https://developers.google.com/gmail/api/guides/labels#manage_labels_on_messages_threads).
      *     labelIds: 'placeholder-value',
      *     // Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500.
      *     maxResults: 'placeholder-value',
@@ -5355,7 +5355,7 @@ export namespace gmail_v1 {
      */
     includeSpamTrash?: boolean;
     /**
-     * Only return messages with labels that match all of the specified label IDs.
+     * Only return messages with labels that match all of the specified label IDs. Messages in a thread might have labels that other messages in the same thread don't have. To learn more, see [Manage labels on messages and threads](https://developers.google.com/gmail/api/guides/labels#manage_labels_on_messages_threads).
      */
     labelIds?: string[];
     /**
