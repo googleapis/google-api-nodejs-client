@@ -572,6 +572,10 @@ export namespace privateca_v1 {
    */
   export interface Schema$DisableCertificateAuthorityRequest {
     /**
+     * Optional. This field allows this CA to be disabled even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the CA will no longer be able to issue certificates.
+     */
+    ignoreDependentResources?: boolean | null;
+    /**
      * Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
@@ -1901,6 +1905,8 @@ export namespace privateca_v1 {
      *
      *   // Do the magic
      *   const res = await privateca.projects.locations.caPools.delete({
+     *     // Optional. This field allows this pool to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the pool will no longer be able to issue certificates.
+     *     ignoreDependentResources: 'placeholder-value',
      *     // Required. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
      *     name: 'projects/my-project/locations/my-location/caPools/my-caPool',
      *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -3012,6 +3018,10 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Delete
     extends StandardParameters {
     /**
+     * Optional. This field allows this pool to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the pool will no longer be able to issue certificates.
+     */
+    ignoreDependentResources?: boolean;
+    /**
      * Required. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
      */
     name?: string;
@@ -3467,6 +3477,8 @@ export namespace privateca_v1 {
      *     await privateca.projects.locations.caPools.certificateAuthorities.delete({
      *       // Optional. This field allows the CA to be deleted even if the CA has active certs. Active certs include both unrevoked and unexpired certs.
      *       ignoreActiveCertificates: 'placeholder-value',
+     *       // Optional. This field allows this ca to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the CA will no longer be able to issue certificates.
+     *       ignoreDependentResources: 'placeholder-value',
      *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      *       name: 'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie',
      *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -3610,6 +3622,7 @@ export namespace privateca_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "ignoreDependentResources": false,
      *         //   "requestId": "my_requestId"
      *         // }
      *       },
@@ -4636,6 +4649,10 @@ export namespace privateca_v1 {
      * Optional. This field allows the CA to be deleted even if the CA has active certs. Active certs include both unrevoked and unexpired certs.
      */
     ignoreActiveCertificates?: boolean;
+    /**
+     * Optional. This field allows this ca to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the CA will no longer be able to issue certificates.
+     */
+    ignoreDependentResources?: boolean;
     /**
      * Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */

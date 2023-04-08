@@ -226,6 +226,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "ignoreDependentResources": {
+                      "description": "Optional. This field allows this pool to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the pool will no longer be able to issue certificates.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
                       "location": "path",
@@ -553,6 +558,11 @@
                       "parameters": {
                         "ignoreActiveCertificates": {
                           "description": "Optional. This field allows the CA to be deleted even if the CA has active certs. Active certs include both unrevoked and unexpired certs.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "ignoreDependentResources": {
+                          "description": "Optional. This field allows this ca to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the CA will no longer be able to issue certificates.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -1595,7 +1605,7 @@
       }
     }
   },
-  "revision": "20230315",
+  "revision": "20230403",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -2280,6 +2290,10 @@
       "description": "Request message for CertificateAuthorityService.DisableCertificateAuthority.",
       "id": "DisableCertificateAuthorityRequest",
       "properties": {
+        "ignoreDependentResources": {
+          "description": "Optional. This field allows this CA to be disabled even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resource(s) since the CA will no longer be able to issue certificates.",
+          "type": "boolean"
+        },
         "requestId": {
           "description": "Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
@@ -3024,7 +3038,7 @@
           ],
           "enumDescriptions": [
             "Unknown repair action.",
-            "The resource has to be deleted. When using this bit, the CLH should fail the operation. DEPRECATED. Instead use DELETE_RESOURCE OperationSignal in SideChannel. For more information - go/ccfe-delete-on-upsert, go/ccfe-reconciliation-protocol-ug#apply_delete",
+            "The resource has to be deleted. When using this bit, the CLH should fail the operation. DEPRECATED. Instead use DELETE_RESOURCE OperationSignal in SideChannel.",
             "This resource could not be repaired but the repair should be tried again at a later time. This can happen if there is a dependency that needs to be resolved first- e.g. if a parent resource must be repaired before a child resource."
           ],
           "type": "string"
