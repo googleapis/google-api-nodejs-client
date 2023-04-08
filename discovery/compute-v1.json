@@ -25807,6 +25807,11 @@
               "minimum": "0",
               "type": "integer"
             },
+            "natName": {
+              "description": "Name of the nat service to filter the Nat Mapping information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.",
+              "location": "query",
+              "type": "string"
+            },
             "orderBy": {
               "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.",
               "location": "query",
@@ -32974,7 +32979,7 @@
       }
     }
   },
-  "revision": "20230322",
+  "revision": "20230327",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -55446,11 +55451,15 @@
             "NETWORK_ATTACHMENTS",
             "NETWORK_ENDPOINT_GROUPS",
             "NETWORK_FIREWALL_POLICIES",
+            "NET_LB_SECURITY_POLICIES_PER_REGION",
+            "NET_LB_SECURITY_POLICY_RULES_PER_REGION",
+            "NET_LB_SECURITY_POLICY_RULE_ATTRIBUTES_PER_REGION",
             "NODE_GROUPS",
             "NODE_TEMPLATES",
             "NVIDIA_A100_80GB_GPUS",
             "NVIDIA_A100_GPUS",
             "NVIDIA_K80_GPUS",
+            "NVIDIA_L4_GPUS",
             "NVIDIA_P100_GPUS",
             "NVIDIA_P100_VWS_GPUS",
             "NVIDIA_P4_GPUS",
@@ -55465,6 +55474,7 @@
             "PREEMPTIBLE_NVIDIA_A100_80GB_GPUS",
             "PREEMPTIBLE_NVIDIA_A100_GPUS",
             "PREEMPTIBLE_NVIDIA_K80_GPUS",
+            "PREEMPTIBLE_NVIDIA_L4_GPUS",
             "PREEMPTIBLE_NVIDIA_P100_GPUS",
             "PREEMPTIBLE_NVIDIA_P100_VWS_GPUS",
             "PREEMPTIBLE_NVIDIA_P4_GPUS",
@@ -55488,6 +55498,7 @@
             "ROUTES",
             "SECURITY_POLICIES",
             "SECURITY_POLICIES_PER_REGION",
+            "SECURITY_POLICY_ADVANCED_RULES_PER_REGION",
             "SECURITY_POLICY_CEVAL_RULES",
             "SECURITY_POLICY_RULES",
             "SECURITY_POLICY_RULES_PER_REGION",
@@ -55546,6 +55557,12 @@
             "",
             "",
             "Guest CPUs",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
