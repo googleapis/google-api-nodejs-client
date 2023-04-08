@@ -2023,7 +2023,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230403",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2046,6 +2046,18 @@
         "value": {
           "description": "The allowlisted value for the access control list.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdvancedMachineFeatures": {
+      "description": "Specifies options for controlling advanced machine features.",
+      "id": "AdvancedMachineFeatures",
+      "properties": {
+        "threadsPerCore": {
+          "description": "The number of threads per physical core.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2537,10 +2549,11 @@
       "id": "DatabaseInstance",
       "properties": {
         "availableMaintenanceVersions": {
-          "description": "List all maintenance versions applicable on the instance",
+          "description": "Output only. List all maintenance versions applicable on the instance",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "backendType": {
@@ -4255,6 +4268,10 @@
         "activeDirectoryConfig": {
           "$ref": "SqlActiveDirectoryConfig",
           "description": "Active Directory configuration, relevant only for Cloud SQL for SQL Server."
+        },
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures",
+          "description": "Specifies advance machine configuration for the instance relevant only for SQL Server."
         },
         "authorizedGaeApplications": {
           "description": "The App Engine app IDs that can access this instance. (Deprecated) Applied to First Generation instances only.",
