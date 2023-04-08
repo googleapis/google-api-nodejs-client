@@ -3198,7 +3198,7 @@ export namespace bigquery_v2 {
      */
     mainClass?: string | null;
     /**
-     * The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python.
+     * The main file/jar URI of the Spark application. Exactly one of the definition_body field and the main_file_uri field must be set for Python. Exactly one of main_class and main_file_uri field should be set for Java/Scala language type.
      */
     mainFileUri?: string | null;
     /**
