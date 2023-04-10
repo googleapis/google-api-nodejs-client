@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v6.0.2...healthcare-v7.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
 ## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v6.0.1...healthcare-v6.0.2) (2023-03-22)
 
 
