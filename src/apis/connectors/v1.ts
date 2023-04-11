@@ -163,6 +163,10 @@ export namespace connectors_v1 {
      */
     authType?: string | null;
     /**
+     * Oauth2AuthCodeFlow.
+     */
+    oauth2AuthCodeFlow?: Schema$Oauth2AuthCodeFlow;
+    /**
      * Oauth2ClientCredentials.
      */
     oauth2ClientCredentials?: Schema$Oauth2ClientCredentials;
@@ -361,6 +365,10 @@ export namespace connectors_v1 {
      */
     lockConfig?: Schema$LockConfig;
     /**
+     * Optional. Log configuration for the connection.
+     */
+    logConfig?: Schema$ConnectorsLogConfig;
+    /**
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     name?: string | null;
@@ -485,6 +493,15 @@ export namespace connectors_v1 {
     webAssetsLocation?: string | null;
   }
   /**
+   * Log configuration for the connection.
+   */
+  export interface Schema$ConnectorsLogConfig {
+    /**
+     * Enabled represents whether logging is enabled or not for a connection.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * ConnectorVersion indicates a specific version of a connector.
    */
   export interface Schema$ConnectorVersion {
@@ -500,6 +517,10 @@ export namespace connectors_v1 {
      * Output only. Created time.
      */
     createTime?: string | null;
+    /**
+     * Output only. List of destination configs needed to create a connection.
+     */
+    destinationConfigTemplates?: Schema$DestinationConfigTemplate[];
     /**
      * Output only. Display name.
      */
@@ -571,6 +592,47 @@ export namespace connectors_v1 {
      * The key is the destination identifier that is supported by the Connector.
      */
     key?: string | null;
+  }
+  /**
+   * DestinationConfigTemplate defines required destinations supported by the Connector.
+   */
+  export interface Schema$DestinationConfigTemplate {
+    /**
+     * The default port.
+     */
+    defaultPort?: number | null;
+    /**
+     * Description.
+     */
+    description?: string | null;
+    /**
+     * Display name of the parameter.
+     */
+    displayName?: string | null;
+    /**
+     * Whether the current destination tempalate is part of Advanced settings
+     */
+    isAdvanced?: boolean | null;
+    /**
+     * Key of the destination.
+     */
+    key?: string | null;
+    /**
+     * The maximum number of destinations supported for this key.
+     */
+    max?: number | null;
+    /**
+     * The minimum number of destinations supported for this key.
+     */
+    min?: number | null;
+    /**
+     * Whether port number should be provided by customers.
+     */
+    portFieldType?: string | null;
+    /**
+     * Regex pattern for host.
+     */
+    regexPattern?: string | null;
   }
   /**
    * Egress control config for connector runtime. These configurations define the rules to identify which outbound domains/hosts needs to be whitelisted. It may be a static information for a particular connector version or it is derived from the configurations provided by the customer in Connection resource.
@@ -894,6 +956,39 @@ export namespace connectors_v1 {
      * Minimum number of nodes in the runtime nodes.
      */
     minNodeCount?: number | null;
+  }
+  /**
+   * Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.
+   */
+  export interface Schema$Oauth2AuthCodeFlow {
+    /**
+     * Authorization code to be exchanged for access and refresh tokens.
+     */
+    authCode?: string | null;
+    /**
+     * Client ID for user-provided OAuth app.
+     */
+    clientId?: string | null;
+    /**
+     * Client secret for user-provided OAuth app.
+     */
+    clientSecret?: Schema$Secret;
+    /**
+     * Whether to enable PKCE when the user performs the auth code flow.
+     */
+    enablePkce?: boolean | null;
+    /**
+     * PKCE verifier to be used during the auth code exchange.
+     */
+    pkceVerifier?: string | null;
+    /**
+     * Redirect URI to be provided during the auth code exchange.
+     */
+    redirectUri?: string | null;
+    /**
+     * Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
   }
   /**
    * Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.
@@ -1921,6 +2016,7 @@ export namespace connectors_v1 {
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
+     *       //   "logConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
@@ -2211,6 +2307,7 @@ export namespace connectors_v1 {
      *   //   "imageLocation": "my_imageLocation",
      *   //   "labels": {},
      *   //   "lockConfig": {},
+     *   //   "logConfig": {},
      *   //   "name": "my_name",
      *   //   "nodeConfig": {},
      *   //   "serviceAccount": "my_serviceAccount",
@@ -2780,6 +2877,7 @@ export namespace connectors_v1 {
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
+     *       //   "logConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
@@ -5660,6 +5758,7 @@ export namespace connectors_v1 {
      *   //   "authConfigTemplates": [],
      *   //   "configVariableTemplates": [],
      *   //   "createTime": "my_createTime",
+     *   //   "destinationConfigTemplates": [],
      *   //   "displayName": "my_displayName",
      *   //   "egressControlConfig": {},
      *   //   "labels": {},
