@@ -1777,11 +1777,11 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1TaggedEntry {
     /**
-     * Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.
+     * Optional. Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.
      */
     absentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
     /**
-     * Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.
+     * Optional. Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.
      */
     presentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
     /**
