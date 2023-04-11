@@ -1099,7 +1099,7 @@ export namespace adsense_v2 {
      *   const res = await adsense.accounts.listChildAccounts({
      *     // The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.
+     *     // A page token, received from a previous `ListChildAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChildAccounts` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent account, which owns the child accounts. Format: accounts/{account\}
      *     parent: 'accounts/my-account',
@@ -1242,7 +1242,7 @@ export namespace adsense_v2 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.
+     * A page token, received from a previous `ListChildAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChildAccounts` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -5112,7 +5112,7 @@ export namespace adsense_v2 {
      *   const res = await adsense.accounts.reports.saved.list({
      *     // The maximum number of reports to include in the response, used for paging. If unspecified, at most 10000 reports will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListPayments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPayments` must match the call that provided the page token.
+     *     // A page token, received from a previous `ListSavedReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSavedReports` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The account which owns the collection of reports. Format: accounts/{account\}
      *     parent: 'accounts/my-account',
@@ -5324,7 +5324,7 @@ export namespace adsense_v2 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListPayments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPayments` must match the call that provided the page token.
+     * A page token, received from a previous `ListSavedReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSavedReports` must match the call that provided the page token.
      */
     pageToken?: string;
     /**

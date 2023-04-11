@@ -180,7 +180,7 @@ export namespace eventarc_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     cryptoKeyName?: string | null;
     /**
@@ -727,6 +727,10 @@ export namespace eventarc_v1 {
      * Output only. This checksum is computed by the server based on the value of other fields, and might be sent only on create requests to ensure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
+    /**
+     * Optional. EventDataContentType specifies the type of payload in MIME format that is expected from the CloudEvent data field. This is set to `application/json` if the value is not defined.
+     */
+    eventDataContentType?: string | null;
     /**
      * Required. Unordered list. The list of filters that applies to event attributes. Only events that match all the provided filters are sent to the destination.
      */
@@ -4699,6 +4703,7 @@ export namespace eventarc_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "eventDataContentType": "my_eventDataContentType",
      *       //   "eventFilters": [],
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -5001,6 +5006,7 @@ export namespace eventarc_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destination": {},
      *   //   "etag": "my_etag",
+     *   //   "eventDataContentType": "my_eventDataContentType",
      *   //   "eventFilters": [],
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -5422,6 +5428,7 @@ export namespace eventarc_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "eventDataContentType": "my_eventDataContentType",
      *       //   "eventFilters": [],
      *       //   "labels": {},
      *       //   "name": "my_name",

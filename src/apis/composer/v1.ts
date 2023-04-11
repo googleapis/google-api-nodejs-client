@@ -252,6 +252,10 @@ export namespace composer_v1 {
    */
   export interface Schema$EnvironmentConfig {
     /**
+     * Output only. The 'bring your own identity' variant of the URI of the Apache Airflow Web UI hosted within this environment, to be accessed with external identities using workforce identity federation (see [Access environments with workforce identity federation](/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     */
+    airflowByoidUri?: string | null;
+    /**
      * Output only. The URI of the Apache Airflow Web UI hosted within this environment (see [Airflow web interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      */
     airflowUri?: string | null;

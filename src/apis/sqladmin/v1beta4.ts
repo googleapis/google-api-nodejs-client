@@ -164,6 +164,15 @@ export namespace sqladmin_v1beta4 {
     value?: string | null;
   }
   /**
+   * Specifies options for controlling advanced machine features.
+   */
+  export interface Schema$AdvancedMachineFeatures {
+    /**
+     * The number of threads per physical core.
+     */
+    threadsPerCore?: number | null;
+  }
+  /**
    * An Admin API warning message.
    */
   export interface Schema$ApiWarning {
@@ -472,7 +481,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DatabaseInstance {
     /**
-     * List all maintenance versions applicable on the instance
+     * Output only. List all maintenance versions applicable on the instance
      */
     availableMaintenanceVersions?: string[] | null;
     /**
@@ -1540,6 +1549,10 @@ export namespace sqladmin_v1beta4 {
      * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
      */
     activeDirectoryConfig?: Schema$SqlActiveDirectoryConfig;
+    /**
+     * Specifies advance machine configuration for the instance relevant only for SQL Server.
+     */
+    advancedMachineFeatures?: Schema$AdvancedMachineFeatures;
     /**
      * The App Engine app IDs that can access this instance. (Deprecated) Applied to First Generation instances only.
      */

@@ -1460,6 +1460,49 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "searchDirectGroups": {
+              "description": "Searches direct groups of a member.",
+              "flatPath": "v1/groups/{groupsId}/memberships:searchDirectGroups",
+              "httpMethod": "GET",
+              "id": "cloudidentity.groups.memberships.searchDirectGroups",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "orderBy": {
+                  "description": "The ordering of membership relation for the display name or email in the response. The syntax for this field can be found at https://cloud.google.com/apis/design/design_patterns#sorting_order. Example: Sort by the ascending display name: order_by=\"group_name\" or order_by=\"group_name asc\". Sort by the descending display name: order_by=\"group_name desc\". Sort by the ascending group key: order_by=\"group_key\" or order_by=\"group_key asc\". Sort by the descending group key: order_by=\"group_key desc\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The default page size is 200 (max 1000).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The next_page_token value returned from a previous list request, if any",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "[Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: groups/{group_id}, where group_id is always '-' as this API will search across all groups for a given member.",
+                  "location": "path",
+                  "pattern": "^groups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "query": {
+                  "description": "Required. A CEL expression that MUST include member specification AND label(s). Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && 'label_value' in labels`",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/memberships:searchDirectGroups",
+              "response": {
+                "$ref": "SearchDirectGroupsResponse"
+              }
+            },
             "searchTransitiveGroups": {
               "description": "Search transitive groups of a member. **Note:** This feature is only available to Google Workspace Enterprise Standard, Enterprise Plus, and Enterprise for Education; and Cloud Identity Premium accounts. If the account of the member is not one of these, a 403 (PERMISSION_DENIED) HTTP status code will be returned. A transitive group is any group that has a direct or indirect membership to the member. Actor must have view permissions all transitive groups.",
               "flatPath": "v1/groups/{groupsId}/memberships:searchTransitiveGroups",
@@ -1942,7 +1985,7 @@
       }
     }
   },
-  "revision": "20230314",
+  "revision": "20230328",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -3371,6 +3414,27 @@
           "readOnly": true,
           "type": "string"
         },
+        "deliverySetting": {
+          "description": "Output only. Delivery setting associated with the membership.",
+          "enum": [
+            "DELIVERY_SETTING_UNSPECIFIED",
+            "ALL_MAIL",
+            "DIGEST",
+            "DAILY",
+            "NONE",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default. Should not be used.",
+            "Represents each mail should be delivered",
+            "Represents 1 email for every 25 messages.",
+            "Represents daily summary of messages.",
+            "Represents no delivery.",
+            "Represents disabled state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group}/memberships/{membership}`.",
           "readOnly": true,
@@ -3431,6 +3495,47 @@
         "group": {
           "description": "Resource name of the group that the members belong to.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MembershipRelation": {
+      "description": "Message containing membership relation.",
+      "id": "MembershipRelation",
+      "properties": {
+        "description": {
+          "description": "An extended description to help users determine the purpose of a `Group`.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the `Group`.",
+          "type": "string"
+        },
+        "group": {
+          "description": "The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id}`.",
+          "type": "string"
+        },
+        "groupKey": {
+          "$ref": "EntityKey",
+          "description": "The `EntityKey` of the `Group`."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value.",
+          "type": "object"
+        },
+        "membership": {
+          "description": "The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group_id}/memberships/{membership_id}`.",
+          "type": "string"
+        },
+        "roles": {
+          "description": "The `MembershipRole`s that apply to the `Membership`.",
+          "items": {
+            "$ref": "MembershipRole"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3649,6 +3754,24 @@
       "properties": {
         "inboundSamlSsoProfile": {
           "description": "Required. Name of the `InboundSamlSsoProfile` to use. Must be of the form `inboundSamlSsoProfiles/{inbound_saml_sso_profile}`. ",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchDirectGroupsResponse": {
+      "description": "The response message for MembershipsService.SearchDirectGroups.",
+      "id": "SearchDirectGroupsResponse",
+      "properties": {
+        "memberships": {
+          "description": "List of direct groups satisfying the query.",
+          "items": {
+            "$ref": "MembershipRelation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results available for listing.",
           "type": "string"
         }
       },

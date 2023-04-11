@@ -114,6 +114,7 @@ export namespace androidpublisher_v3 {
     context: APIRequestContext;
     applications: Resource$Applications;
     edits: Resource$Edits;
+    externaltransactions: Resource$Externaltransactions;
     generatedapks: Resource$Generatedapks;
     grants: Resource$Grants;
     inappproducts: Resource$Inappproducts;
@@ -133,6 +134,9 @@ export namespace androidpublisher_v3 {
 
       this.applications = new Resource$Applications(this.context);
       this.edits = new Resource$Edits(this.context);
+      this.externaltransactions = new Resource$Externaltransactions(
+        this.context
+      );
       this.generatedapks = new Resource$Generatedapks(this.context);
       this.grants = new Resource$Grants(this.context);
       this.inappproducts = new Resource$Inappproducts(this.context);
@@ -797,6 +801,89 @@ export namespace androidpublisher_v3 {
     versionName?: string | null;
   }
   /**
+   * Details of an external subscription.
+   */
+  export interface Schema$ExternalSubscription {
+    /**
+     * Required. The type of the external subscription.
+     */
+    subscriptionType?: string | null;
+  }
+  /**
+   * The details of an external transaction.
+   */
+  export interface Schema$ExternalTransaction {
+    /**
+     * Output only. The time when this transaction was created. This is the time when Google was notified of the transaction.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The current transaction amount before tax. This represents the current pre-tax amount including any refunds that may have been applied to this transaction.
+     */
+    currentPreTaxAmount?: Schema$Price;
+    /**
+     * Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.
+     */
+    currentTaxAmount?: Schema$Price;
+    /**
+     * Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.
+     */
+    externalTransactionId?: string | null;
+    /**
+     * This is a one-time transaction and not part of a subscription.
+     */
+    oneTimeTransaction?: Schema$OneTimeExternalTransaction;
+    /**
+     * Required. The original transaction amount before taxes. This represents the pre-tax amount originally notified to Google before any refunds were applied.
+     */
+    originalPreTaxAmount?: Schema$Price;
+    /**
+     * Required. The original tax amount. This represents the tax amount originally notified to Google before any refunds were applied.
+     */
+    originalTaxAmount?: Schema$Price;
+    /**
+     * Output only. The resource name of the external transaction. The package name of the application the inapp products were sold (for example, 'com.some.app').
+     */
+    packageName?: string | null;
+    /**
+     * This transaction is part of a recurring series of transactions.
+     */
+    recurringTransaction?: Schema$RecurringExternalTransaction;
+    /**
+     * Output only. If set, this transaction was a test purchase. Google will not charge for a test transaction.
+     */
+    testPurchase?: Schema$ExternalTransactionTestPurchase;
+    /**
+     * Output only. The current state of the transaction.
+     */
+    transactionState?: string | null;
+    /**
+     * Required. The time when the transaction was completed.
+     */
+    transactionTime?: string | null;
+    /**
+     * Required. User address for tax computation.
+     */
+    userTaxAddress?: Schema$ExternalTransactionAddress;
+  }
+  /**
+   * User's address for the external transaction.
+   */
+  export interface Schema$ExternalTransactionAddress {
+    /**
+     * Required. Two letter region code based on ISO-3166-1 Alpha-2 (UN region codes).
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Represents a transaction performed using a test account. These transactions will not be charged by Google.
+   */
+  export interface Schema$ExternalTransactionTestPurchase {}
+  /**
+   * A full refund of the remaining amount of a transaction.
+   */
+  export interface Schema$FullRefund {}
+  /**
    * Response to list generated APKs.
    */
   export interface Schema$GeneratedApksListResponse {
@@ -1271,6 +1358,15 @@ export namespace androidpublisher_v3 {
     tag?: string | null;
   }
   /**
+   * Represents a one-time transaction.
+   */
+  export interface Schema$OneTimeExternalTransaction {
+    /**
+     * Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched.
+     */
+    externalTransactionToken?: string | null;
+  }
+  /**
    * Pricing information for any new locations Play may launch in.
    */
   export interface Schema$OtherRegionsBasePlanConfig {
@@ -1342,6 +1438,19 @@ export namespace androidpublisher_v3 {
      * Total number of results available on the backend ! The total number of results in the result set.
      */
     totalResults?: number | null;
+  }
+  /**
+   * A partial refund of a transaction.
+   */
+  export interface Schema$PartialRefund {
+    /**
+     * Required. A unique id distinguishing this partial refund. If the refund is successful, subsequent refunds with the same id will fail. Must be unique across refunds for one individual transaction.
+     */
+    refundId?: string | null;
+    /**
+     * Required. The pre-tax amount of the partial refund. Should be less than the remaining pre-tax amount of the transaction.
+     */
+    refundPreTaxAmount?: Schema$Price;
   }
   /**
    * Information specific to a subscription in paused state.
@@ -1456,6 +1565,40 @@ export namespace androidpublisher_v3 {
      * Payload to attach to the purchase.
      */
     developerPayload?: string | null;
+  }
+  /**
+   * Represents a transaction that is part of a recurring series of payments. This can be a subscription or a one-time product with multiple payments (such as preorder).
+   */
+  export interface Schema$RecurringExternalTransaction {
+    /**
+     * Details of an external subscription.
+     */
+    externalSubscription?: Schema$ExternalSubscription;
+    /**
+     * Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched. Required only for the initial purchase.
+     */
+    externalTransactionToken?: string | null;
+    /**
+     * The external transaction id of the first transaction of this recurring series of transactions. For example, for a subscription this would be the transaction id of the first payment. Required when creating recurring external transactions.
+     */
+    initialExternalTransactionId?: string | null;
+  }
+  /**
+   * A request to refund an existing external transaction.
+   */
+  export interface Schema$RefundExternalTransactionRequest {
+    /**
+     * A full-amount refund.
+     */
+    fullRefund?: Schema$FullRefund;
+    /**
+     * A partial refund.
+     */
+    partialRefund?: Schema$PartialRefund;
+    /**
+     * Required. The time that the transaction was refunded.
+     */
+    refundTime?: string | null;
   }
   /**
    * Configuration for a base plan specific to a region.
@@ -2151,7 +2294,7 @@ export namespace androidpublisher_v3 {
      */
     releases?: Schema$TrackRelease[];
     /**
-     * Identifier of the track.
+     * Identifier of the track. Form factor tracks have a special prefix as an identifier, for example `wear:production`, `automotive:production`. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string | null;
   }
@@ -8226,7 +8369,7 @@ export namespace androidpublisher_v3 {
      *     editId: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // Identifier of the track.
+     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      *     track: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8496,7 +8639,7 @@ export namespace androidpublisher_v3 {
      *     editId: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // Identifier of the track.
+     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8640,7 +8783,7 @@ export namespace androidpublisher_v3 {
      *     editId: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // Identifier of the track.
+     *     // Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      *     track: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8764,7 +8907,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Identifier of the track.
+     * Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string;
   }
@@ -8790,7 +8933,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Identifier of the track.
+     * Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string;
 
@@ -8810,7 +8953,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Identifier of the track.
+     * Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)
      */
     track?: string;
 
@@ -8818,6 +8961,527 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$Track;
+  }
+
+  export class Resource$Externaltransactions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new external transaction.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.externaltransactions.createexternaltransaction({
+     *       // Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/.
+     *       externalTransactionId: 'placeholder-value',
+     *       // Required. The parent resource where this external transaction will be created. Format: applications/{package_name\}
+     *       parent: 'applications/my-application',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "currentPreTaxAmount": {},
+     *         //   "currentTaxAmount": {},
+     *         //   "externalTransactionId": "my_externalTransactionId",
+     *         //   "oneTimeTransaction": {},
+     *         //   "originalPreTaxAmount": {},
+     *         //   "originalTaxAmount": {},
+     *         //   "packageName": "my_packageName",
+     *         //   "recurringTransaction": {},
+     *         //   "testPurchase": {},
+     *         //   "transactionState": "my_transactionState",
+     *         //   "transactionTime": "my_transactionTime",
+     *         //   "userTaxAddress": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "currentPreTaxAmount": {},
+     *   //   "currentTaxAmount": {},
+     *   //   "externalTransactionId": "my_externalTransactionId",
+     *   //   "oneTimeTransaction": {},
+     *   //   "originalPreTaxAmount": {},
+     *   //   "originalTaxAmount": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "recurringTransaction": {},
+     *   //   "testPurchase": {},
+     *   //   "transactionState": "my_transactionState",
+     *   //   "transactionTime": "my_transactionTime",
+     *   //   "userTaxAddress": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createexternaltransaction(
+      params: Params$Resource$Externaltransactions$Createexternaltransaction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createexternaltransaction(
+      params?: Params$Resource$Externaltransactions$Createexternaltransaction,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExternalTransaction>;
+    createexternaltransaction(
+      params: Params$Resource$Externaltransactions$Createexternaltransaction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createexternaltransaction(
+      params: Params$Resource$Externaltransactions$Createexternaltransaction,
+      options: MethodOptions | BodyResponseCallback<Schema$ExternalTransaction>,
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    createexternaltransaction(
+      params: Params$Resource$Externaltransactions$Createexternaltransaction,
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    createexternaltransaction(
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    createexternaltransaction(
+      paramsOrCallback?:
+        | Params$Resource$Externaltransactions$Createexternaltransaction
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExternalTransaction>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externaltransactions$Createexternaltransaction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Externaltransactions$Createexternaltransaction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/androidpublisher/v3/{+parent}/externalTransactions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalTransaction>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExternalTransaction>(parameters);
+      }
+    }
+
+    /**
+     * Gets an existing external transaction.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.externaltransactions.getexternaltransaction({
+     *       // Required. The name of the external transaction to retrieve. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
+     *       name: 'applications/my-application/externalTransactions/my-externalTransaction',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "currentPreTaxAmount": {},
+     *   //   "currentTaxAmount": {},
+     *   //   "externalTransactionId": "my_externalTransactionId",
+     *   //   "oneTimeTransaction": {},
+     *   //   "originalPreTaxAmount": {},
+     *   //   "originalTaxAmount": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "recurringTransaction": {},
+     *   //   "testPurchase": {},
+     *   //   "transactionState": "my_transactionState",
+     *   //   "transactionTime": "my_transactionTime",
+     *   //   "userTaxAddress": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getexternaltransaction(
+      params: Params$Resource$Externaltransactions$Getexternaltransaction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getexternaltransaction(
+      params?: Params$Resource$Externaltransactions$Getexternaltransaction,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExternalTransaction>;
+    getexternaltransaction(
+      params: Params$Resource$Externaltransactions$Getexternaltransaction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getexternaltransaction(
+      params: Params$Resource$Externaltransactions$Getexternaltransaction,
+      options: MethodOptions | BodyResponseCallback<Schema$ExternalTransaction>,
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    getexternaltransaction(
+      params: Params$Resource$Externaltransactions$Getexternaltransaction,
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    getexternaltransaction(
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    getexternaltransaction(
+      paramsOrCallback?:
+        | Params$Resource$Externaltransactions$Getexternaltransaction
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExternalTransaction>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externaltransactions$Getexternaltransaction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Externaltransactions$Getexternaltransaction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalTransaction>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExternalTransaction>(parameters);
+      }
+    }
+
+    /**
+     * Refunds or partially refunds an existing external transaction.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.externaltransactions.refundexternaltransaction({
+     *       // Required. The name of the external transaction that will be refunded. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
+     *       name: 'applications/my-application/externalTransactions/my-externalTransaction',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "fullRefund": {},
+     *         //   "partialRefund": {},
+     *         //   "refundTime": "my_refundTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "currentPreTaxAmount": {},
+     *   //   "currentTaxAmount": {},
+     *   //   "externalTransactionId": "my_externalTransactionId",
+     *   //   "oneTimeTransaction": {},
+     *   //   "originalPreTaxAmount": {},
+     *   //   "originalTaxAmount": {},
+     *   //   "packageName": "my_packageName",
+     *   //   "recurringTransaction": {},
+     *   //   "testPurchase": {},
+     *   //   "transactionState": "my_transactionState",
+     *   //   "transactionTime": "my_transactionTime",
+     *   //   "userTaxAddress": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    refundexternaltransaction(
+      params: Params$Resource$Externaltransactions$Refundexternaltransaction,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    refundexternaltransaction(
+      params?: Params$Resource$Externaltransactions$Refundexternaltransaction,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExternalTransaction>;
+    refundexternaltransaction(
+      params: Params$Resource$Externaltransactions$Refundexternaltransaction,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    refundexternaltransaction(
+      params: Params$Resource$Externaltransactions$Refundexternaltransaction,
+      options: MethodOptions | BodyResponseCallback<Schema$ExternalTransaction>,
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    refundexternaltransaction(
+      params: Params$Resource$Externaltransactions$Refundexternaltransaction,
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    refundexternaltransaction(
+      callback: BodyResponseCallback<Schema$ExternalTransaction>
+    ): void;
+    refundexternaltransaction(
+      paramsOrCallback?:
+        | Params$Resource$Externaltransactions$Refundexternaltransaction
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExternalTransaction>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExternalTransaction>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Externaltransactions$Refundexternaltransaction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Externaltransactions$Refundexternaltransaction;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+name}:refund').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalTransaction>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExternalTransaction>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Externaltransactions$Createexternaltransaction
+    extends StandardParameters {
+    /**
+     * Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/.
+     */
+    externalTransactionId?: string;
+    /**
+     * Required. The parent resource where this external transaction will be created. Format: applications/{package_name\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExternalTransaction;
+  }
+  export interface Params$Resource$Externaltransactions$Getexternaltransaction
+    extends StandardParameters {
+    /**
+     * Required. The name of the external transaction to retrieve. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Externaltransactions$Refundexternaltransaction
+    extends StandardParameters {
+    /**
+     * Required. The name of the external transaction that will be refunded. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RefundExternalTransactionRequest;
   }
 
   export class Resource$Generatedapks {

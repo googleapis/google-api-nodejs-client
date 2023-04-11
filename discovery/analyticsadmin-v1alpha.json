@@ -1895,6 +1895,160 @@
             }
           }
         },
+        "channelGroups": {
+          "methods": {
+            "create": {
+              "description": "Creates a ChannelGroup.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.channelGroups.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The property for which to create a ChannelGroup. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/channelGroups",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a ChannelGroup on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups/{channelGroupsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.channelGroups.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The ChannelGroup to delete. Example format: properties/1234/channelGroups/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/channelGroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single ChannelGroup.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups/{channelGroupsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.channelGroups.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The ChannelGroup to get. Example format: properties/1234/channelGroups/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/channelGroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists ChannelGroups on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.channelGroups.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListChannelGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChannelGroups` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The property for which to list ChannelGroups. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/channelGroups",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a ChannelGroup.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups/{channelGroupsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.channelGroups.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for this Channel Group resource. Format: properties/{property}/channelGroups/{channel_group}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/channelGroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "conversionEvents": {
           "methods": {
             "create": {
@@ -3120,7 +3274,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the Audience to get. Example format: properties/1234/expandedDataSets/5678",
+                  "description": "Required. The name of the ExpandedDataSet to get. Example format: properties/1234/expandedDataSets/5678",
                   "location": "path",
                   "pattern": "^properties/[^/]+/expandedDataSets/[^/]+$",
                   "required": true,
@@ -3886,7 +4040,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230410",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5216,6 +5370,10 @@
           "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink",
           "description": "A snapshot of a BigQuery link resource in change history."
         },
+        "channelGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup",
+          "description": "A snapshot of a ChannelGroup resource in change history."
+        },
         "conversionEvent": {
           "$ref": "GoogleAnalyticsAdminV1alphaConversionEvent",
           "description": "A snapshot of a ConversionEvent resource in change history."
@@ -5321,6 +5479,141 @@
         },
         "userActorEmail": {
           "description": "Email address of the Google account that made the change. This will be a valid email address if the actor field is set to USER, and empty otherwise. Google accounts that have been deleted will cause an error.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroup": {
+      "description": "A resource message representing a Channel Group.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroup",
+      "properties": {
+        "description": {
+          "description": "The description of the Channel Group. Max length of 256 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the Channel Group. Max length of 80 characters.",
+          "type": "string"
+        },
+        "groupingRule": {
+          "description": "Required. The grouping rules of channels. Maximum number of rules is 25.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaGroupingRule"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource name for this Channel Group resource. Format: properties/{property}/channelGroups/{channel_group}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "systemDefined": {
+          "description": "Output only. Default Channel Group defined by Google, which cannot be updated.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilter": {
+      "description": "A specific filter for a single dimension.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilter",
+      "properties": {
+        "fieldName": {
+          "description": "Required. Immutable. The dimension name to filter.",
+          "type": "string"
+        },
+        "inListFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter",
+          "description": "A filter for a string dimension that matches a particular list of options."
+        },
+        "stringFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter",
+          "description": "A filter for a string-type dimension that matches a particular pattern."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression": {
+      "description": "A logical expression of Channel Group dimension filters.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression",
+      "properties": {
+        "andGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList",
+          "description": "A list of expressions to be AND’ed together. It can only contain ChannelGroupFilterExpressions with or_group. This must be set for the top level ChannelGroupFilterExpression."
+        },
+        "filter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilter",
+          "description": "A filter on a single dimension. This cannot be set on the top level ChannelGroupFilterExpression."
+        },
+        "notExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression",
+          "description": "A filter expression to be NOT'ed (that is inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level ChannelGroupFilterExpression."
+        },
+        "orGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList",
+          "description": "A list of expressions to OR’ed together. It cannot contain ChannelGroupFilterExpressions with and_group or or_group."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList": {
+      "description": "A list of Channel Group filter expressions.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList",
+      "properties": {
+        "filterExpressions": {
+          "description": "A list of Channel Group filter expressions.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter": {
+      "description": "A filter for a string dimension that matches a particular list of options. The match is case insensitive.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter",
+      "properties": {
+        "values": {
+          "description": "Required. The list of possible string values to match against. Must be non-empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter": {
+      "description": "Filter where the field value is a String. The match is case insensitive.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter",
+      "properties": {
+        "matchType": {
+          "description": "Required. The match type for the string filter.",
+          "enum": [
+            "MATCH_TYPE_UNSPECIFIED",
+            "EXACT",
+            "BEGINS_WITH",
+            "ENDS_WITH",
+            "CONTAINS",
+            "FULL_REGEXP",
+            "PARTIAL_REGEXP"
+          ],
+          "enumDescriptions": [
+            "Default match type.",
+            "Exact match of the string value.",
+            "Begins with the string value.",
+            "Ends with the string value.",
+            "Contains the string value.",
+            "Full regular expression match with the string value.",
+            "Partial regular expression match with the string value."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string value to be matched against.",
           "type": "string"
         }
       },
@@ -5450,7 +5743,7 @@
           "type": "string"
         },
         "parameterName": {
-          "description": "Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.",
+          "description": "Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. If this is an item-scoped dimension, then this is the parameter name found in the eCommerce items array. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.",
           "type": "string"
         },
         "scope": {
@@ -5458,12 +5751,14 @@
           "enum": [
             "DIMENSION_SCOPE_UNSPECIFIED",
             "EVENT",
-            "USER"
+            "USER",
+            "ITEM"
           ],
           "enumDescriptions": [
             "Scope unknown or not specified.",
             "Dimension scoped to an event.",
-            "Dimension scoped to a user."
+            "Dimension scoped to a user.",
+            "Dimension scoped to eCommerce items"
           ],
           "type": "string"
         }
@@ -5910,7 +6205,7 @@
         },
         "dimensionFilterExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
-          "description": "Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`."
+          "description": "Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the chance of encountering `other` row."
         },
         "dimensionNames": {
           "description": "Immutable. The list of dimensions included in the ExpandedDataSet. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names.",
@@ -5971,7 +6266,7 @@
         },
         "notExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
-          "description": "A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression."
+          "description": "A filter expression to be NOT'ed (that is, inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression."
         }
       },
       "type": "object"
@@ -6180,6 +6475,21 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaGroupingRule": {
+      "description": "The rules that govern how traffic is grouped into one channel.",
+      "id": "GoogleAnalyticsAdminV1alphaGroupingRule",
+      "properties": {
+        "displayName": {
+          "description": "Required. Customer defined display name for the channel.",
+          "type": "string"
+        },
+        "expression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression",
+          "description": "Required. The Filter Expression that defines the Grouping Rule."
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails": {
       "description": "Status information for a link proposal.",
       "id": "GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails",
@@ -6310,6 +6620,24 @@
           "description": "List of BigQueryLinks.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse": {
+      "description": "Response message for ListChannelGroups RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse",
+      "properties": {
+        "channelGroups": {
+          "description": "List of ChannelGroup. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
           },
           "type": "array"
         },

@@ -571,6 +571,10 @@ export namespace translate_v3beta1 {
      */
     documentOutputConfig?: Schema$DocumentOutputConfig;
     /**
+     * Optional. If true, enable auto rotation correction in DVS.
+     */
+    enableRotationCorrection?: boolean | null;
+    /**
      * Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation. Shadow removal feature can only be enabled when is_translate_native_pdf_only: false && pdf_native_only: false
      */
     enableShadowRemovalNativePdf?: boolean | null;
@@ -2121,6 +2125,7 @@ export namespace translate_v3beta1 {
      *       //   "customizedAttribution": "my_customizedAttribution",
      *       //   "documentInputConfig": {},
      *       //   "documentOutputConfig": {},
+     *       //   "enableRotationCorrection": false,
      *       //   "enableShadowRemovalNativePdf": false,
      *       //   "glossaryConfig": {},
      *       //   "isTranslateNativePdfOnly": false,

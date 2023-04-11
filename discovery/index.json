@@ -2783,6 +2783,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "firebaseappdistribution:v1",
+      "name": "firebaseappdistribution",
+      "version": "v1",
+      "title": "Firebase App Distribution API",
+      "description": "",
+      "discoveryRestUrl": "https://firebaseappdistribution.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://firebase.google.com/products/app-distribution",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "firebasedatabase:v1beta",
       "name": "firebasedatabase",
       "version": "v1beta",
@@ -5389,7 +5404,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/storage/docs/json_api/v1/",
+      "documentationLink": "https://cloud.google.com/storage/docs/apis",
       "preferred": true
     },
     {
@@ -5487,7 +5502,7 @@
       "id": "tasks:v1",
       "name": "tasks",
       "version": "v1",
-      "title": "Tasks API",
+      "title": "Google Tasks API",
       "description": "The Google Tasks API lets you manage your tasks and task lists.",
       "discoveryRestUrl": "https://tasks.googleapis.com/$discovery/rest?version=v1",
       "icons": {

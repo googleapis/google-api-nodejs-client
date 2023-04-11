@@ -164,6 +164,15 @@ export namespace dlp_v2 {
     saveFindings?: Schema$GooglePrivacyDlpV2SaveFindings;
   }
   /**
+   * The results of an Action.
+   */
+  export interface Schema$GooglePrivacyDlpV2ActionDetails {
+    /**
+     * Outcome of a de-identification action.
+     */
+    deidentifyDetails?: Schema$GooglePrivacyDlpV2DeidentifyDataSourceDetails;
+  }
+  /**
    * Request message for ActivateJobTrigger.
    */
   export interface Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest {}
@@ -1069,6 +1078,36 @@ export namespace dlp_v2 {
     overview?: Schema$GooglePrivacyDlpV2TransformationOverview;
   }
   /**
+   * The results of a Deidentify action from an Inspect job.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeidentifyDataSourceDetails {
+    /**
+     * Stats about de-identification.
+     */
+    deidentifyStats?: Schema$GooglePrivacyDlpV2DeidentifyDataSourceStats;
+    /**
+     * De-identification config used for the request.
+     */
+    requestedOptions?: Schema$GooglePrivacyDlpV2RequestedDeidentifyOptions;
+  }
+  /**
+   * Summary of what was modified during a transformation.
+   */
+  export interface Schema$GooglePrivacyDlpV2DeidentifyDataSourceStats {
+    /**
+     * Number of successfully applied transformations.
+     */
+    transformationCount?: string | null;
+    /**
+     * Number of errors encountered while trying to apply transformations.
+     */
+    transformationErrorCount?: string | null;
+    /**
+     * Total size in bytes that were transformed in some way.
+     */
+    transformedBytes?: string | null;
+  }
+  /**
    * DeidentifyTemplates contains instructions on how to de-identify content. See https://cloud.google.com/dlp/docs/concepts-templates to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2DeidentifyTemplate {
@@ -1187,6 +1226,10 @@ export namespace dlp_v2 {
    * Combines all of the information about a DLP job.
    */
   export interface Schema$GooglePrivacyDlpV2DlpJob {
+    /**
+     * Events that should occur after the job has completed.
+     */
+    actionDetails?: Schema$GooglePrivacyDlpV2ActionDetails[];
     /**
      * Time when the job was created.
      */
@@ -1437,11 +1480,11 @@ export namespace dlp_v2 {
      */
     maxFindingsPerInfoType?: Schema$GooglePrivacyDlpV2InfoTypeLimit[];
     /**
-     * Max number of findings that will be returned for each item scanned. When set within `InspectJobConfig`, the maximum returned is 2000 regardless if this is set higher. When set within `InspectContentRequest`, this field is ignored.
+     * Max number of findings that are returned for each item scanned. When set within an InspectContentRequest, this field is ignored. This value isn't a hard limit. If the number of findings for an item reaches this limit, the inspection of that item ends gradually, not abruptly. Therefore, the actual number of findings that Cloud DLP returns for the item can be multiple times higher than this value.
      */
     maxFindingsPerItem?: number | null;
     /**
-     * Max number of findings that will be returned per request/job. When set within `InspectContentRequest`, the maximum returned is 2000 regardless if this is set higher.
+     * Max number of findings that are returned per request or job. If you set this field in an InspectContentRequest, the resulting maximum value is the value that you set or 3,000, whichever is lower. This value isn't a hard limit. If an inspection reaches this limit, the inspection ends gradually, not abruptly. Therefore, the actual number of findings that Cloud DLP returns can be multiple times higher than this value.
      */
     maxFindingsPerRequest?: number | null;
   }
@@ -1783,7 +1826,7 @@ export namespace dlp_v2 {
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
-     * Configuration to control the number of findings returned. This is not used for data profiling. When redacting sensitive data from images, finding limits don't apply. They can cause unexpected or inconsistent results, where only some data is redacted. Don't include finding limits in RedactImage requests. Otherwise, Cloud DLP returns an error. When set within `InspectJobConfig`, the specified maximum values aren't hard limits. If an inspection job reaches these limits, the job ends gradually, not abruptly. Therefore, the actual number of findings that Cloud DLP returns can be multiple times higher than these maximum values.
+     * Configuration to control the number of findings returned. This is not used for data profiling. When redacting sensitive data from images, finding limits don't apply. They can cause unexpected or inconsistent results, where only some data is redacted. Don't include finding limits in RedactImage requests. Otherwise, Cloud DLP returns an error. When set within an InspectJobConfig, the specified maximum values aren't hard limits. If an inspection job reaches these limits, the job ends gradually, not abruptly. Therefore, the actual number of findings that Cloud DLP returns can be multiple times higher than these maximum values.
      */
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
     /**
@@ -2878,6 +2921,23 @@ export namespace dlp_v2 {
    * Replace each matching finding with the name of the info_type.
    */
   export interface Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig {}
+  /**
+   * De-id options.
+   */
+  export interface Schema$GooglePrivacyDlpV2RequestedDeidentifyOptions {
+    /**
+     * Snapshot of the state of the DeidentifyTemplate from the Deidentify action at the time this job was run.
+     */
+    snapshotDeidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
+    /**
+     * Snapshot of the state of the image redact DeidentifyTemplate from the Deidentify action at the time this job was run.
+     */
+    snapshotImageRedactTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
+    /**
+     * Snapshot of the state of the structured DeidentifyTemplate from the Deidentify action at the time this job was run.
+     */
+    snapshotStructuredDeidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
+  }
   /**
    * Snapshot of the inspection configuration.
    */
@@ -11308,6 +11368,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -11580,6 +11641,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -12911,6 +12973,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -15336,6 +15399,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -15741,6 +15805,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],
@@ -17243,6 +17308,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "actionDetails": [],
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "errors": [],

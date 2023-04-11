@@ -163,6 +163,10 @@ export namespace connectors_v1 {
      */
     authType?: string | null;
     /**
+     * Oauth2AuthCodeFlow.
+     */
+    oauth2AuthCodeFlow?: Schema$Oauth2AuthCodeFlow;
+    /**
      * Oauth2ClientCredentials.
      */
     oauth2ClientCredentials?: Schema$Oauth2ClientCredentials;
@@ -361,6 +365,10 @@ export namespace connectors_v1 {
      */
     lockConfig?: Schema$LockConfig;
     /**
+     * Optional. Log configuration for the connection.
+     */
+    logConfig?: Schema$ConnectorsLogConfig;
+    /**
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     name?: string | null;
@@ -485,6 +493,15 @@ export namespace connectors_v1 {
     webAssetsLocation?: string | null;
   }
   /**
+   * Log configuration for the connection.
+   */
+  export interface Schema$ConnectorsLogConfig {
+    /**
+     * Enabled represents whether logging is enabled or not for a connection.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * ConnectorVersion indicates a specific version of a connector.
    */
   export interface Schema$ConnectorVersion {
@@ -500,6 +517,10 @@ export namespace connectors_v1 {
      * Output only. Created time.
      */
     createTime?: string | null;
+    /**
+     * Output only. List of destination configs needed to create a connection.
+     */
+    destinationConfigTemplates?: Schema$DestinationConfigTemplate[];
     /**
      * Output only. Display name.
      */
@@ -571,6 +592,47 @@ export namespace connectors_v1 {
      * The key is the destination identifier that is supported by the Connector.
      */
     key?: string | null;
+  }
+  /**
+   * DestinationConfigTemplate defines required destinations supported by the Connector.
+   */
+  export interface Schema$DestinationConfigTemplate {
+    /**
+     * The default port.
+     */
+    defaultPort?: number | null;
+    /**
+     * Description.
+     */
+    description?: string | null;
+    /**
+     * Display name of the parameter.
+     */
+    displayName?: string | null;
+    /**
+     * Whether the current destination tempalate is part of Advanced settings
+     */
+    isAdvanced?: boolean | null;
+    /**
+     * Key of the destination.
+     */
+    key?: string | null;
+    /**
+     * The maximum number of destinations supported for this key.
+     */
+    max?: number | null;
+    /**
+     * The minimum number of destinations supported for this key.
+     */
+    min?: number | null;
+    /**
+     * Whether port number should be provided by customers.
+     */
+    portFieldType?: string | null;
+    /**
+     * Regex pattern for host.
+     */
+    regexPattern?: string | null;
   }
   /**
    * Egress control config for connector runtime. These configurations define the rules to identify which outbound domains/hosts needs to be whitelisted. It may be a static information for a particular connector version or it is derived from the configurations provided by the customer in Connection resource.
@@ -896,6 +958,39 @@ export namespace connectors_v1 {
     minNodeCount?: number | null;
   }
   /**
+   * Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.
+   */
+  export interface Schema$Oauth2AuthCodeFlow {
+    /**
+     * Authorization code to be exchanged for access and refresh tokens.
+     */
+    authCode?: string | null;
+    /**
+     * Client ID for user-provided OAuth app.
+     */
+    clientId?: string | null;
+    /**
+     * Client secret for user-provided OAuth app.
+     */
+    clientSecret?: Schema$Secret;
+    /**
+     * Whether to enable PKCE when the user performs the auth code flow.
+     */
+    enablePkce?: boolean | null;
+    /**
+     * PKCE verifier to be used during the auth code exchange.
+     */
+    pkceVerifier?: string | null;
+    /**
+     * Redirect URI to be provided during the auth code exchange.
+     */
+    redirectUri?: string | null;
+    /**
+     * Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
+  }
+  /**
    * Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.
    */
   export interface Schema$Oauth2ClientCredentials {
@@ -1198,6 +1293,23 @@ export namespace connectors_v1 {
     updateMask?: string | null;
   }
   /**
+   * Global Settings details.
+   */
+  export interface Schema$Settings {
+    /**
+     * Output only. Resource name of the Connection. Format: projects/{project\}/locations/global/settings\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Flag indicates if user is in PayG model
+     */
+    payg?: boolean | null;
+    /**
+     * Optional. Flag indicates whether vpc-sc is enabled.
+     */
+    vpcsc?: boolean | null;
+  }
+  /**
    * Source to extract the backend from.
    */
   export interface Schema$Source {
@@ -1379,6 +1491,7 @@ export namespace connectors_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     connections: Resource$Projects$Locations$Connections;
+    global: Resource$Projects$Locations$Global;
     operations: Resource$Projects$Locations$Operations;
     providers: Resource$Projects$Locations$Providers;
     constructor(context: APIRequestContext) {
@@ -1386,6 +1499,7 @@ export namespace connectors_v1 {
       this.connections = new Resource$Projects$Locations$Connections(
         this.context
       );
+      this.global = new Resource$Projects$Locations$Global(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -1902,6 +2016,7 @@ export namespace connectors_v1 {
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
+     *       //   "logConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
@@ -2192,6 +2307,7 @@ export namespace connectors_v1 {
      *   //   "imageLocation": "my_imageLocation",
      *   //   "labels": {},
      *   //   "lockConfig": {},
+     *   //   "logConfig": {},
      *   //   "name": "my_name",
      *   //   "nodeConfig": {},
      *   //   "serviceAccount": "my_serviceAccount",
@@ -2761,6 +2877,7 @@ export namespace connectors_v1 {
      *       //   "imageLocation": "my_imageLocation",
      *       //   "labels": {},
      *       //   "lockConfig": {},
+     *       //   "logConfig": {},
      *       //   "name": "my_name",
      *       //   "nodeConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
@@ -3796,6 +3913,149 @@ export namespace connectors_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Global {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * GetGlobalSettings gets settings of a project. GlobalSettings is a singleton resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.global.getSettings({
+     *     // Required. The resource name of the Settings.
+     *     name: 'projects/my-project/locations/global/settings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "payg": false,
+     *   //   "vpcsc": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSettings(
+      params?: Params$Resource$Projects$Locations$Global$Getsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Settings>;
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Settings>,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
+    getSettings(
+      params: Params$Resource$Projects$Locations$Global$Getsettings,
+      callback: BodyResponseCallback<Schema$Settings>
+    ): void;
+    getSettings(callback: BodyResponseCallback<Schema$Settings>): void;
+    getSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Getsettings
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Settings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Settings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Getsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Getsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Settings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Settings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Getsettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Settings.
+     */
+    name?: string;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4187,7 +4447,7 @@ export namespace connectors_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -5498,6 +5758,7 @@ export namespace connectors_v1 {
      *   //   "authConfigTemplates": [],
      *   //   "configVariableTemplates": [],
      *   //   "createTime": "my_createTime",
+     *   //   "destinationConfigTemplates": [],
      *   //   "displayName": "my_displayName",
      *   //   "egressControlConfig": {},
      *   //   "labels": {},

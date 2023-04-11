@@ -503,7 +503,7 @@ export namespace file_v1beta1 {
      */
     maxCapacityGb?: string | null;
     /**
-     * Output only. The max number of shares allowed.
+     * The max number of shares allowed.
      */
     maxShareCount?: string | null;
     /**

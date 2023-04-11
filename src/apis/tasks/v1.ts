@@ -100,7 +100,7 @@ export namespace tasks_v1 {
   }
 
   /**
-   * Tasks API
+   * Google Tasks API
    *
    * The Google Tasks API lets you manage your tasks and task lists.
    *

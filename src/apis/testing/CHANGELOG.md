@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.3.0...testing-v3.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+
 ## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.2.0...testing-v2.3.0) (2023-02-24)
 
 

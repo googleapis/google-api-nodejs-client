@@ -1099,26 +1099,29 @@ export namespace dns_v1beta2 {
   }
   export interface Schema$RRSetRoutingPolicyLoadBalancerTarget {
     /**
-     * The frontend IP address of the
+     * The frontend IP address of the Load Balancer to health check.
      */
     ipAddress?: string | null;
     ipProtocol?: string | null;
     kind?: string | null;
+    /**
+     * The type of Load Balancer specified by this target. Must match the configuration of the Load Balancer located at the LoadBalancerTarget's IP address/port and region.
+     */
     loadBalancerType?: string | null;
     /**
-     * The fully qualified url of the network on which the ILB is
+     * The fully qualified url of the network on which the ILB is present. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
      */
     networkUrl?: string | null;
     /**
-     * Load Balancer to health check. The configured port of the Load Balancer.
+     * The configured port of the Load Balancer.
      */
     port?: string | null;
     /**
-     * present. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\} The project ID in which the ILB exists.
+     * The project ID in which the ILB exists.
      */
     project?: string | null;
     /**
-     * The region for regional ILBs.
+     * The region in which the ILB exists.
      */
     region?: string | null;
   }

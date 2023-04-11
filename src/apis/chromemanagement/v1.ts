@@ -3652,7 +3652,7 @@ export namespace chromemanagement_v1 {
     }
 
     /**
-     * Generate report of devices that have a specified app installed.
+     * Generate report of managed Chrome browser devices that have a specified app installed.
      * @example
      * ```js
      * // Before running the sample:
@@ -4219,7 +4219,7 @@ export namespace chromemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await chromemanagement.customers.telemetry.devices.list({
-     *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id
+     *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      *     filter: 'placeholder-value',
      *     // Maximum number of results to return. Default value is 100. Maximum value is 1000.
      *     pageSize: 'placeholder-value',
@@ -4355,7 +4355,7 @@ export namespace chromemanagement_v1 {
   export interface Params$Resource$Customers$Telemetry$Devices$List
     extends StandardParameters {
     /**
-     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id
+     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      */
     filter?: string;
     /**
@@ -4411,7 +4411,7 @@ export namespace chromemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await chromemanagement.customers.telemetry.events.list({
-     *     // Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either Epoch milliseconds or RFC 3339 formatted time surrounded by simple double quotes.
+     *     // Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      *     filter: 'placeholder-value',
      *     // Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.
      *     pageSize: 'placeholder-value',
@@ -4536,7 +4536,7 @@ export namespace chromemanagement_v1 {
   export interface Params$Resource$Customers$Telemetry$Events$List
     extends StandardParameters {
     /**
-     * Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either Epoch milliseconds or RFC 3339 formatted time surrounded by simple double quotes.
+     * Optional. Only include resources that match the filter. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      */
     filter?: string;
     /**

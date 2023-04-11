@@ -238,6 +238,10 @@ export namespace ondemandscanning_v1 {
      */
     signatures?: Schema$Signature[];
   }
+  export interface Schema$Binary {
+    name?: string | null;
+    version?: string | null;
+  }
   export interface Schema$BuilderConfig {
     id?: string | null;
   }
@@ -974,6 +978,10 @@ export namespace ondemandscanning_v1 {
      * The architecture of the package.
      */
     architecture?: string | null;
+    /**
+     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15.
+     */
+    binary?: Schema$Binary;
     /**
      * The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.
      */

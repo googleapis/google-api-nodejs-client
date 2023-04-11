@@ -112,7 +112,6 @@ export namespace cloudsupport_v2beta {
    */
   export class Cloudsupport {
     context: APIRequestContext;
-    attachments: Resource$Attachments;
     caseClassifications: Resource$Caseclassifications;
     cases: Resource$Cases;
     media: Resource$Media;
@@ -123,7 +122,6 @@ export namespace cloudsupport_v2beta {
         google,
       };
 
-      this.attachments = new Resource$Attachments(this.context);
       this.caseClassifications = new Resource$Caseclassifications(this.context);
       this.cases = new Resource$Cases(this.context);
       this.media = new Resource$Media(this.context);
@@ -210,6 +208,10 @@ export namespace cloudsupport_v2beta {
      */
     classification?: Schema$CaseClassification;
     /**
+     * A user-supplied email address to send case update notifications for. This should only be used in BYOID flows, where we cannot infer the user's email address directly from their EUCs.
+     */
+    contactEmail?: string | null;
+    /**
      * Output only. The time this case was created.
      */
     createTime?: string | null;
@@ -288,7 +290,7 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$Comment {
     /**
-     * The full comment body. Maximum of 120000 characters. This can contain rich text syntax.
+     * The full comment body. Maximum of 12800 characters. This can contain rich text syntax.
      */
     body?: string | null;
     /**
@@ -728,168 +730,6 @@ export namespace cloudsupport_v2beta {
     workflowOperationType?: string | null;
   }
 
-  export class Resource$Attachments {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.attachments.create({
-     *     // Required. The resource name of the case (or case parent) to which the attachment should be attached.
-     *     parent: '[^/]+/[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attachment": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "filename": "my_filename",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "name": "my_name",
-     *   //   "sizeBytes": "my_sizeBytes"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Attachments$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Attachments$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
-    create(
-      params: Params$Resource$Attachments$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Attachments$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Attachment>,
-      callback: BodyResponseCallback<Schema$Attachment>
-    ): void;
-    create(
-      params: Params$Resource$Attachments$Create,
-      callback: BodyResponseCallback<Schema$Attachment>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Attachment>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Attachments$Create
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attachment> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Attachments$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Attachments$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudsupport.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2beta/{+parent}/attachments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Attachment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Attachment>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Attachments$Create
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the case (or case parent) to which the attachment should be attached.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CreateAttachmentRequest;
-  }
-
   export class Resource$Caseclassifications {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -1107,6 +947,7 @@ export namespace cloudsupport_v2beta {
      *   // Example response
      *   // {
      *   //   "classification": {},
+     *   //   "contactEmail": "my_contactEmail",
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
      *   //   "description": "my_description",
@@ -1249,6 +1090,7 @@ export namespace cloudsupport_v2beta {
      *       // request body parameters
      *       // {
      *       //   "classification": {},
+     *       //   "contactEmail": "my_contactEmail",
      *       //   "createTime": "my_createTime",
      *       //   "creator": {},
      *       //   "description": "my_description",
@@ -1271,6 +1113,7 @@ export namespace cloudsupport_v2beta {
      *   // Example response
      *   // {
      *   //   "classification": {},
+     *   //   "contactEmail": "my_contactEmail",
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
      *   //   "description": "my_description",
@@ -1421,6 +1264,7 @@ export namespace cloudsupport_v2beta {
      *   // Example response
      *   // {
      *   //   "classification": {},
+     *   //   "contactEmail": "my_contactEmail",
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
      *   //   "description": "my_description",
@@ -1563,6 +1407,7 @@ export namespace cloudsupport_v2beta {
      *   // Example response
      *   // {
      *   //   "classification": {},
+     *   //   "contactEmail": "my_contactEmail",
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
      *   //   "description": "my_description",
@@ -1842,6 +1687,7 @@ export namespace cloudsupport_v2beta {
      *       // request body parameters
      *       // {
      *       //   "classification": {},
+     *       //   "contactEmail": "my_contactEmail",
      *       //   "createTime": "my_createTime",
      *       //   "creator": {},
      *       //   "description": "my_description",
@@ -1864,6 +1710,7 @@ export namespace cloudsupport_v2beta {
      *   // Example response
      *   // {
      *   //   "classification": {},
+     *   //   "contactEmail": "my_contactEmail",
      *   //   "createTime": "my_createTime",
      *   //   "creator": {},
      *   //   "description": "my_description",

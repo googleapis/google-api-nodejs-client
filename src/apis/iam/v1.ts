@@ -355,6 +355,31 @@ export namespace iam_v1 {
     idpMetadataXml?: string | null;
   }
   /**
+   * Represents a public key data along with its format.
+   */
+  export interface Schema$KeyData {
+    /**
+     * Output only. The format of the key.
+     */
+    format?: string | null;
+    /**
+     * Output only. The key data. The format of the key is represented by the format field.
+     */
+    key?: string | null;
+    /**
+     * Immutable. The specifications for the key.
+     */
+    keySpec?: string | null;
+    /**
+     * Output only. Latest timestamp when this key is valid. Attempts to use this key after this time will fail. Only present if the key data represents a X.509 certificate.
+     */
+    notAfterTime?: string | null;
+    /**
+     * Output only. Earliest timestamp when this key is valid. Attempts to use this key before this time will fail. Only present if the key data represents a X.509 certificate.
+     */
+    notBeforeTime?: string | null;
+  }
+  /**
    * The request to lint a Cloud IAM policy object.
    */
   export interface Schema$LintPolicyRequest {
@@ -441,6 +466,19 @@ export namespace iam_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListWorkforcePoolProviderKeys.
+   */
+  export interface Schema$ListWorkforcePoolProviderKeysResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of WorkforcePoolProviderKeys.
+     */
+    workforcePoolProviderKeys?: Schema$WorkforcePoolProviderKey[];
+  }
+  /**
    * Response message for ListWorkforcePoolProviders.
    */
   export interface Schema$ListWorkforcePoolProvidersResponse {
@@ -465,6 +503,19 @@ export namespace iam_v1 {
      * A list of pools.
      */
     workforcePools?: Schema$WorkforcePool[];
+  }
+  /**
+   * Response message for ListWorkloadIdentityPoolProviderKeys.
+   */
+  export interface Schema$ListWorkloadIdentityPoolProviderKeysResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of WorkloadIdentityPoolProviderKey
+     */
+    workloadIdentityPoolProviderKeys?: Schema$WorkloadIdentityPoolProviderKey[];
   }
   /**
    * Response message for ListWorkloadIdentityPoolProviders.
@@ -933,6 +984,10 @@ export namespace iam_v1 {
     restoredAccount?: Schema$ServiceAccount;
   }
   /**
+   * Request message for UndeleteWorkforcePoolProviderKey.
+   */
+  export interface Schema$UndeleteWorkforcePoolProviderKeyRequest {}
+  /**
    * Request message for UndeleteWorkforcePoolProvider.
    */
   export interface Schema$UndeleteWorkforcePoolProviderRequest {}
@@ -944,6 +999,10 @@ export namespace iam_v1 {
    * Request message for UndeleteWorkforcePoolSubject.
    */
   export interface Schema$UndeleteWorkforcePoolSubjectRequest {}
+  /**
+   * Request message for UndeleteWorkloadIdentityPoolProviderKey.
+   */
+  export interface Schema$UndeleteWorkloadIdentityPoolProviderKeyRequest {}
   /**
    * Request message for UndeleteWorkloadIdentityPoolProvider.
    */
@@ -1036,6 +1095,31 @@ export namespace iam_v1 {
     state?: string | null;
   }
   /**
+   * Represents a public key configuration for a Workforce Pool Provider. The key can be configured in your identity provider to encrypt SAML assertions. Google holds the corresponding private key, which it uses to decrypt encrypted tokens.
+   */
+  export interface Schema$WorkforcePoolProviderKey {
+    /**
+     * Output only. The time after which the key will be permanently deleted and cannot be recovered. Note that the key may get purged before this time if the total limit of keys per provider is exceeded.
+     */
+    expireTime?: string | null;
+    /**
+     * Immutable. Public half of the asymmetric key.
+     */
+    keyData?: Schema$KeyData;
+    /**
+     * Output only. The resource name of the key.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the key.
+     */
+    state?: string | null;
+    /**
+     * Immutable. The purpose of the key.
+     */
+    use?: string | null;
+  }
+  /**
    * Represents a collection of external workload identities. You can define IAM policies to grant these identities access to Google Cloud resources.
    */
   export interface Schema$WorkloadIdentityPool {
@@ -1108,6 +1192,31 @@ export namespace iam_v1 {
      * Output only. The state of the provider.
      */
     state?: string | null;
+  }
+  /**
+   * Represents a public key configuration for your workload identity pool provider. The key can be configured in your identity provider to encrypt the SAML assertions. Google holds the corresponding private key which it uses to decrypt encrypted tokens.
+   */
+  export interface Schema$WorkloadIdentityPoolProviderKey {
+    /**
+     * Output only. Time after which the key will be permanently purged and cannot be recovered. Note that the key may get purged before this timestamp if the total limit of keys per provider is crossed.
+     */
+    expireTime?: string | null;
+    /**
+     * Immutable. Public half of the asymmetric key.
+     */
+    keyData?: Schema$KeyData;
+    /**
+     * Output only. The resource name of the key.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the key.
+     */
+    state?: string | null;
+    /**
+     * Immutable. The purpose of the key.
+     */
+    use?: string | null;
   }
 
   export class Resource$Iampolicies {
@@ -3930,6 +4039,765 @@ export namespace iam_v1 {
           this.context
         );
     }
+
+    /**
+     * Creates a new WorkforcePoolProviderKey in a WorkforcePoolProvider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.keys.create({
+     *     // Required. The provider to create this key in.
+     *     parent:
+     *       'locations/my-location/workforcePools/my-workforcePool/providers/my-provider',
+     *     // Required. The ID to use for the key, which becomes the final component of the resource name. This value must be 4-32 characters, and may contain the characters [a-z0-9-].
+     *     workforcePoolProviderKeyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expireTime": "my_expireTime",
+     *       //   "keyData": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "use": "my_use"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Keys$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Keys$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a WorkforcePoolProviderKey. You can undelete a key for 30 days. After 30 days, deletion is permanent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.keys.delete({
+     *     // Required. The name of the key to delete.
+     *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/keys/my-key',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Keys$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Keys$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a WorkforcePoolProviderKey.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.keys.get({
+     *     // Required. The name of the key to retrieve.
+     *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/keys/my-key',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expireTime": "my_expireTime",
+     *   //   "keyData": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "use": "my_use"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkforcePoolProviderKey>;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderKey>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderKey>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Get,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderKey>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WorkforcePoolProviderKey>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Keys$Get
+        | BodyResponseCallback<Schema$WorkforcePoolProviderKey>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderKey>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WorkforcePoolProviderKey>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Keys$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderKey>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderKey>(parameters);
+      }
+    }
+
+    /**
+     * Lists all non-deleted WorkforcePoolProviderKeys in a WorkforcePoolProvider. If `show_deleted` is set to `true`, then deleted keys are also listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.keys.list({
+     *     // The maximum number of keys to return. If unspecified, all keys are returned. The maximum value is 10; values above 10 are truncated to 10.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListWorkforcePoolProviderKeys` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The provider resource to list encryption keys for. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
+     *     parent:
+     *       'locations/my-location/workforcePools/my-workforcePool/providers/my-provider',
+     *     // Whether to return soft-deleted keys.
+     *     showDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workforcePoolProviderKeys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkforcePoolProviderKeysResponse>;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderKeysResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderKeysResponse>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$List,
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderKeysResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderKeysResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Keys$List
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderKeysResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderKeysResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderKeysResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkforcePoolProviderKeysResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Keys$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkforcePoolProviderKeysResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkforcePoolProviderKeysResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Undeletes a WorkforcePoolProviderKey, as long as it was deleted fewer than 30 days ago.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.keys.undelete({
+     *     // Required. The name of the key to undelete.
+     *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/keys/my-key',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Create
+    extends StandardParameters {
+    /**
+     * Required. The provider to create this key in.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the key, which becomes the final component of the resource name. This value must be 4-32 characters, and may contain the characters [a-z0-9-].
+     */
+    workforcePoolProviderKeyId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkforcePoolProviderKey;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the key to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the key to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$List
+    extends StandardParameters {
+    /**
+     * The maximum number of keys to return. If unspecified, all keys are returned. The maximum value is 10; values above 10 are truncated to 10.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListWorkforcePoolProviderKeys` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The provider resource to list encryption keys for. Format: `locations/{location\}/workforcePools/{workforce_pool_id\}/providers/{provider_id\}`
+     */
+    parent?: string;
+    /**
+     * Whether to return soft-deleted keys.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Keys$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The name of the key to undelete.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteWorkforcePoolProviderKeyRequest;
   }
 
   export class Resource$Locations$Workforcepools$Providers$Keys$Operations {
@@ -7863,6 +8731,774 @@ export namespace iam_v1 {
           this.context
         );
     }
+
+    /**
+     * Create a new WorkloadIdentityPoolProviderKey in a WorkloadIdentityPoolProvider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.keys.create({
+     *       // Required. The parent provider resource to create the key in.
+     *       parent:
+     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
+     *       // Required. The ID to use for the key, which becomes the final component of the resource name. This value should be 4-32 characters, and may contain the characters [a-z0-9-].
+     *       workloadIdentityPoolProviderKeyId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "expireTime": "my_expireTime",
+     *         //   "keyData": {},
+     *         //   "name": "my_name",
+     *         //   "state": "my_state",
+     *         //   "use": "my_use"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an WorkloadIdentityPoolProviderKey. You can undelete a key for 30 days. After 30 days, deletion is permanent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.keys.delete({
+     *       // Required. The name of the encryption key to delete.
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider/keys/my-key',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets an individual WorkloadIdentityPoolProviderKey.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.keys.get({
+     *       // Required. The name of the key to retrieve.
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider/keys/my-key',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expireTime": "my_expireTime",
+     *   //   "keyData": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "use": "my_use"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkloadIdentityPoolProviderKey>;
+    get(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolProviderKey>,
+      callback: BodyResponseCallback<Schema$WorkloadIdentityPoolProviderKey>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get,
+      callback: BodyResponseCallback<Schema$WorkloadIdentityPoolProviderKey>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$WorkloadIdentityPoolProviderKey>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolProviderKey>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolProviderKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkloadIdentityPoolProviderKey>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WorkloadIdentityPoolProviderKey>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkloadIdentityPoolProviderKey>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkloadIdentityPoolProviderKey>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all non-deleted WorkloadIdentityPoolProviderKeys in a project. If show_deleted is set to `true`, then deleted pools are also listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.keys.list({
+     *       // The maximum number of keys to return. If unspecified, all keys are returned. The maximum value is 10; values above 10 are truncated to 10.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListWorkloadIdentityPoolProviderKeys` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent provider resource to list encryption keys for.
+     *       parent:
+     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
+     *       // Whether to return soft deleted resources as well.
+     *       showDeleted: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workloadIdentityPoolProviderKeys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkloadIdentityPoolProviderKeysResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkloadIdentityPoolProviderKeysResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List,
+      callback: BodyResponseCallback<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List
+        | BodyResponseCallback<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkloadIdentityPoolProviderKeysResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/keys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkloadIdentityPoolProviderKeysResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkloadIdentityPoolProviderKeysResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Undeletes an WorkloadIdentityPoolProviderKey, as long as it was deleted fewer than 30 days ago.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.keys.undelete({
+     *       // Required. The name of the encryption key to undelete.
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider/keys/my-key',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    undelete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent provider resource to create the key in.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the key, which becomes the final component of the resource name. This value should be 4-32 characters, and may contain the characters [a-z0-9-].
+     */
+    workloadIdentityPoolProviderKeyId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkloadIdentityPoolProviderKey;
+  }
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the encryption key to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the key to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$List
+    extends StandardParameters {
+    /**
+     * The maximum number of keys to return. If unspecified, all keys are returned. The maximum value is 10; values above 10 are truncated to 10.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListWorkloadIdentityPoolProviderKeys` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent provider resource to list encryption keys for.
+     */
+    parent?: string;
+    /**
+     * Whether to return soft deleted resources as well.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The name of the encryption key to undelete.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteWorkloadIdentityPoolProviderKeyRequest;
   }
 
   export class Resource$Projects$Locations$Workloadidentitypools$Providers$Keys$Operations {

@@ -1031,6 +1031,10 @@ export namespace analyticsadmin_v1alpha {
      */
     bigqueryLink?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink;
     /**
+     * A snapshot of a ChannelGroup resource in change history.
+     */
+    channelGroup?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup;
+    /**
      * A snapshot of a ConversionEvent resource in change history.
      */
     conversionEvent?: Schema$GoogleAnalyticsAdminV1alphaConversionEvent;
@@ -1119,6 +1123,100 @@ export namespace analyticsadmin_v1alpha {
      * Email address of the Google account that made the change. This will be a valid email address if the actor field is set to USER, and empty otherwise. Google accounts that have been deleted will cause an error.
      */
     userActorEmail?: string | null;
+  }
+  /**
+   * A resource message representing a Channel Group.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroup {
+    /**
+     * The description of the Channel Group. Max length of 256 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the Channel Group. Max length of 80 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The grouping rules of channels. Maximum number of rules is 25.
+     */
+    groupingRule?: Schema$GoogleAnalyticsAdminV1alphaGroupingRule[];
+    /**
+     * Output only. The resource name for this Channel Group resource. Format: properties/{property\}/channelGroups/{channel_group\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Default Channel Group defined by Google, which cannot be updated.
+     */
+    systemDefined?: boolean | null;
+  }
+  /**
+   * A specific filter for a single dimension.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilter {
+    /**
+     * Required. Immutable. The dimension name to filter.
+     */
+    fieldName?: string | null;
+    /**
+     * A filter for a string dimension that matches a particular list of options.
+     */
+    inListFilter?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter;
+    /**
+     * A filter for a string-type dimension that matches a particular pattern.
+     */
+    stringFilter?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter;
+  }
+  /**
+   * A logical expression of Channel Group dimension filters.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression {
+    /**
+     * A list of expressions to be AND’ed together. It can only contain ChannelGroupFilterExpressions with or_group. This must be set for the top level ChannelGroupFilterExpression.
+     */
+    andGroup?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList;
+    /**
+     * A filter on a single dimension. This cannot be set on the top level ChannelGroupFilterExpression.
+     */
+    filter?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilter;
+    /**
+     * A filter expression to be NOT'ed (that is inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level ChannelGroupFilterExpression.
+     */
+    notExpression?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression;
+    /**
+     * A list of expressions to OR’ed together. It cannot contain ChannelGroupFilterExpressions with and_group or or_group.
+     */
+    orGroup?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList;
+  }
+  /**
+   * A list of Channel Group filter expressions.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList {
+    /**
+     * A list of Channel Group filter expressions.
+     */
+    filterExpressions?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression[];
+  }
+  /**
+   * A filter for a string dimension that matches a particular list of options. The match is case insensitive.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter {
+    /**
+     * Required. The list of possible string values to match against. Must be non-empty.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Filter where the field value is a String. The match is case insensitive.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter {
+    /**
+     * Required. The match type for the string filter.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The string value to be matched against.
+     */
+    value?: string | null;
   }
   /**
    * Configuration for a specific Connected Site Tag.
@@ -1226,7 +1324,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string | null;
     /**
-     * Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.
+     * Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. If this is an item-scoped dimension, then this is the parameter name found in the eCommerce items array. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.
      */
     parameterName?: string | null;
     /**
@@ -1552,7 +1650,7 @@ export namespace analyticsadmin_v1alpha {
      */
     description?: string | null;
     /**
-     * Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`.
+     * Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the chance of encountering `other` row.
      */
     dimensionFilterExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
     /**
@@ -1602,7 +1700,7 @@ export namespace analyticsadmin_v1alpha {
      */
     filter?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilter;
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression.
+     * A filter expression to be NOT'ed (that is, inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression.
      */
     notExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
   }
@@ -1744,6 +1842,19 @@ export namespace analyticsadmin_v1alpha {
     state?: string | null;
   }
   /**
+   * The rules that govern how traffic is grouped into one channel.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaGroupingRule {
+    /**
+     * Required. Customer defined display name for the channel.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The Filter Expression that defines the Grouping Rule.
+     */
+    expression?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression;
+  }
+  /**
    * Status information for a link proposal.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails {
@@ -1820,6 +1931,19 @@ export namespace analyticsadmin_v1alpha {
      * List of BigQueryLinks.
      */
     bigqueryLinks?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListChannelGroups RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse {
+    /**
+     * List of ChannelGroup. These will be ordered stably, but in an arbitrary order.
+     */
+    channelGroups?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -6757,6 +6881,7 @@ export namespace analyticsadmin_v1alpha {
     accessBindings: Resource$Properties$Accessbindings;
     audiences: Resource$Properties$Audiences;
     bigQueryLinks: Resource$Properties$Bigquerylinks;
+    channelGroups: Resource$Properties$Channelgroups;
     conversionEvents: Resource$Properties$Conversionevents;
     customDimensions: Resource$Properties$Customdimensions;
     customMetrics: Resource$Properties$Custommetrics;
@@ -6775,6 +6900,7 @@ export namespace analyticsadmin_v1alpha {
       );
       this.audiences = new Resource$Properties$Audiences(this.context);
       this.bigQueryLinks = new Resource$Properties$Bigquerylinks(this.context);
+      this.channelGroups = new Resource$Properties$Channelgroups(this.context);
       this.conversionEvents = new Resource$Properties$Conversionevents(
         this.context
       );
@@ -12211,6 +12337,798 @@ export namespace analyticsadmin_v1alpha {
      * Required. The name of the property to list BigQuery links under. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
+  }
+
+  export class Resource$Properties$Channelgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a ChannelGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.channelGroups.create({
+     *     // Required. The property for which to create a ChannelGroup. Example format: properties/1234
+     *     parent: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "groupingRule": [],
+     *       //   "name": "my_name",
+     *       //   "systemDefined": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "groupingRule": [],
+     *   //   "name": "my_name",
+     *   //   "systemDefined": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Channelgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>;
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/channelGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a ChannelGroup on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.channelGroups.delete({
+     *     // Required. The ChannelGroup to delete. Example format: properties/1234/channelGroups/5678
+     *     name: 'properties/my-propertie/channelGroups/my-channelGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Channelgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lookup for a single ChannelGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.channelGroups.get({
+     *     // Required. The ChannelGroup to get. Example format: properties/1234/channelGroups/5678
+     *     name: 'properties/my-propertie/channelGroups/my-channelGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "groupingRule": [],
+     *   //   "name": "my_name",
+     *   //   "systemDefined": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Channelgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>;
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists ChannelGroups on a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.channelGroups.list({
+     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListChannelGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChannelGroups` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The property for which to list ChannelGroups. Example format: properties/1234
+     *     parent: 'properties/my-propertie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "channelGroups": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Channelgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>;
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/channelGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ChannelGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.channelGroups.patch({
+     *     // Output only. The resource name for this Channel Group resource. Format: properties/{property\}/channelGroups/{channel_group\}
+     *     name: 'properties/my-propertie/channelGroups/my-channelGroup',
+     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "groupingRule": [],
+     *       //   "name": "my_name",
+     *       //   "systemDefined": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "groupingRule": [],
+     *   //   "name": "my_name",
+     *   //   "systemDefined": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Channelgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>;
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Channelgroups$Create
+    extends StandardParameters {
+    /**
+     * Required. The property for which to create a ChannelGroup. Example format: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup;
+  }
+  export interface Params$Resource$Properties$Channelgroups$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ChannelGroup to delete. Example format: properties/1234/channelGroups/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Channelgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The ChannelGroup to get. Example format: properties/1234/channelGroups/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Channelgroups$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListChannelGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChannelGroups` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The property for which to list ChannelGroups. Example format: properties/1234
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Channelgroups$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name for this Channel Group resource. Format: properties/{property\}/channelGroups/{channel_group\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup;
   }
 
   export class Resource$Properties$Conversionevents {
@@ -18665,7 +19583,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.expandedDataSets.get({
-     *     // Required. The name of the Audience to get. Example format: properties/1234/expandedDataSets/5678
+     *     // Required. The name of the ExpandedDataSet to get. Example format: properties/1234/expandedDataSets/5678
      *     name: 'properties/my-propertie/expandedDataSets/my-expandedDataSet',
      *   });
      *   console.log(res.data);
@@ -19108,7 +20026,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Expandeddatasets$Get
     extends StandardParameters {
     /**
-     * Required. The name of the Audience to get. Example format: properties/1234/expandedDataSets/5678
+     * Required. The name of the ExpandedDataSet to get. Example format: properties/1234/expandedDataSets/5678
      */
     name?: string;
   }

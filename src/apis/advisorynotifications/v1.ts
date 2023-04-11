@@ -223,6 +223,10 @@ export namespace advisorynotifications_v1 {
      */
     name?: string | null;
     /**
+     * Type of notification
+     */
+    notificationType?: string | null;
+    /**
      * The subject line of the notification.
      */
     subject?: Schema$GoogleCloudAdvisorynotificationsV1Subject;
@@ -320,6 +324,7 @@ export namespace advisorynotifications_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "messages": [],
      *   //   "name": "my_name",
+     *   //   "notificationType": "my_notificationType",
      *   //   "subject": {}
      *   // }
      * }

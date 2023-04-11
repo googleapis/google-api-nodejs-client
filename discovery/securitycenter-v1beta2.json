@@ -1981,7 +1981,7 @@
       }
     }
   },
-  "revision": "20230126",
+  "revision": "20230330",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2069,20 +2069,36 @@
       },
       "type": "object"
     },
-    "AssociatedFinding": {
-      "description": "A finding that is associated with this node in the exposure path.",
-      "id": "AssociatedFinding",
+    "CloudDlpDataProfile": {
+      "description": "The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.",
+      "id": "CloudDlpDataProfile",
       "properties": {
-        "canonicalFindingName": {
-          "description": "Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789",
+        "dataProfile": {
+          "description": "Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudDlpInspection": {
+      "description": "Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.",
+      "id": "CloudDlpInspection",
+      "properties": {
+        "fullScan": {
+          "description": "Whether Cloud DLP scanned the complete resource or a sampled subset.",
+          "type": "boolean"
+        },
+        "infoType": {
+          "description": "The [type of information](https://cloud.google.com/dlp/docs/infotypes-reference) found, for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.",
           "type": "string"
         },
-        "findingCategory": {
-          "description": "The additional taxonomy group within findings from a given source.",
+        "infoTypeCount": {
+          "description": "The number of times Cloud DLP found this infoType within this job and resource.",
+          "format": "int64",
           "type": "string"
         },
-        "name": {
-          "description": "Full resource name of the finding.",
+        "inspectJob": {
+          "description": "Name of the inspection job, for example, `projects/123/locations/europe/dlpJobs/i-8383929`.",
           "type": "string"
         }
       },
@@ -2495,14 +2511,16 @@
             "STANDARD",
             "TRIAL",
             "ALPHA",
-            "DEMO"
+            "DEMO",
+            "PAY_AS_YOU_GO"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The standard subscription.",
             "The trial subscription.",
             "The alpha subscription.",
-            "The demo subscription for channel partners."
+            "The demo subscription for channel partners.",
+            "Pay-as-you-go subscription."
           ],
           "type": "string"
         }
@@ -2521,21 +2539,6 @@
           "description": "The percentage of memory page hashes in the signature that were matched.",
           "format": "double",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "Edge": {
-      "description": "Represents a connection between a source node and a destination node in this exposure path.",
-      "id": "Edge",
-      "properties": {
-        "destination": {
-          "description": "This is the resource name of the destination node.",
-          "type": "string"
-        },
-        "source": {
-          "description": "This is the resource name of the source node.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -2683,6 +2686,14 @@
           "description": "The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
         },
+        "cloudDlpDataProfile": {
+          "$ref": "CloudDlpDataProfile",
+          "description": "Cloud DLP data profile associated with the finding."
+        },
+        "cloudDlpInspection": {
+          "$ref": "CloudDlpInspection",
+          "description": "Cloud DLP inspection associated with the finding."
+        },
         "compliances": {
           "description": "Contains compliance information for security standards associated to the finding.",
           "items": {
@@ -2795,6 +2806,10 @@
         "mitreAttack": {
           "$ref": "MitreAttack",
           "description": "MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org"
+        },
+        "moduleName": {
+          "description": "Unique identifier of the module which generated the finding. Example: folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885",
+          "type": "string"
         },
         "mute": {
           "description": "Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.",
@@ -3004,81 +3019,6 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudSecuritycenterV1ExposedResource": {
-      "description": "A resource that is exposed as a result of a finding.",
-      "id": "GoogleCloudSecuritycenterV1ExposedResource",
-      "properties": {
-        "displayName": {
-          "description": "Human readable name of the resource that is exposed.",
-          "type": "string"
-        },
-        "methods": {
-          "description": "The ways in which this resource is exposed. Examples: Read, Write",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "name": {
-          "description": "Exposed Resource Name e.g.: `organizations/123/attackExposureResults/456/exposedResources/789`",
-          "type": "string"
-        },
-        "resource": {
-          "description": "The name of the resource that is exposed. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
-          "type": "string"
-        },
-        "resourceType": {
-          "description": "The resource type of the exposed resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types",
-          "type": "string"
-        },
-        "resourceValue": {
-          "description": "How valuable this resource is.",
-          "enum": [
-            "RESOURCE_VALUE_UNSPECIFIED",
-            "RESOURCE_VALUE_LOW",
-            "RESOURCE_VALUE_MEDIUM",
-            "RESOURCE_VALUE_HIGH"
-          ],
-          "enumDescriptions": [
-            "The resource value isn't specified.",
-            "This is a low value resource.",
-            "This is a medium value resource.",
-            "This is a high value resource."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudSecuritycenterV1ExposurePath": {
-      "description": "A path that an attacker could take to reach an exposed resource.",
-      "id": "GoogleCloudSecuritycenterV1ExposurePath",
-      "properties": {
-        "edges": {
-          "description": "A list of the edges between nodes in this exposure path.",
-          "items": {
-            "$ref": "Edge"
-          },
-          "type": "array"
-        },
-        "exposedResource": {
-          "$ref": "GoogleCloudSecuritycenterV1ExposedResource",
-          "description": "The leaf node of this exposure path."
-        },
-        "name": {
-          "description": "Exposure Path Name e.g.: `organizations/123/attackExposureResults/456/exposurePaths/789`",
-          "type": "string"
-        },
-        "pathNodes": {
-          "description": "A list of nodes that exist in this exposure path.",
-          "items": {
-            "$ref": "PathNode"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudSecuritycenterV1ExternalSystem": {
       "description": "Representation of third party SIEM/SOAR fields within SCC.",
       "id": "GoogleCloudSecuritycenterV1ExternalSystem",
@@ -3208,50 +3148,6 @@
         "type": {
           "description": "The full resource type of the resource.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudSecuritycenterV1ResourceValueConfig": {
-      "description": "A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.",
-      "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
-      "properties": {
-        "name": {
-          "description": "Name for the resource value config",
-          "type": "string"
-        },
-        "resourceType": {
-          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with \"AND\" of other resources. E.g. \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
-          "type": "string"
-        },
-        "resourceValue": {
-          "description": "Required. Resource value level this expression represents",
-          "enum": [
-            "RESOURCE_VALUE_UNSPECIFIED",
-            "HIGH",
-            "MEDIUM",
-            "LOW",
-            "NONE"
-          ],
-          "enumDescriptions": [
-            "Unspecific value",
-            "High resource value",
-            "Medium resource value",
-            "Low resource value",
-            "No resource value, e.g. ignore these resources"
-          ],
-          "type": "string"
-        },
-        "scope": {
-          "description": "Project or folder to scope this config to. For example, \"project/456\" would apply this config only to resources in \"project/456\" scope will be checked with \"AND\" of other resources.",
-          "type": "string"
-        },
-        "tagValues": {
-          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" E.g. [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -4010,32 +3906,6 @@
             "This resource is onboarded at the project level. Only possible for projects.",
             "This resource is onboarded at the organization level. Possible for organizations, folders, and projects."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PathNode": {
-      "description": "Represents one point that an attacker passes through in this exposure path.",
-      "id": "PathNode",
-      "properties": {
-        "associatedFindings": {
-          "description": "The findings associated with this node in the exposure path.",
-          "items": {
-            "$ref": "AssociatedFinding"
-          },
-          "type": "array"
-        },
-        "displayName": {
-          "description": "Human readable name of this resource.",
-          "type": "string"
-        },
-        "resource": {
-          "description": "The name of the resource at this point in the exposure path. The format of the name is: https://cloud.google.com/apis/design/resource_names#full_resource_name",
-          "type": "string"
-        },
-        "resourceType": {
-          "description": "The resource type of this resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types",
           "type": "string"
         }
       },

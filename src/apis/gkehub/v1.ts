@@ -1669,7 +1669,7 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ServiceMeshMembershipSpec {
     /**
-     * Enables automatic control plane management.
+     * Deprecated: use `management` instead Enables automatic control plane management.
      */
     controlPlane?: string | null;
     /**

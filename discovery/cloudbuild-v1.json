@@ -2295,7 +2295,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230330",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3687,7 +3687,7 @@
             "GITLAB"
           ],
           "enumDescriptions": [
-            "The default, unknown repo type.",
+            "The default, unknown repo type. Don't use it, instead use one of the other repo types.",
             "A Google Cloud Source Repositories-hosted repo.",
             "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise).",
             "A Bitbucket Server-hosted repo.",
@@ -4024,7 +4024,7 @@
             "GITLAB"
           ],
           "enumDescriptions": [
-            "The default, unknown repo type.",
+            "The default, unknown repo type. Don't use it, instead use one of the other repo types.",
             "A Google Cloud Source Repositories-hosted repo.",
             "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise).",
             "A Bitbucket Server-hosted repo.",

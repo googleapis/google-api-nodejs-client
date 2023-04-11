@@ -190,6 +190,10 @@ export namespace workflowexecutions_v1 {
      */
     state?: string | null;
     /**
+     * Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the Execution data is unavailable due to revoked KMS key permissions.
+     */
+    stateError?: Schema$StateError;
+    /**
      * Output only. Status tracks the current steps and progress data of this execution.
      */
     status?: Schema$Status;
@@ -278,6 +282,19 @@ export namespace workflowexecutions_v1 {
      * The step the error occurred at.
      */
     step?: string | null;
+  }
+  /**
+   * Describes an error related to the current state of the Execution resource.
+   */
+  export interface Schema$StateError {
+    /**
+     * Provides specifics about the error.
+     */
+    details?: string | null;
+    /**
+     * The type of this state error.
+     */
+    type?: string | null;
   }
   /**
    * Represents the current status of this execution.
@@ -405,6 +422,7 @@ export namespace workflowexecutions_v1 {
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "stateError": {},
      *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
@@ -576,6 +594,7 @@ export namespace workflowexecutions_v1 {
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "stateError": {},
      *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
@@ -716,6 +735,7 @@ export namespace workflowexecutions_v1 {
      *         //   "result": "my_result",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
+     *         //   "stateError": {},
      *         //   "status": {},
      *         //   "workflowRevisionId": "my_workflowRevisionId"
      *         // }
@@ -735,6 +755,7 @@ export namespace workflowexecutions_v1 {
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "stateError": {},
      *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }
@@ -880,6 +901,7 @@ export namespace workflowexecutions_v1 {
      *   //   "result": "my_result",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
+     *   //   "stateError": {},
      *   //   "status": {},
      *   //   "workflowRevisionId": "my_workflowRevisionId"
      *   // }

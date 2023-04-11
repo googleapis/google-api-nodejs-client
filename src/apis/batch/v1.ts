@@ -240,6 +240,10 @@ export namespace batch_v1 {
      * Task name.
      */
     task?: string | null;
+    /**
+     * TaskSource represents the source of the task.
+     */
+    taskSource?: string | null;
   }
   /**
    * Task Info

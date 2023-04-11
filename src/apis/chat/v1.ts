@@ -552,7 +552,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * Represents the complete border style applied to items in a widget.
+   * The style options for the border of a card or widget, including the border type and color.
    */
   export interface Schema$GoogleAppsCardV1BorderStyle {
     /**
@@ -1039,7 +1039,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1TextInput {
     /**
-     * Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. Supported by Google Workspace Add-ons, but not Chat apps. Support by Chat apps coming soon.
+     * Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. Supported by Google Workspace Add-ons, but not Chat apps.
      */
     autoCompleteAction?: Schema$GoogleAppsCardV1Action;
     /**

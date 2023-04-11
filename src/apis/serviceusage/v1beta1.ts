@@ -422,7 +422,7 @@ export namespace serviceusage_v1beta1 {
      */
     rubySettings?: Schema$RubySettings;
     /**
-     * Version of the API to apply these settings to.
+     * Version of the API to apply these settings to. This is the full protobuf package for the API, ending in the version element. Examples: "google.cloud.speech.v1" and "google.spanner.admin.database.v1".
      */
     version?: string | null;
   }
@@ -438,6 +438,31 @@ export namespace serviceusage_v1beta1 {
      * Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest
      */
     referenceDocsUri?: string | null;
+  }
+  /**
+   * Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.
+   */
+  export interface Schema$ConsumerPolicy {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Enable rules define usable services and service groups.
+     */
+    enableRules?: Schema$EnableRule[];
+    /**
+     * An opaque tag indicating the current version of the policy, used for concurrency control.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the policy. For example, `projects/12345/consumerPolicy`, `folders/12345/consumerPolicy`, `organizations/12345/consumerPolicy`.
+     */
+    name?: string | null;
+    /**
+     * The last-modified time.
+     */
+    updateTime?: string | null;
   }
   /**
    * Consumer quota settings for a quota limit.
@@ -667,6 +692,26 @@ export namespace serviceusage_v1beta1 {
      * Some settings.
      */
     common?: Schema$CommonLanguageSettings;
+    /**
+     * Namespaces which must be aliased in snippets due to a known (but non-generator-predictable) naming collision
+     */
+    forcedNamespaceAliases?: string[] | null;
+    /**
+     * Method signatures (in the form "service.method(signature)") which are provided separately, so shouldn't be generated. Snippets *calling* these methods are still generated, however.
+     */
+    handwrittenSignatures?: string[] | null;
+    /**
+     * List of full resource types to ignore during generation. This is typically used for API-specific Location resources, which should be handled by the generator as if they were actually the common Location resources. Example entry: "documentai.googleapis.com/Location"
+     */
+    ignoredResources?: string[] | null;
+    /**
+     * Map from full resource types to the effective short name for the resource. This is used when otherwise resource named from different services would cause naming collisions. Example entry: "datalabeling.googleapis.com/Dataset": "DataLabelingDataset"
+     */
+    renamedResources?: {[key: string]: string} | null;
+    /**
+     * Map from original service names to renamed versions. This is used when the default generated types would cause a naming conflict. (Neither name is fully-qualified.) Example: Subscriber to SubscriberServiceApi.
+     */
+    renamedServices?: {[key: string]: string} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -684,6 +729,27 @@ export namespace serviceusage_v1beta1 {
      * The service id of a service that could not be enabled.
      */
     serviceId?: string | null;
+  }
+  /**
+   * The consumer policy rule that defines usable services and service groups.
+   */
+  export interface Schema$EnableRule {
+    /**
+     * Client and resource project enable type.
+     */
+    enableType?: string | null;
+    /**
+     * DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). go/predefined-service-groups. Example: `groups/googleServices`.
+     */
+    groups?: string[] | null;
+    /**
+     * DEPRECATED: Please use field `values`. Service should have prefix `services/`. The names of the services that are enabled. Example: `storage.googleapis.com`.
+     */
+    services?: string[] | null;
+    /**
+     * The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, groups/googleServices`, groups/allServices`.
+     */
+    values?: string[] | null;
   }
   /**
    * Request message for the `EnableService` method.
@@ -1411,7 +1477,7 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$MethodSettings {
     /**
-     * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_behavior: - selector: CreateAdDomain long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
+     * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
      */
     longRunning?: Schema$LongRunning;
     /**
@@ -1499,7 +1565,7 @@ export namespace serviceusage_v1beta1 {
     selector?: string | null;
   }
   /**
-   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**\}:getAcl"; \} \} package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**\}"; \} \} Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**\}:getAcl"; \} ... \} Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**\}:getAcl"; \} ... \}
+   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**\}:getAcl"; \} \} package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**\}"; \} \} Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**\}:getAcl"; \} ... \} Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**\}:getAcl"; \} ... \}
    */
   export interface Schema$Mixin {
     /**
@@ -1699,7 +1765,7 @@ export namespace serviceusage_v1beta1 {
      */
     methodSettings?: Schema$MethodSettings[];
     /**
-     * Link to a place that API users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103
+     * Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103
      */
     newIssueUri?: string | null;
     /**
@@ -2035,6 +2101,10 @@ export namespace serviceusage_v1beta1 {
    * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by UpdateAdminQuotaPolicy.
    */
   export interface Schema$UpdateAdminQuotaPolicyMetadata {}
+  /**
+   * Metadata for the `UpdateConsumerPolicyLRO` method.
+   */
+  export interface Schema$UpdateConsumerPolicyLROMetadata {}
   /**
    * Configuration controlling usage of a service.
    */

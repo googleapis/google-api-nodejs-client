@@ -247,6 +247,19 @@ export namespace workflows_v1 {
     verb?: string | null;
   }
   /**
+   * Describes an error related to the current state of the workflow.
+   */
+  export interface Schema$StateError {
+    /**
+     * Provides specifics about the error.
+     */
+    details?: string | null;
+    /**
+     * The type of this state error.
+     */
+    type?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -268,9 +281,17 @@ export namespace workflows_v1 {
    */
   export interface Schema$Workflow {
     /**
+     * Optional. Describes the level of platform logging to apply to calls and call responses during executions of this workflow. If both the workflow and the execution specify a logging level, the execution level takes precedence.
+     */
+    callLogLevel?: string | null;
+    /**
      * Output only. The timestamp for when the workflow was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The resource name of a KMS crypto key used to encrypt or decrypt the data associated with the workflow. Format: projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{cryptoKey\} Using `-` as a wildcard for the `{project\}` or not providing one at all will infer the project from the account. If not provided, data associated with the workflow will not be CMEK-encrypted.
+     */
+    cryptoKeyName?: string | null;
     /**
      * Description of the workflow provided by the user. Must be at most 1000 unicode characters long.
      */
@@ -303,6 +324,10 @@ export namespace workflows_v1 {
      * Output only. State of the workflow deployment.
      */
     state?: string | null;
+    /**
+     * Output only. Error regarding the state of the workflow. For example, this field will have error details if the execution data is unavailable due to revoked KMS key permissions.
+     */
+    stateError?: Schema$StateError;
     /**
      * Output only. The timestamp for when the workflow was last updated.
      */
@@ -1107,7 +1132,9 @@ export namespace workflows_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "callLogLevel": "my_callLogLevel",
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyName": "my_cryptoKeyName",
      *       //   "description": "my_description",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -1116,6 +1143,7 @@ export namespace workflows_v1 {
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sourceContents": "my_sourceContents",
      *       //   "state": "my_state",
+     *       //   "stateError": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1389,7 +1417,9 @@ export namespace workflows_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "callLogLevel": "my_callLogLevel",
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "description": "my_description",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -1398,6 +1428,7 @@ export namespace workflows_v1 {
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sourceContents": "my_sourceContents",
      *   //   "state": "my_state",
+     *   //   "stateError": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1670,7 +1701,9 @@ export namespace workflows_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "callLogLevel": "my_callLogLevel",
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyName": "my_cryptoKeyName",
      *       //   "description": "my_description",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -1679,6 +1712,7 @@ export namespace workflows_v1 {
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sourceContents": "my_sourceContents",
      *       //   "state": "my_state",
+     *       //   "stateError": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },

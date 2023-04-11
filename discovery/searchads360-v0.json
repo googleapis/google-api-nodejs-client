@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20221208",
+  "revision": "20230405",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AgeRangeInfo": {
@@ -963,6 +963,11 @@
           "description": "Biddable conversions value by conversion date divided by biddable conversions by conversion date. Shows how much, on average, each of the biddable conversions is worth (by conversion date). When this column is selected with date, the values in date column means the conversion date.",
           "format": "double",
           "type": "number"
+        },
+        "visits": {
+          "description": "Clicks that Search Ads 360 has successfully recorded and forwarded to an advertiser's landing page.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -1209,6 +1214,45 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Common__TargetRestriction": {
+      "description": "The list of per-targeting-dimension targeting settings.",
+      "id": "GoogleAdsSearchads360V0Common__TargetRestriction",
+      "properties": {
+        "bidOnly": {
+          "description": "Indicates whether to restrict your ads to show only for the criteria you have selected for this targeting_dimension, or to target all values for this targeting_dimension and show ads based on your targeting in other TargetingDimensions. A value of `true` means that these criteria will only apply bid modifiers, and not affect targeting. A value of `false` means that these criteria will restrict targeting as well as applying bid modifiers.",
+          "type": "boolean"
+        },
+        "targetingDimension": {
+          "description": "The targeting dimension that these settings apply to.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "KEYWORD",
+            "AUDIENCE",
+            "TOPIC",
+            "GENDER",
+            "AGE_RANGE",
+            "PLACEMENT",
+            "PARENTAL_STATUS",
+            "INCOME_RANGE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Keyword criteria, for example, 'mars cruise'. KEYWORD may be used as a custom bid dimension. Keywords are always a targeting dimension, so may not be set as a target \"ALL\" dimension with TargetRestriction.",
+            "Audience criteria, which include user list, user interest, custom affinity, and custom in market.",
+            "Topic criteria for targeting categories of content, for example, 'category::Animals>Pets' Used for Display and Video targeting.",
+            "Criteria for targeting gender.",
+            "Criteria for targeting age ranges.",
+            "Placement criteria, which include websites like 'www.flowers4sale.com', as well as mobile applications, mobile app categories, YouTube videos, and YouTube channels.",
+            "Criteria for parental status targeting.",
+            "Criteria for income range targeting."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Common__TargetRoas": {
       "description": "An automated bidding strategy that helps you maximize revenue while averaging a specific target return on ad spend (ROAS).",
       "id": "GoogleAdsSearchads360V0Common__TargetRoas",
@@ -1243,6 +1287,46 @@
         "targetSpendMicros": {
           "description": "The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__TargetingSetting": {
+      "description": "Settings for the targeting-related features, at the campaign and ad group levels. For more details about the targeting setting, visit https://support.google.com/google-ads/answer/7365594",
+      "id": "GoogleAdsSearchads360V0Common__TargetingSetting",
+      "properties": {
+        "targetRestrictions": {
+          "description": "The per-targeting-dimension setting to restrict the reach of your campaign or ad group.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__TargetRestriction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__TextLabel": {
+      "description": "A type of label displaying text on a colored background.",
+      "id": "GoogleAdsSearchads360V0Common__TextLabel",
+      "properties": {
+        "backgroundColor": {
+          "description": "Background color of the label in RGB format. This string must match the regular expression '^\\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$'. Note: The background color may not be visible for manager accounts.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A short description of the label. The length must be no more than 200 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__UserListInfo": {
+      "description": "A User List criterion. Represents a user list that is defined by the advertiser to be targeted.",
+      "id": "GoogleAdsSearchads360V0Common__UserListInfo",
+      "properties": {
+        "userList": {
+          "description": "The User List resource name.",
           "type": "string"
         }
       },
@@ -1686,14 +1770,12 @@
             "UNSPECIFIED",
             "UNKNOWN",
             "RESOURCE_EXHAUSTED",
-            "ACCESS_PROHIBITED",
             "RESOURCE_TEMPORARILY_EXHAUSTED"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
             "The received error code is not known in this version.",
             "Too many requests.",
-            "Access is prohibited.",
             "Too many requests in a short amount of time."
           ],
           "type": "string"
@@ -2165,6 +2247,113 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__Ad": {
+      "description": "An ad.",
+      "id": "GoogleAdsSearchads360V0Resources__Ad",
+      "properties": {
+        "displayUrl": {
+          "description": "The URL that appears in the ad description for some ad formats.",
+          "type": "string"
+        },
+        "finalUrls": {
+          "description": "The list of possible final URLs after all cross-domain redirects for the ad.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Output only. The ID of the ad.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The name of the ad. This is only used to be able to identify the ad. It does not need to be unique and does not affect the served ad. The name field is currently only supported for DisplayUploadAd, ImageAd, ShoppingComparisonListingAd and VideoAd.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad. Ad resource names have the form: `customers/{customer_id}/ads/{ad_id}`",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of ad.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "TEXT_AD",
+            "EXPANDED_TEXT_AD",
+            "CALL_ONLY_AD",
+            "EXPANDED_DYNAMIC_SEARCH_AD",
+            "HOTEL_AD",
+            "SHOPPING_SMART_AD",
+            "SHOPPING_PRODUCT_AD",
+            "VIDEO_AD",
+            "GMAIL_AD",
+            "IMAGE_AD",
+            "RESPONSIVE_SEARCH_AD",
+            "LEGACY_RESPONSIVE_DISPLAY_AD",
+            "APP_AD",
+            "LEGACY_APP_INSTALL_AD",
+            "RESPONSIVE_DISPLAY_AD",
+            "LOCAL_AD",
+            "HTML5_UPLOAD_AD",
+            "DYNAMIC_HTML5_AD",
+            "APP_ENGAGEMENT_AD",
+            "SHOPPING_COMPARISON_LISTING_AD",
+            "VIDEO_BUMPER_AD",
+            "VIDEO_NON_SKIPPABLE_IN_STREAM_AD",
+            "VIDEO_OUTSTREAM_AD",
+            "VIDEO_TRUEVIEW_DISCOVERY_AD",
+            "VIDEO_TRUEVIEW_IN_STREAM_AD",
+            "VIDEO_RESPONSIVE_AD",
+            "SMART_CAMPAIGN_AD",
+            "APP_PRE_REGISTRATION_AD",
+            "DISCOVERY_MULTI_ASSET_AD",
+            "DISCOVERY_CAROUSEL_AD",
+            "TRAVEL_AD"
+          ],
+          "enumDescriptions": [
+            "No value has been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The ad is a text ad.",
+            "The ad is an expanded text ad.",
+            "The ad is a call only ad.",
+            "The ad is an expanded dynamic search ad.",
+            "The ad is a hotel ad.",
+            "The ad is a Smart Shopping ad.",
+            "The ad is a standard Shopping ad.",
+            "The ad is a video ad.",
+            "This ad is a Gmail ad.",
+            "This ad is an Image ad.",
+            "The ad is a responsive search ad.",
+            "The ad is a legacy responsive display ad.",
+            "The ad is an app ad.",
+            "The ad is a legacy app install ad.",
+            "The ad is a responsive display ad.",
+            "The ad is a local ad.",
+            "The ad is a display upload ad with the HTML5_UPLOAD_AD product type.",
+            "The ad is a display upload ad with one of the DYNAMIC_HTML5_* product types.",
+            "The ad is an app engagement ad.",
+            "The ad is a Shopping Comparison Listing ad.",
+            "Video bumper ad.",
+            "Video non-skippable in-stream ad.",
+            "Video outstream ad.",
+            "Video TrueView in-display ad.",
+            "Video TrueView in-stream ad.",
+            "Video responsive ad.",
+            "Smart campaign ad.",
+            "Universal app pre-registration ad.",
+            "Discovery multi asset ad.",
+            "Discovery carousel ad.",
+            "Travel ad."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__AdGroup": {
       "description": "An ad group.",
       "id": "GoogleAdsSearchads360V0Resources__AdGroup",
@@ -2190,9 +2379,73 @@
           "format": "int64",
           "type": "string"
         },
+        "creationTime": {
+          "description": "Output only. The timestamp when this ad_group was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endDate": {
+          "description": "Output only. Date when the ad group ends serving ads. By default, the ad group ends on the ad group's end date. If this field is set, then the ad group ends at the end of the specified date in the customer's time zone. This field is only available for Microsoft Advertising and Facebook gateway accounts. Format: YYYY-MM-DD Example: 2019-03-14",
+          "readOnly": true,
+          "type": "string"
+        },
+        "engineId": {
+          "description": "Output only. ID of the ad group in the external engine account. This field is for non-Google Ads account only, for example, Yahoo Japan, Microsoft, Baidu etc. For Google Ads entity, use \"ad_group.id\" instead.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "engineStatus": {
+          "description": "Output only. The Engine Status for ad group.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "AD_GROUP_ELIGIBLE",
+            "AD_GROUP_EXPIRED",
+            "AD_GROUP_REMOVED",
+            "AD_GROUP_DRAFT",
+            "AD_GROUP_PAUSED",
+            "AD_GROUP_SERVING",
+            "AD_GROUP_SUBMITTED",
+            "CAMPAIGN_PAUSED",
+            "ACCOUNT_PAUSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Deprecated. Do not use.",
+            "No ads are running for this ad group, because the ad group's end date has passed.",
+            "The ad group has been deleted.",
+            "No ads are running for this ad group because the associated ad group is still in draft form.",
+            "The ad group has been paused.",
+            "The ad group is active and currently serving ads.",
+            "The ad group has been submitted (Microsoft Bing Ads legacy status).",
+            "No ads are running for this ad group, because the campaign has been paused.",
+            "No ads are running for this ad group, because the account has been paused."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "description": "Output only. The ID of the ad group.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "description": "Output only. The resource names of labels attached to this ad group.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "languageCode": {
+          "description": "Output only. The language of the ads and keywords in an ad group. This field is only available for Microsoft Advertising accounts. More details: https://docs.microsoft.com/en-us/advertising/guides/ad-languages?view=bingads-13#adlanguage",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastModifiedTime": {
+          "description": "Output only. The datetime when this ad group was last modified. The datetime is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss.ssssss\" format.",
           "readOnly": true,
           "type": "string"
         },
@@ -2202,6 +2455,11 @@
         },
         "resourceName": {
           "description": "Immutable. The resource name of the ad group. Ad group resource names have the form: `customers/{customer_id}/adGroups/{ad_group_id}`",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "Output only. Date when this ad group starts serving ads. By default, the ad group starts now or the ad group's start date, whichever is later. If this field is set, then the ad group starts at the beginning of the specified date in the customer's time zone. This field is only available for Microsoft Advertising and Facebook gateway accounts. Format: YYYY-MM-DD Example: 2019-03-14",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
@@ -2221,6 +2479,10 @@
             "The ad group is removed."
           ],
           "type": "string"
+        },
+        "targetingSetting": {
+          "$ref": "GoogleAdsSearchads360V0Common__TargetingSetting",
+          "description": "Setting for targeting related features."
         },
         "type": {
           "description": "Immutable. The type of the ad group.",
@@ -2243,7 +2505,8 @@
             "PROMOTED_HOTEL_ADS",
             "VIDEO_RESPONSIVE",
             "VIDEO_EFFICIENT_REACH",
-            "SMART_CAMPAIGN_ADS"
+            "SMART_CAMPAIGN_ADS",
+            "TRAVEL_ADS"
           ],
           "enumDescriptions": [
             "The type has not been specified.",
@@ -2264,8 +2527,143 @@
             "The ad group type for Promoted Hotel ad groups.",
             "Video responsive ad groups.",
             "Video efficient reach ad groups.",
-            "Ad group type for Smart campaigns."
+            "Ad group type for Smart campaigns.",
+            "Ad group type for Travel campaigns."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupAd": {
+      "description": "An ad group ad.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupAd",
+      "properties": {
+        "ad": {
+          "$ref": "GoogleAdsSearchads360V0Resources__Ad",
+          "description": "Immutable. The ad."
+        },
+        "creationTime": {
+          "description": "Output only. The timestamp when this ad_group_ad was created. The datetime is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss.ssssss\" format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "engineId": {
+          "description": "Output only. ID of the ad in the external engine account. This field is for SearchAds 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-SearchAds 360 entity, use \"ad_group_ad.ad.id\" instead.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "engineStatus": {
+          "description": "Output only. Additional status of the ad in the external engine account. Possible statuses (depending on the type of external account) include active, eligible, pending review, etc.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "AD_GROUP_AD_ELIGIBLE",
+            "AD_GROUP_AD_INAPPROPRIATE_FOR_CAMPAIGN",
+            "AD_GROUP_AD_MOBILE_URL_UNDER_REVIEW",
+            "AD_GROUP_AD_PARTIALLY_INVALID",
+            "AD_GROUP_AD_TO_BE_ACTIVATED",
+            "AD_GROUP_AD_NOT_REVIEWED",
+            "AD_GROUP_AD_ON_HOLD",
+            "AD_GROUP_AD_PAUSED",
+            "AD_GROUP_AD_REMOVED",
+            "AD_GROUP_AD_PENDING_REVIEW",
+            "AD_GROUP_AD_UNDER_REVIEW",
+            "AD_GROUP_AD_APPROVED",
+            "AD_GROUP_AD_DISAPPROVED",
+            "AD_GROUP_AD_SERVING",
+            "AD_GROUP_AD_ACCOUNT_PAUSED",
+            "AD_GROUP_AD_CAMPAIGN_PAUSED",
+            "AD_GROUP_AD_AD_GROUP_PAUSED"
+          ],
+          "enumDescriptions": [
+            "No value has been specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Deprecated. Do not use.",
+            "Baidu: Creative was not approved.",
+            "Baidu: Mobile URL in process to be reviewed.",
+            "Baidu: Creative is invalid on mobile device but valid on desktop.",
+            "Baidu: Creative is ready for activation.",
+            "Baidu: Creative not reviewed.",
+            "Deprecated. Do not use. Previously used by Gemini",
+            "Creative has been paused.",
+            "Creative has been removed.",
+            "Creative is pending review.",
+            "Creative is under review.",
+            "Creative has been approved.",
+            "Creative has been disapproved.",
+            "Creative is serving.",
+            "Creative has been paused because the account is paused.",
+            "Creative has been paused because the campaign is paused.",
+            "Creative has been paused because the ad group is paused."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "description": "Output only. The resource names of labels attached to this ad group ad.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "lastModifiedTime": {
+          "description": "Output only. The datetime when this ad group ad was last modified. The datetime is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss.ssssss\" format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad. Ad group ad resource names have the form: `customers/{customer_id}/adGroupAds/{ad_group_id}~{ad_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the ad.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "PAUSED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "No value has been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The ad group ad is enabled.",
+            "The ad group ad is paused.",
+            "The ad group ad is removed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupAdLabel": {
+      "description": "A relationship between an ad group ad and a label.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupAdLabel",
+      "properties": {
+        "adGroupAd": {
+          "description": "Immutable. The ad group ad to which the label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The label assigned to the ad group ad.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group ad label. Ad group ad label resource names have the form: `customers/{customer_id}/adGroupAdLabels/{ad_group_id}~{ad_id}~{label_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupAudienceView": {
+      "description": "An ad group audience view. Includes performance data from interests and remarketing lists for Display Network and YouTube Network ads, and remarketing lists for search ads (RLSA), aggregated at the audience level.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupAudienceView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the ad group audience view. Ad group audience view resource names have the form: `customers/{customer_id}/adGroupAudienceViews/{ad_group_id}~{criterion_id}`",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2279,6 +2677,10 @@
           "description": "The modifier for the bid when the criterion matches. The modifier must be in the range: 0.1 - 10.0. The range is 1.0 - 6.0 for PreferredContent. Use 0 to opt out of a Device type.",
           "format": "double",
           "type": "number"
+        },
+        "device": {
+          "$ref": "GoogleAdsSearchads360V0Common__DeviceInfo",
+          "description": "Immutable. A device criterion."
         },
         "resourceName": {
           "description": "Immutable. The resource name of the ad group bid modifier. Ad group bid modifier resource names have the form: `customers/{customer_id}/adGroupBidModifiers/{ad_group_id}~{criterion_id}`",
@@ -2309,6 +2711,11 @@
           "format": "int64",
           "type": "string"
         },
+        "creationTime": {
+          "description": "Output only. The timestamp when this ad group criterion was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
+          "readOnly": true,
+          "type": "string"
+        },
         "criterionId": {
           "description": "Output only. The ID of the criterion.",
           "format": "int64",
@@ -2318,6 +2725,11 @@
         "effectiveCpcBidMicros": {
           "description": "Output only. The effective CPC (cost-per-click) bid.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "engineId": {
+          "description": "Output only. ID of the ad group criterion in the external engine account. This field is for non-Google Ads account only, for example, Yahoo Japan, Microsoft, Baidu etc. For Google Ads entity, use \"ad_group_criterion.criterion_id\" instead.",
           "readOnly": true,
           "type": "string"
         },
@@ -2391,6 +2803,14 @@
           "$ref": "GoogleAdsSearchads360V0Common__KeywordInfo",
           "description": "Immutable. Keyword."
         },
+        "labels": {
+          "description": "Output only. The resource names of labels attached to this ad group criterion.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "lastModifiedTime": {
           "description": "Output only. The datetime when this ad group criterion was last modified. The datetime is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss.ssssss\" format.",
           "readOnly": true,
@@ -2399,6 +2819,14 @@
         "listingGroup": {
           "$ref": "GoogleAdsSearchads360V0Common__ListingGroupInfo",
           "description": "Immutable. Listing group."
+        },
+        "location": {
+          "$ref": "GoogleAdsSearchads360V0Common__LocationInfo",
+          "description": "Immutable. Location."
+        },
+        "negative": {
+          "description": "Immutable. Whether to target (`false`) or exclude (`true`) the criterion. This field is immutable. To switch a criterion from positive to negative, remove then re-add it.",
+          "type": "boolean"
         },
         "qualityInfo": {
           "$ref": "GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo",
@@ -2509,14 +2937,68 @@
             "Combined audience",
             "Smart Campaign keyword theme",
             "Audience",
-            "Google Local Services (GLS) Service ID."
+            "Local Services Ads Service ID."
           ],
           "readOnly": true,
           "type": "string"
         },
+        "userList": {
+          "$ref": "GoogleAdsSearchads360V0Common__UserListInfo",
+          "description": "Immutable. User List. The Similar Audiences sunset starts May 2023. Refer to https://ads-developers.googleblog.com/2022/11/announcing-deprecation-and-sunset-of.html for other options."
+        },
         "webpage": {
           "$ref": "GoogleAdsSearchads360V0Common__WebpageInfo",
           "description": "Immutable. Webpage"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel": {
+      "description": "A relationship between an ad group criterion and a label.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel",
+      "properties": {
+        "adGroupCriterion": {
+          "description": "Immutable. The ad group criterion to which the label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The label assigned to the ad group criterion.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{customer_id}/adGroupCriterionLabels/{ad_group_id}~{criterion_id}~{label_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupLabel": {
+      "description": "A relationship between an ad group and a label.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupLabel",
+      "properties": {
+        "adGroup": {
+          "description": "Immutable. The ad group to which the label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The label assigned to the ad group.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group label. Ad group label resource names have the form: `customers/{customer_id}/adGroupLabels/{ad_group_id}~{label_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AgeRangeView": {
+      "description": "An age range view.",
+      "id": "GoogleAdsSearchads360V0Resources__AgeRangeView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the age range view. Age range view resource names have the form: `customers/{customer_id}/ageRangeViews/{ad_group_id}~{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2707,7 +3189,8 @@
             "SMART_CAMPAIGN",
             "VIDEO_SEQUENCE",
             "APP_CAMPAIGN_FOR_PRE_REGISTRATION",
-            "VIDEO_REACH_TARGET_FREQUENCY"
+            "VIDEO_REACH_TARGET_FREQUENCY",
+            "TRAVEL_ACTIVITIES"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2718,7 +3201,7 @@
             "AdWords Express campaigns for display.",
             "Smart Shopping campaigns.",
             "Gmail Ad campaigns.",
-            "Smart display campaigns.",
+            "Smart display campaigns. New campaigns of this sub type cannot be created.",
             "Video Outstream campaigns.",
             "Video TrueView for Action campaigns.",
             "Video campaigns with non-skippable video ads.",
@@ -2729,7 +3212,8 @@
             "Standard Smart campaigns.",
             "Video campaigns with sequence video ads.",
             "App Campaign for pre registration, specialized for advertising mobile app pre-registration, that targets multiple advertising channels across Google Play, YouTube and Display Network.",
-            "Video reach campaign with Target Frequency bidding strategy."
+            "Video reach campaign with Target Frequency bidding strategy.",
+            "Travel Activities campaigns."
           ],
           "type": "string"
         },
@@ -2748,7 +3232,8 @@
             "SMART",
             "PERFORMANCE_MAX",
             "LOCAL_SERVICES",
-            "DISCOVERY"
+            "DISCOVERY",
+            "TRAVEL"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2763,7 +3248,8 @@
             "Smart campaigns.",
             "Performance Max campaigns.",
             "Local services campaigns.",
-            "Discovery campaigns."
+            "Discovery campaigns.",
+            "Travel campaigns."
           ],
           "type": "string"
         },
@@ -2886,7 +3372,12 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. Timestamp of the campaign's creation time, formatted in ISO 8601.",
+          "description": "Output only. The timestamp when this campaign was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format. create_time will be deprecated in v1. Use creation_time instead.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creationTime": {
+          "description": "Output only. The timestamp when this campaign was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
           "readOnly": true,
           "type": "string"
         },
@@ -2933,7 +3424,9 @@
               "LANDSCAPE_LOGO",
               "VIDEO",
               "CALL_TO_ACTION_SELECTION",
-              "AD_IMAGE"
+              "AD_IMAGE",
+              "BUSINESS_LOGO",
+              "HOTEL_PROPERTY"
             ],
             "enumDescriptions": [
               "Not specified.",
@@ -2962,7 +3455,9 @@
               "The asset is linked for use as a landscape logo.",
               "The asset is linked for use as a non YouTube logo.",
               "The asset is linked for use to select a call-to-action.",
-              "The asset is linked for use to select an ad image."
+              "The asset is linked for use to select an ad image.",
+              "The asset is linked for use as a business logo.",
+              "The asset is linked for use as a hotel property in a Performance Max for travel goals campaign."
             ],
             "type": "string"
           },
@@ -3142,6 +3637,18 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__CampaignAudienceView": {
+      "description": "A campaign audience view. Includes performance data from interests and remarketing lists for Display Network and YouTube Network ads, and remarketing lists for search ads (RLSA), aggregated by campaign and audience criterion. This view only includes audiences attached at the campaign level.",
+      "id": "GoogleAdsSearchads360V0Resources__CampaignAudienceView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the campaign audience view. Campaign audience view resource names have the form: `customers/{customer_id}/campaignAudienceViews/{campaign_id}~{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__CampaignBudget": {
       "description": "A campaign budget.",
       "id": "GoogleAdsSearchads360V0Resources__CampaignBudget",
@@ -3196,6 +3703,10 @@
       "description": "A campaign criterion.",
       "id": "GoogleAdsSearchads360V0Resources__CampaignCriterion",
       "properties": {
+        "ageRange": {
+          "$ref": "GoogleAdsSearchads360V0Common__AgeRangeInfo",
+          "description": "Immutable. Age range."
+        },
         "bidModifier": {
           "description": "The modifier for the bids when the criterion matches. The modifier must be in the range: 0.1 - 10.0. Most targetable criteria types support modifiers. Use 0 to opt out of a Device type.",
           "format": "float",
@@ -3216,9 +3727,22 @@
           "readOnly": true,
           "type": "string"
         },
+        "gender": {
+          "$ref": "GoogleAdsSearchads360V0Common__GenderInfo",
+          "description": "Immutable. Gender."
+        },
+        "keyword": {
+          "$ref": "GoogleAdsSearchads360V0Common__KeywordInfo",
+          "description": "Immutable. Keyword."
+        },
         "language": {
           "$ref": "GoogleAdsSearchads360V0Common__LanguageInfo",
           "description": "Immutable. Language."
+        },
+        "lastModifiedTime": {
+          "description": "Output only. The datetime when this campaign criterion was last modified. The datetime is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss.ssssss\" format.",
+          "readOnly": true,
+          "type": "string"
         },
         "location": {
           "$ref": "GoogleAdsSearchads360V0Common__LocationInfo",
@@ -3234,6 +3758,24 @@
         },
         "resourceName": {
           "description": "Immutable. The resource name of the campaign criterion. Campaign criterion resource names have the form: `customers/{customer_id}/campaignCriteria/{campaign_id}~{criterion_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the criterion.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "PAUSED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "No value has been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The campaign criterion is enabled.",
+            "The campaign criterion is paused.",
+            "The campaign criterion is removed."
+          ],
           "type": "string"
         },
         "type": {
@@ -3314,9 +3856,36 @@
             "Combined audience",
             "Smart Campaign keyword theme",
             "Audience",
-            "Google Local Services (GLS) Service ID."
+            "Local Services Ads Service ID."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "userList": {
+          "$ref": "GoogleAdsSearchads360V0Common__UserListInfo",
+          "description": "Immutable. User List. The Similar Audiences sunset starts May 2023. Refer to https://ads-developers.googleblog.com/2022/11/announcing-deprecation-and-sunset-of.html for other options."
+        },
+        "webpage": {
+          "$ref": "GoogleAdsSearchads360V0Common__WebpageInfo",
+          "description": "Immutable. Webpage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__CampaignLabel": {
+      "description": "Represents a relationship between a campaign and a label.",
+      "id": "GoogleAdsSearchads360V0Resources__CampaignLabel",
+      "properties": {
+        "campaign": {
+          "description": "Immutable. The campaign to which the label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The label assigned to the campaign.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. Name of the resource. Campaign label resource names have the form: `customers/{customer_id}/campaignLabels/{campaign_id}~{label_id}`",
           "type": "string"
         }
       },
@@ -3494,7 +4063,8 @@
             "SMART_CAMPAIGN_MAP_CLICKS_TO_CALL",
             "SMART_CAMPAIGN_MAP_DIRECTIONS",
             "SMART_CAMPAIGN_TRACKED_CALLS",
-            "STORE_VISITS"
+            "STORE_VISITS",
+            "WEBPAGE_CODELESS"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3533,7 +4103,8 @@
             "The user clicks on a call element within Google Maps. Smart campaign only. Read only.",
             "The user requests directions to a business location within Google Maps. Smart campaign only. Read only.",
             "Call conversions that occur on Smart campaign Ads with call tracking setup, using Smart campaign custom criteria. Read only.",
-            "Conversions that occur when a user visits an advertiser's retail store. Read only."
+            "Conversions that occur when a user visits an advertiser's retail store. Read only.",
+            "Conversions created from website events (such as form submissions or page loads), that don't use individually coded event snippets."
           ],
           "type": "string"
         },
@@ -3741,6 +4312,11 @@
           "description": "Output only. Conversion tracking setting for a customer.",
           "readOnly": true
         },
+        "creationTime": {
+          "description": "Output only. The timestamp when this customer was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
+          "readOnly": true,
+          "type": "string"
+        },
         "currencyCode": {
           "description": "Immutable. The currency in which the account operates. A subset of the currency codes from the ISO 4217 standard is supported.",
           "type": "string"
@@ -3760,7 +4336,7 @@
           "type": "string"
         },
         "finalUrlSuffix": {
-          "description": "The URL template for appending params to the final URL",
+          "description": "The URL template for appending params to the final URL.",
           "type": "string"
         },
         "id": {
@@ -3971,12 +4547,95 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView": {
+      "description": "A dynamic search ads search term view.",
+      "id": "GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView",
+      "properties": {
+        "landingPage": {
+          "description": "Output only. The dynamically selected landing page URL of the impression. This field is read-only.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the dynamic search ads search term view. Dynamic search ads search term view resource names have the form: `customers/{customer_id}/dynamicSearchAdsSearchTermViews/{ad_group_id}~{search_term_fingerprint}~{headline_fingerprint}~{landing_page_fingerprint}~{page_url_fingerprint}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__GenderView": {
+      "description": "A gender view.",
+      "id": "GoogleAdsSearchads360V0Resources__GenderView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the gender view. Gender view resource names have the form: `customers/{customer_id}/genderViews/{ad_group_id}~{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__KeywordView": {
       "description": "A keyword view.",
       "id": "GoogleAdsSearchads360V0Resources__KeywordView",
       "properties": {
         "resourceName": {
           "description": "Output only. The resource name of the keyword view. Keyword view resource names have the form: `customers/{customer_id}/keywordViews/{ad_group_id}~{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__Label": {
+      "description": "A label.",
+      "id": "GoogleAdsSearchads360V0Resources__Label",
+      "properties": {
+        "id": {
+          "description": "Output only. ID of the label. Read only.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the label. This field is required and should not be empty when creating a new label. The length of this string should be between 1 and 80, inclusive.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. Name of the resource. Label resource names have the form: `customers/{customer_id}/labels/{label_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. Status of the label. Read only.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Label is enabled.",
+            "Label is removed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "textLabel": {
+          "$ref": "GoogleAdsSearchads360V0Common__TextLabel",
+          "description": "A type of label displaying text on a colored background."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__LocationView": {
+      "description": "A location view summarizes the performance of campaigns by Location criteria.",
+      "id": "GoogleAdsSearchads360V0Resources__LocationView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the location view. Location view resource names have the form: `customers/{customer_id}/locationViews/{campaign_id}~{criterion_id}`",
           "readOnly": true,
           "type": "string"
         }
@@ -4133,6 +4792,64 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__UserList": {
+      "description": "A user list. This is a list of users a customer may target.",
+      "id": "GoogleAdsSearchads360V0Resources__UserList",
+      "properties": {
+        "id": {
+          "description": "Output only. Id of the user list.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of this user list. Depending on its access_reason, the user list name may not be unique (for example, if access_reason=SHARED)",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the user list. User list resource names have the form: `customers/{customer_id}/userLists/{user_list_id}`",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Type of this list. This field is read-only.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "REMARKETING",
+            "LOGICAL",
+            "EXTERNAL_REMARKETING",
+            "RULE_BASED",
+            "SIMILAR",
+            "CRM_BASED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "UserList represented as a collection of conversion types.",
+            "UserList represented as a combination of other user lists/interests.",
+            "UserList created in the Google Ad Manager platform.",
+            "UserList associated with a rule.",
+            "UserList with users similar to users of another UserList.",
+            "UserList of first-party CRM data provided by advertiser in the form of emails or other formats."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__WebpageView": {
+      "description": "A webpage view.",
+      "id": "GoogleAdsSearchads360V0Resources__WebpageView",
+      "properties": {
+        "resourceName": {
+          "description": "Output only. The resource name of the webpage view. Webpage view resource names have the form: `customers/{customer_id}/webpageViews/{ad_group_id}~{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Services__CustomColumnHeader": {
       "description": "Message for custom column header.",
       "id": "GoogleAdsSearchads360V0Services__CustomColumnHeader",
@@ -4175,6 +4892,18 @@
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroup",
           "description": "The ad group referenced in the query."
         },
+        "adGroupAd": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAd",
+          "description": "The ad referenced in the query."
+        },
+        "adGroupAdLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAdLabel",
+          "description": "The ad group ad label referenced in the query."
+        },
+        "adGroupAudienceView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAudienceView",
+          "description": "The ad group audience view referenced in the query."
+        },
         "adGroupBidModifier": {
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupBidModifier",
           "description": "The bid modifier referenced in the query."
@@ -4182,6 +4911,18 @@
         "adGroupCriterion": {
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupCriterion",
           "description": "The criterion referenced in the query."
+        },
+        "adGroupCriterionLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel",
+          "description": "The ad group criterion label referenced in the query."
+        },
+        "adGroupLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupLabel",
+          "description": "The ad group label referenced in the query."
+        },
+        "ageRangeView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AgeRangeView",
+          "description": "The age range view referenced in the query."
         },
         "biddingStrategy": {
           "$ref": "GoogleAdsSearchads360V0Resources__BiddingStrategy",
@@ -4191,6 +4932,10 @@
           "$ref": "GoogleAdsSearchads360V0Resources__Campaign",
           "description": "The campaign referenced in the query."
         },
+        "campaignAudienceView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CampaignAudienceView",
+          "description": "The campaign audience view referenced in the query."
+        },
         "campaignBudget": {
           "$ref": "GoogleAdsSearchads360V0Resources__CampaignBudget",
           "description": "The campaign budget referenced in the query."
@@ -4198,6 +4943,10 @@
         "campaignCriterion": {
           "$ref": "GoogleAdsSearchads360V0Resources__CampaignCriterion",
           "description": "The campaign criterion referenced in the query."
+        },
+        "campaignLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CampaignLabel",
+          "description": "The campaign label referenced in the query."
         },
         "conversionAction": {
           "$ref": "GoogleAdsSearchads360V0Resources__ConversionAction",
@@ -4222,9 +4971,25 @@
           "$ref": "GoogleAdsSearchads360V0Resources__CustomerManagerLink",
           "description": "The CustomerManagerLink referenced in the query."
         },
+        "dynamicSearchAdsSearchTermView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView",
+          "description": "The dynamic search ads search term view referenced in the query."
+        },
+        "genderView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__GenderView",
+          "description": "The gender view referenced in the query."
+        },
         "keywordView": {
           "$ref": "GoogleAdsSearchads360V0Resources__KeywordView",
           "description": "The keyword view referenced in the query."
+        },
+        "label": {
+          "$ref": "GoogleAdsSearchads360V0Resources__Label",
+          "description": "The label referenced in the query."
+        },
+        "locationView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__LocationView",
+          "description": "The location view referenced in the query."
         },
         "metrics": {
           "$ref": "GoogleAdsSearchads360V0Common__Metrics",
@@ -4237,6 +5002,14 @@
         "segments": {
           "$ref": "GoogleAdsSearchads360V0Common__Segments",
           "description": "The segments."
+        },
+        "userList": {
+          "$ref": "GoogleAdsSearchads360V0Resources__UserList",
+          "description": "The user list referenced in the query."
+        },
+        "webpageView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__WebpageView",
+          "description": "The webpage view referenced in the query."
         }
       },
       "type": "object"

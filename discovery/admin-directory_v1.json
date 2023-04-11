@@ -4635,7 +4635,7 @@
       }
     }
   },
-  "revision": "20230316",
+  "revision": "20230406",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5911,7 +5911,7 @@
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
-            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in deviceFiles field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         }
@@ -5978,7 +5978,7 @@
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
-            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in deviceFiles field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         },
@@ -7177,7 +7177,7 @@
       "id": "RoleAssignment",
       "properties": {
         "assignedTo": {
-          "description": "The unique ID of the entity this role is assigned to—either the `user_id` of a user or the `uniqueId` of a service account, as defined in [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts).",
+          "description": "The unique ID of the entity this role is assigned to—either the `user_id` of a user, the `group_id` of a group, or the `uniqueId` of a service account as defined in [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts).",
           "type": "string"
         },
         "assigneeType": {
@@ -7494,7 +7494,7 @@
       "type": "object"
     },
     "User": {
-      "description": "The Directory API allows you to create and manage your account's users, user aliases, and user Gmail chat profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).",
+      "description": "The Directory API allows you to create and manage your account's users, user aliases, and user Google profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).",
       "id": "User",
       "properties": {
         "addresses": {

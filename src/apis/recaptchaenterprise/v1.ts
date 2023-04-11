@@ -166,6 +166,10 @@ export namespace recaptchaenterprise_v1 {
      * Android package names of apps allowed to use the key. Example: 'com.companyname.appname'
      */
     allowedPackageNames?: string[] | null;
+    /**
+     * Set to true for keys that are used in an Android application that is available for download in app stores in addition to the Google Play Store.
+     */
+    supportNonGoogleAppStoreDistribution?: boolean | null;
   }
   /**
    * The request message to annotate an Assessment.
@@ -208,6 +212,10 @@ export namespace recaptchaenterprise_v1 {
      * The event being assessed.
      */
     event?: Schema$GoogleCloudRecaptchaenterpriseV1Event;
+    /**
+     * Assessment returned when firewall policies belonging to the project are evaluated using the field firewall_policy_evaluation.
+     */
+    firewallPolicyAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment;
     /**
      * Assessment returned by Fraud Prevention when TransactionData is provided.
      */
@@ -280,15 +288,19 @@ export namespace recaptchaenterprise_v1 {
      */
     expectedAction?: string | null;
     /**
-     * Optional. Optional flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.
+     * Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.
      */
     express?: boolean | null;
+    /**
+     * Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy will be evaluated and a suggested firewall action will be returned in the response.
+     */
+    firewallPolicyEvaluation?: boolean | null;
     /**
      * Optional. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret.
      */
     hashedAccountId?: string | null;
     /**
-     * Optional. Optional HTTP header information about the request.
+     * Optional. HTTP header information about the request.
      */
     headers?: string[] | null;
     /**
@@ -319,11 +331,116 @@ export namespace recaptchaenterprise_v1 {
      * Optional. The IP address in the request from the user's device related to this event.
      */
     userIpAddress?: string | null;
+    /**
+     * Optional. Flag for running WAF token assessment. If enabled, the token must be specified, and have been created by a WAF-enabled key.
+     */
+    wafTokenAssessment?: boolean | null;
+  }
+  /**
+   * An individual action. Each action represents what to do if a policy matches.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallAction {
+    /**
+     * The user request did not match any policy and should be allowed access to the requested resource.
+     */
+    allow?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction;
+    /**
+     * This action will deny access to a given page. The user will get an HTTP error code.
+     */
+    block?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction;
+    /**
+     * This action will redirect the request to a ReCaptcha interstitial to attach a token.
+     */
+    redirect?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction;
+    /**
+     * This action will set a custom header but allow the request to continue to the customer backend.
+     */
+    setHeader?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction;
+    /**
+     * This action will transparently serve a different page to an offending user.
+     */
+    substitute?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction;
+  }
+  /**
+   * An allow action continues processing a request unimpeded.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction {}
+  /**
+   * A block action serves an HTTP error code a prevents the request from hitting the backend.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction {}
+  /**
+   * A redirect action returns a 307 (temporary redirect) response, pointing the user to a ReCaptcha interstitial page to attach a token.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction {}
+  /**
+   * A set header action sets a header and forwards the request to the backend. This can be used to trigger custom protection implemented on the backend.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction {
+    /**
+     * The header key to set in the request to the backend server.
+     */
+    key?: string | null;
+    /**
+     * The header value to set in the request to the backend server.
+     */
+    value?: string | null;
+  }
+  /**
+   * A substitute action transparently serves a different page than the one requested.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction {
+    /**
+     * The address to redirect to. The target is a relative path in the current host. Example: "/blog/404.html".
+     */
+    path?: string | null;
+  }
+  /**
+   * A FirewallPolicy represents a single matching pattern and resulting actions to take.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy {
+    /**
+     * The actions that the caller should take regarding user access. There should be at most one terminal action. A terminal action is any action that forces a response, such as AllowAction, BlockAction or SubstituteAction. Zero or more non-terminal actions such as SetHeader might be specified. A single policy can contain up to 16 actions.
+     */
+    actions?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallAction[];
+    /**
+     * A CEL (Common Expression Language) conditional expression that specifies if this policy applies to an incoming user request. If this condition evaluates to true and the requested path matched the path pattern, the associated actions should be executed by the caller. The condition string is checked for CEL syntax correctness on creation. For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md). A condition has a max length of 500 characters.
+     */
+    condition?: string | null;
+    /**
+     * A description of what this policy aims to achieve, for convenience purposes. The description can at most include 256 UTF-8 characters.
+     */
+    description?: string | null;
+    /**
+     * The resource name for the FirewallPolicy in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     */
+    name?: string | null;
+    /**
+     * The path for which this policy applies, specified as a glob pattern. For more information on glob, see the [manual page](https://man7.org/linux/man-pages/man7/glob.7.html). A path has a max length of 200 characters.
+     */
+    path?: string | null;
+  }
+  /**
+   * Policy config assessment.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment {
+    /**
+     * If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. The policy that matched the request. If more than one policy may match, this is the first match. If no policy matches the incoming request, the policy field will be left empty.
+     */
+    firewallPolicy?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy;
   }
   /**
    * Assessment for Fraud Prevention.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment {
+    /**
+     * Assessment of this transaction for behavioral trust.
+     */
+    behavioralTrustVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict;
     /**
      * Assessment of this transaction for risk of being part of a card testing attack.
      */
@@ -336,6 +453,15 @@ export namespace recaptchaenterprise_v1 {
      * Probability (0-1) of this transaction being fraudulent. Summarizes the combined risk of attack vectors below.
      */
     transactionRisk?: number | null;
+  }
+  /**
+   * Information about behavioral trust of the transaction.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict {
+    /**
+     * Probability (0-1) of this transaction attempt being executed in a behaviorally trustworthy way.
+     */
+    trust?: number | null;
   }
   /**
    * Information about card testing fraud, where an adversary is testing fraudulently obtained cards or brute forcing their details.
@@ -377,7 +503,7 @@ export namespace recaptchaenterprise_v1 {
      */
     androidSettings?: Schema$GoogleCloudRecaptchaenterpriseV1AndroidKeySettings;
     /**
-     * Output only. The timestamp corresponding to the creation of this Key.
+     * Output only. The timestamp corresponding to the creation of this key.
      */
     createTime?: string | null;
     /**
@@ -408,6 +534,19 @@ export namespace recaptchaenterprise_v1 {
      * Settings for keys that can be used by websites.
      */
     webSettings?: Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettings;
+  }
+  /**
+   * Response to request to list firewall policies belonging to a key.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse {
+    /**
+     * Policy details.
+     */
+    firewallPolicies?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy[];
+    /**
+     * Token to retrieve the next page of results. It is set to empty if no policies remain in results.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response to request to list keys in a project.
@@ -534,6 +673,10 @@ export namespace recaptchaenterprise_v1 {
    * Risk analysis result for an event.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RiskAnalysis {
+    /**
+     * Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.
+     */
+    extendedVerdictReasons?: string[] | null;
     /**
      * Reasons contributing to the risk analysis verdict.
      */
@@ -863,16 +1006,37 @@ export namespace recaptchaenterprise_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$GoogleRpcStatus {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
     assessments: Resource$Projects$Assessments;
+    firewallpolicies: Resource$Projects$Firewallpolicies;
     keys: Resource$Projects$Keys;
     relatedaccountgroupmemberships: Resource$Projects$Relatedaccountgroupmemberships;
     relatedaccountgroups: Resource$Projects$Relatedaccountgroups;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assessments = new Resource$Projects$Assessments(this.context);
+      this.firewallpolicies = new Resource$Projects$Firewallpolicies(
+        this.context
+      );
       this.keys = new Resource$Projects$Keys(this.context);
       this.relatedaccountgroupmemberships =
         new Resource$Projects$Relatedaccountgroupmemberships(this.context);
@@ -1073,6 +1237,7 @@ export namespace recaptchaenterprise_v1 {
      *       //   "accountDefenderAssessment": {},
      *       //   "accountVerification": {},
      *       //   "event": {},
+     *       //   "firewallPolicyAssessment": {},
      *       //   "fraudPreventionAssessment": {},
      *       //   "name": "my_name",
      *       //   "privatePasswordLeakVerification": {},
@@ -1088,6 +1253,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "accountDefenderAssessment": {},
      *   //   "accountVerification": {},
      *   //   "event": {},
+     *   //   "firewallPolicyAssessment": {},
      *   //   "fraudPreventionAssessment": {},
      *   //   "name": "my_name",
      *   //   "privatePasswordLeakVerification": {},
@@ -1221,6 +1387,792 @@ export namespace recaptchaenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1Assessment;
+  }
+
+  export class Resource$Projects$Firewallpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA Enterprise actions can be executed. A project may have a maximum of 1000 policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.create({
+     *     // Required. The name of the project this policy will apply to, in the format "projects/{project\}".
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actions": [],
+     *       //   "condition": "my_condition",
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Firewallpolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Firewallpolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>;
+    create(
+      params: Params$Resource$Projects$Firewallpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Firewallpolicies$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Firewallpolicies$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Firewallpolicies$Create
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Firewallpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Firewallpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/firewallpolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified firewall policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.delete({
+     *     // Required. The name of the policy to be deleted, in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     *     name: 'projects/my-project/firewallpolicies/my-firewallpolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Firewallpolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Firewallpolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Firewallpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Firewallpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Firewallpolicies$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Firewallpolicies$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Firewallpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Firewallpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Returns the specified firewall policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.get({
+     *     // Required. The name of the requested policy, in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     *     name: 'projects/my-project/firewallpolicies/my-firewallpolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Firewallpolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Firewallpolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>;
+    get(
+      params: Params$Resource$Projects$Firewallpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Firewallpolicies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Firewallpolicies$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Firewallpolicies$Get
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Firewallpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Firewallpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all firewall policies that belong to a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.list({
+     *     // Optional. The maximum number of policies to return. Default is 10. Max limit is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous. ListFirewallPoliciesRequest, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project to list the policies for, in the format "projects/{project\}".
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "firewallPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Firewallpolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Firewallpolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Firewallpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Firewallpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Firewallpolicies$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Firewallpolicies$List
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Firewallpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Firewallpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/firewallpolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified firewall policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.firewallpolicies.patch({
+     *     // The resource name for the FirewallPolicy in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     *     name: 'projects/my-project/firewallpolicies/my-firewallpolicie',
+     *     // Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actions": [],
+     *       //   "condition": "my_condition",
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "path": "my_path"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "condition": "my_condition",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "path": "my_path"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Firewallpolicies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Firewallpolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>;
+    patch(
+      params: Params$Resource$Projects$Firewallpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Firewallpolicies$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Firewallpolicies$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Firewallpolicies$Patch
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Firewallpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Firewallpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Firewallpolicies$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the project this policy will apply to, in the format "projects/{project\}".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy;
+  }
+  export interface Params$Resource$Projects$Firewallpolicies$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the policy to be deleted, in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Firewallpolicies$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the requested policy, in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Firewallpolicies$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of policies to return. Default is 10. Max limit is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous. ListFirewallPoliciesRequest, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project to list the policies for, in the format "projects/{project\}".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Firewallpolicies$Patch
+    extends StandardParameters {
+    /**
+     * The resource name for the FirewallPolicy in the format "projects/{project\}/firewallpolicies/{firewallpolicy\}".
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy;
   }
 
   export class Resource$Projects$Keys {

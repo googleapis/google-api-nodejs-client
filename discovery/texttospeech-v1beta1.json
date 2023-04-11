@@ -119,7 +119,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "The resource states of the request in the form of `projects/*/locations/*/voices/*`.",
+                  "description": "The resource states of the request in the form of `projects/*/locations/*`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+$",
                   "required": true,
@@ -261,7 +261,7 @@
       }
     }
   },
-  "revision": "20230315",
+  "revision": "20230403",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {

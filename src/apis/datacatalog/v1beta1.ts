@@ -973,6 +973,45 @@ export namespace datacatalog_v1beta1 {
     entryOverview?: Schema$GoogleCloudDatacatalogV1EntryOverview;
   }
   /**
+   * Specification that applies to Instance entries that are part of `CLOUD_BIGTABLE` system. (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec {
+    /**
+     * The list of clusters for the Instance.
+     */
+    cloudBigtableClusterSpecs?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec[];
+  }
+  /**
+   * Spec that applies to clusters of an Instance of Cloud Bigtable.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec {
+    /**
+     * Name of the cluster.
+     */
+    displayName?: string | null;
+    /**
+     * A link back to the parent resource, in this case Instance.
+     */
+    linkedResource?: string | null;
+    /**
+     * Location of the cluster, typically a Cloud zone.
+     */
+    location?: string | null;
+    /**
+     * Type of the resource. For a cluster this would be "CLUSTER".
+     */
+    type?: string | null;
+  }
+  /**
+   * Specification that applies to all entries that are part of `CLOUD_BIGTABLE` system (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableSystemSpec {
+    /**
+     * Display name of the Instance. This is user specified and different from the resource name.
+     */
+    instanceDisplayName?: string | null;
+  }
+  /**
    * Specification for the BigQuery connection to a Cloud SQL instance.
    */
   export interface Schema$GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec {
@@ -1232,6 +1271,10 @@ export namespace datacatalog_v1beta1 {
      */
     businessContext?: Schema$GoogleCloudDatacatalogV1BusinessContext;
     /**
+     * Specification that applies to Cloud Bigtable system. Only settable when `integrated_system` is equal to `CLOUD_BIGTABLE`
+     */
+    cloudBigtableSystemSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableSystemSpec;
+    /**
      * Specification that applies to a table resource. Valid only for entries with the `TABLE` or `EXPLORE` type.
      */
     databaseTableSpec?: Schema$GoogleCloudDatacatalogV1DatabaseTableSpec;
@@ -1295,6 +1338,10 @@ export namespace datacatalog_v1beta1 {
      * Schema of the entry. An entry might not have any schema attached to it.
      */
     schema?: Schema$GoogleCloudDatacatalogV1Schema;
+    /**
+     * Specification that applies to a Service resource.
+     */
+    serviceSpec?: Schema$GoogleCloudDatacatalogV1ServiceSpec;
     /**
      * Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a system listed in the `IntegratedSystem` enum. For entries with `user_specified_system`, this field is optional and defaults to an empty timestamp.
      */
@@ -1590,6 +1637,15 @@ export namespace datacatalog_v1beta1 {
     columns?: Schema$GoogleCloudDatacatalogV1ColumnSchema[];
   }
   /**
+   * Specification that applies to a Service resource. Valid only for entries with the `SERVICE` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ServiceSpec {
+    /**
+     * Specification that applies to Instance entries of `CLOUD_BIGTABLE` system.
+     */
+    cloudBigtableInstanceSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec;
+  }
+  /**
    * Specification that applies to entries that are part `SQL_DATABASE` system (user_specified_type)
    */
   export interface Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec {
@@ -1721,11 +1777,11 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1TaggedEntry {
     /**
-     * Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.
+     * Optional. Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.
      */
     absentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
     /**
-     * Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.
+     * Optional. Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.
      */
     presentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
     /**

@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v9.1.0...cloudsearch-v10.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v9.0.0...cloudsearch-v9.1.0) (2023-03-22)
 
 

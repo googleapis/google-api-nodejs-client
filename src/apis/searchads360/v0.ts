@@ -554,6 +554,10 @@ export namespace searchads360_v0 {
      * Biddable conversions value by conversion date divided by biddable conversions by conversion date. Shows how much, on average, each of the biddable conversions is worth (by conversion date). When this column is selected with date, the values in date column means the conversion date.
      */
     valuePerConversionsByConversionDate?: number | null;
+    /**
+     * Clicks that Search Ads 360 has successfully recorded and forwarded to an advertiser's landing page.
+     */
+    visits?: number | null;
   }
   /**
    * A bidding strategy where bids are a fraction of the advertised price for some good or service.
@@ -661,6 +665,15 @@ export namespace searchads360_v0 {
     locationFractionMicros?: string | null;
   }
   /**
+   * Settings for the targeting-related features, at the campaign and ad group levels. For more details about the targeting setting, visit https://support.google.com/google-ads/answer/7365594
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__TargetingSetting {
+    /**
+     * The per-targeting-dimension setting to restrict the reach of your campaign or ad group.
+     */
+    targetRestrictions?: Schema$GoogleAdsSearchads360V0Common__TargetRestriction[];
+  }
+  /**
    * An automated bidding strategy that sets bids based on the target fraction of auctions where the advertiser should outrank a specific competitor. This strategy is deprecated.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__TargetOutrankShare {
@@ -668,6 +681,19 @@ export namespace searchads360_v0 {
      * Maximum bid limit that can be set by the bid strategy. The limit applies to all keywords managed by the strategy.
      */
     cpcBidCeilingMicros?: string | null;
+  }
+  /**
+   * The list of per-targeting-dimension targeting settings.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__TargetRestriction {
+    /**
+     * Indicates whether to restrict your ads to show only for the criteria you have selected for this targeting_dimension, or to target all values for this targeting_dimension and show ads based on your targeting in other TargetingDimensions. A value of `true` means that these criteria will only apply bid modifiers, and not affect targeting. A value of `false` means that these criteria will restrict targeting as well as applying bid modifiers.
+     */
+    bidOnly?: boolean | null;
+    /**
+     * The targeting dimension that these settings apply to.
+     */
+    targetingDimension?: string | null;
   }
   /**
    * An automated bidding strategy that helps you maximize revenue while averaging a specific target return on ad spend (ROAS).
@@ -698,6 +724,28 @@ export namespace searchads360_v0 {
      * The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.
      */
     targetSpendMicros?: string | null;
+  }
+  /**
+   * A type of label displaying text on a colored background.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__TextLabel {
+    /**
+     * Background color of the label in RGB format. This string must match the regular expression '^\#([a-fA-F0-9]{6\}|[a-fA-F0-9]{3\})$'. Note: The background color may not be visible for manager accounts.
+     */
+    backgroundColor?: string | null;
+    /**
+     * A short description of the label. The length must be no more than 200 characters.
+     */
+    description?: string | null;
+  }
+  /**
+   * A User List criterion. Represents a user list that is defined by the advertiser to be targeted.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__UserListInfo {
+    /**
+     * The User List resource name.
+     */
+    userList?: string | null;
   }
   /**
    * A generic data container.
@@ -1061,6 +1109,35 @@ export namespace searchads360_v0 {
     defaultValue?: number | null;
   }
   /**
+   * An ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__Ad {
+    /**
+     * The URL that appears in the ad description for some ad formats.
+     */
+    displayUrl?: string | null;
+    /**
+     * The list of possible final URLs after all cross-domain redirects for the ad.
+     */
+    finalUrls?: string[] | null;
+    /**
+     * Output only. The ID of the ad.
+     */
+    id?: string | null;
+    /**
+     * Immutable. The name of the ad. This is only used to be able to identify the ad. It does not need to be unique and does not affect the served ad. The name field is currently only supported for DisplayUploadAd, ImageAd, ShoppingComparisonListingAd and VideoAd.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The resource name of the ad. Ad resource names have the form: `customers/{customer_id\}/ads/{ad_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The type of ad.
+     */
+    type?: string | null;
+  }
+  /**
    * An ad group.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__AdGroup {
@@ -1073,9 +1150,37 @@ export namespace searchads360_v0 {
      */
     cpcBidMicros?: string | null;
     /**
+     * Output only. The timestamp when this ad_group was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
+     */
+    creationTime?: string | null;
+    /**
+     * Output only. Date when the ad group ends serving ads. By default, the ad group ends on the ad group's end date. If this field is set, then the ad group ends at the end of the specified date in the customer's time zone. This field is only available for Microsoft Advertising and Facebook gateway accounts. Format: YYYY-MM-DD Example: 2019-03-14
+     */
+    endDate?: string | null;
+    /**
+     * Output only. ID of the ad group in the external engine account. This field is for non-Google Ads account only, for example, Yahoo Japan, Microsoft, Baidu etc. For Google Ads entity, use "ad_group.id" instead.
+     */
+    engineId?: string | null;
+    /**
+     * Output only. The Engine Status for ad group.
+     */
+    engineStatus?: string | null;
+    /**
      * Output only. The ID of the ad group.
      */
     id?: string | null;
+    /**
+     * Output only. The resource names of labels attached to this ad group.
+     */
+    labels?: string[] | null;
+    /**
+     * Output only. The language of the ads and keywords in an ad group. This field is only available for Microsoft Advertising accounts. More details: https://docs.microsoft.com/en-us/advertising/guides/ad-languages?view=bingads-13#adlanguage
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. The datetime when this ad group was last modified. The datetime is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss.ssssss" format.
+     */
+    lastModifiedTime?: string | null;
     /**
      * The name of the ad group. This field is required and should not be empty when creating new ad groups. It must contain fewer than 255 UTF-8 full-width characters. It must not contain any null (code point 0x0), NL line feed (code point 0xA) or carriage return (code point 0xD) characters.
      */
@@ -1085,13 +1190,84 @@ export namespace searchads360_v0 {
      */
     resourceName?: string | null;
     /**
+     * Output only. Date when this ad group starts serving ads. By default, the ad group starts now or the ad group's start date, whichever is later. If this field is set, then the ad group starts at the beginning of the specified date in the customer's time zone. This field is only available for Microsoft Advertising and Facebook gateway accounts. Format: YYYY-MM-DD Example: 2019-03-14
+     */
+    startDate?: string | null;
+    /**
      * The status of the ad group.
      */
     status?: string | null;
     /**
+     * Setting for targeting related features.
+     */
+    targetingSetting?: Schema$GoogleAdsSearchads360V0Common__TargetingSetting;
+    /**
      * Immutable. The type of the ad group.
      */
     type?: string | null;
+  }
+  /**
+   * An ad group ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupAd {
+    /**
+     * Immutable. The ad.
+     */
+    ad?: Schema$GoogleAdsSearchads360V0Resources__Ad;
+    /**
+     * Output only. The timestamp when this ad_group_ad was created. The datetime is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss.ssssss" format.
+     */
+    creationTime?: string | null;
+    /**
+     * Output only. ID of the ad in the external engine account. This field is for SearchAds 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-SearchAds 360 entity, use "ad_group_ad.ad.id" instead.
+     */
+    engineId?: string | null;
+    /**
+     * Output only. Additional status of the ad in the external engine account. Possible statuses (depending on the type of external account) include active, eligible, pending review, etc.
+     */
+    engineStatus?: string | null;
+    /**
+     * Output only. The resource names of labels attached to this ad group ad.
+     */
+    labels?: string[] | null;
+    /**
+     * Output only. The datetime when this ad group ad was last modified. The datetime is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss.ssssss" format.
+     */
+    lastModifiedTime?: string | null;
+    /**
+     * Immutable. The resource name of the ad. Ad group ad resource names have the form: `customers/{customer_id\}/adGroupAds/{ad_group_id\}~{ad_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * The status of the ad.
+     */
+    status?: string | null;
+  }
+  /**
+   * A relationship between an ad group ad and a label.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupAdLabel {
+    /**
+     * Immutable. The ad group ad to which the label is attached.
+     */
+    adGroupAd?: string | null;
+    /**
+     * Immutable. The label assigned to the ad group ad.
+     */
+    label?: string | null;
+    /**
+     * Immutable. The resource name of the ad group ad label. Ad group ad label resource names have the form: `customers/{customer_id\}/adGroupAdLabels/{ad_group_id\}~{ad_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * An ad group audience view. Includes performance data from interests and remarketing lists for Display Network and YouTube Network ads, and remarketing lists for search ads (RLSA), aggregated at the audience level.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupAudienceView {
+    /**
+     * Output only. The resource name of the ad group audience view. Ad group audience view resource names have the form: `customers/{customer_id\}/adGroupAudienceViews/{ad_group_id\}~{criterion_id\}`
+     */
+    resourceName?: string | null;
   }
   /**
    * Represents an ad group bid modifier.
@@ -1101,6 +1277,10 @@ export namespace searchads360_v0 {
      * The modifier for the bid when the criterion matches. The modifier must be in the range: 0.1 - 10.0. The range is 1.0 - 6.0 for PreferredContent. Use 0 to opt out of a Device type.
      */
     bidModifier?: number | null;
+    /**
+     * Immutable. A device criterion.
+     */
+    device?: Schema$GoogleAdsSearchads360V0Common__DeviceInfo;
     /**
      * Immutable. The resource name of the ad group bid modifier. Ad group bid modifier resource names have the form: `customers/{customer_id\}/adGroupBidModifiers/{ad_group_id\}~{criterion_id\}`
      */
@@ -1127,6 +1307,10 @@ export namespace searchads360_v0 {
      */
     cpcBidMicros?: string | null;
     /**
+     * Output only. The timestamp when this ad group criterion was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
+     */
+    creationTime?: string | null;
+    /**
      * Output only. The ID of the criterion.
      */
     criterionId?: string | null;
@@ -1134,6 +1318,10 @@ export namespace searchads360_v0 {
      * Output only. The effective CPC (cost-per-click) bid.
      */
     effectiveCpcBidMicros?: string | null;
+    /**
+     * Output only. ID of the ad group criterion in the external engine account. This field is for non-Google Ads account only, for example, Yahoo Japan, Microsoft, Baidu etc. For Google Ads entity, use "ad_group_criterion.criterion_id" instead.
+     */
+    engineId?: string | null;
     /**
      * Output only. The Engine Status for ad group criterion.
      */
@@ -1155,6 +1343,10 @@ export namespace searchads360_v0 {
      */
     keyword?: Schema$GoogleAdsSearchads360V0Common__KeywordInfo;
     /**
+     * Output only. The resource names of labels attached to this ad group criterion.
+     */
+    labels?: string[] | null;
+    /**
      * Output only. The datetime when this ad group criterion was last modified. The datetime is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss.ssssss" format.
      */
     lastModifiedTime?: string | null;
@@ -1162,6 +1354,14 @@ export namespace searchads360_v0 {
      * Immutable. Listing group.
      */
     listingGroup?: Schema$GoogleAdsSearchads360V0Common__ListingGroupInfo;
+    /**
+     * Immutable. Location.
+     */
+    location?: Schema$GoogleAdsSearchads360V0Common__LocationInfo;
+    /**
+     * Immutable. Whether to target (`false`) or exclude (`true`) the criterion. This field is immutable. To switch a criterion from positive to negative, remove then re-add it.
+     */
+    negative?: boolean | null;
     /**
      * Output only. Information regarding the quality of the criterion.
      */
@@ -1183,9 +1383,56 @@ export namespace searchads360_v0 {
      */
     type?: string | null;
     /**
+     * Immutable. User List. The Similar Audiences sunset starts May 2023. Refer to https://ads-developers.googleblog.com/2022/11/announcing-deprecation-and-sunset-of.html for other options.
+     */
+    userList?: Schema$GoogleAdsSearchads360V0Common__UserListInfo;
+    /**
      * Immutable. Webpage
      */
     webpage?: Schema$GoogleAdsSearchads360V0Common__WebpageInfo;
+  }
+  /**
+   * A relationship between an ad group criterion and a label.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel {
+    /**
+     * Immutable. The ad group criterion to which the label is attached.
+     */
+    adGroupCriterion?: string | null;
+    /**
+     * Immutable. The label assigned to the ad group criterion.
+     */
+    label?: string | null;
+    /**
+     * Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{customer_id\}/adGroupCriterionLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * A relationship between an ad group and a label.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupLabel {
+    /**
+     * Immutable. The ad group to which the label is attached.
+     */
+    adGroup?: string | null;
+    /**
+     * Immutable. The label assigned to the ad group.
+     */
+    label?: string | null;
+    /**
+     * Immutable. The resource name of the ad group label. Ad group label resource names have the form: `customers/{customer_id\}/adGroupLabels/{ad_group_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * An age range view.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AgeRangeView {
+    /**
+     * Output only. The resource name of the age range view. Age range view resource names have the form: `customers/{customer_id\}/ageRangeViews/{ad_group_id\}~{criterion_id\}`
+     */
+    resourceName?: string | null;
   }
   /**
    * A bidding strategy.
@@ -1293,9 +1540,13 @@ export namespace searchads360_v0 {
      */
     campaignBudget?: string | null;
     /**
-     * Output only. Timestamp of the campaign's creation time, formatted in ISO 8601.
+     * Output only. The timestamp when this campaign was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format. create_time will be deprecated in v1. Use creation_time instead.
      */
     createTime?: string | null;
+    /**
+     * Output only. The timestamp when this campaign was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
+     */
+    creationTime?: string | null;
     /**
      * The setting for controlling Dynamic Search Ads (DSA).
      */
@@ -1438,6 +1689,15 @@ export namespace searchads360_v0 {
     urlExpansionOptOut?: boolean | null;
   }
   /**
+   * A campaign audience view. Includes performance data from interests and remarketing lists for Display Network and YouTube Network ads, and remarketing lists for search ads (RLSA), aggregated by campaign and audience criterion. This view only includes audiences attached at the campaign level.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CampaignAudienceView {
+    /**
+     * Output only. The resource name of the campaign audience view. Campaign audience view resource names have the form: `customers/{customer_id\}/campaignAudienceViews/{campaign_id\}~{criterion_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
    * A campaign budget.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__CampaignBudget {
@@ -1463,6 +1723,10 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__CampaignCriterion {
     /**
+     * Immutable. Age range.
+     */
+    ageRange?: Schema$GoogleAdsSearchads360V0Common__AgeRangeInfo;
+    /**
      * The modifier for the bids when the criterion matches. The modifier must be in the range: 0.1 - 10.0. Most targetable criteria types support modifiers. Use 0 to opt out of a Device type.
      */
     bidModifier?: number | null;
@@ -1479,9 +1743,21 @@ export namespace searchads360_v0 {
      */
     displayName?: string | null;
     /**
+     * Immutable. Gender.
+     */
+    gender?: Schema$GoogleAdsSearchads360V0Common__GenderInfo;
+    /**
+     * Immutable. Keyword.
+     */
+    keyword?: Schema$GoogleAdsSearchads360V0Common__KeywordInfo;
+    /**
      * Immutable. Language.
      */
     language?: Schema$GoogleAdsSearchads360V0Common__LanguageInfo;
+    /**
+     * Output only. The datetime when this campaign criterion was last modified. The datetime is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss.ssssss" format.
+     */
+    lastModifiedTime?: string | null;
     /**
      * Immutable. Location.
      */
@@ -1499,9 +1775,38 @@ export namespace searchads360_v0 {
      */
     resourceName?: string | null;
     /**
+     * The status of the criterion.
+     */
+    status?: string | null;
+    /**
      * Output only. The type of the criterion.
      */
     type?: string | null;
+    /**
+     * Immutable. User List. The Similar Audiences sunset starts May 2023. Refer to https://ads-developers.googleblog.com/2022/11/announcing-deprecation-and-sunset-of.html for other options.
+     */
+    userList?: Schema$GoogleAdsSearchads360V0Common__UserListInfo;
+    /**
+     * Immutable. Webpage.
+     */
+    webpage?: Schema$GoogleAdsSearchads360V0Common__WebpageInfo;
+  }
+  /**
+   * Represents a relationship between a campaign and a label.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CampaignLabel {
+    /**
+     * Immutable. The campaign to which the label is attached.
+     */
+    campaign?: string | null;
+    /**
+     * Immutable. The label assigned to the campaign.
+     */
+    label?: string | null;
+    /**
+     * Immutable. Name of the resource. Campaign label resource names have the form: `customers/{customer_id\}/campaignLabels/{campaign_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
   }
   /**
    * A conversion action.
@@ -1667,6 +1972,10 @@ export namespace searchads360_v0 {
      */
     conversionTrackingSetting?: Schema$GoogleAdsSearchads360V0Resources__ConversionTrackingSetting;
     /**
+     * Output only. The timestamp when this customer was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
+     */
+    creationTime?: string | null;
+    /**
      * Immutable. The currency in which the account operates. A subset of the currency codes from the ISO 4217 standard is supported.
      */
     currencyCode?: string | null;
@@ -1683,7 +1992,7 @@ export namespace searchads360_v0 {
      */
     engineId?: string | null;
     /**
-     * The URL template for appending params to the final URL
+     * The URL template for appending params to the final URL.
      */
     finalUrlSuffix?: string | null;
     /**
@@ -1807,11 +2116,67 @@ export namespace searchads360_v0 {
     timeZone?: string | null;
   }
   /**
+   * A dynamic search ads search term view.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView {
+    /**
+     * Output only. The dynamically selected landing page URL of the impression. This field is read-only.
+     */
+    landingPage?: string | null;
+    /**
+     * Output only. The resource name of the dynamic search ads search term view. Dynamic search ads search term view resource names have the form: `customers/{customer_id\}/dynamicSearchAdsSearchTermViews/{ad_group_id\}~{search_term_fingerprint\}~{headline_fingerprint\}~{landing_page_fingerprint\}~{page_url_fingerprint\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * A gender view.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__GenderView {
+    /**
+     * Output only. The resource name of the gender view. Gender view resource names have the form: `customers/{customer_id\}/genderViews/{ad_group_id\}~{criterion_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
    * A keyword view.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__KeywordView {
     /**
      * Output only. The resource name of the keyword view. Keyword view resource names have the form: `customers/{customer_id\}/keywordViews/{ad_group_id\}~{criterion_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * A label.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__Label {
+    /**
+     * Output only. ID of the label. Read only.
+     */
+    id?: string | null;
+    /**
+     * The name of the label. This field is required and should not be empty when creating a new label. The length of this string should be between 1 and 80, inclusive.
+     */
+    name?: string | null;
+    /**
+     * Immutable. Name of the resource. Label resource names have the form: `customers/{customer_id\}/labels/{label_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. Status of the label. Read only.
+     */
+    status?: string | null;
+    /**
+     * A type of label displaying text on a colored background.
+     */
+    textLabel?: Schema$GoogleAdsSearchads360V0Common__TextLabel;
+  }
+  /**
+   * A location view summarizes the performance of campaigns by Location criteria.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__LocationView {
+    /**
+     * Output only. The resource name of the location view. Location view resource names have the form: `customers/{customer_id\}/locationViews/{campaign_id\}~{criterion_id\}`
      */
     resourceName?: string | null;
   }
@@ -1886,6 +2251,36 @@ export namespace searchads360_v0 {
     typeUrl?: string | null;
   }
   /**
+   * A user list. This is a list of users a customer may target.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__UserList {
+    /**
+     * Output only. Id of the user list.
+     */
+    id?: string | null;
+    /**
+     * Name of this user list. Depending on its access_reason, the user list name may not be unique (for example, if access_reason=SHARED)
+     */
+    name?: string | null;
+    /**
+     * Immutable. The resource name of the user list. User list resource names have the form: `customers/{customer_id\}/userLists/{user_list_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. Type of this list. This field is read-only.
+     */
+    type?: string | null;
+  }
+  /**
+   * A webpage view.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__WebpageView {
+    /**
+     * Output only. The resource name of the webpage view. Webpage view resource names have the form: `customers/{customer_id\}/webpageViews/{ad_group_id\}~{criterion_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
    * Message for custom column header.
    */
   export interface Schema$GoogleAdsSearchads360V0Services__CustomColumnHeader {
@@ -1920,6 +2315,18 @@ export namespace searchads360_v0 {
      */
     adGroup?: Schema$GoogleAdsSearchads360V0Resources__AdGroup;
     /**
+     * The ad referenced in the query.
+     */
+    adGroupAd?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAd;
+    /**
+     * The ad group ad label referenced in the query.
+     */
+    adGroupAdLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAdLabel;
+    /**
+     * The ad group audience view referenced in the query.
+     */
+    adGroupAudienceView?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAudienceView;
+    /**
      * The bid modifier referenced in the query.
      */
     adGroupBidModifier?: Schema$GoogleAdsSearchads360V0Resources__AdGroupBidModifier;
@@ -1927,6 +2334,18 @@ export namespace searchads360_v0 {
      * The criterion referenced in the query.
      */
     adGroupCriterion?: Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterion;
+    /**
+     * The ad group criterion label referenced in the query.
+     */
+    adGroupCriterionLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel;
+    /**
+     * The ad group label referenced in the query.
+     */
+    adGroupLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupLabel;
+    /**
+     * The age range view referenced in the query.
+     */
+    ageRangeView?: Schema$GoogleAdsSearchads360V0Resources__AgeRangeView;
     /**
      * The bidding strategy referenced in the query.
      */
@@ -1936,6 +2355,10 @@ export namespace searchads360_v0 {
      */
     campaign?: Schema$GoogleAdsSearchads360V0Resources__Campaign;
     /**
+     * The campaign audience view referenced in the query.
+     */
+    campaignAudienceView?: Schema$GoogleAdsSearchads360V0Resources__CampaignAudienceView;
+    /**
      * The campaign budget referenced in the query.
      */
     campaignBudget?: Schema$GoogleAdsSearchads360V0Resources__CampaignBudget;
@@ -1943,6 +2366,10 @@ export namespace searchads360_v0 {
      * The campaign criterion referenced in the query.
      */
     campaignCriterion?: Schema$GoogleAdsSearchads360V0Resources__CampaignCriterion;
+    /**
+     * The campaign label referenced in the query.
+     */
+    campaignLabel?: Schema$GoogleAdsSearchads360V0Resources__CampaignLabel;
     /**
      * The conversion action referenced in the query.
      */
@@ -1964,9 +2391,25 @@ export namespace searchads360_v0 {
      */
     customerManagerLink?: Schema$GoogleAdsSearchads360V0Resources__CustomerManagerLink;
     /**
+     * The dynamic search ads search term view referenced in the query.
+     */
+    dynamicSearchAdsSearchTermView?: Schema$GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView;
+    /**
+     * The gender view referenced in the query.
+     */
+    genderView?: Schema$GoogleAdsSearchads360V0Resources__GenderView;
+    /**
      * The keyword view referenced in the query.
      */
     keywordView?: Schema$GoogleAdsSearchads360V0Resources__KeywordView;
+    /**
+     * The label referenced in the query.
+     */
+    label?: Schema$GoogleAdsSearchads360V0Resources__Label;
+    /**
+     * The location view referenced in the query.
+     */
+    locationView?: Schema$GoogleAdsSearchads360V0Resources__LocationView;
     /**
      * The metrics.
      */
@@ -1979,6 +2422,14 @@ export namespace searchads360_v0 {
      * The segments.
      */
     segments?: Schema$GoogleAdsSearchads360V0Common__Segments;
+    /**
+     * The user list referenced in the query.
+     */
+    userList?: Schema$GoogleAdsSearchads360V0Resources__UserList;
+    /**
+     * The webpage view referenced in the query.
+     */
+    webpageView?: Schema$GoogleAdsSearchads360V0Resources__WebpageView;
   }
   /**
    * Request message for SearchAds360FieldService.SearchSearchAds360Fields.

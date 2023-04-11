@@ -602,7 +602,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 10 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "description": "Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 500 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -3990,7 +3990,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230328",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -4795,7 +4795,7 @@
           "type": "string"
         },
         "paths": {
-          "description": "Optional. The list of paths for items within the associated resource (eg. columns within a table) along with attribute bindings.",
+          "description": "Optional. The list of paths for items within the associated resource (eg. columns and partitions within a table) along with attribute bindings.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataAttributeBindingPath"
           },
@@ -4820,7 +4820,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataAttributeBindingPath": {
-      "description": "Represents a subresource of a given resource, and associated bindings with it.",
+      "description": "Represents a subresource of the given resource, and associated bindings with it. Currently supported subresources are column and partition schema fields within a table.",
       "id": "GoogleCloudDataplexV1DataAttributeBindingPath",
       "properties": {
         "attributes": {
@@ -4831,7 +4831,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. The name identifier of the path. Nested columns should be of the form: 'country.state.city'.",
+          "description": "Required. The name identifier of the path. Nested columns should be of the form: 'address.city'.",
           "type": "string"
         }
       },
@@ -4888,7 +4888,7 @@
           "description": "Profile information for the corresponding field."
         },
         "type": {
-          "description": "The field data type. Possible values include: STRING BYTE INT64 INT32 INT16 DOUBLE FLOAT DECIMAL BOOLEAN BINARY TIMESTAMP DATE TIME NULL RECORD",
+          "description": "The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).",
           "type": "string"
         }
       },
@@ -5963,7 +5963,7 @@
           "description": "Required. Identifies the storage format of the entity data. It does not apply to entities with data stored in BigQuery."
         },
         "id": {
-          "description": "Required. A user-provided entity ID. It is mutable, and will be used as the published table name. Specifying a new ID in an update entity request will override the existing value. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores. Must begin with a letter and consist of 256 or fewer characters.",
+          "description": "Required. A user-provided entity ID. It is mutable, and will be used as the published table name. Specifying a new ID in an update entity request will override the existing value. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores, and consist of 256 or fewer characters.",
           "type": "string"
         },
         "name": {

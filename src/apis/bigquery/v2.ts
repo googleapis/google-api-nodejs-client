@@ -3202,7 +3202,7 @@ export namespace bigquery_v2 {
      */
     mainFileUri?: string | null;
     /**
-     * Configuration properties as a set of key/value pairs, which will be passed on to the Spark application. For more information, see [Apache Spark](https://spark.apache.org/docs/latest/index.html).
+     * Configuration properties as a set of key/value pairs, which will be passed on to the Spark application. For more information, see [Apache Spark](https://spark.apache.org/docs/latest/index.html) and the [procedure option list](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#procedure_option_list).
      */
     properties?: {[key: string]: string} | null;
     /**

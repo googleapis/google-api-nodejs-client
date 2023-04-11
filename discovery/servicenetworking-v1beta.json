@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230409",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1126,6 +1126,41 @@
         "common": {
           "$ref": "CommonLanguageSettings",
           "description": "Some settings."
+        },
+        "forcedNamespaceAliases": {
+          "description": "Namespaces which must be aliased in snippets due to a known (but non-generator-predictable) naming collision",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "handwrittenSignatures": {
+          "description": "Method signatures (in the form \"service.method(signature)\") which are provided separately, so shouldn't be generated. Snippets *calling* these methods are still generated, however.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignoredResources": {
+          "description": "List of full resource types to ignore during generation. This is typically used for API-specific Location resources, which should be handled by the generator as if they were actually the common Location resources. Example entry: \"documentai.googleapis.com/Location\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "renamedResources": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map from full resource types to the effective short name for the resource. This is used when otherwise resource named from different services would cause naming collisions. Example entry: \"datalabeling.googleapis.com/Dataset\": \"DataLabelingDataset\"",
+          "type": "object"
+        },
+        "renamedServices": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map from original service names to renamed versions. This is used when the default generated types would cause a naming conflict. (Neither name is fully-qualified.) Example: Subscriber to SubscriberServiceApi.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2191,7 +2226,7 @@
           "type": "array"
         },
         "newIssueUri": {
-          "description": "Link to a place that API users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103",
+          "description": "Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103",
           "type": "string"
         },
         "organization": {

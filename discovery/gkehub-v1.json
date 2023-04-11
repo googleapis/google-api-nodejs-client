@@ -1192,7 +1192,7 @@
       }
     }
   },
-  "revision": "20230310",
+  "revision": "20230329",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3448,7 +3448,7 @@
       "id": "ServiceMeshMembershipSpec",
       "properties": {
         "controlPlane": {
-          "description": "Enables automatic control plane management.",
+          "description": "Deprecated: use `management` instead Enables automatic control plane management.",
           "enum": [
             "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
             "AUTOMATIC",

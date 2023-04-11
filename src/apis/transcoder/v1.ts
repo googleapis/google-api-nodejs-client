@@ -645,6 +645,10 @@ export namespace transcoder_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * The processing mode of the job. The default is `PROCESSING_MODE_INTERACTIVE`.
+     */
+    mode?: string | null;
+    /**
      * The resource name of the job. Format: `projects/{project_number\}/locations/{location\}/jobs/{job\}`
      */
     name?: string | null;
@@ -1174,6 +1178,7 @@ export namespace transcoder_v1 {
      *       //   "error": {},
      *       //   "inputUri": "my_inputUri",
      *       //   "labels": {},
+     *       //   "mode": "my_mode",
      *       //   "name": "my_name",
      *       //   "outputUri": "my_outputUri",
      *       //   "startTime": "my_startTime",
@@ -1193,6 +1198,7 @@ export namespace transcoder_v1 {
      *   //   "error": {},
      *   //   "inputUri": "my_inputUri",
      *   //   "labels": {},
+     *   //   "mode": "my_mode",
      *   //   "name": "my_name",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",
@@ -1456,6 +1462,7 @@ export namespace transcoder_v1 {
      *   //   "error": {},
      *   //   "inputUri": "my_inputUri",
      *   //   "labels": {},
+     *   //   "mode": "my_mode",
      *   //   "name": "my_name",
      *   //   "outputUri": "my_outputUri",
      *   //   "startTime": "my_startTime",

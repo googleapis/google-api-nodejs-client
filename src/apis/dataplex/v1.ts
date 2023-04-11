@@ -677,7 +677,7 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Optional. The list of paths for items within the associated resource (eg. columns within a table) along with attribute bindings.
+     * Optional. The list of paths for items within the associated resource (eg. columns and partitions within a table) along with attribute bindings.
      */
     paths?: Schema$GoogleCloudDataplexV1DataAttributeBindingPath[];
     /**
@@ -694,7 +694,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Represents a subresource of a given resource, and associated bindings with it.
+   * Represents a subresource of the given resource, and associated bindings with it. Currently supported subresources are column and partition schema fields within a table.
    */
   export interface Schema$GoogleCloudDataplexV1DataAttributeBindingPath {
     /**
@@ -702,7 +702,7 @@ export namespace dataplex_v1 {
      */
     attributes?: string[] | null;
     /**
-     * Required. The name identifier of the path. Nested columns should be of the form: 'country.state.city'.
+     * Required. The name identifier of the path. Nested columns should be of the form: 'address.city'.
      */
     name?: string | null;
   }
@@ -749,7 +749,7 @@ export namespace dataplex_v1 {
      */
     profile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo;
     /**
-     * The field data type. Possible values include: STRING BYTE INT64 INT32 INT16 DOUBLE FLOAT DECIMAL BOOLEAN BINARY TIMESTAMP DATE TIME NULL RECORD
+     * The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
      */
     type?: string | null;
   }
@@ -1505,7 +1505,7 @@ export namespace dataplex_v1 {
      */
     format?: Schema$GoogleCloudDataplexV1StorageFormat;
     /**
-     * Required. A user-provided entity ID. It is mutable, and will be used as the published table name. Specifying a new ID in an update entity request will override the existing value. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores. Must begin with a letter and consist of 256 or fewer characters.
+     * Required. A user-provided entity ID. It is mutable, and will be used as the published table name. Specifying a new ID in an update entity request will override the existing value. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores, and consist of 256 or fewer characters.
      */
     id?: string | null;
     /**
@@ -5343,7 +5343,7 @@ export namespace dataplex_v1 {
      *     filter: 'placeholder-value',
      *     // Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
      *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 10 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 500 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous ListDataScans call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataScans must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -6120,7 +6120,7 @@ export namespace dataplex_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 10 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 500 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**

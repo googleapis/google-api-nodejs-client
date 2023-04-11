@@ -142,6 +142,10 @@ export namespace datamigration_v1 {
    */
   export interface Schema$AlloyDbSettings {
     /**
+     * Optional. The encryption config can be specified to encrypt the data disks and other persistent data resources of a cluster with a customer-managed encryption key (CMEK). When this field is not specified, the cluster will then use default encryption scheme to protect the user data.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
      * Required. Input only. Initial user to setup during cluster creation. Required.
      */
     initialUser?: Schema$UserPassword;
@@ -766,6 +770,15 @@ export namespace datamigration_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * EncryptionConfig describes the encryption config of a cluster that is encrypted with a CMEK (customer-managed encryption key).
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * The fully-qualified resource name of the KMS key. Each Cloud KMS key is regionalized and has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * Details of the mappings of a database entity.
    */

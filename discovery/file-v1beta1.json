@@ -1041,7 +1041,7 @@
       }
     }
   },
-  "revision": "20230312",
+  "revision": "20230323",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1574,9 +1574,8 @@
           "type": "string"
         },
         "maxShareCount": {
-          "description": "Output only. The max number of shares allowed.",
+          "description": "The max number of shares allowed.",
           "format": "int64",
-          "readOnly": true,
           "type": "string"
         },
         "multiShareEnabled": {

@@ -146,6 +146,10 @@ export namespace container_v1 {
     gpuSharingConfig?: Schema$GPUSharingConfig;
   }
   /**
+   * AdditionalPodRangesConfig is the configuration for additional pod secondary ranges supporting the ClusterUpdate message.
+   */
+  export interface Schema$AdditionalPodRangesConfig {}
+  /**
    * Configuration for the addons that can be automatically spun up in the cluster, enabling additional functionality.
    */
   export interface Schema$AddonsConfig {
@@ -686,6 +690,10 @@ export namespace container_v1 {
    */
   export interface Schema$ClusterUpdate {
     /**
+     * The additional pod ranges to be added to the cluster. These pod ranges can be used by node pools to allocate pod IPs.
+     */
+    additionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
+    /**
      * Configurations for the various addons available to run in the cluster.
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
@@ -845,6 +853,10 @@ export namespace container_v1 {
      * The current etag of the cluster. If an etag is provided and does not match the current etag of the cluster, update will be blocked and an ABORTED error will be returned.
      */
     etag?: string | null;
+    /**
+     * The additional pod ranges that are to be removed from the cluster. The pod ranges specified here must have been specified earlier in the 'additional_pod_ranges_config' argument.
+     */
+    removedAdditionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
@@ -1237,6 +1249,10 @@ export namespace container_v1 {
    */
   export interface Schema$IPAllocationPolicy {
     /**
+     * Output only. [Output only] The additional pod ranges that are added to the cluster. These pod ranges can be used by new node pools to allocate pod IPs automatically. Once the range is removed it will not show up in IPAllocationPolicy.
+     */
+    additionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
+    /**
      * This field is deprecated, use cluster_ipv4_cidr_block.
      */
     clusterIpv4Cidr?: string | null;
@@ -1264,6 +1280,10 @@ export namespace container_v1 {
      * The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
     nodeIpv4CidrBlock?: string | null;
+    /**
+     * [PRIVATE FIELD] Pod CIDR size overprovisioning config for the cluster. Pod CIDR size per node depends on max_pods_per_node. By default, the value of max_pods_per_node is doubled and then rounded off to next power of 2 to get the size of pod CIDR block per node. Example: max_pods_per_node of 30 would result in 64 IPs (/26). This config can disable the doubling of IPs (we still round off to next power of 2) Example: max_pods_per_node of 30 will result in 32 IPs (/27) when overprovisioning is disabled.
+     */
+    podCidrOverprovisionConfig?: Schema$PodCIDROverprovisionConfig;
     /**
      * This field is deprecated, use services_ipv4_cidr_block.
      */
@@ -1915,6 +1935,10 @@ export namespace container_v1 {
      */
     networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
     /**
+     * [PRIVATE FIELD] Pod CIDR size overprovisioning config for the nodepool. Pod CIDR size per node depends on max_pods_per_node. By default, the value of max_pods_per_node is rounded off to next power of 2 and we then double that to get the size of pod CIDR block per node. Example: max_pods_per_node of 30 would result in 64 IPs (/26). This config can disable the doubling of IPs (we still round off to next power of 2) Example: max_pods_per_node of 30 will result in 32 IPs (/27) when overprovisioning is disabled.
+     */
+    podCidrOverprovisionConfig?: Schema$PodCIDROverprovisionConfig;
+    /**
      * The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     podIpv4CidrBlock?: string | null;
@@ -2193,6 +2217,15 @@ export namespace container_v1 {
      * The type of placement.
      */
     type?: string | null;
+  }
+  /**
+   * [PRIVATE FIELD] Config for pod CIDR size overprovisioning.
+   */
+  export interface Schema$PodCIDROverprovisionConfig {
+    /**
+     * Whether Pod CIDR overprovisioning is disabled. Note: Pod CIDR overprovisioning is enabled by default.
+     */
+    disable?: boolean | null;
   }
   /**
    * Configuration options for private clusters.

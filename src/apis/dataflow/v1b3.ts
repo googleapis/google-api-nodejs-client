@@ -1373,6 +1373,10 @@ export namespace dataflow_v1b3 {
      * Identification of a Spanner source used in the Dataflow job.
      */
     spannerDetails?: Schema$SpannerIODetails[];
+    /**
+     * List of display properties to help UI filter jobs.
+     */
+    userDisplayProperties?: {[key: string]: string} | null;
   }
   /**
    * JobMetrics contains a collection of metrics describing the detailed progress of a Dataflow job. Metrics correspond to user-defined and system-defined metrics in the job. For more information, see [Dataflow job metrics] (https://cloud.google.com/dataflow/docs/guides/using-monitoring-intf). This resource captures only the most recent values of each metric; time-series data can be queried for them (under the same metric names) from Cloud Monitoring.
@@ -1843,6 +1847,10 @@ export namespace dataflow_v1b3 {
      */
     customMetadata?: {[key: string]: string} | null;
     /**
+     * Optional. Specifies a group name for this parameter to be rendered under. Group header text will be rendered exactly as specified in this field. Only considered when parent_name is NOT provided.
+     */
+    groupName?: string | null;
+    /**
      * Required. The help text to display for the parameter.
      */
     helpText?: string | null;
@@ -1862,6 +1870,14 @@ export namespace dataflow_v1b3 {
      * Optional. The type of the parameter. Used for selecting input picker.
      */
     paramType?: string | null;
+    /**
+     * Optional. Specifies the name of the parent parameter. Used in conjunction with 'parent_trigger_values' to make this parameter conditional (will only be rendered conditionally). Should be mappable to a ParameterMetadata.name field.
+     */
+    parentName?: string | null;
+    /**
+     * Optional. The value(s) of the 'parent_name' parameter which will trigger this parameter to be shown. If left empty, ANY non-empty value in parent_name will trigger this parameter to be shown. Only considered when this parameter is conditional (when 'parent_name' has been provided).
+     */
+    parentTriggerValues?: string[] | null;
     /**
      * Optional. Regexes that the parameter must match.
      */
@@ -5076,6 +5092,8 @@ export namespace dataflow_v1b3 {
      *     location: 'placeholder-value',
      *     // The ID of the Cloud Platform project that the job belongs to.
      *     projectId: 'placeholder-value',
+     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5387,6 +5405,10 @@ export namespace dataflow_v1b3 {
      * The ID of the Cloud Platform project that the job belongs to.
      */
     projectId?: string;
+    /**
+     * The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -7667,6 +7689,8 @@ export namespace dataflow_v1b3 {
      *     location: 'placeholder-value',
      *     // The ID of the Cloud Platform project that the job belongs to.
      *     projectId: 'placeholder-value',
+     *     // The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -7974,6 +7998,10 @@ export namespace dataflow_v1b3 {
      * The ID of the Cloud Platform project that the job belongs to.
      */
     projectId?: string;
+    /**
+     * The list of fields to update relative to Job. If empty, only RequestedJobState will be considered for update. If the FieldMask is not empty and RequestedJobState is none/empty, The fields specified in the update mask will be the only ones considered for update. If both RequestedJobState and update_mask are specified, we will first handle RequestedJobState and then the update_mask fields.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata

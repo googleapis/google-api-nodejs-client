@@ -105,38 +105,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "attachments": {
-      "methods": {
-        "create": {
-          "description": "Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename.",
-          "flatPath": "v2beta/{v2betaId}/{v2betaId1}/attachments",
-          "httpMethod": "POST",
-          "id": "cloudsupport.attachments.create",
-          "parameterOrder": [
-            "parent"
-          ],
-          "parameters": {
-            "parent": {
-              "description": "Required. The resource name of the case (or case parent) to which the attachment should be attached.",
-              "location": "path",
-              "pattern": "^[^/]+/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2beta/{+parent}/attachments",
-          "request": {
-            "$ref": "CreateAttachmentRequest"
-          },
-          "response": {
-            "$ref": "Attachment"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
     "caseClassifications": {
       "methods": {
         "search": {
@@ -575,7 +543,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230404",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -673,6 +641,10 @@
         "classification": {
           "$ref": "CaseClassification",
           "description": "The issue classification applicable to this case."
+        },
+        "contactEmail": {
+          "description": "A user-supplied email address to send case update notifications for. This should only be used in BYOID flows, where we cannot infer the user's email address directly from their EUCs.",
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. The time this case was created.",
@@ -815,7 +787,7 @@
       "id": "Comment",
       "properties": {
         "body": {
-          "description": "The full comment body. Maximum of 120000 characters. This can contain rich text syntax.",
+          "description": "The full comment body. Maximum of 12800 characters. This can contain rich text syntax.",
           "type": "string"
         },
         "createTime": {

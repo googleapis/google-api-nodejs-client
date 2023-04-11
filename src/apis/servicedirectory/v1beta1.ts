@@ -174,6 +174,10 @@ export namespace servicedirectory_v1beta1 {
      */
     port?: number | null;
     /**
+     * Output only. A globally unique identifier (in UUID4 format) for this endpoint.
+     */
+    uid?: string | null;
+    /**
      * Output only. The timestamp when the endpoint was last updated.
      */
     updateTime?: string | null;
@@ -311,6 +315,10 @@ export namespace servicedirectory_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. A globally unique identifier (in UUID4 format) for this namespace.
+     */
+    uid?: string | null;
+    /**
      * Output only. The timestamp when the namespace was last updated.
      */
     updateTime?: string | null;
@@ -371,6 +379,10 @@ export namespace servicedirectory_v1beta1 {
      * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
      */
     name?: string | null;
+    /**
+     * Output only. A globally unique identifier (in UUID4 format) for this service.
+     */
+    uid?: string | null;
     /**
      * Output only. The timestamp when the service was last updated. Note: endpoints being created/deleted/updated within the service are not considered service updates for the purpose of this timestamp.
      */
@@ -785,6 +797,7 @@ export namespace servicedirectory_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -796,6 +809,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1054,6 +1068,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1474,6 +1489,7 @@ export namespace servicedirectory_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1485,6 +1501,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2030,6 +2047,7 @@ export namespace servicedirectory_v1beta1 {
      *         //   "endpoints": [],
      *         //   "metadata": {},
      *         //   "name": "my_name",
+     *         //   "uid": "my_uid",
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -2042,6 +2060,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "endpoints": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2306,6 +2325,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "endpoints": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2731,6 +2751,7 @@ export namespace servicedirectory_v1beta1 {
      *         //   "endpoints": [],
      *         //   "metadata": {},
      *         //   "name": "my_name",
+     *         //   "uid": "my_uid",
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -2743,6 +2764,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "endpoints": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -3448,6 +3470,7 @@ export namespace servicedirectory_v1beta1 {
      *           //   "name": "my_name",
      *           //   "network": "my_network",
      *           //   "port": 0,
+     *           //   "uid": "my_uid",
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -3463,6 +3486,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "port": 0,
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -3732,6 +3756,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "port": 0,
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -4019,6 +4044,7 @@ export namespace servicedirectory_v1beta1 {
      *           //   "name": "my_name",
      *           //   "network": "my_network",
      *           //   "port": 0,
+     *           //   "uid": "my_uid",
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -4034,6 +4060,7 @@ export namespace servicedirectory_v1beta1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "port": 0,
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }

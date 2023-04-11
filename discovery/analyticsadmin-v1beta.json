@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230410",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -2232,7 +2232,7 @@
           "type": "string"
         },
         "parameterName": {
-          "description": "Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.",
+          "description": "Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. If this is an item-scoped dimension, then this is the parameter name found in the eCommerce items array. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.",
           "type": "string"
         },
         "scope": {
@@ -2240,12 +2240,14 @@
           "enum": [
             "DIMENSION_SCOPE_UNSPECIFIED",
             "EVENT",
-            "USER"
+            "USER",
+            "ITEM"
           ],
           "enumDescriptions": [
             "Scope unknown or not specified.",
             "Dimension scoped to an event.",
-            "Dimension scoped to a user."
+            "Dimension scoped to a user.",
+            "Dimension scoped to eCommerce items"
           ],
           "type": "string"
         }
@@ -3170,11 +3172,8 @@
               "DATA_RETENTION_SETTINGS",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
-              "SEARCH_ADS_360_LINK",
               "DATA_STREAM",
-              "ATTRIBUTION_SETTINGS",
-              "EXPANDED_DATA_SET",
-              "CHANNEL_GROUP"
+              "ATTRIBUTION_SETTINGS"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -3188,11 +3187,8 @@
               "DataRetentionSettings resource",
               "DisplayVideo360AdvertiserLink resource",
               "DisplayVideo360AdvertiserLinkProposal resource",
-              "SearchAds360Link resource",
               "DataStream resource",
-              "AttributionSettings resource",
-              "ExpandedDataSet resource",
-              "ChannelGroup resource"
+              "AttributionSettings resource"
             ],
             "type": "string"
           },

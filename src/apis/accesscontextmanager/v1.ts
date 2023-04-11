@@ -438,7 +438,7 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$GcpUserAccessBinding {
     /**
-     * Required. Access level that a user must have to be granted access. Only one access level is supported, not multiple. This repeated field must have exactly one element. Example: "accessPolicies/9522/accessLevels/device_trusted"
+     * Optional. Access level that a user must have to be granted access. Only one access level is supported, not multiple. This repeated field must have exactly one element. Example: "accessPolicies/9522/accessLevels/device_trusted"
      */
     accessLevels?: string[] | null;
     /**
@@ -6361,7 +6361,7 @@ export namespace accesscontextmanager_v1 {
      *     await accesscontextmanager.organizations.gcpUserAccessBindings.patch({
      *       // Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      *       name: 'organizations/my-organization/gcpUserAccessBindings/my-gcpUserAccessBinding',
-     *       // Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and must always be: update_mask { paths: "access_levels" \}
+     *       // Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`. update_mask { paths: "access_levels" \}
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -6526,7 +6526,7 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string;
     /**
-     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and must always be: update_mask { paths: "access_levels" \}
+     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`. update_mask { paths: "access_levels" \}
      */
     updateMask?: string;
 

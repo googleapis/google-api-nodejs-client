@@ -1147,7 +1147,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230323",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1211,6 +1211,11 @@
           "description": "Optional. Service Directory rejects values outside of `[0, 65535]`.",
           "format": "int32",
           "type": "integer"
+        },
+        "uid": {
+          "description": "Output only. A globally unique identifier (in UUID4 format) for this endpoint.",
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The timestamp when the endpoint was last updated.",
@@ -1394,6 +1399,11 @@
           "description": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
           "type": "string"
         },
+        "uid": {
+          "description": "Output only. A globally unique identifier (in UUID4 format) for this namespace.",
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the namespace was last updated.",
           "format": "google-datetime",
@@ -1480,6 +1490,11 @@
         },
         "name": {
           "description": "Immutable. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. A globally unique identifier (in UUID4 format) for this service.",
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {

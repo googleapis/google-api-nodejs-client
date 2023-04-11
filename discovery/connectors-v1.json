@@ -635,6 +635,35 @@
                 }
               }
             },
+            "global": {
+              "methods": {
+                "getSettings": {
+                  "description": "GetGlobalSettings gets settings of a project. GlobalSettings is a singleton resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/global/settings",
+                  "httpMethod": "GET",
+                  "id": "connectors.projects.locations.global.getSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Settings.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/global/settings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Settings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -716,7 +745,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "connectors.projects.locations.operations.list",
@@ -1079,7 +1108,7 @@
       }
     }
   },
-  "revision": "20230222",
+  "revision": "20230403",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1160,6 +1189,10 @@
             "Oauth 2.0 Authorization Code Flow"
           ],
           "type": "string"
+        },
+        "oauth2AuthCodeFlow": {
+          "$ref": "Oauth2AuthCodeFlow",
+          "description": "Oauth2AuthCodeFlow."
         },
         "oauth2ClientCredentials": {
           "$ref": "Oauth2ClientCredentials",
@@ -1443,6 +1476,10 @@
           "$ref": "LockConfig",
           "description": "Optional. Configuration that indicates whether or not the Connection can be edited."
         },
+        "logConfig": {
+          "$ref": "ConnectorsLogConfig",
+          "description": "Optional. Log configuration for the connection."
+        },
         "name": {
           "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
           "readOnly": true,
@@ -1679,6 +1716,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "destinationConfigTemplates": {
+          "description": "Output only. List of destination configs needed to create a connection.",
+          "items": {
+            "$ref": "DestinationConfigTemplate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "displayName": {
           "description": "Output only. Display name.",
           "readOnly": true,
@@ -1758,6 +1803,17 @@
       },
       "type": "object"
     },
+    "ConnectorsLogConfig": {
+      "description": "Log configuration for the connection.",
+      "id": "ConnectorsLogConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enabled represents whether logging is enabled or not for a connection.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Destination": {
       "id": "Destination",
       "properties": {
@@ -1790,6 +1846,64 @@
         },
         "key": {
           "description": "The key is the destination identifier that is supported by the Connector.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DestinationConfigTemplate": {
+      "description": "DestinationConfigTemplate defines required destinations supported by the Connector.",
+      "id": "DestinationConfigTemplate",
+      "properties": {
+        "defaultPort": {
+          "description": "The default port.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "description": "Description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the parameter.",
+          "type": "string"
+        },
+        "isAdvanced": {
+          "description": "Whether the current destination tempalate is part of Advanced settings",
+          "type": "boolean"
+        },
+        "key": {
+          "description": "Key of the destination.",
+          "type": "string"
+        },
+        "max": {
+          "description": "The maximum number of destinations supported for this key.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "min": {
+          "description": "The minimum number of destinations supported for this key.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "portFieldType": {
+          "description": "Whether port number should be provided by customers.",
+          "enum": [
+            "FIELD_TYPE_UNSPECIFIED",
+            "REQUIRED",
+            "OPTIONAL",
+            "NOT_USED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "regexPattern": {
+          "description": "Regex pattern for host.",
           "type": "string"
         }
       },
@@ -2398,6 +2512,44 @@
       },
       "type": "object"
     },
+    "Oauth2AuthCodeFlow": {
+      "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.",
+      "id": "Oauth2AuthCodeFlow",
+      "properties": {
+        "authCode": {
+          "description": "Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Client ID for user-provided OAuth app.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "$ref": "Secret",
+          "description": "Client secret for user-provided OAuth app."
+        },
+        "enablePkce": {
+          "description": "Whether to enable PKCE when the user performs the auth code flow.",
+          "type": "boolean"
+        },
+        "pkceVerifier": {
+          "description": "PKCE verifier to be used during the auth code exchange.",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "Redirect URI to be provided during the auth code exchange.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Oauth2ClientCredentials": {
       "description": "Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.",
       "id": "Oauth2ClientCredentials",
@@ -2942,6 +3094,27 @@
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Settings": {
+      "description": "Global Settings details.",
+      "id": "Settings",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/global/settings}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "payg": {
+          "description": "Output only. Flag indicates if user is in PayG model",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "vpcsc": {
+          "description": "Optional. Flag indicates whether vpc-sc is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"

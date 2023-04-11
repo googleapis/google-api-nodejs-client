@@ -136,6 +136,10 @@ export namespace vmmigration_v1 {
      * Input only. AWS secret access key.
      */
     secretAccessKey?: string | null;
+    /**
+     * Input only. AWS session token. Used only when AWS security token service (STS) is responsible for creating the temporary credentials.
+     */
+    sessionToken?: string | null;
   }
   /**
    * AdaptingOSStep contains specific step details.
@@ -594,6 +598,15 @@ export namespace vmmigration_v1 {
      * Whether the Instance should be automatically restarted whenever it is terminated by Compute Engine (not terminated by user). This configuration is identical to `automaticRestart` field in Compute Engine create instance under scheduling. It was changed to an enum (instead of a boolean) to match the default value in Compute Engine which is automatic restart.
      */
     restartType?: string | null;
+  }
+  /**
+   * CutoverForecast holds information about future CutoverJobs of a MigratingVm.
+   */
+  export interface Schema$CutoverForecast {
+    /**
+     * Output only. Estimation of the CutoverJob duration.
+     */
+    estimatedCutoverJobDuration?: string | null;
   }
   /**
    * CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.
@@ -1071,6 +1084,10 @@ export namespace vmmigration_v1 {
      * Output only. Details of the current running replication cycle.
      */
     currentSyncInfo?: Schema$ReplicationCycle;
+    /**
+     * Output only. Provides details of future CutoverJobs of a MigratingVm. Set to empty when cutover forecast is unavailable.
+     */
+    cutoverForecast?: Schema$CutoverForecast;
     /**
      * The description attached to the migrating VM by the user.
      */
@@ -5556,6 +5573,7 @@ export namespace vmmigration_v1 {
      *       //   "computeEngineTargetDefaults": {},
      *       //   "createTime": "my_createTime",
      *       //   "currentSyncInfo": {},
+     *       //   "cutoverForecast": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "error": {},
@@ -5993,6 +6011,7 @@ export namespace vmmigration_v1 {
      *   //   "computeEngineTargetDefaults": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentSyncInfo": {},
+     *   //   "cutoverForecast": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "error": {},
@@ -6289,6 +6308,7 @@ export namespace vmmigration_v1 {
      *       //   "computeEngineTargetDefaults": {},
      *       //   "createTime": "my_createTime",
      *       //   "currentSyncInfo": {},
+     *       //   "cutoverForecast": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "error": {},

@@ -2055,7 +2055,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230403",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -5014,6 +5014,11 @@
         "resizeUnitCount": {
           "description": "If true and enable_renewal = true, the unit (for example seats or licenses) will be set to the number of active units at renewal time.",
           "type": "boolean"
+        },
+        "scheduledRenewalOffer": {
+          "description": "Output only. The offer resource name that the entitlement will renew on at the end date. Takes the form: accounts/{account_id}/offers/{offer_id}.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

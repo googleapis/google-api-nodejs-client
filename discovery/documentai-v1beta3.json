@@ -1012,7 +1012,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230330",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -6724,7 +6724,7 @@
       "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest",
       "properties": {
         "processorVersionSource": {
-          "description": "Required. The source processor version to import from.",
+          "description": "The source processor version to import from.",
           "type": "string"
         }
       },
@@ -6835,7 +6835,7 @@
       "id": "GoogleCloudDocumentaiV1beta3OcrConfig",
       "properties": {
         "advancedOcrOptions": {
-          "description": "A list of advanced OCR options to further fine-tune OCR behavior.",
+          "description": "A list of advanced OCR options to further fine-tune OCR behavior. Current valid values are: - `legacy_layout`: a heuristics layout detection algorithm, which serves as an alternative to the current ML-based layout detection algorithm. Customers can choose the best suitable layout algorithm based on their situation.",
           "items": {
             "type": "string"
           },
@@ -7122,7 +7122,8 @@
             "UNDEPLOYING",
             "CREATING",
             "DELETING",
-            "FAILED"
+            "FAILED",
+            "IMPORTING"
           ],
           "enumDescriptions": [
             "The processor version is in an unspecified state.",
@@ -7132,7 +7133,8 @@
             "The processor version is being undeployed.",
             "The processor version is being created.",
             "The processor version is being deleted.",
-            "The processor version failed and is in an indeterminate state."
+            "The processor version failed and is in an indeterminate state.",
+            "The processor version is being imported."
           ],
           "type": "string"
         }

@@ -1406,7 +1406,7 @@
       }
     }
   },
-  "revision": "20230310",
+  "revision": "20230331",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1544,7 +1544,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaBigQuerySource",
       "properties": {
         "dataSchema": {
-          "description": "The schema to use when parsing the data from the source. Supported values for imports: * `user_event` (default): One JSON UserEvent per line. * `document` (default): One JSON Document per line. Each document must have a valid document.id.",
+          "description": "The schema to use when parsing the data from the source. Supported values for user event imports: * `user_event` (default): One UserEvent per row. Supported values for document imports: * `document` (default): One Document format per row. Each document must have a valid Document.id and one of Document.json_data or Document.struct_data. * `custom`: One custom data per row in arbitrary format that conforms the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical.",
           "type": "string"
         },
         "datasetId": {
@@ -1581,155 +1581,6 @@
         },
         "selectedSuggestion": {
           "description": "End user selected CompleteQueryResponse.CompletionResult.suggestion.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaCondition": {
-      "description": "Defines circumstances to be checked before allowing a behavior",
-      "id": "GoogleCloudDiscoveryengineV1alphaCondition",
-      "properties": {
-        "activeTimeRange": {
-          "description": "Optional. Range of time(s) specifying when condition is active. Maximum of 10 time ranges.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaConditionTimeRange"
-          },
-          "type": "array"
-        },
-        "queryTerms": {
-          "description": "Optional. Search only A list of terms to match the query on. Maximum of 10 query terms.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaConditionQueryTerm"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaConditionQueryTerm": {
-      "description": "Matcher for search request query",
-      "id": "GoogleCloudDiscoveryengineV1alphaConditionQueryTerm",
-      "properties": {
-        "fullMatch": {
-          "description": "Whether the search query needs to exactly match the query term.",
-          "type": "boolean"
-        },
-        "value": {
-          "description": "The specific query value to match against Must be lowercase, must be UTF-8. Can have at most 3 space separated terms if full_match is true. Cannot be an empty string. Maximum length of 5000 characters.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaConditionTimeRange": {
-      "description": "Used for time-dependent conditions.",
-      "id": "GoogleCloudDiscoveryengineV1alphaConditionTimeRange",
-      "properties": {
-        "endTime": {
-          "description": "End of time range. Range is inclusive. Must be in the future.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "startTime": {
-          "description": "Start of time range. Range is inclusive.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaControl": {
-      "description": "Defines a conditioned behavior to employ during serving. Must be attached to a [ServingConfig] to be considered at serving time. Permitted actions dependent on Solution Type.",
-      "id": "GoogleCloudDiscoveryengineV1alphaControl",
-      "properties": {
-        "associatedServingConfigIds": {
-          "description": "Output only. List of all [ServingConfig] ids this control is attached to. May take up to 10 minutes to update after changes.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "boostAction": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaControlBoostAction",
-          "description": "Defines a boost-type control"
-        },
-        "conditions": {
-          "description": "Determines when the associated action will trigger. Omit to always apply the action. Currently only a single condition may be specified. Otherwise an INVALID ARGUMENT error is thrown.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaCondition"
-          },
-          "type": "array"
-        },
-        "displayName": {
-          "description": "Required. Human readable name. The identifier used in UI views. Must be UTF-8 encoded string. Length limit is 128 characters. Otherwise an INVALID ARGUMENT error is thrown.",
-          "type": "string"
-        },
-        "filterAction": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaControlFilterAction",
-          "description": "Defines a filter-type control Currently not supported by Recommendation"
-        },
-        "name": {
-          "description": "Immutable. Fully qualified name `projects/*/locations/global/dataStore/*/controls/*`",
-          "type": "string"
-        },
-        "solutionType": {
-          "description": "Required. What solution the control belongs to. Must be compatible with vertical of resource. Otherwise an INVALID ARGUMENT error is thrown.",
-          "enum": [
-            "SOLUTION_TYPE_UNSPECIFIED",
-            "SOLUTION_TYPE_RECOMMENDATION",
-            "SOLUTION_TYPE_SEARCH"
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Used for Recommendations AI.",
-            "Used for Discovery Search."
-          ],
-          "type": "string"
-        },
-        "useCases": {
-          "description": "Specifies the use case for the control. Affects what condition fields can be set. Only applies to SOLUTION_TYPE_SEARCH. Currently only allow one use case per control. Must be set when solution_type is SolutionType.SOLUTION_TYPE_SEARCH.",
-          "items": {
-            "enum": [
-              "SEARCH_USE_CASE_UNSPECIFIED",
-              "SEARCH_USE_CASE_SEARCH",
-              "SEARCH_USE_CASE_BROWSE"
-            ],
-            "enumDescriptions": [
-              "Value used when unset. Will not occur in CSS.",
-              "Search use case. Expects the traffic has a non-empty query.",
-              "Browse use case. Expects the traffic has an empty query."
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaControlBoostAction": {
-      "description": "Adjusts order of products in returned list.",
-      "id": "GoogleCloudDiscoveryengineV1alphaControlBoostAction",
-      "properties": {
-        "boost": {
-          "description": "Required. Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0 (No-op).",
-          "format": "float",
-          "type": "number"
-        },
-        "filter": {
-          "description": "Required. Specifies which products to apply the boost to. If no filter is provided all products will be boosted (No-op). Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaControlFilterAction": {
-      "description": "Specified which products may be included in results. Uses same filter as boost.",
-      "id": "GoogleCloudDiscoveryengineV1alphaControlFilterAction",
-      "properties": {
-        "filter": {
-          "description": "Required. A filter to apply on the matching condition results. Required Syntax documentation: https://cloud.google.com/retail/docs/filter-and-order Maximum length is 5000 characters. Otherwise an INVALID ARGUMENT error is thrown.",
           "type": "string"
         }
       },
@@ -1778,7 +1629,7 @@
           "type": "string"
         },
         "schemaId": {
-          "description": "Required. The identifier of the schema located in the same data store.",
+          "description": "The identifier of the schema located in the same data store.",
           "type": "string"
         },
         "structData": {
@@ -1824,11 +1675,11 @@
       "id": "GoogleCloudDiscoveryengineV1alphaGcsSource",
       "properties": {
         "dataSchema": {
-          "description": "The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` will become a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. Supported values for user even imports: * `user_event` (default): One JSON UserEvent per line.",
+          "description": "The schema to use when parsing the data from the source. Supported values for document imports: * `document` (default): One JSON Document per line. Each document must have a valid Document.id. * `content`: Unstructured data (e.g. PDF, HTML). Each file matched by `input_uris` will become a document, with the ID set to the first 128 bits of SHA256(URI) encoded as a hex string. * `custom`: One custom data JSON per row in arbitrary format that conforms the defined Schema of the data store. This can only be used by the GENERIC Data Store vertical. Supported values for user even imports: * `user_event` (default): One JSON UserEvent per line.",
           "type": "string"
         },
         "inputUris": {
-          "description": "Required. Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/*.json`. A request can contain at most 100 files or 100000 files if the data_schema is `content`. And each file can be up to 2 GB.",
+          "description": "Required. Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/*.json`. A request can contain at most 100 files (or 100,000 files if `data_schema` is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is `content`).",
           "items": {
             "type": "string"
           },
@@ -2208,6 +2059,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSchema": {
+      "description": "Defines the structure and layout of a type of document data.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSchema",
+      "properties": {
+        "jsonSchema": {
+          "description": "The JSON representation of the schema.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "structSchema": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The structured representation of the schema.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSearchInfo": {
       "description": "Detailed search information.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchInfo",
@@ -2477,6 +2351,29 @@
           "description": "Count of user events imported, but with Document information not found in the existing Branch.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSchema": {
+      "description": "Defines the structure and layout of a type of document data.",
+      "id": "GoogleCloudDiscoveryengineV1betaSchema",
+      "properties": {
+        "jsonSchema": {
+          "description": "The JSON representation of the schema.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the schema, in the format of `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "structSchema": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The structured representation of the schema.",
+          "type": "object"
         }
       },
       "type": "object"
