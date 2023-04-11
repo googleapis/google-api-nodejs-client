@@ -288,213 +288,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
-              },
-              "resources": {
-                "executions": {
-                  "methods": {
-                    "get": {
-                      "description": "Gets details of a single Execution.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions/{executionsId}",
-                      "httpMethod": "GET",
-                      "id": "workloadmanager.projects.locations.evaluations.executions.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. Name of the resource",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "Execution"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "list": {
-                      "description": "Lists Executions in a given project and location.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions",
-                      "httpMethod": "GET",
-                      "id": "workloadmanager.projects.locations.evaluations.executions.list",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "filter": {
-                          "description": "Filtering results",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "orderBy": {
-                          "description": "Field to sort by. See https://google.aip.dev/132#ordering for more details.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "A token identifying a page of results the server should return.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. The resource prefix of the Execution using the form: 'projects/{project}/locations/{location}/evaluations/{evaluation}'",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/executions",
-                      "response": {
-                        "$ref": "ListExecutionsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "run": {
-                      "description": "Creates a new Execution in a given project and location.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions:run",
-                      "httpMethod": "POST",
-                      "id": "workloadmanager.projects.locations.evaluations.executions.run",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The resource name of the Execution using the form: 'projects/{project}/locations/{location}/evaluations/{evaluation}/executions/{execution}'",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}/executions:run",
-                      "request": {
-                        "$ref": "RunEvaluationRequest"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  },
-                  "resources": {
-                    "results": {
-                      "methods": {
-                        "list": {
-                          "description": "List the running result of a single Execution.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions/{executionsId}/results",
-                          "httpMethod": "GET",
-                          "id": "workloadmanager.projects.locations.evaluations.executions.results.list",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "filter": {
-                              "description": "Filtering results",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "pageSize": {
-                              "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "pageToken": {
-                              "description": "A token identifying a page of results the server should return.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "parent": {
-                              "description": "Required. The execution results. Format: {parent}/evaluations/*/executions/*/results",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+parent}/results",
-                          "response": {
-                            "$ref": "ListExecutionResultsResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        }
-                      }
-                    },
-                    "scannedResources": {
-                      "methods": {
-                        "list": {
-                          "description": "List all scanned resources for a single Execution.",
-                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/executions/{executionsId}/scannedResources",
-                          "httpMethod": "GET",
-                          "id": "workloadmanager.projects.locations.evaluations.executions.scannedResources.list",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "filter": {
-                              "description": "Filtering results",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "orderBy": {
-                              "description": "Field to sort by. See https://google.aip.dev/132#ordering for more details.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "pageSize": {
-                              "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                              "format": "int32",
-                              "location": "query",
-                              "type": "integer"
-                            },
-                            "pageToken": {
-                              "description": "A token identifying a page of results the server should return.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "parent": {
-                              "description": "Required. parent for ListScannedResourcesRequest",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "rule": {
-                              "description": "rule name",
-                              "location": "query",
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1/{+parent}/scannedResources",
-                          "response": {
-                            "$ref": "ListScannedResourcesResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        }
-                      }
-                    }
-                  }
-                }
               }
             },
             "insights": {
@@ -651,58 +444,13 @@
                   ]
                 }
               }
-            },
-            "rules": {
-              "methods": {
-                "list": {
-                  "description": "Lists rules in a given project.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rules",
-                  "httpMethod": "GET",
-                  "id": "workloadmanager.projects.locations.rules.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "Filter based on primary_category, secondary_category",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "A token identifying a page of results the server should return.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The [project] on which to execute the request. The format is: projects/{project_id}/locations/{location} Currently, the pre-defined rules are global available to all projects and all regions",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}/rules",
-                  "response": {
-                    "$ref": "ListRulesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
             }
           }
         }
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230308",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -766,117 +514,10 @@
           "readOnly": true,
           "type": "array"
         },
-        "schedule": {
-          "description": "crontab format schedule for scheduled evaluation, example: 0 */3 * * *",
-          "type": "string"
-        },
         "updateTime": {
           "description": "Output only. [Output only] Update time stamp",
           "format": "google-datetime",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Execution": {
-      "description": "Message describing Execution object",
-      "id": "Execution",
-      "properties": {
-        "endTime": {
-          "description": "Output only. [Output only] End time stamp",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "evaluationId": {
-          "description": "Output only. [Output only] Evaluation ID",
-          "readOnly": true,
-          "type": "string"
-        },
-        "inventoryTime": {
-          "description": "Output only. [Output only] Inventory time stamp",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Labels as key value pairs",
-          "type": "object"
-        },
-        "name": {
-          "description": "The name of execution resource. The format is projects/{project}/locations/{location}/evaluations/{evaluation}/executions/{execution}",
-          "type": "string"
-        },
-        "runType": {
-          "description": "type represent whether the execution executed directly by user or scheduled according evaluation.schedule field.",
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "ONE_TIME",
-            "SCHEDULED"
-          ],
-          "enumDescriptions": [
-            "type of execution is unspecified",
-            "type of execution is one time",
-            "type of execution is scheduled"
-          ],
-          "type": "string"
-        },
-        "startTime": {
-          "description": "Output only. [Output only] Start time stamp",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "state": {
-          "description": "Output only. [Output only] State",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "RUNNING",
-            "SUCCEEDED",
-            "FAILED"
-          ],
-          "enumDescriptions": [
-            "state of execution is unspecified",
-            "the execution is running in backend service",
-            "the execution run success",
-            "the execution run failed"
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ExecutionResult": {
-      "description": "Message describing the result of an execution",
-      "id": "ExecutionResult",
-      "properties": {
-        "documentationUrl": {
-          "description": "the document url of the rule",
-          "type": "string"
-        },
-        "resource": {
-          "$ref": "Resource",
-          "description": "the violate resource"
-        },
-        "rule": {
-          "description": "the rule which violate in execution",
-          "type": "string"
-        },
-        "severity": {
-          "description": "severity of violation",
-          "type": "string"
-        },
-        "violationDetails": {
-          "$ref": "ViolationDetails",
-          "description": "the details of violation in result"
-        },
-        "violationMessage": {
-          "description": "the violation message of an execution",
           "type": "string"
         }
       },
@@ -942,49 +583,6 @@
       },
       "type": "object"
     },
-    "ListExecutionResultsResponse": {
-      "description": "Message for response of list execution results",
-      "id": "ListExecutionResultsResponse",
-      "properties": {
-        "executionResults": {
-          "description": "The versions from the specified publisher.",
-          "items": {
-            "$ref": "ExecutionResult"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListExecutionsResponse": {
-      "description": "Message for response to listing Executions",
-      "id": "ListExecutionsResponse",
-      "properties": {
-        "executions": {
-          "description": "The list of Execution",
-          "items": {
-            "$ref": "Execution"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
-          "type": "string"
-        },
-        "unreachable": {
-          "description": "Locations that could not be reached.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ListLocationsResponse": {
       "description": "The response message for Locations.ListLocations.",
       "id": "ListLocationsResponse",
@@ -1015,42 +613,6 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ListRulesResponse": {
-      "description": "Mesesage of response of list rules",
-      "id": "ListRulesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "A token identifying a page of results the server should return.",
-          "type": "string"
-        },
-        "rules": {
-          "description": "all rules in response",
-          "items": {
-            "$ref": "Rule"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ListScannedResourcesResponse": {
-      "description": "Message for response to list scanned resources",
-      "id": "ListScannedResourcesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
-          "type": "string"
-        },
-        "scannedResources": {
-          "description": "All scanned resources in response",
-          "items": {
-            "$ref": "ScannedResource"
           },
           "type": "array"
         }
@@ -1170,25 +732,6 @@
       },
       "type": "object"
     },
-    "Resource": {
-      "description": "Message represent resource in execution result",
-      "id": "Resource",
-      "properties": {
-        "name": {
-          "description": "the name of the resource",
-          "type": "string"
-        },
-        "serviceAccount": {
-          "description": "the service account accosiate with resource",
-          "type": "string"
-        },
-        "type": {
-          "description": "the type of reresource",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ResourceFilter": {
       "description": "Message describing resource filters",
       "id": "ResourceFilter",
@@ -1246,73 +789,6 @@
             "Resource has no outstanding operations on it or has active Update operations.",
             "Resource has an active Delete operation."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Rule": {
-      "description": "Message represent a rule",
-      "id": "Rule",
-      "properties": {
-        "description": {
-          "description": "descrite rule in plain language",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "the name display in UI",
-          "type": "string"
-        },
-        "errorMessage": {
-          "description": "the message template for rule",
-          "type": "string"
-        },
-        "name": {
-          "description": "rule name",
-          "type": "string"
-        },
-        "primaryCategory": {
-          "description": "the primary category",
-          "type": "string"
-        },
-        "remediation": {
-          "description": "the remediation for the rule",
-          "type": "string"
-        },
-        "revisionId": {
-          "description": "Output only. the version of the rule",
-          "readOnly": true,
-          "type": "string"
-        },
-        "secondaryCategory": {
-          "description": "the secondary category",
-          "type": "string"
-        },
-        "severity": {
-          "description": "the severity of the rule",
-          "type": "string"
-        },
-        "uri": {
-          "description": "the docuement url for the rule",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RunEvaluationRequest": {
-      "description": "Message for creating a Execution",
-      "id": "RunEvaluationRequest",
-      "properties": {
-        "execution": {
-          "$ref": "Execution",
-          "description": "Required. The resource being created"
-        },
-        "executionId": {
-          "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and execution_id from the method_signature of Create RPC",
-          "type": "string"
-        },
-        "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },
@@ -1414,26 +890,6 @@
           "description": "ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
           "type": "string"
         },
-        "resourceState": {
-          "description": "Indicates whether this is a new, updated, or missing resource.",
-          "enum": [
-            "RESOURCE_STATE_UNSPECIFIED",
-            "ADDED",
-            "UPDATED",
-            "REMOVED",
-            "REPLACED",
-            "MISSING"
-          ],
-          "enumDescriptions": [
-            "Undefined resource state",
-            "Resource was added this cycle",
-            "Resource already discovered, just updated this cycle",
-            "Resource already discovered, but has been explicitly removed this cycle",
-            "Resource already discovered, but has been replaced by a new resource this cycle",
-            "Resource already discovered, but is missing or unresponsive this cycle"
-          ],
-          "type": "string"
-        },
         "resourceType": {
           "description": "The type of this resource.",
           "enum": [
@@ -1510,17 +966,6 @@
       },
       "type": "object"
     },
-    "ScannedResource": {
-      "description": "Message of scanned resource",
-      "id": "ScannedResource",
-      "properties": {
-        "resource": {
-          "description": "resource name",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -1543,28 +988,6 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ViolationDetails": {
-      "description": "Message describing the violdation in execution result",
-      "id": "ViolationDetails",
-      "properties": {
-        "asset": {
-          "description": "the name of asset",
-          "type": "string"
-        },
-        "observed": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "observed",
-          "type": "object"
-        },
-        "serviceAccount": {
-          "description": "the service account associate with resource",
           "type": "string"
         }
       },

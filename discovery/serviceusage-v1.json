@@ -426,7 +426,7 @@
       }
     }
   },
-  "revision": "20230405",
+  "revision": "20230409",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -904,6 +904,41 @@
       },
       "type": "object"
     },
+    "ConsumerPolicy": {
+      "description": "Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.",
+      "id": "ConsumerPolicy",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)",
+          "type": "object"
+        },
+        "enableRules": {
+          "description": "Enable rules define usable services and service groups.",
+          "items": {
+            "$ref": "EnableRule"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "An opaque tag indicating the current version of the policy, used for concurrency control.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the policy. For example, `projects/12345/consumerPolicy`, `folders/12345/consumerPolicy`, `organizations/12345/consumerPolicy`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The last-modified time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Context": {
       "description": "`Context` defines which contexts an API requests. Example: context: rules: - selector: \"*\" requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to allowlist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: \"google.example.library.v1.LibraryService.CreateBook\" allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here.",
       "id": "Context",
@@ -1197,6 +1232,50 @@
         "serviceId": {
           "description": "The service id of a service that could not be enabled.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnableRule": {
+      "description": "The consumer policy rule that defines usable services and service groups.",
+      "id": "EnableRule",
+      "properties": {
+        "enableType": {
+          "description": "Client and resource project enable type.",
+          "enum": [
+            "ENABLE_TYPE_UNSPECIFIED",
+            "CLIENT",
+            "RESOURCE",
+            "V1_COMPATIBLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified enable type, which means enabled as both client and resource project.",
+            "Enable all clients under the CRM node specified by `ConsumerPolicy.name` to use the listed services. A client can be an API key, an OAuth client, or a service account.",
+            "Enable resources in the list services to be created and used under the CRM node specified by the `ConsumerPolicy.name`.",
+            "Activation made by Service Usage v1 API. This will be how consumers differentiate between policy changes made by v1 and v2 clients and understand what is actually possible based on those different policies."
+          ],
+          "type": "string"
+        },
+        "groups": {
+          "description": "DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). go/predefined-service-groups. Example: `groups/googleServices`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "services": {
+          "description": "DEPRECATED: Please use field `values`. Service should have prefix `services/`. The names of the services that are enabled. Example: `storage.googleapis.com`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "values": {
+          "description": "The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, groups/googleServices`, groups/allServices`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2917,6 +2996,12 @@
     "UpdateAdminQuotaPolicyMetadata": {
       "description": "Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by UpdateAdminQuotaPolicy.",
       "id": "UpdateAdminQuotaPolicyMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "UpdateConsumerPolicyLROMetadata": {
+      "description": "Metadata for the `UpdateConsumerPolicyLRO` method.",
+      "id": "UpdateConsumerPolicyLROMetadata",
       "properties": {},
       "type": "object"
     },

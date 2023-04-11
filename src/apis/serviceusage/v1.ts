@@ -453,6 +453,31 @@ export namespace serviceusage_v1 {
     referenceDocsUri?: string | null;
   }
   /**
+   * Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.
+   */
+  export interface Schema$ConsumerPolicy {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Enable rules define usable services and service groups.
+     */
+    enableRules?: Schema$EnableRule[];
+    /**
+     * An opaque tag indicating the current version of the policy, used for concurrency control.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the policy. For example, `projects/12345/consumerPolicy`, `folders/12345/consumerPolicy`, `organizations/12345/consumerPolicy`.
+     */
+    name?: string | null;
+    /**
+     * The last-modified time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * `Context` defines which contexts an API requests. Example: context: rules: - selector: "*" requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to allowlist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: "google.example.library.v1.LibraryService.CreateBook" allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here.
    */
   export interface Schema$Context {
@@ -664,6 +689,27 @@ export namespace serviceusage_v1 {
      * The service id of a service that could not be enabled.
      */
     serviceId?: string | null;
+  }
+  /**
+   * The consumer policy rule that defines usable services and service groups.
+   */
+  export interface Schema$EnableRule {
+    /**
+     * Client and resource project enable type.
+     */
+    enableType?: string | null;
+    /**
+     * DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). go/predefined-service-groups. Example: `groups/googleServices`.
+     */
+    groups?: string[] | null;
+    /**
+     * DEPRECATED: Please use field `values`. Service should have prefix `services/`. The names of the services that are enabled. Example: `storage.googleapis.com`.
+     */
+    services?: string[] | null;
+    /**
+     * The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, groups/googleServices`, groups/allServices`.
+     */
+    values?: string[] | null;
   }
   /**
    * Request message for the `EnableService` method.
@@ -1838,6 +1884,10 @@ export namespace serviceusage_v1 {
    * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by UpdateAdminQuotaPolicy.
    */
   export interface Schema$UpdateAdminQuotaPolicyMetadata {}
+  /**
+   * Metadata for the `UpdateConsumerPolicyLRO` method.
+   */
+  export interface Schema$UpdateConsumerPolicyLROMetadata {}
   /**
    * Configuration controlling usage of a service.
    */

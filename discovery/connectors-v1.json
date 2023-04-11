@@ -1108,7 +1108,7 @@
       }
     }
   },
-  "revision": "20230322",
+  "revision": "20230403",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1189,6 +1189,10 @@
             "Oauth 2.0 Authorization Code Flow"
           ],
           "type": "string"
+        },
+        "oauth2AuthCodeFlow": {
+          "$ref": "Oauth2AuthCodeFlow",
+          "description": "Oauth2AuthCodeFlow."
         },
         "oauth2ClientCredentials": {
           "$ref": "Oauth2ClientCredentials",
@@ -1472,6 +1476,10 @@
           "$ref": "LockConfig",
           "description": "Optional. Configuration that indicates whether or not the Connection can be edited."
         },
+        "logConfig": {
+          "$ref": "ConnectorsLogConfig",
+          "description": "Optional. Log configuration for the connection."
+        },
         "name": {
           "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
           "readOnly": true,
@@ -1708,6 +1716,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "destinationConfigTemplates": {
+          "description": "Output only. List of destination configs needed to create a connection.",
+          "items": {
+            "$ref": "DestinationConfigTemplate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "displayName": {
           "description": "Output only. Display name.",
           "readOnly": true,
@@ -1787,6 +1803,17 @@
       },
       "type": "object"
     },
+    "ConnectorsLogConfig": {
+      "description": "Log configuration for the connection.",
+      "id": "ConnectorsLogConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enabled represents whether logging is enabled or not for a connection.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Destination": {
       "id": "Destination",
       "properties": {
@@ -1819,6 +1846,64 @@
         },
         "key": {
           "description": "The key is the destination identifier that is supported by the Connector.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DestinationConfigTemplate": {
+      "description": "DestinationConfigTemplate defines required destinations supported by the Connector.",
+      "id": "DestinationConfigTemplate",
+      "properties": {
+        "defaultPort": {
+          "description": "The default port.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "description": "Description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the parameter.",
+          "type": "string"
+        },
+        "isAdvanced": {
+          "description": "Whether the current destination tempalate is part of Advanced settings",
+          "type": "boolean"
+        },
+        "key": {
+          "description": "Key of the destination.",
+          "type": "string"
+        },
+        "max": {
+          "description": "The maximum number of destinations supported for this key.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "min": {
+          "description": "The minimum number of destinations supported for this key.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "portFieldType": {
+          "description": "Whether port number should be provided by customers.",
+          "enum": [
+            "FIELD_TYPE_UNSPECIFIED",
+            "REQUIRED",
+            "OPTIONAL",
+            "NOT_USED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "regexPattern": {
+          "description": "Regex pattern for host.",
           "type": "string"
         }
       },
@@ -2423,6 +2508,44 @@
           "description": "Minimum number of nodes in the runtime nodes.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Oauth2AuthCodeFlow": {
+      "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.",
+      "id": "Oauth2AuthCodeFlow",
+      "properties": {
+        "authCode": {
+          "description": "Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Client ID for user-provided OAuth app.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "$ref": "Secret",
+          "description": "Client secret for user-provided OAuth app."
+        },
+        "enablePkce": {
+          "description": "Whether to enable PKCE when the user performs the auth code flow.",
+          "type": "boolean"
+        },
+        "pkceVerifier": {
+          "description": "PKCE verifier to be used during the auth code exchange.",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "Redirect URI to be provided during the auth code exchange.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

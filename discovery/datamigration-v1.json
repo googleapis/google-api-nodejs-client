@@ -1831,7 +1831,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230327",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2638,7 +2638,7 @@
             "DATABASE_ENTITY_TYPE_SYNONYM",
             "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
             "DATABASE_ENTITY_TYPE_UDT",
-            "DATABASE_ENTITY_TYPE_MATERIAL_VIEW",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
             "DATABASE_ENTITY_TYPE_DATABASE"
           ],
           "enumDescriptions": [
@@ -2656,7 +2656,7 @@
             "Synonym.",
             "Package.",
             "UDT.",
-            "Material View.",
+            "Materialized View.",
             "Database."
           ],
           "type": "string"
@@ -4283,7 +4283,7 @@
             "DATABASE_ENTITY_TYPE_SYNONYM",
             "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
             "DATABASE_ENTITY_TYPE_UDT",
-            "DATABASE_ENTITY_TYPE_MATERIAL_VIEW",
+            "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
             "DATABASE_ENTITY_TYPE_DATABASE"
           ],
           "enumDescriptions": [
@@ -4301,7 +4301,7 @@
             "Synonym.",
             "Package.",
             "UDT.",
-            "Material View.",
+            "Materialized View.",
             "Database."
           ],
           "type": "string"

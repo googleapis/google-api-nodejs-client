@@ -236,7 +236,7 @@ export namespace admin_reports_v1 {
      */
     params?: {[key: string]: string} | null;
     /**
-     * A Boolean value to indicate whether payload is wanted. Optional.
+     * A Boolean value to indicate whether payload is wanted. A payload is data that is sent in the body of an HTTP POST, PUT, or PATCH message and contains important information about the request. Optional.
      */
     payload?: boolean | null;
     /**

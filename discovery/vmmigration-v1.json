@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230330",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2753,6 +2753,19 @@
       },
       "type": "object"
     },
+    "CutoverForecast": {
+      "description": "CutoverForecast holds information about future CutoverJobs of a MigratingVm.",
+      "id": "CutoverForecast",
+      "properties": {
+        "estimatedCutoverJobDuration": {
+          "description": "Output only. Estimation of the CutoverJob duration.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CutoverJob": {
       "description": "CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.",
       "id": "CutoverJob",
@@ -3450,6 +3463,11 @@
         "currentSyncInfo": {
           "$ref": "ReplicationCycle",
           "description": "Output only. Details of the current running replication cycle.",
+          "readOnly": true
+        },
+        "cutoverForecast": {
+          "$ref": "CutoverForecast",
+          "description": "Output only. Provides details of future CutoverJobs of a MigratingVm. Set to empty when cutover forecast is unavailable.",
           "readOnly": true
         },
         "description": {

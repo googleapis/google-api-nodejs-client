@@ -6,6 +6,7 @@
   "description": "Views Ad Experience Report data, and gets a list of sites that have a significant number of annoying ads.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/ad-experience-report/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -138,7 +139,7 @@
       }
     }
   },
-  "revision": "20200823",
+  "revision": "20230403",
   "rootUrl": "https://adexperiencereport.googleapis.com/",
   "schemas": {
     "PlatformSummary": {

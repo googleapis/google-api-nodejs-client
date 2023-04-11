@@ -5404,7 +5404,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/storage/docs/json_api/v1/",
+      "documentationLink": "https://cloud.google.com/storage/docs/apis",
       "preferred": true
     },
     {

@@ -1813,7 +1813,7 @@
       }
     }
   },
-  "revision": "20230324",
+  "revision": "20230404",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3173,14 +3173,14 @@
       "id": "GoogleCloudDatacatalogV1TaggedEntry",
       "properties": {
         "absentTags": {
-          "description": "Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.",
+          "description": "Optional. Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.",
           "items": {
             "$ref": "GoogleCloudDatacatalogV1Tag"
           },
           "type": "array"
         },
         "presentTags": {
-          "description": "Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.",
+          "description": "Optional. Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.",
           "items": {
             "$ref": "GoogleCloudDatacatalogV1Tag"
           },
