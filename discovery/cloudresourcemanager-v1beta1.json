@@ -261,6 +261,7 @@
           ]
         },
         "update": {
+          "deprecated": true,
           "description": "Updates an Organization resource identified by the specified resource name.",
           "flatPath": "v1beta1/organizations/{organizationsId}",
           "httpMethod": "PUT",
@@ -566,7 +567,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230409",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
