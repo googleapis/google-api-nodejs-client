@@ -440,6 +440,31 @@ export namespace serviceusage_v1beta1 {
     referenceDocsUri?: string | null;
   }
   /**
+   * Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.
+   */
+  export interface Schema$ConsumerPolicy {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Enable rules define usable services and service groups.
+     */
+    enableRules?: Schema$EnableRule[];
+    /**
+     * An opaque tag indicating the current version of the policy, used for concurrency control.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the policy. For example, `projects/12345/consumerPolicy`, `folders/12345/consumerPolicy`, `organizations/12345/consumerPolicy`.
+     */
+    name?: string | null;
+    /**
+     * The last-modified time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Consumer quota settings for a quota limit.
    */
   export interface Schema$ConsumerQuotaLimit {
@@ -704,6 +729,27 @@ export namespace serviceusage_v1beta1 {
      * The service id of a service that could not be enabled.
      */
     serviceId?: string | null;
+  }
+  /**
+   * The consumer policy rule that defines usable services and service groups.
+   */
+  export interface Schema$EnableRule {
+    /**
+     * Client and resource project enable type.
+     */
+    enableType?: string | null;
+    /**
+     * DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). go/predefined-service-groups. Example: `groups/googleServices`.
+     */
+    groups?: string[] | null;
+    /**
+     * DEPRECATED: Please use field `values`. Service should have prefix `services/`. The names of the services that are enabled. Example: `storage.googleapis.com`.
+     */
+    services?: string[] | null;
+    /**
+     * The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, groups/googleServices`, groups/allServices`.
+     */
+    values?: string[] | null;
   }
   /**
    * Request message for the `EnableService` method.
@@ -2055,6 +2101,10 @@ export namespace serviceusage_v1beta1 {
    * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by UpdateAdminQuotaPolicy.
    */
   export interface Schema$UpdateAdminQuotaPolicyMetadata {}
+  /**
+   * Metadata for the `UpdateConsumerPolicyLRO` method.
+   */
+  export interface Schema$UpdateConsumerPolicyLROMetadata {}
   /**
    * Configuration controlling usage of a service.
    */
