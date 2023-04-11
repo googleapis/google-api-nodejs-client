@@ -1460,7 +1460,7 @@ export namespace servicenetworking_v1beta {
      */
     methodSettings?: Schema$MethodSettings[];
     /**
-     * Link to a place that API users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103
+     * Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103
      */
     newIssueUri?: string | null;
     /**
