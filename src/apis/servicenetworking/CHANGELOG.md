@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v10.0.0...servicenetworking-v11.0.0) (2023-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3211](https://github.com/googleapis/google-api-nodejs-client/issues/3211)) ([e2d966e](https://github.com/googleapis/google-api-nodejs-client/commit/e2d966e089bf8e743dbfc83af8ef3b37a0f4c83d))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v9.2.0...servicenetworking-v10.0.0) (2023-04-08)
 
 
