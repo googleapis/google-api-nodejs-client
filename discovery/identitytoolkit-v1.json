@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20230327",
+  "revision": "20230410",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -1757,6 +1757,22 @@
         "challenge": {
           "type": "string"
         },
+        "clientType": {
+          "description": "The client type: web, Android or iOS. Required when reCAPTCHA Enterprise protection is enabled.",
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "CLIENT_TYPE_WEB",
+            "CLIENT_TYPE_ANDROID",
+            "CLIENT_TYPE_IOS"
+          ],
+          "enumDescriptions": [
+            "Client type is not specified.",
+            "Client type is web.",
+            "Client type is android.",
+            "Client type is ios."
+          ],
+          "type": "string"
+        },
         "continueUrl": {
           "description": "The Url to continue after user clicks the link sent in email. This is the url that will allow the web widget to handle the OOB code.",
           "type": "string"
@@ -1783,6 +1799,18 @@
         },
         "newEmail": {
           "description": "The email address the account is being updated to. Required only for VERIFY_AND_CHANGE_EMAIL requests.",
+          "type": "string"
+        },
+        "recaptchaVersion": {
+          "description": "The reCAPTCHA version of the reCAPTCHA token in the captcha_response.",
+          "enum": [
+            "RECAPTCHA_VERSION_UNSPECIFIED",
+            "RECAPTCHA_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The reCAPTCHA version is not specified.",
+            "The reCAPTCHA enterprise."
+          ],
           "type": "string"
         },
         "requestType": {
@@ -3054,6 +3082,22 @@
           "description": "The reCAPTCHA token provided by the reCAPTCHA client-side integration. reCAPTCHA Enterprise uses it for risk assessment. Required when reCAPTCHA Enterprise is enabled.",
           "type": "string"
         },
+        "clientType": {
+          "description": "The client type, web, android or ios. Required when reCAPTCHA Enterprise is enabled.",
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "CLIENT_TYPE_WEB",
+            "CLIENT_TYPE_ANDROID",
+            "CLIENT_TYPE_IOS"
+          ],
+          "enumDescriptions": [
+            "Client type is not specified.",
+            "Client type is web.",
+            "Client type is android.",
+            "Client type is ios."
+          ],
+          "type": "string"
+        },
         "delegatedProjectNumber": {
           "format": "int64",
           "type": "string"
@@ -3073,6 +3117,18 @@
           "type": "string"
         },
         "pendingIdToken": {
+          "type": "string"
+        },
+        "recaptchaVersion": {
+          "description": "The reCAPTCHA version of the reCAPTCHA token in the captcha_response.",
+          "enum": [
+            "RECAPTCHA_VERSION_UNSPECIFIED",
+            "RECAPTCHA_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The reCAPTCHA version is not specified.",
+            "The reCAPTCHA enterprise."
+          ],
           "type": "string"
         },
         "returnSecureToken": {
@@ -3265,6 +3321,22 @@
           "description": "The reCAPTCHA token provided by the reCAPTCHA client-side integration. reCAPTCHA Enterprise uses it for assessment. Required when reCAPTCHA enterprise is enabled.",
           "type": "string"
         },
+        "clientType": {
+          "description": "The client type: web, Android or iOS. Required when enabling reCAPTCHA enterprise protection.",
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "CLIENT_TYPE_WEB",
+            "CLIENT_TYPE_ANDROID",
+            "CLIENT_TYPE_IOS"
+          ],
+          "enumDescriptions": [
+            "Client type is not specified.",
+            "Client type is web.",
+            "Client type is android.",
+            "Client type is ios."
+          ],
+          "type": "string"
+        },
         "disabled": {
           "description": "Whether the user will be disabled upon creation. Disabled accounts are inaccessible except for requests bearing a Google OAuth2 credential with proper [permissions](https://cloud.google.com/identity-platform/docs/access-control).",
           "type": "boolean"
@@ -3309,6 +3381,18 @@
         },
         "photoUrl": {
           "description": "The profile photo url of the user to create.",
+          "type": "string"
+        },
+        "recaptchaVersion": {
+          "description": "The reCAPTCHA version of the reCAPTCHA token in the captcha_response.",
+          "enum": [
+            "RECAPTCHA_VERSION_UNSPECIFIED",
+            "RECAPTCHA_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The reCAPTCHA version is not specified.",
+            "The reCAPTCHA enterprise."
+          ],
           "type": "string"
         },
         "targetProjectId": {

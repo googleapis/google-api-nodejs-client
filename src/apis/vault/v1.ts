@@ -779,6 +779,10 @@ export namespace vault_v1 {
    */
   export interface Schema$MailOptions {
     /**
+     * Specifies whether the results should include encrypted content, unencrypted content, or both. Defaults to including both.
+     */
+    clientSideEncryptedOption?: string | null;
+    /**
      * Set to **true** to exclude drafts.
      */
     excludeDrafts?: boolean | null;
