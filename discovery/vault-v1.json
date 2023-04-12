@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230405",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -2135,6 +2135,22 @@
       "description": "Additional options for Gmail search",
       "id": "MailOptions",
       "properties": {
+        "clientSideEncryptedOption": {
+          "description": "Specifies whether the results should include encrypted content, unencrypted content, or both. Defaults to including both.",
+          "enum": [
+            "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_ANY",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED",
+            "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED"
+          ],
+          "enumDescriptions": [
+            "Encryption status unspecified. Results include both client-side encrypted and non-encrypted content.",
+            "Include both client-side encrypted and unencrypted content in results.",
+            "Include client-side encrypted content only.",
+            "Include unencrypted content only."
+          ],
+          "type": "string"
+        },
         "excludeDrafts": {
           "description": "Set to **true** to exclude drafts.",
           "type": "boolean"
