@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v2.5.0...identitytoolkit-v3.0.0) (2023-04-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3217](https://github.com/googleapis/google-api-nodejs-client/issues/3217)) ([c050a5c](https://github.com/googleapis/google-api-nodejs-client/commit/c050a5cd95349dfd74850b2ce004d17eb7f29f50))
+
 ## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v2.4.0...identitytoolkit-v2.5.0) (2023-03-22)
 
 
