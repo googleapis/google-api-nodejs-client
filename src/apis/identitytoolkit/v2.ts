@@ -115,6 +115,7 @@ export namespace identitytoolkit_v2 {
     accounts: Resource$Accounts;
     defaultSupportedIdps: Resource$Defaultsupportedidps;
     projects: Resource$Projects;
+    v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -127,6 +128,7 @@ export namespace identitytoolkit_v2 {
         this.context
       );
       this.projects = new Resource$Projects(this.context);
+      this.v2 = new Resource$V2(this.context);
     }
   }
 
@@ -286,6 +288,10 @@ export namespace identitytoolkit_v2 {
      * Configuration related to quotas.
      */
     quota?: Schema$GoogleCloudIdentitytoolkitAdminV2QuotaConfig;
+    /**
+     * The project-level reCAPTCHA config.
+     */
+    recaptchaConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig;
     /**
      * Configuration related to local sign in methods.
      */
@@ -751,6 +757,53 @@ export namespace identitytoolkit_v2 {
     signUpQuotaConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2TemporaryQuota;
   }
   /**
+   * The reCAPTCHA Enterprise integration config.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig {
+    /**
+     * The reCAPTCHA config for email/password provider, containing the enforcement status. The email/password provider contains all related user flows protected by reCAPTCHA.
+     */
+    emailPasswordEnforcementState?: string | null;
+    /**
+     * The managed rules for authentication action based on reCAPTCHA scores. The rules are shared across providers for a given tenant project.
+     */
+    managedRules?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule[];
+    /**
+     * Output only. The reCAPTCHA keys.
+     */
+    recaptchaKeys?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaKey[];
+    /**
+     * Whether to use the account defender for reCAPTCHA assessment. Defaults to `false`.
+     */
+    useAccountDefender?: boolean | null;
+  }
+  /**
+   * The reCAPTCHA key config. reCAPTCHA Enterprise offers different keys for different client platforms.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaKey {
+    /**
+     * The reCAPTCHA Enterprise key resource name, e.g. "projects/{project\}/keys/{key\}"
+     */
+    key?: string | null;
+    /**
+     * The client's platform type.
+     */
+    type?: string | null;
+  }
+  /**
+   * The config for a reCAPTCHA managed rule. Models a single interval [start_score, end_score]. The start_score is implicit. It is either the closest smaller end_score (if one is available) or 0. Intervals in aggregate span [0, 1] without overlapping.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule {
+    /**
+     * The action taken if the reCAPTCHA score of a request is within the interval [start_score, end_score].
+     */
+    action?: string | null;
+    /**
+     * The end score (inclusive) of the score range for an action. Must be a value between 0.0 and 1.0, at 11 discrete values; e.g. 0, 0.1, 0.2, 0.3, ... 0.9, 1.0. A score of 0.0 indicates the riskiest request (likely a bot), whereas 1.0 indicates the safest request (likely a human). See https://cloud.google.com/recaptcha-enterprise/docs/interpret-assessment.
+     */
+    endScore?: number | null;
+  }
+  /**
    * Configuration for logging requests made to this project to Stackdriver Logging
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2RequestLogging {
@@ -993,6 +1046,10 @@ export namespace identitytoolkit_v2 {
      */
     name?: string | null;
     /**
+     * The tenant-level reCAPTCHA config.
+     */
+    recaptchaConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig;
+    /**
      * Configures which regions are enabled for SMS verification code sending.
      */
     smsRegionConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig;
@@ -1184,6 +1241,65 @@ export namespace identitytoolkit_v2 {
      */
     verificationCode?: string | null;
   }
+  /**
+   * Configuration for reCAPTCHA
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig {
+    /**
+     * The reCAPTCHA enforcement state for the providers that GCIP supports reCAPTCHA protection.
+     */
+    recaptchaEnforcementState?: Schema$GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState[];
+    /**
+     * The reCAPTCHA Enterprise key resource name, e.g. "projects/{project\}/keys/{key\}".
+     */
+    recaptchaKey?: string | null;
+  }
+  /**
+   * Enforcement states for reCAPTCHA protection.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState {
+    /**
+     * The reCAPTCHA enforcement state for the provider.
+     */
+    enforcementState?: string | null;
+    /**
+     * The provider that has reCAPTCHA protection.
+     */
+    provider?: string | null;
+  }
+  /**
+   * Request message for RevokeToken.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2RevokeTokenRequest {
+    /**
+     * Required. A valid Identity Platform ID token to link the account. If there was a successful token revocation request on the account and no tokens are generated after the revocation, the duplicate requests will be ignored and returned immediately.
+     */
+    idToken?: string | null;
+    /**
+     * Required. The idp provider for the token. Currently only supports Apple Idp. The format should be "apple.com".
+     */
+    providerId?: string | null;
+    /**
+     * The redirect URI provided in the initial authorization request made by the client to the IDP. The URI must use the HTTPS protocol, include a domain name, and can’t contain an IP address or localhost. Required if token_type is CODE.
+     */
+    redirectUri?: string | null;
+    /**
+     * The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.
+     */
+    tenantId?: string | null;
+    /**
+     * Required. The token to be revoked. If an authorization_code is passed in, the API will first exchange the code for access token and then revoke the token exchanged.
+     */
+    token?: string | null;
+    /**
+     * Required. The type of the token to be revoked.
+     */
+    tokenType?: string | null;
+  }
+  /**
+   * Response message for RevokeToken. Empty for now.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse {}
   /**
    * Sends MFA enrollment verification SMS for a user.
    */
@@ -1501,6 +1617,161 @@ export namespace identitytoolkit_v2 {
       this.mfaEnrollment = new Resource$Accounts$Mfaenrollment(this.context);
       this.mfaSignIn = new Resource$Accounts$Mfasignin(this.context);
     }
+
+    /**
+     * Revokes a user's token from an Identity Provider (IdP). This is done by manually providing an IdP credential, and the token types for revocation. An [API key](https://cloud.google.com/docs/authentication/api-keys) is required in the request in order to identify the Google Cloud project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.accounts.revokeToken({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "idToken": "my_idToken",
+     *       //   "providerId": "my_providerId",
+     *       //   "redirectUri": "my_redirectUri",
+     *       //   "tenantId": "my_tenantId",
+     *       //   "token": "my_token",
+     *       //   "tokenType": "my_tokenType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    revokeToken(
+      params: Params$Resource$Accounts$Revoketoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revokeToken(
+      params?: Params$Resource$Accounts$Revoketoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>;
+    revokeToken(
+      params: Params$Resource$Accounts$Revoketoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    revokeToken(
+      params: Params$Resource$Accounts$Revoketoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+    ): void;
+    revokeToken(
+      params: Params$Resource$Accounts$Revoketoken,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+    ): void;
+    revokeToken(
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+    ): void;
+    revokeToken(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Revoketoken
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Revoketoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Revoketoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/accounts:revokeToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Revoketoken
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudIdentitytoolkitV2RevokeTokenRequest;
   }
 
   export class Resource$Accounts$Mfaenrollment {
@@ -2529,6 +2800,7 @@ export namespace identitytoolkit_v2 {
      *   //   "name": "my_name",
      *   //   "notification": {},
      *   //   "quota": {},
+     *   //   "recaptchaConfig": {},
      *   //   "signIn": {},
      *   //   "smsRegionConfig": {},
      *   //   "subtype": "my_subtype"
@@ -2683,6 +2955,7 @@ export namespace identitytoolkit_v2 {
      *       //   "name": "my_name",
      *       //   "notification": {},
      *       //   "quota": {},
+     *       //   "recaptchaConfig": {},
      *       //   "signIn": {},
      *       //   "smsRegionConfig": {},
      *       //   "subtype": "my_subtype"
@@ -2704,6 +2977,7 @@ export namespace identitytoolkit_v2 {
      *   //   "name": "my_name",
      *   //   "notification": {},
      *   //   "quota": {},
+     *   //   "recaptchaConfig": {},
      *   //   "signIn": {},
      *   //   "smsRegionConfig": {},
      *   //   "subtype": "my_subtype"
@@ -5495,6 +5769,7 @@ export namespace identitytoolkit_v2 {
      *       //   "mfaConfig": {},
      *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "recaptchaConfig": {},
      *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
      *       // }
@@ -5517,6 +5792,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "recaptchaConfig": {},
      *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
@@ -5804,6 +6080,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "recaptchaConfig": {},
      *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
@@ -6255,6 +6532,7 @@ export namespace identitytoolkit_v2 {
      *       //   "mfaConfig": {},
      *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "recaptchaConfig": {},
      *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
      *       // }
@@ -6277,6 +6555,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "recaptchaConfig": {},
      *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
      *   // }
@@ -9217,5 +9496,172 @@ export namespace identitytoolkit_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig;
+  }
+
+  export class Resource$V2 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets parameters needed for reCAPTCHA analysis.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.getRecaptchaConfig({
+     *     // reCAPTCHA Enterprise uses separate site keys for different client types. Specify the client type to get the corresponding key.
+     *     clientType: 'placeholder-value',
+     *     // The id of a tenant.
+     *     tenantId: 'placeholder-value',
+     *     // The reCAPTCHA version.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "recaptchaEnforcementState": [],
+     *   //   "recaptchaKey": "my_recaptchaKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getRecaptchaConfig(
+      params: Params$Resource$V2$Getrecaptchaconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getRecaptchaConfig(
+      params?: Params$Resource$V2$Getrecaptchaconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>;
+    getRecaptchaConfig(
+      params: Params$Resource$V2$Getrecaptchaconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getRecaptchaConfig(
+      params: Params$Resource$V2$Getrecaptchaconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+    ): void;
+    getRecaptchaConfig(
+      params: Params$Resource$V2$Getrecaptchaconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+    ): void;
+    getRecaptchaConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+    ): void;
+    getRecaptchaConfig(
+      paramsOrCallback?:
+        | Params$Resource$V2$Getrecaptchaconfig
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V2$Getrecaptchaconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V2$Getrecaptchaconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/recaptchaConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2RecaptchaConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$V2$Getrecaptchaconfig
+    extends StandardParameters {
+    /**
+     * reCAPTCHA Enterprise uses separate site keys for different client types. Specify the client type to get the corresponding key.
+     */
+    clientType?: string;
+    /**
+     * The id of a tenant.
+     */
+    tenantId?: string;
+    /**
+     * The reCAPTCHA version.
+     */
+    version?: string;
   }
 }
