@@ -731,10 +731,6 @@ export namespace translate_v3 {
      */
     dataset?: string | null;
     /**
-     * Output only. Timestamp when the model training finished and ready to be used for translation.
-     */
-    deployTime?: string | null;
-    /**
      * The name of the model to show in the interface. The name can be up to 32 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscores (_), and ASCII digits 0-9.
      */
     displayName?: string | null;
@@ -5497,7 +5493,6 @@ export namespace translate_v3 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataset": "my_dataset",
-     *       //   "deployTime": "my_deployTime",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
      *       //   "sourceLanguageCode": "my_sourceLanguageCode",
@@ -5784,7 +5779,6 @@ export namespace translate_v3 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataset": "my_dataset",
-     *   //   "deployTime": "my_deployTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "sourceLanguageCode": "my_sourceLanguageCode",
