@@ -652,7 +652,7 @@
       }
     }
   },
-  "revision": "20230317",
+  "revision": "20230407",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -768,7 +768,7 @@
               "RCTOKEN"
             ],
             "enumDescriptions": [
-              "Output credential not provided. This is unsupported in IAP. An output credential is required.",
+              "An output credential is required.",
               "Propagate attributes in the headers with \"x-goog-iap-attr-\" prefix.",
               "Propagate attributes in the JWT of the form: `\"additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] }`",
               "Propagate attributes in the RCToken of the form: `\"additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] }`"
@@ -1107,7 +1107,7 @@
           "enumDescriptions": [
             "Reauthentication disabled.",
             "Prompts the user to log in again.",
-            "Deprecated.",
+            "",
             "User must use their secure key 2nd factor device.",
             "User can use any enabled 2nd factor."
           ],
