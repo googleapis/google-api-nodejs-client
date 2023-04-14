@@ -2749,7 +2749,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230406",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -3089,7 +3089,7 @@
           "type": "string"
         },
         "keySpec": {
-          "description": "Immutable. The specifications for the key.",
+          "description": "Required. The specifications for the key.",
           "enum": [
             "KEY_SPEC_UNSPECIFIED",
             "RSA_2048",
@@ -4221,7 +4221,7 @@
           "type": "string"
         },
         "use": {
-          "description": "Immutable. The purpose of the key.",
+          "description": "Required. The purpose of the key.",
           "enum": [
             "KEY_USE_UNSPECIFIED",
             "ENCRYPTION"
@@ -4377,7 +4377,7 @@
           "type": "string"
         },
         "use": {
-          "description": "Immutable. The purpose of the key.",
+          "description": "Required. The purpose of the key.",
           "enum": [
             "KEY_USE_UNSPECIFIED",
             "ENCRYPTION"
