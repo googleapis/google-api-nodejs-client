@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v1.0.0...adsensehost-v2.0.0) (2023-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+
 ## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsensehost-v0.2.2...adsensehost-v1.0.0) (2022-10-28)
 
 
