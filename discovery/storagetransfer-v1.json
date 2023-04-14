@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20230309",
+  "revision": "20230408",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -1132,7 +1132,7 @@
           "enumDescriptions": [
             "Storage class behavior is unspecified.",
             "Use the destination bucket's default storage class.",
-            "Preserve the object's original storage class. This is only supported for transfers from Google Cloud Storage buckets.",
+            "Preserve the object's original storage class. This is only supported for transfers from Google Cloud Storage buckets. REGIONAL and MULTI_REGIONAL storage classes will be mapped to STANDARD to ensure they can be written to the destination bucket.",
             "Set the storage class to STANDARD.",
             "Set the storage class to NEARLINE.",
             "Set the storage class to COLDLINE.",
