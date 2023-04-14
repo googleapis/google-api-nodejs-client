@@ -2005,7 +2005,7 @@
       }
     }
   },
-  "revision": "20230324",
+  "revision": "20230404",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2328,7 +2328,7 @@
       "id": "AssetList",
       "properties": {
         "assetIds": {
-          "description": "A list of asset IDs",
+          "description": "Required. A list of asset IDs",
           "items": {
             "type": "string"
           },
@@ -3260,7 +3260,7 @@
           "type": "string"
         },
         "format": {
-          "description": "The payload format.",
+          "description": "Required. The payload format.",
           "enum": [
             "IMPORT_JOB_FORMAT_UNSPECIFIED",
             "IMPORT_JOB_FORMAT_CMDB",
@@ -4419,7 +4419,7 @@
           "type": "string"
         },
         "groupPreferencesetAssignments": {
-          "description": "Collection of combinations of groups and preference sets.",
+          "description": "Required. Collection of combinations of groups and preference sets.",
           "items": {
             "$ref": "ReportConfigGroupPreferenceSetAssignment"
           },
@@ -4444,11 +4444,11 @@
       "id": "ReportConfigGroupPreferenceSetAssignment",
       "properties": {
         "group": {
-          "description": "Name of the group.",
+          "description": "Required. Name of the group.",
           "type": "string"
         },
         "preferenceSet": {
-          "description": "Name of the Preference Set.",
+          "description": "Required. Name of the Preference Set.",
           "type": "string"
         }
       },
