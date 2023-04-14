@@ -1423,7 +1423,7 @@
       }
     }
   },
-  "revision": "20230328",
+  "revision": "20230408",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2030,6 +2030,20 @@
           "description": "Output only. The timestamp at which this database was created.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "deleteProtectionState": {
+          "description": "State of delete protection for the database.",
+          "enum": [
+            "DELETE_PROTECTION_STATE_UNSPECIFIED",
+            "DELETE_PROTECTION_DISABLED",
+            "DELETE_PROTECTION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "The default value. Delete protection type is not specified",
+            "Delete protection is disabled",
+            "Delete protection is enabled"
+          ],
           "type": "string"
         },
         "etag": {

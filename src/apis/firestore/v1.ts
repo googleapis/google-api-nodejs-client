@@ -532,6 +532,10 @@ export namespace firestore_v1 {
      */
     createTime?: string | null;
     /**
+     * State of delete protection for the database.
+     */
+    deleteProtectionState?: string | null;
+    /**
      * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -1644,6 +1648,7 @@ export namespace firestore_v1 {
      *       //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *       //   "concurrencyMode": "my_concurrencyMode",
      *       //   "createTime": "my_createTime",
+     *       //   "deleteProtectionState": "my_deleteProtectionState",
      *       //   "etag": "my_etag",
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
@@ -2103,6 +2108,7 @@ export namespace firestore_v1 {
      *   //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *   //   "concurrencyMode": "my_concurrencyMode",
      *   //   "createTime": "my_createTime",
+     *   //   "deleteProtectionState": "my_deleteProtectionState",
      *   //   "etag": "my_etag",
      *   //   "keyPrefix": "my_keyPrefix",
      *   //   "locationId": "my_locationId",
@@ -2546,6 +2552,7 @@ export namespace firestore_v1 {
      *       //   "appEngineIntegrationMode": "my_appEngineIntegrationMode",
      *       //   "concurrencyMode": "my_concurrencyMode",
      *       //   "createTime": "my_createTime",
+     *       //   "deleteProtectionState": "my_deleteProtectionState",
      *       //   "etag": "my_etag",
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
