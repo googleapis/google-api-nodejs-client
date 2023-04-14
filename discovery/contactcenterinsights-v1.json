@@ -1384,7 +1384,7 @@
       }
     }
   },
-  "revision": "20230402",
+  "revision": "20230409",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -3129,7 +3129,7 @@
       "id": "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroup",
       "properties": {
         "phraseMatchRules": {
-          "description": "A list of phase match rules that are included in this group.",
+          "description": "A list of phrase match rules that are included in this group.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1PhraseMatchRule"
           },

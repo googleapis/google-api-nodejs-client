@@ -2735,7 +2735,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroup {
     /**
-     * A list of phase match rules that are included in this group.
+     * A list of phrase match rules that are included in this group.
      */
     phraseMatchRules?: Schema$GoogleCloudContactcenterinsightsV1PhraseMatchRule[];
     /**
