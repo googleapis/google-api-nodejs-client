@@ -171,6 +171,14 @@ export namespace discoveryengine_v1alpha {
      */
     message?: string | null;
     /**
+     * The API request payload, represented as a protocol buffer. Most API request types are supported—for example: * `type.googleapis.com/google.cloud.discoveryengine.v1alpha.DocumentService.CreateDocumentRequest` * `type.googleapis.com/google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEventRequest`
+     */
+    requestPayload?: {[key: string]: any} | null;
+    /**
+     * The API response payload, represented as a protocol buffer. This is used to log some "soft errors", where the response is valid but we consider there are some quality issues like unjoined events. The following API responses are supported, and no PII is included: * `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend` * `google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEvent` * `google.cloud.discoveryengine.v1alpha.UserEventService.CollectUserEvent`
+     */
+    responsePayload?: {[key: string]: any} | null;
+    /**
      * The service context in which this error has occurred.
      */
     serviceContext?: Schema$GoogleCloudDiscoveryengineLoggingServiceContext;
