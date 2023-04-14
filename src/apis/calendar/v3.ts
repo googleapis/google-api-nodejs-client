@@ -5640,7 +5640,15 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
-     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
+     *     // Event types to return. Optional. Possible values are:
+     *     // - "default"
+     *     // - "focusTime"
+     *     // - "outOfOffice"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field:
+     *     // - ["default", "focusTime", "outOfOffice"] This value will be the default.
+     *     //
+     *     // If you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the "workingLocation" event type:
+     *     // - ["default", "focusTime", "outOfOffice", "workingLocation"]
+     *     // - ["workingLocation"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.
      *     eventTypes: 'placeholder-value',
      *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
@@ -6652,7 +6660,15 @@ export namespace calendar_v3 {
      *     alwaysIncludeEmail: 'placeholder-value',
      *     // Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      *     calendarId: 'placeholder-value',
-     *     // Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
+     *     // Event types to return. Optional. Possible values are:
+     *     // - "default"
+     *     // - "focusTime"
+     *     // - "outOfOffice"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field:
+     *     // - ["default", "focusTime", "outOfOffice"] This value will be the default.
+     *     //
+     *     // If you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the "workingLocation" event type:
+     *     // - ["default", "focusTime", "outOfOffice", "workingLocation"]
+     *     // - ["workingLocation"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.
      *     eventTypes: 'placeholder-value',
      *     // Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.
      *     iCalUID: 'placeholder-value',
@@ -6974,7 +6990,15 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
+     * Event types to return. Optional. Possible values are:
+     * - "default"
+     * - "focusTime"
+     * - "outOfOffice"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field:
+     * - ["default", "focusTime", "outOfOffice"] This value will be the default.
+     *
+     * If you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the "workingLocation" event type:
+     * - ["default", "focusTime", "outOfOffice", "workingLocation"]
+     * - ["workingLocation"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.
      */
     eventTypes?: string[];
     /**
@@ -7191,7 +7215,15 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Event types to return. Optional. The default is ["default", "outOfOffice", "focusTime"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.
+     * Event types to return. Optional. Possible values are:
+     * - "default"
+     * - "focusTime"
+     * - "outOfOffice"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field:
+     * - ["default", "focusTime", "outOfOffice"] This value will be the default.
+     *
+     * If you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the "workingLocation" event type:
+     * - ["default", "focusTime", "outOfOffice", "workingLocation"]
+     * - ["workingLocation"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.
      */
     eventTypes?: string[];
     /**
