@@ -367,7 +367,7 @@ export namespace iam_v1 {
      */
     key?: string | null;
     /**
-     * Immutable. The specifications for the key.
+     * Required. The specifications for the key.
      */
     keySpec?: string | null;
     /**
@@ -1115,7 +1115,7 @@ export namespace iam_v1 {
      */
     state?: string | null;
     /**
-     * Immutable. The purpose of the key.
+     * Required. The purpose of the key.
      */
     use?: string | null;
   }
@@ -1214,7 +1214,7 @@ export namespace iam_v1 {
      */
     state?: string | null;
     /**
-     * Immutable. The purpose of the key.
+     * Required. The purpose of the key.
      */
     use?: string | null;
   }

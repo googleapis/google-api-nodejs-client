@@ -1088,7 +1088,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. The default is [\"default\", \"outOfOffice\", \"focusTime\"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.",
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value will be the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1491,7 +1491,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. The default is [\"default\", \"outOfOffice\", \"focusTime\"]. Only the default value is available, unless you're enrolled in the Working Locations developer preview. Developer Preview.",
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value will be the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1735,7 +1735,7 @@
       }
     }
   },
-  "revision": "20230331",
+  "revision": "20230406",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {

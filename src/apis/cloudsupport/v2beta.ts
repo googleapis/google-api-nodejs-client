@@ -244,7 +244,7 @@ export namespace cloudsupport_v2beta {
      */
     priority?: string | null;
     /**
-     * The severity of this case. Deprecated. Use priority instead.
+     * REMOVED. The severity of this case. Use priority instead.
      */
     severity?: string | null;
     /**
@@ -306,7 +306,7 @@ export namespace cloudsupport_v2beta {
      */
     name?: string | null;
     /**
-     * Output only. An automatically generated plain text version of body with all rich text syntax stripped.
+     * Output only. DEPRECATED. An automatically generated plain text version of body with all rich text syntax stripped.
      */
     plainTextBody?: string | null;
   }

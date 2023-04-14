@@ -32979,7 +32979,7 @@
       }
     }
   },
-  "revision": "20230327",
+  "revision": "20230403",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -34302,6 +34302,13 @@
           "description": "Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.",
           "format": "int64",
           "type": "string"
+        },
+        "replicaZones": {
+          "description": "Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "resourceManagerTags": {
           "additionalProperties": {
@@ -40024,6 +40031,10 @@
           "description": "This field is used along with the backend_service field for internal load balancing or with the target field for internal TargetInstance. If the field is set to TRUE, clients can access ILB from all regions. Otherwise only allows access from clients in the same region as the internal load balancer.",
           "type": "boolean"
         },
+        "allowPscGlobalAccess": {
+          "description": "This is used in PSC consumer ForwardingRule to control whether the PSC endpoint can be accessed from another region.",
+          "type": "boolean"
+        },
         "backendService": {
           "description": "Identifies the backend service to which the forwarding rule sends traffic. Required for Internal TCP/UDP Load Balancing and Network Load Balancing; must be omitted for all other load balancer types.",
           "type": "string"
@@ -40118,7 +40129,7 @@
           "type": "string"
         },
         "network": {
-          "description": "This field is not used for external load balancing. For Internal TCP/UDP Load Balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used. For Private Service Connect forwarding rules that forward traffic to Google APIs, a network must be provided.",
+          "description": "This field is not used for external load balancing. For Internal TCP/UDP Load Balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If the subnetwork is specified, the network of the subnetwork will be used. If neither subnetwork nor this field is specified, the default network will be used. For Private Service Connect forwarding rules that forward traffic to Google APIs, a network must be provided.",
           "type": "string"
         },
         "networkTier": {
@@ -49453,7 +49464,7 @@
           "type": "string"
         },
         "secondaryIpCidrRanges": {
-          "description": "Alias IP ranges from the same subnetwork",
+          "description": "Alias IP ranges from the same subnetwork.",
           "items": {
             "type": "string"
           },
@@ -60665,15 +60676,15 @@
       "type": "object"
     },
     "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig": {
-      "description": "Configuration options for L7 DDoS detection.",
+      "description": "Configuration options for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR.",
       "id": "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig",
       "properties": {
         "enable": {
-          "description": "If set to true, enables CAAP for L7 DDoS detection.",
+          "description": "If set to true, enables CAAP for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR.",
           "type": "boolean"
         },
         "ruleVisibility": {
-          "description": "Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules.",
+          "description": "Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.",
           "enum": [
             "PREMIUM",
             "STANDARD"
@@ -60868,7 +60879,7 @@
       "id": "SecurityPolicyRecaptchaOptionsConfig",
       "properties": {
         "redirectSiteKey": {
-          "description": "An optional field to supply a reCAPTCHA site key to be used for all the rules using the redirect action with the type of GOOGLE_RECAPTCHA under the security policy. The specified site key needs to be created from the reCAPTCHA API. The user is responsible for the validity of the specified site key. If not specified, a Google-managed site key is used.",
+          "description": "An optional field to supply a reCAPTCHA site key to be used for all the rules using the redirect action with the type of GOOGLE_RECAPTCHA under the security policy. The specified site key needs to be created from the reCAPTCHA API. The user is responsible for the validity of the specified site key. If not specified, a Google-managed site key is used. This field is only supported in Global Security Policies of type CLOUD_ARMOR.",
           "type": "string"
         }
       },
@@ -60888,7 +60899,7 @@
       "id": "SecurityPolicyRule",
       "properties": {
         "action": {
-          "description": "The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. ",
+          "description": "The Action to perform when the rule is matched. The following are the valid actions: - allow: allow access to target. - deny(STATUS): deny access to target, returns the HTTP response code specified. Valid values for `STATUS` are 403, 404, and 502. - rate_based_ban: limit client traffic to the configured threshold and ban the client if the traffic exceeds the threshold. Configure parameters for this action in RateLimitOptions. Requires rate_limit_options to be set. - redirect: redirect to a different target. This can either be an internal reCAPTCHA redirect, or an external URL-based redirect via a 302 response. Parameters for this action can be configured via redirectOptions. This action is only supported in Global Security Policies of type CLOUD_ARMOR. - throttle: limit client traffic to the configured threshold. Configure parameters for this action in rateLimitOptions. Requires rate_limit_options to be set for this. ",
           "type": "string"
         },
         "description": {
@@ -60897,7 +60908,7 @@
         },
         "headerAction": {
           "$ref": "SecurityPolicyRuleHttpHeaderAction",
-          "description": "Optional, additional actions that are performed on headers."
+          "description": "Optional, additional actions that are performed on headers. This field is only supported in Global Security Policies of type CLOUD_ARMOR."
         },
         "kind": {
           "default": "compute#securityPolicyRule",
@@ -60927,7 +60938,7 @@
         },
         "redirectOptions": {
           "$ref": "SecurityPolicyRuleRedirectOptions",
-          "description": "Parameters defining the redirect action. Cannot be specified for any other actions."
+          "description": "Parameters defining the redirect action. Cannot be specified for any other actions. This field is only supported in Global Security Policies of type CLOUD_ARMOR."
         }
       },
       "type": "object"
@@ -60969,7 +60980,7 @@
         },
         "expr": {
           "$ref": "Expr",
-          "description": "User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header."
+          "description": "User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header. Expressions containing `evaluateThreatIntelligence` require Cloud Armor Managed Protection Plus tier and are not supported in Edge Policies nor in Regional Policies. Expressions containing `evaluatePreconfiguredExpr('sourceiplist-*')` require Cloud Armor Managed Protection Plus tier and are only supported in Global Security Policies."
         },
         "versionedExpr": {
           "description": "Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.",
@@ -61123,21 +61134,62 @@
           ],
           "type": "string"
         },
+        "enforceOnKeyConfigs": {
+          "description": "If specified, any combination of values of enforce_on_key_type/enforce_on_key_name is treated as the key on which ratelimit threshold/action is enforced. You can specify up to 3 enforce_on_key_configs. If enforce_on_key_configs is specified, enforce_on_key must not be specified.",
+          "items": {
+            "$ref": "SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig"
+          },
+          "type": "array"
+        },
         "enforceOnKeyName": {
           "description": "Rate limit key name applicable only for the following key types: HTTP_HEADER -- Name of the HTTP header whose value is taken as the key value. HTTP_COOKIE -- Name of the HTTP cookie whose value is taken as the key value.",
           "type": "string"
         },
         "exceedAction": {
-          "description": "Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are `deny(STATUS)`, where valid values for `STATUS` are 403, 404, 429, and 502, and `redirect`, where the redirect parameters come from `exceedRedirectOptions` below.",
+          "description": "Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are `deny(STATUS)`, where valid values for `STATUS` are 403, 404, 429, and 502, and `redirect`, where the redirect parameters come from `exceedRedirectOptions` below. The `redirect` action is only supported in Global Security Policies of type CLOUD_ARMOR.",
           "type": "string"
         },
         "exceedRedirectOptions": {
           "$ref": "SecurityPolicyRuleRedirectOptions",
-          "description": "Parameters defining the redirect action that is used as the exceed action. Cannot be specified if the exceed action is not redirect."
+          "description": "Parameters defining the redirect action that is used as the exceed action. Cannot be specified if the exceed action is not redirect. This field is only supported in Global Security Policies of type CLOUD_ARMOR."
         },
         "rateLimitThreshold": {
           "$ref": "SecurityPolicyRuleRateLimitOptionsThreshold",
           "description": "Threshold at which to begin ratelimiting."
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig": {
+      "id": "SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig",
+      "properties": {
+        "enforceOnKeyName": {
+          "description": "Rate limit key name applicable only for the following key types: HTTP_HEADER -- Name of the HTTP header whose value is taken as the key value. HTTP_COOKIE -- Name of the HTTP cookie whose value is taken as the key value.",
+          "type": "string"
+        },
+        "enforceOnKeyType": {
+          "description": "Determines the key to enforce the rate_limit_threshold on. Possible values are: - ALL: A single rate limit threshold is applied to all the requests matching this rule. This is the default value if \"enforceOnKeyConfigs\" is not configured. - IP: The source IP address of the request is the key. Each IP has this limit enforced separately. - HTTP_HEADER: The value of the HTTP header whose name is configured under \"enforceOnKeyName\". The key value is truncated to the first 128 bytes of the header value. If no such header is present in the request, the key type defaults to ALL. - XFF_IP: The first IP address (i.e. the originating client IP address) specified in the list of IPs under X-Forwarded-For HTTP header. If no such header is present or the value is not a valid IP, the key defaults to the source IP address of the request i.e. key type IP. - HTTP_COOKIE: The value of the HTTP cookie whose name is configured under \"enforceOnKeyName\". The key value is truncated to the first 128 bytes of the cookie value. If no such cookie is present in the request, the key type defaults to ALL. - HTTP_PATH: The URL path of the HTTP request. The key value is truncated to the first 128 bytes. - SNI: Server name indication in the TLS session of the HTTPS request. The key value is truncated to the first 128 bytes. The key type defaults to ALL on a HTTP session. - REGION_CODE: The country/region from which the request originates. ",
+          "enum": [
+            "ALL",
+            "HTTP_COOKIE",
+            "HTTP_HEADER",
+            "HTTP_PATH",
+            "IP",
+            "REGION_CODE",
+            "SNI",
+            "XFF_IP"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"

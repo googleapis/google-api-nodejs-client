@@ -1406,7 +1406,7 @@
       }
     }
   },
-  "revision": "20230331",
+  "revision": "20230413",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1466,6 +1466,22 @@
         "message": {
           "description": "A message describing the error.",
           "type": "string"
+        },
+        "requestPayload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The API request payload, represented as a protocol buffer. Most API request types are supported—for example: * `type.googleapis.com/google.cloud.discoveryengine.v1alpha.DocumentService.CreateDocumentRequest` * `type.googleapis.com/google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEventRequest`",
+          "type": "object"
+        },
+        "responsePayload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The API response payload, represented as a protocol buffer. This is used to log some \"soft errors\", where the response is valid but we consider there are some quality issues like unjoined events. The following API responses are supported, and no PII is included: * `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend` * `google.cloud.discoveryengine.v1alpha.UserEventService.WriteUserEvent` * `google.cloud.discoveryengine.v1alpha.UserEventService.CollectUserEvent`",
+          "type": "object"
         },
         "serviceContext": {
           "$ref": "GoogleCloudDiscoveryengineLoggingServiceContext",
