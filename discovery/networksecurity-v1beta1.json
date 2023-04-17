@@ -2474,7 +2474,7 @@
       }
     }
   },
-  "revision": "20230327",
+  "revision": "20230406",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3139,6 +3139,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then 'next_page_token' is included. To get the next set of results, call this method again using the value of 'next_page_token' as 'page_token'.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3157,6 +3164,13 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then 'next_page_token' is included. To get the next set of results, call this method again using the value of 'next_page_token' as 'page_token'.",
           "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3229,6 +3243,13 @@
             "$ref": "TlsInspectionPolicy"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3297,11 +3318,29 @@
       "id": "MTLSPolicy",
       "properties": {
         "clientValidationCa": {
-          "description": " Defines the mechanism to obtain the Certificate Authority certificate to validate the client certificate.",
+          "description": "Required if the policy is to be used with Traffic Director. For External HTTPS LB it must be empty. Defines the mechanism to obtain the Certificate Authority certificate to validate the client certificate.",
           "items": {
             "$ref": "ValidationCA"
           },
           "type": "array"
+        },
+        "clientValidationMode": {
+          "description": "Specifies whether client connections proceed when a client presents an invalid certificate or no certificate. Required if the policy is to be used with the External HTTPS LB. For Traffic Director it must be empty.",
+          "enum": [
+            "CLIENT_VALIDATION_MODE_UNSPECIFIED",
+            "ALLOW_INVALID_OR_MISSING_CLIENT_CERT",
+            "REJECT_INVALID"
+          ],
+          "enumDescriptions": [
+            "Not allowed.",
+            "Allow connection even if certificate chain validation of the client certificate failed or no client certificate was presented. The proof of possession of the private key is always checked if client certificate was presented. This mode requires the backend to implement processing of data extracted from a client certificate to authenticate the peer, or to reject connections if the client certificate fingerprint is missing.",
+            "Require a client certificate and allow connection to the backend only if validation of the client certificate passed. If set, requires a reference to non-empty TrustConfig specified in `client_validation_trust_config`."
+          ],
+          "type": "string"
+        },
+        "clientValidationTrustConfig": {
+          "description": "Reference to the TrustConfig from certificatemanager.googleapis.com namespace. If specified, the chain validation will be performed against certificates configured in the given TrustConfig. Allowed only if the policy is to be used with External HTTPS LB.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3425,11 +3464,11 @@
       "type": "object"
     },
     "ServerTlsPolicy": {
-      "description": "ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource.",
+      "description": "ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by External HTTPS Load Balancer can be attached only to TargetHttpsProxy with an `EXTERNAL` or `EXTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.",
       "id": "ServerTlsPolicy",
       "properties": {
         "allowOpen": {
-          "description": " Determines if server allows plaintext connections. If set to true, server allows plain text connections. By default, it is set to false. This setting is not exclusive of other encryption modes. For example, if `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections. See documentation of other encryption modes to confirm compatibility. Consider using it if you wish to upgrade in place your deployment to TLS while having mixed TLS and non-TLS traffic reaching port :80.",
+          "description": "Can be enabled only for Traffic Director policies, must be false for External HTTPS LB policies. Determines if server allows plaintext connections. If set to true, server allows plain text connections. By default, it is set to false. This setting is not exclusive of other encryption modes. For example, if `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections. See documentation of other encryption modes to confirm compatibility. Consider using it if you wish to upgrade in place your deployment to TLS while having mixed TLS and non-TLS traffic reaching port :80.",
           "type": "boolean"
         },
         "createTime": {
@@ -3451,7 +3490,7 @@
         },
         "mtlsPolicy": {
           "$ref": "MTLSPolicy",
-          "description": " Defines a mechanism to provision peer validation certificates for peer to peer authentication (Mutual TLS - mTLS). If not specified, client certificate will not be requested. The connection is treated as TLS and not mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections."
+          "description": "Required if policy is to be used with the External HTTPS LB, for Traffic Director allowed to be empty. Defines a mechanism to provision peer validation certificates for peer to peer authentication (Mutual TLS - mTLS). If not specified, client certificate will not be requested. The connection is treated as TLS and not mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections."
         },
         "name": {
           "description": "Required. Name of the ServerTlsPolicy resource. It matches the pattern `projects/*/locations/{location}/serverTlsPolicies/{server_tls_policy}`",
@@ -3459,7 +3498,7 @@
         },
         "serverCertificate": {
           "$ref": "GoogleCloudNetworksecurityV1beta1CertificateProvider",
-          "description": " Defines a mechanism to provision server identity (public and private keys). Cannot be combined with `allow_open` as a permissive mode that allows both plain text and TLS is not supported."
+          "description": "Optional if policy is to be used with Traffic Director, for External HTTPS LB must be empty. Defines a mechanism to provision server identity (public and private keys). Cannot be combined with `allow_open` as a permissive mode that allows both plain text and TLS is not supported."
         },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was updated.",
