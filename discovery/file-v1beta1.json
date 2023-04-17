@@ -1041,7 +1041,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230405",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1129,14 +1129,16 @@
             "CREATING",
             "FINALIZING",
             "READY",
-            "DELETING"
+            "DELETING",
+            "INVALID"
           ],
           "enumDescriptions": [
             "State not set.",
             "Backup is being created.",
             "Backup has been taken and the operation is being finalized. At this point, changes to the file share will not be reflected in the backup.",
             "Backup is available for use.",
-            "Backup is being deleted."
+            "Backup is being deleted.",
+            "Backup is not valid and cannot be used for creating new instances or restoring existing instances."
           ],
           "readOnly": true,
           "type": "string"
@@ -2175,6 +2177,10 @@
       "description": "A Filestore share.",
       "id": "Share",
       "properties": {
+        "backup": {
+          "description": "Immutable. Full name of the Cloud Filestore Backup resource that this Share is restored from, in the format of projects/{project_id}/locations/{location_id}/backups/{backup_id}. Empty, if the Share is created from scratch and not restored from a backup.",
+          "type": "string"
+        },
         "capacityGb": {
           "description": "File share capacity in gigabytes (GB). Filestore defines 1 GB as 1024^3 bytes. Must be greater than 0.",
           "format": "int64",

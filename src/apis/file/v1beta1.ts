@@ -860,6 +860,10 @@ export namespace file_v1beta1 {
    */
   export interface Schema$Share {
     /**
+     * Immutable. Full name of the Cloud Filestore Backup resource that this Share is restored from, in the format of projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}. Empty, if the Share is created from scratch and not restored from a backup.
+     */
+    backup?: string | null;
+    /**
      * File share capacity in gigabytes (GB). Filestore defines 1 GB as 1024^3 bytes. Must be greater than 0.
      */
     capacityGb?: string | null;
@@ -3286,6 +3290,7 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backup": "my_backup",
      *       //   "capacityGb": "my_capacityGb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -3566,6 +3571,7 @@ export namespace file_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "backup": "my_backup",
      *   //   "capacityGb": "my_capacityGb",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -3843,6 +3849,7 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backup": "my_backup",
      *       //   "capacityGb": "my_capacityGb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
