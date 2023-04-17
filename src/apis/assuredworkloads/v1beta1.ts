@@ -153,31 +153,6 @@ export namespace assuredworkloads_v1beta1 {
     blockers?: string[] | null;
   }
   /**
-   * Operation metadata to give request details of CreateWorkload.
-   */
-  export interface Schema$GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata {
-    /**
-     * Optional. Compliance controls that should be applied to the resources managed by the workload.
-     */
-    complianceRegime?: string | null;
-    /**
-     * Optional. Time when the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. The display name of the workload.
-     */
-    displayName?: string | null;
-    /**
-     * Optional. The parent of the workload.
-     */
-    parent?: string | null;
-    /**
-     * Optional. Resource properties in the input that are used for creating/customizing workload resources.
-     */
-    resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings[];
-  }
-  /**
    * Response of ListViolations endpoint.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse {
@@ -225,7 +200,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     acknowledged?: boolean | null;
     /**
-     * Optional. Timestamp when this violation was acknowledged last. This will be absent when acknowledged field is marked as false.
+     * Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.
      */
     acknowledgementTime?: string | null;
     /**
@@ -467,7 +442,7 @@ export namespace assuredworkloads_v1beta1 {
     /**
      * Detailed error message if Ekm provisioning fails
      */
-    ekmProvisioningErrorMessage?: string | null;
+    ekmProvisioningErrorMapping?: string | null;
     /**
      * Indicates Ekm enrollment Provisioning of a given workload.
      */

@@ -809,34 +809,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
-                },
-                "reset": {
-                  "description": "Resets a QueuedResource TPU instance",
-                  "flatPath": "v2alpha1/projects/{projectsId}/locations/{locationsId}/queuedResources/{queuedResourcesId}:reset",
-                  "httpMethod": "POST",
-                  "id": "tpu.projects.locations.queuedResources.reset",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the queued resource.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/queuedResources/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2alpha1/{+name}:reset",
-                  "request": {
-                    "$ref": "ResetQueuedResourceRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
                 }
               }
             },
@@ -920,7 +892,7 @@
       }
     }
   },
-  "revision": "20230330",
+  "revision": "20230410",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1815,12 +1787,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "ResetQueuedResourceRequest": {
-      "description": "Request for ResetQueuedResource.",
-      "id": "ResetQueuedResourceRequest",
-      "properties": {},
       "type": "object"
     },
     "RuntimeVersion": {

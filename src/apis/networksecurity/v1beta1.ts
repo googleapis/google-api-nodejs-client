@@ -599,6 +599,10 @@ export namespace networksecurity_v1beta1 {
      * If there might be more results than those appearing in this response, then 'next_page_token' is included. To get the next set of results, call this method again using the value of 'next_page_token' as 'page_token'.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListGatewaySecurityPolicyRules method.
@@ -612,6 +616,10 @@ export namespace networksecurity_v1beta1 {
      * If there might be more results than those appearing in this response, then 'next_page_token' is included. To get the next set of results, call this method again using the value of 'next_page_token' as 'page_token'.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -664,6 +672,10 @@ export namespace networksecurity_v1beta1 {
      * List of TlsInspectionPolicies resources.
      */
     tlsInspectionPolicies?: Schema$TlsInspectionPolicy[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListUrlLists method.
@@ -712,9 +724,17 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$MTLSPolicy {
     /**
-     *  Defines the mechanism to obtain the Certificate Authority certificate to validate the client certificate.
+     * Required if the policy is to be used with Traffic Director. For External HTTPS LB it must be empty. Defines the mechanism to obtain the Certificate Authority certificate to validate the client certificate.
      */
     clientValidationCa?: Schema$ValidationCA[];
+    /**
+     * Specifies whether client connections proceed when a client presents an invalid certificate or no certificate. Required if the policy is to be used with the External HTTPS LB. For Traffic Director it must be empty.
+     */
+    clientValidationMode?: string | null;
+    /**
+     * Reference to the TrustConfig from certificatemanager.googleapis.com namespace. If specified, the chain validation will be performed against certificates configured in the given TrustConfig. Allowed only if the policy is to be used with External HTTPS LB.
+     */
+    clientValidationTrustConfig?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -801,11 +821,11 @@ export namespace networksecurity_v1beta1 {
     sources?: Schema$Source[];
   }
   /**
-   * ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource.
+   * ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by External HTTPS Load Balancer can be attached only to TargetHttpsProxy with an `EXTERNAL` or `EXTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
    */
   export interface Schema$ServerTlsPolicy {
     /**
-     *  Determines if server allows plaintext connections. If set to true, server allows plain text connections. By default, it is set to false. This setting is not exclusive of other encryption modes. For example, if `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections. See documentation of other encryption modes to confirm compatibility. Consider using it if you wish to upgrade in place your deployment to TLS while having mixed TLS and non-TLS traffic reaching port :80.
+     * Can be enabled only for Traffic Director policies, must be false for External HTTPS LB policies. Determines if server allows plaintext connections. If set to true, server allows plain text connections. By default, it is set to false. This setting is not exclusive of other encryption modes. For example, if `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections. See documentation of other encryption modes to confirm compatibility. Consider using it if you wish to upgrade in place your deployment to TLS while having mixed TLS and non-TLS traffic reaching port :80.
      */
     allowOpen?: boolean | null;
     /**
@@ -821,7 +841,7 @@ export namespace networksecurity_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     *  Defines a mechanism to provision peer validation certificates for peer to peer authentication (Mutual TLS - mTLS). If not specified, client certificate will not be requested. The connection is treated as TLS and not mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections.
+     * Required if policy is to be used with the External HTTPS LB, for Traffic Director allowed to be empty. Defines a mechanism to provision peer validation certificates for peer to peer authentication (Mutual TLS - mTLS). If not specified, client certificate will not be requested. The connection is treated as TLS and not mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain text and mTLS connections.
      */
     mtlsPolicy?: Schema$MTLSPolicy;
     /**
@@ -829,7 +849,7 @@ export namespace networksecurity_v1beta1 {
      */
     name?: string | null;
     /**
-     *  Defines a mechanism to provision server identity (public and private keys). Cannot be combined with `allow_open` as a permissive mode that allows both plain text and TLS is not supported.
+     * Optional if policy is to be used with Traffic Director, for External HTTPS LB must be empty. Defines a mechanism to provision server identity (public and private keys). Cannot be combined with `allow_open` as a permissive mode that allows both plain text and TLS is not supported.
      */
     serverCertificate?: Schema$GoogleCloudNetworksecurityV1beta1CertificateProvider;
     /**
@@ -8241,7 +8261,8 @@ export namespace networksecurity_v1beta1 {
      *   // Example response
      *   // {
      *   //   "gatewaySecurityPolicies": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -9041,7 +9062,8 @@ export namespace networksecurity_v1beta1 {
      *   // Example response
      *   // {
      *   //   "gatewaySecurityPolicyRules": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -11681,7 +11703,8 @@ export namespace networksecurity_v1beta1 {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "tlsInspectionPolicies": []
+     *   //   "tlsInspectionPolicies": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *

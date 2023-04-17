@@ -1102,13 +1102,185 @@
                   ]
                 }
               }
+            },
+            "trustConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new TrustConfig in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/trustConfigs",
+                  "httpMethod": "POST",
+                  "id": "certificatemanager.projects.locations.trustConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the TrustConfig. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "trustConfigId": {
+                      "description": "Required. A user-provided name of the TrustConfig.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/trustConfigs",
+                  "request": {
+                    "$ref": "TrustConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single TrustConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/trustConfigs/{trustConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "certificatemanager.projects.locations.trustConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "The current etag of the TrustConfig. If an etag is provided and does not match the current etag of the resource, deletion will be blocked and an ABORTED error will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. A name of the TrustConfig to delete. Must be in the format `projects/*/locations/*/trustConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/trustConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single TrustConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/trustConfigs/{trustConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "certificatemanager.projects.locations.trustConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the TrustConfig to describe. Must be in the format `projects/*/locations/*/trustConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/trustConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "TrustConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists TrustConfigs in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/trustConfigs",
+                  "httpMethod": "GET",
+                  "id": "certificatemanager.projects.locations.trustConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter expression to restrict the TrustConfigs returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "A list of TrustConfig field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix \" desc\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of TrustConfigs to return per call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListTrustConfigsResponse`. Indicates that this is a continuation of a prior `ListTrustConfigs` call, and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the TrustConfigs should be listed, specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/trustConfigs",
+                  "response": {
+                    "$ref": "ListTrustConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a TrustConfig.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/trustConfigs/{trustConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "certificatemanager.projects.locations.trustConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/*/locations/*/trustConfigs/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/trustConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "TrustConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20230312",
+  "revision": "20230407",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1534,6 +1706,17 @@
       },
       "type": "object"
     },
+    "IntermediateCA": {
+      "description": "Defines an intermediate CA.",
+      "id": "IntermediateCA",
+      "properties": {
+        "pemCertificate": {
+          "description": "PEM intermediate certificate used for building up paths for validation. Each certificate provided in PEM format may occupy up to 5kB.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IpConfig": {
       "description": "Defines IP configuration where this Certificate Map is serving.",
       "id": "IpConfig",
@@ -1710,6 +1893,31 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListTrustConfigsResponse": {
+      "description": "Response for the `ListTrustConfigs` method.",
+      "id": "ListTrustConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "trustConfigs": {
+          "description": "A list of TrustConfigs for the parent resource.",
+          "items": {
+            "$ref": "TrustConfig"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -1942,6 +2150,83 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TrustAnchor": {
+      "description": "Defines a trust anchor.",
+      "id": "TrustAnchor",
+      "properties": {
+        "pemCertificate": {
+          "description": "PEM root certificate of the PKI used for validation. Each certificate provided in PEM format may occupy up to 5kB.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TrustConfig": {
+      "description": "Defines a trust config.",
+      "id": "TrustConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation timestamp of a TrustConfig.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "One or more paragraphs of text description of a TrustConfig.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of labels associated with a TrustConfig.",
+          "type": "object"
+        },
+        "name": {
+          "description": "A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/*/locations/*/trustConfigs/*`.",
+          "type": "string"
+        },
+        "trustStores": {
+          "description": "Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation. Only one TrustStore specified is currently allowed.",
+          "items": {
+            "$ref": "TrustStore"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last update timestamp of a TrustConfig.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TrustStore": {
+      "description": "Defines a trust store.",
+      "id": "TrustStore",
+      "properties": {
+        "intermediateCas": {
+          "description": "Set of intermediate CA certificates used for the path building phase of chain validation. The field is currently not supported if TrustConfig is used for the workload certificate feature.",
+          "items": {
+            "$ref": "IntermediateCA"
+          },
+          "type": "array"
+        },
+        "trustAnchors": {
+          "description": "List of Trust Anchors to be used while performing validation against a given TrustStore.",
+          "items": {
+            "$ref": "TrustAnchor"
+          },
+          "type": "array"
         }
       },
       "type": "object"

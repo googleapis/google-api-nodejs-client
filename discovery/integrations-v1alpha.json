@@ -3202,7 +3202,7 @@
       }
     }
   },
-  "revision": "20230322",
+  "revision": "20230409",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -4201,6 +4201,10 @@
           "description": "the task attempt number this snapshot belongs to. Could be empty.",
           "format": "int32",
           "type": "integer"
+        },
+        "taskLabel": {
+          "description": "the task label associated with this snapshot. Could be empty.",
+          "type": "string"
         },
         "taskName": {
           "description": "the task name associated with this snapshot. Could be empty.",
@@ -5405,9 +5409,11 @@
             "EQUALS_IGNORE_CASE",
             "REPLACE_ALL",
             "SUBSTRING",
-            "RESOLVE_TEMPLATE"
+            "RESOLVE_TEMPLATE",
+            "DECODE_BASE64_STRING"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -7701,6 +7707,10 @@
           ],
           "type": "string"
         },
+        "oauth2AuthCodeFlow": {
+          "$ref": "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow",
+          "description": "Oauth2AuthCodeFlow."
+        },
         "oauth2ClientCredentials": {
           "$ref": "GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials",
           "description": "Oauth2ClientCredentials."
@@ -7716,6 +7726,44 @@
         "userPassword": {
           "$ref": "GoogleCloudConnectorsV1AuthConfigUserPassword",
           "description": "UserPassword."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow": {
+      "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.",
+      "id": "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow",
+      "properties": {
+        "authCode": {
+          "description": "Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Client ID for user-provided OAuth app.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "$ref": "GoogleCloudConnectorsV1Secret",
+          "description": "Client secret for user-provided OAuth app."
+        },
+        "enablePkce": {
+          "description": "Whether to enable PKCE when the user performs the auth code flow.",
+          "type": "boolean"
+        },
+        "pkceVerifier": {
+          "description": "PKCE verifier to be used during the auth code exchange.",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "Redirect URI to be provided during the auth code exchange.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7892,6 +7940,10 @@
           "$ref": "GoogleCloudConnectorsV1LockConfig",
           "description": "Optional. Configuration that indicates whether or not the Connection can be edited."
         },
+        "logConfig": {
+          "$ref": "GoogleCloudConnectorsV1LogConfig",
+          "description": "Optional. Log configuration for the connection."
+        },
         "name": {
           "description": "Output only. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
           "readOnly": true,
@@ -8019,6 +8071,17 @@
         "reason": {
           "description": "Describes why a connection is locked.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1LogConfig": {
+      "description": "Log configuration for the connection.",
+      "id": "GoogleCloudConnectorsV1LogConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enabled represents whether logging is enabled or not for a connection.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8947,6 +9010,10 @@
           "description": "the task attempt number this snapshot belongs to.",
           "format": "int32",
           "type": "integer"
+        },
+        "taskLabel": {
+          "description": "the task label associated with this snapshot. Could be empty.",
+          "type": "string"
         },
         "taskNumber": {
           "description": "The task number associated with this snapshot.",

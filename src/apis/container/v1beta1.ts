@@ -152,7 +152,12 @@ export namespace container_v1beta1 {
   /**
    * AdditionalPodRangesConfig is the configuration for additional pod secondary ranges supporting the ClusterUpdate message.
    */
-  export interface Schema$AdditionalPodRangesConfig {}
+  export interface Schema$AdditionalPodRangesConfig {
+    /**
+     * Name for pod secondary ipv4 range which has the actual range defined ahead.
+     */
+    podRangeNames?: string[] | null;
+  }
   /**
    * Configuration for the addons that can be automatically spun up in the cluster, enabling additional functionality.
    */
