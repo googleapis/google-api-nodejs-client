@@ -1091,6 +1091,10 @@ export namespace cloudkms_v1 {
     cryptoKeyVersionId?: string | null;
   }
   /**
+   * Response message for EkmService.VerifyConnectivity.
+   */
+  export interface Schema$VerifyConnectivityResponse {}
+  /**
    * The public key component of the wrapping key. For details of the type of key this public key corresponds to, see the ImportMethod.
    */
   export interface Schema$WrappingPublicKey {
@@ -3381,6 +3385,145 @@ export namespace cloudkms_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Verifies that Cloud KMS can successfully connect to the external key manager specified by an EkmConnection. If there is an error connecting to the EKM, this method returns a FAILED_PRECONDITION status containing structured information as described at https://cloud.google.com/kms/docs/reference/ekm_errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.ekmConnections.verifyConnectivity({
+     *       // Required. The name of the EkmConnection to verify.
+     *       name: 'projects/my-project/locations/my-location/ekmConnections/my-ekmConnection',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    verifyConnectivity(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verifyConnectivity(
+      params?: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VerifyConnectivityResponse>;
+    verifyConnectivity(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    verifyConnectivity(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyConnectivityResponse>,
+      callback: BodyResponseCallback<Schema$VerifyConnectivityResponse>
+    ): void;
+    verifyConnectivity(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity,
+      callback: BodyResponseCallback<Schema$VerifyConnectivityResponse>
+    ): void;
+    verifyConnectivity(
+      callback: BodyResponseCallback<Schema$VerifyConnectivityResponse>
+    ): void;
+    verifyConnectivity(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity
+        | BodyResponseCallback<Schema$VerifyConnectivityResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VerifyConnectivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VerifyConnectivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VerifyConnectivityResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:verifyConnectivity').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VerifyConnectivityResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VerifyConnectivityResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Ekmconnections$Create
@@ -3479,6 +3622,13 @@ export namespace cloudkms_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Verifyconnectivity
+    extends StandardParameters {
+    /**
+     * Required. The name of the EkmConnection to verify.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Keyrings {
