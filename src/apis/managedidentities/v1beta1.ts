@@ -355,6 +355,10 @@ export namespace managedidentities_v1beta1 {
    */
   export interface Schema$DomainJoinMachineRequest {
     /**
+     * Optional. force if True, forces domain join even if the computer account already exists.
+     */
+    force?: boolean | null;
+    /**
      * Optional. OU name to which the VM needs to be domain joined. If the field is not provided, the VM is joined to the default OU which is created. The default OU for the domain join api is created as GCE Instances under the Cloud OU. Example - OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com If the field is provided, then the custom OU is searched for under GCE Instances OU. Example - if ou_name=test_ou then the VM is domain joined to the following OU: OU=test_ou,OU=GCE Instances,OU=Cloud,DC=ad,DC=test,DC=com if present. If OU is not present under GCE Instances, then error is returned.
      */
     ouName?: string | null;
@@ -2528,6 +2532,7 @@ export namespace managedidentities_v1beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "force": false,
      *           //   "ouName": "my_ouName",
      *           //   "vmIdToken": "my_vmIdToken"
      *           // }
@@ -6916,7 +6921,7 @@ export namespace managedidentities_v1beta1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      * @example
      * ```js
      * // Before running the sample:
