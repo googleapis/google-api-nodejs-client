@@ -205,11 +205,11 @@ export namespace workstations_v1beta {
    */
   export interface Schema$CustomerEncryptionKey {
     /**
-     * The name of the Google Cloud KMS encryption key. For example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`.
+     * Immutable. The name of the Google Cloud KMS encryption key. For example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`.
      */
     kmsKey?: string | null;
     /**
-     * The service account to use with the specified KMS key. We recommend that you use a separate service account and follow KMS best practices. For more information, see [Separation of duties](https://cloud.google.com/kms/docs/separation-of-duties) and `gcloud kms keys add-iam-policy-binding` [`--member`](https://cloud.google.com/sdk/gcloud/reference/kms/keys/add-iam-policy-binding#--member).
+     * Immutable. The service account to use with the specified KMS key. We recommend that you use a separate service account and follow KMS best practices. For more information, see [Separation of duties](https://cloud.google.com/kms/docs/separation-of-duties) and `gcloud kms keys add-iam-policy-binding` [`--member`](https://cloud.google.com/sdk/gcloud/reference/kms/keys/add-iam-policy-binding#--member).
      */
     kmsKeyServiceAccount?: string | null;
   }
@@ -667,6 +667,10 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
+     * Environment variables passed to the workstation container.
+     */
+    env?: {[key: string]: string} | null;
+    /**
      * Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -711,6 +715,10 @@ export namespace workstations_v1beta {
      * Output only. Status conditions describing the current resource state.
      */
     conditions?: Schema$Status[];
+    /**
+     * Output only. The private IP address of the control plane for this cluster. Workstation VMs need access to this IP address to work with the service, so please ensure your firewall rules allow egress from the Workstation VMs to this address.
+     */
+    controlPlaneIp?: string | null;
     /**
      * Output only. Time when this resource was created.
      */
@@ -797,7 +805,11 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
-     * Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours.
+     * Whether to enable linux auditd logging on the workstation. When enabled, a service account must also be specified that has logging.buckets.write permission on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging).
+     */
+    enableAuditAgent?: boolean | null;
+    /**
+     * Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours. Immutable after workstation config is created.
      */
     encryptionKey?: Schema$CustomerEncryptionKey;
     /**
@@ -1503,6 +1515,7 @@ export namespace workstations_v1beta {
      *       // {
      *       //   "annotations": {},
      *       //   "conditions": [],
+     *       //   "controlPlaneIp": "my_controlPlaneIp",
      *       //   "createTime": "my_createTime",
      *       //   "degraded": false,
      *       //   "deleteTime": "my_deleteTime",
@@ -1796,6 +1809,7 @@ export namespace workstations_v1beta {
      *   // {
      *   //   "annotations": {},
      *   //   "conditions": [],
+     *   //   "controlPlaneIp": "my_controlPlaneIp",
      *   //   "createTime": "my_createTime",
      *   //   "degraded": false,
      *   //   "deleteTime": "my_deleteTime",
@@ -2091,6 +2105,7 @@ export namespace workstations_v1beta {
      *       // {
      *       //   "annotations": {},
      *       //   "conditions": [],
+     *       //   "controlPlaneIp": "my_controlPlaneIp",
      *       //   "createTime": "my_createTime",
      *       //   "degraded": false,
      *       //   "deleteTime": "my_deleteTime",
@@ -2354,6 +2369,7 @@ export namespace workstations_v1beta {
      *           //   "degraded": false,
      *           //   "deleteTime": "my_deleteTime",
      *           //   "displayName": "my_displayName",
+     *           //   "enableAuditAgent": false,
      *           //   "encryptionKey": {},
      *           //   "etag": "my_etag",
      *           //   "host": {},
@@ -2657,6 +2673,7 @@ export namespace workstations_v1beta {
      *   //   "degraded": false,
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "enableAuditAgent": false,
      *   //   "encryptionKey": {},
      *   //   "etag": "my_etag",
      *   //   "host": {},
@@ -3248,6 +3265,7 @@ export namespace workstations_v1beta {
      *           //   "degraded": false,
      *           //   "deleteTime": "my_deleteTime",
      *           //   "displayName": "my_displayName",
+     *           //   "enableAuditAgent": false,
      *           //   "encryptionKey": {},
      *           //   "etag": "my_etag",
      *           //   "host": {},
@@ -3847,6 +3865,7 @@ export namespace workstations_v1beta {
      *           //   "createTime": "my_createTime",
      *           //   "deleteTime": "my_deleteTime",
      *           //   "displayName": "my_displayName",
+     *           //   "env": {},
      *           //   "etag": "my_etag",
      *           //   "host": "my_host",
      *           //   "labels": {},
@@ -4292,6 +4311,7 @@ export namespace workstations_v1beta {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "env": {},
      *   //   "etag": "my_etag",
      *   //   "host": "my_host",
      *   //   "labels": {},
@@ -4870,6 +4890,7 @@ export namespace workstations_v1beta {
      *           //   "createTime": "my_createTime",
      *           //   "deleteTime": "my_deleteTime",
      *           //   "displayName": "my_displayName",
+     *           //   "env": {},
      *           //   "etag": "my_etag",
      *           //   "host": "my_host",
      *           //   "labels": {},
