@@ -1286,7 +1286,7 @@
       }
     }
   },
-  "revision": "20230403",
+  "revision": "20230407",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -2074,12 +2074,6 @@
         },
         "dataset": {
           "description": "The dataset from which the model is trained, in form of `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}`",
-          "type": "string"
-        },
-        "deployTime": {
-          "description": "Output only. Timestamp when the model training finished and ready to be used for translation.",
-          "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         },
         "displayName": {

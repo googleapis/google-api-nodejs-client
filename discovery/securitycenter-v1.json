@@ -746,6 +746,263 @@
             }
           }
         },
+        "securityHealthAnalyticsSettings": {
+          "resources": {
+            "customModules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a resident SecurityHealthAnalyticsCustomModule at the scope of the given CRM parent, and also creates inherited SecurityHealthAnalyticsCustomModules for all CRM descendants of the given parent. These modules are enabled by default.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Resource name of the new custom module's parent. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified SecurityHealthAnalyticsCustomModule and all of its descendants in the CRM hierarchy. This method is only supported for resident custom modules.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to delete. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a SecurityHealthAnalyticsCustomModule.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of all SecurityHealthAnalyticsCustomModules for the given parent. This includes resident modules defined at the scope of the parent, and inherited modules, inherited from CRM ancestors.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "response": {
+                    "$ref": "ListSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listDescendant": {
+                  "description": "Returns a list of all resident SecurityHealthAnalyticsCustomModules under the given CRM parent and all of the parent’s CRM descendants.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules:listDescendant",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.listDescendant",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list descendant custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules:listDescendant",
+                  "response": {
+                    "$ref": "ListDescendantSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of “inherited”). Updating the display name and custom config of a module is supported on resident modules only.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the custom module. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\" The id {customModule} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "effectiveCustomModules": {
+              "methods": {
+                "get": {
+                  "description": "Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/effectiveCustomModules/{effectiveCustomModulesId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.effectiveCustomModules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the effective custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings/effectiveCustomModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of all EffectiveSecurityHealthAnalyticsCustomModules for the given parent. This includes resident modules defined at the scope of the parent, and inherited modules, inherited from CRM ancestors.",
+                  "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/effectiveCustomModules",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.folders.securityHealthAnalyticsSettings.effectiveCustomModules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list effective custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/effectiveCustomModules",
+                  "response": {
+                    "$ref": "ListEffectiveSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "sources": {
           "methods": {
             "list": {
@@ -1906,6 +2163,263 @@
             }
           }
         },
+        "securityHealthAnalyticsSettings": {
+          "resources": {
+            "customModules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a resident SecurityHealthAnalyticsCustomModule at the scope of the given CRM parent, and also creates inherited SecurityHealthAnalyticsCustomModules for all CRM descendants of the given parent. These modules are enabled by default.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Resource name of the new custom module's parent. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified SecurityHealthAnalyticsCustomModule and all of its descendants in the CRM hierarchy. This method is only supported for resident custom modules.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to delete. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a SecurityHealthAnalyticsCustomModule.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of all SecurityHealthAnalyticsCustomModules for the given parent. This includes resident modules defined at the scope of the parent, and inherited modules, inherited from CRM ancestors.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "response": {
+                    "$ref": "ListSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listDescendant": {
+                  "description": "Returns a list of all resident SecurityHealthAnalyticsCustomModules under the given CRM parent and all of the parent’s CRM descendants.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules:listDescendant",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.listDescendant",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list descendant custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules:listDescendant",
+                  "response": {
+                    "$ref": "ListDescendantSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of “inherited”). Updating the display name and custom config of a module is supported on resident modules only.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the custom module. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\" The id {customModule} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "effectiveCustomModules": {
+              "methods": {
+                "get": {
+                  "description": "Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/effectiveCustomModules/{effectiveCustomModulesId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.effectiveCustomModules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the effective custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings/effectiveCustomModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of all EffectiveSecurityHealthAnalyticsCustomModules for the given parent. This includes resident modules defined at the scope of the parent, and inherited modules, inherited from CRM ancestors.",
+                  "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/effectiveCustomModules",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.organizations.securityHealthAnalyticsSettings.effectiveCustomModules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list effective custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/effectiveCustomModules",
+                  "response": {
+                    "$ref": "ListEffectiveSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "sources": {
           "methods": {
             "create": {
@@ -3061,6 +3575,263 @@
             }
           }
         },
+        "securityHealthAnalyticsSettings": {
+          "resources": {
+            "customModules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a resident SecurityHealthAnalyticsCustomModule at the scope of the given CRM parent, and also creates inherited SecurityHealthAnalyticsCustomModules for all CRM descendants of the given parent. These modules are enabled by default.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Resource name of the new custom module's parent. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified SecurityHealthAnalyticsCustomModule and all of its descendants in the CRM hierarchy. This method is only supported for resident custom modules.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to delete. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a SecurityHealthAnalyticsCustomModule.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of all SecurityHealthAnalyticsCustomModules for the given parent. This includes resident modules defined at the scope of the parent, and inherited modules, inherited from CRM ancestors.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules",
+                  "response": {
+                    "$ref": "ListSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listDescendant": {
+                  "description": "Returns a list of all resident SecurityHealthAnalyticsCustomModules under the given CRM parent and all of the parent’s CRM descendants.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules:listDescendant",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.listDescendant",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list descendant custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customModules:listDescendant",
+                  "response": {
+                    "$ref": "ListDescendantSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of “inherited”). Updating the display name and custom config of a module is supported on resident modules only.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the custom module. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\" The id {customModule} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings/customModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "effectiveCustomModules": {
+              "methods": {
+                "get": {
+                  "description": "Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/effectiveCustomModules/{effectiveCustomModulesId}",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.effectiveCustomModules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the effective custom module to get. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", \"folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings/effectiveCustomModules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of all EffectiveSecurityHealthAnalyticsCustomModules for the given parent. This includes resident modules defined at the scope of the parent, and inherited modules, inherited from CRM ancestors.",
+                  "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/effectiveCustomModules",
+                  "httpMethod": "GET",
+                  "id": "securitycenter.projects.securityHealthAnalyticsSettings.effectiveCustomModules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last call indicating a continuation",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of parent to list effective custom modules. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings\", \"folders/{folder}/securityHealthAnalyticsSettings\", or \"projects/{project}/securityHealthAnalyticsSettings\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/effectiveCustomModules",
+                  "response": {
+                    "$ref": "ListEffectiveSecurityHealthAnalyticsCustomModulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "sources": {
           "methods": {
             "list": {
@@ -3372,7 +4143,7 @@
       }
     }
   },
-  "revision": "20230330",
+  "revision": "20230410",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -4473,6 +5244,102 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV1CustomConfig": {
+      "description": "Defines the properties in a custom module configuration for Security Health Analytics. Use the custom module configuration to create custom detectors that generate custom findings for resources that you specify.",
+      "id": "GoogleCloudSecuritycenterV1CustomConfig",
+      "properties": {
+        "customOutput": {
+          "$ref": "GoogleCloudSecuritycenterV1CustomOutputSpec",
+          "description": "Custom output properties."
+        },
+        "description": {
+          "description": "Text that describes the vulnerability or misconfiguration that the custom module detects. This explanation is returned with each finding instance to help investigators understand the detected issue. The text must be enclosed in quotation marks.",
+          "type": "string"
+        },
+        "predicate": {
+          "$ref": "Expr",
+          "description": "The CEL expression to evaluate to produce findings. When the expression evaluates to true against a resource, a finding is generated."
+        },
+        "recommendation": {
+          "description": "An explanation of the recommended steps that security teams can take to resolve the detected issue. This explanation is returned with each finding generated by this module in the `nextSteps` property of the finding JSON.",
+          "type": "string"
+        },
+        "resourceSelector": {
+          "$ref": "GoogleCloudSecuritycenterV1ResourceSelector",
+          "description": "The resource types that the custom module operates on. Each custom module can specify up to 5 resource types."
+        },
+        "severity": {
+          "description": "The severity to assign to findings generated by the module.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity.",
+            "Medium severity.",
+            "Low severity."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1CustomOutputSpec": {
+      "description": "A set of optional name-value pairs that define custom source properties to return with each finding that is generated by the custom module. The custom source properties that are defined here are included in the finding JSON under `sourceProperties`.",
+      "id": "GoogleCloudSecuritycenterV1CustomOutputSpec",
+      "properties": {
+        "properties": {
+          "description": "A list of custom output properties to add to the finding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1Property"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule": {
+      "description": "An EffectiveSecurityHealthAnalyticsCustomModule is the representation of a Security Health Analytics custom module at a specified level of the resource hierarchy: organization, folder, or project. If a custom module is inherited from a parent organization or folder, the value of the `enablementState` property in EffectiveSecurityHealthAnalyticsCustomModule is set to the value that is effective in the parent, instead of `INHERITED`. For example, if the module is enabled in a parent organization or folder, the effective enablement_state for the module in all child folders or projects is also `enabled`. EffectiveSecurityHealthAnalyticsCustomModule is read-only.",
+      "id": "GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule",
+      "properties": {
+        "customConfig": {
+          "$ref": "GoogleCloudSecuritycenterV1CustomConfig",
+          "description": "Output only. The user-specified configuration for the module.",
+          "readOnly": true
+        },
+        "displayName": {
+          "description": "Output only. The display name for the custom module. The name must be between 1 and 128 characters, start with a lowercase letter, and contain alphanumeric characters or underscores only.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enablementState": {
+          "description": "Output only. The effective state of enablement for the module at the given level of the hierarchy.",
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified enablement state.",
+            "The module is enabled at the given level.",
+            "The module is disabled at the given level."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the custom module. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}\"",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV1ExternalSystem": {
       "description": "Representation of third party SIEM/SOAR fields within SCC.",
       "id": "GoogleCloudSecuritycenterV1ExternalSystem",
@@ -4563,6 +5430,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV1Property": {
+      "description": "An individual name-value pair that defines a custom source property.",
+      "id": "GoogleCloudSecuritycenterV1Property",
+      "properties": {
+        "name": {
+          "description": "Name of the property for the custom output.",
+          "type": "string"
+        },
+        "valueExpression": {
+          "$ref": "Expr",
+          "description": "The CEL expression for the custom output. A resource property can be specified to return the value of the property or a text string enclosed in quotation marks."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV1Resource": {
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1Resource",
@@ -4606,6 +5488,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV1ResourceSelector": {
+      "description": "Resource for selecting resource type.",
+      "id": "GoogleCloudSecuritycenterV1ResourceSelector",
+      "properties": {
+        "resourceTypes": {
+          "description": "The resource types to run the detector on.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse": {
       "description": "Response of asset discovery run",
       "id": "GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse",
@@ -4629,6 +5525,57 @@
             "Asset discovery run was cancelled with tasks still pending, as another run for the same organization was started with a higher priority.",
             "Asset discovery run was killed and terminated."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule": {
+      "description": "Represents an instance of a Security Health Analytics custom module, including its full module name, display name, enablement state, and last updated time. You can create a custom module at the organization, folder, or project level. Custom modules that you create at the organization or folder level are inherited by the child folders and projects.",
+      "id": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule",
+      "properties": {
+        "ancestorModule": {
+          "description": "Output only. If empty, indicates that the custom module was created in the organization, folder, or project in which you are viewing the custom module. Otherwise, `ancestor_module` specifies the organization or folder from which the custom module is inherited.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customConfig": {
+          "$ref": "GoogleCloudSecuritycenterV1CustomConfig",
+          "description": "The user specified custom configuration for the module."
+        },
+        "displayName": {
+          "description": "The display name of the Security Health Analytics custom module. This display name becomes the finding category for all findings that are returned by this custom module. The display name must be between 1 and 128 characters, start with a lowercase letter, and contain alphanumeric characters or underscores only.",
+          "type": "string"
+        },
+        "enablementState": {
+          "description": "The enablement state of the custom module.",
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "INHERITED"
+          ],
+          "enumDescriptions": [
+            "Unspecified enablement state.",
+            "The module is enabled at the given CRM resource.",
+            "The module is disabled at the given CRM resource.",
+            "State is inherited from an ancestor module. The module will either be effectively ENABLED or DISABLED based on its closest non-inherited ancestor module in the CRM hierarchy."
+          ],
+          "type": "string"
+        },
+        "lastEditor": {
+          "description": "Output only. The editor that last updated the custom module.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the custom module. Its format is \"organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}\", or \"projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}\" The id {customModule} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the custom module was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5264,6 +6211,42 @@
       },
       "type": "object"
     },
+    "ListDescendantSecurityHealthAnalyticsCustomModulesResponse": {
+      "description": "Response message for listing descendant security health analytics custom modules.",
+      "id": "ListDescendantSecurityHealthAnalyticsCustomModulesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If not empty, indicates that there may be more custom modules to be returned.",
+          "type": "string"
+        },
+        "securityHealthAnalyticsCustomModules": {
+          "description": "Custom modules belonging to the requested parent and its descendants.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListEffectiveSecurityHealthAnalyticsCustomModulesResponse": {
+      "description": "Response message for listing effective security health analytics custom modules.",
+      "id": "ListEffectiveSecurityHealthAnalyticsCustomModulesResponse",
+      "properties": {
+        "effectiveSecurityHealthAnalyticsCustomModules": {
+          "description": "Effective custom modules belonging to the requested parent.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If not empty, indicates that there may be more effective custom modules to be returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListFindingsResponse": {
       "description": "Response message for listing findings.",
       "id": "ListFindingsResponse",
@@ -5374,6 +6357,24 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSecurityHealthAnalyticsCustomModulesResponse": {
+      "description": "Response message for listing security health analytics custom modules.",
+      "id": "ListSecurityHealthAnalyticsCustomModulesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If not empty, indicates that there may be more custom modules to be returned.",
+          "type": "string"
+        },
+        "securityHealthAnalyticsCustomModules": {
+          "description": "Custom modules belonging to the requested parent.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule"
           },
           "type": "array"
         }

@@ -599,6 +599,32 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloudkms"
                   ]
+                },
+                "verifyConnectivity": {
+                  "description": "Verifies that Cloud KMS can successfully connect to the external key manager specified by an EkmConnection. If there is an error connecting to the EKM, this method returns a FAILED_PRECONDITION status containing structured information as described at https://cloud.google.com/kms/docs/reference/ekm_errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConnections/{ekmConnectionsId}:verifyConnectivity",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.ekmConnections.verifyConnectivity",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EkmConnection to verify.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ekmConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:verifyConnectivity",
+                  "response": {
+                    "$ref": "VerifyConnectivityResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
                 }
               }
             },
@@ -1737,7 +1763,7 @@
       }
     }
   },
-  "revision": "20230330",
+  "revision": "20230407",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -3477,6 +3503,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "VerifyConnectivityResponse": {
+      "description": "Response message for EkmService.VerifyConnectivity.",
+      "id": "VerifyConnectivityResponse",
+      "properties": {},
       "type": "object"
     },
     "WrappingPublicKey": {

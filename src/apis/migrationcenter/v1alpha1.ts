@@ -342,7 +342,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AssetList {
     /**
-     * A list of asset IDs
+     * Required. A list of asset IDs
      */
     assetIds?: string[] | null;
   }
@@ -1051,7 +1051,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * The payload format.
+     * Required. The payload format.
      */
     format?: string | null;
     /**
@@ -1852,7 +1852,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * Collection of combinations of groups and preference sets.
+     * Required. Collection of combinations of groups and preference sets.
      */
     groupPreferencesetAssignments?: Schema$ReportConfigGroupPreferenceSetAssignment[];
     /**
@@ -1869,11 +1869,11 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$ReportConfigGroupPreferenceSetAssignment {
     /**
-     * Name of the group.
+     * Required. Name of the group.
      */
     group?: string | null;
     /**
-     * Name of the Preference Set.
+     * Required. Name of the Preference Set.
      */
     preferenceSet?: string | null;
   }

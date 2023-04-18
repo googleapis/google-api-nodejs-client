@@ -8744,7 +8744,7 @@
       }
     }
   },
-  "revision": "20230329",
+  "revision": "20230410",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11960,7 +11960,7 @@
       "id": "GoogleCloudApigeeV1KeyValueMap",
       "properties": {
         "encrypted": {
-          "description": "Optional. Flag that specifies whether entry values will be encrypted. You must set this value to `true`. Apigee X and hybrid do not support unencrytped key value maps.",
+          "description": "Required. Flag that specifies whether entry values will be encrypted. This field is retained for backward compatibility and the value of encrypted will always be `true`. Apigee X and hybrid do not support unencrypted key value maps.",
           "type": "boolean"
         },
         "name": {
@@ -12897,6 +12897,14 @@
           "description": "Required. DEPRECATED: This field will be deprecated once Apigee supports DRZ. Primary Google Cloud region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
           "type": "string"
         },
+        "apiConsumerDataEncryptionKeyName": {
+          "description": "Cloud KMS key name used for encrypting API consumer data. Required for US/EU regions when [BillingType](#BillingType) is `SUBSCRIPTION`. When [BillingType](#BillingType) is `EVALUATION` or the region is not US/EU, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
+          "type": "string"
+        },
+        "apiConsumerDataLocation": {
+          "description": "This field is needed only for customers with control plane in US or EU. Apigee stores some control plane data only in single region. This field determines which single region Apigee should use. For example: \"us-west1\" when control plane is in US or \"europe-west2\" when control plane is in EU.",
+          "type": "string"
+        },
         "apigeeProjectId": {
           "description": "Output only. Apigee Project ID associated with the organization. Use this project to allowlist Apigee in the Service Attachment when using private service connect with Apigee.",
           "readOnly": true,
@@ -12933,6 +12941,10 @@
           "description": "Output only. Base64-encoded public certificate for the root CA of the Apigee organization. Valid only when [RuntimeType](#RuntimeType) is `CLOUD`.",
           "format": "byte",
           "readOnly": true,
+          "type": "string"
+        },
+        "controlPlaneEncryptionKeyName": {
+          "description": "Cloud KMS key name used for encrypting control plane data that is stored in a multi region. Required when [BillingType](#BillingType) is `SUBSCRIPTION`. When [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",
           "type": "string"
         },
         "createdAt": {

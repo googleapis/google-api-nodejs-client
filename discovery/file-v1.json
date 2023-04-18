@@ -546,6 +546,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "revert": {
+                  "description": "Revert an existing instance's file system to a specified snapshot.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:revert",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.instances.revert",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. projects/{project_id}/locations/{location_id}/instances/{instance_id}. The resource name of the instance, in the format",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:revert",
+                  "request": {
+                    "$ref": "RevertInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -846,7 +874,7 @@
       }
     }
   },
-  "revision": "20230312",
+  "revision": "20230405",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -934,14 +962,16 @@
             "CREATING",
             "FINALIZING",
             "READY",
-            "DELETING"
+            "DELETING",
+            "INVALID"
           ],
           "enumDescriptions": [
             "State not set.",
             "Backup is being created.",
             "Backup has been taken and the operation is being finalized. At this point, changes to the file share will not be reflected in the backup.",
             "Backup is available for use.",
-            "Backup is being deleted."
+            "Backup is being deleted.",
+            "Backup is not valid and cannot be used for creating new instances or restoring existing instances."
           ],
           "readOnly": true,
           "type": "string"
@@ -1390,7 +1420,8 @@
             "RESTORING",
             "SUSPENDED",
             "SUSPENDING",
-            "RESUMING"
+            "RESUMING",
+            "REVERTING"
           ],
           "enumDescriptions": [
             "State not set.",
@@ -1402,7 +1433,8 @@
             "The instance is restoring a backup to an existing file share and may be unusable during this time.",
             "The instance is suspended. You can get further details from the `suspension_reasons` field of the `Instance` resource.",
             "The instance is in the process of becoming suspended.",
-            "The instance is in the process of becoming active."
+            "The instance is in the process of becoming active.",
+            "The instance is reverting to a snapshot."
           ],
           "readOnly": true,
           "type": "string"
@@ -1849,6 +1881,17 @@
         },
         "sourceBackup": {
           "description": "The resource name of the backup, in the format `projects/{project_number}/locations/{location_id}/backups/{backup_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevertInstanceRequest": {
+      "description": "RevertInstanceRequest reverts the given instance's file share to the specified snapshot.",
+      "id": "RevertInstanceRequest",
+      "properties": {
+        "targetSnapshotId": {
+          "description": "Required. The snapshot resource ID, in the format 'my-snapshot', where the specified ID is the {snapshot_id} of the fully qualified name like projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}",
           "type": "string"
         }
       },

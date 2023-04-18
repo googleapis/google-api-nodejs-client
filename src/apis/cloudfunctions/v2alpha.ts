@@ -176,11 +176,7 @@ export namespace cloudfunctions_v2alpha {
      */
     build?: string | null;
     /**
-     * Specifies one of the Google provided buildpack stacks.
-     */
-    buildpackStack?: string | null;
-    /**
-     * Optional. Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. If `docker_repository` field is specified, this field will be automatically set as `ARTIFACT_REGISTRY`. If unspecified, it currently defaults to `CONTAINER_REGISTRY`. This field may be overridden by the backend for eligible deployments.
+     * Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. If `docker_repository` field is specified, this field will be automatically set as `ARTIFACT_REGISTRY`. If unspecified, it currently defaults to `CONTAINER_REGISTRY`. This field may be overridden by the backend for eligible deployments.
      */
     dockerRegistry?: string | null;
     /**
@@ -372,6 +368,15 @@ export namespace cloudfunctions_v2alpha {
     uploadUrl?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2alphaLocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2alphaOperationMetadata {
@@ -398,7 +403,7 @@ export namespace cloudfunctions_v2alpha {
     /**
      * Mechanism for reporting in-progress stages
      */
-    stages?: Schema$GoogleCloudFunctionsV2alphaStage[];
+    stages?: Schema$Stage[];
     /**
      * Human-readable status of the operation, if any.
      */
@@ -411,35 +416,6 @@ export namespace cloudfunctions_v2alpha {
      * Name of the verb executed by the operation.
      */
     verb?: string | null;
-  }
-  /**
-   * Each Stage of the deployment process
-   */
-  export interface Schema$GoogleCloudFunctionsV2alphaStage {
-    /**
-     * Message describing the Stage
-     */
-    message?: string | null;
-    /**
-     * Name of the Stage. This will be unique for each Stage.
-     */
-    name?: string | null;
-    /**
-     * Resource of the Stage
-     */
-    resource?: string | null;
-    /**
-     * Link to the current Stage resource
-     */
-    resourceUri?: string | null;
-    /**
-     * Current state of the Stage
-     */
-    state?: string | null;
-    /**
-     * State messages from the current Stage.
-     */
-    stateMessages?: Schema$GoogleCloudFunctionsV2alphaStateMessage[];
   }
   /**
    * Informational messages about the state of the Cloud Function or Operation.
@@ -457,6 +433,15 @@ export namespace cloudfunctions_v2alpha {
      * One-word CamelCase type of the state message.
      */
     type?: string | null;
+  }
+  /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2betaLocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -710,6 +695,15 @@ export namespace cloudfunctions_v2alpha {
     name?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$LocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -906,7 +900,7 @@ export namespace cloudfunctions_v2alpha {
     versions?: Schema$SecretVersion[];
   }
   /**
-   * Describes the Service being deployed. Currently Supported : Cloud Run (fully managed). Next tag: 23
+   * Describes the Service being deployed. Currently Supported : Cloud Run (fully managed).
    */
   export interface Schema$ServiceConfig {
     /**
@@ -914,7 +908,7 @@ export namespace cloudfunctions_v2alpha {
      */
     allTrafficOnLatestRevision?: boolean | null;
     /**
-     * The number of CPUs used in a single container instance. Default value is calculated from available memory. Supports the same values as Cloud Run, see https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements Example: "1" indicates 1 vCPU
+     * [Preview] The number of CPUs used in a single container instance. Default value is calculated from available memory. Supports the same values as Cloud Run, see https://cloud.google.com/run/docs/reference/rest/v1/Container#resourcerequirements Example: "1" indicates 1 vCPU
      */
     availableCpu?: string | null;
     /**
@@ -934,7 +928,7 @@ export namespace cloudfunctions_v2alpha {
      */
     maxInstanceCount?: number | null;
     /**
-     * Sets the maximum number of concurrent requests that each instance can receive. Defaults to 1.
+     * [Preview] Sets the maximum number of concurrent requests that each instance can receive. Defaults to 1.
      */
     maxInstanceRequestConcurrency?: number | null;
     /**
@@ -1020,6 +1014,35 @@ export namespace cloudfunctions_v2alpha {
      * A copy of the build's `source.storage_source`, if exists, with any generations resolved.
      */
     resolvedStorageSource?: Schema$StorageSource;
+  }
+  /**
+   * Each Stage of the deployment process
+   */
+  export interface Schema$Stage {
+    /**
+     * Message describing the Stage
+     */
+    message?: string | null;
+    /**
+     * Name of the Stage. This will be unique for each Stage.
+     */
+    name?: string | null;
+    /**
+     * Resource of the Stage
+     */
+    resource?: string | null;
+    /**
+     * Link to the current Stage resource
+     */
+    resourceUri?: string | null;
+    /**
+     * Current state of the Stage
+     */
+    state?: string | null;
+    /**
+     * State messages from the current Stage.
+     */
+    stateMessages?: Schema$GoogleCloudFunctionsV2alphaStateMessage[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).

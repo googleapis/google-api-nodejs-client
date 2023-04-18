@@ -105,6 +105,54 @@
   },
   "protocol": "rest",
   "resources": {
+    "organizations": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "fleets": {
+              "methods": {
+                "list": {
+                  "description": "Returns all fleets within an organization or a project that the caller has access to.",
+                  "flatPath": "v1beta/organizations/{organizationsId}/locations/{locationsId}/fleets",
+                  "httpMethod": "GET",
+                  "id": "gkehub.organizations.locations.fleets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of fleets to return. The service may return fewer than this value. If unspecified, at most 200 fleets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListFleets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFleets` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The organization or project to list for Fleets under, in the format `organizations/*/locations/*` or `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/fleets",
+                  "response": {
+                    "$ref": "ListFleetsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "projects": {
       "resources": {
         "locations": {
@@ -444,6 +492,158 @@
                   },
                   "response": {
                     "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "fleets": {
+              "methods": {
+                "create": {
+                  "description": "Creates a fleet.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/fleets",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.fleets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Fleet will be created. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/fleets",
+                  "request": {
+                    "$ref": "Fleet"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Removes a Fleet. There must be no memberships remaining in the Fleet.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/fleets/{fleetsId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.fleets.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Fleet resource name in the format `projects/*/locations/*/fleets/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fleets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the details of a fleet.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/fleets/{fleetsId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.fleets.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Fleet resource name in the format `projects/*/locations/*/fleets/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fleets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "Fleet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Returns all fleets within an organization or a project that the caller has access to.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/fleets",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.fleets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of fleets to return. The service may return fewer than this value. If unspecified, at most 200 fleets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListFleets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFleets` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The organization or project to list for Fleets under, in the format `organizations/*/locations/*` or `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/fleets",
+                  "response": {
+                    "$ref": "ListFleetsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a fleet.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/fleets/{fleetsId}",
+                  "httpMethod": "PATCH",
+                  "id": "gkehub.projects.locations.fleets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each GCP project can have at most one fleet resource, named \"default\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fleets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The fields to be updated;",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "request": {
+                    "$ref": "Fleet"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1302,7 +1502,7 @@
       }
     }
   },
-  "revision": "20230329",
+  "revision": "20230407",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -1546,6 +1746,10 @@
         "git": {
           "$ref": "ConfigManagementGitConfig",
           "description": "Git repo configuration for the cluster."
+        },
+        "managed": {
+          "$ref": "ConfigManagementManaged",
+          "description": "Configuration for Managed Config Sync."
         },
         "oci": {
           "$ref": "ConfigManagementOciConfig",
@@ -1967,6 +2171,17 @@
         "errorMessage": {
           "description": "A string representing the user facing error message",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementManaged": {
+      "description": "Configuration for Managed Config Sync.",
+      "id": "ConfigManagementManaged",
+      "properties": {
+        "enabled": {
+          "description": "Set to true to enable Managed Config Sync. Defaults to false which disables Managed Config Sync.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2467,6 +2682,76 @@
       },
       "type": "object"
     },
+    "Fleet": {
+      "description": "Fleet contains the Fleet-wide metadata and configuration.",
+      "id": "Fleet",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the Fleet was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. When the Fleet was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. A user-assigned display name of the Fleet. When present, it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `Production Fleet`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each GCP project can have at most one fleet resource, named \"default\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "$ref": "FleetLifecycleState",
+          "description": "Output only. State of the namespace resource.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all Fleet resources. If a Fleet resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the Fleet was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FleetLifecycleState": {
+      "description": "FleetLifecycleState describes the state of a Fleet resource.",
+      "id": "FleetLifecycleState",
+      "properties": {
+        "code": {
+          "description": "Output only. The current state of the Fleet resource.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "The code is not set.",
+            "The fleet is being created.",
+            "The fleet active.",
+            "The fleet is being deleted.",
+            "The fleet is being updated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FleetObservabilityFeatureSpec": {
       "description": "**Fleet Observability**: The Hub-wide input for the FleetObservability feature.",
       "id": "FleetObservabilityFeatureSpec",
@@ -2711,6 +2996,24 @@
             "$ref": "Feature"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListFleetsResponse": {
+      "description": "Response message for the `GkeHub.ListFleetsResponse` method.",
+      "id": "ListFleetsResponse",
+      "properties": {
+        "fleets": {
+          "description": "The list of matching fleets.",
+          "items": {
+            "$ref": "Fleet"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. The token is only valid for 1h.",
+          "type": "string"
         }
       },
       "type": "object"

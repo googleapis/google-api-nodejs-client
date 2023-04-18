@@ -7322,6 +7322,10 @@ export namespace contentwarehouse_v1 {
      */
     androidPackageName?: string | null;
     /**
+     * Unique cast app id that identifies a Cast app of the provider.
+     */
+    castAppId?: string | null;
+    /**
      * Version code of the application.
      */
     versionCode?: number | null;
@@ -7681,6 +7685,7 @@ export namespace contentwarehouse_v1 {
   export interface Schema$AssistantDevicesPlatformProtoProvidedData {
     name?: string | null;
   }
+  export interface Schema$AssistantDevicesPlatformProtoProviderFulfillCapability {}
   export interface Schema$AssistantDevicesPlatformProtoProviderOpenCapability {
     clientOpProperty?: Schema$AssistantApiClientOpPropertiesProviderOpenClientOpProperty;
   }
@@ -7741,6 +7746,10 @@ export namespace contentwarehouse_v1 {
     mediaPrevious?: Schema$AssistantDevicesPlatformProtoMediaPreviousCapability;
     mediaResume?: Schema$AssistantDevicesPlatformProtoMediaResumeCapability;
     mediaStop?: Schema$AssistantDevicesPlatformProtoMediaStopCapability;
+    /**
+     * |provider_fulfill| specifies the support for provider.FULFILL client_op, and the corresponding provider_fulfill field in assistant.embedded.v1.DeviceOp.
+     */
+    providerFulfill?: Schema$AssistantDevicesPlatformProtoProviderFulfillCapability;
     /**
      * |provider_open| specifies the support for provider.OPEN client_op, and the corresponding provider_open field in assistant.embedded.v1.DeviceOp.
      */
@@ -7888,12 +7897,13 @@ export namespace contentwarehouse_v1 {
     deviceId?: Schema$AssistantApiCoreTypesGovernedDeviceId;
   }
   /**
-   * Next ID: 5
+   * Next ID: 6
    */
   export interface Schema$AssistantGroundingRankerGroundingProviderFeatures {
     contactGroundingProviderFeatures?: Schema$AssistantGroundingRankerContactGroundingProviderFeatures;
     deviceGroundingProviderFeatures?: Schema$AssistantGroundingRankerDeviceGroundingProviderFeatures;
     mediaGroundingProviderFeatures?: Schema$AssistantGroundingRankerMediaGroundingProviderFeatures;
+    podcastGroundingProviderFeatures?: Schema$AssistantGroundingRankerPodcastGroundingProviderFeatures;
     providerGroundingProviderFeatures?: Schema$AssistantGroundingRankerProviderGroundingProviderFeatures;
   }
   export interface Schema$AssistantGroundingRankerLaaFeatures {
@@ -7960,6 +7970,15 @@ export namespace contentwarehouse_v1 {
      */
     type?: string | null;
     youtubeConfidenceScore?: number | null;
+  }
+  /**
+   * Features to be extracted from Podcast GP for ranking in HGR. Next ID: 2
+   */
+  export interface Schema$AssistantGroundingRankerPodcastGroundingProviderFeatures {
+    /**
+     * Whether the podcast is exclusive to a provider a not.
+     */
+    isExclusive?: boolean | null;
   }
   /**
    * Features to be extracted from Provider GP for ranking in HGR. Next ID: 5
@@ -8648,7 +8667,7 @@ export namespace contentwarehouse_v1 {
     resultConfidenceLevel?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 47
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 48
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -8799,6 +8818,10 @@ export namespace contentwarehouse_v1 {
      * The determination made by the SearchDispatchingConfig as to whether and how this interpretation should be dispatched to Search.
      */
     searchDispatch?: string | null;
+    /**
+     * sub_intent_type differentiates between intents that share the top level intent name. For eg: for TV_FALLBACK_SEARCH_INTENT, the top level intent name must be "Find_media" and the media_object argument within it must be of type "Media_unspecified".
+     */
+    subIntentType?: string | null;
     /**
      * Average of per-word confidence for top speech recognition hypothesis. The value is from RecognizerHypothesisLog: http://google3/logs/proto/speech/service/recognizer_log.proto?l=848&rcl=281400256
      */
@@ -9723,6 +9746,7 @@ export namespace contentwarehouse_v1 {
     csai?: Schema$ClassifierPornQueryClassifierOutput;
     fringe?: Schema$ClassifierPornQueryClassifierOutput;
     medical?: Schema$ClassifierPornQueryClassifierOutput;
+    minor?: Schema$ClassifierPornQueryClassifierOutput;
     offensive?: Schema$ClassifierPornQueryClassifierOutput;
     porn?: Schema$ClassifierPornQueryClassifierOutput;
     spoof?: Schema$ClassifierPornQueryClassifierOutput;
@@ -9802,6 +9826,231 @@ export namespace contentwarehouse_v1 {
     numberOfImages?: string | null;
     numberOfVideos?: string | null;
     videoViolenceScore?: number | null;
+  }
+  /**
+   * The identity to configure a CloudSQL instance provisioned via SLM Terraform.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceCloudSqlInstanceConfig {
+    /**
+     * Output only. The CloudSQL instance connection name.
+     */
+    cloudSqlInstanceConnectionName?: string | null;
+    /**
+     * Input/Output [Optional]. The CloudSQL instance name within SLM instance. If not set, a random UUIC will be generated as instance name.
+     */
+    cloudSqlInstanceName?: string | null;
+    /**
+     * Input [Optional]. The KMS key name or the KMS grant name used for CMEK encryption. Only set this field when provisioning new CloudSQL instances. For existing CloudSQL instances, this field will be ignored because CMEK re-encryption is not supported.
+     */
+    kmsKeyReference?: string | null;
+    /**
+     * Input [Optional]. MDB roles for corp access to CloudSQL instance.
+     */
+    mdbRolesForCorpAccess?: string[] | null;
+    /**
+     * Output only. The SLM instance's full resource name.
+     */
+    slmInstanceName?: string | null;
+    /**
+     * Input [Required]. The SLM instance template to provision CloudSQL.
+     */
+    slmInstanceTemplate?: string | null;
+    /**
+     * Input [Required]. The SLM instance type to provision CloudSQL.
+     */
+    slmInstanceType?: string | null;
+  }
+  /**
+   * The identity to configure a GCS bucket.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceGcsBucketConfig {
+    admins?: string[] | null;
+    /**
+     * Input/Output [Optional]. The name of a GCS bucket with max length of 63 chars. If not set, a random UUID will be generated as bucket name.
+     */
+    bucketName?: string | null;
+    /**
+     * Input/Output [Optional]. Only needed for per-entity tenant GCP resources. During Deprovision API, the on-demand deletion will only cover the tenant GCP resources with the specified entity name.
+     */
+    entityName?: string | null;
+    /**
+     * Input/Output [Optional]. The KMS key name or the KMS grant name used for CMEK encryption. Only set this field when provisioning new GCS bucket. For existing GCS bucket, this field will be ignored because CMEK re-encryption is not supported.
+     */
+    kmsKeyReference?: string | null;
+    /**
+     * Input/Output [Optional]. Only needed when the content in bucket need to be garbage collected within some amount of days.
+     */
+    ttlDays?: number | null;
+    /**
+     * Input/Output [Required]. IAM roles (viewer/admin) put on the bucket.
+     */
+    viewers?: string[] | null;
+  }
+  /**
+   * The dynamic IAM bindings to be granted after tenant projects are created.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceIamPolicyBinding {
+    /**
+     * Input/Output [Required]. The member service accounts with the roles above. Note: placeholders are same as the resource above.
+     */
+    members?: string[] | null;
+    /**
+     * Input/Output [Required]. The resource name that will be accessed by members, which also depends on resource_type. Note: placeholders are supported in resource names. For example, ${tpn\} will be used when the tenant project number is not ready.
+     */
+    resource?: string | null;
+    /**
+     * Input/Output [Required]. Specifies the type of resource that will be accessed by members.
+     */
+    resourceType?: string | null;
+    /**
+     * Input/Output [Required]. The role for members below.
+     */
+    role?: string | null;
+  }
+  /**
+   * The configuration for a spanner database provisioning. Next ID: 8
+   */
+  export interface Schema$CloudAiPlatformTenantresourceInfraSpannerConfig {
+    /**
+     * Input [Optional]. The options to create a spanner database. Note: give the right options to ensure the right KMS key access audit logging and AxT logging in expected logging category.
+     */
+    createDatabaseOptions?: Schema$CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions;
+    /**
+     * Input [Optional]. The KMS key name or the KMS grant name used for CMEK encryption. Only set this field when provisioning new Infra Spanner databases. For existing Infra Spanner databases, this field will be ignored because CMEK re-encryption is not supported. For example, projects//locations//keyRings//cryptoKeys/
+     */
+    kmsKeyReference?: string | null;
+    /**
+     * Input [Required]. The file path to the spanner SDL bundle.
+     */
+    sdlBundlePath?: string | null;
+    /**
+     * Input [Optional]. The spanner borg service account for delegating the kms key to. For example, spanner-infra-cmek-nonprod@system.gserviceaccount.com, for the nonprod universe.
+     */
+    spannerBorgServiceAccount?: string | null;
+    spannerLocalNamePrefix?: string | null;
+    spannerNamespace?: string | null;
+    /**
+     * Input [Required]. Every database in Spanner can be identified by the following path name: /span//:
+     */
+    spannerUniverse?: string | null;
+  }
+  /**
+   * The options to create a spanner database. KMS key access audit logging and AxT logging will be associated with the given resource name, resource type and service name. Please ensure to give right options to enable correct audit logging and AxT logging.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions {
+    /**
+     * The cloud resource name for the CMEK encryption. For example, projects//locations/
+     */
+    cmekCloudResourceName?: string | null;
+    /**
+     * The cloud resource type for the CMEK encryption. For example, contentwarehouse.googleapis.com/Location
+     */
+    cmekCloudResourceType?: string | null;
+    /**
+     * The service name for the CMEK encryption. For example, contentwarehouse.googleapis.com
+     */
+    cmekServiceName?: string | null;
+  }
+  /**
+   * The identity to configure a service account.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceServiceAccountIdentity {
+    /**
+     * Output only. The service account email that has been created.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Input/Output [Optional]. The tag that configures the service account, as defined in google3/configs/production/cdpush/acl-zanzibar-cloud-prod/activation_grants/activation_grants.gcl. Note: The default P4 service account has the empty tag.
+     */
+    tag?: string | null;
+  }
+  /**
+   * The identity to configure a tenant project.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceTenantProjectConfig {
+    /**
+     * Input/Output [Required]. The billing account properties to create the tenant project.
+     */
+    billingConfig?: Schema$GoogleApiServiceconsumermanagementV1BillingConfig;
+    /**
+     * Input/Output [Required]. The folder that holds tenant projects and folder-level permissions will be automatically granted to all tenant projects under the folder. Note: the valid folder format is `folders/{folder_number\}`.
+     */
+    folder?: string | null;
+    /**
+     * Input/Output [Required]. The policy bindings that are applied to the tenant project during creation. At least one binding must have the role `roles/owner` with either `user` or `group` type.
+     */
+    policyBindings?: Schema$GoogleApiServiceconsumermanagementV1PolicyBinding[];
+    /**
+     * Input/Output [Required]. The API services that are enabled on the tenant project during creation.
+     */
+    services?: string[] | null;
+  }
+  /**
+   * The tenant project and tenant resources. Next ID: 10
+   */
+  export interface Schema$CloudAiPlatformTenantresourceTenantProjectResource {
+    /**
+     * The CloudSQL instances that are provisioned under the tenant project.
+     */
+    cloudSqlInstances?: Schema$CloudAiPlatformTenantresourceCloudSqlInstanceConfig[];
+    /**
+     * The GCS buckets that are provisioned under the tenant project.
+     */
+    gcsBuckets?: Schema$CloudAiPlatformTenantresourceGcsBucketConfig[];
+    /**
+     * The dynamic IAM bindings that are granted under the tenant project. Note: this should only add new bindings to the project if they don't exist and the existing bindings won't be affected.
+     */
+    iamPolicyBindings?: Schema$CloudAiPlatformTenantresourceIamPolicyBinding[];
+    /**
+     * The Infra Spanner databases that are provisioned under the tenant project. Note: this is an experimental feature.
+     */
+    infraSpannerConfigs?: Schema$CloudAiPlatformTenantresourceInfraSpannerConfig[];
+    /**
+     * Input/Output [Required]. The tag that uniquely identifies a tenant project within a tenancy unit. Note: for the same tenant project tag, all tenant manager operations should be idempotent.
+     */
+    tag?: string | null;
+    /**
+     * The configurations of a tenant project.
+     */
+    tenantProjectConfig?: Schema$CloudAiPlatformTenantresourceTenantProjectConfig;
+    /**
+     * Output only. The tenant project ID that has been created.
+     */
+    tenantProjectId?: string | null;
+    /**
+     * Output only. The tenant project number that has been created.
+     */
+    tenantProjectNumber?: string | null;
+    /**
+     * The service account identities (or enabled API service's P4SA) that are expclicitly created under the tenant project (before JIT provisioning during enabled API services).
+     */
+    tenantServiceAccounts?: Schema$CloudAiPlatformTenantresourceTenantServiceAccountIdentity[];
+  }
+  /**
+   * A collection of tenant resources.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceTenantResource {
+    /**
+     * A list of P4 service accounts (go/p4sa) to provision or deprovision.
+     */
+    p4ServiceAccounts?: Schema$CloudAiPlatformTenantresourceServiceAccountIdentity[];
+    /**
+     * A list of tenant projects and tenant resources to provision or deprovision.
+     */
+    tenantProjectResources?: Schema$CloudAiPlatformTenantresourceTenantProjectResource[];
+  }
+  /**
+   * The identity of service accounts that have been explicitly created under tenant projects.
+   */
+  export interface Schema$CloudAiPlatformTenantresourceTenantServiceAccountIdentity {
+    /**
+     * Output only. The email address of the generated service account.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Input/Output [Required]. The service that the service account belongs to. (e.g. cloudbuild.googleapis.com for GCB service accounts)
+     */
+    serviceName?: string | null;
   }
   /**
    * The basic message that contains a single decision output of go/deeptagger.
@@ -11072,6 +11321,17 @@ export namespace contentwarehouse_v1 {
     score?: number | null;
     type?: string | null;
   }
+  /**
+   * Protocol buffer for storing compressed feature.
+   */
+  export interface Schema$DrishtiCompressedFeature {
+    featureName?: string | null;
+    /**
+     * in_range_bitstream is the string produced by range coder, while out_of_range_bitstream corresponds to the overflow stream, which is used whenever a quantized value is out of range. See https://cs.corp.google.com/piper///depot/google3/research/vision/piedpiper/brain/python/layers/entropy_models.py?l=225&cl=234825412
+     */
+    inRangeBitstream?: string | null;
+    outOfRangeBitstream?: string | null;
+  }
   export interface Schema$DrishtiDenseFeatureData {
     /**
      * If extra is present it must be of the same length as value.
@@ -11102,6 +11362,7 @@ export namespace contentwarehouse_v1 {
    * A FeatureSetElement stores the features coming from a single group.
    */
   export interface Schema$DrishtiFeatureSetDataFeatureSetElement {
+    compressed?: Schema$DrishtiCompressedFeature;
     dense?: Schema$DrishtiDenseFeatureData;
     indexed?: Schema$DrishtiIndexedFeatureData;
     /**
@@ -16516,6 +16777,28 @@ export namespace contentwarehouse_v1 {
      * In order to compile, this recursive message needs to be optional, even though it's within an optional group.
      */
     Word?: Schema$GoodocWord;
+  }
+  /**
+   * Describes the billing configuration for a new tenant project.
+   */
+  export interface Schema$GoogleApiServiceconsumermanagementV1BillingConfig {
+    /**
+     * Name of the billing account. For example `billingAccounts/012345-567890-ABCDEF`.
+     */
+    billingAccount?: string | null;
+  }
+  /**
+   * Translates to IAM Policy bindings (without auditing at this level)
+   */
+  export interface Schema$GoogleApiServiceconsumermanagementV1PolicyBinding {
+    /**
+     * Uses the same format as in IAM policy. `member` must include both a prefix and ID. For example, `user:{emailId\}`, `serviceAccount:{emailId\}`, `group:{emailId\}`.
+     */
+    members?: string[] | null;
+    /**
+     * Role. (https://cloud.google.com/iam/docs/understanding-roles) For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     */
+    role?: string | null;
   }
   /**
    * Specifies the desired format for the server to use when it returns `audio_out` messages.
@@ -40188,10 +40471,6 @@ export namespace contentwarehouse_v1 {
      * Oyster Feature ID of the location.
      */
     oysterId?: Schema$GeostoreFeatureIdProto;
-    /**
-     * This field is populated for at most one entity. If it is populated, it indicates how confident we are to claim that the page is only about this entity (either it's an official web presence of the entity, or something like a wikipedia page about the entity). For space reasons this is represented as a fixed-point integer with two decimal points precision. Convert it to the interval [0,1] using the following formula: float single_topicness = single_topicness_e2 / 100.f
-     */
-    singleTopicnessE2?: number | null;
   }
   /**
    * All information that applies globally to the document. Next available tag: 11
@@ -40373,16 +40652,6 @@ export namespace contentwarehouse_v1 {
      * The confidence of the unbound intent. represented as a fixed-point integer with two decimal precision. In the range [0, 100]. Should have the same number of elements as unbound_intent_mid.
      */
     unboundIntentScoreE2?: number[] | null;
-    /**
-     * [Experimental code. Do not use ] Entities that webref identified as being the same concept (undermerged).
-     */
-    undermergedMembers?: Schema$RepositoryWebrefWebrefMustangAttachmentUndermergedMembers[];
-  }
-  export interface Schema$RepositoryWebrefWebrefMustangAttachmentUndermergedMembers {
-    /**
-     * Experimental code, do not use.
-     */
-    encodedMid?: string[] | null;
   }
   /**
    * Information about the outlinks for one specific target URL, from a given annotated document. Next available tag: 7
@@ -46051,7 +46320,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$UtilStatusProto {
     /**
-     * The canonical error code (see codes.proto) that most closely corresponds to this status. May be missing.
+     * The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be.
      */
     canonicalCode?: number | null;
     /**
