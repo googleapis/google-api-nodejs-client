@@ -231,7 +231,7 @@ oauth2Client.on('tokens', (tokens) => {
   console.log(tokens.access_token);
 });
 ```
-This tokens event only occurs in the first authorization, and you need to have set your `access_type` to `offline` when calling the  `generateAuthUrl` method to receive the refresh token. If you have already given your app the requisiste permissions without setting the appropriate constraints for receiving a refresh token, you will need to re-authorize the application to receive a fresh refresh token. You can revoke your app's access to your account [here](https://myaccount.google.com/permissions).
+This tokens event only occurs in the first authorization, and you need to have set your `access_type` to `offline` when calling the  `generateAuthUrl` method to receive the refresh token. If you have already given your app the requisite permissions without setting the appropriate constraints for receiving a refresh token, you will need to re-authorize the application to receive a fresh refresh token. You can revoke your app's access to your account [here](https://myaccount.google.com/permissions).
 
 To set the `refresh_token` at a later time, you can use the `setCredentials` method:
 
