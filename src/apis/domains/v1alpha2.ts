@@ -449,7 +449,7 @@ export namespace domains_v1alpha2 {
     registrations?: Schema$Registration[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents Google Cloud location.
    */
   export interface Schema$Location {
     /**
