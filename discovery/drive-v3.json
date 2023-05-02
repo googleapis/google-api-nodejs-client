@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/osiFRltKRpJmRweetEomRWg64Eg\"",
+  "etag": "\"VYc8DWo_6wRTElVugbtvWfkARsc/OgtZCpoen_8IW8oaECY1TAD8ttU\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -997,10 +997,15 @@
           ]
         },
         "emptyTrash": {
-          "description": "Permanently deletes all of the user's trashed files.",
+          "description": "Permanently deletes all trashed files of a user or shared drive.",
           "httpMethod": "DELETE",
           "id": "drive.files.emptyTrash",
           "parameters": {
+            "driveId": {
+              "description": "If set, empties the trash of the provided shared drive.",
+              "location": "query",
+              "type": "string"
+            },
             "enforceSingleParent": {
               "default": "false",
               "description": "Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
@@ -1424,7 +1429,7 @@
           "supportsMediaUpload": true
         },
         "watch": {
-          "description": "Subscribes to changes to a file. While you can establish a channel for changes to a file on a shared drive, a change to a shared drive file won't create a notification.",
+          "description": "Subscribe to changes on a file.",
           "httpMethod": "POST",
           "id": "drive.files.watch",
           "parameterOrder": [
@@ -2312,7 +2317,7 @@
       }
     }
   },
-  "revision": "20230307",
+  "revision": "20230423",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2930,22 +2935,22 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A collection of arbitrary key-value pairs which are private to the requesting app.\nEntries with null values are cleared in update and copy requests. These properties can only be retrieved using an authenticated request. An authenticated request uses an access token obtained with a OAuth 2 client ID. You cannot use an API key to retrieve private properties.",
+          "description": "A collection of arbitrary key-value pairs that are private to the requesting app.\nEntries with null values are cleared in update and copy requests. These properties can only be retrieved using an authenticated request. An authenticated request uses an access token obtained with an OAuth 2 client ID. You cannot use an API key to retrieve private properties.",
           "type": "object"
         },
         "capabilities": {
-          "description": "Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.",
+          "description": "Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user can take.",
           "properties": {
             "canAcceptOwnership": {
               "description": "Whether the current user is the pending owner of the file. Not populated for shared drive files.",
               "type": "boolean"
             },
             "canAddChildren": {
-              "description": "Whether the current user can add children to this folder. This is always false when the item is not a folder.",
+              "description": "Whether the current user can add children to this folder. This is always false when the item isn't a folder.",
               "type": "boolean"
             },
             "canAddFolderFromAnotherDrive": {
-              "description": "Whether the current user can add a folder from another drive (different shared drive or My Drive) to this folder. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Whether the current user can add a folder from another drive (different shared drive or My Drive) to this folder. This is false when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canAddMyDriveParent": {
@@ -2969,7 +2974,7 @@
               "type": "boolean"
             },
             "canCopy": {
-              "description": "Whether the current user can copy this file. For an item in a shared drive, whether the current user can copy non-folder descendants of this item, or this item itself if it is not a folder.",
+              "description": "Whether the current user can copy this file. For an item in a shared drive, whether the current user can copy non-folder descendants of this item, or this item itself if it's not a folder.",
               "type": "boolean"
             },
             "canDelete": {
@@ -2977,7 +2982,7 @@
               "type": "boolean"
             },
             "canDeleteChildren": {
-              "description": "Whether the current user can delete children of this folder. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Whether the current user can delete children of this folder. This is false when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canDownload": {
@@ -2985,11 +2990,11 @@
               "type": "boolean"
             },
             "canEdit": {
-              "description": "Whether the current user can edit this file. Other factors may limit the type of changes a user can make to a file. For example, see canChangeCopyRequiresWriterPermission or canModifyContent.",
+              "description": "Whether the current user can edit this file. Other factors might limit the type of changes a user can make to a file. For example, see canChangeCopyRequiresWriterPermission or canModifyContent.",
               "type": "boolean"
             },
             "canListChildren": {
-              "description": "Whether the current user can list the children of this folder. This is always false when the item is not a folder.",
+              "description": "Whether the current user can list the children of this folder. This is always false when the item isn't a folder.",
               "type": "boolean"
             },
             "canModifyContent": {
@@ -3005,7 +3010,7 @@
               "type": "boolean"
             },
             "canMoveChildrenOutOfDrive": {
-              "description": "Whether the current user can move children of this folder outside of the shared drive. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Whether the current user can move children of this folder outside of the shared drive. This is false when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canMoveChildrenOutOfTeamDrive": {
@@ -3013,7 +3018,7 @@
               "type": "boolean"
             },
             "canMoveChildrenWithinDrive": {
-              "description": "Whether the current user can move children of this folder within this drive. This is false when the item is not a folder. Note that a request to move the child may still fail depending on the current user's access to the child and to the destination folder.",
+              "description": "Whether the current user can move children of this folder within this shared drive or My Drive. This is false when the item isn't a folder. Note that a request to move the child might still fail depending on the current user's access to the child and to the destination folder.",
               "type": "boolean"
             },
             "canMoveChildrenWithinTeamDrive": {
@@ -3025,7 +3030,7 @@
               "type": "boolean"
             },
             "canMoveItemOutOfDrive": {
-              "description": "Whether the current user can move this item outside of this drive by changing its parent. Note that a request to change the parent of the item may still fail depending on the new parent that is being added.",
+              "description": "Whether the current user can move this item outside of this shared drive or My Drive by changing its parent. Note that a request to change the parent of the item might still fail depending on the new parent that's being added.",
               "type": "boolean"
             },
             "canMoveItemOutOfTeamDrive": {
@@ -3033,7 +3038,7 @@
               "type": "boolean"
             },
             "canMoveItemWithinDrive": {
-              "description": "Whether the current user can move this item within this drive. Note that a request to change the parent of the item may still fail depending on the new parent that is being added and the parent that is being removed.",
+              "description": "Whether the current user can move this item within this shared drive or My Drive. Note that a request to change the parent of the item might still fail depending on the new parent that's being added and the parent that's being removed.",
               "type": "boolean"
             },
             "canMoveItemWithinTeamDrive": {
@@ -3053,7 +3058,7 @@
               "type": "boolean"
             },
             "canReadRevisions": {
-              "description": "Whether the current user can read the revisions resource of this file. For a shared drive item, whether revisions of non-folder descendants of this item, or this item itself if it isn't a folder, can be read.",
+              "description": "Whether the current user can read the revisions resource of this file. For a shared drive item, whether revisions of non-folder descendants of this item, or this item itself if it's not a folder, can be read.",
               "type": "boolean"
             },
             "canReadTeamDrive": {
@@ -3061,7 +3066,7 @@
               "type": "boolean"
             },
             "canRemoveChildren": {
-              "description": "Whether the current user can remove children from this folder. This is always false when the item is not a folder. For a folder in a shared drive, use canDeleteChildren or canTrashChildren instead.",
+              "description": "Whether the current user can remove children from this folder. This is always false when the item isn't a folder. For a folder in a shared drive, use canDeleteChildren or canTrashChildren instead.",
               "type": "boolean"
             },
             "canRemoveMyDriveParent": {
@@ -3081,7 +3086,7 @@
               "type": "boolean"
             },
             "canTrashChildren": {
-              "description": "Whether the current user can trash children of this folder. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Whether the current user can trash children of this folder. This is false when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canUntrash": {
@@ -3095,7 +3100,7 @@
           "description": "Additional information about the content of the file. These fields are never populated in responses.",
           "properties": {
             "indexableText": {
-              "description": "Text to be indexed for the file to improve fullText queries. This is limited to 128 KB in length and may contain HTML elements. For more information, see Manage file metadata.",
+              "description": "Text to be indexed for the file to improve fullText queries. This is limited to 128 KB in length and might contain HTML elements. For more information, see Manage file metadata.",
               "type": "string"
             },
             "thumbnail": {
@@ -3162,7 +3167,7 @@
           "type": "string"
         },
         "fullFileExtension": {
-          "description": "The full file extension extracted from the name field. May contain multiple concatenated extensions, such as \"tar.gz\". This is only available for files with binary content in Google Drive.\nThis is automatically updated when the name field changes, however it isn't cleared if the new name does not contain a valid extension.",
+          "description": "The full file extension extracted from the name field. Can contain multiple concatenated extensions, such as \"tar.gz\". This is only available for files with binary content in Google Drive.\nThis is automatically updated when the name field changes, however it's not cleared if the new name does not contain a valid extension.",
           "type": "string"
         },
         "hasAugmentedPermissions": {
@@ -3174,7 +3179,7 @@
           "type": "boolean"
         },
         "headRevisionId": {
-          "description": "The ID of the file's head revision. This is currently only available for files with binary content in Google Drive.",
+          "description": "The ID of the file's head revision. This is only available for files with binary content in Google Drive.",
           "type": "string"
         },
         "iconLink": {
@@ -3273,7 +3278,7 @@
               "type": "string"
             },
             "rotation": {
-              "description": "The number of clockwise 90 degree rotations applied from the image's original orientation.",
+              "description": "The number of clockwise 90-degree rotations applied from the image's original orientation.",
               "format": "int32",
               "type": "integer"
             },
@@ -3303,7 +3308,7 @@
           "type": "object"
         },
         "isAppAuthorized": {
-          "description": "Whether the file was created or opened by the requesting app.",
+          "description": "Whether the requesting app created or opened the file.",
           "type": "boolean"
         },
         "kind": {
@@ -3351,21 +3356,21 @@
           "type": "string"
         },
         "modifiedByMe": {
-          "description": "Whether the file has been modified by this user.",
+          "description": "Whether this user has modified the file.",
           "type": "boolean"
         },
         "modifiedByMeTime": {
-          "description": "The last time the file was modified by the user (RFC 3339 date-time).",
+          "description": "The last time the user modified the file (RFC 3339 date-time).",
           "format": "date-time",
           "type": "string"
         },
         "modifiedTime": {
-          "description": "The last time the file was modified by anyone (RFC 3339 date-time).\nNote that setting modifiedTime will also update modifiedByMeTime for the user.",
+          "description": "The last time anyone modified the file (RFC 3339 date-time).\nNote that setting modifiedTime will also update modifiedByMeTime for the user.",
           "format": "date-time",
           "type": "string"
         },
         "name": {
-          "description": "The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of shared drives, My Drive root folder, and Application Data folder the name is constant.",
+          "description": "The name of the file. This isn't necessarily unique within a folder. Note that for immutable items such as the top-level folders of shared drives, My Drive root folder, and Application Data folder the name is constant.",
           "type": "string"
         },
         "originalFilename": {
@@ -3377,14 +3382,14 @@
           "type": "boolean"
         },
         "owners": {
-          "description": "The owner of this file. Only certain legacy files may have more than one owner. This field isn't populated for items in shared drives.",
+          "description": "The owner of this file. Only certain legacy files might have more than one owner. This field isn't populated for items in shared drives.",
           "items": {
             "$ref": "User"
           },
           "type": "array"
         },
         "parents": {
-          "description": "The IDs of the parent folders which contain the file.\nIf not specified as part of a create request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests must use the addParents and removeParents parameters to modify the parents list.",
+          "description": "The IDs of the parent folders that contain the file.\nIf not specified as part of a create request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests must use the addParents and removeParents parameters to modify the parents list.",
           "items": {
             "type": "string"
           },
@@ -3408,7 +3413,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A collection of arbitrary key-value pairs which are visible to all apps.\nEntries with null values are cleared in update and copy requests.",
+          "description": "A collection of arbitrary key-value pairs that are visible to all apps.\nEntries with null values are cleared in update and copy requests.",
           "type": "object"
         },
         "quotaBytesUsed": {
@@ -3421,11 +3426,11 @@
           "type": "string"
         },
         "sha1Checksum": {
-          "description": "The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.",
+          "description": "The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it's not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "sha256Checksum": {
-          "description": "The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.",
+          "description": "The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it's not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "shared": {
@@ -3460,12 +3465,12 @@
           "type": "object"
         },
         "size": {
-          "description": "The size of the file's content in bytes. This field is populated for files with binary content stored in Google Drive and for Docs Editors files; it is not populated for shortcuts or folders.",
+          "description": "The size of the file's content in bytes. This field is populated for files with binary content stored in Google Drive and for Docs Editors files; it's not populated for shortcuts or folders.",
           "format": "int64",
           "type": "string"
         },
         "spaces": {
-          "description": "The list of spaces which contain the file. The currently supported values are 'drive', 'appDataFolder' and 'photos'.",
+          "description": "The list of spaces that contain the file. The currently supported values are 'drive', 'appDataFolder' and 'photos'.",
           "items": {
             "type": "string"
           },
@@ -3489,7 +3494,7 @@
           "type": "string"
         },
         "trashed": {
-          "description": "Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.",
+          "description": "Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner can trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.",
           "type": "boolean"
         },
         "trashedTime": {
@@ -3507,7 +3512,7 @@
           "type": "string"
         },
         "videoMediaMetadata": {
-          "description": "Additional metadata about video media. This may not be available immediately upon upload.",
+          "description": "Additional metadata about video media. This might not be available immediately upon upload.",
           "properties": {
             "durationMillis": {
               "description": "The duration of the video in milliseconds.",
@@ -3528,11 +3533,11 @@
           "type": "object"
         },
         "viewedByMe": {
-          "description": "Whether the file has been viewed by this user.",
+          "description": "Whether this user has viewed the file.",
           "type": "boolean"
         },
         "viewedByMeTime": {
-          "description": "The last time the file was viewed by the user (RFC 3339 date-time).",
+          "description": "The last time the user viewed the file (RFC 3339 date-time).",
           "format": "date-time",
           "type": "string"
         },
