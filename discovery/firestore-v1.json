@@ -1423,7 +1423,7 @@
       }
     }
   },
-  "revision": "20230408",
+  "revision": "20230421",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2027,7 +2027,7 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The timestamp at which this database was created.",
+          "description": "Output only. The timestamp at which this database was created. Databases created before 2016 do not populate create_time.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2898,7 +2898,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
