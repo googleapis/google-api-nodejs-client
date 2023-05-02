@@ -218,6 +218,10 @@ export namespace cloudbuild_v1 {
      */
     mavenArtifacts?: Schema$MavenArtifact[];
     /**
+     * A list of npm packages to be uploaded to Artifact Registry upon successful completion of all build steps. Npm packages in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any packages fail to be pushed, the build is marked FAILURE.
+     */
+    npmPackages?: Schema$NpmPackage[];
+    /**
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ArtifactObjects;
@@ -1083,6 +1087,10 @@ export namespace cloudbuild_v1 {
      */
     path?: string | null;
     /**
+     * The fully qualified resource name of the Repo API repository. Either uri or repository can be specified. If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.
+     */
+    repository?: string | null;
+    /**
      * See RepoType above.
      */
     repoType?: string | null;
@@ -1370,6 +1378,10 @@ export namespace cloudbuild_v1 {
      */
     ref?: string | null;
     /**
+     * The qualified resource name of the Repo API repository Either uri or repository can be specified and is required.
+     */
+    repository?: string | null;
+    /**
      * See RepoType below.
      */
     repoType?: string | null;
@@ -1579,6 +1591,19 @@ export namespace cloudbuild_v1 {
      * Immutable. Subnet IP range within the peered network. This is specified in CIDR notation with a slash and the subnet prefix size. You can optionally specify an IP address before the subnet prefix value. e.g. `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a prefix size of 29 bits. `/16` would specify a prefix size of 16 bits, with an automatically determined IP within the peered VPC. If unspecified, a value of `/24` will be used.
      */
     peeredNetworkIpRange?: string | null;
+  }
+  /**
+   * Npm package to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$NpmPackage {
+    /**
+     * Path to the package.json. e.g. workspace/path/to/package
+     */
+    packagePath?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1853,6 +1878,10 @@ export namespace cloudbuild_v1 {
      * Maven artifacts uploaded to Artifact Registry at the end of the build.
      */
     mavenArtifacts?: Schema$UploadedMavenArtifact[];
+    /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     */
+    npmPackages?: Schema$UploadedNpmPackage[];
     /**
      * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
@@ -2132,6 +2161,23 @@ export namespace cloudbuild_v1 {
     pushTiming?: Schema$TimeSpan;
     /**
      * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An npm package uploaded to Artifact Registry using the NpmPackage directive.
+   */
+  export interface Schema$UploadedNpmPackage {
+    /**
+     * Hash types and values of the npm package.
+     */
+    fileHashes?: Schema$FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$TimeSpan;
+    /**
+     * URI of the uploaded npm package.
      */
     uri?: string | null;
   }
