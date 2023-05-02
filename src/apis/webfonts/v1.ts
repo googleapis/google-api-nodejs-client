@@ -125,9 +125,30 @@ export namespace webfonts_v1 {
   }
 
   /**
+   * Metadata for a variable font axis.
+   */
+  export interface Schema$Axis {
+    /**
+     * maximum value
+     */
+    end?: number | null;
+    /**
+     * minimum value
+     */
+    start?: number | null;
+    /**
+     * tag name.
+     */
+    tag?: string | null;
+  }
+  /**
    * Metadata describing a family of fonts.
    */
   export interface Schema$Webfont {
+    /**
+     * Axis for variable fonts.
+     */
+    axes?: Schema$Axis[];
     /**
      * The category of the font.
      */
@@ -148,6 +169,10 @@ export namespace webfonts_v1 {
      * The date (format "yyyy-MM-dd") the font was modified for the last time.
      */
     lastModified?: string | null;
+    /**
+     * Font URL for menu subset, a subset of the font that is enough to display the font name
+     */
+    menu?: string | null;
     /**
      * The scripts supported by the font.
      */
@@ -208,8 +233,14 @@ export namespace webfonts_v1 {
      *
      *   // Do the magic
      *   const res = await webfonts.webfonts.list({
+     *     // Controls the font urls in `Webfont.files`, by default, static ttf fonts are sent.
+     *     capability: 'placeholder-value',
+     *     // Filters by Webfont.family, using literal match. If not set, returns all families
+     *     family: 'placeholder-value',
      *     // Enables sorting of the list.
      *     sort: 'placeholder-value',
+     *     // Filters by Webfont.subset, if subset is found in Webfont.subsets. If not set, returns all families.
+     *     subset: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -310,8 +341,20 @@ export namespace webfonts_v1 {
 
   export interface Params$Resource$Webfonts$List extends StandardParameters {
     /**
+     * Controls the font urls in `Webfont.files`, by default, static ttf fonts are sent.
+     */
+    capability?: string[];
+    /**
+     * Filters by Webfont.family, using literal match. If not set, returns all families
+     */
+    family?: string[];
+    /**
      * Enables sorting of the list.
      */
     sort?: string;
+    /**
+     * Filters by Webfont.subset, if subset is found in Webfont.subsets. If not set, returns all families.
+     */
+    subset?: string;
   }
 }
