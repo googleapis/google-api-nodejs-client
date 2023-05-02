@@ -465,6 +465,14 @@ export namespace retail_v2alpha {
      */
     exactSearchableOption?: string | null;
     /**
+     * Set manually for numerical attributes only. If the facet SearchResponse.FacetSpec.intervals are not set by the customer for a numerical attribute, then a weekly pipeline will calculate some intervals using some percentiles on the distribution of all its product numerical attribute values. The latter computed intervals might not be ideal for the use case of that attribute. For this reason, the customer can set them manually. As another option, for any numerical attribute that is passed as a facet key in the request along with some given intervals, then these given intervals will be the facet intervals returned in the response.
+     */
+    facetIntervals?: Schema$GoogleCloudRetailV2alphaInterval[];
+    /**
+     * Each instance represents a list of attribute values to ignore as facet values for a specific time range.
+     */
+    ignoredFacetValues?: Schema$GoogleCloudRetailV2alphaCatalogAttributeIgnoredFacetValues[];
+    /**
      * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search. Must be specified, otherwise throws INVALID_FORMAT error.
      */
     indexableOption?: string | null;
@@ -492,6 +500,23 @@ export namespace retail_v2alpha {
      * Output only. The type of this attribute. This is derived from the attribute in Product.attributes.
      */
     type?: string | null;
+  }
+  /**
+   * Facet values to ignore on facets during the specified time range for the given SearchResponse.Facet.key attribute.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCatalogAttributeIgnoredFacetValues {
+    /**
+     * If start time is empty and end time is not empty, then ignore these facet values before end time.
+     */
+    endTime?: string | null;
+    /**
+     * Time range for the current list of facet values to ignore. If multiple time ranges are specified for an facet value for the current attribute, consider all of them. If both are empty, ignore always. If start time and end time are set, then start time must be before end time. If start time is not empty and end time is empty, then will ignore these facet values after the start time.
+     */
+    startTime?: string | null;
+    /**
+     * List of facet values to ignore for the following time range. The facet values are the same as the attribute values.
+     */
+    values?: string[] | null;
   }
   /**
    * The color information of a Product.
@@ -527,7 +552,7 @@ export namespace retail_v2alpha {
      */
     completionResults?: Schema$GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult[];
     /**
-     * Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. Contact Retail Search support team if you are interested in enabling it. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.
+     * Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. If you want to enable it, contact Retail Search support. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.
      */
     recentSearchResults?: Schema$GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult[];
   }
@@ -551,7 +576,7 @@ export namespace retail_v2alpha {
       [key: string]: Schema$GoogleCloudRetailV2alphaCustomAttribute;
     } | null;
     /**
-     * Facet information for the suggestion term. Gives the number of items resulting from a search with this suggestion term for each facet. This is an experimental feature for limited customers. Please reach out to the support team if you would like to receive this information.
+     * Facet information for the suggestion term. Gives the number of items resulting from a search with this suggestion term for each facet. This is an experimental feature for limited customers. If you want to receive this facet information, reach out to the Retail support team.
      */
     facets?: Schema$GoogleCloudRetailV2alphaSearchResponseFacet[];
     /**
@@ -559,7 +584,7 @@ export namespace retail_v2alpha {
      */
     suggestion?: string | null;
     /**
-     * Total number of products associated with a search with this suggestion. This is an experimental feature for limited customers. Please reach out to the support team if you would like to receive this information.
+     * Total number of products associated with a search with this suggestion. This is an experimental feature for limited customers. If you want to receive this product count information, reach out to the Retail support team.
      */
     totalProductCount?: number | null;
   }
@@ -597,7 +622,7 @@ export namespace retail_v2alpha {
      */
     lastDenylistImportOperation?: string | null;
     /**
-     * Output only. Name of the LRO corresponding to the latest suggestion terms list import. Can use GetOperation API to retrieve the latest state of the Long Running Operation.
+     * Output only. Name of the LRO corresponding to the latest suggestion terms list import. Can use GetOperation API method to retrieve the latest state of the Long Running Operation.
      */
     lastSuggestionsImportOperation?: string | null;
     /**
@@ -763,13 +788,13 @@ export namespace retail_v2alpha {
     text?: string[] | null;
   }
   /**
-   * Metadata for active A/B testing Experiments.
+   * Metadata for active A/B testing Experiment.
    */
   export interface Schema$GoogleCloudRetailV2alphaExperimentInfo {
     /**
      * The fully qualified resource name of the experiment that provides the serving config under test, should an active experiment exist. For example: `projects/x/locations/global/catalogs/default_catalog/experiments/experiment_id`
      */
-    experimentName?: string | null;
+    experiment?: string | null;
     /**
      * A/B test between existing Cloud Retail Search ServingConfigs.
      */
@@ -990,7 +1015,7 @@ export namespace retail_v2alpha {
      */
     inputConfig?: Schema$GoogleCloudRetailV2alphaProductInputConfig;
     /**
-     * Full Pub/Sub topic name for receiving notification. If this field is set, when the import is finished, a notification is sent to specified Pub/Sub topic. The message data is JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project\}/topics/{topic\}`. It has to be within the same project as ImportProductsRequest.parent. Make sure that `service-@gcp-sa-retail.iam.gserviceaccount.com` has the `pubsub.topics.publish` IAM permission on the topic.
+     * Full Pub/Sub topic name for receiving notification. If this field is set, when the import is finished, a notification is sent to specified Pub/Sub topic. The message data is JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project\}/topics/{topic\}`. It has to be within the same project as ImportProductsRequest.parent. Make sure that both `cloud-retail-customer-data-access@system.gserviceaccount.com` and `service-@gcp-sa-retail.iam.gserviceaccount.com` have the `pubsub.topics.publish` IAM permission on the topic. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.
      */
     notificationPubsubTopic?: string | null;
     /**
@@ -1176,7 +1201,7 @@ export namespace retail_v2alpha {
     priceInfo?: Schema$GoogleCloudRetailV2alphaPriceInfo;
   }
   /**
-   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch. LINT.IfChange(MerchantCenterAccountLink)
+   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch.
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLink {
     /**
@@ -1208,7 +1233,7 @@ export namespace retail_v2alpha {
      */
     name?: string | null;
     /**
-     * Output only. GCP project ID.
+     * Output only. Google Cloud project ID.
      */
     projectId?: string | null;
     /**
@@ -1305,6 +1330,10 @@ export namespace retail_v2alpha {
      */
     lastTuneTime?: string | null;
     /**
+     * Optional. Additional model features config.
+     */
+    modelFeaturesConfig?: Schema$GoogleCloudRetailV2alphaModelModelFeaturesConfig;
+    /**
      * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.
      */
     name?: string | null;
@@ -1344,6 +1373,24 @@ export namespace retail_v2alpha {
      * Output only. Timestamp the Recommendation Model was last updated. E.g. if a Recommendation Model was paused - this would be the time the pause was initiated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * More configs of the frequently-bought-together model type.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig {
+    /**
+     * Optional. Specifies the context of the model when used in predict requests. Only settable for the `frequently-bought-together` type. Will default to MULTI_CONTEXT if not specified.
+     */
+    contextProductsType?: string | null;
+  }
+  /**
+   * Additional model features config.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaModelModelFeaturesConfig {
+    /**
+     * Additional configs for frequently-bought-together models.
+     */
+    frequentlyBoughtTogetherConfig?: Schema$GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig;
   }
   /**
    * The PageOptimizationConfig for model training. This determines how many panels to optimize for, and which serving configs to consider for each panel. The purpose of this model is to optimize which ServingConfig to show on which panels in way that optimizes the visitors shopping journey.
@@ -2033,7 +2080,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaRuleFilterAction {
     /**
-     * A filter to apply on the matching condition results. Supported features: * filter must be set. * Filter syntax is identical to SearchRequest.filter. See more details at the Retail Search [user guide](/retail/search/docs/filter-and-order#filter). * To filter products with product ID "product_1" or "product_2", and color "Red" or "Blue": *(id: ANY("product_1", "product_2")) * *AND * *(colorFamilies: ANY("Red", "Blue")) *
+     * A filter to apply on the matching condition results. Supported features: * filter must be set. * Filter syntax is identical to SearchRequest.filter. For more information, see [Filter](/retail/docs/filter-and-order#filter). * To filter products with product ID "product_1" or "product_2", and color "Red" or "Blue": *(id: ANY("product_1", "product_2")) * *AND * *(colorFamilies: ANY("Red", "Blue")) *
      */
     filter?: string | null;
   }
@@ -2103,7 +2150,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequest {
     /**
-     * Boost specification to boost certain products. See more details at this [user guide](https://cloud.google.com/retail/docs/boosting). Notice that if both ServingConfig.boost_control_ids and SearchRequest.boost_spec are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions.
+     * Boost specification to boost certain products. For more information, see [Boost results](https://cloud.google.com/retail/docs/boosting). Notice that if both ServingConfig.boost_control_ids and SearchRequest.boost_spec are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions.
      */
     boostSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestBoostSpec;
     /**
@@ -2111,7 +2158,7 @@ export namespace retail_v2alpha {
      */
     branch?: string | null;
     /**
-     * The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. For example, if a query does not have enough results, an expanded query with SearchRequest.canonical_filter will be returned as a supplement of the original query. This field is strongly recommended to achieve high search quality. See SearchRequest.filter for more details about filter syntax.
+     * The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. For example, if a query does not have enough results, an expanded query with SearchRequest.canonical_filter is returned as a supplement of the original query. This field is strongly recommended to achieve high search quality. For more information about filter syntax, see SearchRequest.filter.
      */
     canonicalFilter?: string | null;
     /**
@@ -2119,7 +2166,7 @@ export namespace retail_v2alpha {
      */
     dynamicFacetSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec;
     /**
-     * The entity for customers that may run multiple different entities, domains, sites or regions, for example, "Google US", "Google Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should be exactly matched with UserEvent.entity to get search results boosted by entity.
+     * The entity for customers that may run multiple different entities, domains, sites or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it should be exactly matched with UserEvent.entity to get search results boosted by entity.
      */
     entity?: string | null;
     /**
@@ -2127,11 +2174,11 @@ export namespace retail_v2alpha {
      */
     facetSpecs?: Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec[];
     /**
-     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the products being filtered. Filter expression is case-sensitive. See more details at this [user guide](https://cloud.google.com/retail/docs/filter-and-order#filter). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the products being filtered. Filter expression is case-sensitive. For more information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      */
     filter?: string | null;
     /**
-     * The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     * The labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. For more information, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) in the Resource Manager documentation.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2139,11 +2186,11 @@ export namespace retail_v2alpha {
      */
     offset?: number | null;
     /**
-     * The order in which products are returned. Products can be ordered by a field in an Product object. Leave it unset if ordered by relevance. OrderBy expression is case-sensitive. See more details at this [user guide](https://cloud.google.com/retail/docs/filter-and-order#order). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
+     * The order in which products are returned. Products can be ordered by a field in an Product object. Leave it unset if ordered by relevance. OrderBy expression is case-sensitive. For more information, see [Order](https://cloud.google.com/retail/docs/filter-and-order#order). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      */
     orderBy?: string | null;
     /**
-     * The categories associated with a category page. Required for category navigation queries to achieve good search quality. The format should be the same as UserEvent.page_categories; To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: "pageCategories" : ["Sales \> 2017 Black Friday Deals"].
+     * The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.page_categories; To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: "pageCategories" : ["Sales \> 2017 Black Friday Deals"].
      */
     pageCategories?: string[] | null;
     /**
@@ -2163,11 +2210,11 @@ export namespace retail_v2alpha {
      */
     query?: string | null;
     /**
-     * The query expansion specification that specifies the conditions under which query expansion will occur. See more details at this [user guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
+     * The query expansion specification that specifies the conditions under which query expansion occurs. For more information, see [Query expansion](https://cloud.google.com/retail/docs/result-size#query_expansion).
      */
     queryExpansionSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec;
     /**
-     * The relevance threshold of the search results. Defaults to RelevanceThreshold.HIGH, which means only the most relevant results are shown, and the least number of results are returned. See more details at this [user guide](https://cloud.google.com/retail/docs/result-size#relevance_thresholding).
+     * The relevance threshold of the search results. Defaults to RelevanceThreshold.HIGH, which means only the most relevant results are shown, and the least number of results are returned. For more information, see [Adjust result size](https://cloud.google.com/retail/docs/result-size#relevance_thresholding).
      */
     relevanceThreshold?: string | null;
     /**
@@ -2231,7 +2278,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec {
     /**
-     * Enables dynamic position for this facet. If set to true, the position of this facet among all facets in the response is determined by Google Retail Search. It will be ordered together with dynamic facets if dynamic facets is enabled. If set to false, the position of this facet in the response will be the same as in the request, and it will be ranked before the facets with dynamic position enable and all dynamic facets. For example, you may always want to have rating facet returned in the response, but it's not necessarily to always display the rating facet at the top. In that case, you can set enable_dynamic_position to true so that the position of rating facet in response will be determined by Google Retail Search. Another example, assuming you have the following facets in the request: * "rating", enable_dynamic_position = true * "price", enable_dynamic_position = false * "brands", enable_dynamic_position = false And also you have a dynamic facets enable, which will generate a facet 'gender'. Then the final order of the facets in the response can be ("price", "brands", "rating", "gender") or ("price", "brands", "gender", "rating") depends on how Google Retail Search orders "gender" and "rating" facets. However, notice that "price" and "brands" will always be ranked at 1st and 2nd position since their enable_dynamic_position are false.
+     * Enables dynamic position for this facet. If set to true, the position of this facet among all facets in the response is determined by Google Retail Search. It is ordered together with dynamic facets if dynamic facets is enabled. If set to false, the position of this facet in the response is the same as in the request, and it is ranked before the facets with dynamic position enable and all dynamic facets. For example, you may always want to have rating facet returned in the response, but it's not necessarily to always display the rating facet at the top. In that case, you can set enable_dynamic_position to true so that the position of rating facet in response is determined by Google Retail Search. Another example, assuming you have the following facets in the request: * "rating", enable_dynamic_position = true * "price", enable_dynamic_position = false * "brands", enable_dynamic_position = false And also you have a dynamic facets enable, which generates a facet "gender". Then, the final order of the facets in the response can be ("price", "brands", "rating", "gender") or ("price", "brands", "gender", "rating") depends on how Google Retail Search orders "gender" and "rating" facets. However, notice that "price" and "brands" are always ranked at first and second position because their enable_dynamic_position values are false.
      */
     enableDynamicPosition?: boolean | null;
     /**
@@ -2256,11 +2303,11 @@ export namespace retail_v2alpha {
      */
     caseInsensitive?: boolean | null;
     /**
-     * Only get facet values that contains the given strings. For example, suppose "categories" has three values "Women \> Shoe", "Women \> Dress" and "Men \> Shoe". If set "contains" to "Shoe", the "categories" facet will give only "Women \> Shoe" and "Men \> Shoe". Only supported on textual fields. Maximum is 10.
+     * Only get facet values that contains the given strings. For example, suppose "categories" has three values "Women \> Shoe", "Women \> Dress" and "Men \> Shoe". If set "contains" to "Shoe", the "categories" facet gives only "Women \> Shoe" and "Men \> Shoe". Only supported on textual fields. Maximum is 10.
      */
     contains?: string[] | null;
     /**
-     * For all numerical facet keys that appear in the list of products from the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are computed from their distribution weekly. If the model assigns a high score to a numerical facet key and its intervals are not specified in the search request, these percentiles will become the bounds for its intervals and will be returned in the response. If the facet key intervals are specified in the request, then the specified intervals will be returned instead.
+     * Set only if values should be bucketized into intervals. Must be set for facets with numerical values. Must not be set for facet with text values. Maximum number of intervals is 40. For all numerical facet keys that appear in the list of products from the catalog, the percentiles 0, 10, 30, 50, 70, 90, and 100 are computed from their distribution weekly. If the model assigns a high score to a numerical facet key and its intervals are not specified in the search request, these percentiles become the bounds for its intervals and are returned in the response. If the facet key intervals are specified in the request, then the specified intervals are returned instead.
      */
     intervals?: Schema$GoogleCloudRetailV2alphaInterval[];
     /**
@@ -2272,11 +2319,11 @@ export namespace retail_v2alpha {
      */
     orderBy?: string | null;
     /**
-     * Only get facet values that start with the given string prefix. For example, suppose "categories" has three values "Women \> Shoe", "Women \> Dress" and "Men \> Shoe". If set "prefixes" to "Women", the "categories" facet will give only "Women \> Shoe" and "Women \> Dress". Only supported on textual fields. Maximum is 10.
+     * Only get facet values that start with the given string prefix. For example, suppose "categories" has three values "Women \> Shoe", "Women \> Dress" and "Men \> Shoe". If set "prefixes" to "Women", the "categories" facet gives only "Women \> Shoe" and "Women \> Dress". Only supported on textual fields. Maximum is 10.
      */
     prefixes?: string[] | null;
     /**
-     * The query that is used to compute facet for the given facet key. When provided, it will override the default behavior of facet computation. The query syntax is the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Notice that there is no limitation on FacetKey.key when query is specified. In the response, SearchResponse.Facet.values.value will be always "1" and SearchResponse.Facet.values.count will be the number of results that match the query. For example, you can set a customized facet for "shipToStore", where FacetKey.key is "customizedShipToStore", and FacetKey.query is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")". Then the facet will count the products that are both in stock and ship to store "123".
+     * The query that is used to compute facet for the given facet key. When provided, it overrides the default behavior of facet computation. The query syntax is the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Notice that there is no limitation on FacetKey.key when query is specified. In the response, SearchResponse.Facet.values.value is always "1" and SearchResponse.Facet.values.count is the number of results that match the query. For example, you can set a customized facet for "shipToStore", where FacetKey.key is "customizedShipToStore", and FacetKey.query is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")". Then the facet counts the products that are both in stock and ship to store "123".
      */
     query?: string | null;
     /**
@@ -2632,7 +2679,7 @@ export namespace retail_v2alpha {
      */
     completionDetail?: Schema$GoogleCloudRetailV2alphaCompletionDetail;
     /**
-     * The entity for customers that may run multiple different entities, domains, sites or regions, for example, "Google US", "Google Ads", "Waymo", "google.com", "youtube.com", etc. It is recommended to set this field to get better per-entity search, completion and prediction results.
+     * The entity for customers that may run multiple different entities, domains, sites or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. We recommend that you set this field to get better per-entity search, completion, and prediction results.
      */
     entity?: string | null;
     /**
@@ -2954,7 +3001,7 @@ export namespace retail_v2alpha {
     importSummary?: Schema$GoogleCloudRetailV2betaUserEventImportSummary;
   }
   /**
-   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch. LINT.IfChange(MerchantCenterAccountLink)
+   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch.
    */
   export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLink {
     /**
@@ -2986,7 +3033,7 @@ export namespace retail_v2alpha {
      */
     name?: string | null;
     /**
-     * Output only. GCP project ID.
+     * Output only. Google Cloud project ID.
      */
     projectId?: string | null;
     /**
@@ -3032,6 +3079,10 @@ export namespace retail_v2alpha {
      */
     lastTuneTime?: string | null;
     /**
+     * Optional. Additional model features config.
+     */
+    modelFeaturesConfig?: Schema$GoogleCloudRetailV2betaModelModelFeaturesConfig;
+    /**
      * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.
      */
     name?: string | null;
@@ -3067,6 +3118,24 @@ export namespace retail_v2alpha {
      * Output only. Timestamp the Recommendation Model was last updated. E.g. if a Recommendation Model was paused - this would be the time the pause was initiated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * More configs of the frequently-bought-together model type.
+   */
+  export interface Schema$GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig {
+    /**
+     * Optional. Specifies the context of the model when used in predict requests. Only settable for the `frequently-bought-together` type. Will default to MULTI_CONTEXT if not specified.
+     */
+    contextProductsType?: string | null;
+  }
+  /**
+   * Additional model features config.
+   */
+  export interface Schema$GoogleCloudRetailV2betaModelModelFeaturesConfig {
+    /**
+     * Additional configs for frequently-bought-together models.
+     */
+    frequentlyBoughtTogetherConfig?: Schema$GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig;
   }
   /**
    * Represents an ordered combination of valid serving configs, which can be used for `PAGE_OPTIMIZATION` recommendations.
@@ -3277,6 +3346,10 @@ export namespace retail_v2alpha {
      */
     lastTuneTime?: string | null;
     /**
+     * Optional. Additional model features config.
+     */
+    modelFeaturesConfig?: Schema$GoogleCloudRetailV2ModelModelFeaturesConfig;
+    /**
      * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.
      */
     name?: string | null;
@@ -3312,6 +3385,24 @@ export namespace retail_v2alpha {
      * Output only. Timestamp the Recommendation Model was last updated. E.g. if a Recommendation Model was paused - this would be the time the pause was initiated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * More configs of the frequently-bought-together model type.
+   */
+  export interface Schema$GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig {
+    /**
+     * Optional. Specifies the context of the model when used in predict requests. Only settable for the `frequently-bought-together` type. Will default to MULTI_CONTEXT if not specified.
+     */
+    contextProductsType?: string | null;
+  }
+  /**
+   * Additional model features config.
+   */
+  export interface Schema$GoogleCloudRetailV2ModelModelFeaturesConfig {
+    /**
+     * Additional configs for frequently-bought-together models.
+     */
+    frequentlyBoughtTogetherConfig?: Schema$GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig;
   }
   /**
    * Represents an ordered combination of valid serving configs, which can be used for `PAGE_OPTIMIZATION` recommendations.
@@ -3578,7 +3669,7 @@ export namespace retail_v2alpha {
      *     deviceType: 'placeholder-value',
      *     // If true, attribute suggestions are enabled and provided in response. This field is only available for "cloud-retail" dataset.
      *     enableAttributeSuggestions: 'placeholder-value',
-     *     // The entity for customers that may run multiple different entities, domains, sites or regions, for example, "Google US", "Google Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should be exactly matched with UserEvent.entity to get per-entity autocomplete results.
+     *     // The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results.
      *     entity: 'placeholder-value',
      *     // Note that this field applies for `user-data` dataset only. For requests with `cloud-retail` dataset, setting this field has no effect. The language filters applied to the output suggestions. If set, it should contain the language of the query. If not set, suggestions are returned without considering language restrictions. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum number of language codes is 3.
      *     languageCodes: 'placeholder-value',
@@ -4899,7 +4990,7 @@ export namespace retail_v2alpha {
      */
     enableAttributeSuggestions?: boolean;
     /**
-     * The entity for customers that may run multiple different entities, domains, sites or regions, for example, "Google US", "Google Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should be exactly matched with UserEvent.entity to get per-entity autocomplete results.
+     * The entity for customers who run multiple entities, domains, sites, or regions, for example, `Google US`, `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. If this is set, it must be an exact match with UserEvent.entity to get per-entity autocomplete results.
      */
     entity?: string;
     /**
@@ -6028,7 +6119,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * It is recommended to use the ProductService.AddLocalInventories method instead of ProductService.AddFulfillmentPlaces. ProductService.AddLocalInventories achieves the same results but provides more fine-grained control over ingesting local inventory data. Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
+     * We recommend that you use the ProductService.AddLocalInventories method instead of the ProductService.AddFulfillmentPlaces method. ProductService.AddLocalInventories achieves the same results but provides more fine-grained control over ingesting local inventory data. Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
      * @example
      * ```js
      * // Before running the sample:
@@ -6586,7 +6677,7 @@ export namespace retail_v2alpha {
      *   const res = await retail.projects.locations.catalogs.branches.products.delete(
      *     {
      *       // This value only applies to the case when the target product is of type PRIMARY. When deleting a product of VARIANT/COLLECTION type, this value will be ignored. When set to true, the subsequent variant products will be deleted. When set to false, if the primary product has active variant products, an error will be returned.
-     *       cascadeDelete: 'placeholder-value',
+     *       force: 'placeholder-value',
      *       // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to delete the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to delete does not exist, a NOT_FOUND error is returned. The Product to delete can neither be a Product.Type.COLLECTION Product member nor a Product.Type.PRIMARY Product with more than one variants. Otherwise, an INVALID_ARGUMENT error is returned. All inventory information for the named Product will be deleted.
      *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
      *     }
@@ -7534,7 +7625,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * It is recommended to use the ProductService.RemoveLocalInventories method instead of ProductService.RemoveFulfillmentPlaces. ProductService.RemoveLocalInventories achieves the same results but provides more fine-grained control over ingesting local inventory data. Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
+     * We recommend that you use the ProductService.RemoveLocalInventories method instead of the ProductService.RemoveFulfillmentPlaces method. ProductService.RemoveLocalInventories achieves the same results but provides more fine-grained control over ingesting local inventory data. Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by ProductService.GetProduct or ProductService.ListProducts. The returned Operations will be obsolete after 1 day, and GetOperation API will return NOT_FOUND afterwards. If conflicting updates are issued, the Operations associated with the stale updates will not be marked as done until being obsolete.
      * @example
      * ```js
      * // Before running the sample:
@@ -8041,7 +8132,7 @@ export namespace retail_v2alpha {
     /**
      * This value only applies to the case when the target product is of type PRIMARY. When deleting a product of VARIANT/COLLECTION type, this value will be ignored. When set to true, the subsequent variant products will be deleted. When set to false, if the primary product has active variant products, an error will be returned.
      */
-    cascadeDelete?: boolean;
+    force?: boolean;
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to delete the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to delete does not exist, a NOT_FOUND error is returned. The Product to delete can neither be a Product.Type.COLLECTION Product member nor a Product.Type.PRIMARY Product with more than one variants. Otherwise, an INVALID_ARGUMENT error is returned. All inventory information for the named Product will be deleted.
      */
@@ -9146,7 +9237,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Creates a MerchantCenterAccountLink. MerchantCenterAccountLink cannot be set to a different oneof field, if so an INVALID_ARGUMENT is returned.
+     * Creates a MerchantCenterAccountLink.
      * @example
      * ```js
      * // Before running the sample:
@@ -9172,30 +9263,26 @@ export namespace retail_v2alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.createMerchantCenterAccountLink(
-     *       {
-     *         // Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
-     *         name: 'projects/my-project/locations/my-location/catalogs/my-catalog/merchantCenterAccountLinks/my-merchantCenterAccountLink',
-     *         // Required. The branch resource where this MerchantCenterAccountLink will be created. Format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}\}
-     *         parent: 'placeholder-value',
+     *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.create({
+     *       // Required. The branch resource where this MerchantCenterAccountLink will be created. Format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}\}
+     *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "branchId": "my_branchId",
-     *           //   "feedFilters": [],
-     *           //   "feedLabel": "my_feedLabel",
-     *           //   "id": "my_id",
-     *           //   "languageCode": "my_languageCode",
-     *           //   "merchantCenterAccountId": "my_merchantCenterAccountId",
-     *           //   "name": "my_name",
-     *           //   "projectId": "my_projectId",
-     *           //   "state": "my_state"
-     *           // }
-     *         },
-     *       }
-     *     );
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "branchId": "my_branchId",
+     *         //   "feedFilters": [],
+     *         //   "feedLabel": "my_feedLabel",
+     *         //   "id": "my_id",
+     *         //   "languageCode": "my_languageCode",
+     *         //   "merchantCenterAccountId": "my_merchantCenterAccountId",
+     *         //   "name": "my_name",
+     *         //   "projectId": "my_projectId",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -9220,36 +9307,36 @@ export namespace retail_v2alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    createMerchantCenterAccountLink(
-      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    createMerchantCenterAccountLink(
-      params?: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+    create(
+      params?: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    createMerchantCenterAccountLink(
-      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    createMerchantCenterAccountLink(
-      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    createMerchantCenterAccountLink(
-      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink,
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    createMerchantCenterAccountLink(
+    create(
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    createMerchantCenterAccountLink(
+    create(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink
+        | Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -9265,13 +9352,13 @@ export namespace retail_v2alpha {
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink;
+        {}) as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink;
+          {} as Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create;
         options = {};
       }
 
@@ -9284,14 +9371,16 @@ export namespace retail_v2alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (
+              rootUrl + '/v2alpha/{+parent}/merchantCenterAccountLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -9573,12 +9662,8 @@ export namespace retail_v2alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Createmerchantcenteraccountlink
+  export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create
     extends StandardParameters {
-    /**
-     * Output only. Immutable. Full resource name of the Merchant Center Account Link, such as `projects/x/locations/global/catalogs/default_catalog/merchantCenterAccountLinks/merchant_center_account_link`.
-     */
-    name?: string;
     /**
      * Required. The branch resource where this MerchantCenterAccountLink will be created. Format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}\}
      */
@@ -9651,6 +9736,7 @@ export namespace retail_v2alpha {
      *       //   "displayName": "my_displayName",
      *       //   "filteringOption": "my_filteringOption",
      *       //   "lastTuneTime": "my_lastTuneTime",
+     *       //   "modelFeaturesConfig": {},
      *       //   "name": "my_name",
      *       //   "optimizationObjective": "my_optimizationObjective",
      *       //   "pageOptimizationConfig": {},
@@ -9942,6 +10028,7 @@ export namespace retail_v2alpha {
      *   //   "displayName": "my_displayName",
      *   //   "filteringOption": "my_filteringOption",
      *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
      *   //   "name": "my_name",
      *   //   "optimizationObjective": "my_optimizationObjective",
      *   //   "pageOptimizationConfig": {},
@@ -10236,6 +10323,7 @@ export namespace retail_v2alpha {
      *       //   "displayName": "my_displayName",
      *       //   "filteringOption": "my_filteringOption",
      *       //   "lastTuneTime": "my_lastTuneTime",
+     *       //   "modelFeaturesConfig": {},
      *       //   "name": "my_name",
      *       //   "optimizationObjective": "my_optimizationObjective",
      *       //   "pageOptimizationConfig": {},
@@ -10258,6 +10346,7 @@ export namespace retail_v2alpha {
      *   //   "displayName": "my_displayName",
      *   //   "filteringOption": "my_filteringOption",
      *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
      *   //   "name": "my_name",
      *   //   "optimizationObjective": "my_optimizationObjective",
      *   //   "pageOptimizationConfig": {},
@@ -10413,6 +10502,7 @@ export namespace retail_v2alpha {
      *   //   "displayName": "my_displayName",
      *   //   "filteringOption": "my_filteringOption",
      *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
      *   //   "name": "my_name",
      *   //   "optimizationObjective": "my_optimizationObjective",
      *   //   "pageOptimizationConfig": {},
@@ -10571,6 +10661,7 @@ export namespace retail_v2alpha {
      *   //   "displayName": "my_displayName",
      *   //   "filteringOption": "my_filteringOption",
      *   //   "lastTuneTime": "my_lastTuneTime",
+     *   //   "modelFeaturesConfig": {},
      *   //   "name": "my_name",
      *   //   "optimizationObjective": "my_optimizationObjective",
      *   //   "pageOptimizationConfig": {},
@@ -11438,7 +11529,7 @@ export namespace retail_v2alpha {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.placements.search({
-     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that will be used to make the search.
+     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
      *
@@ -11606,7 +11697,7 @@ export namespace retail_v2alpha {
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Search
     extends StandardParameters {
     /**
-     * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that will be used to make the search.
+     * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
      */
     placement?: string;
 
@@ -12933,7 +13024,7 @@ export namespace retail_v2alpha {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.servingConfigs.search({
-     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that will be used to make the search.
+     *     // Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
      *
@@ -13186,7 +13277,7 @@ export namespace retail_v2alpha {
   export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search
     extends StandardParameters {
     /**
-     * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that will be used to make the search.
+     * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
      */
     placement?: string;
 
