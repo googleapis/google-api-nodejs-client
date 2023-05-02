@@ -158,7 +158,7 @@ export namespace admob_v1 {
    */
   export interface Schema$App {
     /**
-     * Output only. The approval state for the app.
+     * Output only. The approval state for the app. The field is read-only.
      */
     appApprovalState?: string | null;
     /**
