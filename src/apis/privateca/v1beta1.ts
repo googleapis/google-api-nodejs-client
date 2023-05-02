@@ -223,7 +223,7 @@ export namespace privateca_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
