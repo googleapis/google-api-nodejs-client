@@ -291,7 +291,7 @@ export namespace language_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of the category representing the document, from the [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
+     * The name of the category representing the document.
      */
     name?: string | null;
   }

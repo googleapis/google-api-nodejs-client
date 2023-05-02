@@ -291,7 +291,7 @@ export namespace language_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The name of the category representing the document, from the [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
+     * The name of the category representing the document.
      */
     name?: string | null;
   }
@@ -419,7 +419,7 @@ export namespace language_v1beta2 {
     type?: string | null;
   }
   /**
-   * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 11
+   * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 12
    */
   export interface Schema$Features {
     /**
