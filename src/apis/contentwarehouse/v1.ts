@@ -5358,6 +5358,10 @@ export namespace contentwarehouse_v1 {
      */
     fallbackToTetheredDeviceAppCapabilities?: boolean | null;
     /**
+     * For chat_message.SEND targeting, when either the primary or secondary (tethered) device is capable of handling the chat_message.SEND action, prefer targeting it to the primary device.
+     */
+    preferTargetingPrimaryDevice?: boolean | null;
+    /**
      * Should only be checked if nonempty.
      */
     supportedRecipientTypes?: string[] | null;
@@ -7363,7 +7367,7 @@ export namespace contentwarehouse_v1 {
      */
     kgProviderKey?: string | null;
     /**
-     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in it's graph.
+     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in its graph.
      */
     mid?: string | null;
     /**
@@ -7392,7 +7396,7 @@ export namespace contentwarehouse_v1 {
      */
     mediaProviderId?: Schema$AssistantContextMediaProviderId;
     /**
-     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in it's graph.
+     * The MID of the provider. A MID is a unique identifier issued by Knowledge Graph for all entities contained in its graph.
      */
     mid?: string | null;
     /**
@@ -7479,6 +7483,7 @@ export namespace contentwarehouse_v1 {
      */
     url?: string | null;
   }
+  export interface Schema$AssistantDevicesPlatformProtoCoreDismissAssistantCapability {}
   /**
    * This capability represents device action needed capability. Next ID: 10
    */
@@ -7675,6 +7680,7 @@ export namespace contentwarehouse_v1 {
   export interface Schema$AssistantDevicesPlatformProtoMediaPlayMediaCapability {}
   export interface Schema$AssistantDevicesPlatformProtoMediaPreviousCapability {}
   export interface Schema$AssistantDevicesPlatformProtoMediaResumeCapability {}
+  export interface Schema$AssistantDevicesPlatformProtoMediaShowControlsCapability {}
   export interface Schema$AssistantDevicesPlatformProtoMediaStopCapability {}
   export interface Schema$AssistantDevicesPlatformProtoOptionValueSpec {
     values?: string[] | null;
@@ -7721,7 +7727,7 @@ export namespace contentwarehouse_v1 {
   }
   export interface Schema$AssistantDevicesPlatformProtoSendChatMessageCapability {}
   /**
-   * This message will specify supports for fields in |assistant.embedded.v1.DeviceOp|, for a device model package. See go/easi-client-op2 for more info.
+   * This message will specify supports for fields in |assistant.embedded.v1.DeviceOp|, for a device model package. See go/easi-client-op2 for more info. Next ID: 16
    */
   export interface Schema$AssistantDevicesPlatformProtoSupportedDeviceOps {
     /**
@@ -7732,6 +7738,10 @@ export namespace contentwarehouse_v1 {
      * |client_reconnect| indicates support for client.RECONNECT using assistant.embedded.v1.DeviceOp. There is an alternative API/capability for client.RECONNECT specified in RoutineCapability.supports_reconnect. Client should choose between this and RoutineCapability but not both.
      */
     clientReconnect?: Schema$AssistantDevicesPlatformProtoClientReconnectCapability;
+    /**
+     * [core_dismiss_assistant] specifies the support for core.DISMISS_ASSISTANT client_op and the corresponding core_dismiss_assistant field in assistant.embedded.v1.DeviceOp.
+     */
+    coreDismissAssistant?: Schema$AssistantDevicesPlatformProtoCoreDismissAssistantCapability;
     /**
      * |device_modify_setting| specifies the support for device.MODIFY_SETTING client_op, and the corresponding device_modify_setting field in assistant.embedded.v1.DeviceOp.
      */
@@ -7745,6 +7755,7 @@ export namespace contentwarehouse_v1 {
     mediaPlayMedia?: Schema$AssistantDevicesPlatformProtoMediaPlayMediaCapability;
     mediaPrevious?: Schema$AssistantDevicesPlatformProtoMediaPreviousCapability;
     mediaResume?: Schema$AssistantDevicesPlatformProtoMediaResumeCapability;
+    mediaShowControls?: Schema$AssistantDevicesPlatformProtoMediaShowControlsCapability;
     mediaStop?: Schema$AssistantDevicesPlatformProtoMediaStopCapability;
     /**
      * |provider_fulfill| specifies the support for provider.FULFILL client_op, and the corresponding provider_fulfill field in assistant.embedded.v1.DeviceOp.
@@ -7926,7 +7937,7 @@ export namespace contentwarehouse_v1 {
     assistantInteractionFeatures?: Schema$AssistantGroundingRankerAssistantInteractionFeatures;
   }
   /**
-   * Features to be passed from Media GP to HGR. Next ID: 12
+   * Features to be passed from Media GP to HGR. Next ID: 14
    */
   export interface Schema$AssistantGroundingRankerMediaGroundingProviderFeatures {
     /**
@@ -7958,13 +7969,21 @@ export namespace contentwarehouse_v1 {
      */
     isSeedRadioRequest?: boolean | null;
     /**
+     * MediaAquaAction::media_content_type from interpretation. It can be used for cross-content type ranking, for example, if a candidate's content type does not match this content type from interpretation, this candidate will be slightly demoted. Also, we might avoid fetching some signals when the content type is generic music, since some content types do not need ranking.
+     */
+    mediaContentType?: string | null;
+    /**
      * MSC(Media Short Click) rate. MSC rate = total number of MSC events / total number of MSC candidates The event is considered as MSC candidate if the event is a media seeking query(excluding follow-ons) and the media result is successfully fulfilled. The event is MSC event if any of the following is in the following queries within 30 secs: FOLLOWED_BY_DUPLICATE FOLLOWED_BY_ADD_OR_DELETE_MANUAL_REFINEMENT FOLLOWED_BY_SAME_VERTICAL (MEDIA) FOLLOWED_BY_STOP More details: go/media-ranking, go/billboard-navboost, go/magma-music-actions-efrac
      */
     mscRate?: number | null;
     /**
-     * Scubed predicted SAI value (pSAI) for music populated by a regression model that incorporates a BERT model signal as well as other Scubed signals.
+     * Scubed predicted SAI value (pSAI - SCUBED_MUSIC_ACTIONS) for music populated by a regression model that incorporates a BERT model signal as well as other Scubed signals.
      */
     scubedPSaiMusic?: number | null;
+    /**
+     * Scubed predicted SAI value (pSAI - SCUBED_TVM_ACTIONS) for music populated by a regression model that incorporates a BERT model signal as well as other Scubed signals.
+     */
+    scubedPSaiTvm?: number | null;
     /**
      * Type of the media item.
      */
@@ -13922,9 +13941,34 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostoreInternalSegmentProto {
     /**
+     * RESERVED
+     */
+    disallowedConnections?: Schema$GeostoreInternalSegmentProtoLaneConnectionReference[];
+    /**
+     * RESERVED
+     */
+    disallowedPrimaryConnection?: Schema$GeostoreInternalSegmentProtoLaneConnectionReference[];
+    /**
      * The set of restrictions that apply to this segment; these are actually *POSITIVE* restrictions, i.e. they are known to be allowed.
      */
     travelAllowance?: Schema$GeostoreRestrictionProto[];
+  }
+  /**
+   * Specifies a single outgoing lane connection.
+   */
+  export interface Schema$GeostoreInternalSegmentProtoLaneConnectionReference {
+    /**
+     * The lane number on this segment.
+     */
+    fromLaneNumber?: number | null;
+    /**
+     * This reference to the other segment is weak, since strong would blow up bounds of all segments.
+     */
+    segment?: Schema$GeostoreFeatureIdProto;
+    /**
+     * This is the lane number on the target segment.
+     */
+    toLaneNumber?: number | null;
   }
   export interface Schema$GeostoreInternalSourceSummaryProto {
     /**
@@ -15298,7 +15342,7 @@ export namespace contentwarehouse_v1 {
      */
     sibling?: Schema$GeostoreFeatureIdProto;
     /**
-     * RESERVED
+     * Each slope instance is tied to a point along the segment polyline (unrelated to the vertices in the segment's polyline) and represents the slope of the segment between that point and the point tied to the next slope istance, or the end of the segment if it's the last slope instance. A segment should have at least one slope.
      */
     slope?: Schema$GeostoreSlopeProto[];
     /**
@@ -19249,6 +19293,10 @@ export namespace contentwarehouse_v1 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1DocumentProvenance;
+    /**
+     * Text style attributes.
+     */
+    styleInfo?: Schema$GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo;
   }
   /**
    * Detected break at the end of a Token.
@@ -19258,6 +19306,71 @@ export namespace contentwarehouse_v1 {
      * Detected break type.
      */
     type?: string | null;
+  }
+  /**
+   * Font and other text style attributes.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo {
+    /**
+     * Color of the background.
+     */
+    backgroundColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is bold (equivalent to font weight \>= 700).
+     */
+    bold?: boolean | null;
+    /**
+     * Font size in points (1 point is 1/72").
+     */
+    fontSize?: number | null;
+    /**
+     * Name or style of the font.
+     */
+    fontType?: string | null;
+    /**
+     * TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.
+     */
+    fontWeight?: number | null;
+    /**
+     * Whether the text is handwritten.
+     */
+    handwritten?: boolean | null;
+    /**
+     * Whether the text is italic.
+     */
+    italic?: boolean | null;
+    /**
+     * Letter spacing in points.
+     */
+    letterSpacing?: number | null;
+    /**
+     * Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.
+     */
+    pixelFontSize?: number | null;
+    /**
+     * Whether the text are small caps.
+     */
+    smallcaps?: boolean | null;
+    /**
+     * Whether the text is strikethrough.
+     */
+    strikeout?: boolean | null;
+    /**
+     * Whether the text is a subscript.
+     */
+    subscript?: boolean | null;
+    /**
+     * Whether the text is a superscript.
+     */
+    superscript?: boolean | null;
+    /**
+     * Color of the text.
+     */
+    textColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is underlined.
+     */
+    underlined?: boolean | null;
   }
   /**
    * Detected non-text visual elements e.g. checkbox, signature etc. on the page.
@@ -24735,10 +24848,6 @@ export namespace contentwarehouse_v1 {
      * Contains data about current schema remodelings at this ValueType level. For more information see go/meaning-remodeling-framework.
      */
     remodelings?: Schema$NlpMeaningMeaningRemodelings;
-    /**
-     * This field is deprecated. It is not removed completely since this proto was saved with this field in proto text files used by the Grammy tool.
-     */
-    stbrDomain?: string[] | null;
   }
   /**
    * Modifiers decorate a Meaning Expression (i.e. intent FunctionCall) with signals that depend on the source language's grammar and syntax. See go/intent-modifiers for details. NOTE: Modifiers don't necessarily impact go/intent-resolution semantics. LINT.IfChange
@@ -25008,7 +25117,7 @@ export namespace contentwarehouse_v1 {
      */
     deprecatedFreebaseType?: string[] | null;
     /**
-     * A list of mids that "support" this argument in voting, i.e, results that support these mids will be treated as if they support the argument. This field has been deprecated in favor of related_entity. b/27363861
+     * A list of mids that "support" this argument in voting, i.e., results that support these mids will be treated as if they support the argument. This field has been deprecated in favor of related_entity. b/27363861
      */
     deprecatedSupportingMid?: string[] | null;
     /**
@@ -25532,7 +25641,7 @@ export namespace contentwarehouse_v1 {
     signalsFallbackIntents?: Schema$KnowledgeAnswersIntentQuerySignalComputationFallbackIntent[];
   }
   /**
-   * Grounding-related signals to be propagated down stream. Next ID: 12
+   * Grounding-related signals to be propagated down stream. Next ID: 14
    */
   export interface Schema$KnowledgeAnswersIntentQueryGroundingSignals {
     /**
@@ -25571,6 +25680,8 @@ export namespace contentwarehouse_v1 {
      * PGRP outputs PROD_INTENT_FACTORY intent format by default. See go/intent-conversion-locations-in-sage. Experimental flags can change or make PGRP output additional intents formatted for PORTMON_FULFILLMENT (e.g. with RDs). This is used by the PortMon/ARM dark launch (go/arm-dark-launch-infra). Longer term, this will be replaced by DGS system-internal transformations (go/if-dgs).
      */
     pgrpOutputFormat?: string | null;
+    provenance?: string | null;
+    sentiment?: string | null;
     /**
      * If true, then GroundingBox and PGRP are used in AnswersRewriter to process the intent. Other post-processing steps, including IGDP, are adjusted accordingly. Note this will be removed once GroundingBox is fully launched and all prod traffic goes through it. Before that happens, each IG that needs to go through GB and PGRP (post GB ranking pruning) will need to explicitly set this field to true. See http://go/gb-impl and http://go/gb-post-ranker-pruner for details.
      */
@@ -26418,16 +26529,6 @@ export namespace contentwarehouse_v1 {
      */
     remodelings?: Schema$NlpMeaningMeaningRemodelings;
   }
-  /**
-   * A TypeTrait configures a value that has a property with any of the given trait_id. In practice this means: - any entity that has a metadata ID defined in the KP type_schema, - any intent that has a slot with the given ID. When comparing trait_id to metadata IDs or slot IDs, we lowercase and normalize for comparison.
-   */
-  export interface Schema$KnowledgeAnswersTypeTrait {
-    /**
-     * Contains data about current schema remodelings at this ValueType level. For more information see go/meaning-remodeling-framework.
-     */
-    remodelings?: Schema$NlpMeaningMeaningRemodelings;
-    traitId?: string[] | null;
-  }
   export interface Schema$KnowledgeAnswersUnionType {
     slotNames?: string[] | null;
   }
@@ -26462,17 +26563,12 @@ export namespace contentwarehouse_v1 {
     numberType?: Schema$KnowledgeAnswersNumberType;
     opaqueType?: Schema$KnowledgeAnswersOpaqueType;
     plexityRequirement?: Schema$KnowledgeAnswersPlexityRequirement;
-    pluralityType?: string | null;
     polarQuestionType?: Schema$KnowledgeAnswersPolarQuestionType;
     semanticType?: Schema$KnowledgeAnswersSemanticType;
     stateOfAffairsType?: Schema$KnowledgeAnswersStateOfAffairsType;
     stringType?: Schema$KnowledgeAnswersStringType;
     timezoneType?: Schema$KnowledgeAnswersTimeZoneType;
     trackingNumberType?: Schema$KnowledgeAnswersTrackingNumberType;
-    /**
-     * Extra trait information for compound value types. Note: currently the semantics of having both the data type (e.g. "entity_type") and "with_trait" is an OR operation. Eg. HorizontalDateRestrict has a SetToModify slot that accepts some collections like /collection/films. And also intent queries with_trait date, start_date, etc.
-     */
-    withTrait?: Schema$KnowledgeAnswersTypeTrait;
   }
   /**
    * /////////// DATE //////////
@@ -36366,9 +36462,6 @@ export namespace contentwarehouse_v1 {
      * Document language for this title. It is used for model inference and hence flattened into RanklabTitle instead of RanklabDoc.
      */
     docLang?: string | null;
-    /**
-     * Represents how relavant this title candidate is to the document. Ranged in [0, 1], and this signal is basically calculated as Cosine-similarity between salient term vector and pQ2T model of title candidate sentence.
-     */
     docRelevance?: number | null;
     /**
      * Numbers of duplicated tokens. For example, duplicated tokens for a title "dog cat cat cat" is 2 (for 2 extra "cat").
@@ -36460,7 +36553,7 @@ export namespace contentwarehouse_v1 {
      */
     queryMatchFraction?: number | null;
     /**
-     * Represents how relavant this title candidate is to the query. Ranged in [0, 1], and this signal is basically calculated as Cosine-similarity between QBST term vector and pQ2T model of title candidate sentence.
+     * Deprecated experimental features.
      */
     queryRelevance?: number | null;
     sourceGeometry?: boolean | null;
@@ -41336,7 +41429,7 @@ export namespace contentwarehouse_v1 {
     originalOrganizationName?: string | null;
   }
   /**
-   * A proto for storing inferred and reconciled metadata for Science Search. Next available tag: 70
+   * A proto for storing inferred and reconciled metadata for Science Search. Next available tag: 71
    */
   export interface Schema$ResearchScienceSearchReconciledMetadata {
     /**
@@ -41347,6 +41440,10 @@ export namespace contentwarehouse_v1 {
      * A string representation of the authors of the dataset, collected from author and creator in raw metadata. The exact format (e.g., comma-separated, etc.) is up to the extender that populates this field. The assumption is that this string may appear in the UI "as is".
      */
     authorList?: string | null;
+    /**
+     * A hash of the fields copied by BasicMetadataExtender and the importers. See cs/research/science_search/backend/extender/basic_metadata_extender.h for the list of fields.
+     */
+    basicFieldsHash?: string | null;
     /**
      * Catalog that this dataset is a part of.
      */
@@ -45889,7 +45986,7 @@ export namespace contentwarehouse_v1 {
     State?: string | null;
   }
   /**
-   * ============================ Next Tag: 21 ============================ Data about the scheduling host bucket a URL was in (if the client wants to use this, e.g. for more intelligent scheduling, etc).
+   * ============================ Next Tag: 22 ============================ Data about the scheduling host bucket a URL was in (if the client wants to use this, e.g. for more intelligent scheduling, etc).
    */
   export interface Schema$TrawlerHostBucketData {
     /**
@@ -45962,6 +46059,14 @@ export namespace contentwarehouse_v1 {
      * # of urls currently in the queue
      */
     NumUrls?: number | null;
+    /**
+     * Total qps for this partner dedicated hostload, for non partner it will be -1.0.
+     */
+    PartnerTotalCapacityQps?: number | null;
+    /**
+     * Currently used qps for this partner dedicated hostlaod, for non partner it will be -1.0.
+     */
+    PartnerTotalUsedQps?: number | null;
     /**
      * The fp64 of the requestor string
      */
@@ -49450,9 +49555,15 @@ export namespace contentwarehouse_v1 {
      */
     hasChapters?: boolean | null;
     mediaClipInfoOverview?: Schema$VideoMediaOverviewMediaClipInfoOverview;
+    /**
+     * The orientation is annotated based on the final displayed resolution of the video file. A video will be labelled PORTRAIT whenever the height is greater than the width. The orientation is only labelled UNKNOWN in the case that the video stream had some transformation that was not a rotation in the video stream.
+     */
     orientation?: string | null;
     origin?: string | null;
     projection?: string | null;
+    /**
+     * The resolution for a video takes into account the displayed video size, and takes into account the orientation. For example: - A 1920x1080 video will have ORIENTATION_LANDSCAPE and RESOLUTION_1080P - A 1080x1920 video will have ORIENTATION_PORTRAIT and RESOLUTION_1080P - A 1080x1080 video will have ORIENTATION_LANDSCAPE and RESOLUTION_1080P
+     */
     resolution?: string | null;
     spatialAudioMode?: string | null;
     stereoMode?: string | null;
@@ -49923,7 +50034,7 @@ export namespace contentwarehouse_v1 {
      */
     streamIndex?: string | null;
     /**
-     * video width and height.
+     * The video stream's width and height. Important notes: 1) These are the coded dimensions of the video stream and DO NOT take into account any rotation metadata that may be present in the video container. Prefer to use the MediaOverview::resolution and MediaOverview::orientation when possible. 2) In the case you want detailed displayed width/height information, you can use the MediaOverview::orientation to determine the displayed dimensions. E.g., in the case of PORTRAIT orientation: displayed_width = min(width, height) displayed_height = max(width, height) And for LANDSCAPE orientation: displayed_width = max(width, height) displayed_height = min(width, height)
      */
     width?: number | null;
   }
