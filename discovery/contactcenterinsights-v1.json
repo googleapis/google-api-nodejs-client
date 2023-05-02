@@ -1384,7 +1384,7 @@
       }
     }
   },
-  "revision": "20230409",
+  "revision": "20230424",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1543,6 +1543,37 @@
         "runSilenceAnnotator": {
           "description": "Whether to run the silence annotator.",
           "type": "boolean"
+        },
+        "runSummarizationAnnotator": {
+          "description": "Whether to run the summarization annotator.",
+          "type": "boolean"
+        },
+        "summarizationConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig",
+          "description": "Configuration for the summarization annotator."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig": {
+      "description": "Configuration for summarization.",
+      "id": "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig",
+      "properties": {
+        "conversationProfile": {
+          "description": "Resource name of the Dialogflow conversation profile. Format: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}",
+          "type": "string"
+        },
+        "summarizationModel": {
+          "description": "Default summarization model to be used.",
+          "enum": [
+            "SUMMARIZATION_MODEL_UNSPECIFIED",
+            "BASELINE_MODEL"
+          ],
+          "enumDescriptions": [
+            "Unspecified summarization model.",
+            "The Insights baseline model."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1903,6 +1934,11 @@
           "description": "Output only. The conversation's latest analysis, if one exists.",
           "readOnly": true
         },
+        "latestSummary": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData",
+          "description": "Output only. Latest summary of the conversation.",
+          "readOnly": true
+        },
         "medium": {
           "description": "Immutable. The conversation medium, if unspecified will default to PHONE_CALL.",
           "enum": [
@@ -2048,6 +2084,44 @@
         "userId": {
           "description": "A user-specified ID representing the participant.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData": {
+      "description": "Conversation summarization suggestion data.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
+          "type": "string"
+        },
+        "confidence": {
+          "description": "The confidence score of the summarization.",
+          "format": "float",
+          "type": "number"
+        },
+        "conversationModel": {
+          "description": "The name of the model that generates this summary. Format: projects/{project}/locations/{location}/conversationModels/{conversation_model}",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map that contains metadata about the summarization and the document from which it originates.",
+          "type": "object"
+        },
+        "text": {
+          "description": "The summarization content that is concatenated into one string.",
+          "type": "string"
+        },
+        "textSections": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The summarization content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -3268,6 +3342,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1ArticleSuggestionData",
           "description": "Agent Assist Article Suggestion data."
         },
+        "conversationSummarizationSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData",
+          "description": "Conversation summarization suggestion data."
+        },
         "createTime": {
           "description": "The time at which this annotation was created.",
           "format": "google-datetime",
@@ -3729,6 +3807,37 @@
         "runSilenceAnnotator": {
           "description": "Whether to run the silence annotator.",
           "type": "boolean"
+        },
+        "runSummarizationAnnotator": {
+          "description": "Whether to run the summarization annotator.",
+          "type": "boolean"
+        },
+        "summarizationConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig",
+          "description": "Configuration for the summarization annotator."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig": {
+      "description": "Configuration for summarization.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig",
+      "properties": {
+        "conversationProfile": {
+          "description": "Resource name of the Dialogflow conversation profile. Format: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}",
+          "type": "string"
+        },
+        "summarizationModel": {
+          "description": "Default summarization model to be used.",
+          "enum": [
+            "SUMMARIZATION_MODEL_UNSPECIFIED",
+            "BASELINE_MODEL"
+          ],
+          "enumDescriptions": [
+            "Unspecified summarization model.",
+            "The Insights baseline model."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3985,6 +4094,11 @@
           "description": "Output only. The conversation's latest analysis, if one exists.",
           "readOnly": true
         },
+        "latestSummary": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData",
+          "description": "Output only. Latest summary of the conversation.",
+          "readOnly": true
+        },
         "medium": {
           "description": "Immutable. The conversation medium, if unspecified will default to PHONE_CALL.",
           "enum": [
@@ -4130,6 +4244,44 @@
         "userId": {
           "description": "A user-specified ID representing the participant.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData": {
+      "description": "Conversation summarization suggestion data.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
+          "type": "string"
+        },
+        "confidence": {
+          "description": "The confidence score of the summarization.",
+          "format": "float",
+          "type": "number"
+        },
+        "conversationModel": {
+          "description": "The name of the model that generates this summary. Format: projects/{project}/locations/{location}/conversationModels/{conversation_model}",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map that contains metadata about the summarization and the document from which it originates.",
+          "type": "object"
+        },
+        "text": {
+          "description": "The summarization content that is concatenated into one string.",
+          "type": "string"
+        },
+        "textSections": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The summarization content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -5060,6 +5212,10 @@
         "articleSuggestion": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionData",
           "description": "Agent Assist Article Suggestion data."
+        },
+        "conversationSummarizationSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData",
+          "description": "Conversation summarization suggestion data."
         },
         "createTime": {
           "description": "The time at which this annotation was created.",
