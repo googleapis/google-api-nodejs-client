@@ -127,6 +127,27 @@ export namespace alertcenter_v1beta1 {
   }
 
   /**
+   * A generic alert for abusive user activity occurring with a customer.
+   */
+  export interface Schema$AbuseDetected {
+    /**
+     * List of abusive users/entities to be displayed in a table in the alert.
+     */
+    additionalDetails?: Schema$EntityList;
+    /**
+     * Product that the abuse is originating from.
+     */
+    product?: string | null;
+    /**
+     * Unique identifier of each sub alert that is onboarded.
+     */
+    subAlertId?: string | null;
+    /**
+     * Variation of AbuseDetected alerts. The variation_type determines the texts displayed the alert details. This differs from sub_alert_id because each sub alert can have multiple variation_types, representing different stages of the alert.
+     */
+    variationType?: string | null;
+  }
+  /**
    * Details about why an account is receiving an account suspension warning.
    */
   export interface Schema$AccountSuspensionDetails {
@@ -140,7 +161,7 @@ export namespace alertcenter_v1beta1 {
     productName?: string | null;
   }
   /**
-   * LINT.IfChange A warning that the customer's account is about to be suspended.
+   * A warning that the customer's account is about to be suspended.
    */
   export interface Schema$AccountSuspensionWarning {
     /**
@@ -346,19 +367,19 @@ export namespace alertcenter_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * The explanation message associated with ApnsCertificationExpiring and ApnsCertificationExpired alerts.
+   * The explanation message associated with "APNS certificate is expiring soon" and "APNS certificate has expired" alerts.
    */
   export interface Schema$ApnsCertificateExpirationInfo {
     /**
-     * The Apple ID used for the certificate may be blank if admins didn't enter it.
+     * The Apple ID used to create the certificate. It may be blank if admins didn't enter it.
      */
     appleId?: string | null;
     /**
-     * The expiration date of the APNS Certificate.
+     * The expiration date of the APNS certificate.
      */
     expirationTime?: string | null;
     /**
-     * The UID for the certificate.
+     * The UID of the certificate.
      */
     uid?: string | null;
   }
@@ -615,6 +636,40 @@ export namespace alertcenter_v1beta1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Individual entity affected by, or related to, an alert.
+   */
+  export interface Schema$Entity {
+    /**
+     * Link to a Security Investigation Tool search based on this entity, if available.
+     */
+    link?: string | null;
+    /**
+     * Human-readable name of this entity, such as an email address, file ID, or device name.
+     */
+    name?: string | null;
+    /**
+     * Extra values beyond name. The order of values should align with headers in EntityList.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * EntityList stores entities in a format that can be translated to a table in the Alert Center UI.
+   */
+  export interface Schema$EntityList {
+    /**
+     * List of entities affected by the alert.
+     */
+    entities?: Schema$Entity[];
+    /**
+     * Headers of the values in entities. If no value is defined in Entity, this field should be empty.
+     */
+    headers?: string[] | null;
+    /**
+     * Name of the key detail used to display this entity list.
+     */
+    name?: string | null;
+  }
   /**
    * Details of a message in phishing spike alert.
    */
