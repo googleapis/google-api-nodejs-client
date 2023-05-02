@@ -829,7 +829,7 @@
       }
     }
   },
-  "revision": "20230407",
+  "revision": "20230421",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -2881,14 +2881,16 @@
             "CLOUD",
             "ADS",
             "PHOTOS",
-            "STREET_VIEW"
+            "STREET_VIEW",
+            "SHOPPING"
           ],
           "enumDescriptions": [
             "Not useful.",
             "Google Cloud Platform Org.",
             "Ads (Advertising) Org.",
             "Photos Org.",
-            "Street View Org."
+            "Street View Org.",
+            "Shopping Org."
           ],
           "type": "string"
         },
