@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20230317",
+  "revision": "20230421",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -971,6 +971,15 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "preferNoBroadApprovalRequests": {
+          "description": "This preference is communicated to Google personnel when sending an approval request but can be overridden if necessary.",
+          "type": "boolean"
+        },
+        "preferredRequestExpirationDays": {
+          "description": "This preference is shared with Google personnel, but can be overridden if said personnel deems necessary. The approver ultimately can set the expiration at approval time.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

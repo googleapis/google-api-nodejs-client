@@ -173,6 +173,14 @@ export namespace accessapproval_v1 {
      * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed.
      */
     notificationEmails?: string[] | null;
+    /**
+     * This preference is communicated to Google personnel when sending an approval request but can be overridden if necessary.
+     */
+    preferNoBroadApprovalRequests?: boolean | null;
+    /**
+     * This preference is shared with Google personnel, but can be overridden if said personnel deems necessary. The approver ultimately can set the expiration at approval time.
+     */
+    preferredRequestExpirationDays?: number | null;
   }
   /**
    * Home office and physical location of the principal.
@@ -527,7 +535,9 @@ export namespace accessapproval_v1 {
      *   //   "enrolledServices": [],
      *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
-     *   //   "notificationEmails": []
+     *   //   "notificationEmails": [],
+     *   //   "preferNoBroadApprovalRequests": false,
+     *   //   "preferredRequestExpirationDays": 0
      *   // }
      * }
      *
@@ -806,7 +816,9 @@ export namespace accessapproval_v1 {
      *       //   "enrolledServices": [],
      *       //   "invalidKeyVersion": false,
      *       //   "name": "my_name",
-     *       //   "notificationEmails": []
+     *       //   "notificationEmails": [],
+     *       //   "preferNoBroadApprovalRequests": false,
+     *       //   "preferredRequestExpirationDays": 0
      *       // }
      *     },
      *   });
@@ -820,7 +832,9 @@ export namespace accessapproval_v1 {
      *   //   "enrolledServices": [],
      *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
-     *   //   "notificationEmails": []
+     *   //   "notificationEmails": [],
+     *   //   "preferNoBroadApprovalRequests": false,
+     *   //   "preferredRequestExpirationDays": 0
      *   // }
      * }
      *
@@ -1922,7 +1936,9 @@ export namespace accessapproval_v1 {
      *   //   "enrolledServices": [],
      *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
-     *   //   "notificationEmails": []
+     *   //   "notificationEmails": [],
+     *   //   "preferNoBroadApprovalRequests": false,
+     *   //   "preferredRequestExpirationDays": 0
      *   // }
      * }
      *
@@ -2201,7 +2217,9 @@ export namespace accessapproval_v1 {
      *       //   "enrolledServices": [],
      *       //   "invalidKeyVersion": false,
      *       //   "name": "my_name",
-     *       //   "notificationEmails": []
+     *       //   "notificationEmails": [],
+     *       //   "preferNoBroadApprovalRequests": false,
+     *       //   "preferredRequestExpirationDays": 0
      *       // }
      *     },
      *   });
@@ -2215,7 +2233,9 @@ export namespace accessapproval_v1 {
      *   //   "enrolledServices": [],
      *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
-     *   //   "notificationEmails": []
+     *   //   "notificationEmails": [],
+     *   //   "preferNoBroadApprovalRequests": false,
+     *   //   "preferredRequestExpirationDays": 0
      *   // }
      * }
      *
@@ -3318,7 +3338,9 @@ export namespace accessapproval_v1 {
      *   //   "enrolledServices": [],
      *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
-     *   //   "notificationEmails": []
+     *   //   "notificationEmails": [],
+     *   //   "preferNoBroadApprovalRequests": false,
+     *   //   "preferredRequestExpirationDays": 0
      *   // }
      * }
      *
@@ -3597,7 +3619,9 @@ export namespace accessapproval_v1 {
      *       //   "enrolledServices": [],
      *       //   "invalidKeyVersion": false,
      *       //   "name": "my_name",
-     *       //   "notificationEmails": []
+     *       //   "notificationEmails": [],
+     *       //   "preferNoBroadApprovalRequests": false,
+     *       //   "preferredRequestExpirationDays": 0
      *       // }
      *     },
      *   });
@@ -3611,7 +3635,9 @@ export namespace accessapproval_v1 {
      *   //   "enrolledServices": [],
      *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
-     *   //   "notificationEmails": []
+     *   //   "notificationEmails": [],
+     *   //   "preferNoBroadApprovalRequests": false,
+     *   //   "preferredRequestExpirationDays": 0
      *   // }
      * }
      *
