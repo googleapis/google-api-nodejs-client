@@ -256,47 +256,47 @@ export namespace documentai_v1 {
     updateTime?: string | null;
   }
   /**
-   * The long running operation metadata for CreateLabelerPool.
+   * The long-running operation metadata for CreateLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for DeleteLabelerPool.
+   * The long-running operation metadata for DeleteLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for delete processor method.
+   * The long-running operation metadata for delete processor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for delete processor version method.
+   * The long-running operation metadata for delete processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for deploy processor version method.
+   * The long-running operation metadata for deploy processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -305,11 +305,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse {}
   /**
-   * The long running operation metadata for disable processor method.
+   * The long-running operation metadata for disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -341,11 +341,11 @@ export namespace documentai_v1 {
     gcsUri?: string | null;
   }
   /**
-   * The long running operation metadata for enable processor method.
+   * The long-running operation metadata for enable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -358,12 +358,12 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * Metadata of the EvaluateProcessorVersion method.
+   * Response of the EvaluateProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse {
     /**
@@ -496,11 +496,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse {}
   /**
-   * The long running operation metadata for the ImportProcessorVersion method.
+   * The long-running operation metadata for the ImportProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportProcessorVersionMetadata {
     /**
-     * The basic metadata for the long running operation.
+     * The basic metadata for the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -582,11 +582,11 @@ export namespace documentai_v1 {
     revisionId?: string | null;
   }
   /**
-   * The long running operation metadata for set default processor version method.
+   * The long-running operation metadata for set default processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -599,7 +599,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
     /**
@@ -633,7 +633,7 @@ export namespace documentai_v1 {
     documentErrors?: Schema$GoogleRpcStatus[];
   }
   /**
-   * The response for the TrainProcessorVersion method.
+   * The response for TrainProcessorVersion.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse {
     /**
@@ -642,11 +642,11 @@ export namespace documentai_v1 {
     processorVersion?: string | null;
   }
   /**
-   * The long running operation metadata for the undeploy processor version method.
+   * The long-running operation metadata for the undeploy processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -661,20 +661,20 @@ export namespace documentai_v1 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for updating the human review configuration.
+   * The long-running operation metadata for updating the human review configuration.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for UpdateLabelerPool.
+   * The long-running operation metadata for UpdateLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
@@ -709,7 +709,7 @@ export namespace documentai_v1 {
     gcsPrefix?: Schema$GoogleCloudDocumentaiV1GcsPrefix;
   }
   /**
-   * The long running operation metadata for batch process method.
+   * The long-running operation metadata for BatchProcessDocuments.
    */
   export interface Schema$GoogleCloudDocumentaiV1BatchProcessMetadata {
     /**
@@ -755,7 +755,7 @@ export namespace documentai_v1 {
     status?: Schema$GoogleRpcStatus;
   }
   /**
-   * Request message for batch process document method.
+   * Request message for BatchProcessDocuments.
    */
   export interface Schema$GoogleCloudDocumentaiV1BatchProcessRequest {
     /**
@@ -772,7 +772,7 @@ export namespace documentai_v1 {
     skipHumanReview?: boolean | null;
   }
   /**
-   * Response message for batch process document method.
+   * Response message for BatchProcessDocuments.
    */
   export interface Schema$GoogleCloudDocumentaiV1BatchProcessResponse {}
   /**
@@ -1385,6 +1385,10 @@ export namespace documentai_v1 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
+    /**
+     * Text style attributes.
+     */
+    styleInfo?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageTokenStyleInfo;
   }
   /**
    * Detected break at the end of a Token.
@@ -1394,6 +1398,71 @@ export namespace documentai_v1 {
      * Detected break type.
      */
     type?: string | null;
+  }
+  /**
+   * Font and other text style attributes.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageTokenStyleInfo {
+    /**
+     * Color of the background.
+     */
+    backgroundColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is bold (equivalent to font weight \>= 700).
+     */
+    bold?: boolean | null;
+    /**
+     * Font size in points (1 point is 1/72").
+     */
+    fontSize?: number | null;
+    /**
+     * Name or style of the font.
+     */
+    fontType?: string | null;
+    /**
+     * TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.
+     */
+    fontWeight?: number | null;
+    /**
+     * Whether the text is handwritten.
+     */
+    handwritten?: boolean | null;
+    /**
+     * Whether the text is italic.
+     */
+    italic?: boolean | null;
+    /**
+     * Letter spacing in points.
+     */
+    letterSpacing?: number | null;
+    /**
+     * Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.
+     */
+    pixelFontSize?: number | null;
+    /**
+     * Whether the text are small caps.
+     */
+    smallcaps?: boolean | null;
+    /**
+     * Whether the text is strikethrough.
+     */
+    strikeout?: boolean | null;
+    /**
+     * Whether the text is a subscript.
+     */
+    subscript?: boolean | null;
+    /**
+     * Whether the text is a superscript.
+     */
+    superscript?: boolean | null;
+    /**
+     * Color of the text.
+     */
+    textColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is underlined.
+     */
+    underlined?: boolean | null;
   }
   /**
    * Detected non-text visual elements e.g. checkbox, signature etc. on the page.
@@ -2335,6 +2404,10 @@ export namespace documentai_v1 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
+    /**
+     * Text style attributes.
+     */
+    styleInfo?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageTokenStyleInfo;
   }
   /**
    * Detected break at the end of a Token.
@@ -2344,6 +2417,71 @@ export namespace documentai_v1 {
      * Detected break type.
      */
     type?: string | null;
+  }
+  /**
+   * Font and other text style attributes.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageTokenStyleInfo {
+    /**
+     * Color of the background.
+     */
+    backgroundColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is bold (equivalent to font weight \>= 700).
+     */
+    bold?: boolean | null;
+    /**
+     * Font size in points (1 point is 1/72").
+     */
+    fontSize?: number | null;
+    /**
+     * Name or style of the font.
+     */
+    fontType?: string | null;
+    /**
+     * TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.
+     */
+    fontWeight?: number | null;
+    /**
+     * Whether the text is handwritten.
+     */
+    handwritten?: boolean | null;
+    /**
+     * Whether the text is italic.
+     */
+    italic?: boolean | null;
+    /**
+     * Letter spacing in points.
+     */
+    letterSpacing?: number | null;
+    /**
+     * Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.
+     */
+    pixelFontSize?: number | null;
+    /**
+     * Whether the text are small caps.
+     */
+    smallcaps?: boolean | null;
+    /**
+     * Whether the text is strikethrough.
+     */
+    strikeout?: boolean | null;
+    /**
+     * Whether the text is a subscript.
+     */
+    subscript?: boolean | null;
+    /**
+     * Whether the text is a superscript.
+     */
+    superscript?: boolean | null;
+    /**
+     * Color of the text.
+     */
+    textColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is underlined.
+     */
+    underlined?: boolean | null;
   }
   /**
    * Detected non-text visual elements e.g. checkbox, signature etc. on the page.
@@ -2659,7 +2797,7 @@ export namespace documentai_v1 {
     y?: number | null;
   }
   /**
-   * The long running operation metadata for batch process method.
+   * The long-running operation metadata for BatchProcessDocuments.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessMetadata {
     /**
@@ -2688,7 +2826,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus {
     /**
-     * The name of the operation triggered by the processed document. If the human review process is not triggered, this field will be empty. It has the same response type and metadata as the long running operation returned by ReviewDocument method.
+     * The name of the operation triggered by the processed document. If the human review process isn't triggered, this field will be empty. It has the same response type and metadata as the long-running operation returned by ReviewDocument method.
      */
     humanReviewOperation?: string | null;
     /**
@@ -2709,7 +2847,7 @@ export namespace documentai_v1 {
     status?: Schema$GoogleRpcStatus;
   }
   /**
-   * Response message for batch process document method.
+   * Response message for BatchProcessDocuments.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessResponse {}
   /**
@@ -2738,29 +2876,29 @@ export namespace documentai_v1 {
     updateTime?: string | null;
   }
   /**
-   * The long running operation metadata for delete processor method.
+   * The long-running operation metadata for delete processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for delete processor version method.
+   * The long-running operation metadata for delete processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for deploy processor version method.
+   * The long-running operation metadata for deploy processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -2769,11 +2907,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse {}
   /**
-   * The long running operation metadata for disable processor method.
+   * The long-running operation metadata for disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -2782,11 +2920,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorResponse {}
   /**
-   * The long running operation metadata for enable processor method.
+   * The long-running operation metadata for enable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -2799,12 +2937,12 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * Metadata of the EvaluateProcessorVersion method.
+   * Response of the EvaluateProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionResponse {
     /**
@@ -2817,7 +2955,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus {
     /**
-     * The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.
+     * The name of the operation triggered by the processed document. This field is populated only when the state is `HUMAN_REVIEW_IN_PROGRESS`. It has the same response type and metadata as the long-running operation returned by ReviewDocument.
      */
     humanReviewOperation?: string | null;
     /**
@@ -2830,11 +2968,11 @@ export namespace documentai_v1 {
     stateMessage?: string | null;
   }
   /**
-   * The long running operation metadata for the ImportProcessorVersion method.
+   * The long-running operation metadata for the ImportProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata {
     /**
-     * The basic metadata for the long running operation.
+     * The basic metadata for the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -2848,11 +2986,11 @@ export namespace documentai_v1 {
     processorVersion?: string | null;
   }
   /**
-   * The long running operation metadata for review document method.
+   * The long-running operation metadata for review document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
     /**
@@ -2894,11 +3032,11 @@ export namespace documentai_v1 {
     state?: string | null;
   }
   /**
-   * The long running operation metadata for set default processor version method.
+   * The long-running operation metadata for set default processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -2911,7 +3049,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
     /**
@@ -2945,7 +3083,7 @@ export namespace documentai_v1 {
     documentErrors?: Schema$GoogleRpcStatus[];
   }
   /**
-   * The response for the TrainProcessorVersion method.
+   * The response for TrainProcessorVersion.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3TrainProcessorVersionResponse {
     /**
@@ -2954,11 +3092,11 @@ export namespace documentai_v1 {
     processorVersion?: string | null;
   }
   /**
-   * The long running operation metadata for the undeploy processor version method.
+   * The long-running operation metadata for the undeploy processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
@@ -3005,29 +3143,29 @@ export namespace documentai_v1 {
     updateTime?: string | null;
   }
   /**
-   * The long running operation metadata for delete processor method.
+   * The long-running operation metadata for delete processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for delete processor version method.
+   * The long-running operation metadata for delete processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * The long running operation metadata for deploy processor version method.
+   * The long-running operation metadata for deploy processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
@@ -3040,11 +3178,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionResponse {}
   /**
-   * The long running operation metadata for disable processor method.
+   * The long-running operation metadata for disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DisableProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
@@ -3666,6 +3804,10 @@ export namespace documentai_v1 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1DocumentProvenance;
+    /**
+     * Text style attributes.
+     */
+    styleInfo?: Schema$GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo;
   }
   /**
    * Detected break at the end of a Token.
@@ -3675,6 +3817,71 @@ export namespace documentai_v1 {
      * Detected break type.
      */
     type?: string | null;
+  }
+  /**
+   * Font and other text style attributes.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo {
+    /**
+     * Color of the background.
+     */
+    backgroundColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is bold (equivalent to font weight \>= 700).
+     */
+    bold?: boolean | null;
+    /**
+     * Font size in points (1 point is 1/72").
+     */
+    fontSize?: number | null;
+    /**
+     * Name or style of the font.
+     */
+    fontType?: string | null;
+    /**
+     * TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.
+     */
+    fontWeight?: number | null;
+    /**
+     * Whether the text is handwritten.
+     */
+    handwritten?: boolean | null;
+    /**
+     * Whether the text is italic.
+     */
+    italic?: boolean | null;
+    /**
+     * Letter spacing in points.
+     */
+    letterSpacing?: number | null;
+    /**
+     * Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.
+     */
+    pixelFontSize?: number | null;
+    /**
+     * Whether the text are small caps.
+     */
+    smallcaps?: boolean | null;
+    /**
+     * Whether the text is strikethrough.
+     */
+    strikeout?: boolean | null;
+    /**
+     * Whether the text is a subscript.
+     */
+    subscript?: boolean | null;
+    /**
+     * Whether the text is a superscript.
+     */
+    superscript?: boolean | null;
+    /**
+     * Color of the text.
+     */
+    textColor?: Schema$GoogleTypeColor;
+    /**
+     * Whether the text is underlined.
+     */
+    underlined?: boolean | null;
   }
   /**
    * Detected non-text visual elements e.g. checkbox, signature etc. on the page.
@@ -3981,11 +4188,11 @@ export namespace documentai_v1 {
     textAnchor?: Schema$GoogleCloudDocumentaiV1DocumentTextAnchor;
   }
   /**
-   * The long running operation metadata for enable processor method.
+   * The long-running operation metadata for enable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1EnableProcessorMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
@@ -4002,7 +4209,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1EvaluateProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
@@ -4016,7 +4223,7 @@ export namespace documentai_v1 {
     evaluationDocuments?: Schema$GoogleCloudDocumentaiV1BatchDocumentsInputConfig;
   }
   /**
-   * Metadata of the EvaluateProcessorVersion method.
+   * Response of the EvaluateProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1EvaluateProcessorVersionResponse {
     /**
@@ -4243,7 +4450,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1HumanReviewStatus {
     /**
-     * The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.
+     * The name of the operation triggered by the processed document. This field is populated only when the state is `HUMAN_REVIEW_IN_PROGRESS`. It has the same response type and metadata as the long-running operation returned by ReviewDocument.
      */
     humanReviewOperation?: string | null;
     /**
@@ -4256,7 +4463,7 @@ export namespace documentai_v1 {
     stateMessage?: string | null;
   }
   /**
-   * The response from ListEvaluations.
+   * The response from `ListEvaluations`.
    */
   export interface Schema$GoogleCloudDocumentaiV1ListEvaluationsResponse {
     /**
@@ -4353,7 +4560,7 @@ export namespace documentai_v1 {
      */
     state?: string | null;
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc. To get a list of processors types, see FetchProcessorTypes.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`. To get a list of processor types, see FetchProcessorTypes.
      */
     type?: string | null;
   }
@@ -4386,7 +4593,7 @@ export namespace documentai_v1 {
      */
     sampleDocumentUris?: string[] | null;
     /**
-     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
+     * The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      */
     type?: string | null;
   }
@@ -4462,7 +4669,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1ProcessRequest {
     /**
-     * Specifies which fields to include in ProcessResponse's document. Only supports top level document and pages field so it must be in the form of `{document_field_name\}` or `pages.{page_field_name\}`.
+     * Specifies which fields to include in the `ProcessResponse` Document. Only supports top level document and pages field so it must be in the form of `{document_field_name\}` or `pages.{page_field_name\}`.
      */
     fieldMask?: string | null;
     /**
@@ -4505,11 +4712,11 @@ export namespace documentai_v1 {
     mimeType?: string | null;
   }
   /**
-   * The long running operation metadata for review document method.
+   * The long-running operation metadata for review document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
     /**
@@ -4556,11 +4763,11 @@ export namespace documentai_v1 {
     state?: string | null;
   }
   /**
-   * The long running operation metadata for set default processor version method.
+   * The long-running operation metadata for set default processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
@@ -4582,7 +4789,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1TrainProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
     /**
@@ -4650,7 +4857,7 @@ export namespace documentai_v1 {
     trainingDocuments?: Schema$GoogleCloudDocumentaiV1BatchDocumentsInputConfig;
   }
   /**
-   * The response for the TrainProcessorVersion method.
+   * The response for TrainProcessorVersion.
    */
   export interface Schema$GoogleCloudDocumentaiV1TrainProcessorVersionResponse {
     /**
@@ -4659,11 +4866,11 @@ export namespace documentai_v1 {
     processorVersion?: string | null;
   }
   /**
-   * The long running operation metadata for the undeploy processor version method.
+   * The long-running operation metadata for the undeploy processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata {
     /**
-     * The basic metadata of the long running operation.
+     * The basic metadata of the long-running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
@@ -4702,7 +4909,7 @@ export namespace documentai_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$GoogleCloudLocationLocation {
     /**
@@ -5116,7 +5323,7 @@ export namespace documentai_v1 {
     }
 
     /**
-     * Fetches processor types. Note that we do not use ListProcessorTypes here because it is not paginated.
+     * Fetches processor types. Note that we don't use ListProcessorTypes here, because it isn't paginated.
      * @example
      * ```js
      * // Before running the sample:
@@ -9264,7 +9471,7 @@ export namespace documentai_v1 {
      *   const res =
      *     await documentai.projects.locations.processors.processorVersions.evaluations.list(
      *       {
-     *         // The standard list page size. If unspecified, at most 5 evaluations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *         // The standard list page size. If unspecified, at most `5` evaluations will be returned. The maximum value is `100`; values above `100` will be coerced to `100`.
      *         pageSize: 'placeholder-value',
      *         // A page token, received from a previous `ListEvaluations` call. Provide this to retrieve the subsequent page.
      *         pageToken: 'placeholder-value',
@@ -9394,7 +9601,7 @@ export namespace documentai_v1 {
   export interface Params$Resource$Projects$Locations$Processors$Processorversions$Evaluations$List
     extends StandardParameters {
     /**
-     * The standard list page size. If unspecified, at most 5 evaluations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     * The standard list page size. If unspecified, at most `5` evaluations will be returned. The maximum value is `100`; values above `100` will be coerced to `100`.
      */
     pageSize?: number;
     /**
