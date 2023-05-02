@@ -1423,6 +1423,10 @@ export namespace bigquery_v2 {
   }
   export interface Schema$HivePartitioningOptions {
     /**
+     * [Output-only] For permanent external tables, this field is populated with the hive partition keys in the order they were inferred. The types of the partition keys can be deduced by checking the table schema (which will include the partition keys). Not every API will populate this field in the output. For example, Tables.Get will populate it, but Tables.List will not contain this field.
+     */
+    fields?: string[] | null;
+    /**
      * [Optional] When set, what mode of hive partitioning to use when reading data. The following modes are supported. (1) AUTO: automatically infer partition key name(s) and type(s). (2) STRINGS: automatically infer partition key name(s). All types are interpreted as strings. (3) CUSTOM: partition key schema is encoded in the source URI prefix. Not all storage formats support hive partitioning. Requesting hive partitioning on an unsupported format will lead to an error. Currently supported types include: AVRO, CSV, JSON, ORC and Parquet.
      */
     mode?: string | null;
@@ -2531,6 +2535,10 @@ export namespace bigquery_v2 {
      */
     optimalTrialIds?: string[] | null;
     /**
+     * Output only. Remote model info
+     */
+    remoteModelInfo?: Schema$RemoteModelInfo;
+    /**
      * Information for all training runs in increasing order of start_time.
      */
     trainingRuns?: Schema$TrainingRun[];
@@ -2938,6 +2946,27 @@ export namespace bigquery_v2 {
      * User-defined context as a set of key/value pairs, which will be sent as function invocation context together with batched arguments in the requests to the remote service. The total number of bytes of keys and values must be less than 8KB.
      */
     userDefinedContext?: {[key: string]: string} | null;
+  }
+  /**
+   * Remote Model Info
+   */
+  export interface Schema$RemoteModelInfo {
+    /**
+     * Output only. Fully qualified name of the user-provided connection object of the remote model. Format: ```"projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}"```
+     */
+    connection?: string | null;
+    /**
+     * Output only. The endpoint for remote model.
+     */
+    endpoint?: string | null;
+    /**
+     * Output only. Max number of rows in each batch sent to the remote service. If unset, the number of rows in each batch is set dynamically.
+     */
+    maxBatchingRows?: string | null;
+    /**
+     * Output only. The remote service type for remote model.
+     */
+    remoteServiceType?: string | null;
   }
   /**
    * A user-defined function or a stored procedure.
@@ -3678,9 +3707,13 @@ export namespace bigquery_v2 {
      */
     autoArima?: boolean | null;
     /**
-     * The max value of non-seasonal p and q.
+     * The max value of the sum of non-seasonal p and q.
      */
     autoArimaMaxOrder?: string | null;
+    /**
+     * The min value of the sum of non-seasonal p and q.
+     */
+    autoArimaMinOrder?: string | null;
     /**
      * Batch size for dnn models.
      */
@@ -3785,6 +3818,10 @@ export namespace bigquery_v2 {
      * Name of input label columns in training data.
      */
     inputLabelColumns?: string[] | null;
+    /**
+     * Name of the instance weight column for training data. This column isn't be used as a feature.
+     */
+    instanceWeightColumn?: string | null;
     /**
      * Number of integral steps for the integrated gradients explain method.
      */
@@ -3898,6 +3935,10 @@ export namespace bigquery_v2 {
      */
     subsample?: number | null;
     /**
+     * Based on the selected TF version, the corresponding docker image is used to train external models.
+     */
+    tfVersion?: string | null;
+    /**
      * Column to be designated as time series data for ARIMA model.
      */
     timeSeriesDataColumn?: string | null;
@@ -3937,6 +3978,10 @@ export namespace bigquery_v2 {
      * Whether to train a model from the last checkpoint.
      */
     warmStart?: boolean | null;
+    /**
+     * User-selected XGBoost versions for training of XGBoost models.
+     */
+    xgboostVersion?: string | null;
   }
   /**
    * Information about a single training query run for the model.
@@ -6488,6 +6533,7 @@ export namespace bigquery_v2 {
      *   //   "modelReference": {},
      *   //   "modelType": "my_modelType",
      *   //   "optimalTrialIds": [],
+     *   //   "remoteModelInfo": {},
      *   //   "trainingRuns": []
      *   // }
      * }
@@ -6783,6 +6829,7 @@ export namespace bigquery_v2 {
      *       //   "modelReference": {},
      *       //   "modelType": "my_modelType",
      *       //   "optimalTrialIds": [],
+     *       //   "remoteModelInfo": {},
      *       //   "trainingRuns": []
      *       // }
      *     },
@@ -6809,6 +6856,7 @@ export namespace bigquery_v2 {
      *   //   "modelReference": {},
      *   //   "modelType": "my_modelType",
      *   //   "optimalTrialIds": [],
+     *   //   "remoteModelInfo": {},
      *   //   "trainingRuns": []
      *   // }
      * }
