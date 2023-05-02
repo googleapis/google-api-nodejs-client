@@ -582,6 +582,35 @@ export namespace searchads360_v0 {
     optIn?: boolean | null;
   }
   /**
+   * A Search Ads 360 text ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo {
+    /**
+     * The tracking id of the ad.
+     */
+    adTrackId?: string | null;
+    /**
+     * The first line of the ad's description.
+     */
+    description1?: string | null;
+    /**
+     * The second line of the ad's description.
+     */
+    description2?: string | null;
+    /**
+     * The displayed mobile URL of the ad.
+     */
+    displayMobileUrl?: string | null;
+    /**
+     * The displayed URL of the ad.
+     */
+    displayUrl?: string | null;
+    /**
+     * The headline of the ad.
+     */
+    headline?: string | null;
+  }
+  /**
    * Segment only fields.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__Segments {
@@ -1132,6 +1161,10 @@ export namespace searchads360_v0 {
      * Immutable. The resource name of the ad. Ad resource names have the form: `customers/{customer_id\}/ads/{ad_id\}`
      */
     resourceName?: string | null;
+    /**
+     * Immutable. Details pertaining to a text ad.
+     */
+    textAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo;
     /**
      * Output only. The type of ad.
      */
@@ -2523,48 +2556,6 @@ export namespace searchads360_v0 {
      */
     totalResultsCount?: string | null;
   }
-  /**
-   * Request message for SearchAds360Service.SearchStream.
-   */
-  export interface Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamRequest {
-    /**
-     * The number of rows that are returned in each stream response batch. When too large batch is requested, the server may decide to further limit the number of returned rows.
-     */
-    batchSize?: number | null;
-    /**
-     * Required. The query string.
-     */
-    query?: string | null;
-    /**
-     * Determines whether a summary row will be returned. By default, summary row is not returned. If requested, the summary row will be sent in a response by itself after all other query results are returned.
-     */
-    summaryRowSetting?: string | null;
-  }
-  /**
-   * Response message for SearchAds360Service.SearchStream.
-   */
-  export interface Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse {
-    /**
-     * The headers of the custom columns in the results.
-     */
-    customColumnHeaders?: Schema$GoogleAdsSearchads360V0Services__CustomColumnHeader[];
-    /**
-     * FieldMask that represents what fields were requested by the user.
-     */
-    fieldMask?: string | null;
-    /**
-     * The unique id of the request that is used for debugging purposes.
-     */
-    requestId?: string | null;
-    /**
-     * The list of rows that matched the query.
-     */
-    results?: Schema$GoogleAdsSearchads360V0Services__SearchAds360Row[];
-    /**
-     * Summary row that contains summary of metrics in results. Summary of metrics means aggregation of metrics across all results, here aggregation could be sum, average, rate, etc.
-     */
-    summaryRow?: Schema$GoogleAdsSearchads360V0Services__SearchAds360Row;
-  }
 
   export class Resource$Customers {
     context: APIRequestContext;
@@ -3042,157 +3033,6 @@ export namespace searchads360_v0 {
         );
       }
     }
-
-    /**
-     * Returns all rows that match the search stream query. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/searchads360.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const searchads360 = google.searchads360('v0');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await searchads360.customers.searchAds360.searchStream({
-     *     // Required. The ID of the customer being queried.
-     *     customerId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "batchSize": 0,
-     *       //   "query": "my_query",
-     *       //   "summaryRowSetting": "my_summaryRowSetting"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customColumnHeaders": [],
-     *   //   "fieldMask": "my_fieldMask",
-     *   //   "requestId": "my_requestId",
-     *   //   "results": [],
-     *   //   "summaryRow": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    searchStream(
-      params: Params$Resource$Customers$Searchads360$Searchstream,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    searchStream(
-      params?: Params$Resource$Customers$Searchads360$Searchstream,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>;
-    searchStream(
-      params: Params$Resource$Customers$Searchads360$Searchstream,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    searchStream(
-      params: Params$Resource$Customers$Searchads360$Searchstream,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>
-    ): void;
-    searchStream(
-      params: Params$Resource$Customers$Searchads360$Searchstream,
-      callback: BodyResponseCallback<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>
-    ): void;
-    searchStream(
-      callback: BodyResponseCallback<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>
-    ): void;
-    searchStream(
-      paramsOrCallback?:
-        | Params$Resource$Customers$Searchads360$Searchstream
-        | BodyResponseCallback<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Customers$Searchads360$Searchstream;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Searchads360$Searchstream;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://searchads360.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v0/customers/{+customerId}/searchAds360:searchStream'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['customerId'],
-        pathParams: ['customerId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Customers$Searchads360$Search
@@ -3206,18 +3046,6 @@ export namespace searchads360_v0 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360Request;
-  }
-  export interface Params$Resource$Customers$Searchads360$Searchstream
-    extends StandardParameters {
-    /**
-     * Required. The ID of the customer being queried.
-     */
-    customerId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAdsSearchads360V0Services__SearchSearchAds360StreamRequest;
   }
 
   export class Resource$Searchads360fields {
