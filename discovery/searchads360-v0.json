@@ -190,34 +190,6 @@
               "scopes": [
                 "https://www.googleapis.com/auth/doubleclicksearch"
               ]
-            },
-            "searchStream": {
-              "description": "Returns all rows that match the search stream query. List of thrown errors: [AuthenticationError]() [AuthorizationError]() [HeaderError]() [InternalError]() [QueryError]() [QuotaError]() [RequestError]()",
-              "flatPath": "v0/customers/{customersId}/searchAds360:searchStream",
-              "httpMethod": "POST",
-              "id": "searchads360.customers.searchAds360.searchStream",
-              "parameterOrder": [
-                "customerId"
-              ],
-              "parameters": {
-                "customerId": {
-                  "description": "Required. The ID of the customer being queried.",
-                  "location": "path",
-                  "pattern": "^[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v0/customers/{+customerId}/searchAds360:searchStream",
-              "request": {
-                "$ref": "GoogleAdsSearchads360V0Services__SearchSearchAds360StreamRequest"
-              },
-              "response": {
-                "$ref": "GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/doubleclicksearch"
-              ]
             }
           }
         }
@@ -271,7 +243,7 @@
       }
     }
   },
-  "revision": "20230405",
+  "revision": "20230425",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AgeRangeInfo": {
@@ -995,6 +967,38 @@
         "optIn": {
           "description": "Whether the campaign is opted in to real-time bidding.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo": {
+      "description": "A Search Ads 360 text ad.",
+      "id": "GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo",
+      "properties": {
+        "adTrackId": {
+          "description": "The tracking id of the ad.",
+          "format": "int64",
+          "type": "string"
+        },
+        "description1": {
+          "description": "The first line of the ad's description.",
+          "type": "string"
+        },
+        "description2": {
+          "description": "The second line of the ad's description.",
+          "type": "string"
+        },
+        "displayMobileUrl": {
+          "description": "The displayed mobile URL of the ad.",
+          "type": "string"
+        },
+        "displayUrl": {
+          "description": "The displayed URL of the ad.",
+          "type": "string"
+        },
+        "headline": {
+          "description": "The headline of the ad.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2275,6 +2279,10 @@
         "resourceName": {
           "description": "Immutable. The resource name of the ad. Ad resource names have the form: `customers/{customer_id}/ads/{ad_id}`",
           "type": "string"
+        },
+        "textAd": {
+          "$ref": "GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo",
+          "description": "Immutable. Details pertaining to a text ad."
         },
         "type": {
           "description": "Output only. The type of ad.",
@@ -5138,74 +5146,6 @@
           "description": "Total number of results that match the query ignoring the LIMIT clause.",
           "format": "int64",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAdsSearchads360V0Services__SearchSearchAds360StreamRequest": {
-      "description": "Request message for SearchAds360Service.SearchStream.",
-      "id": "GoogleAdsSearchads360V0Services__SearchSearchAds360StreamRequest",
-      "properties": {
-        "batchSize": {
-          "description": "The number of rows that are returned in each stream response batch. When too large batch is requested, the server may decide to further limit the number of returned rows.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "query": {
-          "description": "Required. The query string.",
-          "type": "string"
-        },
-        "summaryRowSetting": {
-          "description": "Determines whether a summary row will be returned. By default, summary row is not returned. If requested, the summary row will be sent in a response by itself after all other query results are returned.",
-          "enum": [
-            "UNSPECIFIED",
-            "UNKNOWN",
-            "NO_SUMMARY_ROW",
-            "SUMMARY_ROW_WITH_RESULTS",
-            "SUMMARY_ROW_ONLY"
-          ],
-          "enumDescriptions": [
-            "Not specified.",
-            "Represent unknown values of return summary row.",
-            "Do not return summary row.",
-            "Return summary row along with results. The summary row will be returned in the last batch alone (last batch will contain no results).",
-            "Return summary row only and return no results."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse": {
-      "description": "Response message for SearchAds360Service.SearchStream.",
-      "id": "GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse",
-      "properties": {
-        "customColumnHeaders": {
-          "description": "The headers of the custom columns in the results.",
-          "items": {
-            "$ref": "GoogleAdsSearchads360V0Services__CustomColumnHeader"
-          },
-          "type": "array"
-        },
-        "fieldMask": {
-          "description": "FieldMask that represents what fields were requested by the user.",
-          "format": "google-fieldmask",
-          "type": "string"
-        },
-        "requestId": {
-          "description": "The unique id of the request that is used for debugging purposes.",
-          "type": "string"
-        },
-        "results": {
-          "description": "The list of rows that matched the query.",
-          "items": {
-            "$ref": "GoogleAdsSearchads360V0Services__SearchAds360Row"
-          },
-          "type": "array"
-        },
-        "summaryRow": {
-          "$ref": "GoogleAdsSearchads360V0Services__SearchAds360Row",
-          "description": "Summary row that contains summary of metrics in results. Summary of metrics means aggregation of metrics across all results, here aggregation could be sum, average, rate, etc."
         }
       },
       "type": "object"
