@@ -8997,7 +8997,7 @@ export namespace androidpublisher_v3 {
      *   // Do the magic
      *   const res =
      *     await androidpublisher.externaltransactions.createexternaltransaction({
-     *       // Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/.
+     *       // Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.
      *       externalTransactionId: 'placeholder-value',
      *       // Required. The parent resource where this external transaction will be created. Format: applications/{package_name\}
      *       parent: 'applications/my-application',
@@ -9451,7 +9451,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Externaltransactions$Createexternaltransaction
     extends StandardParameters {
     /**
-     * Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/.
+     * Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.
      */
     externalTransactionId?: string;
     /**
@@ -10237,7 +10237,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Deletes an in-app product (i.e. a managed product or a subscriptions).
+     * Deletes an in-app product (i.e. a managed product or a subscription).
      * @example
      * ```js
      * // Before running the sample:
@@ -10506,7 +10506,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Creates an in-app product (i.e. a managed product or a subscriptions).
+     * Creates an in-app product (i.e. a managed product or a subscription).
      * @example
      * ```js
      * // Before running the sample:
@@ -10700,7 +10700,7 @@ export namespace androidpublisher_v3 {
      *     maxResults: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // Deprecated and ignored. Set the `token` parameter to rertieve the next page.
+     *     // Deprecated and ignored. Set the `token` parameter to retrieve the next page.
      *     startIndex: 'placeholder-value',
      *     // Pagination token. If empty, list starts at the first product.
      *     token: 'placeholder-value',
@@ -10816,7 +10816,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Patches an in-app product (i.e. a managed product or a subscriptions).
+     * Patches an in-app product (i.e. a managed product or a subscription).
      * @example
      * ```js
      * // Before running the sample:
@@ -10982,7 +10982,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Updates an in-app product (i.e. a managed product or a subscriptions).
+     * Updates an in-app product (i.e. a managed product or a subscription).
      * @example
      * ```js
      * // Before running the sample:
@@ -11199,7 +11199,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * Deprecated and ignored. Set the `token` parameter to rertieve the next page.
+     * Deprecated and ignored. Set the `token` parameter to retrieve the next page.
      */
     startIndex?: number;
     /**
