@@ -332,6 +332,7 @@ import {VERSIONS as gameservicesVersions, gameservices} from './gameservices';
 import {VERSIONS as genomicsVersions, genomics} from './genomics';
 import {VERSIONS as gkebackupVersions, gkebackup} from './gkebackup';
 import {VERSIONS as gkehubVersions, gkehub} from './gkehub';
+import {VERSIONS as gkeonpremVersions, gkeonprem} from './gkeonprem';
 import {VERSIONS as gmailVersions, gmail} from './gmail';
 import {
   VERSIONS as gmailpostmastertoolsVersions,
@@ -791,6 +792,7 @@ export const APIS: APIList = {
   genomics: genomicsVersions,
   gkebackup: gkebackupVersions,
   gkehub: gkehubVersions,
+  gkeonprem: gkeonpremVersions,
   gmail: gmailVersions,
   gmailpostmastertools: gmailpostmastertoolsVersions,
   groupsmigration: groupsmigrationVersions,
@@ -1063,6 +1065,7 @@ export class GeneratedAPIs {
   genomics = genomics;
   gkebackup = gkebackup;
   gkehub = gkehub;
+  gkeonprem = gkeonprem;
   gmail = gmail;
   gmailpostmastertools = gmailpostmastertools;
   groupsmigration = groupsmigration;
