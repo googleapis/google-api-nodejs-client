@@ -901,7 +901,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of “inherited”). Updating the display name and custom config of a module is supported on resident modules only.",
+                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of \"inherited\"). Updating the display name and custom config of a module is supported on resident modules only.",
                   "flatPath": "v1/folders/{foldersId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
                   "httpMethod": "PATCH",
                   "id": "securitycenter.folders.securityHealthAnalyticsSettings.customModules.patch",
@@ -1147,7 +1147,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
+                      "description": "The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
                       "location": "path",
                       "pattern": "^folders/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -2318,7 +2318,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of “inherited”). Updating the display name and custom config of a module is supported on resident modules only.",
+                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of \"inherited\"). Updating the display name and custom config of a module is supported on resident modules only.",
                   "flatPath": "v1/organizations/{organizationsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
                   "httpMethod": "PATCH",
                   "id": "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.patch",
@@ -2768,7 +2768,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
+                      "description": "The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -3730,7 +3730,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of “inherited”). Updating the display name and custom config of a module is supported on resident modules only.",
+                  "description": "Updates the SecurityHealthAnalyticsCustomModule under the given name based on the given update mask. Updating the enablement state is supported on both resident and inherited modules (though resident modules cannot have an enablement state of \"inherited\"). Updating the display name and custom config of a module is supported on resident modules only.",
                   "flatPath": "v1/projects/{projectsId}/securityHealthAnalyticsSettings/customModules/{customModulesId}",
                   "httpMethod": "PATCH",
                   "id": "securitycenter.projects.securityHealthAnalyticsSettings.customModules.patch",
@@ -3976,7 +3976,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
+                      "description": "The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sources/[^/]+/findings/[^/]+$",
                       "required": true,
@@ -4143,7 +4143,7 @@
       }
     }
   },
-  "revision": "20230410",
+  "revision": "20230420",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -4163,22 +4163,22 @@
           "type": "string"
         },
         "principalEmail": {
-          "description": "Associated email, such as \"foo@google.com\". The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).",
+          "description": "Associated email, such as \"foo@google.com\". The email address of the authenticated user or a service account acting on behalf of a third party principal making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).",
           "type": "string"
         },
         "principalSubject": {
-          "description": "A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subjects/{subject}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]`",
+          "description": "A string that represents the principal_subject that is associated with the identity. Unlike `principal_email`, `principal_subject` supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format is `principal://iam.googleapis.com/{identity pool name}/subject/{subject}`. Some GKE identities, such as GKE_WORKLOAD, FREEFORM, and GKE_HUB_WORKLOAD, still use the legacy format `serviceAccount:{identity pool name}[{subject}]`.",
           "type": "string"
         },
         "serviceAccountDelegationInfo": {
-          "description": "Identity delegation history of an authenticated service account that makes the request. It contains information on the real authorities that try to access GCP resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.",
+          "description": "The identity delegation history of an authenticated service account that made the request. The `serviceAccountDelegationInfo[]` object contains information about the real authorities that try to access Google Cloud resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.",
           "items": {
             "$ref": "ServiceAccountDelegationInfo"
           },
           "type": "array"
         },
         "serviceAccountKeyName": {
-          "description": "The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: \"//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}\" ",
+          "description": "The name of the service account key that was used to create or exchange credentials when authenticating the service account that made the request. This is a scheme-less URI full resource name. For example: \"//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}\". ",
           "type": "string"
         },
         "serviceName": {
@@ -4186,26 +4186,26 @@
           "type": "string"
         },
         "userAgentFamily": {
-          "description": "What kind of user agent is associated, for example operating system shells, embedded or stand-alone applications, etc.",
+          "description": "Type of user agent associated with the finding. For example, an operating system shell or an embedded or standalone application.",
           "type": "string"
         },
         "userName": {
-          "description": "A string that represents the username of a user, user account, or other entity involved in the access event. What the entity is and what its role in the access event is depends on the finding that this field appears in. The entity is likely not an IAM principal, but could be a user that is logged into an operating system, if the finding is VM-related, or a user that is logged into some type of application that is involved in the access event.",
+          "description": "A string that represents a username. The username provided depends on the type of the finding and is likely not an IAM principal. For example, this can be a system username if the finding is related to a virtual machine, or it can be an application login username.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "AccessReview": {
-      "description": "Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.",
+      "description": "Conveys information about a Kubernetes access review (such as one returned by a [`kubectl auth can-i`](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access) command) that was involved in a finding.",
       "id": "AccessReview",
       "properties": {
         "group": {
-          "description": "Group is the API Group of the Resource. \"*\" means all.",
+          "description": "The API group of the resource. \"*\" means all.",
           "type": "string"
         },
         "name": {
-          "description": "Name is the name of the resource being requested. Empty means all.",
+          "description": "The name of the resource being requested. Empty means all.",
           "type": "string"
         },
         "ns": {
@@ -4213,19 +4213,19 @@
           "type": "string"
         },
         "resource": {
-          "description": "Resource is the optional resource type requested. \"*\" means all.",
+          "description": "The optional resource type requested. \"*\" means all.",
           "type": "string"
         },
         "subresource": {
-          "description": "Subresource is the optional subresource type.",
+          "description": "The optional subresource type.",
           "type": "string"
         },
         "verb": {
-          "description": "Verb is a Kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. \"*\" means all.",
+          "description": "A Kubernetes resource API verb, like get, list, watch, create, update, delete, proxy. \"*\" means all.",
           "type": "string"
         },
         "version": {
-          "description": "Version is the API Version of the Resource. \"*\" means all.",
+          "description": "The API version of the resource. \"*\" means all.",
           "type": "string"
         }
       },
@@ -4415,7 +4415,7 @@
           "type": "boolean"
         },
         "infoType": {
-          "description": "The [type of information](https://cloud.google.com/dlp/docs/infotypes-reference) found, for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.",
+          "description": "The type of information (or *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found, for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.",
           "type": "string"
         },
         "infoTypeCount": {
@@ -4435,18 +4435,18 @@
       "id": "Compliance",
       "properties": {
         "ids": {
-          "description": "Policies within the standard/benchmark e.g. A.12.4.1",
+          "description": "Policies within the standard or benchmark, for example, A.12.4.1",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "standard": {
-          "description": "Refers to industry wide standards or benchmarks e.g. \"cis\", \"pci\", \"owasp\", etc.",
+          "description": "Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.",
           "type": "string"
         },
         "version": {
-          "description": "Version of the standard/benchmark e.g. 1.1",
+          "description": "Version of the standard or benchmark, for example, 1.1",
           "type": "string"
         }
       },
@@ -4509,7 +4509,7 @@
       "type": "object"
     },
     "ContactDetails": {
-      "description": "The details pertaining to specific contacts",
+      "description": "Details about specific contacts",
       "id": "ContactDetails",
       "properties": {
         "contacts": {
@@ -4527,7 +4527,7 @@
       "id": "Container",
       "properties": {
         "imageId": {
-          "description": "Optional container image id, when provided by the container runtime. Uniquely identifies the container image launched using a container image digest.",
+          "description": "Optional container image ID, if provided by the container runtime. Uniquely identifies the container image launched using a container image digest.",
           "type": "string"
         },
         "labels": {
@@ -4538,11 +4538,11 @@
           "type": "array"
         },
         "name": {
-          "description": "Container name.",
+          "description": "Name of the container.",
           "type": "string"
         },
         "uri": {
-          "description": "Container image URI provided when configuring a pod/container. May identify a container image version using mutable tags.",
+          "description": "Container image URI provided when configuring a pod or container. This string can identify a container image version using mutable tags.",
           "type": "string"
         }
       },
@@ -4711,30 +4711,30 @@
       "type": "object"
     },
     "Database": {
-      "description": "Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of CloudSQL instances or Cloud Spanner instances), or the database instance itself. Some database resources may not have the full resource name populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. CloudSQL databases). In these cases only the display name will be provided.",
+      "description": "Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided. Some database resources may not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. Cloud SQL databases). In these cases only the display name will be provided.",
       "id": "Database",
       "properties": {
         "displayName": {
-          "description": "The human readable name of the database the user connected to.",
+          "description": "The human-readable name of the database that the user connected to.",
           "type": "string"
         },
         "grantees": {
-          "description": "The target usernames/roles/groups of a SQL privilege grant (not an IAM policy change).",
+          "description": "The target usernames, roles, or groups of an SQL privilege grant, which is not an IAM policy change.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "name": {
-          "description": "The full resource name of the database the user connected to, if it is supported by CAI. (https://google.aip.dev/122#full-resource-names)",
+          "description": "The [full resource name](https://google.aip.dev/122#full-resource-names) of the database that the user connected to, if it is supported by Cloud Asset Inventory.",
           "type": "string"
         },
         "query": {
-          "description": "The SQL statement associated with the relevant access.",
+          "description": "The SQL statement that is associated with the database access.",
           "type": "string"
         },
         "userName": {
-          "description": "The username used to connect to the DB. This may not necessarily be an IAM principal, and has no required format.",
+          "description": "The username used to connect to the database. The username might not be an IAM principal and does not have a set format.",
           "type": "string"
         }
       },
@@ -4763,7 +4763,7 @@
       "type": "object"
     },
     "EnvironmentVariable": {
-      "description": "EnvironmentVariable is a name-value pair to store environment variables for Process.",
+      "description": "A name-value pair representing an environment variable used in an operating system process.",
       "id": "EnvironmentVariable",
       "properties": {
         "name": {
@@ -4778,25 +4778,25 @@
       "type": "object"
     },
     "ExfilResource": {
-      "description": "Resource that has been exfiltrated or exfiltrated_to.",
+      "description": "Resource where data was exfiltrated from or exfiltrated to.",
       "id": "ExfilResource",
       "properties": {
         "components": {
-          "description": "Subcomponents of the asset that is exfiltrated - these could be URIs used during exfiltration, table names, databases, filenames, etc. For example, multiple tables may be exfiltrated from the same CloudSQL instance, or multiple files from the same Cloud Storage bucket.",
+          "description": "Subcomponents of the asset that was exfiltrated, like URIs used during exfiltration, table names, databases, and filenames. For example, multiple tables might have been exfiltrated from the same Cloud SQL instance, or multiple files might have been exfiltrated from the same Cloud Storage bucket.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "name": {
-          "description": "Resource's URI (https://google.aip.dev/122#full-resource-names)",
+          "description": "The resource's [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name).",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Exfiltration": {
-      "description": "Exfiltration represents a data exfiltration attempt of one or more sources to one or more targets. Sources represent the source of data that is exfiltrated, and Targets represents the destination the data was copied to.",
+      "description": "Exfiltration represents a data exfiltration attempt from one or more sources to one or more targets. The `sources` attribute lists the sources of the exfiltrated data. The `targets` attribute lists the destinations the data was copied to.",
       "id": "Exfiltration",
       "properties": {
         "sources": {
@@ -4844,7 +4844,7 @@
       "id": "File",
       "properties": {
         "contents": {
-          "description": "Prefix of the file contents as a JSON encoded string. (Currently only populated for Malicious Script Executed findings.)",
+          "description": "Prefix of the file contents as a JSON-encoded string.",
           "type": "string"
         },
         "hashedSize": {
@@ -4878,7 +4878,7 @@
       "properties": {
         "access": {
           "$ref": "Access",
-          "description": "Access details associated to the Finding, such as more information on the caller, which method was accessed, from where, etc."
+          "description": "Access details associated with the finding, such as more information on the caller, which method was accessed, and from where."
         },
         "canonicalName": {
           "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\" or \"projects/{project_number}/sources/{source_id}/findings/{finding_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
@@ -4890,11 +4890,11 @@
         },
         "cloudDlpDataProfile": {
           "$ref": "CloudDlpDataProfile",
-          "description": "Cloud DLP data profile associated with the finding."
+          "description": "Cloud DLP data profile that is associated with the finding."
         },
         "cloudDlpInspection": {
           "$ref": "CloudDlpInspection",
-          "description": "Cloud DLP inspection associated with the finding."
+          "description": "Cloud Data Loss Prevention (Cloud DLP) inspection results that are associated with the finding."
         },
         "compliances": {
           "description": "Contains compliance information for security standards associated to the finding.",
@@ -4919,7 +4919,7 @@
           "type": "object"
         },
         "containers": {
-          "description": "Containers associated with the finding. containers provides information for both Kubernetes and non-Kubernetes containers.",
+          "description": "Containers associated with the finding. This field provides information for both Kubernetes and non-Kubernetes containers.",
           "items": {
             "$ref": "Container"
           },
@@ -4935,7 +4935,7 @@
           "description": "Database associated with the finding."
         },
         "description": {
-          "description": "Contains more detail about the finding.",
+          "description": "Contains more details about the finding.",
           "type": "string"
         },
         "eventTime": {
@@ -4945,7 +4945,7 @@
         },
         "exfiltration": {
           "$ref": "Exfiltration",
-          "description": "Represents exfiltration associated with the Finding."
+          "description": "Represents exfiltrations associated with the finding."
         },
         "externalSystems": {
           "additionalProperties": {
@@ -4987,7 +4987,7 @@
           "type": "string"
         },
         "iamBindings": {
-          "description": "Represents IAM bindings associated with the Finding.",
+          "description": "Represents IAM bindings associated with the finding.",
           "items": {
             "$ref": "IamBinding"
           },
@@ -4995,11 +4995,11 @@
         },
         "indicator": {
           "$ref": "Indicator",
-          "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
+          "description": "Represents what's commonly known as an *indicator of compromise* (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise)."
         },
         "kernelRootkit": {
           "$ref": "KernelRootkit",
-          "description": "Kernel Rootkit signature."
+          "description": "Signature of the kernel rootkit."
         },
         "kubernetes": {
           "$ref": "Kubernetes",
@@ -5030,7 +5030,7 @@
           "type": "string"
         },
         "muteInitiator": {
-          "description": "First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc. Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.",
+          "description": "Records additional information about the mute operation, for example, the [mute configuration](/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.",
           "type": "string"
         },
         "muteUpdateTime": {
@@ -5040,11 +5040,11 @@
           "type": "string"
         },
         "name": {
-          "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
+          "description": "The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\", \"projects/{project_id}/sources/{source_id}/findings/{finding_id}\".",
           "type": "string"
         },
         "nextSteps": {
-          "description": "Next steps associate to the finding.",
+          "description": "Steps to address the finding.",
           "type": "string"
         },
         "parent": {
@@ -5083,7 +5083,7 @@
           ],
           "enumDescriptions": [
             "This value is used for findings when a source doesn't write a severity value.",
-            "Vulnerability: A critical vulnerability is easily discoverable by an external actor, exploitable, and results in the direct ability to execute arbitrary code, exfiltrate data, and otherwise gain additional access and privileges to cloud resources and workloads. Examples include publicly accessible unprotected user data, public SSH access with weak or no passwords, etc. Threat: Indicates a threat that is able to access, modify, or delete data or execute unauthorized code within existing resources.",
+            "Vulnerability: A critical vulnerability is easily discoverable by an external actor, exploitable, and results in the direct ability to execute arbitrary code, exfiltrate data, and otherwise gain additional access and privileges to cloud resources and workloads. Examples include publicly accessible unprotected user data and public SSH access with weak or no passwords. Threat: Indicates a threat that is able to access, modify, or delete data or execute unauthorized code within existing resources.",
             "Vulnerability: A high risk vulnerability can be easily discovered and exploited in combination with other vulnerabilities in order to gain direct access and the ability to execute arbitrary code, exfiltrate data, and otherwise gain additional access and privileges to cloud resources and workloads. An example is a database with weak or no passwords that is only accessible internally. This database could easily be compromised by an actor that had access to the internal network. Threat: Indicates a threat that is able to create new computational resources in an environment but not able to access data or execute code in existing resources.",
             "Vulnerability: A medium risk vulnerability could be used by an actor to gain access to resources or privileges that enable them to eventually (through multiple steps or a complex exploit) gain access and the ability to execute arbitrary code or exfiltrate data. An example is a service account with access to more projects than it should have. If an actor gains access to the service account, they could potentially use that access to manipulate a project the service account was not intended to. Threat: Indicates a threat that is able to cause operational impact but may not access data or execute unauthorized code.",
             "Vulnerability: A low risk vulnerability hampers a security organization's ability to detect vulnerabilities or active threats in their deployment, or prevents the root cause investigation of security issues. An example is monitoring and logs being disabled for resource configurations and access. Threat: Indicates a threat that has obtained minimal access to an environment but is not able to access data, execute code, or create resources."
@@ -5217,11 +5217,11 @@
       "id": "GoogleCloudSecuritycenterV1Binding",
       "properties": {
         "name": {
-          "description": "Name for binding.",
+          "description": "Name for the binding.",
           "type": "string"
         },
         "ns": {
-          "description": "Namespace for binding.",
+          "description": "Namespace for the binding.",
           "type": "string"
         },
         "role": {
@@ -5975,7 +5975,7 @@
           "type": "string"
         },
         "member": {
-          "description": "A single identity requesting access for a Cloud Platform resource, e.g. \"foo@google.com\".",
+          "description": "A single identity requesting access for a Cloud Platform resource, for example, \"foo@google.com\".",
           "type": "string"
         },
         "role": {
@@ -6036,39 +6036,39 @@
       "id": "KernelRootkit",
       "properties": {
         "name": {
-          "description": "Rootkit name when available.",
+          "description": "Rootkit name, when available.",
           "type": "string"
         },
         "unexpectedCodeModification": {
-          "description": "True when unexpected modifications of kernel code memory are present.",
+          "description": "True if unexpected modifications of kernel code memory are present.",
           "type": "boolean"
         },
         "unexpectedFtraceHandler": {
-          "description": "True when `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
+          "description": "True if `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
           "type": "boolean"
         },
         "unexpectedInterruptHandler": {
-          "description": "True when interrupt handlers that are are not in the expected kernel or module code regions are present.",
+          "description": "True if interrupt handlers that are are not in the expected kernel or module code regions are present.",
           "type": "boolean"
         },
         "unexpectedKernelCodePages": {
-          "description": "True when kernel code pages that are not in the expected kernel or module code regions are present.",
+          "description": "True if kernel code pages that are not in the expected kernel or module code regions are present.",
           "type": "boolean"
         },
         "unexpectedKprobeHandler": {
-          "description": "True when `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
+          "description": "True if `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.",
           "type": "boolean"
         },
         "unexpectedProcessesInRunqueue": {
-          "description": "True when unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.",
+          "description": "True if unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.",
           "type": "boolean"
         },
         "unexpectedReadOnlyDataModification": {
-          "description": "True when unexpected modifications of kernel read-only data memory are present.",
+          "description": "True if unexpected modifications of kernel read-only data memory are present.",
           "type": "boolean"
         },
         "unexpectedSystemCallHandler": {
-          "description": "True when system call handlers that are are not in the expected kernel or module code regions are present.",
+          "description": "True if system call handlers that are are not in the expected kernel or module code regions are present.",
           "type": "boolean"
         }
       },
@@ -6079,42 +6079,42 @@
       "id": "Kubernetes",
       "properties": {
         "accessReviews": {
-          "description": "Provides information on any Kubernetes access reviews (i.e. privilege checks) relevant to the finding.",
+          "description": "Provides information on any Kubernetes access reviews (privilege checks) relevant to the finding.",
           "items": {
             "$ref": "AccessReview"
           },
           "type": "array"
         },
         "bindings": {
-          "description": "Provides Kubernetes role binding information for findings that involve RoleBindings or ClusterRoleBindings.",
+          "description": "Provides Kubernetes role binding information for findings that involve [RoleBindings or ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).",
           "items": {
             "$ref": "GoogleCloudSecuritycenterV1Binding"
           },
           "type": "array"
         },
         "nodePools": {
-          "description": "GKE Node Pools associated with the finding. This field will contain NodePool information for each Node, when it is available.",
+          "description": "GKE [node pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools) associated with the finding. This field contains node pool information for each node, when it is available.",
           "items": {
             "$ref": "NodePool"
           },
           "type": "array"
         },
         "nodes": {
-          "description": "Provides Kubernetes Node information.",
+          "description": "Provides Kubernetes [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes) information.",
           "items": {
             "$ref": "Node"
           },
           "type": "array"
         },
         "pods": {
-          "description": "Kubernetes Pods associated with the finding. This field will contain Pod records for each container that is owned by a Pod.",
+          "description": "Kubernetes [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) associated with the finding. This field contains Pod records for each container that is owned by a Pod.",
           "items": {
             "$ref": "Pod"
           },
           "type": "array"
         },
         "roles": {
-          "description": "Provides Kubernetes role information for findings that involve Roles or ClusterRoles.",
+          "description": "Provides Kubernetes role information for findings that involve [Roles or ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).",
           "items": {
             "$ref": "Role"
           },
@@ -6124,15 +6124,15 @@
       "type": "object"
     },
     "Label": {
-      "description": "Label represents a generic name=value label. Label has separate name and value fields to support filtering with contains().",
+      "description": "Represents a generic name-value label. A label has separate name and value fields to support filtering with the `contains()` function. For more information, see [Filtering on array-type fields](https://cloud.google.com/security-command-center/docs/how-to-api-list-findings#array-contains-filtering).",
       "id": "Label",
       "properties": {
         "name": {
-          "description": "Label name.",
+          "description": "Name of the label.",
           "type": "string"
         },
         "value": {
-          "description": "Label value.",
+          "description": "Value that corresponds to the label's name.",
           "type": "string"
         }
       },
@@ -6212,7 +6212,7 @@
       "type": "object"
     },
     "ListDescendantSecurityHealthAnalyticsCustomModulesResponse": {
-      "description": "Response message for listing descendant security health analytics custom modules.",
+      "description": "Response message for listing descendant Security Health Analytics custom modules.",
       "id": "ListDescendantSecurityHealthAnalyticsCustomModulesResponse",
       "properties": {
         "nextPageToken": {
@@ -6230,7 +6230,7 @@
       "type": "object"
     },
     "ListEffectiveSecurityHealthAnalyticsCustomModulesResponse": {
-      "description": "Response message for listing effective security health analytics custom modules.",
+      "description": "Response message for listing effective Security Health Analytics custom modules.",
       "id": "ListEffectiveSecurityHealthAnalyticsCustomModulesResponse",
       "properties": {
         "effectiveSecurityHealthAnalyticsCustomModules": {
@@ -6364,7 +6364,7 @@
       "type": "object"
     },
     "ListSecurityHealthAnalyticsCustomModulesResponse": {
-      "description": "Response message for listing security health analytics custom modules.",
+      "description": "Response message for listing Security Health Analytics custom modules.",
       "id": "ListSecurityHealthAnalyticsCustomModulesResponse",
       "properties": {
         "nextPageToken": {
@@ -6674,22 +6674,22 @@
       "type": "object"
     },
     "Node": {
-      "description": "Kubernetes Nodes associated with the finding.",
+      "description": "Kubernetes nodes associated with the finding.",
       "id": "Node",
       "properties": {
         "name": {
-          "description": "Full Resource name of the Compute Engine VM running the cluster node.",
+          "description": "[Full resource name](https://google.aip.dev/122#full-resource-names) of the Compute Engine VM running the cluster node.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "NodePool": {
-      "description": "Provides GKE Node Pool information.",
+      "description": "Provides GKE node pool information.",
       "id": "NodePool",
       "properties": {
         "name": {
-          "description": "Kubernetes Node pool name.",
+          "description": "Kubernetes node pool name.",
           "type": "string"
         },
         "nodes": {
@@ -6785,7 +6785,7 @@
       "type": "object"
     },
     "Pod": {
-      "description": "Kubernetes Pod.",
+      "description": "A Kubernetes Pod.",
       "id": "Pod",
       "properties": {
         "containers": {
@@ -6882,22 +6882,22 @@
           "type": "array"
         },
         "name": {
-          "description": "The process name visible in utilities like `top` and `ps`; it can be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.",
+          "description": "The process name, as displayed in utilities like `top` and `ps`. This name can be accessed through `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.",
           "type": "string"
         },
         "parentPid": {
-          "description": "The parent process id.",
+          "description": "The parent process ID.",
           "format": "int64",
           "type": "string"
         },
         "pid": {
-          "description": "The process id.",
+          "description": "The process ID.",
           "format": "int64",
           "type": "string"
         },
         "script": {
           "$ref": "File",
-          "description": "When the process represents the invocation of a script, `binary` provides information about the interpreter while `script` provides information about the script file provided to the interpreter."
+          "description": "When the process represents the invocation of a script, `binary` provides information about the interpreter, while `script` provides information about the script file provided to the interpreter."
         }
       },
       "type": "object"
@@ -7222,11 +7222,11 @@
       "type": "object"
     },
     "Subject": {
-      "description": "Represents a Kubernetes Subject.",
+      "description": "Represents a Kubernetes subject.",
       "id": "Subject",
       "properties": {
         "kind": {
-          "description": "Authentication type for subject.",
+          "description": "Authentication type for the subject.",
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
             "USER",
@@ -7236,17 +7236,17 @@
           "enumDescriptions": [
             "Authentication is not specified.",
             "User with valid certificate.",
-            "Users managed by Kubernetes API with credentials stored as Secrets.",
+            "Users managed by Kubernetes API with credentials stored as secrets.",
             "Collection of users."
           ],
           "type": "string"
         },
         "name": {
-          "description": "Name for subject.",
+          "description": "Name for the subject.",
           "type": "string"
         },
         "ns": {
-          "description": "Namespace for subject.",
+          "description": "Namespace for the subject.",
           "type": "string"
         }
       },
