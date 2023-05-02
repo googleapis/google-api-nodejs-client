@@ -378,16 +378,16 @@ export namespace chat_v1 {
      */
     platform?: string | null;
     /**
-     * The timezone ID and offset from Coordinated Universal Time (UTC).
+     * The timezone ID and offset from Coordinated Universal Time (UTC). Only supported for the event types [`CARD_CLICKED`](https://developers.google.com/chat/api/reference/rest/v1/EventType#ENUM_VALUES.CARD_CLICKED) and [`SUBMIT_DIALOG`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType#ENUM_VALUES.SUBMIT_DIALOG).
      */
     timeZone?: Schema$TimeZone;
     /**
-     * The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US". Not supported by Chat apps.
+     * The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US".
      */
     userLocale?: string | null;
   }
   /**
-   * Date input values. Not supported by Chat apps.
+   * Date input values.
    */
   export interface Schema$DateInput {
     /**
@@ -396,7 +396,7 @@ export namespace chat_v1 {
     msSinceEpoch?: string | null;
   }
   /**
-   * Date and time input values. Not supported by Chat apps.
+   * Date and time input values.
    */
   export interface Schema$DateTimeInput {
     /**
@@ -569,7 +569,7 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * A text, icon, or text + icon button that users can click. To make an image a clickable button, specify an Image (not an ImageComponent) and set an `onClick` action. Currently supported in Chat apps (including [dialogs] (https://developers.google.com/chat/how-tos/dialogs) and [card messages] (https://developers.google.com/chat/api/guides/message-formats/cards)) and Google Workspace Add-ons.
+   * A text, icon, or text + icon button that users can click. To make an image a clickable button, specify an Image (not an ImageComponent) and set an `onClick` action.
    */
   export interface Schema$GoogleAppsCardV1Button {
     /**
@@ -619,7 +619,7 @@ export namespace chat_v1 {
      */
     displayStyle?: string | null;
     /**
-     * The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Chat apps support `fixedFooter` in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not in [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
+     * The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
      */
     fixedFooter?: Schema$GoogleAppsCardV1CardFixedFooter;
     /**
@@ -653,7 +653,7 @@ export namespace chat_v1 {
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
   /**
-   * A persistent (sticky) footer that that appears at the bottom of the card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Chat apps support `fixedFooter` in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not in [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
+   * A persistent (sticky) footer that that appears at the bottom of the card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
    */
   export interface Schema$GoogleAppsCardV1CardFixedFooter {
     /**
@@ -752,7 +752,7 @@ export namespace chat_v1 {
      */
     switchControl?: Schema$GoogleAppsCardV1SwitchControl;
     /**
-     * Required. The primary text. Supports simple formatting. See Text formatting for formatting details.
+     * Required. The primary text. Supports simple formatting. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
      */
     text?: string | null;
     /**
@@ -937,7 +937,7 @@ export namespace chat_v1 {
      */
     collapsible?: boolean | null;
     /**
-     * Text that appears at the top of a section. Supports [simple HTML formatted text](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
+     * Text that appears at the top of a section. Supports simple HTML formatted text. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
      */
     header?: string | null;
     /**
@@ -950,11 +950,11 @@ export namespace chat_v1 {
     widgets?: Schema$GoogleAppsCardV1Widget[];
   }
   /**
-   * A widget that creates a UI item with options for users to select. For example, a dropdown menu or check list. Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). When you need to collect data from users that matches options you set, use a selection input. To collect abstract data from users, use the text input widget instead.
+   * A widget that creates one or more UI items that users can select. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). To collect undefined or abstract data from users, use the TextInput widget.
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * An array of the selected items. For example, all the selected check boxes.
+     * An array of selectable items. For example, an array of radio buttons or checkboxes. Supports up to 100 items.
      */
     items?: Schema$GoogleAppsCardV1SelectionItem[];
     /**
@@ -962,7 +962,7 @@ export namespace chat_v1 {
      */
     label?: string | null;
     /**
-     * The name by which the selection input is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
+     * The name that identifies the selection input in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs).
      */
     name?: string | null;
     /**
@@ -970,12 +970,12 @@ export namespace chat_v1 {
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The way that an option appears to users. Different options support different types of interactions. For example, users can enable multiple check boxes, but can only select one value from a dropdown menu. Each selection input supports one type of selection. Mixing check boxes and switches, for example, is not supported.
+     * The type of items that are displayed to users in a `SelectionInput` widget. Selection types support different types of interactions. For example, users can select one or more checkboxes, but they can only select one value from a dropdown menu.
      */
     type?: string | null;
   }
   /**
-   * A selectable item in a selection input, such as a check box or a switch.
+   * An item that users can select in a selection input, such as a checkbox or switch.
    */
   export interface Schema$GoogleAppsCardV1SelectionItem {
     /**
@@ -983,7 +983,7 @@ export namespace chat_v1 {
      */
     selected?: boolean | null;
     /**
-     * The text displayed to users.
+     * The text that identifies or describes the item to users.
      */
     text?: string | null;
     /**
@@ -1035,7 +1035,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * A field in which users can enter text. Supports suggestions and on-change actions. Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). When you need to collect abstract data from users, use a text input. To collect defined data from users, use the selection input widget instead.
+   * A field in which users can enter text. Supports suggestions and on-change actions. Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/how-tos/dialogs#receive_form_data_from_dialogs). When you need to collect undefined or abstract data from users, use a text input. To collect defined or enumerated data from users, use the SelectionInput widget.
    */
   export interface Schema$GoogleAppsCardV1TextInput {
     /**
@@ -1072,7 +1072,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * A paragraph of text that supports formatting. See [Text formatting](https://developers.google.com/workspace/add-ons/concepts/widgets#text_formatting) for details.
+   * A paragraph of text that supports formatting. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
    */
   export interface Schema$GoogleAppsCardV1TextParagraph {
     /**
@@ -1109,7 +1109,7 @@ export namespace chat_v1 {
      */
     image?: Schema$GoogleAppsCardV1Image;
     /**
-     * Displays a selection control that lets users select items. Selection controls can be check boxes, radio buttons, switches, or dropdown menus. For example, the following JSON creates a dropdown menu that lets users choose a size: ``` "selectionInput": { "name": "size", "label": "Size" "type": "DROPDOWN", "items": [ { "text": "S", "value": "small", "selected": false \}, { "text": "M", "value": "medium", "selected": true \}, { "text": "L", "value": "large", "selected": false \}, { "text": "XL", "value": "extra_large", "selected": false \} ] \} ```
+     * Displays a selection control that lets users select items. Selection controls can be checkboxes, radio buttons, switches, or dropdown menus. For example, the following JSON creates a dropdown menu that lets users choose a size: ``` "selectionInput": { "name": "size", "label": "Size" "type": "DROPDOWN", "items": [ { "text": "S", "value": "small", "selected": false \}, { "text": "M", "value": "medium", "selected": true \}, { "text": "L", "value": "large", "selected": false \}, { "text": "XL", "value": "extra_large", "selected": false \} ] \} ```
      */
     selectionInput?: Schema$GoogleAppsCardV1SelectionInput;
     /**
@@ -1117,7 +1117,7 @@ export namespace chat_v1 {
      */
     textInput?: Schema$GoogleAppsCardV1TextInput;
     /**
-     * Displays a text paragraph. Supports [simple HTML formatted text](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
+     * Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons. For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
      */
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
   }
@@ -1164,11 +1164,11 @@ export namespace chat_v1 {
    */
   export interface Schema$Inputs {
     /**
-     * Date input values. Not supported by Chat apps.
+     * Date input values.
      */
     dateInput?: Schema$DateInput;
     /**
-     * Date and time input values. Not supported by Chat apps.
+     * Date and time input values.
      */
     dateTimeInput?: Schema$DateTimeInput;
     /**
@@ -1176,7 +1176,7 @@ export namespace chat_v1 {
      */
     stringInputs?: Schema$StringInputs;
     /**
-     * Time input values. Not supported by Chat apps.
+     * Time input values.
      */
     timeInput?: Schema$TimeInput;
   }
@@ -1185,7 +1185,7 @@ export namespace chat_v1 {
    */
   export interface Schema$KeyValue {
     /**
-     * The text of the bottom label. Formatted text supported.
+     * The text of the bottom label. Formatted text supported. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
      */
     bottomLabel?: string | null;
     /**
@@ -1193,7 +1193,7 @@ export namespace chat_v1 {
      */
     button?: Schema$Button;
     /**
-     * The text of the content. Formatted text supported and always required.
+     * The text of the content. Formatted text supported and always required. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
      */
     content?: string | null;
     /**
@@ -1213,7 +1213,7 @@ export namespace chat_v1 {
      */
     onClick?: Schema$OnClick;
     /**
-     * The text of the top label. Formatted text supported.
+     * The text of the top label. Formatted text supported. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
      */
     topLabel?: string | null;
   }
@@ -1264,7 +1264,7 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
-     * The Google Chat user or app the membership corresponds to.
+     * The Google Chat user or app the membership corresponds to. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output populates the [user](https://developers.google.com/chat/api/reference/rest/v1/User) `name` and `type`.
      */
     member?: Schema$User;
     /**
@@ -1384,7 +1384,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Section {
     /**
-     * The header of the section, text formatted supported.
+     * The header of the section. Formatted text is supported. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
      */
     header?: string | null;
     /**
@@ -1516,7 +1516,7 @@ export namespace chat_v1 {
     text?: string | null;
   }
   /**
-   * A paragraph of text. Formatted text supported.
+   * A paragraph of text. Formatted text supported. For more information about formatting text, see Formatting text in Google Chat apps and Formatting text in Google Workspace Add-ons.
    */
   export interface Schema$TextParagraph {
     text?: string | null;
@@ -1535,7 +1535,7 @@ export namespace chat_v1 {
     threadKey?: string | null;
   }
   /**
-   * Time input values. Not supported by Chat apps.
+   * Time input values.
    */
   export interface Schema$TimeInput {
     /**
@@ -1548,7 +1548,7 @@ export namespace chat_v1 {
     minutes?: number | null;
   }
   /**
-   * The timezone ID and offset from Coordinated Universal Time (UTC). Not supported by Chat apps.
+   * The timezone ID and offset from Coordinated Universal Time (UTC). Only supported for the event types [`CARD_CLICKED`](https://developers.google.com/chat/api/reference/rest/v1/EventType#ENUM_VALUES.CARD_CLICKED) and [`SUBMIT_DIALOG`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType#ENUM_VALUES.SUBMIT_DIALOG).
    */
   export interface Schema$TimeZone {
     /**
@@ -1603,7 +1603,7 @@ export namespace chat_v1 {
    */
   export interface Schema$WidgetMarkup {
     /**
-     * A list of buttons. Buttons is also oneof data and only one of these fields should be set.
+     * A list of buttons. Buttons is also `oneof data` and only one of these fields should be set.
      */
     buttons?: Schema$Button[];
     /**
