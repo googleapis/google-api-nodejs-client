@@ -14,14 +14,18 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {publicca_v1} from './v1';
 import {publicca_v1alpha1} from './v1alpha1';
 import {publicca_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: publicca_v1.Publicca,
   v1alpha1: publicca_v1alpha1.Publicca,
   v1beta1: publicca_v1beta1.Publicca,
 };
 
+export function publicca(version: 'v1'): publicca_v1.Publicca;
+export function publicca(options: publicca_v1.Options): publicca_v1.Publicca;
 export function publicca(version: 'v1alpha1'): publicca_v1alpha1.Publicca;
 export function publicca(
   options: publicca_v1alpha1.Options
@@ -31,10 +35,15 @@ export function publicca(
   options: publicca_v1beta1.Options
 ): publicca_v1beta1.Publicca;
 export function publicca<
-  T = publicca_v1alpha1.Publicca | publicca_v1beta1.Publicca
+  T =
+    | publicca_v1.Publicca
+    | publicca_v1alpha1.Publicca
+    | publicca_v1beta1.Publicca
 >(
   this: GoogleConfigurable,
   versionOrOptions:
+    | 'v1'
+    | publicca_v1.Options
     | 'v1alpha1'
     | publicca_v1alpha1.Options
     | 'v1beta1'
@@ -45,6 +54,7 @@ export function publicca<
 
 const auth = new AuthPlus();
 export {auth};
+export {publicca_v1};
 export {publicca_v1alpha1};
 export {publicca_v1beta1};
 export {
