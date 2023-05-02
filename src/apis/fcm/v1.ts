@@ -243,6 +243,10 @@ export namespace fcm_v1 {
      */
     notificationPriority?: string | null;
     /**
+     * Setting to control when a notification may be proxied.
+     */
+    proxy?: string | null;
+    /**
      * The sound to play when the device receives the notification. Supports "default" or the filename of a sound resource bundled in the app. Sound files must reside in /res/raw/.
      */
     sound?: string | null;

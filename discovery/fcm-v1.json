@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20221216",
+  "revision": "20230421",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -301,6 +301,22 @@
             "Default notification priority. If the application does not prioritize its own notifications, use this value for all notifications.",
             "Higher notification priority. Use this for more important notifications or alerts. The UI may choose to show these notifications larger, or at a different position in the notification lists, compared with notifications with `PRIORITY_DEFAULT`.",
             "Highest notification priority. Use this for the application's most important items that require the user's prompt attention or input."
+          ],
+          "type": "string"
+        },
+        "proxy": {
+          "description": "Setting to control when a notification may be proxied.",
+          "enum": [
+            "PROXY_UNSPECIFIED",
+            "ALLOW",
+            "DENY",
+            "IF_PRIORITY_LOWERED"
+          ],
+          "enumDescriptions": [
+            "If unspecified, default to `Proxy.IF_PRIORITY_LOWERED`.",
+            "Try to proxy this notification.",
+            "Do not proxy this notification.",
+            "Only try to proxy this notification if its `AndroidMessagePriority` was lowered from `HIGH` to `NORMAL` on the device."
           ],
           "type": "string"
         },
