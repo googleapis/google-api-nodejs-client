@@ -2337,10 +2337,6 @@ export namespace firebaseappdistribution_v1 {
      *   // Do the magic
      *   const res =
      *     await firebaseappdistribution.projects.apps.releases.feedbackReports.list({
-     *       // The expression to filter feedback reports listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `tester` - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Example: - `createTime <= "2023-03-10T00:00:00+04:00"` - `tester = "projects/-/testers/x@example.com"`
-     *       filter: 'placeholder-value',
-     *       // The fields used to order releases. Supported fields: - `createTime` - `tester` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
-     *       orderBy: 'placeholder-value',
      *       // The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.
@@ -2476,14 +2472,6 @@ export namespace firebaseappdistribution_v1 {
   }
   export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$List
     extends StandardParameters {
-    /**
-     * The expression to filter feedback reports listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `tester` - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Example: - `createTime <= "2023-03-10T00:00:00+04:00"` - `tester = "projects/-/testers/x@example.com"`
-     */
-    filter?: string;
-    /**
-     * The fields used to order releases. Supported fields: - `createTime` - `tester` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
-     */
-    orderBy?: string;
     /**
      * The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
      */
@@ -3999,7 +3987,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.groups.list({
-     *     // Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 groups are returned. Values above 100 are coerced to 100.
+     *     // Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 25 groups are returned. Values above 1000 are coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGroups` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -4328,7 +4316,7 @@ export namespace firebaseappdistribution_v1 {
   export interface Params$Resource$Projects$Groups$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 groups are returned. Values above 100 are coerced to 100.
+     * Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 25 groups are returned. Values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
