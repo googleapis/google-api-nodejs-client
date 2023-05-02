@@ -1135,7 +1135,7 @@
       }
     }
   },
-  "revision": "20230313",
+  "revision": "20230427",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1751,6 +1751,7 @@
             "NPM",
             "APT",
             "YUM",
+            "GOOGET",
             "PYTHON"
           ],
           "enumDescriptions": [
@@ -1760,6 +1761,7 @@
             "NPM package format.",
             "APT package format.",
             "YUM package format.",
+            "GooGet package format.",
             "Python package format."
           ],
           "type": "string"
