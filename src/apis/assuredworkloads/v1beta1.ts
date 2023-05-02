@@ -192,7 +192,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation. Next Id: 22
+   * Workload monitoring Violation. Next Id: 27
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Violation {
     /**
@@ -341,6 +341,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     compliantButDisallowedServices?: string[] | null;
     /**
+     * Output only. Controls associated with the customer workload
+     */
+    controls?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls;
+    /**
      * Output only. Immutable. The Workload creation timestamp.
      */
     createTime?: string | null;
@@ -408,6 +412,10 @@ export namespace assuredworkloads_v1beta1 {
      * Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.
      */
     saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse;
+    /**
+     * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.
+     */
+    violationNotificationsEnabled?: boolean | null;
   }
   /**
    * Settings specific to resources needed for CJIS.
@@ -417,6 +425,28 @@ export namespace assuredworkloads_v1beta1 {
      * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings;
+  }
+  /**
+   * Controls enabled to the user associated with this workload
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls {
+    /**
+     * Output only. Org policies currently applied by this Assured Workload
+     */
+    appliedOrgPolicies?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl[];
+  }
+  /**
+   * An org policy control applied by Assured Workloads
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl {
+    /**
+     * Output only. Constraint name of the org policy control Example: constraints/gcp.resourcelocations
+     */
+    constraint?: string | null;
+    /**
+     * Output only. Org policy version
+     */
+    version?: number | null;
   }
   /**
    * Represents the Compliance Status of this workload
@@ -988,6 +1018,7 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "complianceRegime": "my_complianceRegime",
      *       //   "complianceStatus": {},
      *       //   "compliantButDisallowedServices": [],
+     *       //   "controls": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "ekmProvisioningResponse": {},
@@ -1004,7 +1035,8 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
      *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
+     *       //   "saaEnrollmentResponse": {},
+     *       //   "violationNotificationsEnabled": false
      *       // }
      *     },
      *   });
@@ -1288,6 +1320,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "complianceRegime": "my_complianceRegime",
      *   //   "complianceStatus": {},
      *   //   "compliantButDisallowedServices": [],
+     *   //   "controls": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "ekmProvisioningResponse": {},
@@ -1304,7 +1337,8 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
+     *   //   "saaEnrollmentResponse": {},
+     *   //   "violationNotificationsEnabled": false
      *   // }
      * }
      *
@@ -1593,6 +1627,7 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "complianceRegime": "my_complianceRegime",
      *       //   "complianceStatus": {},
      *       //   "compliantButDisallowedServices": [],
+     *       //   "controls": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "ekmProvisioningResponse": {},
@@ -1609,7 +1644,8 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
      *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
+     *       //   "saaEnrollmentResponse": {},
+     *       //   "violationNotificationsEnabled": false
      *       // }
      *     },
      *   });
@@ -1622,6 +1658,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "complianceRegime": "my_complianceRegime",
      *   //   "complianceStatus": {},
      *   //   "compliantButDisallowedServices": [],
+     *   //   "controls": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "ekmProvisioningResponse": {},
@@ -1638,7 +1675,8 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
+     *   //   "saaEnrollmentResponse": {},
+     *   //   "violationNotificationsEnabled": false
      *   // }
      * }
      *
