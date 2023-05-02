@@ -300,6 +300,10 @@ export namespace batch_v1 {
      */
     network?: Schema$NetworkPolicy;
     /**
+     * The placement policy.
+     */
+    placement?: Schema$PlacementPolicy;
+    /**
      * Service account that VMs will run as.
      */
     serviceAccount?: Schema$ServiceAccount;
@@ -832,6 +836,19 @@ export namespace batch_v1 {
     verb?: string | null;
   }
   /**
+   * PlacementPolicy describes a group placement policy for the VMs controlled by this AllocationPolicy.
+   */
+  export interface Schema$PlacementPolicy {
+    /**
+     * UNSPECIFIED vs. COLLOCATED (default UNSPECIFIED). Use COLLOCATED when you want VMs to be located close to each other for low network latency between the VMs. No placement policy will be generated when collocation is UNSPECIFIED.
+     */
+    collocation?: string | null;
+    /**
+     * When specified, causes the job to fail if more than max_distance logical switches are required between VMs. Batch uses the most compact possible placement of VMs even when max_distance is not specified. An explicit max_distance makes that level of compactness a strict requirement. Not yet implemented
+     */
+    maxDistance?: string | null;
+  }
+  /**
    * Request to report agent's state. The Request itself implies the agent is healthy.
    */
   export interface Schema$ReportAgentStateRequest {
@@ -893,6 +910,10 @@ export namespace batch_v1 {
      * Normally, a non-zero exit status causes the Task to fail. This flag allows execution of other Runnables to continue instead.
      */
     ignoreExitStatus?: boolean | null;
+    /**
+     * Labels for this Runnable.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Script runnable.
      */
