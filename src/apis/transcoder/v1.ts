@@ -583,7 +583,7 @@ export namespace transcoder_v1 {
     widthPixels?: number | null;
   }
   /**
-   * Overlaid jpeg image.
+   * Overlaid image.
    */
   export interface Schema$Image {
     /**
@@ -595,7 +595,7 @@ export namespace transcoder_v1 {
      */
     resolution?: Schema$NormalizedCoordinate;
     /**
-     * Required. URI of the JPEG image in Cloud Storage. For example, `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.
+     * Required. URI of the image in Cloud Storage. For example, `gs://bucket/inputs/image.png`. Only PNG and JPEG images are supported.
      */
     uri?: string | null;
   }
@@ -782,7 +782,7 @@ export namespace transcoder_v1 {
      */
     muxStreams?: string[] | null;
     /**
-     * Required. Type of the manifest, can be `HLS` or `DASH`.
+     * Required. Type of the manifest.
      */
     type?: string | null;
   }
