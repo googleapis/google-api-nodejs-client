@@ -228,11 +228,11 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1alpha1DateRange {
     /**
-     * The latest invoice date (exclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the following month.
+     * The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month.
      */
     invoiceEndDate?: Schema$GoogleTypeDate;
     /**
-     * The earliest invoice date (inclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the given month.
+     * The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month.
      */
     invoiceStartDate?: Schema$GoogleTypeDate;
     /**
@@ -256,6 +256,10 @@ export namespace cloudchannel_v1 {
      * Association information to other entitlements.
      */
     associationInfo?: Schema$GoogleCloudChannelV1alpha1AssociationInfo;
+    /**
+     * Optional. The billing account resource name that is used to pay for this entitlement.
+     */
+    billingAccount?: string | null;
     /**
      * Cloud Identity ID of a channel partner who will be the direct reseller for the customer's order. This field is generally used in 2-tier ordering, where the order is placed by a top-level distributor on behalf of their channel partner or reseller. Required for distributors. Deprecated: `channel_partner_id` has been moved to the Customer.
      */
@@ -974,11 +978,11 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1DateRange {
     /**
-     * The latest invoice date (exclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the following month.
+     * The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month.
      */
     invoiceEndDate?: Schema$GoogleTypeDate;
     /**
-     * The earliest invoice date (inclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the given month.
+     * The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month.
      */
     invoiceStartDate?: Schema$GoogleTypeDate;
     /**
@@ -1015,6 +1019,10 @@ export namespace cloudchannel_v1 {
      * Association information to other entitlements.
      */
     associationInfo?: Schema$GoogleCloudChannelV1AssociationInfo;
+    /**
+     * Optional. The billing account resource name that is used to pay for this entitlement.
+     */
+    billingAccount?: string | null;
     /**
      * Commitment settings for a commitment-based Offer. Required for commitment based offers.
      */
@@ -1138,6 +1146,10 @@ export namespace cloudchannel_v1 {
      * Optional. A token that specifies a page of results beyond the first page. Obtained through FetchReportResultsResponse.next_page_token of the previous CloudChannelReportsService.FetchReportResults call.
      */
     pageToken?: string | null;
+    /**
+     * Optional. List of keys specifying which report partitions to return. If empty, returns all partitions.
+     */
+    partitionKeys?: string[] | null;
   }
   /**
    * Response message for CloudChannelReportsService.FetchReportResults. Contains a tabular representation of the report results.
@@ -1972,6 +1984,10 @@ export namespace cloudchannel_v1 {
    * A row of report values.
    */
   export interface Schema$GoogleCloudChannelV1Row {
+    /**
+     * The key for the partition this row belongs to. This field is empty if the report is not partitioned.
+     */
+    partitionKey?: string | null;
     /**
      * The list of values in the row.
      */
@@ -9452,6 +9468,7 @@ export namespace cloudchannel_v1 {
      *   // Example response
      *   // {
      *   //   "associationInfo": {},
+     *   //   "billingAccount": "my_billingAccount",
      *   //   "commitmentSettings": {},
      *   //   "createTime": "my_createTime",
      *   //   "name": "my_name",
@@ -10670,7 +10687,8 @@ export namespace cloudchannel_v1 {
      *       // request body parameters
      *       // {
      *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
+     *       //   "pageToken": "my_pageToken",
+     *       //   "partitionKeys": []
      *       // }
      *     },
      *   });
