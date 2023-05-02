@@ -500,7 +500,7 @@
       }
     }
   },
-  "revision": "20230412",
+  "revision": "20230428",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -1033,6 +1033,10 @@
         },
         "description": {
           "description": "Description of the selected proto element (e.g. a message, a method, a 'service' definition, or a field). Defaults to leading & trailing comments taken from the proto source definition of the proto element.",
+          "type": "string"
+        },
+        "disableReplacementWords": {
+          "description": "String of comma or space separated case-sensitive words for which method/field name replacement will be disabled by go/api-docgen.",
           "type": "string"
         },
         "selector": {
@@ -2041,7 +2045,9 @@
             "ADS",
             "PHOTOS",
             "STREET_VIEW",
-            "SHOPPING"
+            "SHOPPING",
+            "GEO",
+            "GENERATIVE_AI"
           ],
           "enumDescriptions": [
             "Not useful.",
@@ -2049,7 +2055,9 @@
             "Ads (Advertising) Org.",
             "Photos Org.",
             "Street View Org.",
-            "Shopping Org."
+            "Shopping Org.",
+            "Geo Org.",
+            "Generative AI - https://developers.generativeai.google"
           ],
           "type": "string"
         },
