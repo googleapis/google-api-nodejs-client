@@ -695,7 +695,7 @@
       }
     }
   },
-  "revision": "20230324",
+  "revision": "20230424",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1081,10 +1081,6 @@
           "description": "Optional. Email or URL of the request access of the listing. Subscribers can use this reference to request access. Max Length: 1000 bytes.",
           "type": "string"
         },
-        "restrictedExportConfig": {
-          "$ref": "RestrictedExportConfig",
-          "description": "Optional. If set, restricted export configuration will be propagated and enforced on the linked dataset."
-        },
         "state": {
           "description": "Output only. Current state of the listing.",
           "enum": [
@@ -1187,21 +1183,6 @@
         "primaryContact": {
           "description": "Optional. Email or URL of the listing publisher. Max Length: 1000 bytes.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RestrictedExportConfig": {
-      "description": "Restricted export config, used to configure restricted export on linked dataset.",
-      "id": "RestrictedExportConfig",
-      "properties": {
-        "enabled": {
-          "description": "If true, enable restricted export.",
-          "type": "boolean"
-        },
-        "restrictQueryResult": {
-          "description": "If true, restrict export of query result derived from restricted linked dataset table.",
-          "type": "boolean"
         }
       },
       "type": "object"
