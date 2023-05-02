@@ -282,7 +282,7 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this etag.",
+                      "description": "If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this ETag.",
                       "location": "query",
                       "type": "string"
                     },
@@ -443,7 +443,7 @@
                           "type": "boolean"
                         },
                         "workstationConfigId": {
-                          "description": "Required. ID to use for the config.",
+                          "description": "Required. ID to use for the workstation configuration.",
                           "location": "query",
                           "type": "string"
                         }
@@ -469,17 +469,17 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "If set, the request will be rejected if the latest version of the config on the server does not have this etag.",
+                          "description": "If set, the request is rejected if the latest version of the workstation configuration on the server does not have this ETag.",
                           "location": "query",
                           "type": "string"
                         },
                         "force": {
-                          "description": "If set, any Workstations in the config will also be deleted. Otherwise, the request will work only if the config has no workstations.",
+                          "description": "If set, any workstations in the workstation configuration are also deleted. Otherwise, the request works only if the workstation configuration has no workstations.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Required. Name of the config to delete.",
+                          "description": "Required. Name of the workstation configuration to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+$",
                           "required": true,
@@ -637,7 +637,7 @@
                       ],
                       "parameters": {
                         "allowMissing": {
-                          "description": "If set, and the config is not found, a new config will be created. In this situation, update_mask is ignored.",
+                          "description": "If set and the workstation configuration is not found, a new workstation configuration will be created. In this situation, update_mask is ignored.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -649,7 +649,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Mask specifying which fields in the config should be updated.",
+                          "description": "Required. Mask specifying which fields in the workstation configuration should be updated.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -779,7 +779,7 @@
                           ],
                           "parameters": {
                             "etag": {
-                              "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this etag.",
+                              "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
                               "location": "query",
                               "type": "string"
                             },
@@ -889,7 +889,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Returns all Workstations using the specified config.",
+                          "description": "Returns all Workstations using the specified workstation configuration.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workstationClusters/{workstationClustersId}/workstationConfigs/{workstationConfigsId}/workstations",
                           "httpMethod": "GET",
                           "id": "workstations.projects.locations.workstationClusters.workstationConfigs.workstations.list",
@@ -925,7 +925,7 @@
                           ]
                         },
                         "listUsable": {
-                          "description": "Returns all Workstations using the specified config on which the caller has the \"workstations.workstations.use\" permission.",
+                          "description": "Returns all workstations using the specified workstation configuration on which the caller has the \"workstations.workstations.use\" permission.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workstationClusters/{workstationClustersId}/workstationConfigs/{workstationConfigsId}/workstations:listUsable",
                           "httpMethod": "GET",
                           "id": "workstations.projects.locations.workstationClusters.workstationConfigs.workstations.listUsable",
@@ -970,7 +970,7 @@
                           ],
                           "parameters": {
                             "allowMissing": {
-                              "description": "If set, and the config is not found, a new config will be created. In this situation, update_mask is ignored.",
+                              "description": "If set and the workstation configuration is not found, a new workstation configuration is created. In this situation, update_mask is ignored.",
                               "location": "query",
                               "type": "boolean"
                             },
@@ -982,7 +982,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Required. Mask specifying which fields in the config should be updated.",
+                              "description": "Required. Mask specifying which fields in the workstation configuration should be updated.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20230405",
+  "revision": "20230423",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1228,11 +1228,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Environment variables passed to the container.",
+          "description": "Environment variables passed to the container's entrypoint.",
           "type": "object"
         },
         "image": {
-          "description": "Docker image defining the container. This image must be accessible by the config's service account.",
+          "description": "Docker image defining the container. This image must be accessible by the service account specified in the workstation configuration.",
           "type": "string"
         },
         "runAsUser": {
@@ -1318,12 +1318,18 @@
           "type": "string"
         },
         "poolSize": {
-          "description": "Number of instances to pool for faster workstation starup.",
+          "description": "Number of instances to pool for faster workstation startup.",
           "format": "int32",
           "type": "integer"
         },
+        "pooledInstances": {
+          "description": "Output only. Number of instances currently available in the pool for faster workstation startup.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "serviceAccount": {
-          "description": "Email address of the service account that will be used on VM instances used to support this config. If not set, VMs will run with a Google-managed service account. This service account must have permission to pull the specified container image, otherwise the image must be publicly accessible.",
+          "description": "Email address of the service account used on VM instances used to support this configuration. If not set, VMs run with a Google-managed service account. This service account must have permission to pull the specified container image; otherwise, the image must be publicly accessible.",
           "type": "string"
         },
         "shieldedInstanceConfig": {
@@ -1419,7 +1425,7 @@
       "id": "GenerateAccessTokenResponse",
       "properties": {
         "accessToken": {
-          "description": "The generated bearer access token. To use this token, include it in an Authorization header of an HTTP request sent to the associated workstation's hostname, for example, `Authorization: Bearer `.",
+          "description": "The generated bearer access token. To use this token, include it in an Authorization header of an HTTP request sent to the associated workstation's hostname—for example, `Authorization: Bearer `.",
           "type": "string"
         },
         "expireTime": {
@@ -1743,6 +1749,22 @@
       },
       "type": "object"
     },
+    "ReadinessCheck": {
+      "description": "A readiness check to be performed on a workstation.",
+      "id": "ReadinessCheck",
+      "properties": {
+        "path": {
+          "description": "Path to which the request should be sent.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Port to which the request should be sent.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -1764,7 +1786,7 @@
       "id": "StartWorkstationRequest",
       "properties": {
         "etag": {
-          "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this etag.",
+          "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
           "type": "string"
         },
         "validateOnly": {
@@ -1806,7 +1828,7 @@
       "id": "StopWorkstationRequest",
       "properties": {
         "etag": {
-          "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this etag.",
+          "description": "If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
           "type": "string"
         },
         "validateOnly": {
@@ -1875,11 +1897,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Environment variables passed to the workstation container.",
+          "description": "Environment variables passed to the workstation container's entrypoint.",
           "type": "object"
         },
         "etag": {
-          "description": "Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.",
+          "description": "Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "host": {
@@ -1956,7 +1978,7 @@
           "type": "array"
         },
         "controlPlaneIp": {
-          "description": "Output only. The private IP address of the control plane for this cluster. Workstation VMs need access to this IP address to work with the service, so please ensure your firewall rules allow egress from the Workstation VMs to this address.",
+          "description": "Output only. The private IP address of the control plane for this cluster. Workstation VMs need access to this IP address to work with the service, so make sure that your firewall rules allow egress from the workstation VMs to this address.",
           "readOnly": true,
           "type": "string"
         },
@@ -1982,7 +2004,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.",
+          "description": "Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
@@ -2077,10 +2099,10 @@
         },
         "encryptionKey": {
           "$ref": "CustomerEncryptionKey",
-          "description": "Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours. Immutable after workstation config is created."
+          "description": "Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours. Immutable after the workstation configuration is created."
         },
         "etag": {
-          "description": "Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.",
+          "description": "Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "host": {
@@ -2107,6 +2129,13 @@
           "description": "Directories to persist across workstation sessions.",
           "items": {
             "$ref": "PersistentDirectory"
+          },
+          "type": "array"
+        },
+        "readinessChecks": {
+          "description": "Readiness checks to perform when starting a workstation using this workstation configuration. Mark a workstation as running only after all specified readiness checks return 200 status codes.",
+          "items": {
+            "$ref": "ReadinessCheck"
           },
           "type": "array"
         },
