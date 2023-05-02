@@ -865,7 +865,12 @@ export namespace dataplex_v1 {
   /**
    * DataProfileScan related setting.
    */
-  export interface Schema$GoogleCloudDataplexV1DataProfileSpec {}
+  export interface Schema$GoogleCloudDataplexV1DataProfileSpec {
+    /**
+     * Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.
+     */
+    samplingPercent?: number | null;
+  }
   /**
    * DataQualityDimensionResult provides a more detailed, per-dimension view of the results.
    */
@@ -1050,6 +1055,9 @@ export namespace dataplex_v1 {
      * The minimum column statistic value allowed for a row to pass this validation.At least one of min_value and max_value need to be provided.
      */
     minValue?: string | null;
+    /**
+     * The aggregate metric to evaluate.
+     */
     statistic?: string | null;
     /**
      * Whether column statistic needs to be strictly lesser than ('<') the maximum, or if equality is allowed.Only relevant if a max_value has been defined. Default = false.
@@ -1081,6 +1089,10 @@ export namespace dataplex_v1 {
      * The list of rules to evaluate against a data source. At least one rule is required.
      */
     rules?: Schema$GoogleCloudDataplexV1DataQualityRule[];
+    /**
+     * Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.
+     */
+    samplingPercent?: number | null;
   }
   /**
    * Represents a user-visible job which provides the insights for the related data source.For example: Data Quality: generates queries based on the rules and runs against the data to get data quality check results. Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).
@@ -2846,7 +2858,7 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$GoogleCloudLocationLocation {
     /**
