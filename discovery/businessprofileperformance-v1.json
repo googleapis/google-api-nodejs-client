@@ -269,7 +269,7 @@
               "type": "integer"
             },
             "dailySubEntityType.dayOfWeek": {
-              "description": "Represents the day of the week. Eg: MONDAY.",
+              "description": "Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE.",
               "enum": [
                 "DAY_OF_WEEK_UNSPECIFIED",
                 "MONDAY",
@@ -417,7 +417,7 @@
       }
     }
   },
-  "revision": "20230321",
+  "revision": "20230429",
   "rootUrl": "https://businessprofileperformance.googleapis.com/",
   "schemas": {
     "DailyMetricTimeSeries": {
@@ -472,7 +472,7 @@
       "id": "DailySubEntityType",
       "properties": {
         "dayOfWeek": {
-          "description": "Represents the day of the week. Eg: MONDAY.",
+          "description": "Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE.",
           "enum": [
             "DAY_OF_WEEK_UNSPECIFIED",
             "MONDAY",
@@ -497,7 +497,7 @@
         },
         "timeOfDay": {
           "$ref": "TimeOfDay",
-          "description": "Represents the time of the day in 24 hour format. Eg: 13:34:20"
+          "description": "Represents the time of the day in 24 hour format. Eg: 13:34:20 Currently supported DailyMetrics = NONE."
         }
       },
       "type": "object"
@@ -533,7 +533,7 @@
           "description": "The date that the datapoint corresponds to. This represents a month value if the day field is not set."
         },
         "value": {
-          "description": "The value of the datapoint.",
+          "description": "The value of the datapoint. This will not be present when the value is zero.",
           "format": "int64",
           "type": "string"
         }
