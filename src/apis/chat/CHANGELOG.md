@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v14.0.0...chat-v14.0.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([59f5617](https://github.com/googleapis/google-api-nodejs-client/commit/59f5617608c425eea6de8f636a7fd545153cf7e2))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v13.0.0...chat-v14.0.0) (2023-04-14)
 
 

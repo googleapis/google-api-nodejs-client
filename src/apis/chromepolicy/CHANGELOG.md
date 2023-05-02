@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v7.0.0...chromepolicy-v7.1.0) (2023-05-02)
+
+
+### Features
+
+* **chromepolicy:** update the API ([15bdca3](https://github.com/googleapis/google-api-nodejs-client/commit/15bdca33ada1daca2bd1e833a13d7d885cd23156))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v6.0.0...chromepolicy-v7.0.0) (2023-04-08)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/alertcenter",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "description": "alertcenter",
   "main": "build/index.js",
   "types": "build/index.d.ts",
