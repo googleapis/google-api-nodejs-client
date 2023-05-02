@@ -219,7 +219,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation. Next Id: 22
+   * Workload monitoring Violation. Next Id: 27
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1Violation {
     /**
@@ -419,6 +419,10 @@ export namespace assuredworkloads_v1 {
      * Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.
      */
     saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse;
+    /**
+     * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored.
+     */
+    violationNotificationsEnabled?: boolean | null;
   }
   /**
    * Represents the Compliance Status of this workload
@@ -987,7 +991,8 @@ export namespace assuredworkloads_v1 {
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
      *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
+     *       //   "saaEnrollmentResponse": {},
+     *       //   "violationNotificationsEnabled": false
      *       // }
      *     },
      *   });
@@ -1283,7 +1288,8 @@ export namespace assuredworkloads_v1 {
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
+     *   //   "saaEnrollmentResponse": {},
+     *   //   "violationNotificationsEnabled": false
      *   // }
      * }
      *
@@ -1595,7 +1601,8 @@ export namespace assuredworkloads_v1 {
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
+     *   //   "saaEnrollmentResponse": {},
+     *   //   "violationNotificationsEnabled": false
      *   // }
      * }
      *
@@ -1754,7 +1761,8 @@ export namespace assuredworkloads_v1 {
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
      *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
+     *       //   "saaEnrollmentResponse": {},
+     *       //   "violationNotificationsEnabled": false
      *       // }
      *     },
      *   });
@@ -1779,7 +1787,8 @@ export namespace assuredworkloads_v1 {
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
+     *   //   "saaEnrollmentResponse": {},
+     *   //   "violationNotificationsEnabled": false
      *   // }
      * }
      *
