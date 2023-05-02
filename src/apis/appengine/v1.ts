@@ -934,7 +934,7 @@ export namespace appengine_v1 {
     timeout?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
