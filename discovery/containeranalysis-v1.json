@@ -751,43 +751,11 @@
               ]
             }
           }
-        },
-        "resources": {
-          "methods": {
-            "generatePackagesSummary": {
-              "description": "Gets a summary of the packages within a given resource.",
-              "flatPath": "v1/projects/{projectsId}/resources/{resourcesId}:generatePackagesSummary",
-              "httpMethod": "POST",
-              "id": "containeranalysis.projects.resources.generatePackagesSummary",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the resource to get a packages summary for in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/resources/.*$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+name}:generatePackagesSummary",
-              "request": {
-                "$ref": "GeneratePackagesSummaryRequest"
-              },
-              "response": {
-                "$ref": "PackagesSummaryResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            }
-          }
         }
       }
     }
   },
-  "revision": "20230331",
+  "revision": "20230421",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1273,9 +1241,11 @@
           "enum": [
             "ATTACK_COMPLEXITY_UNSPECIFIED",
             "ATTACK_COMPLEXITY_LOW",
-            "ATTACK_COMPLEXITY_HIGH"
+            "ATTACK_COMPLEXITY_HIGH",
+            "ATTACK_COMPLEXITY_MEDIUM"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -1320,9 +1290,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -1340,9 +1314,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -1363,9 +1341,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -1818,6 +1800,13 @@
           },
           "type": "array"
         },
+        "npmPackages": {
+          "description": "A list of npm packages to be uploaded to Artifact Registry upon successful completion of all build steps. Npm packages in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any packages fail to be pushed, the build is marked FAILURE.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage"
+          },
+          "type": "array"
+        },
         "objects": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects",
           "description": "A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE."
@@ -1877,6 +1866,21 @@
         },
         "version": {
           "description": "Maven `version` value used when uploading the artifact to Artifact Registry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage": {
+      "description": "Npm package to upload to Artifact Registry upon successful completion of all build steps.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage",
+      "properties": {
+        "packagePath": {
+          "description": "Path to the package.json. e.g. workspace/path/to/package",
+          "type": "string"
+        },
+        "repository": {
+          "description": "Artifact Registry repository, in the form \"https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY\" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.",
           "type": "string"
         }
       },
@@ -2271,12 +2275,14 @@
             "enum": [
               "NONE",
               "SHA256",
-              "MD5"
+              "MD5",
+              "SHA512"
             ],
             "enumDescriptions": [
               "No hash requested.",
               "Use a sha256 hash.",
-              "Use a md5 hash."
+              "Use a md5 hash.",
+              "Use a sha512 hash."
             ],
             "type": "string"
           },
@@ -2504,6 +2510,25 @@
       },
       "type": "object"
     },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource": {
+      "description": "Location of the source in any accessible Git repository.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource",
+      "properties": {
+        "dir": {
+          "description": "Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1Hash": {
       "description": "Container message for hash values.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1Hash",
@@ -2513,12 +2538,14 @@
           "enum": [
             "NONE",
             "SHA256",
-            "MD5"
+            "MD5",
+            "SHA512"
           ],
           "enumDescriptions": [
             "No hash requested.",
             "Use a sha256 hash.",
-            "Use a md5 hash."
+            "Use a md5 hash.",
+            "Use a sha512 hash."
           ],
           "type": "string"
         },
@@ -2632,6 +2659,13 @@
           },
           "type": "array"
         },
+        "npmPackages": {
+          "description": "Npm packages uploaded to Artifact Registry at the end of the build.",
+          "items": {
+            "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage"
+          },
+          "type": "array"
+        },
         "numArtifacts": {
           "description": "Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.",
           "format": "int64",
@@ -2706,6 +2740,10 @@
       "description": "Location of the source in a supported storage service.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1Source",
       "properties": {
+        "gitSource": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource",
+          "description": "If provided, get the source from this Git repository."
+        },
         "repoSource": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource",
           "description": "If provided, get the source from this location in a Cloud Source Repository."
@@ -2820,6 +2858,26 @@
         },
         "uri": {
           "description": "URI of the uploaded artifact.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage": {
+      "description": "An npm package uploaded to Artifact Registry using the NpmPackage directive.",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage",
+      "properties": {
+        "fileHashes": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes",
+          "description": "Hash types and values of the npm package."
+        },
+        "pushTiming": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan",
+          "description": "Output only. Stores timing information for pushing the specified artifact.",
+          "readOnly": true
+        },
+        "uri": {
+          "description": "URI of the uploaded npm package.",
           "type": "string"
         }
       },
@@ -3332,12 +3390,6 @@
       },
       "type": "object"
     },
-    "GeneratePackagesSummaryRequest": {
-      "description": "GeneratePackagesSummaryRequest is the request body for the GeneratePackagesSummary API method. It just takes a single name argument, referring to the resource.",
-      "id": "GeneratePackagesSummaryRequest",
-      "properties": {},
-      "type": "object"
-    },
     "GerritSourceContext": {
       "description": "A SourceContext referring to a Gerrit project.",
       "id": "GerritSourceContext",
@@ -3755,22 +3807,6 @@
         },
         "expression": {
           "description": "Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: \"LGPL-2.1-only OR MIT\", \"LGPL-2.1-only AND MIT\", \"GPL-2.0-or-later WITH Bison-exception-2.2\".",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LicensesSummary": {
-      "description": "Per license count",
-      "id": "LicensesSummary",
-      "properties": {
-        "count": {
-          "description": "The number of fixable vulnerabilities associated with this resource.",
-          "format": "int64",
-          "type": "string"
-        },
-        "license": {
-          "description": "The license of the package. Note that the format of this value is not guaranteed. It may be nil, an empty string, a boolean value (A | B), a differently formed boolean value (A OR B), etc...",
           "type": "string"
         }
       },
@@ -4328,24 +4364,6 @@
           "$ref": "Version",
           "description": "Output only. The version of the package.",
           "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "PackagesSummaryResponse": {
-      "description": "A summary of the packages found within the given resource.",
-      "id": "PackagesSummaryResponse",
-      "properties": {
-        "licensesSummary": {
-          "description": "A listing by license name of each of the licenses and their counts.",
-          "items": {
-            "$ref": "LicensesSummary"
-          },
-          "type": "array"
-        },
-        "resourceUrl": {
-          "description": "The unique URL of the image or the container for which this summary applies.",
-          "type": "string"
         }
       },
       "type": "object"

@@ -557,6 +557,10 @@ export namespace containeranalysis_v1beta1 {
      */
     mavenArtifacts?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact[];
     /**
+     * A list of npm packages to be uploaded to Artifact Registry upon successful completion of all build steps. Npm packages in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any packages fail to be pushed, the build is marked FAILURE.
+     */
+    npmPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage[];
+    /**
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects;
@@ -606,6 +610,19 @@ export namespace containeranalysis_v1beta1 {
      * Maven `version` value used when uploading the artifact to Artifact Registry.
      */
     version?: string | null;
+  }
+  /**
+   * Npm package to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage {
+    /**
+     * Path to the package.json. e.g. workspace/path/to/package
+     */
+    packagePath?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
   }
   /**
    * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
@@ -956,6 +973,23 @@ export namespace containeranalysis_v1beta1 {
     fileHash?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
+   * Location of the source in any accessible Git repository.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource {
+    /**
+     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
+     */
+    dir?: string | null;
+    /**
+     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.
+     */
+    revision?: string | null;
+    /**
+     * Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
+     */
+    url?: string | null;
+  }
+  /**
    * Container message for hash values.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Hash {
@@ -1047,6 +1081,10 @@ export namespace containeranalysis_v1beta1 {
      */
     mavenArtifacts?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact[];
     /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     */
+    npmPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage[];
+    /**
      * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     numArtifacts?: string | null;
@@ -1098,6 +1136,10 @@ export namespace containeranalysis_v1beta1 {
    * Location of the source in a supported storage service.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Source {
+    /**
+     * If provided, get the source from this Git repository.
+     */
+    gitSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource;
     /**
      * If provided, get the source from this location in a Cloud Source Repository.
      */
@@ -1197,6 +1239,23 @@ export namespace containeranalysis_v1beta1 {
     pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
     /**
      * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An npm package uploaded to Artifact Registry using the NpmPackage directive.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage {
+    /**
+     * Hash types and values of the npm package.
+     */
+    fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded npm package.
      */
     uri?: string | null;
   }
@@ -1721,6 +1780,10 @@ export namespace containeranalysis_v1beta1 {
     totalCount?: string | null;
   }
   /**
+   * GeneratePackagesSummaryRequest is the request body for the GeneratePackagesSummary API method. It just takes a single name argument, referring to the resource.
+   */
+  export interface Schema$GeneratePackagesSummaryRequest {}
+  /**
    * An attestation wrapper that uses the Grafeas `Signature` message. This attestation must define the `serialized_payload` that the `signatures` verify and any metadata necessary to interpret that plaintext. The signatures should always be over the `serialized_payload` bytestring.
    */
   export interface Schema$GenericSignedAttestation {
@@ -2048,6 +2111,19 @@ export namespace containeranalysis_v1beta1 {
      * Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: "LGPL-2.1-only OR MIT", "LGPL-2.1-only AND MIT", "GPL-2.0-or-later WITH Bison-exception-2.2".
      */
     expression?: string | null;
+  }
+  /**
+   * Per license count
+   */
+  export interface Schema$LicensesSummary {
+    /**
+     * The number of fixable vulnerabilities associated with this resource.
+     */
+    count?: string | null;
+    /**
+     * The license of the package. Note that the format of this value is not guaranteed. It may be nil, an empty string, a boolean value (A | B), a differently formed boolean value (A OR B), etc...
+     */
+    license?: string | null;
   }
   /**
    * This corresponds to an in-toto link.
@@ -2507,6 +2583,19 @@ export namespace containeranalysis_v1beta1 {
      * Deprecated, use Details.effective_severity instead The severity (e.g., distro assigned severity) for this vulnerability.
      */
     severityName?: string | null;
+  }
+  /**
+   * A summary of the packages found within the given resource.
+   */
+  export interface Schema$PackagesSummaryResponse {
+    /**
+     * A listing by license name of each of the licenses and their counts.
+     */
+    licensesSummary?: Schema$LicensesSummary[];
+    /**
+     * The unique URL of the image or the container for which this summary applies.
+     */
+    resourceUrl?: string | null;
   }
   /**
    * An attestation wrapper with a PGP-compatible signature. This message only supports `ATTACHED` signatures, where the payload that is signed is included alongside the signature itself in the same file.
@@ -3091,10 +3180,12 @@ export namespace containeranalysis_v1beta1 {
     context: APIRequestContext;
     notes: Resource$Projects$Notes;
     occurrences: Resource$Projects$Occurrences;
+    resources: Resource$Projects$Resources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.notes = new Resource$Projects$Notes(this.context);
       this.occurrences = new Resource$Projects$Occurrences(this.context);
+      this.resources = new Resource$Projects$Resources(this.context);
     }
   }
 
@@ -6508,5 +6599,171 @@ export namespace containeranalysis_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Resources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a summary of the packages within a given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/containeranalysis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const containeranalysis = google.containeranalysis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await containeranalysis.projects.resources.generatePackagesSummary({
+     *       // Required. The name of the resource to get a packages summary for in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
+     *       name: 'projects/my-project/resources/.*',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "licensesSummary": [],
+     *   //   "resourceUrl": "my_resourceUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generatePackagesSummary(
+      params?: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PackagesSummaryResponse>;
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>,
+      callback: BodyResponseCallback<Schema$PackagesSummaryResponse>
+    ): void;
+    generatePackagesSummary(
+      params: Params$Resource$Projects$Resources$Generatepackagessummary,
+      callback: BodyResponseCallback<Schema$PackagesSummaryResponse>
+    ): void;
+    generatePackagesSummary(
+      callback: BodyResponseCallback<Schema$PackagesSummaryResponse>
+    ): void;
+    generatePackagesSummary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Resources$Generatepackagessummary
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PackagesSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PackagesSummaryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Resources$Generatepackagessummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Resources$Generatepackagessummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://containeranalysis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:generatePackagesSummary').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PackagesSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PackagesSummaryResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Resources$Generatepackagessummary
+    extends StandardParameters {
+    /**
+     * Required. The name of the resource to get a packages summary for in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GeneratePackagesSummaryRequest;
   }
 }
