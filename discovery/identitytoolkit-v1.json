@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20230410",
+  "revision": "20230429",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -1563,6 +1563,17 @@
             "$ref": "GoogleCloudIdentitytoolkitV1UserInfo"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV1EmailInfo": {
+      "description": "Information about email MFA.",
+      "id": "GoogleCloudIdentitytoolkitV1EmailInfo",
+      "properties": {
+        "emailAddress": {
+          "description": "Email address that a MFA verification should be sent to.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2104,6 +2115,10 @@
         "displayName": {
           "description": "Display name for this mfa option e.g. \"corp cell phone\".",
           "type": "string"
+        },
+        "emailInfo": {
+          "$ref": "GoogleCloudIdentitytoolkitV1EmailInfo",
+          "description": "Contains information specific to email MFA."
         },
         "enrolledAt": {
           "description": "Timestamp when the account enrolled this second factor.",
