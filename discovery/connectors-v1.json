@@ -1108,7 +1108,7 @@
       }
     }
   },
-  "revision": "20230403",
+  "revision": "20230417",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1170,6 +1170,10 @@
           },
           "type": "array"
         },
+        "authKey": {
+          "description": "Identifier key for auth config",
+          "type": "string"
+        },
         "authType": {
           "description": "The type of authentication configured.",
           "enum": [
@@ -1217,6 +1221,10 @@
       "description": "AuthConfigTemplate defines required field over an authentication type.",
       "id": "AuthConfigTemplate",
       "properties": {
+        "authKey": {
+          "description": "Identifier key for auth config",
+          "type": "string"
+        },
         "authType": {
           "description": "The type of authentication configured.",
           "enum": [
