@@ -203,13 +203,17 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$ContactCenterQuota {
     /**
-     * Reflects the count limit of contact centers on a billing account.
+     * Deprecated: Use the Quota fields instead. Reflects the count limit of contact centers on a billing account.
      */
     contactCenterCountLimit?: number | null;
     /**
-     * Reflects the count sum of contact centers on a billing account.
+     * Deprecated: Use the Quota fields instead. Reflects the count sum of contact centers on a billing account.
      */
     contactCenterCountSum?: number | null;
+    /**
+     * Quota details per contact center instance type.
+     */
+    quotas?: Schema$Quota[];
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -268,7 +272,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
     operations?: Schema$Operation[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -353,6 +357,23 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Quota details.
+   */
+  export interface Schema$Quota {
+    /**
+     * Reflects the count limit of contact centers on a billing account.
+     */
+    contactCenterCountLimit?: number | null;
+    /**
+     * Reflects the count sum of contact centers on a billing account.
+     */
+    contactCenterCountSum?: number | null;
+    /**
+     * Contact center instance type.
+     */
+    contactCenterInstanceSize?: string | null;
   }
   /**
    * Message storing SAML params to enable Google as IDP.
@@ -746,7 +767,8 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "contactCenterCountLimit": 0,
-     *   //   "contactCenterCountSum": 0
+     *   //   "contactCenterCountSum": 0,
+     *   //   "quotas": []
      *   // }
      * }
      *
