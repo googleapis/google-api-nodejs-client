@@ -993,7 +993,7 @@ export namespace dialogflow_v3beta1 {
      */
     agentContent?: string | null;
     /**
-     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
+     * The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
   }
@@ -1497,7 +1497,7 @@ export namespace dialogflow_v3beta1 {
     redact?: boolean | null;
   }
   /**
-   * Represents an example that the agent is trained on to identify the intent. Next ID: 15
+   * Represents an example that the agent is trained on to identify the intent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase {
     /**
@@ -3510,7 +3510,7 @@ export namespace dialogflow_v3beta1 {
      */
     agentContent?: string | null;
     /**
-     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
+     * The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
   }
@@ -3764,7 +3764,7 @@ export namespace dialogflow_v3beta1 {
     singleUtterance?: boolean | null;
   }
   /**
-   * An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent. Next ID: 15
+   * An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3Intent {
     /**
