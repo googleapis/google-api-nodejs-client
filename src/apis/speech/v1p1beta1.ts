@@ -182,6 +182,14 @@ export namespace speech_v1p1beta1 {
      */
     items?: Schema$ClassItem[];
     /**
+     * Output only. The [KMS key name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which the content of the ClassItem is encrypted. The expected format is `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. The [KMS key version name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions) with which content of the ClassItem is encrypted. The expected format is `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}/cryptoKeyVersions/{crypto_key_version\}`.
+     */
+    kmsKeyVersionName?: string | null;
+    /**
      * The resource name of the custom class.
      */
     name?: string | null;
@@ -363,6 +371,14 @@ export namespace speech_v1p1beta1 {
      * Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 (exclusive) and 20. We recommend using a binary search approach to finding the optimal value for your use case as well as adding phrases both with and without boost to your requests.
      */
     boost?: number | null;
+    /**
+     * Output only. The [KMS key name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which the content of the PhraseSet is encrypted. The expected format is `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. The [KMS key version name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions) with which content of the PhraseSet is encrypted. The expected format is `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}/cryptoKeyVersions/{crypto_key_version\}`.
+     */
+    kmsKeyVersionName?: string | null;
     /**
      * The resource name of the phrase set.
      */
@@ -1103,6 +1119,8 @@ export namespace speech_v1p1beta1 {
      *   // {
      *   //   "customClassId": "my_customClassId",
      *   //   "items": [],
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name"
      *   // }
      * }
@@ -1358,6 +1376,8 @@ export namespace speech_v1p1beta1 {
      *   // {
      *   //   "customClassId": "my_customClassId",
      *   //   "items": [],
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name"
      *   // }
      * }
@@ -1629,6 +1649,8 @@ export namespace speech_v1p1beta1 {
      *       // {
      *       //   "customClassId": "my_customClassId",
      *       //   "items": [],
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -1639,6 +1661,8 @@ export namespace speech_v1p1beta1 {
      *   // {
      *   //   "customClassId": "my_customClassId",
      *   //   "items": [],
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name"
      *   // }
      * }
@@ -1840,6 +1864,8 @@ export namespace speech_v1p1beta1 {
      *   // Example response
      *   // {
      *   //   "boost": {},
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "phrases": []
      *   // }
@@ -2095,6 +2121,8 @@ export namespace speech_v1p1beta1 {
      *   // Example response
      *   // {
      *   //   "boost": {},
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "phrases": []
      *   // }
@@ -2364,6 +2392,8 @@ export namespace speech_v1p1beta1 {
      *       // request body parameters
      *       // {
      *       //   "boost": {},
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *       //   "name": "my_name",
      *       //   "phrases": []
      *       // }
@@ -2374,6 +2404,8 @@ export namespace speech_v1p1beta1 {
      *   // Example response
      *   // {
      *   //   "boost": {},
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "phrases": []
      *   // }
