@@ -3990,7 +3990,7 @@
       }
     }
   },
-  "revision": "20230328",
+  "revision": "20230423",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5041,7 +5041,13 @@
     "GoogleCloudDataplexV1DataProfileSpec": {
       "description": "DataProfileScan related setting.",
       "id": "GoogleCloudDataplexV1DataProfileSpec",
-      "properties": {},
+      "properties": {
+        "samplingPercent": {
+          "description": "Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.",
+          "format": "float",
+          "type": "number"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDataplexV1DataQualityDimensionResult": {
@@ -5262,6 +5268,7 @@
           "type": "string"
         },
         "statistic": {
+          "description": "The aggregate metric to evaluate.",
           "enum": [
             "STATISTIC_UNDEFINED",
             "MEAN",
@@ -5314,6 +5321,11 @@
             "$ref": "GoogleCloudDataplexV1DataQualityRule"
           },
           "type": "array"
+        },
+        "samplingPercent": {
+          "description": "Optional. The percentage of the records to be selected from the dataset for DataScan. Value can range between 0.0 and 100.0 with up to 3 significant decimal digits. Sampling is not applied if sampling_percent is not specified, 0 or 100.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -8047,7 +8059,7 @@
       "type": "object"
     },
     "GoogleCloudLocationLocation": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "GoogleCloudLocationLocation",
       "properties": {
         "displayName": {
