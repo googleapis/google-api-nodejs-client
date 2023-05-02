@@ -625,7 +625,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each GCP project can have at most one fleet resource, named \"default\".",
+                      "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each Google Cloud project can have at most one fleet resource, named \"default\".",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/fleets/[^/]+$",
                       "required": true,
@@ -1502,7 +1502,7 @@
       }
     }
   },
-  "revision": "20230407",
+  "revision": "20230424",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2562,7 +2562,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "GCP labels for this Feature.",
+          "description": "Labels for this Feature.",
           "type": "object"
         },
         "membershipSpecs": {
@@ -2703,7 +2703,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each GCP project can have at most one fleet resource, named \"default\".",
+          "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each Google Cloud project can have at most one fleet resource, named \"default\".",
           "readOnly": true,
           "type": "string"
         },
@@ -2755,13 +2755,33 @@
     "FleetObservabilityFeatureSpec": {
       "description": "**Fleet Observability**: The Hub-wide input for the FleetObservability feature.",
       "id": "FleetObservabilityFeatureSpec",
-      "properties": {},
+      "properties": {
+        "loggingConfig": {
+          "$ref": "FleetObservabilityLoggingConfig",
+          "description": "Specified if fleet logging feature is enabled for the entire fleet. If UNSPECIFIED, fleet logging feature is disabled for the entire fleet."
+        }
+      },
       "type": "object"
     },
     "FleetObservabilityFeatureState": {
       "description": "**FleetObservability**: An empty state left as an example Hub-wide Feature state.",
       "id": "FleetObservabilityFeatureState",
       "properties": {},
+      "type": "object"
+    },
+    "FleetObservabilityLoggingConfig": {
+      "description": "LoggingConfig defines the configuration for different types of logs.",
+      "id": "FleetObservabilityLoggingConfig",
+      "properties": {
+        "defaultConfig": {
+          "$ref": "FleetObservabilityRoutingConfig",
+          "description": "Specified if applying the default routing config to logs not specified in other configs."
+        },
+        "fleetScopeLogsConfig": {
+          "$ref": "FleetObservabilityRoutingConfig",
+          "description": "Specified if applying the routing config to all logs for all fleet scopes."
+        }
+      },
       "type": "object"
     },
     "FleetObservabilityMembershipSpec": {
@@ -2774,6 +2794,27 @@
       "description": "**FleetObservability**: An empty state left as an example membership-specific Feature state.",
       "id": "FleetObservabilityMembershipState",
       "properties": {},
+      "type": "object"
+    },
+    "FleetObservabilityRoutingConfig": {
+      "description": "RoutingConfig configures the behaviour of fleet logging feature.",
+      "id": "FleetObservabilityRoutingConfig",
+      "properties": {
+        "mode": {
+          "description": "mode configures the logs routing mode.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "COPY",
+            "MOVE"
+          ],
+          "enumDescriptions": [
+            "If UNSPECIFIED, fleet logging feature is disabled.",
+            "logs will be copied to the destination project.",
+            "logs will be moved to the destination project."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleRpcStatus": {
@@ -3127,7 +3168,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -3562,14 +3603,14 @@
       "id": "PolicyControllerBundleInstallSpec",
       "properties": {
         "exemptedNamespaces": {
-          "description": "the set of namespaces to be exempted from the bundle TODO (b/271878194): Decrement this",
+          "description": "the set of namespaces to be exempted from the bundle",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "management": {
-          "description": "Management specifies how the bundle will be managed by the controller. TODO (b/271878194): Remove this",
+          "description": "Management specifies how the bundle will be managed by the controller.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "INSTALLED"
@@ -3601,7 +3642,7 @@
           "additionalProperties": {
             "$ref": "PolicyControllerPolicyControllerDeploymentConfig"
           },
-          "description": "Map of deployment configs to deployments (“admission”, “audit”, “mutation”).",
+          "description": "Map of deployment configs to deployments (\"admission\", \"audit\", \"mutation').",
           "type": "object"
         },
         "exemptableNamespaces": {
@@ -3649,7 +3690,7 @@
         },
         "templateLibraryConfig": {
           "$ref": "PolicyControllerTemplateLibraryConfig",
-          "description": "Configures the library templates to install along with Policy Controller. TODO (b/271878194): Remove this"
+          "description": "Configures the library templates to install along with Policy Controller."
         }
       },
       "type": "object"
@@ -3684,12 +3725,12 @@
           "additionalProperties": {
             "$ref": "PolicyControllerOnClusterState"
           },
-          "description": "The state of the template library and any bundles included in the chosen version of the manifest TODO (b/271878194): Remove this",
+          "description": "The state of the template library and any bundles included in the chosen version of the manifest",
           "type": "object"
         },
         "policyContentState": {
           "$ref": "PolicyControllerPolicyContentState",
-          "description": "The overall content state observed by the Hub Feature controller. TODO (b/271878194): Decrement this"
+          "description": "The overall content state observed by the Hub Feature controller."
         },
         "state": {
           "description": "The overall Policy Controller lifecycle state observed by the Hub Feature controller.",
@@ -3879,11 +3920,11 @@
       "id": "PolicyControllerTemplateLibraryConfig",
       "properties": {
         "included": {
-          "description": "Whether the standard template library should be installed or not. TODO (b/271878194): Remove this",
+          "description": "Whether the standard template library should be installed or not.",
           "type": "boolean"
         },
         "installation": {
-          "description": "Configures the manner in which the template library is installed on the cluster. TODO (b/271878194): Decrement this",
+          "description": "Configures the manner in which the template library is installed on the cluster.",
           "enum": [
             "INSTALLATION_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -4026,6 +4067,10 @@
       "description": "Scope represents a Scope in a Fleet.",
       "id": "Scope",
       "properties": {
+        "allMemberships": {
+          "description": "If true, all Memberships in the Fleet bind to this Scope.",
+          "type": "boolean"
+        },
         "createTime": {
           "description": "Output only. When the scope was created.",
           "format": "google-datetime",
