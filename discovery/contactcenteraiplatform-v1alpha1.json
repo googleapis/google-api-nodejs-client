@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20230315",
+  "revision": "20230424",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -627,14 +627,21 @@
       "id": "ContactCenterQuota",
       "properties": {
         "contactCenterCountLimit": {
-          "description": "Reflects the count limit of contact centers on a billing account.",
+          "description": "Deprecated: Use the Quota fields instead. Reflects the count limit of contact centers on a billing account.",
           "format": "int32",
           "type": "integer"
         },
         "contactCenterCountSum": {
-          "description": "Reflects the count sum of contact centers on a billing account.",
+          "description": "Deprecated: Use the Quota fields instead. Reflects the count sum of contact centers on a billing account.",
           "format": "int32",
           "type": "integer"
+        },
+        "quotas": {
+          "description": "Quota details per contact center instance type.",
+          "items": {
+            "$ref": "Quota"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -736,7 +743,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -847,6 +854,45 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Quota": {
+      "description": "Quota details.",
+      "id": "Quota",
+      "properties": {
+        "contactCenterCountLimit": {
+          "description": "Reflects the count limit of contact centers on a billing account.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "contactCenterCountSum": {
+          "description": "Reflects the count sum of contact centers on a billing account.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "contactCenterInstanceSize": {
+          "description": "Contact center instance type.",
+          "enum": [
+            "INSTANCE_SIZE_UNSPECIFIED",
+            "STANDARD_SMALL",
+            "STANDARD_MEDIUM",
+            "STANDARD_LARGE",
+            "STANDARD_XLARGE",
+            "STANDARD_2XLARGE",
+            "STANDARD_3XLARGE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "Instance Size STANDARD_SMALL.",
+            "Instance Size STANDARD_MEDIUM.",
+            "Instance Size STANDARD_LARGE.",
+            "Instance Size STANDARD_XLARGE.",
+            "Instance Size STANDARD_2XLARGE.",
+            "Instance Size STANDARD_3XLARGE."
+          ],
           "type": "string"
         }
       },
