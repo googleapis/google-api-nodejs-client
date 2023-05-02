@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230420",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1074,30 +1074,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudFunctionsV2alphaLocationMetadata": {
-      "description": "Extra GCF specific location information.",
-      "id": "GoogleCloudFunctionsV2alphaLocationMetadata",
-      "properties": {
-        "environments": {
-          "description": "The Cloud Function environments this location supports.",
-          "items": {
-            "enum": [
-              "ENVIRONMENT_UNSPECIFIED",
-              "GEN_1",
-              "GEN_2"
-            ],
-            "enumDescriptions": [
-              "Unspecified",
-              "Gen 1",
-              "Gen 2"
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudFunctionsV2alphaOperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudFunctionsV2alphaOperationMetadata",
@@ -1131,7 +1107,7 @@
         "stages": {
           "description": "Mechanism for reporting in-progress stages",
           "items": {
-            "$ref": "Stage"
+            "$ref": "GoogleCloudFunctionsV2alphaStage"
           },
           "type": "array"
         },
@@ -1146,6 +1122,70 @@
         "verb": {
           "description": "Name of the verb executed by the operation.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudFunctionsV2alphaStage": {
+      "description": "Each Stage of the deployment process",
+      "id": "GoogleCloudFunctionsV2alphaStage",
+      "properties": {
+        "message": {
+          "description": "Message describing the Stage",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the Stage. This will be unique for each Stage.",
+          "enum": [
+            "NAME_UNSPECIFIED",
+            "ARTIFACT_REGISTRY",
+            "BUILD",
+            "SERVICE",
+            "TRIGGER",
+            "SERVICE_ROLLBACK",
+            "TRIGGER_ROLLBACK"
+          ],
+          "enumDescriptions": [
+            "Not specified. Invalid name.",
+            "Artifact Regsitry Stage",
+            "Build Stage",
+            "Service Stage",
+            "Trigger Stage",
+            "Service Rollback Stage",
+            "Trigger Rollback Stage"
+          ],
+          "type": "string"
+        },
+        "resource": {
+          "description": "Resource of the Stage",
+          "type": "string"
+        },
+        "resourceUri": {
+          "description": "Link to the current Stage resource",
+          "type": "string"
+        },
+        "state": {
+          "description": "Current state of the Stage",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Not specified. Invalid state.",
+            "Stage has not started.",
+            "Stage is in progress.",
+            "Stage has completed."
+          ],
+          "type": "string"
+        },
+        "stateMessages": {
+          "description": "State messages from the current Stage.",
+          "items": {
+            "$ref": "GoogleCloudFunctionsV2alphaStateMessage"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1177,30 +1217,6 @@
         "type": {
           "description": "One-word CamelCase type of the state message.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudFunctionsV2betaLocationMetadata": {
-      "description": "Extra GCF specific location information.",
-      "id": "GoogleCloudFunctionsV2betaLocationMetadata",
-      "properties": {
-        "environments": {
-          "description": "The Cloud Function environments this location supports.",
-          "items": {
-            "enum": [
-              "ENVIRONMENT_UNSPECIFIED",
-              "GEN_1",
-              "GEN_2"
-            ],
-            "enumDescriptions": [
-              "Unspecified",
-              "Gen 1",
-              "Gen 2"
-            ],
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1428,7 +1444,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -1457,30 +1473,6 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LocationMetadata": {
-      "description": "Extra GCF specific location information.",
-      "id": "LocationMetadata",
-      "properties": {
-        "environments": {
-          "description": "The Cloud Function environments this location supports.",
-          "items": {
-            "enum": [
-              "ENVIRONMENT_UNSPECIFIED",
-              "GEN_1",
-              "GEN_2"
-            ],
-            "enumDescriptions": [
-              "Unspecified",
-              "Gen 1",
-              "Gen 2"
-            ],
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1934,70 +1926,6 @@
         "resolvedStorageSource": {
           "$ref": "StorageSource",
           "description": "A copy of the build's `source.storage_source`, if exists, with any generations resolved."
-        }
-      },
-      "type": "object"
-    },
-    "Stage": {
-      "description": "Each Stage of the deployment process",
-      "id": "Stage",
-      "properties": {
-        "message": {
-          "description": "Message describing the Stage",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of the Stage. This will be unique for each Stage.",
-          "enum": [
-            "NAME_UNSPECIFIED",
-            "ARTIFACT_REGISTRY",
-            "BUILD",
-            "SERVICE",
-            "TRIGGER",
-            "SERVICE_ROLLBACK",
-            "TRIGGER_ROLLBACK"
-          ],
-          "enumDescriptions": [
-            "Not specified. Invalid name.",
-            "Artifact Regsitry Stage",
-            "Build Stage",
-            "Service Stage",
-            "Trigger Stage",
-            "Service Rollback Stage",
-            "Trigger Rollback Stage"
-          ],
-          "type": "string"
-        },
-        "resource": {
-          "description": "Resource of the Stage",
-          "type": "string"
-        },
-        "resourceUri": {
-          "description": "Link to the current Stage resource",
-          "type": "string"
-        },
-        "state": {
-          "description": "Current state of the Stage",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "NOT_STARTED",
-            "IN_PROGRESS",
-            "COMPLETE"
-          ],
-          "enumDescriptions": [
-            "Not specified. Invalid state.",
-            "Stage has not started.",
-            "Stage is in progress.",
-            "Stage has completed."
-          ],
-          "type": "string"
-        },
-        "stateMessages": {
-          "description": "State messages from the current Stage.",
-          "items": {
-            "$ref": "GoogleCloudFunctionsV2alphaStateMessage"
-          },
-          "type": "array"
         }
       },
       "type": "object"
