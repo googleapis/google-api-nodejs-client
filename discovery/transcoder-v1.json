@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20230322",
+  "revision": "20230426",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -950,7 +950,7 @@
       "type": "object"
     },
     "Image": {
-      "description": "Overlaid jpeg image.",
+      "description": "Overlaid image.",
       "id": "Image",
       "properties": {
         "alpha": {
@@ -963,7 +963,7 @@
           "description": "Normalized image resolution, based on output video resolution. Valid values: `0.0`–`1.0`. To respect the original image aspect ratio, set either `x` or `y` to `0.0`. To use the original image resolution, set both `x` and `y` to `0.0`."
         },
         "uri": {
-          "description": "Required. URI of the JPEG image in Cloud Storage. For example, `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.",
+          "description": "Required. URI of the image in Cloud Storage. For example, `gs://bucket/inputs/image.png`. Only PNG and JPEG images are supported.",
           "type": "string"
         }
       },
@@ -1242,7 +1242,7 @@
           "type": "array"
         },
         "type": {
-          "description": "Required. Type of the manifest, can be `HLS` or `DASH`.",
+          "description": "Required. Type of the manifest.",
           "enum": [
             "MANIFEST_TYPE_UNSPECIFIED",
             "HLS",
@@ -1250,8 +1250,8 @@
           ],
           "enumDescriptions": [
             "The manifest type is not specified.",
-            "Create `HLS` manifest. The corresponding file extension is `.m3u8`.",
-            "Create `DASH` manifest. The corresponding file extension is `.mpd`."
+            "Create an HLS manifest. The corresponding file extension is `.m3u8`.",
+            "Create an MPEG-DASH manifest. The corresponding file extension is `.mpd`."
           ],
           "type": "string"
         }
