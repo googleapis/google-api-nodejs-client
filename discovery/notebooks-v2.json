@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230307",
+  "revision": "20230420",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -493,7 +493,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
