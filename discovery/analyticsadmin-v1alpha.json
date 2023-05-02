@@ -1061,6 +1061,28 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
+        "fetchConnectedGa4Property": {
+          "description": "Given a specified UA property, looks up the GA4 property connected to it. Note: this cannot be used with GA4 properties.",
+          "flatPath": "v1alpha/properties:fetchConnectedGa4Property",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.properties.fetchConnectedGa4Property",
+          "parameterOrder": [],
+          "parameters": {
+            "property": {
+              "description": "Required. The UA property for which to look up the connected GA4 property. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internal_web_property_id} Example: properties/1234",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/properties:fetchConnectedGa4Property",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "get": {
           "description": "Lookup for a single \"GA4\" Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
@@ -4040,7 +4062,7 @@
       }
     }
   },
-  "revision": "20230410",
+  "revision": "20230429",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4683,11 +4705,11 @@
           "description": "A filter for numeric or date values between certain values on a dimension or metric."
         },
         "fieldName": {
-          "description": "Required. Immutable. The dimension name or metric name to filter.",
+          "description": "Required. Immutable. The dimension name or metric name to filter. If the field name refers to a custom dimension or metric, a scope prefix will be added to the front of the custom dimensions or metric name. For more on scope prefixes or custom dimensions/metrics, reference the [Google Analytics Data API documentation] (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).",
           "type": "string"
         },
         "inAnyNDayPeriod": {
-          "description": "Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (i.e., infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.",
+          "description": "Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (For example, infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.",
           "format": "int32",
           "type": "integer"
         },
@@ -4828,7 +4850,7 @@
         },
         "eventParameterFilterExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
-          "description": "Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (i.e., nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for \"eventCount\", only that one will be considered; all the other filters will be ignored."
+          "description": "Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (For example, nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for \"eventCount\", only that one will be considered; all the other filters will be ignored."
         }
       },
       "type": "object"
@@ -4859,7 +4881,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaAudienceFilterClause": {
-      "description": "A clause for defining either a simple or sequence filter. A filter can be inclusive (i.e., users satisfying the filter clause are included in the Audience) or exclusive (i.e., users satisfying the filter clause are excluded from the Audience).",
+      "description": "A clause for defining either a simple or sequence filter. A filter can be inclusive (For example, users satisfying the filter clause are included in the Audience) or exclusive (For example, users satisfying the filter clause are excluded from the Audience).",
       "id": "GoogleAnalyticsAdminV1alphaAudienceFilterClause",
       "properties": {
         "clauseType": {
@@ -4905,7 +4927,7 @@
         },
         "notExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
-          "description": "A filter expression to be NOT'ed (i.e., inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression."
+          "description": "A filter expression to be NOT'ed (For example, inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression."
         },
         "orGroup": {
           "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList",
@@ -4968,7 +4990,7 @@
       "id": "GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep",
       "properties": {
         "constraintDuration": {
-          "description": "Optional. When set, this step must be satisfied within the constraint_duration of the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.",
+          "description": "Optional. When set, this step must be satisfied within the constraint_duration of the previous step (For example, t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.",
           "format": "google-duration",
           "type": "string"
         },
@@ -5365,6 +5387,10 @@
         "attributionSettings": {
           "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings",
           "description": "A snapshot of AttributionSettings resource in change history."
+        },
+        "audience": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudience",
+          "description": "A snapshot of an Audience resource in change history."
         },
         "bigqueryLink": {
           "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink",
@@ -6350,6 +6376,17 @@
         "optOut": {
           "description": "The opt out status for the UA property.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse": {
+      "description": "Response for looking up GA4 property connected to a UA property.",
+      "id": "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse",
+      "properties": {
+        "property": {
+          "description": "The GA4 property connected to the UA property. An empty string is returned when there is no connected GA4 property. Format: properties/{property_id} Example: properties/1234",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7365,7 +7402,8 @@
               "ATTRIBUTION_SETTINGS",
               "EXPANDED_DATA_SET",
               "CHANNEL_GROUP",
-              "ENHANCED_MEASUREMENT_SETTINGS"
+              "ENHANCED_MEASUREMENT_SETTINGS",
+              "AUDIENCE"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -7386,7 +7424,8 @@
               "AttributionSettings resource",
               "ExpandedDataSet resource",
               "ChannelGroup resource",
-              "EnhancedMeasurementSettings resource"
+              "EnhancedMeasurementSettings resource",
+              "Audience resource"
             ],
             "type": "string"
           },
