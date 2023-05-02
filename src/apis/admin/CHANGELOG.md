@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v9.0.0...admin-v9.0.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **admin:** update the API ([c0d70d4](https://github.com/googleapis/google-api-nodejs-client/commit/c0d70d434ee0acf901a0060420f544d4f6733464))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v8.0.0...admin-v9.0.0) (2023-04-14)
 
 

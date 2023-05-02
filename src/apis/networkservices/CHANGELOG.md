@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v4.0.0...networkservices-v4.0.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([a415460](https://github.com/googleapis/google-api-nodejs-client/commit/a415460c267199f64f2c7ed2747e240e56e833eb))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v3.0.0...networkservices-v4.0.0) (2023-04-11)
 
 
