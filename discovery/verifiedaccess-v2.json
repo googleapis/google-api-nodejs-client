@@ -146,21 +146,276 @@
       }
     }
   },
-  "revision": "20221018",
+  "revision": "20230425",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
       "description": "Result message for VerifiedAccess.GenerateChallenge.",
       "id": "Challenge",
       "properties": {
-        "alternativeChallenge": {
-          "description": "Challenge generated with the old signing key, the bytes representation of SignedData (this will only be present during key rotation).",
-          "format": "byte",
-          "type": "string"
-        },
         "challenge": {
           "description": "Generated challenge, the bytes representation of SignedData.",
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CrowdStrikeAgent": {
+      "description": "Properties of the CrowdStrike agent installed on a device.",
+      "id": "CrowdStrikeAgent",
+      "properties": {
+        "agentId": {
+          "description": "The Agent ID of the Crowdstrike agent.",
+          "type": "string"
+        },
+        "customerId": {
+          "description": "The Customer ID to which the agent belongs to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceSignals": {
+      "description": "The device signals as reported by Chrome.",
+      "id": "DeviceSignals",
+      "properties": {
+        "allowScreenLock": {
+          "description": "Value of the AllowScreenLock policy on the device. See https://chromeenterprise.google/policies/?policy=AllowScreenLock for more details.",
+          "type": "boolean"
+        },
+        "browserVersion": {
+          "description": "Current version of the Chrome browser which generated this set of signals. Example value: \"107.0.5286.0\".",
+          "type": "string"
+        },
+        "builtInDnsClientEnabled": {
+          "description": "Whether Chrome's built-in DNS client is used. The OS DNS client is otherwise used. This value may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled.",
+          "type": "boolean"
+        },
+        "chromeRemoteDesktopAppBlocked": {
+          "description": "Whether access to the Chrome Remote Desktop application is blocked via a policy.",
+          "type": "boolean"
+        },
+        "crowdStrikeAgent": {
+          "$ref": "CrowdStrikeAgent",
+          "description": "Crowdstrike agent properties installed on the device, if any."
+        },
+        "deviceAffiliationIds": {
+          "description": "Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the device. When the sets of device and profile affiliation IDs overlap, it means that the organizations managing the device and user are affiliated. To learn more about user affiliation, visit https://support.google.com/chrome/a/answer/12801245?ref_topic=9027936.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deviceEnrollmentDomain": {
+          "description": "Enrollment domain of the customer which is currently managing the device.",
+          "type": "string"
+        },
+        "deviceManufacturer": {
+          "description": "The name of the device's manufacturer.",
+          "type": "string"
+        },
+        "deviceModel": {
+          "description": "The name of the device's model.",
+          "type": "string"
+        },
+        "diskEncryption": {
+          "description": "The encryption state of the disk. On ChromeOS, the main disk is always ENCRYPTED.",
+          "enum": [
+            "DISK_ENCRYPTION_UNSPECIFIED",
+            "DISK_ENCRYPTION_UNKNOWN",
+            "DISK_ENCRYPTION_DISABLED",
+            "DISK_ENCRYPTION_ENCRYPTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Chrome could not evaluate the encryption state.",
+            "The main disk is not encrypted.",
+            "The main disk is encrypted."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the device, as defined by the user.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Hostname of the device.",
+          "type": "string"
+        },
+        "imei": {
+          "description": "International Mobile Equipment Identity (IMEI) of the device.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "macAddresses": {
+          "description": "MAC addresses of the device.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "meid": {
+          "description": "Mobile Equipment Identifier (MEID) of the device.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "operatingSystem": {
+          "description": "The type of the Operating System currently running on the device.",
+          "enum": [
+            "OPERATING_SYSTEM_UNSPECIFIED",
+            "CHROME_OS",
+            "CHROMIUM_OS",
+            "WINDOWS",
+            "MAC_OS_X",
+            "LINUX"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED.",
+            "ChromeOS.",
+            "ChromiumOS.",
+            "Windows.",
+            "Mac Os X.",
+            "Linux"
+          ],
+          "type": "string"
+        },
+        "osFirewall": {
+          "description": "The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode.",
+          "enum": [
+            "OS_FIREWALL_UNSPECIFIED",
+            "OS_FIREWALL_UNKNOWN",
+            "OS_FIREWALL_DISABLED",
+            "OS_FIREWALL_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Chrome could not evaluate the OS firewall state.",
+            "The OS firewall is disabled.",
+            "The OS firewall is enabled."
+          ],
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "The current version of the Operating System. On Windows and linux, the value will also include the security patch information.",
+          "type": "string"
+        },
+        "passwordProtectionWarningTrigger": {
+          "description": "Whether the Password Protection Warning feature is enabled or not. Password protection alerts users when they reuse their protected password on potentially suspicious sites. This setting is controlled by an enterprise policy: https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger. Note that the policy unset does not have the same effects as having the policy explicitly set to `PASSWORD_PROTECTION_OFF`.",
+          "enum": [
+            "PASSWORD_PROTECTION_WARNING_TRIGGER_UNSPECIFIED",
+            "POLICY_UNSET",
+            "PASSWORD_PROTECTION_OFF",
+            "PASSWORD_REUSE",
+            "PHISHING_REUSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The policy is not set.",
+            "No password protection warning will be shown.",
+            "Password protection warning is shown if a protected password is re-used.",
+            "Password protection warning is shown if a protected password is re-used on a known phishing website."
+          ],
+          "type": "string"
+        },
+        "profileAffiliationIds": {
+          "description": "Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the Chrome Profile’s user or ChromeOS user.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "realtimeUrlCheckMode": {
+          "description": "Whether Enterprise-grade (i.e. custom) unsafe URL scanning is enabled or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode",
+          "enum": [
+            "REALTIME_URL_CHECK_MODE_UNSPECIFIED",
+            "REALTIME_URL_CHECK_MODE_DISABLED",
+            "REALTIME_URL_CHECK_MODE_ENABLED_MAIN_FRAME"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Disabled. Consumer Safe Browsing checks are applied.",
+            "Realtime check for main frame URLs is enabled."
+          ],
+          "type": "string"
+        },
+        "safeBrowsingProtectionLevel": {
+          "description": "Safe Browsing Protection Level. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel.",
+          "enum": [
+            "SAFE_BROWSING_PROTECTION_LEVEL_UNSPECIFIED",
+            "INACTIVE",
+            "STANDARD",
+            "ENHANCED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Safe Browsing is disabled.",
+            "Safe Browsing is active in the standard mode.",
+            "Safe Browsing is active in the enhanced mode."
+          ],
+          "type": "string"
+        },
+        "screenLockSecured": {
+          "description": "The state of the Screen Lock password protection. On ChromeOS, this value will always be ENABLED as there is not way to disable requiring a password or pin when unlocking the device.",
+          "enum": [
+            "SCREEN_LOCK_SECURED_UNSPECIFIED",
+            "SCREEN_LOCK_SECURED_UNKNOWN",
+            "SCREEN_LOCK_SECURED_DISABLED",
+            "SCREEN_LOCK_SECURED_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Chrome could not evaluate the state of the Screen Lock mechanism.",
+            "The Screen Lock is not password-protected.",
+            "The Screen Lock is password-protected."
+          ],
+          "type": "string"
+        },
+        "secureBootMode": {
+          "description": "Whether the device's startup software has its Secure Boot feature enabled.",
+          "enum": [
+            "SECURE_BOOT_MODE_UNSPECIFIED",
+            "SECURE_BOOT_MODE_UNKNOWN",
+            "SECURE_BOOT_MODE_DISABLED",
+            "SECURE_BOOT_MODE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Chrome was unable to determine the Secure Boot mode.",
+            "Secure Boot was disabled on the startup software.",
+            "Secure Boot was enabled on the startup software."
+          ],
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "The serial number of the device. On Windows, this represents the BIOS's serial number.",
+          "type": "string"
+        },
+        "siteIsolationEnabled": {
+          "description": "Whether the Site Isolation (a.k.a Site Per Process) setting is enabled. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SitePerProcess",
+          "type": "boolean"
+        },
+        "systemDnsServers": {
+          "description": "List of the addesses of all OS level DNS servers configured in the device's network settings.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thirdPartyBlockingEnabled": {
+          "description": "Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled",
+          "type": "boolean"
+        },
+        "windowsMachineDomain": {
+          "description": "Windows domain that the current machine has joined.",
+          "type": "string"
+        },
+        "windowsUserDomain": {
+          "description": "Windows domain for the current OS user.",
           "type": "string"
         }
       },
@@ -201,8 +456,12 @@
           "type": "string"
         },
         "deviceSignal": {
-          "description": "Device signal in json string representation.",
+          "description": "Deprecated. Device signal in json string representation. Prefer using `device_signals` instead.",
           "type": "string"
+        },
+        "deviceSignals": {
+          "$ref": "DeviceSignals",
+          "description": "Device signals."
         },
         "keyTrustLevel": {
           "description": "Device attested key trust level.",
