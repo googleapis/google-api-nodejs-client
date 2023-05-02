@@ -593,7 +593,7 @@ export namespace file_v1 {
     snapshots?: Schema$Snapshot[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
