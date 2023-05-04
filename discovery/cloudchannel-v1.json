@@ -2055,7 +2055,7 @@
       }
     }
   },
-  "revision": "20230403",
+  "revision": "20230429",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2672,11 +2672,11 @@
       "properties": {
         "invoiceEndDate": {
           "$ref": "GoogleTypeDate",
-          "description": "The latest invoice date (exclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the following month."
+          "description": "The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month."
         },
         "invoiceStartDate": {
           "$ref": "GoogleTypeDate",
-          "description": "The earliest invoice date (inclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the given month."
+          "description": "The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month."
         },
         "usageEndDateTime": {
           "$ref": "GoogleTypeDateTime",
@@ -2745,6 +2745,10 @@
         "associationInfo": {
           "$ref": "GoogleCloudChannelV1AssociationInfo",
           "description": "Association information to other entitlements."
+        },
+        "billingAccount": {
+          "description": "Optional. The billing account resource name that is used to pay for this entitlement.",
+          "type": "string"
         },
         "commitmentSettings": {
           "$ref": "GoogleCloudChannelV1CommitmentSettings",
@@ -3040,6 +3044,13 @@
         "pageToken": {
           "description": "Optional. A token that specifies a page of results beyond the first page. Obtained through FetchReportResultsResponse.next_page_token of the previous CloudChannelReportsService.FetchReportResults call.",
           "type": "string"
+        },
+        "partitionKeys": {
+          "description": "Optional. List of keys specifying which report partitions to return. If empty, returns all partitions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4223,6 +4234,10 @@
       "description": "A row of report values.",
       "id": "GoogleCloudChannelV1Row",
       "properties": {
+        "partitionKey": {
+          "description": "The key for the partition this row belongs to. This field is empty if the report is not partitioned.",
+          "type": "string"
+        },
         "values": {
           "description": "The list of values in the row.",
           "items": {
@@ -4663,11 +4678,11 @@
       "properties": {
         "invoiceEndDate": {
           "$ref": "GoogleTypeDate",
-          "description": "The latest invoice date (exclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the following month."
+          "description": "The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month."
         },
         "invoiceStartDate": {
           "$ref": "GoogleTypeDate",
-          "description": "The earliest invoice date (inclusive). If your product uses monthly invoices, and this value is not the beginning of a month, this will adjust the date to the first day of the given month."
+          "description": "The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month."
         },
         "usageEndDateTime": {
           "$ref": "GoogleTypeDateTime",
@@ -4692,6 +4707,10 @@
         "associationInfo": {
           "$ref": "GoogleCloudChannelV1alpha1AssociationInfo",
           "description": "Association information to other entitlements."
+        },
+        "billingAccount": {
+          "description": "Optional. The billing account resource name that is used to pay for this entitlement.",
+          "type": "string"
         },
         "channelPartnerId": {
           "description": "Cloud Identity ID of a channel partner who will be the direct reseller for the customer's order. This field is generally used in 2-tier ordering, where the order is placed by a top-level distributor on behalf of their channel partner or reseller. Required for distributors. Deprecated: `channel_partner_id` has been moved to the Customer.",

@@ -129,13 +129,147 @@ export namespace verifiedaccess_v2 {
    */
   export interface Schema$Challenge {
     /**
-     * Challenge generated with the old signing key, the bytes representation of SignedData (this will only be present during key rotation).
-     */
-    alternativeChallenge?: string | null;
-    /**
      * Generated challenge, the bytes representation of SignedData.
      */
     challenge?: string | null;
+  }
+  /**
+   * Properties of the CrowdStrike agent installed on a device.
+   */
+  export interface Schema$CrowdStrikeAgent {
+    /**
+     * The Agent ID of the Crowdstrike agent.
+     */
+    agentId?: string | null;
+    /**
+     * The Customer ID to which the agent belongs to.
+     */
+    customerId?: string | null;
+  }
+  /**
+   * The device signals as reported by Chrome.
+   */
+  export interface Schema$DeviceSignals {
+    /**
+     * Value of the AllowScreenLock policy on the device. See https://chromeenterprise.google/policies/?policy=AllowScreenLock for more details.
+     */
+    allowScreenLock?: boolean | null;
+    /**
+     * Current version of the Chrome browser which generated this set of signals. Example value: "107.0.5286.0".
+     */
+    browserVersion?: string | null;
+    /**
+     * Whether Chrome's built-in DNS client is used. The OS DNS client is otherwise used. This value may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#BuiltInDnsClientEnabled.
+     */
+    builtInDnsClientEnabled?: boolean | null;
+    /**
+     * Whether access to the Chrome Remote Desktop application is blocked via a policy.
+     */
+    chromeRemoteDesktopAppBlocked?: boolean | null;
+    /**
+     * Crowdstrike agent properties installed on the device, if any.
+     */
+    crowdStrikeAgent?: Schema$CrowdStrikeAgent;
+    /**
+     * Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the device. When the sets of device and profile affiliation IDs overlap, it means that the organizations managing the device and user are affiliated. To learn more about user affiliation, visit https://support.google.com/chrome/a/answer/12801245?ref_topic=9027936.
+     */
+    deviceAffiliationIds?: string[] | null;
+    /**
+     * Enrollment domain of the customer which is currently managing the device.
+     */
+    deviceEnrollmentDomain?: string | null;
+    /**
+     * The name of the device's manufacturer.
+     */
+    deviceManufacturer?: string | null;
+    /**
+     * The name of the device's model.
+     */
+    deviceModel?: string | null;
+    /**
+     * The encryption state of the disk. On ChromeOS, the main disk is always ENCRYPTED.
+     */
+    diskEncryption?: string | null;
+    /**
+     * The display name of the device, as defined by the user.
+     */
+    displayName?: string | null;
+    /**
+     * Hostname of the device.
+     */
+    hostname?: string | null;
+    /**
+     * International Mobile Equipment Identity (IMEI) of the device.
+     */
+    imei?: string[] | null;
+    /**
+     * MAC addresses of the device.
+     */
+    macAddresses?: string[] | null;
+    /**
+     * Mobile Equipment Identifier (MEID) of the device.
+     */
+    meid?: string[] | null;
+    /**
+     * The type of the Operating System currently running on the device.
+     */
+    operatingSystem?: string | null;
+    /**
+     * The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode.
+     */
+    osFirewall?: string | null;
+    /**
+     * The current version of the Operating System. On Windows and linux, the value will also include the security patch information.
+     */
+    osVersion?: string | null;
+    /**
+     * Whether the Password Protection Warning feature is enabled or not. Password protection alerts users when they reuse their protected password on potentially suspicious sites. This setting is controlled by an enterprise policy: https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger. Note that the policy unset does not have the same effects as having the policy explicitly set to `PASSWORD_PROTECTION_OFF`.
+     */
+    passwordProtectionWarningTrigger?: string | null;
+    /**
+     * Affiliation IDs of the organizations that are affiliated with the organization that is currently managing the Chrome Profile’s user or ChromeOS user.
+     */
+    profileAffiliationIds?: string[] | null;
+    /**
+     * Whether Enterprise-grade (i.e. custom) unsafe URL scanning is enabled or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#EnterpriseRealTimeUrlCheckMode
+     */
+    realtimeUrlCheckMode?: string | null;
+    /**
+     * Safe Browsing Protection Level. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel.
+     */
+    safeBrowsingProtectionLevel?: string | null;
+    /**
+     * The state of the Screen Lock password protection. On ChromeOS, this value will always be ENABLED as there is not way to disable requiring a password or pin when unlocking the device.
+     */
+    screenLockSecured?: string | null;
+    /**
+     * Whether the device's startup software has its Secure Boot feature enabled.
+     */
+    secureBootMode?: string | null;
+    /**
+     * The serial number of the device. On Windows, this represents the BIOS's serial number.
+     */
+    serialNumber?: string | null;
+    /**
+     * Whether the Site Isolation (a.k.a Site Per Process) setting is enabled. That setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/#SitePerProcess
+     */
+    siteIsolationEnabled?: boolean | null;
+    /**
+     * List of the addesses of all OS level DNS servers configured in the device's network settings.
+     */
+    systemDnsServers?: string[] | null;
+    /**
+     * Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled
+     */
+    thirdPartyBlockingEnabled?: boolean | null;
+    /**
+     * Windows domain that the current machine has joined.
+     */
+    windowsMachineDomain?: string | null;
+    /**
+     * Windows domain for the current OS user.
+     */
+    windowsUserDomain?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -167,9 +301,13 @@ export namespace verifiedaccess_v2 {
      */
     devicePermanentId?: string | null;
     /**
-     * Device signal in json string representation.
+     * Deprecated. Device signal in json string representation. Prefer using `device_signals` instead.
      */
     deviceSignal?: string | null;
+    /**
+     * Device signals.
+     */
+    deviceSignals?: Schema$DeviceSignals;
     /**
      * Device attested key trust level.
      */
@@ -227,7 +365,6 @@ export namespace verifiedaccess_v2 {
      *
      *   // Example response
      *   // {
-     *   //   "alternativeChallenge": "my_alternativeChallenge",
      *   //   "challenge": "my_challenge"
      *   // }
      * }
@@ -367,6 +504,7 @@ export namespace verifiedaccess_v2 {
      *   //   "customerId": "my_customerId",
      *   //   "devicePermanentId": "my_devicePermanentId",
      *   //   "deviceSignal": "my_deviceSignal",
+     *   //   "deviceSignals": {},
      *   //   "keyTrustLevel": "my_keyTrustLevel",
      *   //   "signedPublicKeyAndChallenge": "my_signedPublicKeyAndChallenge",
      *   //   "virtualDeviceId": "my_virtualDeviceId"

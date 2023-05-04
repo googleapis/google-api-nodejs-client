@@ -845,7 +845,7 @@ export namespace gkehub_v1beta {
      */
     fleetDefaultMemberConfig?: Schema$CommonFleetDefaultMemberConfigSpec;
     /**
-     * GCP labels for this Feature.
+     * Labels for this Feature.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -928,7 +928,7 @@ export namespace gkehub_v1beta {
      */
     displayName?: string | null;
     /**
-     * Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each GCP project can have at most one fleet resource, named "default".
+     * Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each Google Cloud project can have at most one fleet resource, named "default".
      */
     name?: string | null;
     /**
@@ -956,11 +956,29 @@ export namespace gkehub_v1beta {
   /**
    * **Fleet Observability**: The Hub-wide input for the FleetObservability feature.
    */
-  export interface Schema$FleetObservabilityFeatureSpec {}
+  export interface Schema$FleetObservabilityFeatureSpec {
+    /**
+     * Specified if fleet logging feature is enabled for the entire fleet. If UNSPECIFIED, fleet logging feature is disabled for the entire fleet.
+     */
+    loggingConfig?: Schema$FleetObservabilityLoggingConfig;
+  }
   /**
    * **FleetObservability**: An empty state left as an example Hub-wide Feature state.
    */
   export interface Schema$FleetObservabilityFeatureState {}
+  /**
+   * LoggingConfig defines the configuration for different types of logs.
+   */
+  export interface Schema$FleetObservabilityLoggingConfig {
+    /**
+     * Specified if applying the default routing config to logs not specified in other configs.
+     */
+    defaultConfig?: Schema$FleetObservabilityRoutingConfig;
+    /**
+     * Specified if applying the routing config to all logs for all fleet scopes.
+     */
+    fleetScopeLogsConfig?: Schema$FleetObservabilityRoutingConfig;
+  }
   /**
    * **FleetObservability**: The membership-specific input for FleetObservability feature.
    */
@@ -969,6 +987,15 @@ export namespace gkehub_v1beta {
    * **FleetObservability**: An empty state left as an example membership-specific Feature state.
    */
   export interface Schema$FleetObservabilityMembershipState {}
+  /**
+   * RoutingConfig configures the behaviour of fleet logging feature.
+   */
+  export interface Schema$FleetObservabilityRoutingConfig {
+    /**
+     * mode configures the logs routing mode.
+     */
+    mode?: string | null;
+  }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -1241,7 +1268,7 @@ export namespace gkehub_v1beta {
     scopes?: Schema$Scope[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -1550,11 +1577,11 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$PolicyControllerBundleInstallSpec {
     /**
-     * the set of namespaces to be exempted from the bundle TODO (b/271878194): Decrement this
+     * the set of namespaces to be exempted from the bundle
      */
     exemptedNamespaces?: string[] | null;
     /**
-     * Management specifies how the bundle will be managed by the controller. TODO (b/271878194): Remove this
+     * Management specifies how the bundle will be managed by the controller.
      */
     management?: string | null;
   }
@@ -1571,7 +1598,7 @@ export namespace gkehub_v1beta {
      */
     constraintViolationLimit?: string | null;
     /**
-     * Map of deployment configs to deployments (“admission”, “audit”, “mutation”).
+     * Map of deployment configs to deployments ("admission", "audit", "mutation').
      */
     deploymentConfigs?: {
       [key: string]: Schema$PolicyControllerPolicyControllerDeploymentConfig;
@@ -1605,7 +1632,7 @@ export namespace gkehub_v1beta {
      */
     referentialRulesEnabled?: boolean | null;
     /**
-     * Configures the library templates to install along with Policy Controller. TODO (b/271878194): Remove this
+     * Configures the library templates to install along with Policy Controller.
      */
     templateLibraryConfig?: Schema$PolicyControllerTemplateLibraryConfig;
   }
@@ -1633,13 +1660,13 @@ export namespace gkehub_v1beta {
       [key: string]: Schema$PolicyControllerOnClusterState;
     } | null;
     /**
-     * The state of the template library and any bundles included in the chosen version of the manifest TODO (b/271878194): Remove this
+     * The state of the template library and any bundles included in the chosen version of the manifest
      */
     contentStates?: {
       [key: string]: Schema$PolicyControllerOnClusterState;
     } | null;
     /**
-     * The overall content state observed by the Hub Feature controller. TODO (b/271878194): Decrement this
+     * The overall content state observed by the Hub Feature controller.
      */
     policyContentState?: Schema$PolicyControllerPolicyContentState;
     /**
@@ -1749,11 +1776,11 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$PolicyControllerTemplateLibraryConfig {
     /**
-     * Whether the standard template library should be installed or not. TODO (b/271878194): Remove this
+     * Whether the standard template library should be installed or not.
      */
     included?: boolean | null;
     /**
-     * Configures the manner in which the template library is installed on the cluster. TODO (b/271878194): Decrement this
+     * Configures the manner in which the template library is installed on the cluster.
      */
     installation?: string | null;
   }
@@ -1841,6 +1868,10 @@ export namespace gkehub_v1beta {
    * Scope represents a Scope in a Fleet.
    */
   export interface Schema$Scope {
+    /**
+     * If true, all Memberships in the Fleet bind to this Scope.
+     */
+    allMemberships?: boolean | null;
     /**
      * Output only. When the scope was created.
      */
@@ -4361,7 +4392,7 @@ export namespace gkehub_v1beta {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.fleets.patch({
-     *     // Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each GCP project can have at most one fleet resource, named "default".
+     *     // Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each Google Cloud project can have at most one fleet resource, named "default".
      *     name: 'projects/my-project/locations/my-location/fleets/my-fleet',
      *     // Required. The fields to be updated;
      *     updateMask: 'placeholder-value',
@@ -4525,7 +4556,7 @@ export namespace gkehub_v1beta {
   export interface Params$Resource$Projects$Locations$Fleets$Patch
     extends StandardParameters {
     /**
-     * Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each GCP project can have at most one fleet resource, named "default".
+     * Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each Google Cloud project can have at most one fleet resource, named "default".
      */
     name?: string;
     /**
@@ -7971,6 +8002,7 @@ export namespace gkehub_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allMemberships": false,
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "name": "my_name",
@@ -8247,6 +8279,7 @@ export namespace gkehub_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "allMemberships": false,
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "name": "my_name",
@@ -8517,6 +8550,7 @@ export namespace gkehub_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allMemberships": false,
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "name": "my_name",

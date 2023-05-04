@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20230402",
+  "revision": "20230427",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4952,7 +4952,7 @@
           "type": "string"
         },
         "agentUri": {
-          "description": "The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.",
+          "description": "The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.",
           "type": "string"
         }
       },
@@ -5536,7 +5536,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3Intent": {
-      "description": "An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent. Next ID: 15",
+      "description": "An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent.",
       "id": "GoogleCloudDialogflowCxV3Intent",
       "properties": {
         "description": {
@@ -8481,7 +8481,7 @@
           "type": "string"
         },
         "agentUri": {
-          "description": "The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.",
+          "description": "The URI to a file containing the exported agent. This field is populated if `agent_uri` is specified in ExportAgentRequest.",
           "type": "string"
         }
       },
@@ -8937,7 +8937,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase": {
-      "description": "Represents an example that the agent is trained on to identify the intent. Next ID: 15",
+      "description": "Represents an example that the agent is trained on to identify the intent.",
       "id": "GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase",
       "properties": {
         "id": {

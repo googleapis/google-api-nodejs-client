@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20230403",
+  "revision": "20230424",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -625,9 +625,11 @@
           "enum": [
             "ATTACK_COMPLEXITY_UNSPECIFIED",
             "ATTACK_COMPLEXITY_LOW",
-            "ATTACK_COMPLEXITY_HIGH"
+            "ATTACK_COMPLEXITY_HIGH",
+            "ATTACK_COMPLEXITY_MEDIUM"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -672,9 +674,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -692,9 +698,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -715,9 +725,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",

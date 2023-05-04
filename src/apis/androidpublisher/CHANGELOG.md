@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v5.0.0...androidpublisher-v5.0.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([9c14e76](https://github.com/googleapis/google-api-nodejs-client/commit/9c14e76054057f7304309fd9e1b042e191db913f))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v4.4.0...androidpublisher-v5.0.0) (2023-04-08)
 
 

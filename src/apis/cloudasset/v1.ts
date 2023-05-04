@@ -499,6 +499,19 @@ export namespace cloudasset_v1 {
     year?: number | null;
   }
   /**
+   * A denied access contains details about an access tuple that is blocked by IAM deny policies.
+   */
+  export interface Schema$DeniedAccess {
+    /**
+     * A denied access tuple that is either fully or partially denied by IAM deny rules. This access tuple should match at least one access tuple derived from IamPolicyAnalysisResult.
+     */
+    deniedAccessTuple?: Schema$GoogleCloudAssetV1DeniedAccessAccessTuple;
+    /**
+     * The details about how denied_access_tuple is denied.
+     */
+    denyDetails?: Schema$GoogleCloudAssetV1DeniedAccessDenyDetail[];
+  }
+  /**
    * The effective IAM policies on one resource.
    */
   export interface Schema$EffectiveIamPolicy {
@@ -689,7 +702,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy {
     /**
-     * The full resource name of the resource associated with this IAM policy. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.
+     * The full resource name of the resource on which this IAM policy is set. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.
      */
     attachedResource?: string | null;
     /**
@@ -822,6 +835,79 @@ export namespace cloudasset_v1 {
     resourceTypes?: string[] | null;
   }
   /**
+   * An IAM role or permission under analysis.
+   */
+  export interface Schema$GoogleCloudAssetV1DeniedAccessAccess {
+    /**
+     * The IAM permission in [v1 format](https://cloud.google.com/iam/docs/permissions-reference)
+     */
+    permission?: string | null;
+    /**
+     * The IAM role.
+     */
+    role?: string | null;
+  }
+  /**
+   * An access tuple contains a tuple of a resource, an identity and an access.
+   */
+  export interface Schema$GoogleCloudAssetV1DeniedAccessAccessTuple {
+    /**
+     * One access from IamPolicyAnalysisResult.AccessControlList.accesses.
+     */
+    access?: Schema$GoogleCloudAssetV1DeniedAccessAccess;
+    /**
+     * One identity from IamPolicyAnalysisResult.IdentityList.identities.
+     */
+    identity?: Schema$GoogleCloudAssetV1DeniedAccessIdentity;
+    /**
+     * One resource from IamPolicyAnalysisResult.AccessControlList.resources.
+     */
+    resource?: Schema$GoogleCloudAssetV1DeniedAccessResource;
+  }
+  /**
+   * A deny detail that explains which IAM deny rule denies the denied_access_tuple.
+   */
+  export interface Schema$GoogleCloudAssetV1DeniedAccessDenyDetail {
+    /**
+     * The denied accesses. If this deny_rule fully denies the denied_access_tuple, this field will be same as AccessTuple.access. Otherwise, this field can contain AccessTuple.access and its descendant accesses, such as a subset of IAM permissions contained in an IAM role.
+     */
+    accesses?: Schema$GoogleCloudAssetV1DeniedAccessAccess[];
+    /**
+     * A deny rule in an IAM deny policy.
+     */
+    denyRule?: Schema$GoogleIamV2DenyRule;
+    /**
+     * Whether the deny_rule fully denies all access granted by the denied_access_tuple. `True` means the deny rule fully blocks the access tuple. `False` means the deny rule partially blocks the access tuple."
+     */
+    fullyDenied?: boolean | null;
+    /**
+     * If this deny_rule fully denies the denied_access_tuple, this field will be same as AccessTuple.identity. Otherwise, this field can contain AccessTuple.identity and its descendant identities, such as a subset of users in a group.
+     */
+    identities?: Schema$GoogleCloudAssetV1DeniedAccessIdentity[];
+    /**
+     * The resources that the identities are denied access to. If this deny_rule fully denies the denied_access_tuple, this field will be same as AccessTuple.resource. Otherwise, this field can contain AccessTuple.resource and its descendant resources.
+     */
+    resources?: Schema$GoogleCloudAssetV1DeniedAccessResource[];
+  }
+  /**
+   * An identity under analysis.
+   */
+  export interface Schema$GoogleCloudAssetV1DeniedAccessIdentity {
+    /**
+     * The identity of members, formatted as appear in an [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For example, they might be formatted like the following: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers
+     */
+    name?: string | null;
+  }
+  /**
+   * A Google Cloud resource under analysis.
+   */
+  export interface Schema$GoogleCloudAssetV1DeniedAccessResource {
+    /**
+     * The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
+     */
+    fullResourceName?: string | null;
+  }
+  /**
    * A directional edge.
    */
   export interface Schema$GoogleCloudAssetV1Edge {
@@ -873,7 +959,7 @@ export namespace cloudasset_v1 {
      */
     analysisState?: Schema$IamPolicyAnalysisState;
     /**
-     * The identity name in any form of members appear in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such as: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers - etc.
+     * The identity of members, formatted as appear in an [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For example, they might be formatted like the following: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers
      */
     name?: string | null;
   }
@@ -1175,6 +1261,31 @@ export namespace cloudasset_v1 {
    * Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific `Constraint` at this resource. Suppose that `constraint_default` is set to `ALLOW` for the `Constraint` `constraints/serviceuser.services`. Suppose that organization foo.com sets a `Policy` at their Organization resource node that restricts the allowed service activations to deny all service activations. They could then set a `Policy` with the `policy_type` `restore_default` on several experimental projects, restoring the `constraint_default` enforcement of the `Constraint` for only those projects, allowing those projects to have all services activated.
    */
   export interface Schema$GoogleCloudOrgpolicyV1RestoreDefault {}
+  /**
+   * A deny rule in an IAM deny policy.
+   */
+  export interface Schema$GoogleIamV2DenyRule {
+    /**
+     * The condition that determines whether this deny rule applies to a request. If the condition expression evaluates to `true`, then the deny rule is applied; otherwise, the deny rule is not applied. Each deny rule is evaluated independently. If this deny rule does not apply to a request, other deny rules might still apply. The condition can use CEL functions that evaluate [resource tags](https://cloud.google.com/iam/help/conditions/resource-tags). Other functions and operators are not supported.
+     */
+    denialCondition?: Schema$Expr;
+    /**
+     * The permissions that are explicitly denied by this rule. Each permission uses the format `{service_fqdn\}/{resource\}.{verb\}`, where `{service_fqdn\}` is the fully qualified domain name for the service. For example, `iam.googleapis.com/roles.list`.
+     */
+    deniedPermissions?: string[] | null;
+    /**
+     * The identities that are prevented from using one or more permissions on Google Cloud resources. This field can contain the following values: * `principalSet://goog/public:all`: A special identifier that represents any principal that is on the internet, even if they do not have a Google Account or are not logged in. * `principal://goog/subject/{email_id\}`: A specific Google Account. Includes Gmail, Cloud Identity, and Google Workspace user accounts. For example, `principal://goog/subject/alice@example.com`. * `deleted:principal://goog/subject/{email_id\}?uid={uid\}`: A specific Google Account that was deleted recently. For example, `deleted:principal://goog/subject/alice@example.com?uid=1234567890`. If the Google Account is recovered, this identifier reverts to the standard identifier for a Google Account. * `principalSet://goog/group/{group_id\}`: A Google group. For example, `principalSet://goog/group/admins@example.com`. * `deleted:principalSet://goog/group/{group_id\}?uid={uid\}`: A Google group that was deleted recently. For example, `deleted:principalSet://goog/group/admins@example.com?uid=1234567890`. If the Google group is restored, this identifier reverts to the standard identifier for a Google group. * `principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id\}`: A Google Cloud service account. For example, `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account@iam.gserviceaccount.com`. * `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id\}?uid={uid\}`: A Google Cloud service account that was deleted recently. For example, `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account@iam.gserviceaccount.com?uid=1234567890`. If the service account is undeleted, this identifier reverts to the standard identifier for a service account. * `principalSet://goog/cloudIdentityCustomerId/{customer_id\}`: All of the principals associated with the specified Google Workspace or Cloud Identity customer ID. For example, `principalSet://goog/cloudIdentityCustomerId/C01Abc35`.
+     */
+    deniedPrincipals?: string[] | null;
+    /**
+     * Specifies the permissions that this rule excludes from the set of denied permissions given by `denied_permissions`. If a permission appears in `denied_permissions` _and_ in `exception_permissions` then it will _not_ be denied. The excluded permissions can be specified using the same syntax as `denied_permissions`.
+     */
+    exceptionPermissions?: string[] | null;
+    /**
+     * The identities that are excluded from the deny rule, even if they are listed in the `denied_principals`. For example, you could add a Google group to the `denied_principals`, then exclude specific users who belong to that group. This field can contain the same values as the `denied_principals` field, excluding `principalSet://goog/public:all`, which represents all users on the internet.
+     */
+    exceptionPrincipals?: string[] | null;
+  }
   /**
    * An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.
    */
@@ -1535,6 +1646,10 @@ export namespace cloudasset_v1 {
      */
     analysisResults?: Schema$IamPolicyAnalysisResult[];
     /**
+     * A list of DeniedAccess, which contains all access tuples in the analysis_results that are denied by IAM deny policies. If no access tuples are denied, the list is empty. This is only populated when IamPolicyAnalysisQuery.Options.include_deny_policy_analysis is true.
+     */
+    deniedAccesses?: Schema$DeniedAccess[];
+    /**
      * Represents whether all entries in the analysis_results have been fully explored to answer the query.
      */
     fullyExplored?: boolean | null;
@@ -1839,6 +1954,10 @@ export namespace cloudasset_v1 {
      * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If IamPolicyAnalysisQuery.access_selector is specified, the access section of the result will be determined by the selector, and this flag is not allowed to set. Default is false.
      */
     expandRoles?: boolean | null;
+    /**
+     * Optional. If true, the response includes deny policy analysis results, and you can see which access tuples are denied. Default is false.
+     */
+    includeDenyPolicyAnalysis?: boolean | null;
     /**
      * Optional. If true, the result will output the relevant membership relationships between groups and other groups, and between groups and principals. Default is false.
      */
@@ -4669,6 +4788,8 @@ export namespace cloudasset_v1 {
      *     'analysisQuery.options.expandResources': 'placeholder-value',
      *     // Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If IamPolicyAnalysisQuery.access_selector is specified, the access section of the result will be determined by the selector, and this flag is not allowed to set. Default is false.
      *     'analysisQuery.options.expandRoles': 'placeholder-value',
+     *     // Optional. If true, the response includes deny policy analysis results, and you can see which access tuples are denied. Default is false.
+     *     'analysisQuery.options.includeDenyPolicyAnalysis': 'placeholder-value',
      *     // Optional. If true, the result will output the relevant membership relationships between groups and other groups, and between groups and principals. Default is false.
      *     'analysisQuery.options.outputGroupEdges': 'placeholder-value',
      *     // Optional. If true, the result will output the relevant parent/child relationships between resources. Default is false.
@@ -6289,6 +6410,10 @@ export namespace cloudasset_v1 {
      * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If IamPolicyAnalysisQuery.access_selector is specified, the access section of the result will be determined by the selector, and this flag is not allowed to set. Default is false.
      */
     'analysisQuery.options.expandRoles'?: boolean;
+    /**
+     * Optional. If true, the response includes deny policy analysis results, and you can see which access tuples are denied. Default is false.
+     */
+    'analysisQuery.options.includeDenyPolicyAnalysis'?: boolean;
     /**
      * Optional. If true, the result will output the relevant membership relationships between groups and other groups, and between groups and principals. Default is false.
      */

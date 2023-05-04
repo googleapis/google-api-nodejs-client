@@ -517,7 +517,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$DeploymentJobs {
     /**
-     * Output only. The deploy Job. This is the first job run in the phase.
+     * Output only. The deploy Job. This is the deploy job in the phase.
      */
     deployJob?: Schema$Job;
     /**
@@ -882,7 +882,7 @@ export namespace clouddeploy_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents Google Cloud location.
    */
   export interface Schema$Location {
     /**

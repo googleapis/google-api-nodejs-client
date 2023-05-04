@@ -590,6 +590,10 @@ export namespace datacatalog_v1beta1 {
      */
     results?: Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResult[];
     /**
+     * The approximate total number of entries matched by the query.
+     */
+    totalSize?: number | null;
+    /**
      * Unreachable locations. Search result does not include data from those locations. Users can get additional information on the error by repeating the search request with a more restrictive parameter -- setting the value for `SearchDataCatalogRequest.scope.restricted_locations`.
      */
     unreachable?: string[] | null;
@@ -842,7 +846,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1TaxonomyService {
     /**
-     * P4SA Identity of the service.
+     * The service agent for the service.
      */
     identity?: string | null;
     /**
@@ -1299,7 +1303,7 @@ export namespace datacatalog_v1beta1 {
      */
     filesetSpec?: Schema$GoogleCloudDatacatalogV1FilesetSpec;
     /**
-     * Fully qualified name (FQN) of the resource. Set automatically for entries representing resources from synced systems. Settable only during creation and read-only afterwards. Can be used for search and lookup of the entries. FQNs take two forms: * For non-regionalized resources: `{SYSTEM\}:{PROJECT\}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS\}` * For regionalized resources: `{SYSTEM\}:{PROJECT\}.{LOCATION_ID\}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS\}` Example for a DPMS table: `dataproc_metastore:{PROJECT_ID\}.{LOCATION_ID\}.{INSTANCE_ID\}.{DATABASE_ID\}.{TABLE_ID\}`
+     * [Fully Qualified Name (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names) of the resource. Set automatically for entries representing resources from synced systems. Settable only during creation, and read-only later. Can be used for search and lookup of the entries.
      */
     fullyQualifiedName?: string | null;
     /**
@@ -1957,6 +1961,7 @@ export namespace datacatalog_v1beta1 {
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "results": [],
+     *   //   "totalSize": 0,
      *   //   "unreachable": []
      *   // }
      * }

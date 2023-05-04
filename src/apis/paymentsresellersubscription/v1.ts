@@ -473,7 +473,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     processingState?: string | null;
     /**
-     * Required. Deprecated: consider using `line_items` as the input. Required. Resource name that identifies the purchased products. The format will be 'partners/{partner_id\}/products/{product_id\}'.
+     * Optional. Deprecated: consider using `line_items` as the input. Required. Resource name that identifies the purchased products. The format will be 'partners/{partner_id\}/products/{product_id\}'.
      */
     products?: string[] | null;
     /**
@@ -1648,7 +1648,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * [Deprecated] New partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
+     * [Opt-in only] Most partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.
      * @example
      * ```js
      * // Before running the sample:

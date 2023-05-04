@@ -227,7 +227,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     bidsInAuction?: Schema$MetricValue;
     /**
-     * The number of bids for which the buyer was billed.
+     * The number of bids for which the buyer was billed. Also called valid impressions as invalid impressions are not billed.
      */
     billedImpressions?: Schema$MetricValue;
     /**

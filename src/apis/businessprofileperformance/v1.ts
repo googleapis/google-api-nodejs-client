@@ -146,11 +146,11 @@ export namespace businessprofileperformance_v1 {
    */
   export interface Schema$DailySubEntityType {
     /**
-     * Represents the day of the week. Eg: MONDAY.
+     * Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE.
      */
     dayOfWeek?: string | null;
     /**
-     * Represents the time of the day in 24 hour format. Eg: 13:34:20
+     * Represents the time of the day in 24 hour format. Eg: 13:34:20 Currently supported DailyMetrics = NONE.
      */
     timeOfDay?: Schema$TimeOfDay;
   }
@@ -180,7 +180,7 @@ export namespace businessprofileperformance_v1 {
      */
     date?: Schema$Date;
     /**
-     * The value of the datapoint.
+     * The value of the datapoint. This will not be present when the value is zero.
      */
     value?: string | null;
   }
@@ -487,7 +487,7 @@ export namespace businessprofileperformance_v1 {
      *       'dailyRange.startDate.month': 'placeholder-value',
      *       // Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      *       'dailyRange.startDate.year': 'placeholder-value',
-     *       // Represents the day of the week. Eg: MONDAY.
+     *       // Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE.
      *       'dailySubEntityType.dayOfWeek': 'placeholder-value',
      *       // Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      *       'dailySubEntityType.timeOfDay.hours': 'placeholder-value',
@@ -676,7 +676,7 @@ export namespace businessprofileperformance_v1 {
      */
     'dailyRange.startDate.year'?: number;
     /**
-     * Represents the day of the week. Eg: MONDAY.
+     * Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE.
      */
     'dailySubEntityType.dayOfWeek'?: string;
     /**

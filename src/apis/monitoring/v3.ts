@@ -6654,7 +6654,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Lists the notification channels that have been created for the project.
+     * Lists the notification channels that have been created for the project. To list the types of notification channels that are supported, use the ListNotificationChannelDescriptors method.
      * @example
      * ```js
      * // Before running the sample:

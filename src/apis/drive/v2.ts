@@ -6664,7 +6664,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Permanently deletes all of the user's trashed files.
+     * Permanently deletes all trashed files of a user or shared drive.
      * @example
      * ```js
      * // Before running the sample:
@@ -6690,6 +6690,8 @@ export namespace drive_v2 {
      *
      *   // Do the magic
      *   const res = await drive.files.emptyTrash({
+     *     // If set, empties the trash of the provided shared drive.
+     *     driveId: 'placeholder-value',
      *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      *     enforceSingleParent: 'placeholder-value',
      *   });
@@ -9363,7 +9365,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Subscribes to changes to a file. While you can establish a channel for changes to a file on a shared drive, a change to a shared drive file won't create a notification.
+     * Subscribe to changes on a file.
      * @example
      * ```js
      * // Before running the sample:
@@ -9619,6 +9621,10 @@ export namespace drive_v2 {
     supportsTeamDrives?: boolean;
   }
   export interface Params$Resource$Files$Emptytrash extends StandardParameters {
+    /**
+     * If set, empties the trash of the provided shared drive.
+     */
+    driveId?: string;
     /**
      * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      */

@@ -384,7 +384,7 @@
       }
     }
   },
-  "revision": "20230309",
+  "revision": "20230418",
   "rootUrl": "https://vpcaccess.googleapis.com/",
   "schemas": {
     "Connector": {
@@ -518,7 +518,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

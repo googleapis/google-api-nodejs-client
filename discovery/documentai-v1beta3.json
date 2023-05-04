@@ -110,7 +110,7 @@
         "locations": {
           "methods": {
             "fetchProcessorTypes": {
-              "description": "Fetches processor types. Note that we do not use ListProcessorTypes here because it is not paginated.",
+              "description": "Fetches processor types. Note that we don't use ListProcessorTypes here, because it isn't paginated.",
               "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}:fetchProcessorTypes",
               "httpMethod": "GET",
               "id": "documentai.projects.locations.fetchProcessorTypes",
@@ -975,7 +975,7 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "The standard list page size. If unspecified, at most 5 evaluations will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                              "description": "The standard list page size. If unspecified, at most `5` evaluations will be returned. The maximum value is `100`; values above `100` will be coerced to `100`.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1012,7 +1012,7 @@
       }
     }
   },
-  "revision": "20230330",
+  "revision": "20230420",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -1223,56 +1223,56 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata": {
-      "description": "The long running operation metadata for CreateLabelerPool.",
+      "description": "The long-running operation metadata for CreateLabelerPool.",
       "id": "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata": {
-      "description": "The long running operation metadata for DeleteLabelerPool.",
+      "description": "The long-running operation metadata for DeleteLabelerPool.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata": {
-      "description": "The long running operation metadata for delete processor method.",
+      "description": "The long-running operation metadata for delete processor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata": {
-      "description": "The long running operation metadata for delete processor version method.",
+      "description": "The long-running operation metadata for delete processor version method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata": {
-      "description": "The long running operation metadata for deploy processor version method.",
+      "description": "The long-running operation metadata for deploy processor version method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -1284,12 +1284,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata": {
-      "description": "The long running operation metadata for disable processor method.",
+      "description": "The long-running operation metadata for disable processor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -1330,12 +1330,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata": {
-      "description": "The long running operation metadata for enable processor method.",
+      "description": "The long-running operation metadata for enable processor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -1352,13 +1352,13 @@
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse": {
-      "description": "Metadata of the EvaluateProcessorVersion method.",
+      "description": "Response of the EvaluateProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse",
       "properties": {
         "evaluation": {
@@ -1539,12 +1539,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3ImportProcessorVersionMetadata": {
-      "description": "The long running operation metadata for the ImportProcessorVersion method.",
+      "description": "The long-running operation metadata for the ImportProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3ImportProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata for the long running operation."
+          "description": "The basic metadata for the long-running operation."
         }
       },
       "type": "object"
@@ -1677,12 +1677,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata": {
-      "description": "The long running operation metadata for set default processor version method.",
+      "description": "The long-running operation metadata for set default processor version method.",
       "id": "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -1699,7 +1699,7 @@
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         },
         "testDatasetValidation": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation",
@@ -1744,7 +1744,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse": {
-      "description": "The response for the TrainProcessorVersion method.",
+      "description": "The response for TrainProcessorVersion.",
       "id": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse",
       "properties": {
         "processorVersion": {
@@ -1755,12 +1755,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata": {
-      "description": "The long running operation metadata for the undeploy processor version method.",
+      "description": "The long-running operation metadata for the undeploy processor version method.",
       "id": "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -1782,29 +1782,29 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata": {
-      "description": "The long running operation metadata for updating the human review configuration.",
+      "description": "The long-running operation metadata for updating the human review configuration.",
       "id": "GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata": {
-      "description": "The long running operation metadata for UpdateLabelerPool.",
+      "description": "The long-running operation metadata for UpdateLabelerPool.",
       "id": "GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1BatchProcessMetadata": {
-      "description": "The long running operation metadata for batch process method.",
+      "description": "The long-running operation metadata for BatchProcessDocuments.",
       "id": "GoogleCloudDocumentaiV1BatchProcessMetadata",
       "properties": {
         "createTime": {
@@ -1877,7 +1877,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1BatchProcessResponse": {
-      "description": "Response message for batch process document method.",
+      "description": "Response message for BatchProcessDocuments.",
       "id": "GoogleCloudDocumentaiV1BatchProcessResponse",
       "properties": {},
       "type": "object"
@@ -1928,34 +1928,34 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeleteProcessorMetadata": {
-      "description": "The long running operation metadata for delete processor method.",
+      "description": "The long-running operation metadata for delete processor method.",
       "id": "GoogleCloudDocumentaiV1DeleteProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata": {
-      "description": "The long running operation metadata for delete processor version method.",
+      "description": "The long-running operation metadata for delete processor version method.",
       "id": "GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeployProcessorVersionMetadata": {
-      "description": "The long running operation metadata for deploy processor version method.",
+      "description": "The long-running operation metadata for deploy processor version method.",
       "id": "GoogleCloudDocumentaiV1DeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -1967,12 +1967,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DisableProcessorMetadata": {
-      "description": "The long running operation metadata for disable processor method.",
+      "description": "The long-running operation metadata for disable processor method.",
       "id": "GoogleCloudDocumentaiV1DisableProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -1984,12 +1984,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1EnableProcessorMetadata": {
-      "description": "The long running operation metadata for enable processor method.",
+      "description": "The long-running operation metadata for enable processor method.",
       "id": "GoogleCloudDocumentaiV1EnableProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -2006,13 +2006,13 @@
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1EvaluateProcessorVersionResponse": {
-      "description": "Metadata of the EvaluateProcessorVersion method.",
+      "description": "Response of the EvaluateProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1EvaluateProcessorVersionResponse",
       "properties": {
         "evaluation": {
@@ -2027,7 +2027,7 @@
       "id": "GoogleCloudDocumentaiV1HumanReviewStatus",
       "properties": {
         "humanReviewOperation": {
-          "description": "The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.",
+          "description": "The name of the operation triggered by the processed document. This field is populated only when the state is `HUMAN_REVIEW_IN_PROGRESS`. It has the same response type and metadata as the long-running operation returned by ReviewDocument.",
           "type": "string"
         },
         "state": {
@@ -2041,10 +2041,10 @@
           ],
           "enumDescriptions": [
             "Human review state is unspecified. Most likely due to an internal error.",
-            "Human review is skipped for the document. This can happen because human review is not enabled on the processor or the processing request has been set to skip this document.",
+            "Human review is skipped for the document. This can happen because human review isn't enabled on the processor or the processing request has been set to skip this document.",
             "Human review validation is triggered and passed, so no review is needed.",
             "Human review validation is triggered and the document is under review.",
-            "Some error happened during triggering human review, see the [state_message] for details."
+            "Some error happened during triggering human review, see the state_message for details."
           ],
           "type": "string"
         },
@@ -2056,12 +2056,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata": {
-      "description": "The long running operation metadata for review document method.",
+      "description": "The long-running operation metadata for review document method.",
       "id": "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         },
         "questionId": {
           "description": "The Crowd Compute question ID.",
@@ -2100,12 +2100,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata": {
-      "description": "The long running operation metadata for set default processor version method.",
+      "description": "The long-running operation metadata for set default processor version method.",
       "id": "GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -2122,7 +2122,7 @@
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         },
         "testDatasetValidation": {
           "$ref": "GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation",
@@ -2167,7 +2167,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1TrainProcessorVersionResponse": {
-      "description": "The response for the TrainProcessorVersion method.",
+      "description": "The response for TrainProcessorVersion.",
       "id": "GoogleCloudDocumentaiV1TrainProcessorVersionResponse",
       "properties": {
         "processorVersion": {
@@ -2178,12 +2178,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata": {
-      "description": "The long running operation metadata for the undeploy processor version method.",
+      "description": "The long-running operation metadata for the undeploy processor version method.",
       "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -3016,6 +3016,10 @@
         "provenance": {
           "$ref": "GoogleCloudDocumentaiV1beta1DocumentProvenance",
           "description": "The history of this annotation."
+        },
+        "styleInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageTokenStyleInfo",
+          "description": "Text style attributes."
         }
       },
       "type": "object"
@@ -3039,6 +3043,77 @@
             "A hyphen that indicates that a token has been split across lines."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta1DocumentPageTokenStyleInfo": {
+      "description": "Font and other text style attributes.",
+      "id": "GoogleCloudDocumentaiV1beta1DocumentPageTokenStyleInfo",
+      "properties": {
+        "backgroundColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Color of the background."
+        },
+        "bold": {
+          "description": "Whether the text is bold (equivalent to font weight >= 700).",
+          "type": "boolean"
+        },
+        "fontSize": {
+          "description": "Font size in points (1 point is 1/72\").",
+          "format": "int32",
+          "type": "integer"
+        },
+        "fontType": {
+          "description": "Name or style of the font.",
+          "type": "string"
+        },
+        "fontWeight": {
+          "description": "TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "handwritten": {
+          "description": "Whether the text is handwritten.",
+          "type": "boolean"
+        },
+        "italic": {
+          "description": "Whether the text is italic.",
+          "type": "boolean"
+        },
+        "letterSpacing": {
+          "description": "Letter spacing in points.",
+          "format": "double",
+          "type": "number"
+        },
+        "pixelFontSize": {
+          "description": "Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.",
+          "format": "double",
+          "type": "number"
+        },
+        "smallcaps": {
+          "description": "Whether the text are small caps.",
+          "type": "boolean"
+        },
+        "strikeout": {
+          "description": "Whether the text is strikethrough.",
+          "type": "boolean"
+        },
+        "subscript": {
+          "description": "Whether the text is a subscript.",
+          "type": "boolean"
+        },
+        "superscript": {
+          "description": "Whether the text is a superscript.",
+          "type": "boolean"
+        },
+        "textColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Color of the text."
+        },
+        "underlined": {
+          "description": "Whether the text is underlined.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4319,6 +4394,10 @@
         "provenance": {
           "$ref": "GoogleCloudDocumentaiV1beta2DocumentProvenance",
           "description": "The history of this annotation."
+        },
+        "styleInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageTokenStyleInfo",
+          "description": "Text style attributes."
         }
       },
       "type": "object"
@@ -4342,6 +4421,77 @@
             "A hyphen that indicates that a token has been split across lines."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta2DocumentPageTokenStyleInfo": {
+      "description": "Font and other text style attributes.",
+      "id": "GoogleCloudDocumentaiV1beta2DocumentPageTokenStyleInfo",
+      "properties": {
+        "backgroundColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Color of the background."
+        },
+        "bold": {
+          "description": "Whether the text is bold (equivalent to font weight >= 700).",
+          "type": "boolean"
+        },
+        "fontSize": {
+          "description": "Font size in points (1 point is 1/72\").",
+          "format": "int32",
+          "type": "integer"
+        },
+        "fontType": {
+          "description": "Name or style of the font.",
+          "type": "string"
+        },
+        "fontWeight": {
+          "description": "TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "handwritten": {
+          "description": "Whether the text is handwritten.",
+          "type": "boolean"
+        },
+        "italic": {
+          "description": "Whether the text is italic.",
+          "type": "boolean"
+        },
+        "letterSpacing": {
+          "description": "Letter spacing in points.",
+          "format": "double",
+          "type": "number"
+        },
+        "pixelFontSize": {
+          "description": "Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.",
+          "format": "double",
+          "type": "number"
+        },
+        "smallcaps": {
+          "description": "Whether the text are small caps.",
+          "type": "boolean"
+        },
+        "strikeout": {
+          "description": "Whether the text is strikethrough.",
+          "type": "boolean"
+        },
+        "subscript": {
+          "description": "Whether the text is a subscript.",
+          "type": "boolean"
+        },
+        "superscript": {
+          "description": "Whether the text is a superscript.",
+          "type": "boolean"
+        },
+        "textColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Color of the text."
+        },
+        "underlined": {
+          "description": "Whether the text is underlined.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4813,7 +4963,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3BatchProcessMetadata": {
-      "description": "The long running operation metadata for batch process method.",
+      "description": "The long-running operation metadata for BatchProcessDocuments.",
       "id": "GoogleCloudDocumentaiV1beta3BatchProcessMetadata",
       "properties": {
         "createTime": {
@@ -4867,7 +5017,7 @@
       "id": "GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus",
       "properties": {
         "humanReviewOperation": {
-          "description": "The name of the operation triggered by the processed document. If the human review process is not triggered, this field will be empty. It has the same response type and metadata as the long running operation returned by ReviewDocument method.",
+          "description": "The name of the operation triggered by the processed document. If the human review process isn't triggered, this field will be empty. It has the same response type and metadata as the long-running operation returned by ReviewDocument method.",
           "type": "string"
         },
         "humanReviewStatus": {
@@ -4890,7 +5040,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3BatchProcessRequest": {
-      "description": "Request message for batch process document method.",
+      "description": "Request message for BatchProcessDocuments.",
       "id": "GoogleCloudDocumentaiV1beta3BatchProcessRequest",
       "properties": {
         "documentOutputConfig": {
@@ -4932,7 +5082,7 @@
           "type": "string"
         },
         "mimeType": {
-          "description": "Mimetype of the input. If the input is a raw document, the supported mimetypes are application/pdf, image/tiff, and image/gif. If the input is a [Document] proto, the type should be application/json.",
+          "description": "Mimetype of the input. If the input is a raw document, the supported mimetypes are application/pdf, image/tiff, and image/gif. If the input is a Document proto, the type should be application/json.",
           "type": "string"
         }
       },
@@ -4950,7 +5100,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3BatchProcessResponse": {
-      "description": "Response message for batch process document method.",
+      "description": "Response message for BatchProcessDocuments.",
       "id": "GoogleCloudDocumentaiV1beta3BatchProcessResponse",
       "properties": {},
       "type": "object"
@@ -5022,34 +5172,34 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata": {
-      "description": "The long running operation metadata for delete processor method.",
+      "description": "The long-running operation metadata for delete processor method.",
       "id": "GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata": {
-      "description": "The long running operation metadata for delete processor version method.",
+      "description": "The long-running operation metadata for delete processor version method.",
       "id": "GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata": {
-      "description": "The long running operation metadata for deploy processor version method.",
+      "description": "The long-running operation metadata for deploy processor version method.",
       "id": "GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -5067,12 +5217,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata": {
-      "description": "The long running operation metadata for disable processor method.",
+      "description": "The long-running operation metadata for disable processor method.",
       "id": "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -5905,6 +6055,10 @@
         "provenance": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentProvenance",
           "description": "The history of this annotation."
+        },
+        "styleInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentPageTokenStyleInfo",
+          "description": "Text style attributes."
         }
       },
       "type": "object"
@@ -5928,6 +6082,77 @@
             "A hyphen that indicates that a token has been split across lines."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentPageTokenStyleInfo": {
+      "description": "Font and other text style attributes.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentPageTokenStyleInfo",
+      "properties": {
+        "backgroundColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Color of the background."
+        },
+        "bold": {
+          "description": "Whether the text is bold (equivalent to font weight >= 700).",
+          "type": "boolean"
+        },
+        "fontSize": {
+          "description": "Font size in points (1 point is 1/72\").",
+          "format": "int32",
+          "type": "integer"
+        },
+        "fontType": {
+          "description": "Name or style of the font.",
+          "type": "string"
+        },
+        "fontWeight": {
+          "description": "TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "handwritten": {
+          "description": "Whether the text is handwritten.",
+          "type": "boolean"
+        },
+        "italic": {
+          "description": "Whether the text is italic.",
+          "type": "boolean"
+        },
+        "letterSpacing": {
+          "description": "Letter spacing in points.",
+          "format": "double",
+          "type": "number"
+        },
+        "pixelFontSize": {
+          "description": "Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.",
+          "format": "double",
+          "type": "number"
+        },
+        "smallcaps": {
+          "description": "Whether the text are small caps.",
+          "type": "boolean"
+        },
+        "strikeout": {
+          "description": "Whether the text is strikethrough.",
+          "type": "boolean"
+        },
+        "subscript": {
+          "description": "Whether the text is a subscript.",
+          "type": "boolean"
+        },
+        "superscript": {
+          "description": "Whether the text is a superscript.",
+          "type": "boolean"
+        },
+        "textColor": {
+          "$ref": "GoogleTypeColor",
+          "description": "Color of the text."
+        },
+        "underlined": {
+          "description": "Whether the text is underlined.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6346,12 +6571,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata": {
-      "description": "The long running operation metadata for enable processor method.",
+      "description": "The long-running operation metadata for enable processor method.",
       "id": "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -6374,7 +6599,7 @@
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -6391,7 +6616,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionResponse": {
-      "description": "Metadata of the EvaluateProcessorVersion method.",
+      "description": "Response of the EvaluateProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionResponse",
       "properties": {
         "evaluation": {
@@ -6680,7 +6905,7 @@
       "id": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
       "properties": {
         "humanReviewOperation": {
-          "description": "The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.",
+          "description": "The name of the operation triggered by the processed document. This field is populated only when the state is `HUMAN_REVIEW_IN_PROGRESS`. It has the same response type and metadata as the long-running operation returned by ReviewDocument.",
           "type": "string"
         },
         "state": {
@@ -6694,10 +6919,10 @@
           ],
           "enumDescriptions": [
             "Human review state is unspecified. Most likely due to an internal error.",
-            "Human review is skipped for the document. This can happen because human review is not enabled on the processor or the processing request has been set to skip this document.",
+            "Human review is skipped for the document. This can happen because human review isn't enabled on the processor or the processing request has been set to skip this document.",
             "Human review validation is triggered and passed, so no review is needed.",
             "Human review validation is triggered and the document is under review.",
-            "Some error happened during triggering human review, see the [state_message] for details."
+            "Some error happened during triggering human review, see the state_message for details."
           ],
           "type": "string"
         },
@@ -6709,18 +6934,18 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata": {
-      "description": "The long running operation metadata for the ImportProcessorVersion method.",
+      "description": "The long-running operation metadata for the ImportProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata for the long running operation."
+          "description": "The basic metadata for the long-running operation."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest": {
-      "description": "The request message for the ImportProcessorVersion method. This method requires Document AI Service Agent of the destination project in the source project's IAM with [Document AI Editor role](https://cloud.google.com/document-ai/docs/access-control/iam-roles). The destination project is specified as part of the `parent` field. The source project is specified as part of `source` field. The Service Agent for Document AI can be found in https://cloud.google.com/iam/docs/service-agents.",
+      "description": "The request message for the `ImportProcessorVersion` method. This method requires the source processor version and destination processor to be in the same location. This method requires the Document AI Service Agent of the destination project to have [Document AI Editor role](https://cloud.google.com/document-ai/docs/access-control/iam-roles) on the source project. The destination project is specified as part of the `parent` field. The source project is specified as part of `source` field. The Service Agent for Document AI can be found in https://cloud.google.com/iam/docs/service-agents.",
       "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest",
       "properties": {
         "processorVersionSource": {
@@ -6742,7 +6967,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse": {
-      "description": "The response from ListEvaluations.",
+      "description": "The response from `ListEvaluations`.",
       "id": "GoogleCloudDocumentaiV1beta3ListEvaluationsResponse",
       "properties": {
         "evaluations": {
@@ -6841,6 +7066,10 @@
           },
           "type": "array"
         },
+        "computeStyleInfo": {
+          "description": "Turn on font id model and returns font style information.",
+          "type": "boolean"
+        },
         "enableImageQualityScores": {
           "description": "Enables intelligent document quality scores after OCR. Can help with diagnosing why OCR responses are of poor quality for a given input. Adds additional latency comparable to regular OCR to the process call.",
           "type": "boolean"
@@ -6894,7 +7123,7 @@
           "description": "The document payload, the [content] and [mime_type] fields must be set."
         },
         "fieldMask": {
-          "description": "Specifies which fields to include in ProcessResponse's document. Only supports top level document and pages field so it must be in the form of `{document_field_name}` or `pages.{page_field_name}`.",
+          "description": "Specifies which fields to include in the `ProcessResponse` Document. Only supports top level document and pages field so it must be in the form of `{document_field_name}` or `pages.{page_field_name}`.",
           "format": "google-fieldmask",
           "type": "string"
         },
@@ -6926,7 +7155,7 @@
           "description": "The document payload, will populate fields based on the processor's behavior."
         },
         "humanReviewOperation": {
-          "description": "The name of the operation triggered by the processed document. If the human review process is not triggered, this field will be empty. It has the same response type and metadata as the long running operation returned by ReviewDocument method.",
+          "description": "The name of the operation triggered by the processed document. If the human review process isn't triggered, this field is empty. It has the same response type and metadata as the long-running operation returned by ReviewDocument.",
           "type": "string"
         },
         "humanReviewStatus": {
@@ -6993,7 +7222,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc. To get a list of processors types, see FetchProcessorTypes.",
+          "description": "The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`. To get a list of processor types, see FetchProcessorTypes.",
           "type": "string"
         }
       },
@@ -7054,7 +7283,7 @@
           "type": "array"
         },
         "type": {
-          "description": "The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.",
+          "description": "The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.",
           "type": "string"
         }
       },
@@ -7174,12 +7403,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata": {
-      "description": "The long running operation metadata for review document method.",
+      "description": "The long-running operation metadata for review document method.",
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         },
         "createTime": {
           "description": "The creation time of the operation.",
@@ -7287,12 +7516,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata": {
-      "description": "The long running operation metadata for set default processor version method.",
+      "description": "The long-running operation metadata for set default processor version method.",
       "id": "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -7320,7 +7549,7 @@
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         },
         "testDatasetValidation": {
           "$ref": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation",
@@ -7403,7 +7632,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3TrainProcessorVersionResponse": {
-      "description": "The response for the TrainProcessorVersion method.",
+      "description": "The response for TrainProcessorVersion.",
       "id": "GoogleCloudDocumentaiV1beta3TrainProcessorVersionResponse",
       "properties": {
         "processorVersion": {
@@ -7414,12 +7643,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata": {
-      "description": "The long running operation metadata for the undeploy processor version method.",
+      "description": "The long-running operation metadata for the undeploy processor version method.",
       "id": "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
+          "description": "The basic metadata of the long-running operation."
         }
       },
       "type": "object"
@@ -7472,7 +7701,7 @@
       "type": "object"
     },
     "GoogleCloudLocationLocation": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "GoogleCloudLocationLocation",
       "properties": {
         "displayName": {

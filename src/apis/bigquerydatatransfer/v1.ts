@@ -371,7 +371,7 @@ export namespace bigquerydatatransfer_v1 {
     transferRuns?: Schema$TransferRun[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**

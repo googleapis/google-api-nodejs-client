@@ -290,7 +290,7 @@
               }
             },
             "extend": {
-              "description": "[Deprecated] New partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.",
+              "description": "[Opt-in only] Most partners should be on auto-extend by default. Used by partners to extend a subscription service for their customers on an ongoing basis for the subscription to remain active and renewable. It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:extend",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.extend",
@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230430",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -962,7 +962,7 @@
           "type": "string"
         },
         "products": {
-          "description": "Required. Deprecated: consider using `line_items` as the input. Required. Resource name that identifies the purchased products. The format will be 'partners/{partner_id}/products/{product_id}'.",
+          "description": "Optional. Deprecated: consider using `line_items` as the input. Required. Resource name that identifies the purchased products. The format will be 'partners/{partner_id}/products/{product_id}'.",
           "items": {
             "type": "string"
           },

@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20230405",
+  "revision": "20230426",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1560,7 +1560,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -1770,7 +1770,8 @@
             "TABLES_WITH_LIMITED_SUPPORT",
             "UNSUPPORTED_DATABASE_LOCALE",
             "UNSUPPORTED_DATABASE_FDW_CONFIG",
-            "ERROR_RDBMS"
+            "ERROR_RDBMS",
+            "SOURCE_SIZE_EXCEEDS_THRESHOLD"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -1785,7 +1786,8 @@
             "The source has tables with limited support. E.g. PostgreSQL tables without primary keys.",
             "The source uses an unsupported locale.",
             "The source uses an unsupported Foreign Data Wrapper configuration.",
-            "There was an underlying RDBMS error."
+            "There was an underlying RDBMS error.",
+            "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported."
           ],
           "readOnly": true,
           "type": "string"

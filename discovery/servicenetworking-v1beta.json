@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20230409",
+  "revision": "20230426",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1110,6 +1110,10 @@
         },
         "description": {
           "description": "Description of the selected proto element (e.g. a message, a method, a 'service' definition, or a field). Defaults to leading & trailing comments taken from the proto source definition of the proto element.",
+          "type": "string"
+        },
+        "disableReplacementWords": {
+          "description": "String of comma or space separated case-sensitive words for which method/field name replacement will be disabled by go/api-docgen.",
           "type": "string"
         },
         "selector": {
@@ -2236,14 +2240,18 @@
             "CLOUD",
             "ADS",
             "PHOTOS",
-            "STREET_VIEW"
+            "STREET_VIEW",
+            "SHOPPING",
+            "GEO"
           ],
           "enumDescriptions": [
             "Not useful.",
             "Google Cloud Platform Org.",
             "Ads (Advertising) Org.",
             "Photos Org.",
-            "Street View Org."
+            "Street View Org.",
+            "Shopping Org.",
+            "Geo Org."
           ],
           "type": "string"
         },

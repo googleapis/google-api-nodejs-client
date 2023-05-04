@@ -803,6 +803,78 @@
                     }
                   }
                 },
+                "googetArtifacts": {
+                  "methods": {
+                    "import": {
+                      "description": "Imports GooGet artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/googetArtifacts:import",
+                      "httpMethod": "POST",
+                      "id": "artifactregistry.projects.locations.repositories.googetArtifacts.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The name of the parent resource where the artifacts will be imported.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/googetArtifacts:import",
+                      "request": {
+                        "$ref": "ImportGoogetArtifactsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "upload": {
+                      "description": "Directly uploads a GooGet artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/googetArtifacts:create",
+                      "httpMethod": "POST",
+                      "id": "artifactregistry.projects.locations.repositories.googetArtifacts.upload",
+                      "mediaUpload": {
+                        "accept": [
+                          "*/*"
+                        ],
+                        "protocols": {
+                          "simple": {
+                            "multipart": true,
+                            "path": "/upload/v1/{+parent}/googetArtifacts:create"
+                          }
+                        }
+                      },
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The name of the parent resource where the artifacts will be uploaded.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/googetArtifacts:create",
+                      "request": {
+                        "$ref": "UploadGoogetArtifactRequest"
+                      },
+                      "response": {
+                        "$ref": "UploadGoogetArtifactMediaResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ],
+                      "supportsMediaUpload": true
+                    }
+                  }
+                },
                 "kfpArtifacts": {
                   "methods": {
                     "upload": {
@@ -1517,7 +1589,7 @@
       }
     }
   },
-  "revision": "20230313",
+  "revision": "20230427",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1848,6 +1920,35 @@
             "$ref": "ImportAptArtifactsErrorInfo"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImportGoogetArtifactsGcsSource": {
+      "description": "Google Cloud Storage location where the artifacts currently reside.",
+      "id": "ImportGoogetArtifactsGcsSource",
+      "properties": {
+        "uris": {
+          "description": "Cloud Storage paths URI (e.g., gs://my_bucket/my_object).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "useWildcards": {
+          "description": "Supports URI wildcards for matching multiple objects from a single URI.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ImportGoogetArtifactsRequest": {
+      "description": "The request to import new googet artifacts.",
+      "id": "ImportGoogetArtifactsRequest",
+      "properties": {
+        "gcsSource": {
+          "$ref": "ImportGoogetArtifactsGcsSource",
+          "description": "Google Cloud Storage location where input content is located."
         }
       },
       "type": "object"
@@ -2518,6 +2619,7 @@
             "NPM",
             "APT",
             "YUM",
+            "GOOGET",
             "PYTHON",
             "KFP"
           ],
@@ -2528,6 +2630,7 @@
             "NPM package format.",
             "APT package format.",
             "YUM package format.",
+            "GooGet package format.",
             "Python package format.",
             "Kubeflow Pipelines package format."
           ],
@@ -2712,6 +2815,23 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "UploadGoogetArtifactMediaResponse": {
+      "description": "The response to upload an artifact.",
+      "id": "UploadGoogetArtifactMediaResponse",
+      "properties": {
+        "operation": {
+          "$ref": "Operation",
+          "description": "Operation to be returned to the user."
+        }
+      },
+      "type": "object"
+    },
+    "UploadGoogetArtifactRequest": {
+      "description": "The request to upload an artifact.",
+      "id": "UploadGoogetArtifactRequest",
+      "properties": {},
       "type": "object"
     },
     "UploadKfpArtifactMediaResponse": {

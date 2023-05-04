@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v6.0.1...androidmanagement-v6.0.2) (2023-05-02)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([0679f9d](https://github.com/googleapis/google-api-nodejs-client/commit/0679f9d660208f6569eed3c83db3fec3b52982aa))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v6.0.0...androidmanagement-v6.0.1) (2023-03-22)
 
 

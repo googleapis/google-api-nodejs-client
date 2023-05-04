@@ -755,6 +755,27 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$Empty {}
   /**
+   * Message representing a frame which failed to be processed due to an error.
+   */
+  export interface Schema$ErrorFrame {
+    /**
+     * Output only. Frame ingestion time.
+     */
+    ingestionTime?: string | null;
+    /**
+     * Output only. The identifier of the ErrorFrame.
+     */
+    name?: string | null;
+    /**
+     * Output only. The frame that was originally reported.
+     */
+    originalFrame?: Schema$AssetFrame;
+    /**
+     * Output only. All the violations that were detected for the frame.
+     */
+    violations?: Schema$FrameViolationEntry[];
+  }
+  /**
    * A resource that reports result of the import job execution.
    */
   export interface Schema$ExecutionReport {
@@ -813,6 +834,19 @@ export namespace migrationcenter_v1alpha1 {
      * A repeated field of asset data.
      */
     framesData?: Schema$AssetFrame[];
+  }
+  /**
+   * A resource that contains a single violation of a reported `AssetFrame` resource.
+   */
+  export interface Schema$FrameViolationEntry {
+    /**
+     * The field of the original frame where the violation occurred.
+     */
+    field?: string | null;
+    /**
+     * A message describing the violation.
+     */
+    violation?: string | null;
   }
   /**
    * Single fstab entry.
@@ -1207,6 +1241,23 @@ export namespace migrationcenter_v1alpha1 {
     unreachable?: string[] | null;
   }
   /**
+   * A response for listing error frames.
+   */
+  export interface Schema$ListErrorFramesResponse {
+    /**
+     * The list of error frames.
+     */
+    errorFrames?: Schema$ErrorFrame[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * A response for listing groups.
    */
   export interface Schema$ListGroupsResponse {
@@ -1352,7 +1403,7 @@ export namespace migrationcenter_v1alpha1 {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -2269,6 +2320,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     displayName?: string | null;
     /**
+     * Output only. The number of frames that were reported by the source and contained errors.
+     */
+    errorFrameCount?: number | null;
+    /**
      * If `true`, the source is managed by other service(s).
      */
     isManaged?: boolean | null;
@@ -2284,6 +2339,10 @@ export namespace migrationcenter_v1alpha1 {
      * The information confidence of the source. The higher the value, the higher the confidence.
      */
     priority?: number | null;
+    /**
+     * Output only. The state of the source.
+     */
+    state?: string | null;
     /**
      * Data source type.
      */
@@ -3681,139 +3740,6 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
-     * Deletes an asset. Deprecated: Please use BatchDeleteAssets API instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const migrationcenter = google.migrationcenter('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await migrationcenter.projects.locations.assets.delete({
-     *     // Required. Name of the resource.
-     *     name: 'projects/my-project/locations/my-location/assets/my-asset',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Assets$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Assets$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    delete(
-      params: Params$Resource$Projects$Locations$Assets$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Assets$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Assets$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Assets$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Assets$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Assets$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://migrationcenter.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * Gets the details of an asset.
      * @example
      * ```js
@@ -4097,158 +4023,6 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
-     * Updates the parameters of an asset. Deprecated: Please use BatchUpdateAssets API instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const migrationcenter = google.migrationcenter('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await migrationcenter.projects.locations.assets.patch({
-     *     // Output only. The full name of the asset.
-     *     name: 'projects/my-project/locations/my-location/assets/my-asset',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the `Asset` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "assignedGroups": [],
-     *       //   "attributes": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "insightList": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "performanceData": {},
-     *       //   "sources": [],
-     *       //   "updateTime": "my_updateTime",
-     *       //   "virtualMachineDetails": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Assets$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Assets$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    patch(
-      params: Params$Resource$Projects$Locations$Assets$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Assets$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Assets$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Assets$Patch
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Assets$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Assets$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://migrationcenter.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * Reports a set of frames.
      * @example
      * ```js
@@ -4432,17 +4206,6 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$BatchUpdateAssetsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Assets$Delete
-    extends StandardParameters {
-    /**
-     * Required. Name of the resource.
-     */
-    name?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-  }
   export interface Params$Resource$Projects$Locations$Assets$Get
     extends StandardParameters {
     /**
@@ -4480,26 +4243,6 @@ export namespace migrationcenter_v1alpha1 {
      * View of the assets. Defaults to BASIC.
      */
     view?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Assets$Patch
-    extends StandardParameters {
-    /**
-     * Output only. The full name of the asset.
-     */
-    name?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Required. Field mask is used to specify the fields to be overwritten in the `Asset` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Asset;
   }
   export interface Params$Resource$Projects$Locations$Assets$Reportassetframes
     extends StandardParameters {
@@ -10092,8 +9835,12 @@ export namespace migrationcenter_v1alpha1 {
 
   export class Resource$Projects$Locations$Sources {
     context: APIRequestContext;
+    errorFrames: Resource$Projects$Locations$Sources$Errorframes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.errorFrames = new Resource$Projects$Locations$Sources$Errorframes(
+        this.context
+      );
     }
 
     /**
@@ -10137,10 +9884,12 @@ export namespace migrationcenter_v1alpha1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "errorFrameCount": 0,
      *       //   "isManaged": false,
      *       //   "name": "my_name",
      *       //   "pendingFrameCount": 0,
      *       //   "priority": 0,
+     *       //   "state": "my_state",
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -10420,10 +10169,12 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "errorFrameCount": 0,
      *   //   "isManaged": false,
      *   //   "name": "my_name",
      *   //   "pendingFrameCount": 0,
      *   //   "priority": 0,
+     *   //   "state": "my_state",
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -10702,10 +10453,12 @@ export namespace migrationcenter_v1alpha1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "errorFrameCount": 0,
      *       //   "isManaged": false,
      *       //   "name": "my_name",
      *       //   "pendingFrameCount": 0,
      *       //   "priority": 0,
+     *       //   "state": "my_state",
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -10893,5 +10646,322 @@ export namespace migrationcenter_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$Source;
+  }
+
+  export class Resource$Projects$Locations$Sources$Errorframes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the details of an error frame.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.sources.errorFrames.get({
+     *     // Required. The name of the frame to retrieve. Format: projects/{project\}/locations/{location\}/sources/{source\}/errorFrames/{error_frame\}
+     *     name: 'projects/my-project/locations/my-location/sources/my-source/errorFrames/my-errorFrame',
+     *     // Optional. An optional view mode to control the level of details for the frame. The default is a basic frame view.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ingestionTime": "my_ingestionTime",
+     *   //   "name": "my_name",
+     *   //   "originalFrame": {},
+     *   //   "violations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ErrorFrame>;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ErrorFrame>,
+      callback: BodyResponseCallback<Schema$ErrorFrame>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$Get,
+      callback: BodyResponseCallback<Schema$ErrorFrame>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ErrorFrame>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Errorframes$Get
+        | BodyResponseCallback<Schema$ErrorFrame>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ErrorFrame>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ErrorFrame>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ErrorFrame> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Errorframes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Errorframes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ErrorFrame>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ErrorFrame>(parameters);
+      }
+    }
+
+    /**
+     * Lists all error frames in a given source and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.sources.errorFrames.list(
+     *     {
+     *       // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value (the source) for `ListErrorFramesRequest`.
+     *       parent: 'projects/my-project/locations/my-location/sources/my-source',
+     *       // Optional. An optional view mode to control the level of details of each error frame. The default is a BASIC frame view.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "errorFrames": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Sources$Errorframes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListErrorFramesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListErrorFramesResponse>,
+      callback: BodyResponseCallback<Schema$ListErrorFramesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Errorframes$List,
+      callback: BodyResponseCallback<Schema$ListErrorFramesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListErrorFramesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Errorframes$List
+        | BodyResponseCallback<Schema$ListErrorFramesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListErrorFramesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListErrorFramesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListErrorFramesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Errorframes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Errorframes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/errorFrames').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListErrorFramesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListErrorFramesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sources$Errorframes$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the frame to retrieve. Format: projects/{project\}/locations/{location\}/sources/{source\}/errorFrames/{error_frame\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional view mode to control the level of details for the frame. The default is a basic frame view.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Errorframes$List
+    extends StandardParameters {
+    /**
+     * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value (the source) for `ListErrorFramesRequest`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional view mode to control the level of details of each error frame. The default is a BASIC frame view.
+     */
+    view?: string;
   }
 }
