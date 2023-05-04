@@ -358,6 +358,28 @@ export namespace artifactregistry_v1 {
     errors?: Schema$ImportAptArtifactsErrorInfo[];
   }
   /**
+   * Google Cloud Storage location where the artifacts currently reside.
+   */
+  export interface Schema$ImportGoogetArtifactsGcsSource {
+    /**
+     * Cloud Storage paths URI (e.g., gs://my_bucket/my_object).
+     */
+    uris?: string[] | null;
+    /**
+     * Supports URI wildcards for matching multiple objects from a single URI.
+     */
+    useWildcards?: boolean | null;
+  }
+  /**
+   * The request to import new googet artifacts.
+   */
+  export interface Schema$ImportGoogetArtifactsRequest {
+    /**
+     * Google Cloud Storage location where input content is located.
+     */
+    gcsSource?: Schema$ImportGoogetArtifactsGcsSource;
+  }
+  /**
    * Error information explaining why a package was not imported.
    */
   export interface Schema$ImportYumArtifactsErrorInfo {
@@ -957,6 +979,19 @@ export namespace artifactregistry_v1 {
      */
     aptArtifacts?: Schema$AptArtifact[];
   }
+  /**
+   * The response to upload an artifact.
+   */
+  export interface Schema$UploadGoogetArtifactMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The request to upload an artifact.
+   */
+  export interface Schema$UploadGoogetArtifactRequest {}
   /**
    * The response to upload an artifact.
    */
@@ -2174,6 +2209,7 @@ export namespace artifactregistry_v1 {
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     files: Resource$Projects$Locations$Repositories$Files;
+    googetArtifacts: Resource$Projects$Locations$Repositories$Googetartifacts;
     kfpArtifacts: Resource$Projects$Locations$Repositories$Kfpartifacts;
     mavenArtifacts: Resource$Projects$Locations$Repositories$Mavenartifacts;
     npmPackages: Resource$Projects$Locations$Repositories$Npmpackages;
@@ -2189,6 +2225,10 @@ export namespace artifactregistry_v1 {
       this.files = new Resource$Projects$Locations$Repositories$Files(
         this.context
       );
+      this.googetArtifacts =
+        new Resource$Projects$Locations$Repositories$Googetartifacts(
+          this.context
+        );
       this.kfpArtifacts =
         new Resource$Projects$Locations$Repositories$Kfpartifacts(this.context);
       this.mavenArtifacts =
@@ -4476,6 +4516,357 @@ export namespace artifactregistry_v1 {
      * Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Googetartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports GooGet artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.googetArtifacts.import(
+     *       {
+     *         // The name of the parent resource where the artifacts will be imported.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "gcsSource": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/googetArtifacts:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Directly uploads a GooGet artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.googetArtifacts.upload(
+     *       {
+     *         // The name of the parent resource where the artifacts will be uploaded.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *         media: {
+     *           mimeType: 'placeholder-value',
+     *           body: 'placeholder-value',
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadGoogetArtifactMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      callback: BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadGoogetArtifactMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/googetArtifacts:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1/{+parent}/googetArtifacts:create'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadGoogetArtifactMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadGoogetArtifactMediaResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be imported.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportGoogetArtifactsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadGoogetArtifactRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects$Locations$Repositories$Kfpartifacts {

@@ -1856,7 +1856,7 @@
           ],
           "parameters": {
             "externalTransactionId": {
-              "description": "Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/.",
+              "description": "Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.",
               "location": "query",
               "type": "string"
             },
@@ -2099,7 +2099,7 @@
     "inappproducts": {
       "methods": {
         "delete": {
-          "description": "Deletes an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Deletes an in-app product (i.e. a managed product or a subscription).",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "DELETE",
           "id": "androidpublisher.inappproducts.delete",
@@ -2158,7 +2158,7 @@
           ]
         },
         "insert": {
-          "description": "Creates an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Creates an in-app product (i.e. a managed product or a subscription).",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts",
           "httpMethod": "POST",
           "id": "androidpublisher.inappproducts.insert",
@@ -2211,7 +2211,7 @@
               "type": "string"
             },
             "startIndex": {
-              "description": "Deprecated and ignored. Set the `token` parameter to rertieve the next page.",
+              "description": "Deprecated and ignored. Set the `token` parameter to retrieve the next page.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -2231,7 +2231,7 @@
           ]
         },
         "patch": {
-          "description": "Patches an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Patches an in-app product (i.e. a managed product or a subscription).",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "PATCH",
           "id": "androidpublisher.inappproducts.patch",
@@ -2270,7 +2270,7 @@
           ]
         },
         "update": {
-          "description": "Updates an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Updates an in-app product (i.e. a managed product or a subscription).",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "PUT",
           "id": "androidpublisher.inappproducts.update",
@@ -4045,7 +4045,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230427",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "AcquisitionTargetingRule": {
@@ -5191,7 +5191,8 @@
               "CAN_MANAGE_TRACK_USERS",
               "CAN_MANAGE_PUBLIC_LISTING",
               "CAN_MANAGE_DRAFT_APPS",
-              "CAN_MANAGE_ORDERS"
+              "CAN_MANAGE_ORDERS",
+              "CAN_MANAGE_APP_CONTENT"
             ],
             "enumDescriptions": [
               "Unknown or unspecified permission.",
@@ -5204,7 +5205,8 @@
               "Manage testing tracks and edit tester lists.",
               "Manage store presence.",
               "Edit and delete draft apps.",
-              "Manage orders and subscriptions."
+              "Manage orders and subscriptions.",
+              "Manage policy related pages."
             ],
             "type": "string"
           },
@@ -7112,7 +7114,8 @@
               "CAN_MANAGE_DRAFT_APPS_GLOBAL",
               "CAN_CREATE_MANAGED_PLAY_APPS_GLOBAL",
               "CAN_CHANGE_MANAGED_PLAY_SETTING_GLOBAL",
-              "CAN_MANAGE_ORDERS_GLOBAL"
+              "CAN_MANAGE_ORDERS_GLOBAL",
+              "CAN_MANAGE_APP_CONTENT_GLOBAL"
             ],
             "enumDescriptions": [
               "Unknown or unspecified permission.",
@@ -7129,7 +7132,8 @@
               "Create, edit, and delete draft apps.",
               "Create and publish private apps to your organization.",
               "Choose whether apps are public, or only available to your organization.",
-              "Manage orders and subscriptions."
+              "Manage orders and subscriptions.",
+              "Manage policy related pages on all apps for the developer."
             ],
             "type": "string"
           },

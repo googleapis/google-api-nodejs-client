@@ -420,15 +420,6 @@ export namespace cloudfunctions_v1 {
     uploadUrl?: string | null;
   }
   /**
-   * Extra GCF specific location information.
-   */
-  export interface Schema$GoogleCloudFunctionsV2alphaLocationMetadata {
-    /**
-     * The Cloud Function environments this location supports.
-     */
-    environments?: string[] | null;
-  }
-  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2alphaOperationMetadata {
@@ -455,7 +446,7 @@ export namespace cloudfunctions_v1 {
     /**
      * Mechanism for reporting in-progress stages
      */
-    stages?: Schema$Stage[];
+    stages?: Schema$GoogleCloudFunctionsV2alphaStage[];
     /**
      * Human-readable status of the operation, if any.
      */
@@ -468,6 +459,35 @@ export namespace cloudfunctions_v1 {
      * Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Each Stage of the deployment process
+   */
+  export interface Schema$GoogleCloudFunctionsV2alphaStage {
+    /**
+     * Message describing the Stage
+     */
+    message?: string | null;
+    /**
+     * Name of the Stage. This will be unique for each Stage.
+     */
+    name?: string | null;
+    /**
+     * Resource of the Stage
+     */
+    resource?: string | null;
+    /**
+     * Link to the current Stage resource
+     */
+    resourceUri?: string | null;
+    /**
+     * Current state of the Stage
+     */
+    state?: string | null;
+    /**
+     * State messages from the current Stage.
+     */
+    stateMessages?: Schema$GoogleCloudFunctionsV2alphaStateMessage[];
   }
   /**
    * Informational messages about the state of the Cloud Function or Operation.
@@ -485,15 +505,6 @@ export namespace cloudfunctions_v1 {
      * One-word CamelCase type of the state message.
      */
     type?: string | null;
-  }
-  /**
-   * Extra GCF specific location information.
-   */
-  export interface Schema$GoogleCloudFunctionsV2betaLocationMetadata {
-    /**
-     * The Cloud Function environments this location supports.
-     */
-    environments?: string[] | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -726,7 +737,7 @@ export namespace cloudfunctions_v1 {
     operations?: Schema$Operation[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -749,15 +760,6 @@ export namespace cloudfunctions_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
-  }
-  /**
-   * Extra GCF specific location information.
-   */
-  export interface Schema$LocationMetadata {
-    /**
-     * The Cloud Function environments this location supports.
-     */
-    environments?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -926,35 +928,6 @@ export namespace cloudfunctions_v1 {
      * The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats: To refer to a specific commit: `https://source.developers.google.com/projects/x/repos/x/revisions/x/paths/x` To refer to a moveable alias (branch): `https://source.developers.google.com/projects/x/repos/x/moveable-aliases/x/paths/x` In particular, to refer to HEAD use `master` moveable alias. To refer to a specific fixed alias (tag): `https://source.developers.google.com/projects/x/repos/x/fixed-aliases/x/paths/x` You may omit `paths/x` if you want to use the main directory.
      */
     url?: string | null;
-  }
-  /**
-   * Each Stage of the deployment process
-   */
-  export interface Schema$Stage {
-    /**
-     * Message describing the Stage
-     */
-    message?: string | null;
-    /**
-     * Name of the Stage. This will be unique for each Stage.
-     */
-    name?: string | null;
-    /**
-     * Resource of the Stage
-     */
-    resource?: string | null;
-    /**
-     * Link to the current Stage resource
-     */
-    resourceUri?: string | null;
-    /**
-     * Current state of the Stage
-     */
-    state?: string | null;
-    /**
-     * State messages from the current Stage.
-     */
-    stateMessages?: Schema$GoogleCloudFunctionsV2alphaStateMessage[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).

@@ -601,6 +601,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     mavenArtifacts?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact[];
     /**
+     * A list of npm packages to be uploaded to Artifact Registry upon successful completion of all build steps. Npm packages in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any packages fail to be pushed, the build is marked FAILURE.
+     */
+    npmPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage[];
+    /**
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects;
@@ -650,6 +654,19 @@ export namespace containeranalysis_v1alpha1 {
      * Maven `version` value used when uploading the artifact to Artifact Registry.
      */
     version?: string | null;
+  }
+  /**
+   * Npm package to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage {
+    /**
+     * Path to the package.json. e.g. workspace/path/to/package
+     */
+    packagePath?: string | null;
+    /**
+     * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
+     */
+    repository?: string | null;
   }
   /**
    * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
@@ -1000,6 +1017,23 @@ export namespace containeranalysis_v1alpha1 {
     fileHash?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
+   * Location of the source in any accessible Git repository.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource {
+    /**
+     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
+     */
+    dir?: string | null;
+    /**
+     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.
+     */
+    revision?: string | null;
+    /**
+     * Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
+     */
+    url?: string | null;
+  }
+  /**
    * Container message for hash values.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Hash {
@@ -1091,6 +1125,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     mavenArtifacts?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact[];
     /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     */
+    npmPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage[];
+    /**
      * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     numArtifacts?: string | null;
@@ -1142,6 +1180,10 @@ export namespace containeranalysis_v1alpha1 {
    * Location of the source in a supported storage service.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Source {
+    /**
+     * If provided, get the source from this Git repository.
+     */
+    gitSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource;
     /**
      * If provided, get the source from this location in a Cloud Source Repository.
      */
@@ -1241,6 +1283,23 @@ export namespace containeranalysis_v1alpha1 {
     pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
     /**
      * URI of the uploaded artifact.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An npm package uploaded to Artifact Registry using the NpmPackage directive.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage {
+    /**
+     * Hash types and values of the npm package.
+     */
+    fileHashes?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan;
+    /**
+     * URI of the uploaded npm package.
      */
     uri?: string | null;
   }

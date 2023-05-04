@@ -513,12 +513,12 @@ export namespace drive_v3 {
    */
   export interface Schema$File {
     /**
-     * A collection of arbitrary key-value pairs which are private to the requesting app.
-     * Entries with null values are cleared in update and copy requests. These properties can only be retrieved using an authenticated request. An authenticated request uses an access token obtained with a OAuth 2 client ID. You cannot use an API key to retrieve private properties.
+     * A collection of arbitrary key-value pairs that are private to the requesting app.
+     * Entries with null values are cleared in update and copy requests. These properties can only be retrieved using an authenticated request. An authenticated request uses an access token obtained with an OAuth 2 client ID. You cannot use an API key to retrieve private properties.
      */
     appProperties?: {[key: string]: string} | null;
     /**
-     * Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
+     * Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user can take.
      */
     capabilities?: {
       canAcceptOwnership?: boolean;
@@ -605,8 +605,8 @@ export namespace drive_v3 {
      */
     folderColorRgb?: string | null;
     /**
-     * The full file extension extracted from the name field. May contain multiple concatenated extensions, such as "tar.gz". This is only available for files with binary content in Google Drive.
-     * This is automatically updated when the name field changes, however it isn't cleared if the new name does not contain a valid extension.
+     * The full file extension extracted from the name field. Can contain multiple concatenated extensions, such as "tar.gz". This is only available for files with binary content in Google Drive.
+     * This is automatically updated when the name field changes, however it's not cleared if the new name does not contain a valid extension.
      */
     fullFileExtension?: string | null;
     /**
@@ -618,7 +618,7 @@ export namespace drive_v3 {
      */
     hasThumbnail?: boolean | null;
     /**
-     * The ID of the file's head revision. This is currently only available for files with binary content in Google Drive.
+     * The ID of the file's head revision. This is only available for files with binary content in Google Drive.
      */
     headRevisionId?: string | null;
     /**
@@ -656,7 +656,7 @@ export namespace drive_v3 {
       width?: number;
     } | null;
     /**
-     * Whether the file was created or opened by the requesting app.
+     * Whether the requesting app created or opened the file.
      */
     isAppAuthorized?: boolean | null;
     /**
@@ -689,20 +689,20 @@ export namespace drive_v3 {
      */
     mimeType?: string | null;
     /**
-     * Whether the file has been modified by this user.
+     * Whether this user has modified the file.
      */
     modifiedByMe?: boolean | null;
     /**
-     * The last time the file was modified by the user (RFC 3339 date-time).
+     * The last time the user modified the file (RFC 3339 date-time).
      */
     modifiedByMeTime?: string | null;
     /**
-     * The last time the file was modified by anyone (RFC 3339 date-time).
+     * The last time anyone modified the file (RFC 3339 date-time).
      * Note that setting modifiedTime will also update modifiedByMeTime for the user.
      */
     modifiedTime?: string | null;
     /**
-     * The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of shared drives, My Drive root folder, and Application Data folder the name is constant.
+     * The name of the file. This isn't necessarily unique within a folder. Note that for immutable items such as the top-level folders of shared drives, My Drive root folder, and Application Data folder the name is constant.
      */
     name?: string | null;
     /**
@@ -714,11 +714,11 @@ export namespace drive_v3 {
      */
     ownedByMe?: boolean | null;
     /**
-     * The owner of this file. Only certain legacy files may have more than one owner. This field isn't populated for items in shared drives.
+     * The owner of this file. Only certain legacy files might have more than one owner. This field isn't populated for items in shared drives.
      */
     owners?: Schema$User[];
     /**
-     * The IDs of the parent folders which contain the file.
+     * The IDs of the parent folders that contain the file.
      * If not specified as part of a create request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests must use the addParents and removeParents parameters to modify the parents list.
      */
     parents?: string[] | null;
@@ -731,7 +731,7 @@ export namespace drive_v3 {
      */
     permissions?: Schema$Permission[];
     /**
-     * A collection of arbitrary key-value pairs which are visible to all apps.
+     * A collection of arbitrary key-value pairs that are visible to all apps.
      * Entries with null values are cleared in update and copy requests.
      */
     properties?: {[key: string]: string} | null;
@@ -744,11 +744,11 @@ export namespace drive_v3 {
      */
     resourceKey?: string | null;
     /**
-     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
+     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it's not populated for Docs Editors or shortcut files.
      */
     sha1Checksum?: string | null;
     /**
-     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it isn't populated for Docs Editors or shortcut files.
+     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it's not populated for Docs Editors or shortcut files.
      */
     sha256Checksum?: string | null;
     /**
@@ -772,11 +772,11 @@ export namespace drive_v3 {
       targetResourceKey?: string;
     } | null;
     /**
-     * The size of the file's content in bytes. This field is populated for files with binary content stored in Google Drive and for Docs Editors files; it is not populated for shortcuts or folders.
+     * The size of the file's content in bytes. This field is populated for files with binary content stored in Google Drive and for Docs Editors files; it's not populated for shortcuts or folders.
      */
     size?: string | null;
     /**
-     * The list of spaces which contain the file. The currently supported values are 'drive', 'appDataFolder' and 'photos'.
+     * The list of spaces that contain the file. The currently supported values are 'drive', 'appDataFolder' and 'photos'.
      */
     spaces?: string[] | null;
     /**
@@ -796,7 +796,7 @@ export namespace drive_v3 {
      */
     thumbnailVersion?: string | null;
     /**
-     * Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.
+     * Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner can trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.
      */
     trashed?: boolean | null;
     /**
@@ -812,7 +812,7 @@ export namespace drive_v3 {
      */
     version?: string | null;
     /**
-     * Additional metadata about video media. This may not be available immediately upon upload.
+     * Additional metadata about video media. This might not be available immediately upon upload.
      */
     videoMediaMetadata?: {
       durationMillis?: string;
@@ -820,11 +820,11 @@ export namespace drive_v3 {
       width?: number;
     } | null;
     /**
-     * Whether the file has been viewed by this user.
+     * Whether this user has viewed the file.
      */
     viewedByMe?: boolean | null;
     /**
-     * The last time the file was viewed by the user (RFC 3339 date-time).
+     * The last time the user viewed the file (RFC 3339 date-time).
      */
     viewedByMeTime?: string | null;
     /**
@@ -4990,7 +4990,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Permanently deletes all of the user's trashed files.
+     * Permanently deletes all trashed files of a user or shared drive.
      * @example
      * ```js
      * // Before running the sample:
@@ -5016,6 +5016,8 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.emptyTrash({
+     *     // If set, empties the trash of the provided shared drive.
+     *     driveId: 'placeholder-value',
      *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      *     enforceSingleParent: 'placeholder-value',
      *   });
@@ -6330,7 +6332,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Subscribes to changes to a file. While you can establish a channel for changes to a file on a shared drive, a change to a shared drive file won't create a notification.
+     * Subscribe to changes on a file.
      * @example
      * ```js
      * // Before running the sample:
@@ -6622,6 +6624,10 @@ export namespace drive_v3 {
     supportsTeamDrives?: boolean;
   }
   export interface Params$Resource$Files$Emptytrash extends StandardParameters {
+    /**
+     * If set, empties the trash of the provided shared drive.
+     */
+    driveId?: string;
     /**
      * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      */

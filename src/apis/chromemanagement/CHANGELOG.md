@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v6.0.0...chromemanagement-v7.0.0) (2023-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v5.1.1...chromemanagement-v6.0.0) (2023-04-08)
 
 

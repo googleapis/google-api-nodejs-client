@@ -1817,6 +1817,10 @@ export namespace dfareporting_v4 {
      */
     treatmentForUnderage?: boolean | null;
     /**
+     * The user identifiers to enhance the conversion. The maximum number of user identifiers for each conversion is 5.
+     */
+    userIdentifiers?: Schema$UserIdentifier[];
+    /**
      * The value of the conversion.
      */
     value?: number | null;
@@ -4544,6 +4548,39 @@ export namespace dfareporting_v4 {
     status?: string | null;
   }
   /**
+   * Identify a user by name and address.
+   */
+  export interface Schema$OfflineUserAddressInfo {
+    /**
+     * City of the address.
+     */
+    city?: string | null;
+    /**
+     * 2-letter country code in ISO-3166-1 alpha-2 of the user's address.
+     */
+    countryCode?: string | null;
+    /**
+     * First name of the user, which is hashed as SHA-256 after normalized (Lowercase all characters; Remove any extra spaces before, after, and in between).
+     */
+    hashedFirstName?: string | null;
+    /**
+     * Last name of the user, which is hashed as SHA-256 after normalized (lower case only and no punctuation).
+     */
+    hashedLastName?: string | null;
+    /**
+     * The street address of the user hashed using SHA-256 hash function after normalization (lower case only).
+     */
+    hashedStreetAddress?: string | null;
+    /**
+     * Postal code of the user's address.
+     */
+    postalCode?: string | null;
+    /**
+     * State code of the address.
+     */
+    state?: string | null;
+  }
+  /**
    * Offset Position.
    */
   export interface Schema$OffsetPosition {
@@ -6771,6 +6808,23 @@ export namespace dfareporting_v4 {
      * Variable name in the tag. This is a required field.
      */
     variableType?: string | null;
+  }
+  /**
+   * User identifying information. Exactly one type of identifier must be specified.
+   */
+  export interface Schema$UserIdentifier {
+    /**
+     * Address information.
+     */
+    addressInfo?: Schema$OfflineUserAddressInfo;
+    /**
+     * Hashed email address using SHA-256 hash function after normalization.
+     */
+    hashedEmail?: string | null;
+    /**
+     * Hashed phone number using SHA-256 hash function after normalization (E164 standard).
+     */
+    hashedPhoneNumber?: string | null;
   }
   /**
    * A UserProfile resource lets you list all DFA user profiles that are associated with a Google user account. The profile_id needs to be specified in other API requests.

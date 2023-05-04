@@ -252,7 +252,7 @@ export namespace run_v1 {
     optional?: boolean | null;
   }
   /**
-   * Configuration represents the "floating HEAD" of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration's spec. The "latest created" revision's name is available under status, as is the "latest ready" revision's name. See also: https://github.com/knative/specs/blob/main/specs/serving/overview.md#configuration
+   * Configuration represents the "floating HEAD" of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration's spec. The "latest created" revision's name is available under status, as is the "latest ready" revision's name.
    */
   export interface Schema$Configuration {
     /**
@@ -327,19 +327,19 @@ export namespace run_v1 {
      */
     envFrom?: Schema$EnvFromSource[];
     /**
-     * Required. Name of the container image in Dockerhub, Google Artifact Registry, or Google Container Registry. If the host is not provided, Dockerhub is assumed. More info: https://kubernetes.io/docs/concepts/containers/images
+     * Required. Name of the container image in Dockerhub, Google Artifact Registry, or Google Container Registry. If the host is not provided, Dockerhub is assumed.
      */
     image?: string | null;
     /**
-     * Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
+     * Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.
      */
     imagePullPolicy?: string | null;
     /**
-     * Periodic probe of container liveness. Container will be restarted if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * Periodic probe of container liveness. Container will be restarted if the probe fails.
      */
     livenessProbe?: Schema$Probe;
     /**
-     * Name of the container specified as a DNS_LABEL (RFC 1123). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names
+     * Name of the container specified as a DNS_LABEL (RFC 1123).
      */
     name?: string | null;
     /**
@@ -351,7 +351,7 @@ export namespace run_v1 {
      */
     readinessProbe?: Schema$Probe;
     /**
-     * Compute Resources required by this container. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+     * Compute Resources required by this container.
      */
     resources?: Schema$ResourceRequirements;
     /**
@@ -359,7 +359,7 @@ export namespace run_v1 {
      */
     securityContext?: Schema$SecurityContext;
     /**
-     * Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not receive traffic if the probe fails. If not provided, a default startup probe with TCP socket action is used. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not receive traffic if the probe fails. If not provided, a default startup probe with TCP socket action is used.
      */
     startupProbe?: Schema$Probe;
     /**
@@ -541,23 +541,23 @@ export namespace run_v1 {
    */
   export interface Schema$Execution {
     /**
-     * Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+     * Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.
      */
     apiVersion?: string | null;
     /**
-     * Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.
      */
     kind?: string | null;
     /**
-     * Optional. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+     * Optional. Standard object's metadata.
      */
     metadata?: Schema$ObjectMeta;
     /**
-     * Optional. Specification of the desired behavior of an execution. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Optional. Specification of the desired behavior of an execution.
      */
     spec?: Schema$ExecutionSpec;
     /**
-     * Output only. Current status of an execution. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Output only. Current status of an execution.
      */
     status?: Schema$ExecutionStatus;
   }
@@ -641,7 +641,7 @@ export namespace run_v1 {
     succeededCount?: number | null;
   }
   /**
-   * ExecutionTemplateSpec describes the metadata and spec an Execution should have when created from a job. Based on: https://github.com/kubernetes/api/blob/e771f807/core/v1/types.go#L3179-L3190
+   * ExecutionTemplateSpec describes the metadata and spec an Execution should have when created from a job.
    */
   export interface Schema$ExecutionTemplateSpec {
     /**
@@ -699,7 +699,7 @@ export namespace run_v1 {
      */
     status?: string | null;
     /**
-     * type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/main/docs/spec/errors.md#error-conditions-and-reporting Types common to all resources include: * "Ready" or "Completed": True when the Resource is ready.
+     * type is used to communicate the status of the reconciliation process. Types common to all resources include: * "Ready" or "Completed": True when the Resource is ready.
      */
     type?: string | null;
   }
@@ -729,7 +729,7 @@ export namespace run_v1 {
      */
     port?: number | null;
     /**
-     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
+     * Service is the name of the service to place in the gRPC HealthCheckRequest. If this is not specified, the default behavior is defined by gRPC.
      */
     service?: string | null;
   }
@@ -776,23 +776,23 @@ export namespace run_v1 {
    */
   export interface Schema$Job {
     /**
-     * Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+     * Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.
      */
     apiVersion?: string | null;
     /**
-     * Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.
      */
     kind?: string | null;
     /**
-     * Optional. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+     * Optional. Standard object's metadata.
      */
     metadata?: Schema$ObjectMeta;
     /**
-     * Optional. Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Optional. Specification of the desired behavior of a job.
      */
     spec?: Schema$JobSpec;
     /**
-     * Output only. Current status of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Output only. Current status of a job.
      */
     status?: Schema$JobStatus;
   }
@@ -978,7 +978,7 @@ export namespace run_v1 {
      */
     continue?: string | null;
     /**
-     * Opaque string that identifies the server's internal version of this object. It can be used by clients to determine when objects have changed. If the message is passed back to the server, it must be left unmodified. https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+     * Opaque string that identifies the server's internal version of this object. It can be used by clients to determine when objects have changed. If the message is passed back to the server, it must be left unmodified.
      */
     resourceVersion?: string | null;
     /**
@@ -1091,12 +1091,12 @@ export namespace run_v1 {
    */
   export interface Schema$LocalObjectReference {
     /**
-     * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+     * Name of the referent.
      */
     name?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -1125,7 +1125,7 @@ export namespace run_v1 {
    */
   export interface Schema$ObjectMeta {
     /**
-     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision. * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution. Execution. More info: https://kubernetes.io/docs/user-guide/annotations
+     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision. * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1133,7 +1133,7 @@ export namespace run_v1 {
      */
     clusterName?: string | null;
     /**
-     * UTC timestamp representing the server time when this object was created. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata
+     * UTC timestamp representing the server time when this object was created.
      */
     creationTimestamp?: string | null;
     /**
@@ -1157,11 +1157,11 @@ export namespace run_v1 {
      */
     generation?: number | null;
     /**
-     * Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and routes. More info: https://kubernetes.io/docs/user-guide/labels
+     * Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and routes.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The name of the resource. In Cloud Run, name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created. More info: https://kubernetes.io/docs/user-guide/identifiers#names
+     * Required. The name of the resource. Name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created.
      */
     name?: string | null;
     /**
@@ -1173,7 +1173,7 @@ export namespace run_v1 {
      */
     ownerReferences?: Schema$OwnerReference[];
     /**
-     * Opaque, system-generated value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server or omit the value to disable conflict-detection. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+     * Opaque, system-generated value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server or omit the value to disable conflict-detection.
      */
     resourceVersion?: string | null;
     /**
@@ -1181,7 +1181,7 @@ export namespace run_v1 {
      */
     selfLink?: string | null;
     /**
-     * Unique, system-generated identifier for this resource. More info: https://kubernetes.io/docs/user-guide/identifiers#uids
+     * Unique, system-generated identifier for this resource.
      */
     uid?: string | null;
   }
@@ -1273,7 +1273,7 @@ export namespace run_v1 {
      */
     httpGet?: Schema$HTTPGetAction;
     /**
-     * Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240.
      */
     initialDelaySeconds?: number | null;
     /**
@@ -1289,7 +1289,7 @@ export namespace run_v1 {
      */
     tcpSocket?: Schema$TCPSocketAction;
     /**
-     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds.
      */
     timeoutSeconds?: number | null;
   }
@@ -1315,11 +1315,11 @@ export namespace run_v1 {
    */
   export interface Schema$ResourceRequirements {
     /**
-     * Only memory and CPU are supported. Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Limits describes the maximum amount of compute resources allowed. Only 'cpu' and 'memory' keys are supported. * For supported 'cpu' values, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits
      */
     limits?: {[key: string]: string} | null;
     /**
-     * Only memory and CPU are supported. Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Requests describes the minimum amount of compute resources required. Only `cpu` and `memory` are supported. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. * For supported 'cpu' values, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits
      */
     requests?: {[key: string]: string} | null;
   }
@@ -1357,7 +1357,7 @@ export namespace run_v1 {
      */
     containerConcurrency?: number | null;
     /**
-     * Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided. The runtime contract is documented here: https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md
+     * Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided.
      */
     containers?: Schema$Container[];
     /**
@@ -1404,7 +1404,7 @@ export namespace run_v1 {
     serviceName?: string | null;
   }
   /**
-   * RevisionTemplateSpec describes the data a revision should have when created from a template. Based on: https://github.com/kubernetes/api/blob/e771f807/core/v1/types.go#L3179-L3190
+   * RevisionTemplateSpec describes the data a revision should have when created from a template.
    */
   export interface Schema$RevisionTemplate {
     /**
@@ -1417,7 +1417,7 @@ export namespace run_v1 {
     spec?: Schema$RevisionSpec;
   }
   /**
-   * Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for "latest ready" revision changes, and smoothly rolling out latest revisions. See also: https://github.com/knative/specs/blob/main/specs/serving/overview.md#route Cloud Run currently supports referencing a single Configuration to automatically deploy the "latest ready" Revision from that Configuration.
+   * Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for "latest ready" revision changes, and smoothly rolling out latest revisions. Cloud Run currently supports referencing a single Configuration to automatically deploy the "latest ready" Revision from that Configuration.
    */
   export interface Schema$Route {
     /**
@@ -1553,7 +1553,7 @@ export namespace run_v1 {
     runAsUser?: number | null;
   }
   /**
-   * Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own. See also: https://github.com/knative/serving/blob/main/docs/spec/overview.md#service
+   * Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own.
    */
   export interface Schema$Service {
     /**
@@ -1653,7 +1653,7 @@ export namespace run_v1 {
      */
     message?: string | null;
     /**
-     * Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * Standard list metadata.
      */
     metadata?: Schema$ListMeta;
     /**
@@ -1661,7 +1661,7 @@ export namespace run_v1 {
      */
     reason?: string | null;
     /**
-     * Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Status of the operation. One of: "Success" or "Failure".
      */
     status?: string | null;
   }
@@ -1695,7 +1695,7 @@ export namespace run_v1 {
      */
     group?: string | null;
     /**
-     * The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind.
      */
     kind?: string | null;
     /**
@@ -1707,7 +1707,7 @@ export namespace run_v1 {
      */
     retryAfterSeconds?: number | null;
     /**
-     * UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/user-guide/identifiers#uids
+     * UID of the resource. (when there is a single resource which can be described).
      */
     uid?: string | null;
   }
@@ -1716,23 +1716,23 @@ export namespace run_v1 {
    */
   export interface Schema$Task {
     /**
-     * Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+     * Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.
      */
     apiVersion?: string | null;
     /**
-     * Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.
      */
     kind?: string | null;
     /**
-     * Optional. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+     * Optional. Standard object's metadata.
      */
     metadata?: Schema$ObjectMeta;
     /**
-     * Optional. Specification of the desired behavior of a task. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Optional. Specification of the desired behavior of a task.
      */
     spec?: Schema$TaskSpec;
     /**
-     * Output only. Current status of a task. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Output only. Current status of a task.
      */
     status?: Schema$TaskStatus;
   }
@@ -1770,7 +1770,7 @@ export namespace run_v1 {
      */
     timeoutSeconds?: string | null;
     /**
-     * Optional. List of volumes that can be mounted by containers belonging to the task. More info: https://kubernetes.io/docs/concepts/storage/volumes
+     * Optional. List of volumes that can be mounted by containers belonging to the task.
      */
     volumes?: Schema$Volume[];
   }
@@ -1816,7 +1816,7 @@ export namespace run_v1 {
    */
   export interface Schema$TaskTemplateSpec {
     /**
-     * Optional. Specification of the desired behavior of the task. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * Optional. Specification of the desired behavior of the task.
      */
     spec?: Schema$TaskSpec;
   }
@@ -2487,7 +2487,7 @@ export namespace run_v1 {
      *   const res = await run.namespaces.domainmappings.create({
      *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      *     dryRun: 'placeholder-value',
-     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *
      *     // Request body metadata
@@ -2637,7 +2637,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -2773,7 +2773,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.get({
-     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *   });
      *   console.log(res.data);
@@ -2916,7 +2916,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -3040,7 +3040,7 @@ export namespace run_v1 {
      */
     dryRun?: string;
     /**
-     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
 
@@ -3064,7 +3064,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -3075,7 +3075,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -3102,7 +3102,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -3292,7 +3292,7 @@ export namespace run_v1 {
      *     kind: 'placeholder-value',
      *     // Required. The name of the execution to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/executions/my-execution',
-     *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
+     *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting.
      *     propagationPolicy: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3711,7 +3711,7 @@ export namespace run_v1 {
      */
     name?: string;
     /**
-     * Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
+     * Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting.
      */
     propagationPolicy?: string;
   }
@@ -4753,7 +4753,7 @@ export namespace run_v1 {
      *     kind: 'placeholder-value',
      *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/revisions/my-revision',
-     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
      *     propagationPolicy: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5164,7 +5164,7 @@ export namespace run_v1 {
      */
     name?: string;
     /**
-     * Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
+     * Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
      */
     propagationPolicy?: string;
   }
@@ -7601,7 +7601,7 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.domainmappings.create({
      *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
      *     dryRun: 'placeholder-value',
-     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7752,7 +7752,7 @@ export namespace run_v1 {
      *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -7885,7 +7885,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.get({
-     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *   });
      *   console.log(res.data);
@@ -8025,7 +8025,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -8150,7 +8150,7 @@ export namespace run_v1 {
      */
     dryRun?: string;
     /**
-     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
 
@@ -8174,7 +8174,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
     /**
@@ -8185,7 +8185,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     name?: string;
   }
@@ -8212,7 +8212,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
     /**
@@ -8729,7 +8729,7 @@ export namespace run_v1 {
      *     kind: 'placeholder-value',
      *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
-     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
+     *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
      *     propagationPolicy: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9135,7 +9135,7 @@ export namespace run_v1 {
      */
     name?: string;
     /**
-     * Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.
+     * Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.
      */
     propagationPolicy?: string;
   }

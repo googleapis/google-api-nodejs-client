@@ -874,7 +874,7 @@
       }
     }
   },
-  "revision": "20230405",
+  "revision": "20230422",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1590,7 +1590,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

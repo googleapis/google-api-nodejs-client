@@ -1255,7 +1255,7 @@
       }
     }
   },
-  "revision": "20230313",
+  "revision": "20230425",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1844,7 +1844,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

@@ -866,6 +866,23 @@ export namespace healthcare_v1 {
     resources?: Schema$Resources;
   }
   /**
+   * Contains the configuration for FHIR notifications.
+   */
+  export interface Schema$FhirNotificationConfig {
+    /**
+     * The [Pub/Sub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. The notification is a `PubsubMessage` with the following fields: * `PubsubMessage.Data` contains the resource name. * `PubsubMessage.MessageId` is the ID of this notification. It is guaranteed to be unique within the topic. * `PubsubMessage.PublishTime` is the time when the message was published. Note that notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. The Cloud Healthcare API service account, service-@gcp-sa-healthcare.iam.gserviceaccount.com, must have publisher permissions on the given Pub/Sub topic. Not having adequate permissions causes the calls that send notifications to fail (https://cloud.google.com/healthcare-api/docs/permissions-healthcare-api-gcp-products#dicom_fhir_and_hl7v2_store_cloud_pubsub_permissions). If a notification can't be published to Pub/Sub, errors are logged to Cloud Logging. For more information, see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare-api/docs/how-tos/logging).
+     */
+    pubsubTopic?: string | null;
+    /**
+     * Whether to send full FHIR resource to this Pub/Sub topic.
+     */
+    sendFullResource?: boolean | null;
+    /**
+     * Whether to send full FHIR resource to this pubsub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
+     */
+    sendPreviousResourceOnDelete?: boolean | null;
+  }
+  /**
    * Represents a FHIR store.
    */
   export interface Schema$FhirStore {
@@ -898,9 +915,13 @@ export namespace healthcare_v1 {
      */
     name?: string | null;
     /**
-     * If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource".
+     * Deprecated. Use `notification_configs` instead. If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource".
      */
     notificationConfig?: Schema$NotificationConfig;
+    /**
+     * Specifies where and whether to send notifications upon changes to a FHIR store.
+     */
+    notificationConfigs?: Schema$FhirNotificationConfig[];
     /**
      * A list of streaming configs that configure the destinations of streaming export for every resource mutation in this FHIR store. Each store is allowed to have up to 10 streaming configs. After a new config is added, the next resource mutation is streamed to the new location in addition to the existing ones. When a location is removed from the list, the server stops streaming to that location. Before adding a new config, you must add the required [`bigquery.dataEditor`](https://cloud.google.com/bigquery/docs/access-control#bigquery.dataEditor) role to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/iam/docs/service-accounts). Some lag (typically on the order of dozens of seconds) is expected before the results show up in the streaming destination.
      */
@@ -14278,6 +14299,7 @@ export namespace healthcare_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
+     *       //   "notificationConfigs": [],
      *       //   "streamConfigs": [],
      *       //   "validationConfig": {},
      *       //   "version": "my_version"
@@ -14296,6 +14318,7 @@ export namespace healthcare_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "notificationConfigs": [],
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
      *   //   "version": "my_version"
@@ -14851,6 +14874,7 @@ export namespace healthcare_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "notificationConfigs": [],
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
      *   //   "version": "my_version"
@@ -15545,6 +15569,7 @@ export namespace healthcare_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
+     *       //   "notificationConfigs": [],
      *       //   "streamConfigs": [],
      *       //   "validationConfig": {},
      *       //   "version": "my_version"
@@ -15563,6 +15588,7 @@ export namespace healthcare_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "notificationConfigs": [],
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
      *   //   "version": "my_version"

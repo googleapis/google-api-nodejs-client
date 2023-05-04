@@ -184,11 +184,11 @@ export namespace workstations_v1beta {
      */
     command?: string[] | null;
     /**
-     * Environment variables passed to the container.
+     * Environment variables passed to the container's entrypoint.
      */
     env?: {[key: string]: string} | null;
     /**
-     * Docker image defining the container. This image must be accessible by the config's service account.
+     * Docker image defining the container. This image must be accessible by the service account specified in the workstation configuration.
      */
     image?: string | null;
     /**
@@ -264,11 +264,15 @@ export namespace workstations_v1beta {
      */
     machineType?: string | null;
     /**
-     * Number of instances to pool for faster workstation starup.
+     * Output only. Number of instances currently available in the pool for faster workstation startup.
+     */
+    pooledInstances?: number | null;
+    /**
+     * Number of instances to pool for faster workstation startup.
      */
     poolSize?: number | null;
     /**
-     * Email address of the service account that will be used on VM instances used to support this config. If not set, VMs will run with a Google-managed service account. This service account must have permission to pull the specified container image, otherwise the image must be publicly accessible.
+     * Email address of the service account used on VM instances used to support this configuration. If not set, VMs run with a Google-managed service account. This service account must have permission to pull the specified container image; otherwise, the image must be publicly accessible.
      */
     serviceAccount?: string | null;
     /**
@@ -340,7 +344,7 @@ export namespace workstations_v1beta {
    */
   export interface Schema$GenerateAccessTokenResponse {
     /**
-     * The generated bearer access token. To use this token, include it in an Authorization header of an HTTP request sent to the associated workstation's hostname, for example, `Authorization: Bearer `.
+     * The generated bearer access token. To use this token, include it in an Authorization header of an HTTP request sent to the associated workstation's hostname—for example, `Authorization: Bearer `.
      */
     accessToken?: string | null;
     /**
@@ -573,6 +577,19 @@ export namespace workstations_v1beta {
     serviceAttachmentUri?: string | null;
   }
   /**
+   * A readiness check to be performed on a workstation.
+   */
+  export interface Schema$ReadinessCheck {
+    /**
+     * Path to which the request should be sent.
+     */
+    path?: string | null;
+    /**
+     * Port to which the request should be sent.
+     */
+    port?: number | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -590,7 +607,7 @@ export namespace workstations_v1beta {
    */
   export interface Schema$StartWorkstationRequest {
     /**
-     * If set, the request will be rejected if the latest version of the workstation on the server does not have this etag.
+     * If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
      */
     etag?: string | null;
     /**
@@ -620,7 +637,7 @@ export namespace workstations_v1beta {
    */
   export interface Schema$StopWorkstationRequest {
     /**
-     * If set, the request will be rejected if the latest version of the workstation on the server does not have this etag.
+     * If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
      */
     etag?: string | null;
     /**
@@ -667,11 +684,11 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
-     * Environment variables passed to the workstation container.
+     * Environment variables passed to the workstation container's entrypoint.
      */
     env?: {[key: string]: string} | null;
     /**
-     * Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.
+     * Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -716,7 +733,7 @@ export namespace workstations_v1beta {
      */
     conditions?: Schema$Status[];
     /**
-     * Output only. The private IP address of the control plane for this cluster. Workstation VMs need access to this IP address to work with the service, so please ensure your firewall rules allow egress from the Workstation VMs to this address.
+     * Output only. The private IP address of the control plane for this cluster. Workstation VMs need access to this IP address to work with the service, so make sure that your firewall rules allow egress from the workstation VMs to this address.
      */
     controlPlaneIp?: string | null;
     /**
@@ -736,7 +753,7 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
-     * Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.
+     * Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -809,11 +826,11 @@ export namespace workstations_v1beta {
      */
     enableAuditAgent?: boolean | null;
     /**
-     * Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours. Immutable after workstation config is created.
+     * Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours. Immutable after the workstation configuration is created.
      */
     encryptionKey?: Schema$CustomerEncryptionKey;
     /**
-     * Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.
+     * Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -836,6 +853,10 @@ export namespace workstations_v1beta {
      * Directories to persist across workstation sessions.
      */
     persistentDirectories?: Schema$PersistentDirectory[];
+    /**
+     * Readiness checks to perform when starting a workstation using this workstation configuration. Mark a workstation as running only after all specified readiness checks return 200 status codes.
+     */
+    readinessChecks?: Schema$ReadinessCheck[];
     /**
      * Output only. Indicates whether this resource is currently being updated to match its intended state.
      */
@@ -1663,7 +1684,7 @@ export namespace workstations_v1beta {
      *
      *   // Do the magic
      *   const res = await workstations.projects.locations.workstationClusters.delete({
-     *     // If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this etag.
+     *     // If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this ETag.
      *     etag: 'placeholder-value',
      *     // If set, any workstation configurations and workstations in the workstation cluster are also deleted. Otherwise, the request only works if the workstation cluster has no configurations or workstations.
      *     force: 'placeholder-value',
@@ -2247,7 +2268,7 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$Delete
     extends StandardParameters {
     /**
-     * If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this etag.
+     * If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this ETag.
      */
     etag?: string;
     /**
@@ -2355,7 +2376,7 @@ export namespace workstations_v1beta {
      *           'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster',
      *         // If set, validate the request and preview the review, but do not actually apply it.
      *         validateOnly: 'placeholder-value',
-     *         // Required. ID to use for the config.
+     *         // Required. ID to use for the workstation configuration.
      *         workstationConfigId: 'placeholder-value',
      *
      *         // Request body metadata
@@ -2377,6 +2398,7 @@ export namespace workstations_v1beta {
      *           //   "labels": {},
      *           //   "name": "my_name",
      *           //   "persistentDirectories": [],
+     *           //   "readinessChecks": [],
      *           //   "reconciling": false,
      *           //   "runningTimeout": "my_runningTimeout",
      *           //   "uid": "my_uid",
@@ -2518,11 +2540,11 @@ export namespace workstations_v1beta {
      *   const res =
      *     await workstations.projects.locations.workstationClusters.workstationConfigs.delete(
      *       {
-     *         // If set, the request will be rejected if the latest version of the config on the server does not have this etag.
+     *         // If set, the request is rejected if the latest version of the workstation configuration on the server does not have this ETag.
      *         etag: 'placeholder-value',
-     *         // If set, any Workstations in the config will also be deleted. Otherwise, the request will work only if the config has no workstations.
+     *         // If set, any workstations in the workstation configuration are also deleted. Otherwise, the request works only if the workstation configuration has no workstations.
      *         force: 'placeholder-value',
-     *         // Required. Name of the config to delete.
+     *         // Required. Name of the workstation configuration to delete.
      *         name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster/workstationConfigs/my-workstationConfig',
      *         // If set, validate the request and preview the review, but do not actually apply it.
      *         validateOnly: 'placeholder-value',
@@ -2681,6 +2703,7 @@ export namespace workstations_v1beta {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "persistentDirectories": [],
+     *   //   "readinessChecks": [],
      *   //   "reconciling": false,
      *   //   "runningTimeout": "my_runningTimeout",
      *   //   "uid": "my_uid",
@@ -3245,11 +3268,11 @@ export namespace workstations_v1beta {
      *   const res =
      *     await workstations.projects.locations.workstationClusters.workstationConfigs.patch(
      *       {
-     *         // If set, and the config is not found, a new config will be created. In this situation, update_mask is ignored.
+     *         // If set and the workstation configuration is not found, a new workstation configuration will be created. In this situation, update_mask is ignored.
      *         allowMissing: 'placeholder-value',
      *         // Full name of this resource.
      *         name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster/workstationConfigs/my-workstationConfig',
-     *         // Required. Mask specifying which fields in the config should be updated.
+     *         // Required. Mask specifying which fields in the workstation configuration should be updated.
      *         updateMask: 'placeholder-value',
      *         // If set, validate the request and preview the review, but do not actually apply it.
      *         validateOnly: 'placeholder-value',
@@ -3273,6 +3296,7 @@ export namespace workstations_v1beta {
      *           //   "labels": {},
      *           //   "name": "my_name",
      *           //   "persistentDirectories": [],
+     *           //   "readinessChecks": [],
      *           //   "reconciling": false,
      *           //   "runningTimeout": "my_runningTimeout",
      *           //   "uid": "my_uid",
@@ -3689,7 +3713,7 @@ export namespace workstations_v1beta {
      */
     validateOnly?: boolean;
     /**
-     * Required. ID to use for the config.
+     * Required. ID to use for the workstation configuration.
      */
     workstationConfigId?: string;
 
@@ -3701,15 +3725,15 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Delete
     extends StandardParameters {
     /**
-     * If set, the request will be rejected if the latest version of the config on the server does not have this etag.
+     * If set, the request is rejected if the latest version of the workstation configuration on the server does not have this ETag.
      */
     etag?: string;
     /**
-     * If set, any Workstations in the config will also be deleted. Otherwise, the request will work only if the config has no workstations.
+     * If set, any workstations in the workstation configuration are also deleted. Otherwise, the request works only if the workstation configuration has no workstations.
      */
     force?: boolean;
     /**
-     * Required. Name of the config to delete.
+     * Required. Name of the workstation configuration to delete.
      */
     name?: string;
     /**
@@ -3768,7 +3792,7 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Patch
     extends StandardParameters {
     /**
-     * If set, and the config is not found, a new config will be created. In this situation, update_mask is ignored.
+     * If set and the workstation configuration is not found, a new workstation configuration will be created. In this situation, update_mask is ignored.
      */
     allowMissing?: boolean;
     /**
@@ -3776,7 +3800,7 @@ export namespace workstations_v1beta {
      */
     name?: string;
     /**
-     * Required. Mask specifying which fields in the config should be updated.
+     * Required. Mask specifying which fields in the workstation configuration should be updated.
      */
     updateMask?: string;
     /**
@@ -4011,7 +4035,7 @@ export namespace workstations_v1beta {
      *   const res =
      *     await workstations.projects.locations.workstationClusters.workstationConfigs.workstations.delete(
      *       {
-     *         // If set, the request will be rejected if the latest version of the workstation on the server does not have this etag.
+     *         // If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
      *         etag: 'placeholder-value',
      *         // Required. Name of the workstation to delete.
      *         name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster/workstationConfigs/my-workstationConfig/workstations/my-workstation',
@@ -4552,7 +4576,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns all Workstations using the specified config.
+     * Returns all Workstations using the specified workstation configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -4697,7 +4721,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns all Workstations using the specified config on which the caller has the "workstations.workstations.use" permission.
+     * Returns all workstations using the specified workstation configuration on which the caller has the "workstations.workstations.use" permission.
      * @example
      * ```js
      * // Before running the sample:
@@ -4873,11 +4897,11 @@ export namespace workstations_v1beta {
      *   const res =
      *     await workstations.projects.locations.workstationClusters.workstationConfigs.workstations.patch(
      *       {
-     *         // If set, and the config is not found, a new config will be created. In this situation, update_mask is ignored.
+     *         // If set and the workstation configuration is not found, a new workstation configuration is created. In this situation, update_mask is ignored.
      *         allowMissing: 'placeholder-value',
      *         // Full name of this resource.
      *         name: 'projects/my-project/locations/my-location/workstationClusters/my-workstationCluster/workstationConfigs/my-workstationConfig/workstations/my-workstation',
-     *         // Required. Mask specifying which fields in the config should be updated.
+     *         // Required. Mask specifying which fields in the workstation configuration should be updated.
      *         updateMask: 'placeholder-value',
      *         // If set, validate the request and preview the review, but do not actually apply it.
      *         validateOnly: 'placeholder-value',
@@ -5615,7 +5639,7 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Delete
     extends StandardParameters {
     /**
-     * If set, the request will be rejected if the latest version of the workstation on the server does not have this etag.
+     * If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.
      */
     etag?: string;
     /**
@@ -5690,7 +5714,7 @@ export namespace workstations_v1beta {
   export interface Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Patch
     extends StandardParameters {
     /**
-     * If set, and the config is not found, a new config will be created. In this situation, update_mask is ignored.
+     * If set and the workstation configuration is not found, a new workstation configuration is created. In this situation, update_mask is ignored.
      */
     allowMissing?: boolean;
     /**
@@ -5698,7 +5722,7 @@ export namespace workstations_v1beta {
      */
     name?: string;
     /**
-     * Required. Mask specifying which fields in the config should be updated.
+     * Required. Mask specifying which fields in the workstation configuration should be updated.
      */
     updateMask?: string;
     /**

@@ -528,7 +528,7 @@ export namespace firestore_v1 {
      */
     concurrencyMode?: string | null;
     /**
-     * Output only. The timestamp at which this database was created.
+     * Output only. The timestamp at which this database was created. Databases created before 2016 do not populate create_time.
      */
     createTime?: string | null;
     /**
@@ -1068,7 +1068,7 @@ export namespace firestore_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**

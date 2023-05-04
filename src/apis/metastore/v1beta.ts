@@ -317,6 +317,15 @@ export namespace metastore_v1beta {
     kmsKey?: string | null;
   }
   /**
+   * Error details in public error message for DataprocMetastore.QueryMetadata.
+   */
+  export interface Schema$ErrorDetails {
+    /**
+     * Additional structured details about this error.Keys define the failure items. Value describes the exception or details of the item.
+     */
+    details?: {[key: string]: string} | null;
+  }
+  /**
    * Request message for DataprocMetastore.ExportMetadata.
    */
   export interface Schema$ExportMetadataRequest {
@@ -558,7 +567,7 @@ export namespace metastore_v1beta {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**

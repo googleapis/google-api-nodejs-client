@@ -159,6 +159,10 @@ export namespace connectors_v1 {
      */
     additionalVariables?: Schema$ConfigVariable[];
     /**
+     * Identifier key for auth config
+     */
+    authKey?: string | null;
+    /**
      * The type of authentication configured.
      */
     authType?: string | null;
@@ -187,6 +191,10 @@ export namespace connectors_v1 {
    * AuthConfigTemplate defines required field over an authentication type.
    */
   export interface Schema$AuthConfigTemplate {
+    /**
+     * Identifier key for auth config
+     */
+    authKey?: string | null;
     /**
      * The type of authentication configured.
      */

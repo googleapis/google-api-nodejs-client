@@ -1505,7 +1505,7 @@
               ]
             },
             "list": {
-              "description": "Lists the notification channels that have been created for the project.",
+              "description": "Lists the notification channels that have been created for the project. To list the types of notification channels that are supported, use the ListNotificationChannelDescriptors method.",
               "flatPath": "v3/projects/{projectsId}/notificationChannels",
               "httpMethod": "GET",
               "id": "monitoring.projects.notificationChannels.list",
@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20230326",
+  "revision": "20230424",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {

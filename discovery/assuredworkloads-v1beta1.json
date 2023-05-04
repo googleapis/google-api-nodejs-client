@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230420",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -699,7 +699,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1Violation": {
-      "description": "Workload monitoring Violation. Next Id: 22",
+      "description": "Workload monitoring Violation. Next Id: 27",
       "id": "GoogleCloudAssuredworkloadsV1beta1Violation",
       "properties": {
         "acknowledged": {
@@ -962,6 +962,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "controls": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls",
+          "description": "Output only. Controls associated with the customer workload",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. Immutable. The Workload creation timestamp.",
           "format": "google-datetime",
@@ -1067,6 +1072,10 @@
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse",
           "description": "Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.",
           "readOnly": true
+        },
+        "violationNotificationsEnabled": {
+          "description": "Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1078,6 +1087,39 @@
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
           "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls": {
+      "description": "Controls enabled to the user associated with this workload",
+      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControls",
+      "properties": {
+        "appliedOrgPolicies": {
+          "description": "Output only. Org policies currently applied by this Assured Workload",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl": {
+      "description": "An org policy control applied by Assured Workloads",
+      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceControlsOrgPolicyControl",
+      "properties": {
+        "constraint": {
+          "description": "Output only. Constraint name of the org policy control Example: constraints/gcp.resourcelocations",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. Org policy version",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"

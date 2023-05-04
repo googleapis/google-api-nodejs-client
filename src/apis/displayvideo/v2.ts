@@ -728,11 +728,11 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$AudienceGroupAssignedTargetingOptionDetails {
     /**
-     * The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. All items are logically ‘OR’ of each other.
+     * The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. All items are logically ‘OR’ of each other. **Warning:** `ACTIVITY_BASED` and `FREQUENCY_CAP` audience types will be deprecated on **May 20, 2023**. After this date, these audiences will not be able to be added to resource targeting. Read our [feature deprecation announcement](/display-video/api/deprecations#features.first_and_third_party_audience_types) for more information.
      */
     excludedFirstAndThirdPartyAudienceGroup?: Schema$FirstAndThirdPartyAudienceGroup;
     /**
-     * The Google audience ids of the excluded Google audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other.
+     * The Google audience ids of the excluded Google audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other. **Warning:** `GOOGLE_AUDIENCE_TYPE_INSTALLED_APPS` and `GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES` audience types will be deprecated on **May 20, 2023**. After this date, these audiences will not be able to be added to resource targeting. Read our [feature deprecation announcement](/display-video/api/deprecations#features.google_audience_types) for more information.
      */
     excludedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
     /**
@@ -744,11 +744,11 @@ export namespace displayvideo_v2 {
      */
     includedCustomListGroup?: Schema$CustomListGroup;
     /**
-     * The first and third party audience ids and recencies of included first and third party audience groups. Each first and third party audience group contains first and third party audience ids only. The relation between each first and third party audience group is INTERSECTION, and the result is UNION'ed with other audience groups. Repeated groups with same settings will be ignored.
+     * The first and third party audience ids and recencies of included first and third party audience groups. Each first and third party audience group contains first and third party audience ids only. The relation between each first and third party audience group is INTERSECTION, and the result is UNION'ed with other audience groups. Repeated groups with same settings will be ignored. **Warning:** `ACTIVITY_BASED` and `FREQUENCY_CAP` audience types will be deprecated on **May 20, 2023**. After this date, these audiences will not be able to be added to resource targeting. Read our [feature deprecation announcement](/display-video/api/deprecations#features.first_and_third_party_audience_types) for more information.
      */
     includedFirstAndThirdPartyAudienceGroups?: Schema$FirstAndThirdPartyAudienceGroup[];
     /**
-     * The Google audience ids of the included Google audience group. Contains Google audience ids only.
+     * The Google audience ids of the included Google audience group. Contains Google audience ids only. **Warning:** `GOOGLE_AUDIENCE_TYPE_INSTALLED_APPS` and `GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES` audience types will be deprecated on **May 20, 2023**. After this date, these audiences will not be able to be added to resource targeting. Read our [feature deprecation announcement](/display-video/api/deprecations#features.google_audience_types) for more information.
      */
     includedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
   }
@@ -3725,7 +3725,7 @@ export namespace displayvideo_v2 {
      */
     reservationType?: string | null;
     /**
-     * The [targeting expansion](//support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item. Beginning **March 25, 2023**, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by mid-April 2023.
+     * The [targeting expansion](//support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item. Beginning **March 25, 2023**, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by early May 2023.
      */
     targetingExpansion?: Schema$TargetingExpansionConfig;
     /**
@@ -4205,7 +4205,7 @@ export namespace displayvideo_v2 {
     currencyCode?: string | null;
   }
   /**
-   * A single manual trigger in Display & Video 360.
+   * A single manual trigger in Display & Video 360. **Warning:** Line Items using manual triggers will stop serving in Display & Video 360 on **May 17, 2023**. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
    */
   export interface Schema$ManualTrigger {
     /**
@@ -5232,15 +5232,15 @@ export namespace displayvideo_v2 {
     timeUnitCount?: number | null;
   }
   /**
-   * Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level. Beginning **March 25, 2023**, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by mid-April 2023.
+   * Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level. Beginning **March 25, 2023**, these settings may represent the [optimized targeting feature](//support.google.com/displayvideo/answer/12060859) in place of targeting expansion. This feature will be rolled out to all partners by early May 2023.
    */
   export interface Schema$TargetingExpansionConfig {
     /**
-     * Required. Whether to exclude first-party audiences from use in targeting expansion or optimized targeting. Similar audiences of the excluded first-party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored. Beginning **March 25, 2023**, this field may be deprecated with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859). Upon deprecation, this field will be set to `false`. If this field is set to `true` when deprecated, all positive first-party audience targeting assigned to this line item will be replaced with negative targeting of the same first-party audiences to ensure the continued exclusion of those audiences. This field will be deprecated for all partners by mid-April 2023.
+     * Required. Whether to exclude first-party audiences from use in targeting expansion or optimized targeting. Similar audiences of the excluded first-party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored. Beginning **March 25, 2023**, this field may be deprecated with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859). Upon deprecation, this field will be set to `false`. If this field is set to `true` when deprecated, all positive first-party audience targeting assigned to this line item will be replaced with negative targeting of the same first-party audiences to ensure the continued exclusion of those audiences. This field will be deprecated for all partners by early May 2023.
      */
     excludeFirstPartyAudience?: boolean | null;
     /**
-     * Required. Magnitude of expansion for applicable targeting under this line item. Beginning **March 25, 2023**, the behavior of this field may change in the following ways with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859): * This field will represent the optimized targeting checkbox, with a `NO_EXPANSION` value representing optimized targeting turned off and a `LEAST_EXPANSION` value representing optimized targeting turned on. * `NO_EXPANSION` will be the default value for the field and will be automatically assigned if you do not set the field. * If you set the field to any value other than `NO_EXPANSION`, it will automatically be set to `LEAST_EXPANSION`. This behavior will be rolled out to all partners by mid-April 2023.
+     * Required. Magnitude of expansion for applicable targeting under this line item. Beginning **March 25, 2023**, the behavior of this field may change in the following ways with the replacement of targeting expansion with [optimized targeting](//support.google.com/displayvideo/answer/12060859): * This field will represent the optimized targeting checkbox, with a `NO_EXPANSION` value representing optimized targeting turned off and a `LEAST_EXPANSION` value representing optimized targeting turned on. * `NO_EXPANSION` will be the default value for the field and will be automatically assigned if you do not set the field. * If you set the field to any value other than `NO_EXPANSION`, it will automatically be set to `LEAST_EXPANSION`. This behavior will be rolled out to all partners by early May 2023.
      */
     targetingExpansionLevel?: string | null;
   }
@@ -17613,7 +17613,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned.
+     * Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned. **Warning:** Line Items using manual triggers will stop serving in Display & Video 360 on **May 17, 2023**. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -17756,7 +17756,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Creates a new manual trigger. Returns the newly created manual trigger if successful.
+     * Creates a new manual trigger. Returns the newly created manual trigger if successful. **Warning:** Line Items using manual triggers will stop serving in Display & Video 360 on **May 17, 2023**. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -17904,7 +17904,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Deactivates a manual trigger.
+     * Deactivates a manual trigger. **Warning:** Line Items using manual triggers will stop serving in Display & Video 360 on **May 17, 2023**. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -18047,7 +18047,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Gets a manual trigger.
+     * Gets a manual trigger. **Warning:** Line Items using manual triggers will stop serving in Display & Video 360 on **May 17, 2023**. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -18184,7 +18184,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Lists manual triggers that are accessible to the current user for a given advertiser ID. The order is defined by the order_by parameter. A single advertiser_id is required.
+     * Lists manual triggers that are accessible to the current user for a given advertiser ID. The order is defined by the order_by parameter. A single advertiser_id is required. **Warning:** Line Items using manual triggers will stop serving in Display & Video 360 on **May 17, 2023**. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -18328,7 +18328,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates a manual trigger. Returns the updated manual trigger if successful.
+     * Updates a manual trigger. Returns the updated manual trigger if successful. **Warning:** Line Items using manual triggers will stop serving in Display & Video 360 on **May 17, 2023**. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      * @example
      * ```js
      * // Before running the sample:

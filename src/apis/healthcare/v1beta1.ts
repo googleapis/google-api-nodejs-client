@@ -1170,6 +1170,10 @@ export namespace healthcare_v1beta1 {
      * Whether to send full FHIR resource to this Pub/Sub topic for Create and Update operation. Note that setting this to true does not guarantee that all resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full resource as a separate operation.
      */
     sendFullResource?: boolean | null;
+    /**
+     * Whether to send full FHIR resource to this pubsub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
+     */
+    sendPreviousResourceOnDelete?: boolean | null;
   }
   /**
    * Details about the FHIR store to write the output to.
@@ -1213,7 +1217,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string | null;
     /**
-     * If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource". Deprecated. Use `notification_configs` instead.
+     * Deprecated. Use `notification_configs` instead. If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource".
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
@@ -21374,7 +21378,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Gets all incoming references to a given target FHIR resource. Can also get all incoming references when the target resource does not exist, for example, if the target has been deleted. On success, the response body contains a Bundle with type `searchset`, where each entry in the Bundle contains the full content of the resource. If the operation fails, an `OperationOutcome` is returned describing the failure. If the request cannot be mapped to a valid API method on a FHIR store, a generic Google Cloud error might be returned instead.
+     * Lists all the resources that directly refer to the given target FHIR resource. Can also support the case when the target resource doesn't exist, for example, if the target has been deleted. On success, the response body contains a Bundle with type `searchset`, where each entry in the Bundle contains the full content of the resource. If the operation fails, an `OperationOutcome` is returned describing the failure. If the request cannot be mapped to a valid API method on a FHIR store, a generic Google Cloud error might be returned instead.
      * @example
      * ```js
      * // Before running the sample:

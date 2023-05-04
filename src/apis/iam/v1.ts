@@ -344,6 +344,23 @@ export namespace iam_v1 {
      * Required. The OIDC issuer URI. Must be a valid URI using the 'https' scheme.
      */
     issuerUri?: string | null;
+    /**
+     * Required. Configuration for web single sign-on for the OIDC provider. Here, web sign-in refers to console sign-in and gcloud sign-in through the browser.
+     */
+    webSsoConfig?: Schema$GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig;
+  }
+  /**
+   * Configuration for web single sign-on for the OIDC provider.
+   */
+  export interface Schema$GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig {
+    /**
+     * Required. The behavior for how OIDC Claims are included in the `assertion` object used for attribute mapping and attribute condition.
+     */
+    assertionClaimsBehavior?: string | null;
+    /**
+     * Required. The Response Type to request for in the OIDC Authorization Request for web sign-in.
+     */
+    responseType?: string | null;
   }
   /**
    * Represents a SAML identity provider.
@@ -1029,7 +1046,7 @@ export namespace iam_v1 {
      */
     description?: string | null;
     /**
-     * Whether the pool is disabled. You cannot use a disabled pool to exchange tokens, or use existing tokens to access resources. If the pool is re-enabled, existing tokens grant access again.
+     * Disables the workforce pool. You cannot use a disabled pool to exchange tokens, or use existing tokens to access resources. If the pool is re-enabled, existing tokens grant access again.
      */
     disabled?: boolean | null;
     /**
@@ -1070,7 +1087,7 @@ export namespace iam_v1 {
      */
     description?: string | null;
     /**
-     * Whether the provider is disabled. You cannot use a disabled provider to exchange tokens. However, existing tokens still grant access.
+     * Disables the workforce pool provider. You cannot use a disabled provider to exchange tokens. However, existing tokens still grant access.
      */
     disabled?: boolean | null;
     /**

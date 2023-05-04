@@ -572,11 +572,11 @@ export namespace analyticsadmin_v1alpha {
      */
     betweenFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter;
     /**
-     * Required. Immutable. The dimension name or metric name to filter.
+     * Required. Immutable. The dimension name or metric name to filter. If the field name refers to a custom dimension or metric, a scope prefix will be added to the front of the custom dimensions or metric name. For more on scope prefixes or custom dimensions/metrics, reference the [Google Analytics Data API documentation] (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).
      */
     fieldName?: string | null;
     /**
-     * Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (i.e., infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.
+     * Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (For example, infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.
      */
     inAnyNDayPeriod?: number | null;
     /**
@@ -670,7 +670,7 @@ export namespace analyticsadmin_v1alpha {
      */
     eventName?: string | null;
     /**
-     * Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (i.e., nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for "eventCount", only that one will be considered; all the other filters will be ignored.
+     * Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (For example, nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for "eventCount", only that one will be considered; all the other filters will be ignored.
      */
     eventParameterFilterExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
   }
@@ -688,7 +688,7 @@ export namespace analyticsadmin_v1alpha {
     logCondition?: string | null;
   }
   /**
-   * A clause for defining either a simple or sequence filter. A filter can be inclusive (i.e., users satisfying the filter clause are included in the Audience) or exclusive (i.e., users satisfying the filter clause are excluded from the Audience).
+   * A clause for defining either a simple or sequence filter. A filter can be inclusive (For example, users satisfying the filter clause are included in the Audience) or exclusive (For example, users satisfying the filter clause are excluded from the Audience).
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAudienceFilterClause {
     /**
@@ -721,7 +721,7 @@ export namespace analyticsadmin_v1alpha {
      */
     eventFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceEventFilter;
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression.
+     * A filter expression to be NOT'ed (For example, inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression.
      */
     notExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
     /**
@@ -760,7 +760,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep {
     /**
-     * Optional. When set, this step must be satisfied within the constraint_duration of the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.
+     * Optional. When set, this step must be satisfied within the constraint_duration of the previous step (For example, t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.
      */
     constraintDuration?: string | null;
     /**
@@ -1026,6 +1026,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of AttributionSettings resource in change history.
      */
     attributionSettings?: Schema$GoogleAnalyticsAdminV1alphaAttributionSettings;
+    /**
+     * A snapshot of an Audience resource in change history.
+     */
+    audience?: Schema$GoogleAnalyticsAdminV1alphaAudience;
     /**
      * A snapshot of a BigQuery link resource in change history.
      */
@@ -1760,6 +1764,15 @@ export namespace analyticsadmin_v1alpha {
      * The opt out status for the UA property.
      */
     optOut?: boolean | null;
+  }
+  /**
+   * Response for looking up GA4 property connected to a UA property.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse {
+    /**
+     * The GA4 property connected to the UA property. An empty string is returned when there is no connected GA4 property. Format: properties/{property_id\} Example: properties/1234
+     */
+    property?: string | null;
   }
   /**
    * A link between a GA4 property and a Firebase project.
@@ -7818,6 +7831,147 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Given a specified UA property, looks up the GA4 property connected to it. Note: this cannot be used with GA4 properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.fetchConnectedGa4Property({
+     *     // Required. The UA property for which to look up the connected GA4 property. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internal_web_property_id\} Example: properties/1234
+     *     property: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "property": "my_property"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchConnectedGa4Property(
+      params?: Params$Resource$Properties$Fetchconnectedga4property,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>;
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+    ): void;
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+    ): void;
+    fetchConnectedGa4Property(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+    ): void;
+    fetchConnectedGa4Property(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Fetchconnectedga4property
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Fetchconnectedga4property;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Fetchconnectedga4property;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:fetchConnectedGa4Property'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lookup for a single "GA4" Property.
      * @example
      * ```js
@@ -9660,6 +9814,13 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest;
+  }
+  export interface Params$Resource$Properties$Fetchconnectedga4property
+    extends StandardParameters {
+    /**
+     * Required. The UA property for which to look up the connected GA4 property. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internal_web_property_id\} Example: properties/1234
+     */
+    property?: string;
   }
   export interface Params$Resource$Properties$Get extends StandardParameters {
     /**

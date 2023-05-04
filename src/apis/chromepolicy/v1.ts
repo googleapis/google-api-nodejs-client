@@ -591,6 +591,10 @@ export namespace chromepolicy_v1 {
      */
     description?: string | null;
     /**
+     * Output only. Field conditions required for this value to be valid.
+     */
+    fieldDependencies?: Schema$GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies[];
+    /**
      * Output only. The string represenstation of the value that can be set for the field.
      */
     value?: string | null;

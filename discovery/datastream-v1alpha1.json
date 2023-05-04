@@ -110,6 +110,7 @@
         "locations": {
           "methods": {
             "fetchStaticIps": {
+              "deprecated": true,
               "description": "The FetchStaticIps API call exposes the static IP addresses used by Datastream.",
               "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}:fetchStaticIps",
               "httpMethod": "GET",
@@ -216,6 +217,7 @@
             "connectionProfiles": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Use this method to create a connection profile in a project and location.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles",
                   "httpMethod": "POST",
@@ -254,6 +256,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Use this method to delete a connection profile..",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
                   "httpMethod": "DELETE",
@@ -284,6 +287,7 @@
                   ]
                 },
                 "discover": {
+                  "deprecated": true,
                   "description": "Use this method to discover a connection profile. The discover API call exposes the data objects and metadata belonging to the profile. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles:discover",
                   "httpMethod": "POST",
@@ -312,6 +316,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Use this method to get details about a connection profile.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
                   "httpMethod": "GET",
@@ -337,6 +342,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Use this method to list connection profiles created in a project and location.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles",
                   "httpMethod": "GET",
@@ -383,6 +389,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Use this method to update the parameters of a connection profile.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
                   "httpMethod": "PATCH",
@@ -554,6 +561,7 @@
             "privateConnections": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Use this method to create a private connectivity configuration.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections",
                   "httpMethod": "POST",
@@ -592,6 +600,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Use this method to delete a private connectivity configuration.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}",
                   "httpMethod": "DELETE",
@@ -627,6 +636,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Use this method to get details about a private connectivity configuration.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}",
                   "httpMethod": "GET",
@@ -652,6 +662,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Use this method to list private connectivity configurations in a project and location.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections",
                   "httpMethod": "GET",
@@ -702,6 +713,7 @@
                 "routes": {
                   "methods": {
                     "create": {
+                      "deprecated": true,
                       "description": "Use this method to create a route for a private connectivity in a project and location.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
                       "httpMethod": "POST",
@@ -740,6 +752,7 @@
                       ]
                     },
                     "delete": {
+                      "deprecated": true,
                       "description": "Use this method to delete a route.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes/{routesId}",
                       "httpMethod": "DELETE",
@@ -770,6 +783,7 @@
                       ]
                     },
                     "get": {
+                      "deprecated": true,
                       "description": "Use this method to get details about a route.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes/{routesId}",
                       "httpMethod": "GET",
@@ -795,6 +809,7 @@
                       ]
                     },
                     "list": {
+                      "deprecated": true,
                       "description": "Use this method to list routes created for a private connectivity in a project and location.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
                       "httpMethod": "GET",
@@ -847,6 +862,7 @@
             "streams": {
               "methods": {
                 "create": {
+                  "deprecated": true,
                   "description": "Use this method to create a stream.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams",
                   "httpMethod": "POST",
@@ -895,6 +911,7 @@
                   ]
                 },
                 "delete": {
+                  "deprecated": true,
                   "description": "Use this method to delete a stream.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
                   "httpMethod": "DELETE",
@@ -925,6 +942,7 @@
                   ]
                 },
                 "fetchErrors": {
+                  "deprecated": true,
                   "description": "Use this method to fetch any errors associated with a stream.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}:fetchErrors",
                   "httpMethod": "POST",
@@ -953,6 +971,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Use this method to get details about a stream.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
                   "httpMethod": "GET",
@@ -978,6 +997,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "Use this method to list streams in a project and location.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams",
                   "httpMethod": "GET",
@@ -1024,6 +1044,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Use this method to update the configuration of a stream.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
                   "httpMethod": "PATCH",
@@ -1077,6 +1098,7 @@
                 "objects": {
                   "methods": {
                     "get": {
+                      "deprecated": true,
                       "description": "Use this method to get details about a stream object.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}",
                       "httpMethod": "GET",
@@ -1102,6 +1124,7 @@
                       ]
                     },
                     "list": {
+                      "deprecated": true,
                       "description": "Use this method to list the objects of a specific stream.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects",
                       "httpMethod": "GET",
@@ -1138,6 +1161,7 @@
                       ]
                     },
                     "startBackfillJob": {
+                      "deprecated": true,
                       "description": "Starts backfill job for the specified stream object.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:startBackfillJob",
                       "httpMethod": "POST",
@@ -1163,6 +1187,7 @@
                       ]
                     },
                     "stopBackfillJob": {
+                      "deprecated": true,
                       "description": "Stops the backfill job for the specified stream object.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:stopBackfillJob",
                       "httpMethod": "POST",
@@ -1196,7 +1221,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230410",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {

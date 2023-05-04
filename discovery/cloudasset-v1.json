@@ -601,6 +601,11 @@
               "location": "query",
               "type": "boolean"
             },
+            "analysisQuery.options.includeDenyPolicyAnalysis": {
+              "description": "Optional. If true, the response includes deny policy analysis results, and you can see which access tuples are denied. Default is false.",
+              "location": "query",
+              "type": "boolean"
+            },
             "analysisQuery.options.outputGroupEdges": {
               "description": "Optional. If true, the result will output the relevant membership relationships between groups and other groups, and between groups and principals. Default is false.",
               "location": "query",
@@ -1095,7 +1100,7 @@
       }
     }
   },
-  "revision": "20230318",
+  "revision": "20230421",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1585,6 +1590,24 @@
       },
       "type": "object"
     },
+    "DeniedAccess": {
+      "description": "A denied access contains details about an access tuple that is blocked by IAM deny policies.",
+      "id": "DeniedAccess",
+      "properties": {
+        "deniedAccessTuple": {
+          "$ref": "GoogleCloudAssetV1DeniedAccessAccessTuple",
+          "description": "A denied access tuple that is either fully or partially denied by IAM deny rules. This access tuple should match at least one access tuple derived from IamPolicyAnalysisResult."
+        },
+        "denyDetails": {
+          "description": "The details about how denied_access_tuple is denied.",
+          "items": {
+            "$ref": "GoogleCloudAssetV1DeniedAccessDenyDetail"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "EffectiveIamPolicy": {
       "description": "The effective IAM policies on one resource.",
       "id": "EffectiveIamPolicy",
@@ -1868,7 +1891,7 @@
       "id": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy",
       "properties": {
         "attachedResource": {
-          "description": "The full resource name of the resource associated with this IAM policy. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.",
+          "description": "The full resource name of the resource on which this IAM policy is set. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.",
           "type": "string"
         },
         "folders": {
@@ -2064,6 +2087,98 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssetV1DeniedAccessAccess": {
+      "description": "An IAM role or permission under analysis.",
+      "id": "GoogleCloudAssetV1DeniedAccessAccess",
+      "properties": {
+        "permission": {
+          "description": "The IAM permission in [v1 format](https://cloud.google.com/iam/docs/permissions-reference)",
+          "type": "string"
+        },
+        "role": {
+          "description": "The IAM role.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1DeniedAccessAccessTuple": {
+      "description": "An access tuple contains a tuple of a resource, an identity and an access.",
+      "id": "GoogleCloudAssetV1DeniedAccessAccessTuple",
+      "properties": {
+        "access": {
+          "$ref": "GoogleCloudAssetV1DeniedAccessAccess",
+          "description": "One access from IamPolicyAnalysisResult.AccessControlList.accesses."
+        },
+        "identity": {
+          "$ref": "GoogleCloudAssetV1DeniedAccessIdentity",
+          "description": "One identity from IamPolicyAnalysisResult.IdentityList.identities."
+        },
+        "resource": {
+          "$ref": "GoogleCloudAssetV1DeniedAccessResource",
+          "description": "One resource from IamPolicyAnalysisResult.AccessControlList.resources."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1DeniedAccessDenyDetail": {
+      "description": "A deny detail that explains which IAM deny rule denies the denied_access_tuple.",
+      "id": "GoogleCloudAssetV1DeniedAccessDenyDetail",
+      "properties": {
+        "accesses": {
+          "description": "The denied accesses. If this deny_rule fully denies the denied_access_tuple, this field will be same as AccessTuple.access. Otherwise, this field can contain AccessTuple.access and its descendant accesses, such as a subset of IAM permissions contained in an IAM role.",
+          "items": {
+            "$ref": "GoogleCloudAssetV1DeniedAccessAccess"
+          },
+          "type": "array"
+        },
+        "denyRule": {
+          "$ref": "GoogleIamV2DenyRule",
+          "description": "A deny rule in an IAM deny policy."
+        },
+        "fullyDenied": {
+          "description": "Whether the deny_rule fully denies all access granted by the denied_access_tuple. `True` means the deny rule fully blocks the access tuple. `False` means the deny rule partially blocks the access tuple.\"",
+          "type": "boolean"
+        },
+        "identities": {
+          "description": "If this deny_rule fully denies the denied_access_tuple, this field will be same as AccessTuple.identity. Otherwise, this field can contain AccessTuple.identity and its descendant identities, such as a subset of users in a group.",
+          "items": {
+            "$ref": "GoogleCloudAssetV1DeniedAccessIdentity"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "description": "The resources that the identities are denied access to. If this deny_rule fully denies the denied_access_tuple, this field will be same as AccessTuple.resource. Otherwise, this field can contain AccessTuple.resource and its descendant resources.",
+          "items": {
+            "$ref": "GoogleCloudAssetV1DeniedAccessResource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1DeniedAccessIdentity": {
+      "description": "An identity under analysis.",
+      "id": "GoogleCloudAssetV1DeniedAccessIdentity",
+      "properties": {
+        "name": {
+          "description": "The identity of members, formatted as appear in an [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For example, they might be formatted like the following: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1DeniedAccessResource": {
+      "description": "A Google Cloud resource under analysis.",
+      "id": "GoogleCloudAssetV1DeniedAccessResource",
+      "properties": {
+        "fullResourceName": {
+          "description": "The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssetV1Edge": {
       "description": "A directional edge.",
       "id": "GoogleCloudAssetV1Edge",
@@ -2125,7 +2240,7 @@
           "description": "The analysis state of this identity."
         },
         "name": {
-          "description": "The identity name in any form of members appear in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such as: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers - etc.",
+          "description": "The identity of members, formatted as appear in an [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For example, they might be formatted like the following: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers",
           "type": "string"
         }
       },
@@ -2505,6 +2620,45 @@
       "description": "Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific `Constraint` at this resource. Suppose that `constraint_default` is set to `ALLOW` for the `Constraint` `constraints/serviceuser.services`. Suppose that organization foo.com sets a `Policy` at their Organization resource node that restricts the allowed service activations to deny all service activations. They could then set a `Policy` with the `policy_type` `restore_default` on several experimental projects, restoring the `constraint_default` enforcement of the `Constraint` for only those projects, allowing those projects to have all services activated.",
       "id": "GoogleCloudOrgpolicyV1RestoreDefault",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleIamV2DenyRule": {
+      "description": "A deny rule in an IAM deny policy.",
+      "id": "GoogleIamV2DenyRule",
+      "properties": {
+        "denialCondition": {
+          "$ref": "Expr",
+          "description": "The condition that determines whether this deny rule applies to a request. If the condition expression evaluates to `true`, then the deny rule is applied; otherwise, the deny rule is not applied. Each deny rule is evaluated independently. If this deny rule does not apply to a request, other deny rules might still apply. The condition can use CEL functions that evaluate [resource tags](https://cloud.google.com/iam/help/conditions/resource-tags). Other functions and operators are not supported."
+        },
+        "deniedPermissions": {
+          "description": "The permissions that are explicitly denied by this rule. Each permission uses the format `{service_fqdn}/{resource}.{verb}`, where `{service_fqdn}` is the fully qualified domain name for the service. For example, `iam.googleapis.com/roles.list`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deniedPrincipals": {
+          "description": "The identities that are prevented from using one or more permissions on Google Cloud resources. This field can contain the following values: * `principalSet://goog/public:all`: A special identifier that represents any principal that is on the internet, even if they do not have a Google Account or are not logged in. * `principal://goog/subject/{email_id}`: A specific Google Account. Includes Gmail, Cloud Identity, and Google Workspace user accounts. For example, `principal://goog/subject/alice@example.com`. * `deleted:principal://goog/subject/{email_id}?uid={uid}`: A specific Google Account that was deleted recently. For example, `deleted:principal://goog/subject/alice@example.com?uid=1234567890`. If the Google Account is recovered, this identifier reverts to the standard identifier for a Google Account. * `principalSet://goog/group/{group_id}`: A Google group. For example, `principalSet://goog/group/admins@example.com`. * `deleted:principalSet://goog/group/{group_id}?uid={uid}`: A Google group that was deleted recently. For example, `deleted:principalSet://goog/group/admins@example.com?uid=1234567890`. If the Google group is restored, this identifier reverts to the standard identifier for a Google group. * `principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}`: A Google Cloud service account. For example, `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account@iam.gserviceaccount.com`. * `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}?uid={uid}`: A Google Cloud service account that was deleted recently. For example, `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account@iam.gserviceaccount.com?uid=1234567890`. If the service account is undeleted, this identifier reverts to the standard identifier for a service account. * `principalSet://goog/cloudIdentityCustomerId/{customer_id}`: All of the principals associated with the specified Google Workspace or Cloud Identity customer ID. For example, `principalSet://goog/cloudIdentityCustomerId/C01Abc35`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "exceptionPermissions": {
+          "description": "Specifies the permissions that this rule excludes from the set of denied permissions given by `denied_permissions`. If a permission appears in `denied_permissions` _and_ in `exception_permissions` then it will _not_ be denied. The excluded permissions can be specified using the same syntax as `denied_permissions`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "exceptionPrincipals": {
+          "description": "The identities that are excluded from the deny rule, even if they are listed in the `denied_principals`. For example, you could add a Google group to the `denied_principals`, then exclude specific users who belong to that group. This field can contain the same values as the `denied_principals` field, excluding `principalSet://goog/public:all`, which represents all users on the internet.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleIdentityAccesscontextmanagerV1AccessLevel": {
@@ -3061,6 +3215,13 @@
           },
           "type": "array"
         },
+        "deniedAccesses": {
+          "description": "A list of DeniedAccess, which contains all access tuples in the analysis_results that are denied by IAM deny policies. If no access tuples are denied, the list is empty. This is only populated when IamPolicyAnalysisQuery.Options.include_deny_policy_analysis is true.",
+          "items": {
+            "$ref": "DeniedAccess"
+          },
+          "type": "array"
+        },
         "fullyExplored": {
           "description": "Represents whether all entries in the analysis_results have been fully explored to answer the query.",
           "type": "boolean"
@@ -3495,6 +3656,10 @@
         },
         "expandRoles": {
           "description": "Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If IamPolicyAnalysisQuery.access_selector is specified, the access section of the result will be determined by the selector, and this flag is not allowed to set. Default is false.",
+          "type": "boolean"
+        },
+        "includeDenyPolicyAnalysis": {
+          "description": "Optional. If true, the response includes deny policy analysis results, and you can see which access tuples are denied. Default is false.",
           "type": "boolean"
         },
         "outputGroupEdges": {

@@ -367,10 +367,6 @@ export namespace analyticshub_v1beta1 {
      */
     requestAccess?: string | null;
     /**
-     * Optional. If set, restricted export configuration will be propagated and enforced on the linked dataset.
-     */
-    restrictedExportConfig?: Schema$RestrictedExportConfig;
-    /**
      * Output only. Current state of the listing.
      */
     state?: string | null;
@@ -467,19 +463,6 @@ export namespace analyticshub_v1beta1 {
      * Optional. Email or URL of the listing publisher. Max Length: 1000 bytes.
      */
     primaryContact?: string | null;
-  }
-  /**
-   * Restricted export config, used to configure restricted export on linked dataset.
-   */
-  export interface Schema$RestrictedExportConfig {
-    /**
-     * If true, enable restricted export.
-     */
-    enabled?: boolean | null;
-    /**
-     * If true, restrict export of query result derived from restricted linked dataset table.
-     */
-    restrictQueryResult?: boolean | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -2055,7 +2038,6 @@ export namespace analyticshub_v1beta1 {
      *         //   "primaryContact": "my_primaryContact",
      *         //   "publisher": {},
      *         //   "requestAccess": "my_requestAccess",
-     *         //   "restrictedExportConfig": {},
      *         //   "state": "my_state"
      *         // }
      *       },
@@ -2075,7 +2057,6 @@ export namespace analyticshub_v1beta1 {
      *   //   "primaryContact": "my_primaryContact",
      *   //   "publisher": {},
      *   //   "requestAccess": "my_requestAccess",
-     *   //   "restrictedExportConfig": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2349,7 +2330,6 @@ export namespace analyticshub_v1beta1 {
      *   //   "primaryContact": "my_primaryContact",
      *   //   "publisher": {},
      *   //   "requestAccess": "my_requestAccess",
-     *   //   "restrictedExportConfig": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -2786,7 +2766,6 @@ export namespace analyticshub_v1beta1 {
      *         //   "primaryContact": "my_primaryContact",
      *         //   "publisher": {},
      *         //   "requestAccess": "my_requestAccess",
-     *         //   "restrictedExportConfig": {},
      *         //   "state": "my_state"
      *         // }
      *       },
@@ -2806,7 +2785,6 @@ export namespace analyticshub_v1beta1 {
      *   //   "primaryContact": "my_primaryContact",
      *   //   "publisher": {},
      *   //   "requestAccess": "my_requestAccess",
-     *   //   "restrictedExportConfig": {},
      *   //   "state": "my_state"
      *   // }
      * }

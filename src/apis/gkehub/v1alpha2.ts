@@ -129,7 +129,7 @@ export namespace gkehub_v1alpha2 {
    */
   export interface Schema$ApplianceCluster {
     /**
-     * Immutable. Self-link of the GCP resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
+     * Immutable. Self-link of the Google Cloud resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
      */
     resourceLink?: string | null;
   }
@@ -219,7 +219,7 @@ export namespace gkehub_v1alpha2 {
    */
   export interface Schema$EdgeCluster {
     /**
-     * Immutable. Self-link of the GCP resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     * Immutable. Self-link of the Google Cloud resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
      */
     resourceLink?: string | null;
   }
@@ -266,7 +266,7 @@ export namespace gkehub_v1alpha2 {
      */
     clusterMissing?: boolean | null;
     /**
-     * Immutable. Self-link of the GCP resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.
+     * Immutable. Self-link of the Google Cloud resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.
      */
     resourceLink?: string | null;
   }
@@ -398,7 +398,7 @@ export namespace gkehub_v1alpha2 {
     operations?: Schema$Operation[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -455,7 +455,7 @@ export namespace gkehub_v1alpha2 {
      */
     infrastructureType?: string | null;
     /**
-     * Optional. GCP labels for this membership.
+     * Optional. Labels for this membership.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -559,7 +559,7 @@ export namespace gkehub_v1alpha2 {
      */
     clusterMissing?: boolean | null;
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
+     * Immutable. Self-link of the Google Cloud resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
      */
     resourceLink?: string | null;
   }
@@ -580,7 +580,7 @@ export namespace gkehub_v1alpha2 {
      */
     clusterType?: string | null;
     /**
-     * Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
+     * Immutable. Self-link of the Google Cloud resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
      */
     resourceLink?: string | null;
   }

@@ -1451,7 +1451,7 @@
       }
     }
   },
-  "revision": "20230315",
+  "revision": "20230419",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2012,7 +2012,7 @@
       "properties": {
         "deployJob": {
           "$ref": "Job",
-          "description": "Output only. The deploy Job. This is the first job run in the phase.",
+          "description": "Output only. The deploy Job. This is the deploy job in the phase.",
           "readOnly": true
         },
         "verifyJob": {
@@ -2539,7 +2539,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

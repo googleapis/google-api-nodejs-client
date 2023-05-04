@@ -1192,7 +1192,7 @@
       }
     }
   },
-  "revision": "20230407",
+  "revision": "20230424",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -1217,7 +1217,7 @@
       "id": "ApplianceCluster",
       "properties": {
         "resourceLink": {
-          "description": "Immutable. Self-link of the GCP resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance",
+          "description": "Immutable. Self-link of the Google Cloud resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance",
           "type": "string"
         }
       },
@@ -2160,7 +2160,7 @@
       "id": "EdgeCluster",
       "properties": {
         "resourceLink": {
-          "description": "Immutable. Self-link of the GCP resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster",
+          "description": "Immutable. Self-link of the Google Cloud resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster",
           "type": "string"
         }
       },
@@ -2219,7 +2219,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "GCP labels for this Feature.",
+          "description": "Labels for this Feature.",
           "type": "object"
         },
         "membershipSpecs": {
@@ -2387,7 +2387,7 @@
           "type": "boolean"
         },
         "resourceLink": {
-          "description": "Immutable. Self-link of the GCP resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.",
+          "description": "Immutable. Self-link of the Google Cloud resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.",
           "type": "string"
         }
       },
@@ -2787,7 +2787,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2857,7 +2857,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. GCP labels for this membership.",
+          "description": "Optional. Labels for this membership.",
           "type": "object"
         },
         "lastConnectionTime": {
@@ -3131,7 +3131,7 @@
           "type": "boolean"
         },
         "resourceLink": {
-          "description": "Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster",
+          "description": "Immutable. Self-link of the Google Cloud resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster",
           "type": "string"
         }
       },
@@ -3180,7 +3180,7 @@
           "type": "string"
         },
         "resourceLink": {
-          "description": "Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster",
+          "description": "Immutable. Self-link of the Google Cloud resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster",
           "type": "string"
         }
       },
@@ -3334,6 +3334,10 @@
       "description": "Scope represents a Scope in a Fleet.",
       "id": "Scope",
       "properties": {
+        "allMemberships": {
+          "description": "If true, all Memberships in the Fleet bind to this Scope.",
+          "type": "boolean"
+        },
         "createTime": {
           "description": "Output only. When the scope was created.",
           "format": "google-datetime",

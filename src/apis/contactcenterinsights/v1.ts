@@ -252,6 +252,27 @@ export namespace contactcenterinsights_v1 {
      * Whether to run the silence annotator.
      */
     runSilenceAnnotator?: boolean | null;
+    /**
+     * Whether to run the summarization annotator.
+     */
+    runSummarizationAnnotator?: boolean | null;
+    /**
+     * Configuration for the summarization annotator.
+     */
+    summarizationConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig;
+  }
+  /**
+   * Configuration for summarization.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig {
+    /**
+     * Resource name of the Dialogflow conversation profile. Format: projects/{project\}/locations/{location\}/conversationProfiles/{conversation_profile\}
+     */
+    conversationProfile?: string | null;
+    /**
+     * Default summarization model to be used.
+     */
+    summarizationModel?: string | null;
   }
   /**
    * The feedback that the customer has about a certain answer in the conversation.
@@ -460,6 +481,10 @@ export namespace contactcenterinsights_v1 {
      */
     latestAnalysis?: Schema$GoogleCloudContactcenterinsightsV1alpha1Analysis;
     /**
+     * Output only. Latest summary of the conversation.
+     */
+    latestSummary?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData;
+    /**
      * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
      */
     medium?: string | null;
@@ -559,6 +584,35 @@ export namespace contactcenterinsights_v1 {
      * A user-specified ID representing the participant.
      */
     userId?: string | null;
+  }
+  /**
+   * Conversation summarization suggestion data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData {
+    /**
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
+     */
+    answerRecord?: string | null;
+    /**
+     * The confidence score of the summarization.
+     */
+    confidence?: number | null;
+    /**
+     * The name of the model that generates this summary. Format: projects/{project\}/locations/{location\}/conversationModels/{conversation_model\}
+     */
+    conversationModel?: string | null;
+    /**
+     * A map that contains metadata about the summarization and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The summarization content that is concatenated into one string.
+     */
+    text?: string | null;
+    /**
+     * The summarization content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.
+     */
+    textSections?: {[key: string]: string} | null;
   }
   /**
    * A message representing the transcript of a conversation.
@@ -1235,6 +1289,10 @@ export namespace contactcenterinsights_v1 {
      */
     articleSuggestion?: Schema$GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionData;
     /**
+     * Conversation summarization suggestion data.
+     */
+    conversationSummarizationSuggestion?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData;
+    /**
      * The time at which this annotation was created.
      */
     createTime?: string | null;
@@ -1524,6 +1582,27 @@ export namespace contactcenterinsights_v1 {
      * Whether to run the silence annotator.
      */
     runSilenceAnnotator?: boolean | null;
+    /**
+     * Whether to run the summarization annotator.
+     */
+    runSummarizationAnnotator?: boolean | null;
+    /**
+     * Configuration for the summarization annotator.
+     */
+    summarizationConfig?: Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig;
+  }
+  /**
+   * Configuration for summarization.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig {
+    /**
+     * Resource name of the Dialogflow conversation profile. Format: projects/{project\}/locations/{location\}/conversationProfiles/{conversation_profile\}
+     */
+    conversationProfile?: string | null;
+    /**
+     * Default summarization model to be used.
+     */
+    summarizationModel?: string | null;
   }
   /**
    * The feedback that the customer has about a certain answer in the conversation.
@@ -1806,6 +1885,10 @@ export namespace contactcenterinsights_v1 {
      */
     latestAnalysis?: Schema$GoogleCloudContactcenterinsightsV1Analysis;
     /**
+     * Output only. Latest summary of the conversation.
+     */
+    latestSummary?: Schema$GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData;
+    /**
      * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
      */
     medium?: string | null;
@@ -1905,6 +1988,35 @@ export namespace contactcenterinsights_v1 {
      * A user-specified ID representing the participant.
      */
     userId?: string | null;
+  }
+  /**
+   * Conversation summarization suggestion data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData {
+    /**
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
+     */
+    answerRecord?: string | null;
+    /**
+     * The confidence score of the summarization.
+     */
+    confidence?: number | null;
+    /**
+     * The name of the model that generates this summary. Format: projects/{project\}/locations/{location\}/conversationModels/{conversation_model\}
+     */
+    conversationModel?: string | null;
+    /**
+     * A map that contains metadata about the summarization and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The summarization content that is concatenated into one string.
+     */
+    text?: string | null;
+    /**
+     * The summarization content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.
+     */
+    textSections?: {[key: string]: string} | null;
   }
   /**
    * A message representing the transcript of a conversation.
@@ -2772,6 +2884,10 @@ export namespace contactcenterinsights_v1 {
      * Agent Assist Article Suggestion data.
      */
     articleSuggestion?: Schema$GoogleCloudContactcenterinsightsV1ArticleSuggestionData;
+    /**
+     * Conversation summarization suggestion data.
+     */
+    conversationSummarizationSuggestion?: Schema$GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData;
     /**
      * The time at which this annotation was created.
      */
@@ -3802,6 +3918,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "labels": {},
      *         //   "languageCode": "my_languageCode",
      *         //   "latestAnalysis": {},
+     *         //   "latestSummary": {},
      *         //   "medium": "my_medium",
      *         //   "name": "my_name",
      *         //   "obfuscatedUserId": "my_obfuscatedUserId",
@@ -3828,6 +3945,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "labels": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "latestAnalysis": {},
+     *   //   "latestSummary": {},
      *   //   "medium": "my_medium",
      *   //   "name": "my_name",
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",
@@ -4118,6 +4236,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "labels": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "latestAnalysis": {},
+     *   //   "latestSummary": {},
      *   //   "medium": "my_medium",
      *   //   "name": "my_name",
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",
@@ -4578,6 +4697,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "labels": {},
      *         //   "languageCode": "my_languageCode",
      *         //   "latestAnalysis": {},
+     *         //   "latestSummary": {},
      *         //   "medium": "my_medium",
      *         //   "name": "my_name",
      *         //   "obfuscatedUserId": "my_obfuscatedUserId",
@@ -4604,6 +4724,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "labels": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "latestAnalysis": {},
+     *   //   "latestSummary": {},
      *   //   "medium": "my_medium",
      *   //   "name": "my_name",
      *   //   "obfuscatedUserId": "my_obfuscatedUserId",

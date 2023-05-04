@@ -112,6 +112,7 @@
             "instanceOSPoliciesCompliances": {
               "methods": {
                 "get": {
+                  "deprecated": true,
                   "description": "Get OS policies compliance data for the specified Compute Engine VM instance.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instanceOSPoliciesCompliances/{instanceOSPoliciesCompliancesId}",
                   "httpMethod": "GET",
@@ -137,6 +138,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "List OS policies compliance data for all Compute Engine VM instances in the specified zone.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instanceOSPoliciesCompliances",
                   "httpMethod": "GET",
@@ -684,7 +686,7 @@
       }
     }
   },
-  "revision": "20230129",
+  "revision": "20230424",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {

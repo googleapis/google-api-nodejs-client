@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20230404",
+  "revision": "20230429",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -1213,6 +1213,14 @@
           "description": "Output only. Additional description for this value.",
           "readOnly": true,
           "type": "string"
+        },
+        "fieldDependencies": {
+          "description": "Output only. Field conditions required for this value to be valid.",
+          "items": {
+            "$ref": "GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "value": {
           "description": "Output only. The string represenstation of the value that can be set for the field.",
