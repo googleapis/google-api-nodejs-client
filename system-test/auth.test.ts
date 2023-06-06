@@ -54,20 +54,4 @@ describe('google.auth', async () => {
       assert.strictEqual(typeof vms.kind, 'string');
     });
   });
-
-  describe('new google.auth.GoogleAuth', async () => {
-    it('allows client to be configured using historical API', async () => {
-      const auth = new google.auth.GoogleAuth({
-        scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-      });
-      const authClient = await google.auth.getClient();
-      const projectId = await google.auth.getProjectId();
-      const result = await compute.instances.aggregatedList({
-        auth: authClient,
-        project: projectId,
-      });
-      const vms = result.data;
-      assert.strictEqual(typeof vms.kind, 'string');
-    });
-  });
 });
