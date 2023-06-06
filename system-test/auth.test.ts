@@ -60,7 +60,7 @@ describe('google.auth', async () => {
       const auth = new google.auth.GoogleAuth({
         scopes: ['https://www.googleapis.com/auth/cloud-platform'],
       });
-      const authClient = await auth.getClient();
+      const authClient = await google.auth.getClient();
       const projectId = await google.auth.getProjectId();
       const result = await compute.instances.aggregatedList({
         auth: authClient,
