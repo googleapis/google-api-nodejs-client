@@ -188,7 +188,7 @@
         "jobs": {
           "methods": {
             "aggregated": {
-              "description": "List the jobs of a project across all regions.",
+              "description": "List the jobs of a project across all regions. **Note:** This method doesn't support filtering the list of jobs by name.",
               "flatPath": "v1b3/projects/{projectId}/jobs:aggregated",
               "httpMethod": "GET",
               "id": "dataflow.projects.jobs.aggregated",
@@ -219,7 +219,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Optional. The job name. Optional.",
+                  "description": "Optional. The job name.",
                   "location": "query",
                   "type": "string"
                 },
@@ -241,6 +241,7 @@
                   "type": "string"
                 },
                 "view": {
+                  "deprecated": true,
                   "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
                   "enum": [
                     "JOB_VIEW_UNKNOWN",
@@ -428,7 +429,7 @@
               ]
             },
             "list": {
-              "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.",
+              "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.",
               "flatPath": "v1b3/projects/{projectId}/jobs",
               "httpMethod": "GET",
               "id": "dataflow.projects.jobs.list",
@@ -459,7 +460,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Optional. The job name. Optional.",
+                  "description": "Optional. The job name.",
                   "location": "query",
                   "type": "string"
                 },
@@ -481,6 +482,7 @@
                   "type": "string"
                 },
                 "view": {
+                  "deprecated": true,
                   "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
                   "enum": [
                     "JOB_VIEW_UNKNOWN",
@@ -1142,7 +1144,7 @@
                   ]
                 },
                 "list": {
-                  "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.",
+                  "description": "List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.",
                   "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs",
                   "httpMethod": "GET",
                   "id": "dataflow.projects.locations.jobs.list",
@@ -1175,7 +1177,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Optional. The job name. Optional.",
+                      "description": "Optional. The job name.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1197,6 +1199,7 @@
                       "type": "string"
                     },
                     "view": {
+                      "deprecated": true,
                       "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
                       "enum": [
                         "JOB_VIEW_UNKNOWN",
@@ -2211,7 +2214,7 @@
       }
     }
   },
-  "revision": "20230327",
+  "revision": "20230608",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3838,6 +3841,10 @@
           ],
           "type": "string"
         },
+        "runtimeUpdatableParams": {
+          "$ref": "RuntimeUpdatableParams",
+          "description": "This field may ONLY be modified at runtime using the projects.jobs.update method to adjust job behavior. This field has no effect when specified at job creation."
+        },
         "satisfiesPzs": {
           "description": "Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.",
           "type": "boolean"
@@ -4727,7 +4734,12 @@
             "PUBSUB_TOPIC",
             "PUBSUB_SUBSCRIPTION",
             "BIGQUERY_TABLE",
-            "JAVASCRIPT_UDF_FILE"
+            "JAVASCRIPT_UDF_FILE",
+            "SERVICE_ACCOUNT",
+            "MACHINE_TYPE",
+            "KMS_KEY_NAME",
+            "WORKER_REGION",
+            "WORKER_ZONE"
           ],
           "enumDescriptions": [
             "Default input type.",
@@ -4741,7 +4753,12 @@
             "The parameter specifies a Pub/Sub Topic.",
             "The parameter specifies a Pub/Sub Subscription.",
             "The parameter specifies a BigQuery table.",
-            "The parameter specifies a JavaScript UDF in Cloud Storage."
+            "The parameter specifies a JavaScript UDF in Cloud Storage.",
+            "The parameter specifies a Service Account email.",
+            "The parameter specifies a Machine Type.",
+            "The parameter specifies a KMS Key name.",
+            "The parameter specifies a Worker Region.",
+            "The parameter specifies a Worker Zone."
           ],
           "type": "string"
         },
@@ -4930,6 +4947,10 @@
       "properties": {
         "dropLateData": {
           "description": "Indicates whether the pipeline allows late-arriving data.",
+          "type": "boolean"
+        },
+        "dynamicDestinations": {
+          "description": "If true, then this location represents dynamic topics.",
           "type": "boolean"
         },
         "idLabel": {
@@ -5200,6 +5221,23 @@
         "sdkInfo": {
           "$ref": "SDKInfo",
           "description": "SDK Info for the template."
+        }
+      },
+      "type": "object"
+    },
+    "RuntimeUpdatableParams": {
+      "description": "Additional job parameters that can only be updated during runtime using the projects.jobs.update method. These fields have no effect when specified during job creation.",
+      "id": "RuntimeUpdatableParams",
+      "properties": {
+        "maxNumWorkers": {
+          "description": "The maximum number of workers to cap autoscaling at. This field is currently only supported for Streaming Engine jobs.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minNumWorkers": {
+          "description": "The minimum number of workers to scale down to. This field is currently only supported for Streaming Engine jobs.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
