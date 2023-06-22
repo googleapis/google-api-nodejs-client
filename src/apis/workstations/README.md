@@ -2,7 +2,7 @@
 
 # workstations
 
-> 
+> Allows administrators to create managed developer environments in the cloud.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
