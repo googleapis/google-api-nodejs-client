@@ -551,6 +551,10 @@ export namespace iap_v1 {
      */
     name?: string | null;
   }
+  /**
+   * API requires a return message, but currently all response strings will fit in the status and public message. In the future, this response can hold AST validation info.
+   */
+  export interface Schema$ValidateIapAttributeExpressionResponse {}
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -3233,6 +3237,144 @@ export namespace iap_v1 {
         return createAPIRequest<Schema$IapSettings>(parameters);
       }
     }
+
+    /**
+     * Validates a given CEL expression conforms to IAP restrictions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iap = google.iap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iap.validateAttributeExpression({
+     *     // Required. User input string expression. Should be of the form 'attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name\}', '{attribute_name\}'])'
+     *     expression: 'placeholder-value',
+     *     // Required. The resource name of the IAP protected resource.
+     *     name: '.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateAttributeExpression(
+      params: Params$Resource$V1$Validateattributeexpression,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateAttributeExpression(
+      params?: Params$Resource$V1$Validateattributeexpression,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateIapAttributeExpressionResponse>;
+    validateAttributeExpression(
+      params: Params$Resource$V1$Validateattributeexpression,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateAttributeExpression(
+      params: Params$Resource$V1$Validateattributeexpression,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateIapAttributeExpressionResponse>,
+      callback: BodyResponseCallback<Schema$ValidateIapAttributeExpressionResponse>
+    ): void;
+    validateAttributeExpression(
+      params: Params$Resource$V1$Validateattributeexpression,
+      callback: BodyResponseCallback<Schema$ValidateIapAttributeExpressionResponse>
+    ): void;
+    validateAttributeExpression(
+      callback: BodyResponseCallback<Schema$ValidateIapAttributeExpressionResponse>
+    ): void;
+    validateAttributeExpression(
+      paramsOrCallback?:
+        | Params$Resource$V1$Validateattributeexpression
+        | BodyResponseCallback<Schema$ValidateIapAttributeExpressionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateIapAttributeExpressionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateIapAttributeExpressionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateIapAttributeExpressionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Validateattributeexpression;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Validateattributeexpression;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:validateAttributeExpression').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateIapAttributeExpressionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateIapAttributeExpressionResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$V1$Getiampolicy extends StandardParameters {
@@ -3291,5 +3433,16 @@ export namespace iap_v1 {
      * Request body metadata
      */
     requestBody?: Schema$IapSettings;
+  }
+  export interface Params$Resource$V1$Validateattributeexpression
+    extends StandardParameters {
+    /**
+     * Required. User input string expression. Should be of the form 'attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name\}', '{attribute_name\}'])'
+     */
+    expression?: string;
+    /**
+     * Required. The resource name of the IAP protected resource.
+     */
+    name?: string;
   }
 }
