@@ -297,6 +297,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getAuthentication-config": {
+                  "description": "",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/contactCenters/{contactCentersId}/authentication-config",
+                  "httpMethod": "GET",
+                  "id": "contactcenteraiplatform.projects.locations.contactCenters.getAuthentication-config",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the AuthenticationConfig resource. Format: projects/{project}/locations/{location}/contactCenters/{contact_center}/authentication-config",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/contactCenters/[^/]+/authentication-config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}",
+                  "response": {
+                    "$ref": "AuthenticationConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists ContactCenters in a given project and location.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/contactCenters",
@@ -377,6 +402,40 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateAuthentication-config": {
+                  "description": "",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/contactCenters/{contactCentersId}/authentication-config",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenteraiplatform.projects.locations.contactCenters.updateAuthentication-config",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Name of authentication config. Format: projects/{project}/locations/{location}/contactCenters/{contact_center}/authentication-config",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/contactCenters/[^/]+/authentication-config$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Indicates which fields in the provided authentication config to update. Must be specified and non-empty.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+name}",
+                  "request": {
+                    "$ref": "AuthenticationConfig"
+                  },
+                  "response": {
+                    "$ref": "AuthenticationConfig"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -512,7 +571,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230615",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -526,6 +585,31 @@
         "givenName": {
           "description": "Optional. First/given name of the first admin user.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuthenticationConfig": {
+      "id": "AuthenticationConfig",
+      "properties": {
+        "basicAuthSetting": {
+          "$ref": "BasicAuthConfig"
+        },
+        "name": {
+          "description": "Name of authentication config. Format: projects/{project}/locations/{location}/contactCenters/{contact_center}/authentication-config",
+          "type": "string"
+        },
+        "samlSetting": {
+          "$ref": "SamlConfig"
+        }
+      },
+      "type": "object"
+    },
+    "BasicAuthConfig": {
+      "id": "BasicAuthConfig",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -652,6 +736,50 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudCommonOperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "GoogleCloudCommonOperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cancelRequested": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusDetail": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InstanceConfig": {
       "description": "Message storing the instance configuration.",
       "id": "InstanceConfig",
@@ -665,7 +793,8 @@
             "STANDARD_LARGE",
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
-            "STANDARD_3XLARGE"
+            "STANDARD_3XLARGE",
+            "DEV_XSMALL"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
@@ -674,7 +803,8 @@
             "Instance Size STANDARD_LARGE.",
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
-            "Instance Size STANDARD_3XLARGE."
+            "Instance Size STANDARD_3XLARGE.",
+            "Instance Size DEV_EXTRA_SMALL."
           ],
           "type": "string"
         }
@@ -882,7 +1012,8 @@
             "STANDARD_LARGE",
             "STANDARD_XLARGE",
             "STANDARD_2XLARGE",
-            "STANDARD_3XLARGE"
+            "STANDARD_3XLARGE",
+            "DEV_XSMALL"
           ],
           "enumDescriptions": [
             "The default value. This value is used if the state is omitted.",
@@ -891,7 +1022,8 @@
             "Instance Size STANDARD_LARGE.",
             "Instance Size STANDARD_XLARGE.",
             "Instance Size STANDARD_2XLARGE.",
-            "Instance Size STANDARD_3XLARGE."
+            "Instance Size STANDARD_3XLARGE.",
+            "Instance Size DEV_EXTRA_SMALL."
           ],
           "type": "string"
         }
@@ -916,6 +1048,28 @@
         },
         "userEmail": {
           "description": "Email address of the first admin users.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SamlConfig": {
+      "id": "SamlConfig",
+      "properties": {
+        "cert": {
+          "description": "X.509 public certificate for IdP",
+          "type": "string"
+        },
+        "emailMapping": {
+          "description": "IdP field that maps to the user’s email address",
+          "type": "string"
+        },
+        "entityId": {
+          "description": "The entity ID for the identity provider. Example: https://[IDP Domain]/saml/metadata",
+          "type": "string"
+        },
+        "loginUri": {
+          "description": "The sso login url. Example: https://[IDP Domain]/saml/sso/login",
           "type": "string"
         }
       },
