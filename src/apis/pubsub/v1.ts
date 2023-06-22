@@ -134,6 +134,15 @@ export namespace pubsub_v1 {
     ackIds?: string[] | null;
   }
   /**
+   * Configuration for writing message data in Avro format. Message payloads and metadata will be written to files as an Avro binary.
+   */
+  export interface Schema$AvroConfig {
+    /**
+     * When true, write the subscription name, message_id, publish_time, attributes, and ordering_key as additional fields in the output.
+     */
+    writeMetadata?: boolean | null;
+  }
+  /**
    * Configuration for a BigQuery subscription.
    */
   export interface Schema$BigQueryConfig {
@@ -174,6 +183,43 @@ export namespace pubsub_v1 {
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Configuration for a Cloud Storage subscription.
+   */
+  export interface Schema$CloudStorageConfig {
+    /**
+     * If set, message data will be written to Cloud Storage in Avro format.
+     */
+    avroConfig?: Schema$AvroConfig;
+    /**
+     * Required. User-provided name for the Cloud Storage bucket. The bucket must be created by the user. The bucket name must be without any prefix like "gs://". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).
+     */
+    bucket?: string | null;
+    /**
+     * User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     */
+    filenamePrefix?: string | null;
+    /**
+     * User-provided suffix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     */
+    filenameSuffix?: string | null;
+    /**
+     * The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where messages are larger than the limit.
+     */
+    maxBytes?: string | null;
+    /**
+     * The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.
+     */
+    maxDuration?: string | null;
+    /**
+     * Output only. An output-only field that indicates whether or not the subscription can receive messages.
+     */
+    state?: string | null;
+    /**
+     * If set, message data will be written to Cloud Storage in text format.
+     */
+    textConfig?: Schema$TextConfig;
   }
   /**
    * Request for CommitSchema method.
@@ -371,13 +417,25 @@ export namespace pubsub_v1 {
     pushConfig?: Schema$PushConfig;
   }
   /**
-   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). [Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
+   * Sets the `data` field as the HTTP body for delivery.
+   */
+  export interface Schema$NoWrapper {
+    /**
+     * When true, writes the Pub/Sub message metadata to `x-goog-pubsub-:` headers of the HTTP request. Writes the Pub/Sub message attributes to `:` headers of the HTTP request.
+     */
+    writeMetadata?: boolean | null;
+  }
+  /**
+   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect).
    */
   export interface Schema$OidcToken {
     /**
      * Audience to be used when generating OIDC token. The audience claim identifies the recipients that the JWT is intended for. The audience value is a single case-sensitive string. Having multiple values (array) for the audience field is not supported. More info about the OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3 Note: if not specified, the Push endpoint URL will be used.
      */
     audience?: string | null;
+    /**
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).
+     */
     serviceAccountEmail?: string | null;
   }
   /**
@@ -441,6 +499,10 @@ export namespace pubsub_v1 {
     publishTime?: string | null;
   }
   /**
+   * The payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+   */
+  export interface Schema$PubsubWrapper {}
+  /**
    * Request for the `Pull` method.
    */
   export interface Schema$PullRequest {
@@ -471,9 +533,17 @@ export namespace pubsub_v1 {
      */
     attributes?: {[key: string]: string} | null;
     /**
+     * When set, the payload to the push endpoint is not wrapped.
+     */
+    noWrapper?: Schema$NoWrapper;
+    /**
      * If specified, Pub/Sub will generate and attach an OIDC JWT token as an `Authorization` header in the HTTP request for every pushed message.
      */
     oidcToken?: Schema$OidcToken;
+    /**
+     * When set, the payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     */
+    pubsubWrapper?: Schema$PubsubWrapper;
     /**
      * A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use `https://example.com/push`.
      */
@@ -612,7 +682,7 @@ export namespace pubsub_v1 {
     topic?: string | null;
   }
   /**
-   * A subscription resource. If none of `push_config` or `bigquery_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.
+   * A subscription resource. If none of `push_config`, `bigquery_config`, or `cloud_storage_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.
    */
   export interface Schema$Subscription {
     /**
@@ -623,6 +693,10 @@ export namespace pubsub_v1 {
      * If delivery to BigQuery is used with this subscription, this field is used to configure it.
      */
     bigqueryConfig?: Schema$BigQueryConfig;
+    /**
+     * If delivery to Google Cloud Storage is used with this subscription, this field is used to configure it.
+     */
+    cloudStorageConfig?: Schema$CloudStorageConfig;
     /**
      * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
      */
@@ -702,6 +776,10 @@ export namespace pubsub_v1 {
      */
     permissions?: string[] | null;
   }
+  /**
+   * Configuration for writing message data in text format. Message payloads will be written to files as raw text, separated by a newline.
+   */
+  export interface Schema$TextConfig {}
   /**
    * A topic resource.
    */
@@ -4230,6 +4308,7 @@ export namespace pubsub_v1 {
      *       // {
      *       //   "ackDeadlineSeconds": 0,
      *       //   "bigqueryConfig": {},
+     *       //   "cloudStorageConfig": {},
      *       //   "deadLetterPolicy": {},
      *       //   "detached": false,
      *       //   "enableExactlyOnceDelivery": false,
@@ -4254,6 +4333,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "bigqueryConfig": {},
+     *   //   "cloudStorageConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
      *   //   "enableExactlyOnceDelivery": false,
@@ -4666,6 +4746,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "bigqueryConfig": {},
+     *   //   "cloudStorageConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
      *   //   "enableExactlyOnceDelivery": false,
@@ -5380,6 +5461,7 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "bigqueryConfig": {},
+     *   //   "cloudStorageConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
      *   //   "enableExactlyOnceDelivery": false,
