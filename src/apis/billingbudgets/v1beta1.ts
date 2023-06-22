@@ -242,6 +242,10 @@ export namespace billingbudgets_v1beta1 {
      */
     projects?: string[] | null;
     /**
+     * Optional. A set of folder and organization names of the form `folders/{folderId\}` or `organizations/{organizationId\}`, specifying that usage from only this set of folders and organizations should be included in the budget. If omitted, the report includes all usage for all organizations, regardless of which organization the usage occurred on.
+     */
+    resourceAncestors?: string[] | null;
+    /**
      * Optional. A set of services of the form `services/{service_id\}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api.
      */
     services?: string[] | null;
