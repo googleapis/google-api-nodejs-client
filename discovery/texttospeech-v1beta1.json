@@ -261,7 +261,7 @@
       }
     }
   },
-  "revision": "20230403",
+  "revision": "20230615",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -498,15 +498,15 @@
         },
         "input": {
           "$ref": "SynthesisInput",
-          "description": "Required. The Synthesizer requires either plain text or SSML as input."
+          "description": "Required. The Synthesizer requires either plain text or SSML as input. While Long Audio is in preview, SSML is temporarily unsupported."
         },
         "outputGcsUri": {
-          "description": "Specifies a Cloud Storage URI for the synthesis results. Must be specified in the format: `gs://bucket_name/object_name`, and the bucket must already exist.",
+          "description": "Required. Specifies a Cloud Storage URI for the synthesis results. Must be specified in the format: `gs://bucket_name/object_name`, and the bucket must already exist.",
           "type": "string"
         },
         "voice": {
           "$ref": "VoiceSelectionParams",
-          "description": "The desired voice of the synthesized audio."
+          "description": "Required. The desired voice of the synthesized audio."
         }
       },
       "type": "object"
