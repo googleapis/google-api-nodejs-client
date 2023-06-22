@@ -395,7 +395,7 @@ export namespace logging_v2 {
      */
     protocol?: string | null;
     /**
-     * The referer URL of the request, as defined in HTTP/1.1 Header Field Definitions (http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     * The referer URL of the request, as defined in HTTP/1.1 Header Field Definitions (https://datatracker.ietf.org/doc/html/rfc2616#section-14.36).
      */
     referer?: string | null;
     /**
@@ -589,7 +589,7 @@ export namespace logging_v2 {
    */
   export interface Schema$ListLogEntriesRequest {
     /**
-     * Optional. Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.
+     * Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://cloud.google.com/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.
      */
     filter?: string | null;
     /**
@@ -1022,7 +1022,7 @@ export namespace logging_v2 {
      */
     description?: string | null;
     /**
-     * Required. The export destination: "storage.googleapis.com/[GCS_BUCKET]" "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]" "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]" The sink's writer_identity, set when the sink is created, must have permission to write to the destination or else the log entries are not exported. For more information, see Exporting Logs with Sinks (https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
+     * Required. The export destination: "storage.googleapis.com/[GCS_BUCKET]" "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]" "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]" "logging.googleapis.com/projects/[PROJECT_ID]" The sink's writer_identity, set when the sink is created, must have permission to write to the destination or else the log entries are not exported. For more information, see Exporting Logs with Sinks (https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      */
     destination?: string | null;
     /**
@@ -1404,6 +1404,10 @@ export namespace logging_v2 {
      */
     kmsServiceAccountId?: string | null;
     /**
+     * Output only. The service account for the given container. Sinks use this service account as their writer_identity if no custom service account is provided.
+     */
+    loggingServiceAccountId?: string | null;
+    /**
      * Output only. The resource name of the settings.
      */
     name?: string | null;
@@ -1750,6 +1754,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
@@ -6623,6 +6628,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.create({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      *     parent: 'billingAccounts/my-billingAccount',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
@@ -7198,6 +7205,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.patch({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -7361,6 +7370,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.sinks.update({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'billingAccounts/my-billingAccount/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -7498,6 +7509,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Sinks$Create
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      */
     parent?: string;
@@ -7543,6 +7558,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Sinks$Patch
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
@@ -7562,6 +7581,10 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Billingaccounts$Sinks$Update
     extends StandardParameters {
+    /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
@@ -9141,6 +9164,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
@@ -9279,6 +9303,7 @@ export namespace logging_v2 {
      *       //   "disableDefaultSink": false,
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *       //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *       //   "name": "my_name",
      *       //   "storageLocation": "my_storageLocation"
      *       // }
@@ -9291,6 +9316,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
@@ -14154,6 +14180,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.create({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      *     parent: 'folders/my-folder',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
@@ -14729,6 +14757,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.patch({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'folders/my-folder/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -14892,6 +14922,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.sinks.update({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'folders/my-folder/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -15029,6 +15061,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Create
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      */
     parent?: string;
@@ -15074,6 +15110,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Sinks$Patch
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
@@ -15093,6 +15133,10 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Folders$Sinks$Update
     extends StandardParameters {
+    /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
@@ -19219,6 +19263,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
@@ -19507,6 +19552,7 @@ export namespace logging_v2 {
      *       //   "disableDefaultSink": false,
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *       //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *       //   "name": "my_name",
      *       //   "storageLocation": "my_storageLocation"
      *       // }
@@ -19519,6 +19565,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
@@ -24420,6 +24467,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.create({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      *     parent: 'organizations/my-organization',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
@@ -24995,6 +25044,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.patch({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'organizations/my-organization/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -25158,6 +25209,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.sinks.update({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'organizations/my-organization/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -25295,6 +25348,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Sinks$Create
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      */
     parent?: string;
@@ -25340,6 +25397,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Sinks$Patch
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
@@ -25359,6 +25420,10 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Organizations$Sinks$Update
     extends StandardParameters {
+    /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
@@ -25573,6 +25638,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
@@ -31220,6 +31286,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.create({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      *     parent: 'projects/my-project',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
@@ -31795,6 +31863,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.patch({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'projects/my-project/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -31958,6 +32028,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.sinks.update({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: 'projects/my-project/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -32095,6 +32167,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Sinks$Create
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      */
     parent?: string;
@@ -32140,6 +32216,10 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Sinks$Patch
     extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
@@ -32159,6 +32239,10 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Projects$Sinks$Update
     extends StandardParameters {
+    /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
@@ -32214,6 +32298,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.sinks.create({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      *     parent: '[^/]+/[^/]+',
      *     // Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Cloud Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
@@ -32785,6 +32871,8 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.sinks.update({
+     *     // Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     *     customWriterIdentity: 'placeholder-value',
      *     // Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      *     sinkName: '[^/]+/[^/]+/sinks/my-sink',
      *     // Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is set to false or defaulted to false.
@@ -32920,6 +33008,10 @@ export namespace logging_v2 {
 
   export interface Params$Resource$Sinks$Create extends StandardParameters {
     /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
+    /**
      * Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-project" "organizations/123456789"
      */
     parent?: string;
@@ -32960,6 +33052,10 @@ export namespace logging_v2 {
     parent?: string;
   }
   export interface Params$Resource$Sinks$Update extends StandardParameters {
+    /**
+     * Optional. A service account provided by the caller that will be used to write the log entries. Must be of format serviceAccount:some@email. This can only be specified if writing to a destination outside the sink's project. If not specified, a p4 service account will automatically be generated.
+     */
+    customWriterIdentity?: string;
     /**
      * Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
@@ -33164,6 +33260,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
@@ -33451,6 +33548,7 @@ export namespace logging_v2 {
      *       //   "disableDefaultSink": false,
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *       //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *       //   "name": "my_name",
      *       //   "storageLocation": "my_storageLocation"
      *       // }
@@ -33463,6 +33561,7 @@ export namespace logging_v2 {
      *   //   "disableDefaultSink": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsServiceAccountId": "my_kmsServiceAccountId",
+     *   //   "loggingServiceAccountId": "my_loggingServiceAccountId",
      *   //   "name": "my_name",
      *   //   "storageLocation": "my_storageLocation"
      *   // }
