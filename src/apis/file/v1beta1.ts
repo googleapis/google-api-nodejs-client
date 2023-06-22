@@ -233,6 +233,15 @@ export namespace file_v1beta1 {
     time?: Schema$TimeOfDay;
   }
   /**
+   * Directory Services configuration for Kerberos-based authentication.
+   */
+  export interface Schema$DirectoryServicesConfig {
+    /**
+     * Configuration for Managed Service for Microsoft Active Directory.
+     */
+    managedActiveDirectory?: Schema$ManagedActiveDirectoryConfig;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -483,6 +492,10 @@ export namespace file_v1beta1 {
      */
     description?: string | null;
     /**
+     * Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is "NFS_V4_1".
+     */
+    directoryServices?: Schema$DirectoryServicesConfig;
+    /**
      * Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
      */
     etag?: string | null;
@@ -705,6 +718,19 @@ export namespace file_v1beta1 {
     weeklyCycle?: Schema$WeeklyCycle;
   }
   /**
+   * ManagedActiveDirectoryConfig contains all the parameters for connecting to Managed Active Directory.
+   */
+  export interface Schema$ManagedActiveDirectoryConfig {
+    /**
+     * The computer name is used as a prefix to the mount remote target. Example: if the computer_name is `my-computer`, the mount command will look like: `$mount -o vers=4,sec=krb5 my-computer.filestore.:`.
+     */
+    computer?: string | null;
+    /**
+     * Fully qualified domain name.
+     */
+    domain?: string | null;
+  }
+  /**
    * Network configuration for the instance.
    */
   export interface Schema$NetworkConfig {
@@ -749,6 +775,10 @@ export namespace file_v1beta1 {
      * List of either an IPv4 addresses in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}` or CIDR ranges in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}/{mask size\}` which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
      */
     ipRanges?: string[] | null;
+    /**
+     * The security flavors allowed for mount operations. The default is AUTH_SYS.
+     */
+    securityFlavors?: string[] | null;
     /**
      * Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH, for not allowing root access. The default is NO_ROOT_SQUASH.
      */
@@ -2166,6 +2196,7 @@ export namespace file_v1beta1 {
      *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "directoryServices": {},
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
@@ -2457,6 +2488,7 @@ export namespace file_v1beta1 {
      *   //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "directoryServices": {},
      *   //   "etag": "my_etag",
      *   //   "fileShares": [],
      *   //   "kmsKeyName": "my_kmsKeyName",
@@ -2747,6 +2779,7 @@ export namespace file_v1beta1 {
      *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "directoryServices": {},
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
