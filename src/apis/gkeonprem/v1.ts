@@ -129,7 +129,7 @@ export namespace gkeonprem_v1 {
    */
   export interface Schema$Authorization {
     /**
-     * Required. For VMware user, bare metal user and standalone clusters, users that will be granted the cluster-admin role on the cluster, providing full access to the cluster. For bare metal Admin cluster, users will be granted the view role, which is a view only access.
+     * Required. For VMware and bare metal user clusters, users will be granted the cluster-admin role on the cluster, which provides full administrative access to the cluster. For bare metal admin clusters, users will be granted the cluster-view role, which limits users to read-only access.
      */
     adminUsers?: Schema$ClusterUser[];
   }
@@ -718,7 +718,7 @@ export namespace gkeonprem_v1 {
     serviceAddressCidrBlocks?: string[] | null;
   }
   /**
-   * KubeletConfig defines the modifiable kubelet configurations for baremetal machines. Note: this list includes fields supported in GKE (see https://cloud.google.com/kubernetes-engine/docs/how-to/node-system-config#kubelet-options).
+   * KubeletConfig defines the modifiable kubelet configurations for bare metal machines. Note: this list includes fields supported in GKE (see https://cloud.google.com/kubernetes-engine/docs/how-to/node-system-config#kubelet-options).
    */
   export interface Schema$BareMetalKubeletConfig {
     /**
@@ -972,13 +972,17 @@ export namespace gkeonprem_v1 {
      * Output only. The time at which this bare metal node pool was last updated.
      */
     updateTime?: string | null;
+    /**
+     * The worker node pool upgrade policy.
+     */
+    upgradePolicy?: Schema$BareMetalNodePoolUpgradePolicy;
   }
   /**
    * BareMetalNodePoolConfig describes the configuration of all nodes within a given bare metal node pool.
    */
   export interface Schema$BareMetalNodePoolConfig {
     /**
-     * The modifiable kubelet configurations for the baremetal machines.
+     * The modifiable kubelet configurations for the bare metal machines.
      */
     kubeletConfig?: Schema$BareMetalKubeletConfig;
     /**
@@ -999,6 +1003,15 @@ export namespace gkeonprem_v1 {
     taints?: Schema$NodeTaint[];
   }
   /**
+   * BareMetalNodePoolUpgradePolicy defines the node pool upgrade policy.
+   */
+  export interface Schema$BareMetalNodePoolUpgradePolicy {
+    /**
+     * The parallel upgrade settings for worker node pools.
+     */
+    parallelUpgradeConfig?: Schema$BareMetalParallelUpgradeConfig;
+  }
+  /**
    * Specifies operating system settings for cluster provisioning.
    */
   export interface Schema$BareMetalOsEnvironmentConfig {
@@ -1006,6 +1019,19 @@ export namespace gkeonprem_v1 {
      * Whether the package repo should not be included when initializing bare metal machines.
      */
     packageRepoExcluded?: boolean | null;
+  }
+  /**
+   * BareMetalParallelUpgradeConfig defines the parallel upgrade settings for worker node pools.
+   */
+  export interface Schema$BareMetalParallelUpgradeConfig {
+    /**
+     * Required. The maximum number of nodes that can be upgraded at once. Defaults to 1.
+     */
+    concurrentNodes?: number | null;
+    /**
+     * The minimum number of nodes that should be healthy and available during an upgrade. If set to the default value of 0, it is possible that none of the nodes will be available during an upgrade.
+     */
+    minimumAvailableNodes?: number | null;
   }
   /**
    * Specifies load balancer ports for the bare metal user cluster.
@@ -1064,6 +1090,10 @@ export namespace gkeonprem_v1 {
    * Contains information about a specific Anthos on bare metal version.
    */
   export interface Schema$BareMetalVersionInfo {
+    /**
+     * The list of upgrade dependencies for this version.
+     */
+    dependencies?: Schema$UpgradeDependency[];
     /**
      * If set, the cluster dependencies (e.g. the admin cluster, other user clusters managed by the same admin cluster, version skew policy, etc) must be upgraded before this version can be installed or upgraded to.
      */
@@ -1142,10 +1172,6 @@ export namespace gkeonprem_v1 {
      */
     bareMetalAdminClusterId?: string | null;
     /**
-     * The object name of the bare metal OnPremAdminCluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the bare_metal_admin_cluster_id. Otherwise, it must match the object name of the bare metal OnPremAdminCluster custom resource. It is not modifiable outside / beyond the enrollment operation.
-     */
-    localName?: string | null;
-    /**
      * Required. This is the full resource name of this admin cluster's fleet membership.
      */
     membership?: string | null;
@@ -1184,10 +1210,6 @@ export namespace gkeonprem_v1 {
    * Message for enrolling an existing VMware admin cluster to the GKE on-prem API.
    */
   export interface Schema$EnrollVmwareAdminClusterRequest {
-    /**
-     * The object name of the VMware OnPremAdminCluster custom resource on the associated admin cluster. This field is used to support conflicting resource names when enrolling existing clusters to the API. When not provided, this field will resolve to the vmware_admin_cluster_id. Otherwise, it must match the object name of the VMware OnPremAdminCluster custom resource. It is not modifiable outside / beyond the enrollment operation.
-     */
-    localName?: string | null;
     /**
      * Required. This is the full resource name of this admin cluster's fleet membership.
      */
@@ -1461,6 +1483,10 @@ export namespace gkeonprem_v1 {
      */
     apiVersion?: string | null;
     /**
+     * Output only. Denotes if the local managing cluster's control plane is currently disconnected. This is expected to occur temporarily during self-managed cluster upgrades.
+     */
+    controlPlaneDisconnected?: boolean | null;
+    /**
      * Output only. The time the operation was created.
      */
     createTime?: string | null;
@@ -1614,6 +1640,27 @@ export namespace gkeonprem_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * UpgradeDependency represents a dependency when upgrading a resource.
+   */
+  export interface Schema$UpgradeDependency {
+    /**
+     * Current version of the dependency e.g. 1.15.0.
+     */
+    currentVersion?: string | null;
+    /**
+     * Local name of the dependency.
+     */
+    localName?: string | null;
+    /**
+     * Resource name of the dependency.
+     */
+    resourceName?: string | null;
+    /**
+     * Target version of the dependency e.g. 1.16.1. This is the version the dependency needs to be upgraded to before a resource can be upgraded.
+     */
+    targetVersion?: string | null;
   }
   /**
    * ValidationCheck represents the result of preflight check.
@@ -2074,7 +2121,7 @@ export namespace gkeonprem_v1 {
      */
     networkConfig?: Schema$VmwareNetworkConfig;
     /**
-     * The Anthos clusters on the VMware version for your user cluster. Defaults to the admin cluster version.
+     * Required. The Anthos clusters on the VMware version for your user cluster.
      */
     onPremVersion?: string | null;
     /**
@@ -3129,7 +3176,6 @@ export namespace gkeonprem_v1 {
      *       // request body parameters
      *       // {
      *       //   "bareMetalAdminClusterId": "my_bareMetalAdminClusterId",
-     *       //   "localName": "my_localName",
      *       //   "membership": "my_membership"
      *       // }
      *     },
@@ -3266,6 +3312,8 @@ export namespace gkeonprem_v1 {
      *   const res = await gkeonprem.projects.locations.bareMetalAdminClusters.get({
      *     // Required. Name of the bare metal admin cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{bare_metal_admin_cluster\}"
      *     name: 'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
+     *     // View for bare metal admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4316,6 +4364,8 @@ export namespace gkeonprem_v1 {
      *       allowMissing: 'placeholder-value',
      *       // The current etag of the bare metal admin cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
      *       etag: 'placeholder-value',
+     *       // If set to true, the unenrollment of a bare metal admin cluster resource will succeed even if errors occur during unenrollment. This parameter can be used when you want to unenroll admin cluster resource and the on-prem admin cluster is disconnected / unreachable. WARNING: Using this parameter when your admin cluster still exists may result in a deleted GCP admin cluster but existing resourcelink in on-prem admin cluster and membership.
+     *       ignoreErrors: 'placeholder-value',
      *       // Required. Name of the bare metal admin cluster to be unenrolled. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{cluster\}"
      *       name: 'projects/my-project/locations/my-location/bareMetalAdminClusters/my-bareMetalAdminCluster',
      *       // Validate the request without actually doing any updates.
@@ -4464,6 +4514,10 @@ export namespace gkeonprem_v1 {
      * Required. Name of the bare metal admin cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{bare_metal_admin_cluster\}"
      */
     name?: string;
+    /**
+     * View for bare metal admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy
     extends StandardParameters {
@@ -4560,6 +4614,10 @@ export namespace gkeonprem_v1 {
      * The current etag of the bare metal admin cluster. If an etag is provided and does not match the current etag of the cluster, deletion will be blocked and an ABORTED error will be returned.
      */
     etag?: string;
+    /**
+     * If set to true, the unenrollment of a bare metal admin cluster resource will succeed even if errors occur during unenrollment. This parameter can be used when you want to unenroll admin cluster resource and the on-prem admin cluster is disconnected / unreachable. WARNING: Using this parameter when your admin cluster still exists may result in a deleted GCP admin cluster but existing resourcelink in on-prem admin cluster and membership.
+     */
+    ignoreErrors?: boolean;
     /**
      * Required. Name of the bare metal admin cluster to be unenrolled. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{cluster\}"
      */
@@ -5384,6 +5442,8 @@ export namespace gkeonprem_v1 {
      *   const res = await gkeonprem.projects.locations.bareMetalClusters.get({
      *     // Required. Name of the bare metal user cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalClusters/{bare_metal_cluster\}"
      *     name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *     // View for bare metal user cluster. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6613,6 +6673,10 @@ export namespace gkeonprem_v1 {
      * Required. Name of the bare metal user cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalClusters/{bare_metal_cluster\}"
      */
     name?: string;
+    /**
+     * View for bare metal user cluster. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy
     extends StandardParameters {
@@ -6802,7 +6866,8 @@ export namespace gkeonprem_v1 {
      *           //   "state": "my_state",
      *           //   "status": {},
      *           //   "uid": "my_uid",
-     *           //   "updateTime": "my_updateTime"
+     *           //   "updateTime": "my_updateTime",
+     *           //   "upgradePolicy": {}
      *           // }
      *         },
      *       }
@@ -7231,6 +7296,8 @@ export namespace gkeonprem_v1 {
      *       {
      *         // Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}/bareMetalNodePools/{nodepool\}
      *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
+     *         // View for bare metal node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *         view: 'placeholder-value',
      *       }
      *     );
      *   console.log(res.data);
@@ -7248,7 +7315,8 @@ export namespace gkeonprem_v1 {
      *   //   "state": "my_state",
      *   //   "status": {},
      *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradePolicy": {}
      *   // }
      * }
      *
@@ -7518,6 +7586,8 @@ export namespace gkeonprem_v1 {
      *         // Required. The parent, which owns this collection of node pools. Format: projects/{project\}/locations/{location\}/bareMetalClusters/{bareMetalCluster\}
      *         parent:
      *           'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster',
+     *         // View for bare metal node pools. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *         view: 'placeholder-value',
      *       }
      *     );
      *   console.log(res.data);
@@ -7660,6 +7730,8 @@ export namespace gkeonprem_v1 {
      *   const res =
      *     await gkeonprem.projects.locations.bareMetalClusters.bareMetalNodePools.patch(
      *       {
+     *         // If set to true, and the bare metal node pool is not found, the request will create a new bare metal node pool with the provided configuration. The user must have both create and update permission to call Update with allow_missing set to true.
+     *         allowMissing: 'placeholder-value',
      *         // Immutable. The bare metal node pool resource name.
      *         name: 'projects/my-project/locations/my-location/bareMetalClusters/my-bareMetalCluster/bareMetalNodePools/my-bareMetalNodePool',
      *         // Required. Field mask is used to specify the fields to be overwritten in the BareMetalNodePool resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the BareMetalNodePool message will be updated. Empty fields will be ignored unless a field mask is used.
@@ -7682,7 +7754,8 @@ export namespace gkeonprem_v1 {
      *           //   "state": "my_state",
      *           //   "status": {},
      *           //   "uid": "my_uid",
-     *           //   "updateTime": "my_updateTime"
+     *           //   "updateTime": "my_updateTime",
+     *           //   "upgradePolicy": {}
      *           // }
      *         },
      *       }
@@ -8286,6 +8359,10 @@ export namespace gkeonprem_v1 {
      * Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}/bareMetalNodePools/{nodepool\}
      */
     name?: string;
+    /**
+     * View for bare metal node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy
     extends StandardParameters {
@@ -8312,9 +8389,17 @@ export namespace gkeonprem_v1 {
      * Required. The parent, which owns this collection of node pools. Format: projects/{project\}/locations/{location\}/bareMetalClusters/{bareMetalCluster\}
      */
     parent?: string;
+    /**
+     * View for bare metal node pools. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch
     extends StandardParameters {
+    /**
+     * If set to true, and the bare metal node pool is not found, the request will create a new bare metal node pool with the provided configuration. The user must have both create and update permission to call Update with allow_missing set to true.
+     */
+    allowMissing?: boolean;
     /**
      * Immutable. The bare metal node pool resource name.
      */
@@ -9622,7 +9707,6 @@ export namespace gkeonprem_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "localName": "my_localName",
      *       //   "membership": "my_membership",
      *       //   "vmwareAdminClusterId": "my_vmwareAdminClusterId"
      *       // }
@@ -9761,6 +9845,8 @@ export namespace gkeonprem_v1 {
      *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.get({
      *     // Required. Name of the VMware admin cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareAdminClusters/{vmware_admin_cluster\}"
      *     name: 'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *     // View for VMware admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -10782,6 +10868,10 @@ export namespace gkeonprem_v1 {
      * Required. Name of the VMware admin cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareAdminClusters/{vmware_admin_cluster\}"
      */
     name?: string;
+    /**
+     * View for VMware admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy
     extends StandardParameters {
@@ -11201,7 +11291,7 @@ export namespace gkeonprem_v1 {
     }
 
     /**
-     * Creates a new VMware cluster in a given project and location.
+     * Creates a new VMware user cluster in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -11686,6 +11776,8 @@ export namespace gkeonprem_v1 {
      *   const res = await gkeonprem.projects.locations.vmwareClusters.get({
      *     // Required. Name of the VMware user cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareClusters/{vmware_cluster\}"
      *     name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *     // View for VMware user cluster. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -12903,6 +12995,10 @@ export namespace gkeonprem_v1 {
      * Required. Name of the VMware user cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareClusters/{vmware_cluster\}"
      */
     name?: string;
+    /**
+     * View for VMware user cluster. When `BASIC` is specified, only the cluster resource name and admin cluster membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy
     extends StandardParameters {
@@ -13820,6 +13916,8 @@ export namespace gkeonprem_v1 {
      *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.get({
      *       // Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}/vmwareNodePools/{nodepool\}
      *       name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster/vmwareNodePools/my-vmwareNodePool',
+     *       // View for VMware node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
@@ -14104,6 +14202,8 @@ export namespace gkeonprem_v1 {
      *       // Required. The parent, which owns this collection of node pools. Format: projects/{project\}/locations/{location\}/vmwareClusters/{vmwareCluster\}
      *       parent:
      *         'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *       // View for VMware node pools. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
@@ -14692,6 +14792,8 @@ export namespace gkeonprem_v1 {
      *   // Do the magic
      *   const res =
      *     await gkeonprem.projects.locations.vmwareClusters.vmwareNodePools.unenroll({
+     *       // If set to true, and the VMware node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     *       allowMissing: 'placeholder-value',
      *       // The current etag of the VMware node pool. If an etag is provided and does not match the current etag of node pool, deletion will be blocked and an ABORTED error will be returned.
      *       etag: 'placeholder-value',
      *       // Required. The name of the node pool to unenroll. Format: projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}/vmwareNodePools/{nodepool\}
@@ -14865,6 +14967,10 @@ export namespace gkeonprem_v1 {
      * Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}/vmwareNodePools/{nodepool\}
      */
     name?: string;
+    /**
+     * View for VMware node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy
     extends StandardParameters {
@@ -14891,6 +14997,10 @@ export namespace gkeonprem_v1 {
      * Required. The parent, which owns this collection of node pools. Format: projects/{project\}/locations/{location\}/vmwareClusters/{vmwareCluster\}
      */
     parent?: string;
+    /**
+     * View for VMware node pools. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch
     extends StandardParameters {
@@ -14938,6 +15048,10 @@ export namespace gkeonprem_v1 {
   }
   export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll
     extends StandardParameters {
+    /**
+     * If set to true, and the VMware node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
+     */
+    allowMissing?: boolean;
     /**
      * The current etag of the VMware node pool. If an etag is provided and does not match the current etag of node pool, deletion will be blocked and an ABORTED error will be returned.
      */
