@@ -787,7 +787,7 @@
       }
     }
   },
-  "revision": "20230421",
+  "revision": "20230612",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1910,7 +1910,7 @@
           "type": "string"
         },
         "logsBucket": {
-          "description": "Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.",
+          "description": "Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.",
           "type": "string"
         },
         "name": {
@@ -2144,7 +2144,7 @@
           "type": "array"
         },
         "logStreamingOption": {
-          "description": "Option to define build log streaming behavior to Google Cloud Storage.",
+          "description": "Option to define build log streaming behavior to Cloud Storage.",
           "enum": [
             "STREAM_DEFAULT",
             "STREAM_ON",
@@ -2152,8 +2152,8 @@
           ],
           "enumDescriptions": [
             "Service may automatically determine build log streaming behavior.",
-            "Build logs should be streamed to Google Cloud Storage.",
-            "Build logs should not be streamed to Google Cloud Storage; they will be written when the build is completed."
+            "Build logs should be streamed to Cloud Storage.",
+            "Build logs should not be streamed to Cloud Storage; they will be written when the build is completed."
           ],
           "type": "string"
         },
@@ -2699,11 +2699,11 @@
         },
         "storageSource": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource",
-          "description": "If provided, get the source from this location in Google Cloud Storage."
+          "description": "If provided, get the source from this location in Cloud Storage."
         },
         "storageSourceManifest": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest",
-          "description": "If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher)."
+          "description": "If provided, get the source from this manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher)."
         }
       },
       "type": "object"
@@ -2736,40 +2736,40 @@
       "type": "object"
     },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource": {
-      "description": "Location of the source in an archive file in Google Cloud Storage.",
+      "description": "Location of the source in an archive file in Cloud Storage.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource",
       "properties": {
         "bucket": {
-          "description": "Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
+          "description": "Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
           "type": "string"
         },
         "generation": {
-          "description": "Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
           "format": "int64",
           "type": "string"
         },
         "object": {
-          "description": "Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
+          "description": "Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest": {
-      "description": "Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).",
+      "description": "Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest",
       "properties": {
         "bucket": {
-          "description": "Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
+          "description": "Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
           "type": "string"
         },
         "generation": {
-          "description": "Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
           "format": "int64",
           "type": "string"
         },
         "object": {
-          "description": "Google Cloud Storage object containing the source manifest. This object must be a JSON file.",
+          "description": "Cloud Storage object containing the source manifest. This object must be a JSON file.",
           "type": "string"
         }
       },

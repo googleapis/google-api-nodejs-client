@@ -741,7 +741,7 @@ export namespace containeranalysis_v1 {
      */
     images?: string[] | null;
     /**
-     * Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
+     * Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
      */
     logsBucket?: string | null;
     /**
@@ -878,7 +878,7 @@ export namespace containeranalysis_v1 {
      */
     logging?: string | null;
     /**
-     * Option to define build log streaming behavior to Google Cloud Storage.
+     * Option to define build log streaming behavior to Cloud Storage.
      */
     logStreamingOption?: string | null;
     /**
@@ -1208,11 +1208,11 @@ export namespace containeranalysis_v1 {
      */
     repoSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource;
     /**
-     * If provided, get the source from this location in Google Cloud Storage.
+     * If provided, get the source from this location in Cloud Storage.
      */
     storageSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource;
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+     * If provided, get the source from this manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      */
     storageSourceManifest?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest;
   }
@@ -1242,36 +1242,36 @@ export namespace containeranalysis_v1 {
     resolvedStorageSourceManifest?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest;
   }
   /**
-   * Location of the source in an archive file in Google Cloud Storage.
+   * Location of the source in an archive file in Cloud Storage.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource {
     /**
-     * Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
+     * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
   }
   /**
-   * Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+   * Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest {
     /**
-     * Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source manifest. This object must be a JSON file.
+     * Cloud Storage object containing the source manifest. This object must be a JSON file.
      */
     object?: string | null;
   }
@@ -2138,6 +2138,10 @@ export namespace containeranalysis_v1 {
      */
     relatedUrl?: Schema$RelatedUrl[];
     /**
+     * A note describing an SBOM reference.
+     */
+    sbomReference?: Schema$SBOMReferenceNote;
+    /**
      * A one sentence description of this note.
      */
     shortDescription?: string | null;
@@ -2222,6 +2226,10 @@ export namespace containeranalysis_v1 {
      * Required. Immutable. A URI that represents the resource for which the occurrence applies. For example, `https://gcr.io/project/image@sha256:123abc` for a Docker image.
      */
     resourceUri?: string | null;
+    /**
+     * Describes a specific SBOM reference occurrences.
+     */
+    sbomReference?: Schema$SBOMReferenceOccurrence;
     /**
      * Output only. The time this occurrence was last updated.
      */
@@ -2493,6 +2501,78 @@ export namespace containeranalysis_v1 {
      * A server-assigned, globally unique identifier.
      */
     uid?: string | null;
+  }
+  /**
+   * The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.
+   */
+  export interface Schema$SbomReferenceIntotoPayload {
+    /**
+     * Additional parameters of the Predicate. Includes the actual data about the SBOM.
+     */
+    predicate?: Schema$SbomReferenceIntotoPredicate;
+    /**
+     * URI identifying the type of the Predicate.
+     */
+    predicateType?: string | null;
+    /**
+     * Set of software artifacts that the attestation applies to. Each element represents a single software artifact.
+     */
+    subject?: Schema$Subject[];
+    /**
+     * Identifier for the schema of the Statement.
+     */
+    _type?: string | null;
+  }
+  /**
+   * A predicate which describes the SBOM being referenced.
+   */
+  export interface Schema$SbomReferenceIntotoPredicate {
+    /**
+     * A map of algorithm to digest of the contents of the SBOM.
+     */
+    digest?: {[key: string]: string} | null;
+    /**
+     * The location of the SBOM.
+     */
+    location?: string | null;
+    /**
+     * The mime type of the SBOM.
+     */
+    mimeType?: string | null;
+    /**
+     * The person or system referring this predicate to the consumer.
+     */
+    referrerId?: string | null;
+  }
+  /**
+   * The note representing an SBOM reference.
+   */
+  export interface Schema$SBOMReferenceNote {
+    /**
+     * The format that SBOM takes. E.g. may be spdx, cyclonedx, etc...
+     */
+    format?: string | null;
+    /**
+     * The version of the format that the SBOM takes. E.g. if the format is spdx, the version may be 2.3.
+     */
+    version?: string | null;
+  }
+  /**
+   * The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.
+   */
+  export interface Schema$SBOMReferenceOccurrence {
+    /**
+     * The actual payload that contains the SBOM reference data.
+     */
+    payload?: Schema$SbomReferenceIntotoPayload;
+    /**
+     * The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'.
+     */
+    payloadType?: string | null;
+    /**
+     * The signatures over the payload.
+     */
+    signatures?: Schema$EnvelopeSignature[];
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -3247,6 +3327,7 @@ export namespace containeranalysis_v1 {
      *       //   "package": {},
      *       //   "relatedNoteNames": [],
      *       //   "relatedUrl": [],
+     *       //   "sbomReference": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
@@ -3274,6 +3355,7 @@ export namespace containeranalysis_v1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
@@ -3548,6 +3630,7 @@ export namespace containeranalysis_v1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
@@ -3976,6 +4059,7 @@ export namespace containeranalysis_v1 {
      *       //   "package": {},
      *       //   "relatedNoteNames": [],
      *       //   "relatedUrl": [],
+     *       //   "sbomReference": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
@@ -4003,6 +4087,7 @@ export namespace containeranalysis_v1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
@@ -4873,6 +4958,7 @@ export namespace containeranalysis_v1 {
      *       //   "package": {},
      *       //   "remediation": "my_remediation",
      *       //   "resourceUri": "my_resourceUri",
+     *       //   "sbomReference": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
      *       //   "vulnerability": {}
@@ -4898,6 +4984,7 @@ export namespace containeranalysis_v1 {
      *   //   "package": {},
      *   //   "remediation": "my_remediation",
      *   //   "resourceUri": "my_resourceUri",
+     *   //   "sbomReference": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
      *   //   "vulnerability": {}
@@ -5170,6 +5257,7 @@ export namespace containeranalysis_v1 {
      *   //   "package": {},
      *   //   "remediation": "my_remediation",
      *   //   "resourceUri": "my_resourceUri",
+     *   //   "sbomReference": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
      *   //   "vulnerability": {}
@@ -5454,6 +5542,7 @@ export namespace containeranalysis_v1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbomReference": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
@@ -5886,6 +5975,7 @@ export namespace containeranalysis_v1 {
      *       //   "package": {},
      *       //   "remediation": "my_remediation",
      *       //   "resourceUri": "my_resourceUri",
+     *       //   "sbomReference": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "upgrade": {},
      *       //   "vulnerability": {}
@@ -5911,6 +6001,7 @@ export namespace containeranalysis_v1 {
      *   //   "package": {},
      *   //   "remediation": "my_remediation",
      *   //   "resourceUri": "my_resourceUri",
+     *   //   "sbomReference": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "upgrade": {},
      *   //   "vulnerability": {}

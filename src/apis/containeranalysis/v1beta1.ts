@@ -678,7 +678,7 @@ export namespace containeranalysis_v1beta1 {
      */
     images?: string[] | null;
     /**
-     * Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
+     * Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
      */
     logsBucket?: string | null;
     /**
@@ -815,7 +815,7 @@ export namespace containeranalysis_v1beta1 {
      */
     logging?: string | null;
     /**
-     * Option to define build log streaming behavior to Google Cloud Storage.
+     * Option to define build log streaming behavior to Cloud Storage.
      */
     logStreamingOption?: string | null;
     /**
@@ -1145,11 +1145,11 @@ export namespace containeranalysis_v1beta1 {
      */
     repoSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource;
     /**
-     * If provided, get the source from this location in Google Cloud Storage.
+     * If provided, get the source from this location in Cloud Storage.
      */
     storageSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource;
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+     * If provided, get the source from this manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      */
     storageSourceManifest?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest;
   }
@@ -1179,36 +1179,36 @@ export namespace containeranalysis_v1beta1 {
     resolvedStorageSourceManifest?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest;
   }
   /**
-   * Location of the source in an archive file in Google Cloud Storage.
+   * Location of the source in an archive file in Cloud Storage.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource {
     /**
-     * Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
+     * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
   }
   /**
-   * Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+   * Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest {
     /**
-     * Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source manifest. This object must be a JSON file.
+     * Cloud Storage object containing the source manifest. This object must be a JSON file.
      */
     object?: string | null;
   }
