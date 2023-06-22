@@ -295,6 +295,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "disableMigration": {
+                      "description": "Disable Domain Migration",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/domains/{domainsId}:disableMigration",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.disableMigration",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+domain}:disableMigration",
+                      "request": {
+                        "$ref": "DisableMigrationRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "domainJoinMachine": {
                       "description": "DomainJoinMachine API joins a Compute Engine VM to the domain",
                       "flatPath": "v1/projects/{projectsId}/locations/global/domains/{domainsId}:domainJoinMachine",
@@ -318,6 +346,34 @@
                       },
                       "response": {
                         "$ref": "DomainJoinMachineResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "enableMigration": {
+                      "description": "Enable Domain Migration",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/domains/{domainsId}:enableMigration",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.enableMigration",
+                      "parameterOrder": [
+                        "domain"
+                      ],
+                      "parameters": {
+                        "domain": {
+                          "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+domain}:enableMigration",
+                      "request": {
+                        "$ref": "EnableMigrationRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1431,7 +1487,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230505",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1642,6 +1698,12 @@
       },
       "type": "object"
     },
+    "DisableMigrationRequest": {
+      "description": "DisableMigrationRequest is the request message for DisableMigration method.",
+      "id": "DisableMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Domain": {
       "description": "Represents a managed Microsoft Active Directory domain. If the domain is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state.",
       "id": "Domain",
@@ -1775,6 +1837,20 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EnableMigrationRequest": {
+      "description": "EnableMigrationRequest is the request message for EnableMigration method.",
+      "id": "EnableMigrationRequest",
+      "properties": {
+        "migratingDomains": {
+          "description": "Required. List of the on-prem domains to be migrated.",
+          "items": {
+            "$ref": "OnPremDomainDetails"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -2396,7 +2472,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2490,6 +2566,21 @@
         "weeklyCycle": {
           "$ref": "WeeklyCycle",
           "description": "Weekly cycle."
+        }
+      },
+      "type": "object"
+    },
+    "OnPremDomainDetails": {
+      "description": "OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.",
+      "id": "OnPremDomainDetails",
+      "properties": {
+        "disableSidFiltering": {
+          "description": "Optional. Option to disable SID filtering.",
+          "type": "boolean"
+        },
+        "domainName": {
+          "description": "Required. FQDN of the on-prem domain being migrated.",
+          "type": "string"
         }
       },
       "type": "object"
