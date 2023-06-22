@@ -395,8 +395,7 @@ export namespace admin_reports_v1 {
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
      *     // Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts: - *Date of the API's request for a report*: When the API created and retrieved the report. - *Report's start time*: The beginning of the timespan shown in the report. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. - *Report's end time*: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August. If the `endTime` is not specified, the report returns all activities from the `startTime` until the current time or the most recent 180 days if the `startTime` is more than 180 days in the past.
-     *     endTime:
-     *       '(&#92;d&#92;d&#92;d&#92;d)-(&#92;d&#92;d)-(&#92;d&#92;d)T(&#92;d&#92;d):(&#92;d&#92;d):(&#92;d&#92;d)(?:&#92;.(&#92;d+))?(?:(Z)|([-+])(&#92;d&#92;d):(&#92;d&#92;d))',
+     *     endTime: '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
      *     // The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`.
      *     eventName: 'placeholder-value',
      *     // The `filters` query string is a comma-separated list composed of event parameters manipulated by relational operators. Event parameters are in the form `{parameter1 name\}{relational operator\}{parameter1 value\},{parameter2 name\}{relational operator\}{parameter2 value\},...` These event parameters are associated with a specific `eventName`. An empty report is returned if the request's parameter doesn't belong to the `eventName`. For more information about the available `eventName` fields for each application and their associated parameters, go to the [ApplicationName](#applicationname) table, then click through to the Activity Events page in the Appendix for the application you want. In the following Drive activity examples, the returned list consists of all `edit` events where the `doc_id` parameter value matches the conditions defined by the relational operator. In the first example, the request returns all edited documents with a `doc_id` value equal to `12345`. In the second example, the report returns any edited documents where the `doc_id` value is not equal to `98765`. The `<\>` operator is URL-encoded in the request's query string (`%3C%3E`): ``` GET...&eventName=edit&filters=doc_id==12345 GET...&eventName=edit&filters=doc_id%3C%3E98765 ``` A `filters` query supports these relational operators: * `==`—'equal to'. * `<\>`—'not equal to'. Must be URL-encoded (%3C%3E). * `<`—'less than'. Must be URL-encoded (%3C). * `<=`—'less than or equal to'. Must be URL-encoded (%3C=). * `\>`—'greater than'. Must be URL-encoded (%3E). * `\>=`—'greater than or equal to'. Must be URL-encoded (%3E=). **Note:** The API doesn't accept multiple values of the same parameter. If a parameter is supplied more than once in the API request, the API only accepts the last value of that parameter. In addition, if an invalid parameter is supplied in the API request, the API ignores that parameter and returns the response corresponding to the remaining valid parameters. If no parameters are requested, all parameters are returned.
@@ -412,7 +411,7 @@ export namespace admin_reports_v1 {
      *     pageToken: 'placeholder-value',
      *     // Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error.
      *     startTime:
-     *       '(&#92;d&#92;d&#92;d&#92;d)-(&#92;d&#92;d)-(&#92;d&#92;d)T(&#92;d&#92;d):(&#92;d&#92;d):(&#92;d&#92;d)(?:&#92;.(&#92;d+))?(?:(Z)|([-+])(&#92;d&#92;d):(&#92;d&#92;d))',
+     *       '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
      *     // Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`.
      *     userKey: 'placeholder-value',
      *   });
@@ -552,8 +551,7 @@ export namespace admin_reports_v1 {
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
      *     // Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts: - *Date of the API's request for a report*: When the API created and retrieved the report. - *Report's start time*: The beginning of the timespan shown in the report. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. - *Report's end time*: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August. If the `endTime` is not specified, the report returns all activities from the `startTime` until the current time or the most recent 180 days if the `startTime` is more than 180 days in the past.
-     *     endTime:
-     *       '(&#92;d&#92;d&#92;d&#92;d)-(&#92;d&#92;d)-(&#92;d&#92;d)T(&#92;d&#92;d):(&#92;d&#92;d):(&#92;d&#92;d)(?:&#92;.(&#92;d+))?(?:(Z)|([-+])(&#92;d&#92;d):(&#92;d&#92;d))',
+     *     endTime: '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
      *     // The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`.
      *     eventName: 'placeholder-value',
      *     // The `filters` query string is a comma-separated list composed of event parameters manipulated by relational operators. Event parameters are in the form `{parameter1 name\}{relational operator\}{parameter1 value\},{parameter2 name\}{relational operator\}{parameter2 value\},...` These event parameters are associated with a specific `eventName`. An empty report is returned if the request's parameter doesn't belong to the `eventName`. For more information about the available `eventName` fields for each application and their associated parameters, go to the [ApplicationName](#applicationname) table, then click through to the Activity Events page in the Appendix for the application you want. In the following Drive activity examples, the returned list consists of all `edit` events where the `doc_id` parameter value matches the conditions defined by the relational operator. In the first example, the request returns all edited documents with a `doc_id` value equal to `12345`. In the second example, the report returns any edited documents where the `doc_id` value is not equal to `98765`. The `<\>` operator is URL-encoded in the request's query string (`%3C%3E`): ``` GET...&eventName=edit&filters=doc_id==12345 GET...&eventName=edit&filters=doc_id%3C%3E98765 ``` A `filters` query supports these relational operators: * `==`—'equal to'. * `<\>`—'not equal to'. Must be URL-encoded (%3C%3E). * `<`—'less than'. Must be URL-encoded (%3C). * `<=`—'less than or equal to'. Must be URL-encoded (%3C=). * `\>`—'greater than'. Must be URL-encoded (%3E). * `\>=`—'greater than or equal to'. Must be URL-encoded (%3E=). **Note:** The API doesn't accept multiple values of the same parameter. If a parameter is supplied more than once in the API request, the API only accepts the last value of that parameter. In addition, if an invalid parameter is supplied in the API request, the API ignores that parameter and returns the response corresponding to the remaining valid parameters. If no parameters are requested, all parameters are returned.
@@ -569,7 +567,7 @@ export namespace admin_reports_v1 {
      *     pageToken: 'placeholder-value',
      *     // Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error.
      *     startTime:
-     *       '(&#92;d&#92;d&#92;d&#92;d)-(&#92;d&#92;d)-(&#92;d&#92;d)T(&#92;d&#92;d):(&#92;d&#92;d):(&#92;d&#92;d)(?:&#92;.(&#92;d+))?(?:(Z)|([-+])(&#92;d&#92;d):(&#92;d&#92;d))',
+     *       '(dddd)-(dd)-(dd)T(dd):(dd):(dd)(?:.(d+))?(?:(Z)|([-+])(dd):(dd))',
      *     // Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`.
      *     userKey: 'placeholder-value',
      *
@@ -988,8 +986,8 @@ export namespace admin_reports_v1 {
      *   const res = await reports.customerUsageReports.get({
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
-     *     // Represents the date the usage occurred, based on PST time zone. The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
-     *     date: '(&#92;d){4}-(&#92;d){2}-(&#92;d){2}',
+     *     // Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
+     *     date: '(d){4}-(d){2}-(d){2}',
      *     // Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. For your follow-on requests getting all of the report's pages, enter the `nextPageToken` value in the `pageToken` query string.
      *     pageToken: 'placeholder-value',
      *     // The `parameters` query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include `accounts`, `app_maker`, `apps_scripts`, `calendar`, `classroom`, `cros`, `docs`, `gmail`, `gplus`, `device_management`, `meet`, and `sites`. A `parameters` query string is in the CSV form of `app_name1:param_name1, app_name2:param_name2`. *Note:* The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned.
@@ -1107,7 +1105,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date the usage occurred, based on PST time zone. The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
+     * Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
      */
     date?: string;
     /**
@@ -1155,8 +1153,8 @@ export namespace admin_reports_v1 {
      *   const res = await reports.entityUsageReports.get({
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
-     *     // Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
-     *     date: '(&#92;d){4}-(&#92;d){2}-(&#92;d){2}',
+     *     // Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
+     *     date: '(d){4}-(d){2}-(d){2}',
      *     // Represents the key of the object to filter the data with. It is a string which can take the value `all` to get activity events for all users, or any other value for an app-specific entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides.
      *     entityKey: 'placeholder-value',
      *     // Represents the type of entity for the report.
@@ -1282,7 +1280,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
+     * Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
      */
     date?: string;
     /**
@@ -1346,8 +1344,8 @@ export namespace admin_reports_v1 {
      *   const res = await reports.userUsageReport.get({
      *     // The unique ID of the customer to retrieve data for.
      *     customerId: 'C.+|my_customer',
-     *     // Represents the date the usage occurred, based on GMT-7:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
-     *     date: '(&#92;d){4}-(&#92;d){2}-(&#92;d){2}',
+     *     // Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
+     *     date: '(d){4}-(d){2}-(d){2}',
      *     // The `filters` query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The `filters` query string includes the name of the application whose usage is returned in the report. The application values for the Users Usage Report include `accounts`, `docs`, and `gmail`. Filters are in the form `[application name]:parameter name[parameter value],...`. In this example, the `<\>` 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03 ?parameters=accounts:last_login_time &filters=accounts:last_login_time%3C%3E2010-10-28T10:26:35.000Z The relational operators include: - `==` - 'equal to'. - `<\>` - 'not equal to'. It is URL-encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). - `<=` - 'less than or equal to'. It is URL-encoded (%3C=). - `\>` - 'greater than'. It is URL-encoded (%3E). - `\>=` - 'greater than or equal to'. It is URL-encoded (%3E=).
      *     filters:
      *       '(((accounts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)):[a-z0-9_]+[&lt;,&lt;=,==,&gt;=,&gt;,!=][^,]+,)*(((accounts)|(classroom)|(cros)|(gmail)|(calendar)|(docs)|(gplus)|(sites)|(device_management)|(drive)):[a-z0-9_]+[&lt;,&lt;=,==,&gt;=,&gt;,!=][^,]+)',
@@ -1475,7 +1473,7 @@ export namespace admin_reports_v1 {
      */
     customerId?: string;
     /**
-     * Represents the date the usage occurred, based on GMT-7:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
+     * Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
      */
     date?: string;
     /**
