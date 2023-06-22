@@ -246,6 +246,32 @@ export namespace firestore_v1 {
     transaction?: string | null;
   }
   /**
+   * A sequence of bits, encoded in a byte array. Each byte in the `bitmap` byte array stores 8 bits of the sequence. The only exception is the last byte, which may store 8 _or fewer_ bits. The `padding` defines the number of bits of the last byte to be ignored as "padding". The values of these "padding" bits are unspecified and must be ignored. To retrieve the first bit, bit 0, calculate: `(bitmap[0] & 0x01) != 0`. To retrieve the second bit, bit 1, calculate: `(bitmap[0] & 0x02) != 0`. To retrieve the third bit, bit 2, calculate: `(bitmap[0] & 0x04) != 0`. To retrieve the fourth bit, bit 3, calculate: `(bitmap[0] & 0x08) != 0`. To retrieve bit n, calculate: `(bitmap[n / 8] & (0x01 << (n % 8))) != 0`. The "size" of a `BitSequence` (the number of bits it contains) is calculated by this formula: `(bitmap.length * 8) - padding`.
+   */
+  export interface Schema$BitSequence {
+    /**
+     * The bytes that encode the bit sequence. May have a length of zero.
+     */
+    bitmap?: string | null;
+    /**
+     * The number of bits of the last byte in `bitmap` to ignore as "padding". If the length of `bitmap` is zero, then this value must be `0`. Otherwise, this value must be between 0 and 7, inclusive.
+     */
+    padding?: number | null;
+  }
+  /**
+   * A bloom filter (https://en.wikipedia.org/wiki/Bloom_filter). The bloom filter hashes the entries with MD5 and treats the resulting 128-bit hash as 2 distinct 64-bit hash values, interpreted as unsigned integers using 2's complement encoding. These two hash values, named `h1` and `h2`, are then used to compute the `hash_count` hash values using the formula, starting at `i=0`: h(i) = h1 + (i * h2) These resulting values are then taken modulo the number of bits in the bloom filter to get the bits of the bloom filter to test for the given entry.
+   */
+  export interface Schema$BloomFilter {
+    /**
+     * The bloom filter data.
+     */
+    bits?: Schema$BitSequence;
+    /**
+     * The number of hashes used by the algorithm.
+     */
+    hashCount?: number | null;
+  }
+  /**
    * A selection of a collection, such as `messages as m1`.
    */
   export interface Schema$CollectionSelector {
@@ -438,6 +464,10 @@ export namespace firestore_v1 {
      * The target ID to which this filter applies.
      */
     targetId?: number | null;
+    /**
+     * A bloom filter that contains the UTF-8 byte encodings of the resource names of the documents that match target_id, in the form `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}` that have NOT changed since the query results indicated by the resume token or timestamp given in `Target.resume_type`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync.
+     */
+    unchangedNames?: Schema$BloomFilter;
   }
   /**
    * A filter on a specific field.
@@ -516,6 +546,72 @@ export namespace firestore_v1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
+   * A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at specific point in time.
+   */
+  export interface Schema$GoogleFirestoreAdminV1Backup {
+    /**
+     * Output only. Name of the Firestore database that the backup is from. Format is `projects/{project\}/databases/{database\}`.
+     */
+    database?: string | null;
+    /**
+     * Output only. The system-generated UUID4 for the Firestore database that the backup is from.
+     */
+    databaseUid?: string | null;
+    /**
+     * Output only. The timestamp at which this backup expires.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. The unique resource name of the Backup. Format is `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The backup contains an externally consistent copy of the database at this time.
+     */
+    snapshotTime?: string | null;
+    /**
+     * Output only. The current state of the backup.
+     */
+    state?: string | null;
+    /**
+     * Output only. Statistics about the backup. This data only becomes available after the backup is fully materialized to secondary storage. This field will be empty till then.
+     */
+    stats?: Schema$GoogleFirestoreAdminV1Stats;
+  }
+  /**
+   * A backup schedule for a Cloud Firestore Database. This resource is owned by the database it is backing up, and is deleted along with the database. The actual backups are not though.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BackupSchedule {
+    /**
+     * Output only. The timestamp at which this backup schedule was created and effective since. No backups will be created for this schedule before this time.
+     */
+    createTime?: string | null;
+    /**
+     * For a schedule that runs daily at a specified time.
+     */
+    dailyRecurrence?: Schema$GoogleFirestoreAdminV1DailyRecurrence;
+    /**
+     * Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     */
+    name?: string | null;
+    /**
+     * At what relative time in the future, compared to the creation time of the backup should the backup be deleted, i.e. keep backups for 7 days.
+     */
+    retention?: string | null;
+    /**
+     * Output only. The timestamp at which this backup schedule was most recently updated. When a backup schedule is first created, this is the same as create_time.
+     */
+    updateTime?: string | null;
+    /**
+     * For a schedule that runs weekly on a specific day and time.
+     */
+    weeklyRecurrence?: Schema$GoogleFirestoreAdminV1WeeklyRecurrence;
+  }
+  /**
+   * Represent a recurring schedule that runs at a specific time every day. The time zone is UTC.
+   */
+  export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {}
+  /**
    * A Cloud Firestore Database. Currently only one database is allowed per cloud project; this database must have a `database_id` of '(default)'.
    */
   export interface Schema$GoogleFirestoreAdminV1Database {
@@ -536,6 +632,10 @@ export namespace firestore_v1 {
      */
     deleteProtectionState?: string | null;
     /**
+     * Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery.
+     */
+    earliestVersionTime?: string | null;
+    /**
      * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -552,6 +652,10 @@ export namespace firestore_v1 {
      */
     name?: string | null;
     /**
+     * Whether to enable the PITR feature on this database.
+     */
+    pointInTimeRecoveryEnablement?: string | null;
+    /**
      * The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
      */
     type?: string | null;
@@ -563,6 +667,10 @@ export namespace firestore_v1 {
      * Output only. The timestamp at which this database was most recently updated. Note this only includes updates to the database resource and not data contained by the database.
      */
     updateTime?: string | null;
+    /**
+     * Output only. The period during which past versions of data are retained in the database. Any read or query can specify a `read_time` within this window, and will read the state of the database at that time. If the PITR feature is enabled, the retention period is 7 days. Otherwise, the retention period is 1 hour.
+     */
+    versionRetentionPeriod?: string | null;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.ExportDocuments.
@@ -617,6 +725,10 @@ export namespace firestore_v1 {
      * The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time.
      */
     outputUriPrefix?: string | null;
+    /**
+     * The timestamp that corresponds to the version of the database to be exported. The timestamp must be rounded to the minute, in the past, and not older than 1 hour. If specified, then the exported documents will represent a consistent view of the database at the provided time. Otherwise, there are no guarantees about the consistency of the exported documents.
+     */
+    snapshotTime?: string | null;
   }
   /**
    * Returned in the google.longrunning.Operation response field.
@@ -841,6 +953,28 @@ export namespace firestore_v1 {
     state?: string | null;
   }
   /**
+   * The response for FirestoreAdmin.ListBackupSchedules.
+   */
+  export interface Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse {
+    /**
+     * List of all backup schedules.
+     */
+    backupSchedules?: Schema$GoogleFirestoreAdminV1BackupSchedule[];
+  }
+  /**
+   * The response for FirestoreAdmin.ListBackups.
+   */
+  export interface Schema$GoogleFirestoreAdminV1ListBackupsResponse {
+    /**
+     * List of all backups for the project. Ordered by `location ASC, create_time DESC, name ASC`.
+     */
+    backups?: Schema$GoogleFirestoreAdminV1Backup[];
+    /**
+     * List of locations that existing backups were not able to be fetched from. Instead of failing the entire requests when a single location is unreachable, this response returns a partial result set and list of locations unable to be reached here. The request can be retried against a single location to get a concrete error.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * The list of databases for a project.
    */
   export interface Schema$GoogleFirestoreAdminV1ListDatabasesResponse {
@@ -893,6 +1027,36 @@ export namespace firestore_v1 {
     estimatedWork?: string | null;
   }
   /**
+   * The request message for FirestoreAdmin.RestoreDatabase.
+   */
+  export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseRequest {
+    /**
+     * Required. Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
+     */
+    backup?: string | null;
+    /**
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database id must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     */
+    databaseId?: string | null;
+  }
+  /**
+   * Backup specific statistics.
+   */
+  export interface Schema$GoogleFirestoreAdminV1Stats {
+    /**
+     * Output only. The total number of documents contained in the backup.
+     */
+    documentCount?: string | null;
+    /**
+     * Output only. The total number of index entries contained in the backup.
+     */
+    indexCount?: string | null;
+    /**
+     * Output only. Summation of the size of all documents and index entries in the backup, measured in bytes.
+     */
+    sizeBytes?: string | null;
+  }
+  /**
    * The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.
    */
   export interface Schema$GoogleFirestoreAdminV1TtlConfig {
@@ -902,7 +1066,7 @@ export namespace firestore_v1 {
     state?: string | null;
   }
   /**
-   * Information about an TTL configuration change.
+   * Information about a TTL configuration change.
    */
   export interface Schema$GoogleFirestoreAdminV1TtlConfigDelta {
     /**
@@ -914,6 +1078,15 @@ export namespace firestore_v1 {
    * Metadata related to the update database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
+  /**
+   * Represents a recurring schedule that runs on a specified day of the week. The time zone is UTC.
+   */
+  export interface Schema$GoogleFirestoreAdminV1WeeklyRecurrence {
+    /**
+     * The day of week to run. DAY_OF_WEEK_UNSPECIFIED is not allowed.
+     */
+    day?: string | null;
+  }
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -1374,6 +1547,10 @@ export namespace firestore_v1 {
      */
     documents?: Schema$DocumentsTarget;
     /**
+     * The number of documents that last matched the query at the resume token or read time. This value is only relevant when a `resume_type` is provided. This value being present and greater than zero signals that the client wants `ExistenceFilter.unchanged_names` to be included in the response.
+     */
+    expectedCount?: number | null;
+    /**
      * If the target should be removed once it is current and consistent.
      */
     once?: boolean | null;
@@ -1592,11 +1769,15 @@ export namespace firestore_v1 {
 
   export class Resource$Projects$Databases {
     context: APIRequestContext;
+    backupSchedules: Resource$Projects$Databases$Backupschedules;
     collectionGroups: Resource$Projects$Databases$Collectiongroups;
     documents: Resource$Projects$Databases$Documents;
     operations: Resource$Projects$Databases$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backupSchedules = new Resource$Projects$Databases$Backupschedules(
+        this.context
+      );
       this.collectionGroups = new Resource$Projects$Databases$Collectiongroups(
         this.context
       );
@@ -1649,13 +1830,16 @@ export namespace firestore_v1 {
      *       //   "concurrencyMode": "my_concurrencyMode",
      *       //   "createTime": "my_createTime",
      *       //   "deleteProtectionState": "my_deleteProtectionState",
+     *       //   "earliestVersionTime": "my_earliestVersionTime",
      *       //   "etag": "my_etag",
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
+     *       //   "pointInTimeRecoveryEnablement": "my_pointInTimeRecoveryEnablement",
      *       //   "type": "my_type",
      *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "versionRetentionPeriod": "my_versionRetentionPeriod"
      *       // }
      *     },
      *   });
@@ -1954,7 +2138,8 @@ export namespace firestore_v1 {
      *       // {
      *       //   "collectionIds": [],
      *       //   "namespaceIds": [],
-     *       //   "outputUriPrefix": "my_outputUriPrefix"
+     *       //   "outputUriPrefix": "my_outputUriPrefix",
+     *       //   "snapshotTime": "my_snapshotTime"
      *       // }
      *     },
      *   });
@@ -2109,13 +2294,16 @@ export namespace firestore_v1 {
      *   //   "concurrencyMode": "my_concurrencyMode",
      *   //   "createTime": "my_createTime",
      *   //   "deleteProtectionState": "my_deleteProtectionState",
+     *   //   "earliestVersionTime": "my_earliestVersionTime",
      *   //   "etag": "my_etag",
      *   //   "keyPrefix": "my_keyPrefix",
      *   //   "locationId": "my_locationId",
      *   //   "name": "my_name",
+     *   //   "pointInTimeRecoveryEnablement": "my_pointInTimeRecoveryEnablement",
      *   //   "type": "my_type",
      *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "versionRetentionPeriod": "my_versionRetentionPeriod"
      *   // }
      * }
      *
@@ -2553,13 +2741,16 @@ export namespace firestore_v1 {
      *       //   "concurrencyMode": "my_concurrencyMode",
      *       //   "createTime": "my_createTime",
      *       //   "deleteProtectionState": "my_deleteProtectionState",
+     *       //   "earliestVersionTime": "my_earliestVersionTime",
      *       //   "etag": "my_etag",
      *       //   "keyPrefix": "my_keyPrefix",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
+     *       //   "pointInTimeRecoveryEnablement": "my_pointInTimeRecoveryEnablement",
      *       //   "type": "my_type",
      *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "versionRetentionPeriod": "my_versionRetentionPeriod"
      *       // }
      *     },
      *   });
@@ -2669,6 +2860,158 @@ export namespace firestore_v1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Create a new database by restore from an existing backup. The new database must be in the same cloud region or multi-region location as the existing backup. This behaves similar to FirestoreAdmin.CreateDatabase except instead of creating a new empty database, a new database is created with the database type, index configuration, and documents from an existing backup. The long-running operation can be used to track the progress of the restore, with the Operation's metadata field type being the RestoreDatabaseMetadata. The response type is the Database if the restore was successful. The new database is not readable or writeable until the LRO has completed. Cancelling the returned operation will stop the restore and delete the in-progress database, if the restore is still active.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.restore({
+     *     // Required. The project to restore the database in. Format is `projects/{project_id\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backup": "my_backup",
+     *       //   "databaseId": "my_databaseId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Databases$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Databases$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    restore(
+      params: Params$Resource$Projects$Databases$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Databases$Restore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Databases$Restore,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Restore
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databases:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Databases$Create
@@ -2759,6 +3102,805 @@ export namespace firestore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirestoreAdminV1Database;
+  }
+  export interface Params$Resource$Projects$Databases$Restore
+    extends StandardParameters {
+    /**
+     * Required. The project to restore the database in. Format is `projects/{project_id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1RestoreDatabaseRequest;
+  }
+
+  export class Resource$Projects$Databases$Backupschedules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule with retention up to 7 days and one weekly backup schedule with retention up to 14 weeks.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.backupSchedules.create({
+     *     // Required. The parent database. Format `projects/{project\}/databases/{database\}`
+     *     parent: 'projects/my-project/databases/my-database',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dailyRecurrence": {},
+     *       //   "name": "my_name",
+     *       //   "retention": "my_retention",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "weeklyRecurrence": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dailyRecurrence": {},
+     *   //   "name": "my_name",
+     *   //   "retention": "my_retention",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "weeklyRecurrence": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Databases$Backupschedules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Databases$Backupschedules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>;
+    create(
+      params: Params$Resource$Projects$Databases$Backupschedules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Backupschedules$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Databases$Backupschedules$Create,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Backupschedules$Create
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Backupschedules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Backupschedules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backupSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1BackupSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1BackupSchedule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a backup schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.backupSchedules.delete({
+     *     // Required. The name of backup schedule. Format `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     *     name: 'projects/my-project/databases/my-database/backupSchedules/my-backupSchedule',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Databases$Backupschedules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Databases$Backupschedules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Databases$Backupschedules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Backupschedules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Databases$Backupschedules$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Backupschedules$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Backupschedules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Backupschedules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a backup schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.backupSchedules.get({
+     *     // Required. The name of the backup schedule. Format `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     *     name: 'projects/my-project/databases/my-database/backupSchedules/my-backupSchedule',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dailyRecurrence": {},
+     *   //   "name": "my_name",
+     *   //   "retention": "my_retention",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "weeklyRecurrence": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Databases$Backupschedules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Databases$Backupschedules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>;
+    get(
+      params: Params$Resource$Projects$Databases$Backupschedules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Backupschedules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Databases$Backupschedules$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Backupschedules$Get
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Backupschedules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Backupschedules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1BackupSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1BackupSchedule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List backup schedules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.backupSchedules.list({
+     *     // Required. The parent database. Format is `projects/{project\}/databases/{database\}`.
+     *     parent: 'projects/my-project/databases/my-database',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupSchedules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Databases$Backupschedules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Databases$Backupschedules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>;
+    list(
+      params: Params$Resource$Projects$Databases$Backupschedules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Databases$Backupschedules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Databases$Backupschedules$List,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Backupschedules$List
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Backupschedules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Backupschedules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backupSchedules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ListBackupSchedulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a backup schedule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.backupSchedules.patch({
+     *     // Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     *     name: 'projects/my-project/databases/my-database/backupSchedules/my-backupSchedule',
+     *     // The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dailyRecurrence": {},
+     *       //   "name": "my_name",
+     *       //   "retention": "my_retention",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "weeklyRecurrence": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dailyRecurrence": {},
+     *   //   "name": "my_name",
+     *   //   "retention": "my_retention",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "weeklyRecurrence": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Databases$Backupschedules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Databases$Backupschedules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>;
+    patch(
+      params: Params$Resource$Projects$Databases$Backupschedules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Databases$Backupschedules$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Databases$Backupschedules$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Backupschedules$Patch
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1BackupSchedule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1BackupSchedule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Backupschedules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Backupschedules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1BackupSchedule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1BackupSchedule>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Databases$Backupschedules$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent database. Format `projects/{project\}/databases/{database\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1BackupSchedule;
+  }
+  export interface Params$Resource$Projects$Databases$Backupschedules$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of backup schedule. Format `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Backupschedules$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the backup schedule. Format `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Backupschedules$List
+    extends StandardParameters {
+    /**
+     * Required. The parent database. Format is `projects/{project\}/databases/{database\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Backupschedules$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project\}/databases/{database\}/backupSchedules/{backup_schedule\}`
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1BackupSchedule;
   }
 
   export class Resource$Projects$Databases$Collectiongroups {
@@ -7317,8 +8459,10 @@ export namespace firestore_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    backups: Resource$Projects$Locations$Backups;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backups = new Resource$Projects$Locations$Backups(this.context);
     }
 
     /**
@@ -7624,5 +8768,447 @@ export namespace firestore_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Backups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.locations.backups.delete({
+     *     // Required. Name of the backup to delete. format is `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     *     name: 'projects/my-project/locations/my-location/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Backups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.locations.backups.get({
+     *     // Required. Name of the backup to fetch. Format is `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     *     name: 'projects/my-project/locations/my-location/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "database": "my_database",
+     *   //   "databaseUid": "my_databaseUid",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "name": "my_name",
+     *   //   "snapshotTime": "my_snapshotTime",
+     *   //   "state": "my_state",
+     *   //   "stats": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Backups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1Backup>;
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1Backup>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1Backup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1Backup>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1Backup>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$Get
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1Backup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1Backup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1Backup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1Backup>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all the backups.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.locations.backups.list({
+     *     // Required. The location to list backups from. Format is `projects/{project\}/locations/{location\}`. Use `{location\} = '-'` to list backups from all locations for the given project. This allows listing backups from a single location or from all locations.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backups": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Backups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$List
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirestoreAdminV1ListBackupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirestoreAdminV1ListBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ListBackupsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Backups$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the backup to delete. format is `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backups$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the backup to fetch. Format is `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backups$List
+    extends StandardParameters {
+    /**
+     * Required. The location to list backups from. Format is `projects/{project\}/locations/{location\}`. Use `{location\} = '-'` to list backups from all locations for the given project. This allows listing backups from a single location or from all locations.
+     */
+    parent?: string;
   }
 }
