@@ -274,7 +274,7 @@ export namespace servicedirectory_v1beta1 {
     services?: Schema$Service[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
