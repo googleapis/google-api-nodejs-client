@@ -161,6 +161,10 @@ export namespace securitycenter_v1beta1 {
      */
     serviceName?: string | null;
     /**
+     * The caller's user agent string associated with the finding.
+     */
+    userAgent?: string | null;
+    /**
      * Type of user agent associated with the finding. For example, an operating system shell or an embedded or standalone application.
      */
     userAgentFamily?: string | null;
@@ -299,6 +303,10 @@ export namespace securitycenter_v1beta1 {
      * Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.
      */
     dataProfile?: string | null;
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     */
+    parentType?: string | null;
   }
   /**
    * Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.
@@ -1705,7 +1713,7 @@ export namespace securitycenter_v1beta1 {
      */
     assetDiscoveryConfig?: Schema$AssetDiscoveryConfig;
     /**
-     * A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false, all historical assets will remain, but discovery of future assets will not occur.
+     * A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false`, all historical assets will remain, but discovery of future assets will not occur.
      */
     enableAssetDiscovery?: boolean | null;
     /**

@@ -165,6 +165,10 @@ export namespace securitycenter_v1 {
      */
     serviceName?: string | null;
     /**
+     * The caller's user agent string associated with the finding.
+     */
+    userAgent?: string | null;
+    /**
      * Type of user agent associated with the finding. For example, an operating system shell or an embedded or standalone application.
      */
     userAgentFamily?: string | null;
@@ -324,6 +328,10 @@ export namespace securitycenter_v1 {
      * Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.
      */
     dataProfile?: string | null;
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     */
+    parentType?: string | null;
   }
   /**
    * Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.
@@ -1813,7 +1821,7 @@ export namespace securitycenter_v1 {
      */
     assetDiscoveryConfig?: Schema$AssetDiscoveryConfig;
     /**
-     * A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false, all historical assets will remain, but discovery of future assets will not occur.
+     * A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false`, all historical assets will remain, but discovery of future assets will not occur.
      */
     enableAssetDiscovery?: boolean | null;
     /**
@@ -2775,7 +2783,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.bigQueryExports.create({
-     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      *     bigQueryExportId: 'placeholder-value',
      *     // Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
@@ -3485,7 +3493,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Bigqueryexports$Create
     extends StandardParameters {
     /**
-     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
     bigQueryExportId?: string;
     /**
@@ -3740,7 +3748,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.muteConfigs.create({
-     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      *     muteConfigId: 'placeholder-value',
      *     // Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'folders/my-folder',
@@ -4443,7 +4451,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Muteconfigs$Create
     extends StandardParameters {
     /**
-     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
     muteConfigId?: string;
     /**
@@ -9102,7 +9110,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.bigQueryExports.create({
-     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      *     bigQueryExportId: 'placeholder-value',
      *     // Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
@@ -9812,7 +9820,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Bigqueryexports$Create
     extends StandardParameters {
     /**
-     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
     bigQueryExportId?: string;
     /**
@@ -10067,7 +10075,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.muteConfigs.create({
-     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      *     muteConfigId: 'placeholder-value',
      *     // Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'organizations/my-organization',
@@ -10770,7 +10778,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Muteconfigs$Create
     extends StandardParameters {
     /**
-     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
     muteConfigId?: string;
     /**
@@ -16680,7 +16688,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.bigQueryExports.create({
-     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      *     bigQueryExportId: 'placeholder-value',
      *     // Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
@@ -17390,7 +17398,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Bigqueryexports$Create
     extends StandardParameters {
     /**
-     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
     bigQueryExportId?: string;
     /**
@@ -17645,7 +17653,7 @@ export namespace securitycenter_v1 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.muteConfigs.create({
-     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      *     muteConfigId: 'placeholder-value',
      *     // Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
      *     parent: 'projects/my-project',
@@ -18348,7 +18356,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Muteconfigs$Create
     extends StandardParameters {
     /**
-     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.
      */
     muteConfigId?: string;
     /**
