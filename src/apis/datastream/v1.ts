@@ -162,7 +162,7 @@ export namespace datastream_v1 {
      */
     lastStartTime?: string | null;
     /**
-     * Backfill job state.
+     * Output only. Backfill job state.
      */
     state?: string | null;
     /**
@@ -420,7 +420,7 @@ export namespace datastream_v1 {
      */
     avroFileFormat?: Schema$AvroFileFormat;
     /**
-     * The maximum duration for which new events are added before a file is closed and a new file is created.
+     * The maximum duration for which new events are added before a file is closed and a new file is created. Values within the range of 15-60 seconds are allowed.
      */
     fileRotationInterval?: string | null;
     /**
@@ -570,7 +570,7 @@ export namespace datastream_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -1392,7 +1392,7 @@ export namespace datastream_v1 {
      */
     message?: Schema$ValidationMessage[];
     /**
-     * Validation execution status.
+     * Output only. Validation execution status.
      */
     state?: string | null;
   }
@@ -5418,6 +5418,12 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.streams.patch({
+     *     // The binary log file name.
+     *     'cdcStrategy.specificStartPosition.mysqlLogPosition.logFile':
+     *       'placeholder-value',
+     *     // The position within the binary log file. Default is head of file.
+     *     'cdcStrategy.specificStartPosition.mysqlLogPosition.logPosition':
+     *       'placeholder-value',
      *     // Optional. Update the stream without validating it.
      *     force: 'placeholder-value',
      *     // Output only. The stream's name.
@@ -5620,6 +5626,14 @@ export namespace datastream_v1 {
   }
   export interface Params$Resource$Projects$Locations$Streams$Patch
     extends StandardParameters {
+    /**
+     * The binary log file name.
+     */
+    'cdcStrategy.specificStartPosition.mysqlLogPosition.logFile'?: string;
+    /**
+     * The position within the binary log file. Default is head of file.
+     */
+    'cdcStrategy.specificStartPosition.mysqlLogPosition.logPosition'?: number;
     /**
      * Optional. Update the stream without validating it.
      */

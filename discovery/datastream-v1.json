@@ -1024,6 +1024,17 @@
                     "name"
                   ],
                   "parameters": {
+                    "cdcStrategy.specificStartPosition.mysqlLogPosition.logFile": {
+                      "description": "The binary log file name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "cdcStrategy.specificStartPosition.mysqlLogPosition.logPosition": {
+                      "description": "The position within the binary log file. Default is head of file.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
                     "force": {
                       "description": "Optional. Update the stream without validating it.",
                       "location": "query",
@@ -1222,7 +1233,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230607",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1275,7 +1286,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Backfill job state.",
+          "description": "Output only. Backfill job state.",
           "enum": [
             "STATE_UNSPECIFIED",
             "NOT_STARTED",
@@ -1296,6 +1307,7 @@
             "Backfill completed successfully.",
             "Backfill job failed since the table structure is currently unsupported for backfill."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "trigger": {
@@ -1611,7 +1623,7 @@
           "description": "AVRO file format configuration."
         },
         "fileRotationInterval": {
-          "description": "The maximum duration for which new events are added before a file is closed and a new file is created.",
+          "description": "The maximum duration for which new events are added before a file is closed and a new file is created. Values within the range of 15-60 seconds are allowed.",
           "format": "google-duration",
           "type": "string"
         },
@@ -1836,7 +1848,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2907,7 +2919,7 @@
           "type": "array"
         },
         "state": {
-          "description": "Validation execution status.",
+          "description": "Output only. Validation execution status.",
           "enum": [
             "STATE_UNSPECIFIED",
             "NOT_EXECUTED",
@@ -2920,6 +2932,7 @@
             "Validation failed.",
             "Validation passed."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
