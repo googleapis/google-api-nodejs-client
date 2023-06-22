@@ -1688,7 +1688,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230609",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1996,6 +1996,34 @@
           "$ref": "RetentionPolicy",
           "description": "RetentionPolicy governs lifecycle of Backups created under this plan."
         },
+        "state": {
+          "description": "Output only. State of the BackupPlan. This State field reflects the various stages a BackupPlan can be in during the Create operation. It will be set to \"DEACTIVATED\" if the BackupPlan is deactivated on an Update",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CLUSTER_PENDING",
+            "PROVISIONING",
+            "READY",
+            "FAILED",
+            "DEACTIVATED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Default first value for Enums.",
+            "Waiting for cluster state to be RUNNING.",
+            "The BackupPlan is in the process of being created.",
+            "The BackupPlan has successfully been created and is ready for Backups.",
+            "BackupPlan creation has failed.",
+            "The BackupPlan has been deactivated.",
+            "The BackupPlan is in the process of being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReason": {
+          "description": "Output only. Human-readable description of why BackupPlan is in the current `state`",
+          "readOnly": true,
+          "type": "string"
+        },
         "uid": {
           "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
@@ -2066,6 +2094,21 @@
       "description": "Defines the scope of cluster-scoped resources to restore. Some group kinds are not reasonable choices for a restore, and will cause an error if selected here. Any scope selection that would restore \"all valid\" resources automatically excludes these group kinds. - gkebackup.gke.io/BackupJob - gkebackup.gke.io/RestoreJob - metrics.k8s.io/NodeMetrics - migration.k8s.io/StorageState - migration.k8s.io/StorageVersionMigration - Node - snapshot.storage.k8s.io/VolumeSnapshotContent - storage.k8s.io/CSINode Some group kinds are driven by restore configuration elsewhere, and will cause an error if selected here. - Namespace - PersistentVolume",
       "id": "ClusterResourceRestoreScope",
       "properties": {
+        "allGroupKinds": {
+          "description": "If True, all valid cluster-scoped resources will be restored. Mutually exclusive to any other field in the message.",
+          "type": "boolean"
+        },
+        "excludedGroupKinds": {
+          "description": "A list of cluster-scoped resource group kinds to NOT restore from the backup. If specified, all valid cluster-scoped resources will be restored except for those specified in the list. Mutually exclusive to any other field in the message.",
+          "items": {
+            "$ref": "GroupKind"
+          },
+          "type": "array"
+        },
+        "noGroupKinds": {
+          "description": "If True, no cluster-scoped resources will be restored. This has the same restore scope as if the message is not defined. Mutually exclusive to any other field in the message.",
+          "type": "boolean"
+        },
         "selectedGroupKinds": {
           "description": "A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the message.",
           "items": {
@@ -2365,7 +2408,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2516,6 +2559,31 @@
       },
       "type": "object"
     },
+    "ResourceFilter": {
+      "description": "ResourceFilter specifies matching criteria to limit the scope of a change to a specific set of kubernetes resources that are selected for restoration from a backup.",
+      "id": "ResourceFilter",
+      "properties": {
+        "groupKinds": {
+          "description": "(Filtering parameter) Any resource subject to transformation must belong to one of the listed \"types\". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for transformation).",
+          "items": {
+            "$ref": "GroupKind"
+          },
+          "type": "array"
+        },
+        "jsonPath": {
+          "description": "This is a [JSONPath] (https://github.com/json-path/JsonPath/blob/master/README.md) expression that matches specific fields of candidate resources and it operates as a filtering parameter (resources that are not matched with this expression will not be candidates for transformation).",
+          "type": "string"
+        },
+        "namespaces": {
+          "description": "(Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string (\"\") as one of the target namespaces.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Restore": {
       "description": "Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 18",
       "id": "Restore",
@@ -2649,13 +2717,17 @@
           "enumDescriptions": [
             "Unspecified. Only allowed if no cluster-scoped resources will be restored.",
             "Do not attempt to restore the conflicting resource.",
-            "Delete the existing version before re-creating it from the Backup. Note that this is a dangerous option which could cause unintentional data loss if used inappropriately - for example, deleting a CRD will cause Kubernetes to delete all CRs of that type."
+            "Delete the existing version before re-creating it from the Backup. This is a dangerous option which could cause unintentional data loss if used inappropriately. For example, deleting a CRD will cause Kubernetes to delete all CRs of that type."
           ],
           "type": "string"
         },
         "clusterResourceRestoreScope": {
           "$ref": "ClusterResourceRestoreScope",
           "description": "Identifies the cluster-scoped resources to restore from the Backup. Not specifying it means NO cluster resource will be restored."
+        },
+        "excludedNamespaces": {
+          "$ref": "Namespaces",
+          "description": "A list of selected namespaces excluded from restoration. All namespaces except those in this list will be restored."
         },
         "namespacedResourceRestoreMode": {
           "description": "Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.",
@@ -2670,6 +2742,10 @@
             "If conflicting top-level resources (either Namespaces or ProtectedApplications, depending upon the scope) are encountered at the beginning of a restore process, the Restore will fail. If a conflict occurs during the restore process itself (e.g., because an out of band process creates conflicting resources), a conflict will be reported."
           ],
           "type": "string"
+        },
+        "noNamespaces": {
+          "description": "Do not restore any namespaced resources if set to \"True\". Specifying this field to \"False\" is not allowed.",
+          "type": "boolean"
         },
         "selectedApplications": {
           "$ref": "NamespacedNames",
@@ -2686,6 +2762,13 @@
           },
           "type": "array"
         },
+        "transformationRules": {
+          "description": "A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no transformation will occur.",
+          "items": {
+            "$ref": "TransformationRule"
+          },
+          "type": "array"
+        },
         "volumeDataRestorePolicy": {
           "description": "Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).",
           "enum": [
@@ -2696,9 +2779,9 @@
           ],
           "enumDescriptions": [
             "Unspecified (illegal).",
-            "For each PVC to be restored, will create a new underlying volume (and PV) from the corresponding VolumeBackup contained within the Backup.",
-            "For each PVC to be restored, attempt to reuse the original PV contained in the Backup (with its original underlying volume). Note that option is likely only usable when restoring a workload to its original cluster.",
-            "For each PVC to be restored, PVCs will be created without any particular action to restore data. In this case, the normal Kubernetes provisioning logic would kick in, and this would likely result in either dynamically provisioning blank PVs or binding to statically provisioned PVs."
+            "For each PVC to be restored, create a new underlying volume and PV from the corresponding VolumeBackup contained within the Backup.",
+            "For each PVC to be restored, attempt to reuse the original PV contained in the Backup (with its original underlying volume). This option is likely only usable when restoring a workload to its original cluster.",
+            "For each PVC to be restored, create PVC without any particular action to restore data. In this case, the normal Kubernetes provisioning logic would kick in, and this would likely result in either dynamically provisioning blank PVs or binding to statically provisioned PVs."
           ],
           "type": "string"
         }
@@ -2748,6 +2831,30 @@
           "$ref": "RestoreConfig",
           "description": "Required. Configuration of Restores created via this RestorePlan."
         },
+        "state": {
+          "description": "Output only. State of the RestorePlan. This State field reflects the various stages a RestorePlan can be in during the Create operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CLUSTER_PENDING",
+            "READY",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Default first value for Enums.",
+            "Waiting for cluster state to be RUNNING.",
+            "The RestorePlan has successfully been created and is ready for Restores.",
+            "RestorePlan creation has failed.",
+            "The RestorePlan is in the process of being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReason": {
+          "description": "Output only. Human-readable description of why RestorePlan is in the current `state`",
+          "readOnly": true,
+          "type": "string"
+        },
         "uid": {
           "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
@@ -2784,11 +2891,11 @@
       "type": "object"
     },
     "Schedule": {
-      "description": "Schedule defines scheduling parameters for automatically creating Backups via this BackupPlan.",
+      "description": "Defines scheduling parameters for automatically creating Backups via this BackupPlan.",
       "id": "Schedule",
       "properties": {
         "cronSchedule": {
-          "description": "A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.",
+          "description": "A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. This is mutually exclusive with the rpo_config field since at most one schedule can be defined for a BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.",
           "type": "string"
         },
         "paused": {
@@ -2871,6 +2978,69 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TransformationRule": {
+      "description": "A transformation rule to be applied against Kubernetes resources as they are selected for restoration from a Backup. A rule contains both filtering logic (which resources are subject to transform) and transformation logic.",
+      "id": "TransformationRule",
+      "properties": {
+        "description": {
+          "description": "The description is a user specified string description of the transformation rule.",
+          "type": "string"
+        },
+        "fieldActions": {
+          "description": "Required. A list of transformation rule actions to take against candidate resources. Actions are executed in order defined - this order matters, as they could potentially interfere with each other and the first operation could affect the outcome of the second operation.",
+          "items": {
+            "$ref": "TransformationRuleAction"
+          },
+          "type": "array"
+        },
+        "resourceFilter": {
+          "$ref": "ResourceFilter",
+          "description": "This field is used to specify a set of fields that should be used to determine which resources in backup should be acted upon by the supplied transformation rule actions, and this will ensure that only specific resources are affected by transformation rule actions."
+        }
+      },
+      "type": "object"
+    },
+    "TransformationRuleAction": {
+      "description": "TransformationRuleAction defines a TransformationRule action based on the JSON Patch RFC (https://www.rfc-editor.org/rfc/rfc6902)",
+      "id": "TransformationRuleAction",
+      "properties": {
+        "fromPath": {
+          "description": "A string containing a JSON Pointer value that references the location in the target document to move the value from.",
+          "type": "string"
+        },
+        "op": {
+          "description": "Required. op specifies the operation to perform.",
+          "enum": [
+            "OP_UNSPECIFIED",
+            "REMOVE",
+            "MOVE",
+            "COPY",
+            "ADD",
+            "TEST",
+            "REPLACE"
+          ],
+          "enumDescriptions": [
+            "Unspecified operation",
+            "The \"remove\" operation removes the value at the target location.",
+            "The \"move\" operation removes the value at a specified location and adds it to the target location.",
+            "The \"copy\" operation copies the value at a specified location to the target location.",
+            "The \"add\" operation performs one of the following functions, depending upon what the target location references: 1. If the target location specifies an array index, a new value is inserted into the array at the specified index. 2. If the target location specifies an object member that does not already exist, a new member is added to the object. 3. If the target location specifies an object member that does exist, that member's value is replaced.",
+            "The \"test\" operation tests that a value at the target location is equal to a specified value.",
+            "The \"replace\" operation replaces the value at the target location with a new value. The operation object MUST contain a \"value\" member whose content specifies the replacement value."
+          ],
+          "type": "string"
+        },
+        "path": {
+          "description": "A string containing a JSON-Pointer value that references a location within the target document where the operation is performed.",
+          "type": "string"
+        },
+        "value": {
+          "description": "A string that specifies the desired value in string format to use for transformation.",
+          "type": "string"
         }
       },
       "type": "object"

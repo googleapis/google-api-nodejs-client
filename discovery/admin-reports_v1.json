@@ -431,7 +431,7 @@
               "type": "string"
             },
             "date": {
-              "description": "Represents the date the usage occurred, based on PST time zone. The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.",
+              "description": "Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.",
               "location": "path",
               "pattern": "(\\d){4}-(\\d){2}-(\\d){2}",
               "required": true,
@@ -479,7 +479,7 @@
               "type": "string"
             },
             "date": {
-              "description": "Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.",
+              "description": "Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.",
               "location": "path",
               "pattern": "(\\d){4}-(\\d){2}-(\\d){2}",
               "required": true,
@@ -560,7 +560,7 @@
               "type": "string"
             },
             "date": {
-              "description": "Represents the date the usage occurred, based on GMT-7:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.",
+              "description": "Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.",
               "location": "path",
               "pattern": "(\\d){4}-(\\d){2}-(\\d){2}",
               "required": true,
@@ -623,7 +623,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230619",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {

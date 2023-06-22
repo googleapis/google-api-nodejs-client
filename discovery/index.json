@@ -44,7 +44,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/cloud-provider-access-management/access-approval/docs",
+      "documentationLink": "https://cloud.google.com/assured-workloads/access-approval/docs",
       "preferred": true
     },
     {
@@ -948,6 +948,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "checks:v1alpha",
+      "name": "checks",
+      "version": "v1alpha",
+      "title": "Checks API",
+      "description": "The Checks API contains powerful and easy-to-use privacy and compliance APIs that interact with the Checks product and its underlying technology.",
+      "discoveryRestUrl": "https://checks.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/checks",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "chromemanagement:v1",
       "name": "chromemanagement",
       "version": "v1",
@@ -1161,8 +1176,8 @@
       "id": "clouddebugger:v2",
       "name": "clouddebugger",
       "version": "v2",
-      "title": "Cloud Debugger API",
-      "description": "Examines the call stack and variables of a running application without stopping or slowing it down.",
+      "title": "Cloud Debugger API (Deprecated)",
+      "description": "Examines the call stack and variables of a running application without stopping or slowing it down. (Deprecated)",
       "discoveryRestUrl": "https://clouddebugger.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2319,7 +2334,7 @@
       "id": "dlp:v2",
       "name": "dlp",
       "version": "v2",
-      "title": "Cloud Data Loss Prevention (DLP) API",
+      "title": "Cloud Data Loss Prevention (DLP)",
       "description": "Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.",
       "discoveryRestUrl": "https://dlp.googleapis.com/$discovery/rest?version=v2",
       "icons": {
@@ -2478,21 +2493,6 @@
       },
       "documentationLink": "https://developers.google.com/domains/rdap/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "doubleclickbidmanager:v1.1",
-      "name": "doubleclickbidmanager",
-      "version": "v1.1",
-      "title": "DoubleClick Bid Manager API",
-      "description": "DoubleClick Bid Manager API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://doubleclickbidmanager.googleapis.com/$discovery/rest?version=v1.1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/bid-manager/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -3822,7 +3822,7 @@
       "name": "migrationcenter",
       "version": "v1alpha1",
       "title": "Migration Center API",
-      "description": "",
+      "description": "A unified platform that helps you accelerate your end-to-end cloud journey from your current on-premises or cloud environments to Google Cloud.",
       "discoveryRestUrl": "https://migrationcenter.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3884,21 +3884,6 @@
       "title": "My Business Account Management API",
       "description": "The My Business Account Management API provides an interface for managing access to a location on Google. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
       "discoveryRestUrl": "https://mybusinessaccountmanagement.googleapis.com/$discovery/rest?version=v1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/my-business/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "mybusinessbusinesscalls:v1",
-      "name": "mybusinessbusinesscalls",
-      "version": "v1",
-      "title": "My Business Business Calls API",
-      "description": "The My Business Business Calls API manages business calls information of a location on Google and collect insights like the number of missed calls to their location. Additional information about Business calls can be found at https://support.google.com/business/answer/9688285?p=call_history. If the Google Business Profile links to a Google Ads account and call history is turned on, calls that last longer than a specific time, and that can be attributed to an ad interaction, will show in the linked Google Ads account under the \"Calls from Ads\" conversion. If smart bidding and call conversions are used in the optimization strategy, there could be a change in ad spend. Learn more about smart bidding <https://support.google.com/google-ads/answer/7065882>. To view and perform actions on a location's calls, you need to be a `OWNER`, `CO_OWNER` or `MANAGER` of the location. Note - If you have a quota of 0 after enabling the API, please request <https://developers.google.com/my-business/content/prereqs#request-access> for GBP API access.",
-      "discoveryRestUrl": "https://mybusinessbusinesscalls.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -6133,7 +6118,7 @@
       "name": "workstations",
       "version": "v1beta",
       "title": "Cloud Workstations API",
-      "description": "",
+      "description": "Allows administrators to create managed developer environments in the cloud.",
       "discoveryRestUrl": "https://workstations.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",

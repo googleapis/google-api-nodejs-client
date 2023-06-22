@@ -327,7 +327,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPayload {
     /**
-     * Payload specific to Google One products.
+     * Product-specific payloads. Payload specific to Google One products.
      */
     googleOnePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload;
     /**
@@ -535,6 +535,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     lineItemFreeTrialEndTime?: string | null;
     /**
+     * Output only. A unique index of the subscription line item.
+     */
+    lineItemIndex?: number | null;
+    /**
      * Optional. The promotions applied on the line item. It can be: - a free trial promotion, which overrides the subscription-level free trial promotion. - an introductory pricing promotion. When used as input in Create or Provision API, specify its resource name only.
      */
     lineItemPromotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
@@ -619,6 +623,10 @@ export namespace paymentsresellersubscription_v1 {
    * Payload specific to Youtube products.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload {
+    /**
+     * Output only. The access expiration time for this line item.
+     */
+    accessEndTime?: string | null;
     /**
      * The list of eligibility_ids which are applicable for the line item.
      */

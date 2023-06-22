@@ -238,7 +238,7 @@ export namespace firebasestorage_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasestorage.projects.buckets.addFirebase({
-     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      *     bucket: 'projects/my-project/buckets/my-bucket',
      *
      *     // Request body metadata
@@ -377,7 +377,7 @@ export namespace firebasestorage_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasestorage.projects.buckets.get({
-     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      *     name: 'projects/my-project/buckets/my-bucket',
      *   });
      *   console.log(res.data);
@@ -511,7 +511,7 @@ export namespace firebasestorage_v1beta {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListBuckets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBuckets` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent Firebase project, `projects/{project_number\}`.
+     *     // Required. Resource name of the parent Firebase project, `projects/{project_id_or_number\}`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -648,7 +648,7 @@ export namespace firebasestorage_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasestorage.projects.buckets.removeFirebase({
-     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      *     bucket: 'projects/my-project/buckets/my-bucket',
      *
      *     // Request body metadata
@@ -759,7 +759,7 @@ export namespace firebasestorage_v1beta {
   export interface Params$Resource$Projects$Buckets$Addfirebase
     extends StandardParameters {
     /**
-     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      */
     bucket?: string;
 
@@ -771,7 +771,7 @@ export namespace firebasestorage_v1beta {
   export interface Params$Resource$Projects$Buckets$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      */
     name?: string;
   }
@@ -786,14 +786,14 @@ export namespace firebasestorage_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent Firebase project, `projects/{project_number\}`.
+     * Required. Resource name of the parent Firebase project, `projects/{project_id_or_number\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Buckets$Removefirebase
     extends StandardParameters {
     /**
-     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number\}/buckets/{bucket_id\}`.
      */
     bucket?: string;
 

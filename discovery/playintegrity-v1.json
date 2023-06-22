@@ -138,7 +138,7 @@
       }
     }
   },
-  "revision": "20230131",
+  "revision": "20230620",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -268,14 +268,46 @@
               "MEETS_BASIC_INTEGRITY",
               "MEETS_DEVICE_INTEGRITY",
               "MEETS_STRONG_INTEGRITY",
-              "MEETS_VIRTUAL_INTEGRITY"
+              "MEETS_VIRTUAL_INTEGRITY",
+              "MEETS_WEAK_INTEGRITY"
             ],
             "enumDescriptions": [
               "Play does not have sufficient information to evaluate device integrity",
               "App is running on a device that passes basic system integrity checks, but may not meet Android platform compatibility requirements and may not be approved to run Google Play services.",
               "App is running on GMS Android device with Google Play services.",
               "App is running on GMS Android device with Google Play services and has a strong guarantee of system integrity such as a hardware-backed keystore.",
-              "App is running on an Android emulator with Google Play services which meets core Android compatibility requirements."
+              "App is running on an Android emulator with Google Play services which meets core Android compatibility requirements.",
+              "App is running on a device that passes only weak integrity checks (is a physical device). See go/pcm-physical-device-detection for more details. Note that this label won't be served for PIA heavyweight and express for now, only for the crystal mode."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GuidanceDetails": {
+      "description": "Contains guidance details about the Integrity API response, providing additional context to the integrity verdicts.",
+      "id": "GuidanceDetails",
+      "properties": {
+        "userRemediation": {
+          "description": "This shows when there is an issue with at least one of the integrity verdicts, and provides user remediation guidance.",
+          "items": {
+            "enum": [
+              "UNKNOWN_USER_REMEDIATION",
+              "RESTORE_FACTORY_ROM",
+              "LOCK_BOOTLOADER",
+              "GET_UNMODIFIED_APP",
+              "SIGN_INTO_GOOGLE_ACCOUNT",
+              "INSTALL_APP_FROM_PLAY"
+            ],
+            "enumDescriptions": [
+              "Catch-all for unrecognized enum values. See go/protodosdonts.",
+              "The user has installed a custom ROM, and should restore the device to a clean factory ROM.",
+              "The device bootloader has been unlocked, the user should lock the bootloader.",
+              "The app is unrecognized. The user should get an unmodified version of the app.",
+              "The user has not signed into their Google account.",
+              "The user has no license. They should install or purchase the app on the Google Play Store to add it to their library."
             ],
             "type": "string"
           },
@@ -334,6 +366,10 @@
         "deviceIntegrity": {
           "$ref": "DeviceIntegrity",
           "description": "Required. Details about the device integrity."
+        },
+        "guidanceDetails": {
+          "$ref": "GuidanceDetails",
+          "description": "Additional guidance related to the integrity API response."
         },
         "requestDetails": {
           "$ref": "RequestDetails",

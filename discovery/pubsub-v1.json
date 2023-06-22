@@ -217,6 +217,7 @@
                   "type": "string"
                 },
                 "revisionId": {
+                  "deprecated": true,
                   "description": "Optional. This field is deprecated and should not be used for specifying the revision ID. The revision ID should be specified via the `name` parameter.",
                   "location": "query",
                   "type": "string"
@@ -1565,7 +1566,7 @@
       }
     }
   },
-  "revision": "20230224",
+  "revision": "20230606",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1578,6 +1579,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AvroConfig": {
+      "description": "Configuration for writing message data in Avro format. Message payloads and metadata will be written to files as an Avro binary.",
+      "id": "AvroConfig",
+      "properties": {
+        "writeMetadata": {
+          "description": "When true, write the subscription name, message_id, publish_time, attributes, and ordering_key as additional fields in the output.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1642,6 +1654,60 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudStorageConfig": {
+      "description": "Configuration for a Cloud Storage subscription.",
+      "id": "CloudStorageConfig",
+      "properties": {
+        "avroConfig": {
+          "$ref": "AvroConfig",
+          "description": "If set, message data will be written to Cloud Storage in Avro format."
+        },
+        "bucket": {
+          "description": "Required. User-provided name for the Cloud Storage bucket. The bucket must be created by the user. The bucket name must be without any prefix like \"gs://\". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).",
+          "type": "string"
+        },
+        "filenamePrefix": {
+          "description": "User-provided prefix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).",
+          "type": "string"
+        },
+        "filenameSuffix": {
+          "description": "User-provided suffix for Cloud Storage filename. See the [object naming requirements](https://cloud.google.com/storage/docs/objects#naming).",
+          "type": "string"
+        },
+        "maxBytes": {
+          "description": "The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded in cases where messages are larger than the limit.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxDuration": {
+          "description": "The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. An output-only field that indicates whether or not the subscription can receive messages.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PERMISSION_DENIED",
+            "NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The subscription can actively send messages to Cloud Storage.",
+            "Cannot write to the Cloud Storage bucket because of permission denied errors.",
+            "Cannot write to the Cloud Storage bucket because it does not exist."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "textConfig": {
+          "$ref": "TextConfig",
+          "description": "If set, message data will be written to Cloud Storage in text format."
         }
       },
       "type": "object"
@@ -1908,8 +1974,19 @@
       },
       "type": "object"
     },
+    "NoWrapper": {
+      "description": "Sets the `data` field as the HTTP body for delivery.",
+      "id": "NoWrapper",
+      "properties": {
+        "writeMetadata": {
+          "description": "When true, writes the Pub/Sub message metadata to `x-goog-pubsub-:` headers of the HTTP request. Writes the Pub/Sub message attributes to `:` headers of the HTTP request.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "OidcToken": {
-      "description": "Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). [Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).",
+      "description": "Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect).",
       "id": "OidcToken",
       "properties": {
         "audience": {
@@ -1917,6 +1994,7 @@
           "type": "string"
         },
         "serviceAccountEmail": {
+          "description": "[Service account email](https://cloud.google.com/iam/docs/service-accounts) used for generating the OIDC token. For more information on setting up authentication, see [Push subscriptions](https://cloud.google.com/pubsub/docs/push).",
           "type": "string"
         }
       },
@@ -2006,6 +2084,12 @@
       },
       "type": "object"
     },
+    "PubsubWrapper": {
+      "description": "The payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).",
+      "id": "PubsubWrapper",
+      "properties": {},
+      "type": "object"
+    },
     "PullRequest": {
       "description": "Request for the `Pull` method.",
       "id": "PullRequest",
@@ -2047,9 +2131,17 @@
           "description": "Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: `attributes { \"x-goog-version\": \"v1\" }`",
           "type": "object"
         },
+        "noWrapper": {
+          "$ref": "NoWrapper",
+          "description": "When set, the payload to the push endpoint is not wrapped."
+        },
         "oidcToken": {
           "$ref": "OidcToken",
           "description": "If specified, Pub/Sub will generate and attach an OIDC JWT token as an `Authorization` header in the HTTP request for every pushed message."
+        },
+        "pubsubWrapper": {
+          "$ref": "PubsubWrapper",
+          "description": "When set, the payload to the push endpoint is in the form of the JSON representation of a PubsubMessage (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage)."
         },
         "pushEndpoint": {
           "description": "A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use `https://example.com/push`.",
@@ -2240,7 +2332,7 @@
       "type": "object"
     },
     "Subscription": {
-      "description": "A subscription resource. If none of `push_config` or `bigquery_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.",
+      "description": "A subscription resource. If none of `push_config`, `bigquery_config`, or `cloud_storage_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.",
       "id": "Subscription",
       "properties": {
         "ackDeadlineSeconds": {
@@ -2251,6 +2343,10 @@
         "bigqueryConfig": {
           "$ref": "BigQueryConfig",
           "description": "If delivery to BigQuery is used with this subscription, this field is used to configure it."
+        },
+        "cloudStorageConfig": {
+          "$ref": "CloudStorageConfig",
+          "description": "If delivery to Google Cloud Storage is used with this subscription, this field is used to configure it."
         },
         "deadLetterPolicy": {
           "$ref": "DeadLetterPolicy",
@@ -2358,6 +2454,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "TextConfig": {
+      "description": "Configuration for writing message data in text format. Message payloads will be written to files as raw text, separated by a newline.",
+      "id": "TextConfig",
+      "properties": {},
       "type": "object"
     },
     "Topic": {

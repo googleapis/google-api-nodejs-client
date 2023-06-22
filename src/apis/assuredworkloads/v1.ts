@@ -125,7 +125,7 @@ export namespace assuredworkloads_v1 {
   }
 
   /**
-   * Request for acknowledging the violation Next Id: 4
+   * Request for acknowledging the violation Next Id: 5
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest {
     /**
@@ -189,7 +189,7 @@ export namespace assuredworkloads_v1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1Workload[];
   }
   /**
-   * Request of updating permission settings for a partner workload.
+   * Request for updating permission settings for a partner workload.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest {
     /**
@@ -404,6 +404,10 @@ export namespace assuredworkloads_v1 {
      */
     partner?: string | null;
     /**
+     * Optional. Permissions granted to the AW Partner SA account for the customer workload
+     */
+    partnerPermissions?: Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions;
+    /**
      * Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id\}
      */
     provisionedResourcesParent?: string | null;
@@ -420,7 +424,7 @@ export namespace assuredworkloads_v1 {
      */
     saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse;
     /**
-     * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored.
+     * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.
      */
     violationNotificationsEnabled?: boolean | null;
   }
@@ -429,11 +433,11 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus {
     /**
-     * Count of active Violations which are acknowledged in the Workload.
+     * Number of current orgPolicy violations which are acknowledged.
      */
     acknowledgedViolationCount?: number | null;
     /**
-     * Count of active Violations which haven't been acknowledged.
+     * Number of current orgPolicy violations which are not acknowledged.
      */
     activeViolationCount?: number | null;
   }
@@ -455,7 +459,7 @@ export namespace assuredworkloads_v1 {
     ekmProvisioningState?: string | null;
   }
   /**
-   * Settings specific to the Key Management Service. This message is deprecated. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
+   * Settings specific to the Key Management Service.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadKMSSettings {
     /**
@@ -479,10 +483,6 @@ export namespace assuredworkloads_v1 {
      * Allow partner to monitor folder and remediate violations
      */
     remediateFolderViolations?: boolean | null;
-    /**
-     * Allow partner to approve or reject Service Access requests
-     */
-    serviceAccessApprover?: boolean | null;
   }
   /**
    * Represent the resources that are children of this Workload.
@@ -510,7 +510,7 @@ export namespace assuredworkloads_v1 {
      */
     resourceId?: string | null;
     /**
-     * Indicates the type of resource. This field should be specified to correspond the id to the right resource type (CONSUMER_FOLDER or ENCRYPTION_KEYS_PROJECT)
+     * Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)
      */
     resourceType?: string | null;
   }
@@ -988,6 +988,7 @@ export namespace assuredworkloads_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "partner": "my_partner",
+     *       //   "partnerPermissions": {},
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
      *       //   "resources": [],
@@ -1108,7 +1109,7 @@ export namespace assuredworkloads_v1 {
     }
 
     /**
-     * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error.
+     * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error. In addition to assuredworkloads.workload.delete permission, the user should also have orgpolicy.policy.set permission on the deleted folder to remove Assured Workloads OrgPolicies.
      * @example
      * ```js
      * // Before running the sample:
@@ -1264,7 +1265,7 @@ export namespace assuredworkloads_v1 {
      *
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.get({
-     *     // Required. The resource name of the Workload to fetch. This is the workload's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     *     // Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
      *   });
      *   console.log(res.data);
@@ -1285,6 +1286,7 @@ export namespace assuredworkloads_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "partner": "my_partner",
+     *   //   "partnerPermissions": {},
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
@@ -1598,6 +1600,7 @@ export namespace assuredworkloads_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "partner": "my_partner",
+     *   //   "partnerPermissions": {},
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
@@ -1758,6 +1761,7 @@ export namespace assuredworkloads_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "partner": "my_partner",
+     *       //   "partnerPermissions": {},
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
      *       //   "resources": [],
@@ -1784,6 +1788,7 @@ export namespace assuredworkloads_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "partner": "my_partner",
+     *   //   "partnerPermissions": {},
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
      *   //   "resources": [],
@@ -2070,7 +2075,7 @@ export namespace assuredworkloads_v1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Workload to fetch. This is the workload's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     * Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      */
     name?: string;
   }

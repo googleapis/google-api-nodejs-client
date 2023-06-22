@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20230410",
+  "revision": "20230621",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -2498,7 +2498,7 @@
       "id": "GoogleAnalyticsAdminV1betaDataStreamWebStreamData",
       "properties": {
         "defaultUri": {
-          "description": "Immutable. Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
+          "description": "Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
           "type": "string"
         },
         "firebaseAppId": {
@@ -2507,7 +2507,7 @@
           "type": "string"
         },
         "measurementId": {
-          "description": "Output only. Analytics \"Measurement ID\", without the \"G-\" prefix. Example: \"G-1A2BCD345E\" would just be \"1A2BCD345E\"",
+          "description": "Output only. Analytics Measurement ID. Example: \"G-1A2BCD345E\"",
           "readOnly": true,
           "type": "string"
         }

@@ -489,6 +489,15 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$DeactivateSubscriptionOfferRequest {}
   /**
+   * Information related to deferred item replacement.
+   */
+  export interface Schema$DeferredItemReplacement {
+    /**
+     * The product_id going to replace the existing product_id.
+     */
+    productId?: string | null;
+  }
+  /**
    * Represents a deobfuscation file.
    */
   export interface Schema$DeobfuscationFile {
@@ -1682,11 +1691,11 @@ export namespace androidpublisher_v3 {
     taxTier?: string | null;
   }
   /**
-   * The version of the available regions being used for the specified resource.
+   * The version of the available regions being used for the specified resource. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353).
    */
   export interface Schema$RegionsVersion {
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     * Required. The latest version is 2022/02.
      */
     version?: string | null;
   }
@@ -2102,6 +2111,10 @@ export namespace androidpublisher_v3 {
      * The item is auto renewing.
      */
     autoRenewingPlan?: Schema$AutoRenewingPlan;
+    /**
+     * Information for deferred item replacement.
+     */
+    deferredItemReplacement?: Schema$DeferredItemReplacement;
     /**
      * Time at which the subscription expired or will expire unless the access is extended (ex. renews).
      */
@@ -10237,7 +10250,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Deletes an in-app product (i.e. a managed product or a subscription).
+     * Deletes an in-app product (i.e. a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -10362,7 +10375,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Gets an in-app product, which can be a managed product or a subscription.
+     * Gets an in-app product, which can be a managed product or a subscription. This method should no longer be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -10506,7 +10519,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Creates an in-app product (i.e. a managed product or a subscription).
+     * Creates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -10670,7 +10683,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Lists all in-app products - both managed products and subscriptions. If an app has a large number of in-app products, the response may be paginated. In this case the response field `tokenPagination.nextPageToken` will be set and the caller should provide its value as a `token` request parameter to retrieve the next page.
+     * Lists all in-app products - both managed products and subscriptions. If an app has a large number of in-app products, the response may be paginated. In this case the response field `tokenPagination.nextPageToken` will be set and the caller should provide its value as a `token` request parameter to retrieve the next page. This method should no longer be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -10816,7 +10829,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Patches an in-app product (i.e. a managed product or a subscription).
+     * Patches an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -10982,7 +10995,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Updates an in-app product (i.e. a managed product or a subscription).
+     * Updates an in-app product (i.e. a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -11970,7 +11983,7 @@ export namespace androidpublisher_v3 {
      *     packageName: 'placeholder-value',
      *     // Required. The ID to use for the subscription. For the requirements on this format, see the documentation of the product_id field on the Subscription resource.
      *     productId: 'placeholder-value',
-     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     *     // Required. The latest version is 2022/02.
      *     'regionsVersion.version': 'placeholder-value',
      *
      *     // Request body metadata
@@ -12528,7 +12541,7 @@ export namespace androidpublisher_v3 {
      *     packageName: 'placeholder-value',
      *     // Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must be composed of lower-case letters (a-z), numbers (0-9), underscores (_) and dots (.). It must start with a lower-case letter or number, and be between 1 and 40 (inclusive) characters in length.
      *     productId: 'placeholder-value',
-     *     // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     *     // Required. The latest version is 2022/02.
      *     'regionsVersion.version': 'placeholder-value',
      *     // Required. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -12679,7 +12692,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     * Required. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
 
@@ -12740,7 +12753,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     * Required. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
     /**
@@ -13616,7 +13629,7 @@ export namespace androidpublisher_v3 {
      *       packageName: 'placeholder-value',
      *       // Required. The parent subscription (ID) for which the offer should be created. Must be equal to the product_id field on the SubscriptionOffer resource.
      *       productId: 'placeholder-value',
-     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     *       // Required. The latest version is 2022/02.
      *       'regionsVersion.version': 'placeholder-value',
      *
      *       // Request body metadata
@@ -14374,7 +14387,7 @@ export namespace androidpublisher_v3 {
      *       packageName: 'placeholder-value',
      *       // Required. Immutable. The ID of the parent subscription this offer belongs to.
      *       productId: 'placeholder-value',
-     *       // Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     *       // Required. The latest version is 2022/02.
      *       'regionsVersion.version': 'placeholder-value',
      *       // Required. The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -14553,7 +14566,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     * Required. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
 
@@ -14666,7 +14679,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
     /**
-     * Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/02.
+     * Required. The latest version is 2022/02.
      */
     'regionsVersion.version'?: string;
     /**

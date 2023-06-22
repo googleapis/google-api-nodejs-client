@@ -204,7 +204,7 @@ export namespace healthcare_v1beta1 {
      */
     entities?: Schema$Entity[];
     /**
-     * entity_mentions contains all the annotated medical entities that were mentioned in the provided document.
+     * The `entity_mentions` field contains all the annotated medical entities that were mentioned in the provided document.
      */
     entityMentions?: Schema$EntityMention[];
     /**
@@ -706,6 +706,10 @@ export namespace healthcare_v1beta1 {
      * Configures de-identification of text wherever it is found in the source_dataset.
      */
     text?: Schema$TextConfig;
+    /**
+     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated [`DicomConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.dicom_config) or [`FhirConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.fhir_config) are used, then `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.
+     */
+    useRegionalDataProcessing?: boolean | null;
   }
   /**
    * Redacts identifying information from the specified dataset.
@@ -887,6 +891,10 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$EntityMention {
     /**
+     * Additional information about the entity mention. For example, for an entity mention of type `DATE` this can be its more specific date types from the following list: `ADMISSION_DATE`, `CONSULTATION_DATE`, `DISCHARGE_DATE`, `SERVICE_DATE`, `VISIT_DATE`, `DIAGNOSIS_DATE`, `MED_STARTED_DATE`, `MED_ENDED_DATE`, `NOTE_DATE`, `PROCEDURE_DATE`, `RADIATION_STARTED_DATE`, `RADIATION_ENDED_DATE`, `STAGE_DATE`
+     */
+    additionalInfo?: Schema$Feature[];
+    /**
      * The certainty assessment of the entity mention. Its value is one of: LIKELY, SOMEWHAT_LIKELY, UNCERTAIN, SOMEWHAT_UNLIKELY, UNLIKELY, CONDITIONAL
      */
     certaintyAssessment?: Schema$Feature;
@@ -1052,7 +1060,7 @@ export namespace healthcare_v1beta1 {
      */
     endTime?: string | null;
     /**
-     * Exports to a Cloud Storage destination.
+     * Export to a Cloud Storage destination.
      */
     gcsDestination?: Schema$GcsDestination;
     /**
@@ -1171,7 +1179,7 @@ export namespace healthcare_v1beta1 {
      */
     sendFullResource?: boolean | null;
     /**
-     * Whether to send full FHIR resource to this pubsub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
+     * Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
      */
     sendPreviousResourceOnDelete?: boolean | null;
   }
@@ -2042,7 +2050,7 @@ export namespace healthcare_v1beta1 {
     userDataMappings?: Schema$UserDataMapping[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**

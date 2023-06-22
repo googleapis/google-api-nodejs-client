@@ -170,7 +170,7 @@ export namespace gmail_v1 {
      */
     emailAddress?: string | null;
     /**
-     * If a key pair is associated, the identifier of the key pair, CseKeyPair.
+     * If a key pair is associated, the ID of the key pair, CseKeyPair.
      */
     primaryKeyPairId?: string | null;
   }
@@ -934,6 +934,10 @@ export namespace gmail_v1 {
      */
     labelFilterAction?: string | null;
     /**
+     * Filtering behavior of labelIds list specified. This field replaces label_filter_action; if set, label_filter_action is ignored.
+     */
+    labelFilterBehavior?: string | null;
+    /**
      * List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out. If specified then dictates which labels are required for a push notification to be generated.
      */
     labelIds?: string[] | null;
@@ -1277,6 +1281,7 @@ export namespace gmail_v1 {
      *       // request body parameters
      *       // {
      *       //   "labelFilterAction": "my_labelFilterAction",
+     *       //   "labelFilterBehavior": "my_labelFilterBehavior",
      *       //   "labelIds": [],
      *       //   "topicName": "my_topicName"
      *       // }

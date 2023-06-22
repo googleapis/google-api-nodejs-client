@@ -243,7 +243,7 @@
       }
     }
   },
-  "revision": "20230425",
+  "revision": "20230504",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AgeRangeInfo": {
@@ -356,6 +356,21 @@
             "Undetermined gender."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__Keyword": {
+      "description": "A Keyword criterion segment.",
+      "id": "GoogleAdsSearchads360V0Common__Keyword",
+      "properties": {
+        "adGroupCriterion": {
+          "description": "The AdGroupCriterion resource name.",
+          "type": "string"
+        },
+        "info": {
+          "$ref": "GoogleAdsSearchads360V0Common__KeywordInfo",
+          "description": "Keyword info."
         }
       },
       "type": "object"
@@ -971,11 +986,97 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo": {
+      "description": "An expanded dynamic search ad.",
+      "id": "GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo",
+      "properties": {
+        "adTrackingId": {
+          "description": "The tracking id of the ad.",
+          "format": "int64",
+          "type": "string"
+        },
+        "description1": {
+          "description": "The first line of the ad's description.",
+          "type": "string"
+        },
+        "description2": {
+          "description": "The second line of the ad's description.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo": {
+      "description": "A Search Ads 360 expanded text ad.",
+      "id": "GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo",
+      "properties": {
+        "adTrackingId": {
+          "description": "The tracking id of the ad.",
+          "format": "int64",
+          "type": "string"
+        },
+        "description1": {
+          "description": "The first line of the ad's description.",
+          "type": "string"
+        },
+        "description2": {
+          "description": "The second line of the ad's description.",
+          "type": "string"
+        },
+        "headline": {
+          "description": "The headline of the ad.",
+          "type": "string"
+        },
+        "headline2": {
+          "description": "The second headline of the ad.",
+          "type": "string"
+        },
+        "headline3": {
+          "description": "The third headline of the ad.",
+          "type": "string"
+        },
+        "path1": {
+          "description": "Text appended to the auto-generated visible URL with a delimiter.",
+          "type": "string"
+        },
+        "path2": {
+          "description": "Text appended to path1 with a delimiter.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__SearchAds360ProductAdInfo": {
+      "description": "A Search Ads 360 product ad.",
+      "id": "GoogleAdsSearchads360V0Common__SearchAds360ProductAdInfo",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo": {
+      "description": "A Search Ads 360 responsive search ad.",
+      "id": "GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo",
+      "properties": {
+        "adTrackingId": {
+          "description": "The tracking id of the ad.",
+          "format": "int64",
+          "type": "string"
+        },
+        "path1": {
+          "description": "Text appended to the auto-generated visible URL with a delimiter.",
+          "type": "string"
+        },
+        "path2": {
+          "description": "Text appended to path1 with a delimiter.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo": {
       "description": "A Search Ads 360 text ad.",
       "id": "GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo",
       "properties": {
-        "adTrackId": {
+        "adTrackingId": {
           "description": "The tracking id of the ad.",
           "format": "int64",
           "type": "string"
@@ -1122,6 +1223,10 @@
             "Other device types."
           ],
           "type": "string"
+        },
+        "keyword": {
+          "$ref": "GoogleAdsSearchads360V0Common__Keyword",
+          "description": "Keyword criterion."
         },
         "month": {
           "description": "Month as represented by the date of the first day of a month. Formatted as yyyy-MM-dd.",
@@ -2259,6 +2364,14 @@
           "description": "The URL that appears in the ad description for some ad formats.",
           "type": "string"
         },
+        "expandedDynamicSearchAd": {
+          "$ref": "GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo",
+          "description": "Immutable. Details pertaining to an expanded dynamic search ad."
+        },
+        "expandedTextAd": {
+          "$ref": "GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo",
+          "description": "Immutable. Details pertaining to an expanded text ad."
+        },
         "finalUrls": {
           "description": "The list of possible final URLs after all cross-domain redirects for the ad.",
           "items": {
@@ -2276,9 +2389,17 @@
           "description": "Immutable. The name of the ad. This is only used to be able to identify the ad. It does not need to be unique and does not affect the served ad. The name field is currently only supported for DisplayUploadAd, ImageAd, ShoppingComparisonListingAd and VideoAd.",
           "type": "string"
         },
+        "productAd": {
+          "$ref": "GoogleAdsSearchads360V0Common__SearchAds360ProductAdInfo",
+          "description": "Immutable. Details pertaining to a product ad."
+        },
         "resourceName": {
           "description": "Immutable. The resource name of the ad. Ad resource names have the form: `customers/{customer_id}/ads/{ad_id}`",
           "type": "string"
+        },
+        "responsiveSearchAd": {
+          "$ref": "GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo",
+          "description": "Immutable. Details pertaining to a responsive search ad."
         },
         "textAd": {
           "$ref": "GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo",
@@ -2830,7 +2951,8 @@
         },
         "location": {
           "$ref": "GoogleAdsSearchads360V0Common__LocationInfo",
-          "description": "Immutable. Location."
+          "description": "Output only. Location.",
+          "readOnly": true
         },
         "negative": {
           "description": "Immutable. Whether to target (`false`) or exclude (`true`) the criterion. This field is immutable. To switch a criterion from positive to negative, remove then re-add it.",
@@ -3450,7 +3572,7 @@
               "The asset is linked for use as a Promotion extension.",
               "The asset is linked for use as a Callout extension.",
               "The asset is linked for use as a Structured Snippet extension.",
-              "The asset is linked for use as a Sitelink extension.",
+              "The asset is linked for use as a Sitelink.",
               "The asset is linked for use as a Mobile App extension.",
               "The asset is linked for use as a Hotel Callout extension.",
               "The asset is linked for use as a Call extension.",

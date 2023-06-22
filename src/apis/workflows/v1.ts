@@ -309,7 +309,7 @@ export namespace workflows_v1 {
      */
     revisionCreateTime?: string | null;
     /**
-     * Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is "000001-a4d", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters.
+     * Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is "000001-a4d", where the first six characters define the zero-padded revision ordinal number. They are followed by a hyphen and three hexadecimal random characters.
      */
     revisionId?: string | null;
     /**
@@ -1410,7 +1410,7 @@ export namespace workflows_v1 {
      *   const res = await workflows.projects.locations.workflows.get({
      *     // Required. Name of the workflow for which information should be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      *     name: 'projects/my-project/locations/my-location/workflows/my-workflow',
-     *     // Optional. Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is "000001-a4d", where the first 6 characters define the zero-padded decimal revision number. They are followed by a hyphen and 3 hexadecimal characters. (go/wf_adr_clh_1)
+     *     // Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is "000001-a4d", where the first six characters define the zero-padded decimal revision number. They are followed by a hyphen and three hexadecimal characters.
      *     revisionId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1848,7 +1848,7 @@ export namespace workflows_v1 {
      */
     name?: string;
     /**
-     * Optional. Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is "000001-a4d", where the first 6 characters define the zero-padded decimal revision number. They are followed by a hyphen and 3 hexadecimal characters. (go/wf_adr_clh_1)
+     * Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is "000001-a4d", where the first six characters define the zero-padded decimal revision number. They are followed by a hyphen and three hexadecimal characters.
      */
     revisionId?: string;
   }

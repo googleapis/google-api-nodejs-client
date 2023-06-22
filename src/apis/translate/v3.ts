@@ -694,7 +694,7 @@ export namespace translate_v3 {
     operations?: Schema$Operation[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -796,6 +796,41 @@ export namespace translate_v3 {
      * Google Cloud Storage destination for output content. For every single input file (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateTextRequest). Output files (tsv) generated are compliant with RFC 4180 except that record delimiters are '\n' instead of '\r\n'. We don't provide any way to change record delimiters. While the input files are being processed, we write/update an index file 'index.csv' under 'output_uri_prefix' (for example, gs://translation-test/index.csv) The index file is generated/updated as new files are being translated. The format is: input_file,target_language_code,translations_file,errors_file, glossary_translations_file,glossary_errors_file input_file is one file we matched using gcs_source.input_uri. target_language_code is provided in the request. translations_file contains the translations. (details provided below) errors_file contains the errors during processing of the file. (details below). Both translations_file and errors_file could be empty strings if we have no content to output. glossary_translations_file and glossary_errors_file are always empty strings if the input_file is tsv. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). Since index.csv will be keeping updated during the process, please make sure there is no custom retention policy applied on the output bucket that may avoid file updating. (https://cloud.google.com/storage/docs/bucket-lock#retention-policy) The format of translations_file (for target language code 'trg') is: `gs://translation_test/a_b_c_'trg'_translations.[extension]` If the input file extension is tsv, the output has the following columns: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: translation without applying a glossary. Empty string if there is an error. Column 4 (only present if a glossary is provided in the request): translation after applying the glossary. Empty string if there is an error applying the glossary. Could be same string as column 3 if there is no glossary applied. If input file extension is a txt or html, the translation is directly written to the output file. If glossary is requested, a separate glossary_translations_file has format of gs://translation_test/a_b_c_'trg'_glossary_translations.[extension] The format of errors file (for target language code 'trg') is: gs://translation_test/a_b_c_'trg'_errors.[extension] If the input file extension is tsv, errors_file contains the following: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: Error detail for the translation. Could be empty. Column 4 (only present if a glossary is provided in the request): Error when applying the glossary. If the input file extension is txt or html, glossary_error_file will be generated that contains error details. glossary_error_file has format of gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]
      */
     gcsDestination?: Schema$GcsDestination;
+  }
+  /**
+   * A single romanization response.
+   */
+  export interface Schema$Romanization {
+    /**
+     * The ISO-639 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.
+     */
+    detectedLanguageCode?: string | null;
+    /**
+     * Romanized text. If an error occurs during romanization, this field might be excluded from the response.
+     */
+    romanizedText?: string | null;
+  }
+  /**
+   * The request message for synchronous romanization.
+   */
+  export interface Schema$RomanizeTextRequest {
+    /**
+     * Required. The content of the input in string format.
+     */
+    contents?: string[] | null;
+    /**
+     * Optional. The ISO-639 language code of the input text if known, for example, "hi" or "zh". If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language for each content in the response.
+     */
+    sourceLanguageCode?: string | null;
+  }
+  /**
+   * The response message for synchronous romanization.
+   */
+  export interface Schema$RomanizeTextResponse {
+    /**
+     * Text romanization responses. This field has the same length as `contents`.
+     */
+    romanizations?: Schema$Romanization[];
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -959,6 +994,10 @@ export namespace translate_v3 {
      * Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in Language Support.
      */
     targetLanguageCode?: string | null;
+    /**
+     * Optional. Transliteration to be applied.
+     */
+    transliterationConfig?: Schema$TransliterationConfig;
   }
   export interface Schema$TranslateTextResponse {
     /**
@@ -990,6 +1029,15 @@ export namespace translate_v3 {
      * Text translated into the target language. If an error occurs during translation, this field might be excluded from the response.
      */
     translatedText?: string | null;
+  }
+  /**
+   * Configures transliteration feature on top of translation.
+   */
+  export interface Schema$TransliterationConfig {
+    /**
+     * If true, source text in romanized form can be translated to the target language.
+     */
+    enableTransliteration?: boolean | null;
   }
   /**
    * The request message for Operations.WaitOperation.
@@ -1301,6 +1349,154 @@ export namespace translate_v3 {
     }
 
     /**
+     * Romanize input text written in non-Latin scripts to Latin text.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.romanizeText({
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contents": [],
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "romanizations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    romanizeText(
+      params: Params$Resource$Projects$Romanizetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    romanizeText(
+      params?: Params$Resource$Projects$Romanizetext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RomanizeTextResponse>;
+    romanizeText(
+      params: Params$Resource$Projects$Romanizetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    romanizeText(
+      params: Params$Resource$Projects$Romanizetext,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RomanizeTextResponse>,
+      callback: BodyResponseCallback<Schema$RomanizeTextResponse>
+    ): void;
+    romanizeText(
+      params: Params$Resource$Projects$Romanizetext,
+      callback: BodyResponseCallback<Schema$RomanizeTextResponse>
+    ): void;
+    romanizeText(
+      callback: BodyResponseCallback<Schema$RomanizeTextResponse>
+    ): void;
+    romanizeText(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Romanizetext
+        | BodyResponseCallback<Schema$RomanizeTextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RomanizeTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RomanizeTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RomanizeTextResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Romanizetext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Romanizetext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}:romanizeText').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RomanizeTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RomanizeTextResponse>(parameters);
+      }
+    }
+
+    /**
      * Translates input text and returns translated text.
      * @example
      * ```js
@@ -1343,7 +1539,8 @@ export namespace translate_v3 {
      *       //   "mimeType": "my_mimeType",
      *       //   "model": "my_model",
      *       //   "sourceLanguageCode": "my_sourceLanguageCode",
-     *       //   "targetLanguageCode": "my_targetLanguageCode"
+     *       //   "targetLanguageCode": "my_targetLanguageCode",
+     *       //   "transliterationConfig": {}
      *       // }
      *     },
      *   });
@@ -1481,6 +1678,18 @@ export namespace translate_v3 {
      * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}` or `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Romanizetext
+    extends StandardParameters {
+    /**
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RomanizeTextRequest;
   }
   export interface Params$Resource$Projects$Translatetext
     extends StandardParameters {
@@ -2381,6 +2590,154 @@ export namespace translate_v3 {
     }
 
     /**
+     * Romanize input text written in non-Latin scripts to Latin text.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.romanizeText({
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contents": [],
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "romanizations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    romanizeText(
+      params: Params$Resource$Projects$Locations$Romanizetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    romanizeText(
+      params?: Params$Resource$Projects$Locations$Romanizetext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RomanizeTextResponse>;
+    romanizeText(
+      params: Params$Resource$Projects$Locations$Romanizetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    romanizeText(
+      params: Params$Resource$Projects$Locations$Romanizetext,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RomanizeTextResponse>,
+      callback: BodyResponseCallback<Schema$RomanizeTextResponse>
+    ): void;
+    romanizeText(
+      params: Params$Resource$Projects$Locations$Romanizetext,
+      callback: BodyResponseCallback<Schema$RomanizeTextResponse>
+    ): void;
+    romanizeText(
+      callback: BodyResponseCallback<Schema$RomanizeTextResponse>
+    ): void;
+    romanizeText(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Romanizetext
+        | BodyResponseCallback<Schema$RomanizeTextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RomanizeTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RomanizeTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RomanizeTextResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Romanizetext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Romanizetext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}:romanizeText').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RomanizeTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RomanizeTextResponse>(parameters);
+      }
+    }
+
+    /**
      * Translates documents in synchronous mode.
      * @example
      * ```js
@@ -2583,7 +2940,8 @@ export namespace translate_v3 {
      *       //   "mimeType": "my_mimeType",
      *       //   "model": "my_model",
      *       //   "sourceLanguageCode": "my_sourceLanguageCode",
-     *       //   "targetLanguageCode": "my_targetLanguageCode"
+     *       //   "targetLanguageCode": "my_targetLanguageCode",
+     *       //   "transliterationConfig": {}
      *       // }
      *     },
      *   });
@@ -2771,6 +3129,18 @@ export namespace translate_v3 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Romanizetext
+    extends StandardParameters {
+    /**
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}` or `projects/{project-number-or-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RomanizeTextRequest;
   }
   export interface Params$Resource$Projects$Locations$Translatedocument
     extends StandardParameters {

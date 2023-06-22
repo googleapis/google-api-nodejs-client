@@ -178,6 +178,31 @@
           "resources": {
             "repositories": {
               "methods": {
+                "computeAccessTokenStatus": {
+                  "description": "Computes a Repository's Git access token status.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:computeAccessTokenStatus",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.repositories.computeAccessTokenStatus",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:computeAccessTokenStatus",
+                  "response": {
+                    "$ref": "ComputeRepositoryAccessTokenStatusResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a new Repository in a given project and location.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories",
@@ -1791,7 +1816,7 @@
       }
     }
   },
-  "revision": "20230408",
+  "revision": "20230603",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2079,6 +2104,29 @@
         "target": {
           "$ref": "Target",
           "description": "This action's identifier. Unique within the compilation result."
+        }
+      },
+      "type": "object"
+    },
+    "ComputeRepositoryAccessTokenStatusResponse": {
+      "description": "`ComputeRepositoryAccessTokenStatus` response message.",
+      "id": "ComputeRepositoryAccessTokenStatusResponse",
+      "properties": {
+        "tokenStatus": {
+          "description": "Indicates the status of the Git access token.",
+          "enum": [
+            "TOKEN_STATUS_UNSPECIFIED",
+            "NOT_FOUND",
+            "INVALID",
+            "VALID"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The token could not be found in Secret Manager (or the Dataform Service Account did not have permission to access it).",
+            "The token could not be used to authenticate against the Git remote.",
+            "The token was used successfully to authenticate against the Git remote."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2501,7 +2549,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

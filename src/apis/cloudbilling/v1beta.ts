@@ -911,7 +911,7 @@ export namespace cloudbilling_v1beta {
      *
      *   // Do the magic
      *   const res = await cloudbilling.billingAccounts.estimateCostScenario({
-     *     // Resource name of the billing account for the cost estimate. The resource name has the form `billingAccounts/{billing_acount_id\}`. For example, `billingAccounts/012345-567890-ABCDEF` is the resource name for billing account `012345-567890-ABCDEF`. Must be specified.
+     *     // Resource name of the billing account for the cost estimate. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF` is the resource name for billing account `012345-567890-ABCDEF`. Must be specified.
      *     billingAccount: 'billingAccounts/my-billingAccount',
      *
      *     // Request body metadata
@@ -1033,7 +1033,7 @@ export namespace cloudbilling_v1beta {
   export interface Params$Resource$Billingaccounts$Estimatecostscenario
     extends StandardParameters {
     /**
-     * Resource name of the billing account for the cost estimate. The resource name has the form `billingAccounts/{billing_acount_id\}`. For example, `billingAccounts/012345-567890-ABCDEF` is the resource name for billing account `012345-567890-ABCDEF`. Must be specified.
+     * Resource name of the billing account for the cost estimate. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF` is the resource name for billing account `012345-567890-ABCDEF`. Must be specified.
      */
     billingAccount?: string;
 

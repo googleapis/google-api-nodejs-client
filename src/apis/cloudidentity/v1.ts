@@ -290,9 +290,17 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1AndroidAttributes {
     /**
+     * Whether the device passes Android CTS compliance.
+     */
+    ctsProfileMatch?: boolean | null;
+    /**
      * Whether applications from unknown sources can be installed on device.
      */
     enabledUnknownSources?: boolean | null;
+    /**
+     * Whether any potentially harmful apps were detected on the device.
+     */
+    hasPotentiallyHarmfulApps?: boolean | null;
     /**
      * Whether this account is on an owner/primary profile. For phones, only true for owner profiles. Android 4+ devices can have secondary or restricted user profiles.
      */
@@ -305,6 +313,14 @@ export namespace cloudidentity_v1 {
      * Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the "Enforce Work Profile" policy.
      */
     supportsWorkProfile?: boolean | null;
+    /**
+     * Whether Android verified boot status is GREEN.
+     */
+    verifiedBoot?: boolean | null;
+    /**
+     * Whether Google Play Protect Verify Apps is enabled.
+     */
+    verifyAppsEnabled?: boolean | null;
   }
   /**
    * Metadata for ApproveDeviceUser LRO.
@@ -7575,7 +7591,11 @@ export namespace cloudidentity_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

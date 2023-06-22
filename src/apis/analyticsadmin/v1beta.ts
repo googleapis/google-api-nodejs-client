@@ -755,7 +755,7 @@ export namespace analyticsadmin_v1beta {
    */
   export interface Schema$GoogleAnalyticsAdminV1betaDataStreamWebStreamData {
     /**
-     * Immutable. Domain name of the web app being measured, or empty. Example: "http://www.google.com", "https://www.google.com"
+     * Domain name of the web app being measured, or empty. Example: "http://www.google.com", "https://www.google.com"
      */
     defaultUri?: string | null;
     /**
@@ -763,7 +763,7 @@ export namespace analyticsadmin_v1beta {
      */
     firebaseAppId?: string | null;
     /**
-     * Output only. Analytics "Measurement ID", without the "G-" prefix. Example: "G-1A2BCD345E" would just be "1A2BCD345E"
+     * Output only. Analytics Measurement ID. Example: "G-1A2BCD345E"
      */
     measurementId?: string | null;
   }

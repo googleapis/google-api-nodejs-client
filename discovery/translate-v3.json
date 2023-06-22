@@ -175,6 +175,35 @@
             "https://www.googleapis.com/auth/cloud-translation"
           ]
         },
+        "romanizeText": {
+          "description": "Romanize input text written in non-Latin scripts to Latin text.",
+          "flatPath": "v3/projects/{projectsId}:romanizeText",
+          "httpMethod": "POST",
+          "id": "translate.projects.romanizeText",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+parent}:romanizeText",
+          "request": {
+            "$ref": "RomanizeTextRequest"
+          },
+          "response": {
+            "$ref": "RomanizeTextResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-translation"
+          ]
+        },
         "translateText": {
           "description": "Translates input text and returns translated text.",
           "flatPath": "v3/projects/{projectsId}:translateText",
@@ -391,6 +420,35 @@
               "path": "v3/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-translation"
+              ]
+            },
+            "romanizeText": {
+              "description": "Romanize input text written in non-Latin scripts to Latin text.",
+              "flatPath": "v3/projects/{projectsId}/locations/{locationsId}:romanizeText",
+              "httpMethod": "POST",
+              "id": "translate.projects.locations.romanizeText",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}:romanizeText",
+              "request": {
+                "$ref": "RomanizeTextRequest"
+              },
+              "response": {
+                "$ref": "RomanizeTextResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1286,7 +1344,7 @@
       }
     }
   },
-  "revision": "20230407",
+  "revision": "20230526",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -2029,7 +2087,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2163,6 +2221,53 @@
         "gcsDestination": {
           "$ref": "GcsDestination",
           "description": "Google Cloud Storage destination for output content. For every single input file (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateTextRequest). Output files (tsv) generated are compliant with RFC 4180 except that record delimiters are '\\n' instead of '\\r\\n'. We don't provide any way to change record delimiters. While the input files are being processed, we write/update an index file 'index.csv' under 'output_uri_prefix' (for example, gs://translation-test/index.csv) The index file is generated/updated as new files are being translated. The format is: input_file,target_language_code,translations_file,errors_file, glossary_translations_file,glossary_errors_file input_file is one file we matched using gcs_source.input_uri. target_language_code is provided in the request. translations_file contains the translations. (details provided below) errors_file contains the errors during processing of the file. (details below). Both translations_file and errors_file could be empty strings if we have no content to output. glossary_translations_file and glossary_errors_file are always empty strings if the input_file is tsv. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). Since index.csv will be keeping updated during the process, please make sure there is no custom retention policy applied on the output bucket that may avoid file updating. (https://cloud.google.com/storage/docs/bucket-lock#retention-policy) The format of translations_file (for target language code 'trg') is: `gs://translation_test/a_b_c_'trg'_translations.[extension]` If the input file extension is tsv, the output has the following columns: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: translation without applying a glossary. Empty string if there is an error. Column 4 (only present if a glossary is provided in the request): translation after applying the glossary. Empty string if there is an error applying the glossary. Could be same string as column 3 if there is no glossary applied. If input file extension is a txt or html, the translation is directly written to the output file. If glossary is requested, a separate glossary_translations_file has format of gs://translation_test/a_b_c_'trg'_glossary_translations.[extension] The format of errors file (for target language code 'trg') is: gs://translation_test/a_b_c_'trg'_errors.[extension] If the input file extension is tsv, errors_file contains the following: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: Error detail for the translation. Could be empty. Column 4 (only present if a glossary is provided in the request): Error when applying the glossary. If the input file extension is txt or html, glossary_error_file will be generated that contains error details. glossary_error_file has format of gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]"
+        }
+      },
+      "type": "object"
+    },
+    "Romanization": {
+      "description": "A single romanization response.",
+      "id": "Romanization",
+      "properties": {
+        "detectedLanguageCode": {
+          "description": "The ISO-639 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.",
+          "type": "string"
+        },
+        "romanizedText": {
+          "description": "Romanized text. If an error occurs during romanization, this field might be excluded from the response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RomanizeTextRequest": {
+      "description": "The request message for synchronous romanization.",
+      "id": "RomanizeTextRequest",
+      "properties": {
+        "contents": {
+          "description": "Required. The content of the input in string format.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sourceLanguageCode": {
+          "description": "Optional. The ISO-639 language code of the input text if known, for example, \"hi\" or \"zh\". If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language for each content in the response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RomanizeTextResponse": {
+      "description": "The response message for synchronous romanization.",
+      "id": "RomanizeTextResponse",
+      "properties": {
+        "romanizations": {
+          "description": "Text romanization responses. This field has the same length as `contents`.",
+          "items": {
+            "$ref": "Romanization"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2360,6 +2465,10 @@
         "targetLanguageCode": {
           "description": "Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in Language Support.",
           "type": "string"
+        },
+        "transliterationConfig": {
+          "$ref": "TransliterationConfig",
+          "description": "Optional. Transliteration to be applied."
         }
       },
       "type": "object"
@@ -2403,6 +2512,17 @@
         "translatedText": {
           "description": "Text translated into the target language. If an error occurs during translation, this field might be excluded from the response.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransliterationConfig": {
+      "description": "Configures transliteration feature on top of translation.",
+      "id": "TransliterationConfig",
+      "properties": {
+        "enableTransliteration": {
+          "description": "If true, source text in romanized form can be translated to the target language.",
+          "type": "boolean"
         }
       },
       "type": "object"

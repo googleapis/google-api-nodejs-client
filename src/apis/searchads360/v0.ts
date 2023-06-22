@@ -175,6 +175,19 @@ export namespace searchads360_v0 {
     type?: string | null;
   }
   /**
+   * A Keyword criterion segment.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__Keyword {
+    /**
+     * The AdGroupCriterion resource name.
+     */
+    adGroupCriterion?: string | null;
+    /**
+     * Keyword info.
+     */
+    info?: Schema$GoogleAdsSearchads360V0Common__KeywordInfo;
+  }
+  /**
    * A keyword criterion.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__KeywordInfo {
@@ -582,13 +595,88 @@ export namespace searchads360_v0 {
     optIn?: boolean | null;
   }
   /**
+   * An expanded dynamic search ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo {
+    /**
+     * The tracking id of the ad.
+     */
+    adTrackingId?: string | null;
+    /**
+     * The first line of the ad's description.
+     */
+    description1?: string | null;
+    /**
+     * The second line of the ad's description.
+     */
+    description2?: string | null;
+  }
+  /**
+   * A Search Ads 360 expanded text ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo {
+    /**
+     * The tracking id of the ad.
+     */
+    adTrackingId?: string | null;
+    /**
+     * The first line of the ad's description.
+     */
+    description1?: string | null;
+    /**
+     * The second line of the ad's description.
+     */
+    description2?: string | null;
+    /**
+     * The headline of the ad.
+     */
+    headline?: string | null;
+    /**
+     * The second headline of the ad.
+     */
+    headline2?: string | null;
+    /**
+     * The third headline of the ad.
+     */
+    headline3?: string | null;
+    /**
+     * Text appended to the auto-generated visible URL with a delimiter.
+     */
+    path1?: string | null;
+    /**
+     * Text appended to path1 with a delimiter.
+     */
+    path2?: string | null;
+  }
+  /**
+   * A Search Ads 360 product ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__SearchAds360ProductAdInfo {}
+  /**
+   * A Search Ads 360 responsive search ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo {
+    /**
+     * The tracking id of the ad.
+     */
+    adTrackingId?: string | null;
+    /**
+     * Text appended to the auto-generated visible URL with a delimiter.
+     */
+    path1?: string | null;
+    /**
+     * Text appended to path1 with a delimiter.
+     */
+    path2?: string | null;
+  }
+  /**
    * A Search Ads 360 text ad.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo {
     /**
      * The tracking id of the ad.
      */
-    adTrackId?: string | null;
+    adTrackingId?: string | null;
     /**
      * The first line of the ad's description.
      */
@@ -638,6 +726,10 @@ export namespace searchads360_v0 {
      * Device to which metrics apply.
      */
     device?: string | null;
+    /**
+     * Keyword criterion.
+     */
+    keyword?: Schema$GoogleAdsSearchads360V0Common__Keyword;
     /**
      * Month as represented by the date of the first day of a month. Formatted as yyyy-MM-dd.
      */
@@ -1146,6 +1238,14 @@ export namespace searchads360_v0 {
      */
     displayUrl?: string | null;
     /**
+     * Immutable. Details pertaining to an expanded dynamic search ad.
+     */
+    expandedDynamicSearchAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo;
+    /**
+     * Immutable. Details pertaining to an expanded text ad.
+     */
+    expandedTextAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo;
+    /**
      * The list of possible final URLs after all cross-domain redirects for the ad.
      */
     finalUrls?: string[] | null;
@@ -1158,9 +1258,17 @@ export namespace searchads360_v0 {
      */
     name?: string | null;
     /**
+     * Immutable. Details pertaining to a product ad.
+     */
+    productAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360ProductAdInfo;
+    /**
      * Immutable. The resource name of the ad. Ad resource names have the form: `customers/{customer_id\}/ads/{ad_id\}`
      */
     resourceName?: string | null;
+    /**
+     * Immutable. Details pertaining to a responsive search ad.
+     */
+    responsiveSearchAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo;
     /**
      * Immutable. Details pertaining to a text ad.
      */
@@ -1388,7 +1496,7 @@ export namespace searchads360_v0 {
      */
     listingGroup?: Schema$GoogleAdsSearchads360V0Common__ListingGroupInfo;
     /**
-     * Immutable. Location.
+     * Output only. Location.
      */
     location?: Schema$GoogleAdsSearchads360V0Common__LocationInfo;
     /**

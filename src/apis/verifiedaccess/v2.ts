@@ -147,11 +147,11 @@ export namespace verifiedaccess_v2 {
     customerId?: string | null;
   }
   /**
-   * The device signals as reported by Chrome.
+   * The device signals as reported by Chrome. Unless otherwise specified, signals are available on all platforms.
    */
   export interface Schema$DeviceSignals {
     /**
-     * Value of the AllowScreenLock policy on the device. See https://chromeenterprise.google/policies/?policy=AllowScreenLock for more details.
+     * Value of the AllowScreenLock policy on the device. See https://chromeenterprise.google/policies/?policy=AllowScreenLock for more details. Available on ChromeOS only.
      */
     allowScreenLock?: boolean | null;
     /**
@@ -167,7 +167,7 @@ export namespace verifiedaccess_v2 {
      */
     chromeRemoteDesktopAppBlocked?: boolean | null;
     /**
-     * Crowdstrike agent properties installed on the device, if any.
+     * Crowdstrike agent properties installed on the device, if any. Available on Windows and MacOS only.
      */
     crowdStrikeAgent?: Schema$CrowdStrikeAgent;
     /**
@@ -199,7 +199,7 @@ export namespace verifiedaccess_v2 {
      */
     hostname?: string | null;
     /**
-     * International Mobile Equipment Identity (IMEI) of the device.
+     * International Mobile Equipment Identity (IMEI) of the device. Available on ChromeOS only.
      */
     imei?: string[] | null;
     /**
@@ -207,7 +207,7 @@ export namespace verifiedaccess_v2 {
      */
     macAddresses?: string[] | null;
     /**
-     * Mobile Equipment Identifier (MEID) of the device.
+     * Mobile Equipment Identifier (MEID) of the device. Available on ChromeOS only.
      */
     meid?: string[] | null;
     /**
@@ -243,11 +243,11 @@ export namespace verifiedaccess_v2 {
      */
     screenLockSecured?: string | null;
     /**
-     * Whether the device's startup software has its Secure Boot feature enabled.
+     * Whether the device's startup software has its Secure Boot feature enabled. Available on Windows only.
      */
     secureBootMode?: string | null;
     /**
-     * The serial number of the device. On Windows, this represents the BIOS's serial number.
+     * The serial number of the device. On Windows, this represents the BIOS's serial number. Not available on most Linux distributions.
      */
     serialNumber?: string | null;
     /**
@@ -259,15 +259,19 @@ export namespace verifiedaccess_v2 {
      */
     systemDnsServers?: string[] | null;
     /**
-     * Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled
+     * Whether Chrome is blocking third-party software injection or not. This setting may be controlled by an enterprise policy: https://chromeenterprise.google/policies/?policy=ThirdPartyBlockingEnabled. Available on Windows only.
      */
     thirdPartyBlockingEnabled?: boolean | null;
     /**
-     * Windows domain that the current machine has joined.
+     * The trigger which generated this set of signals.
+     */
+    trigger?: string | null;
+    /**
+     * Windows domain that the current machine has joined. Available on Windows only.
      */
     windowsMachineDomain?: string | null;
     /**
-     * Windows domain for the current OS user.
+     * Windows domain for the current OS user. Available on Windows only.
      */
     windowsUserDomain?: string | null;
   }
@@ -313,6 +317,14 @@ export namespace verifiedaccess_v2 {
      */
     keyTrustLevel?: string | null;
     /**
+     * Unique customer id that this profile belongs to, as defined by the Google Admin SDK at https://developers.google.com/admin-sdk/directory/v1/guides/manage-customers
+     */
+    profileCustomerId?: string | null;
+    /**
+     * Profile attested key trust level.
+     */
+    profileKeyTrustLevel?: string | null;
+    /**
      * Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)
      */
     signedPublicKeyAndChallenge?: string | null;
@@ -320,6 +332,10 @@ export namespace verifiedaccess_v2 {
      * Virtual device id of the device. The definition of virtual device id is platform-specific.
      */
     virtualDeviceId?: string | null;
+    /**
+     * The ID of a profile on the device.
+     */
+    virtualProfileId?: string | null;
   }
 
   export class Resource$Challenge {
@@ -506,8 +522,11 @@ export namespace verifiedaccess_v2 {
      *   //   "deviceSignal": "my_deviceSignal",
      *   //   "deviceSignals": {},
      *   //   "keyTrustLevel": "my_keyTrustLevel",
+     *   //   "profileCustomerId": "my_profileCustomerId",
+     *   //   "profileKeyTrustLevel": "my_profileKeyTrustLevel",
      *   //   "signedPublicKeyAndChallenge": "my_signedPublicKeyAndChallenge",
-     *   //   "virtualDeviceId": "my_virtualDeviceId"
+     *   //   "virtualDeviceId": "my_virtualDeviceId",
+     *   //   "virtualProfileId": "my_virtualProfileId"
      *   // }
      * }
      *

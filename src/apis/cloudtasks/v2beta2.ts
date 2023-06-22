@@ -478,7 +478,7 @@ export namespace cloudtasks_v2beta2 {
     tasks?: Schema$Task[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**

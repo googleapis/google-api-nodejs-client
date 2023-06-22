@@ -100,7 +100,7 @@ export namespace dlp_v2 {
   }
 
   /**
-   * Cloud Data Loss Prevention (DLP) API
+   * Cloud Data Loss Prevention (DLP)
    *
    * Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.
    *
@@ -535,6 +535,91 @@ export namespace dlp_v2 {
     red?: number | null;
   }
   /**
+   * The profile for a scanned column within a table.
+   */
+  export interface Schema$GooglePrivacyDlpV2ColumnDataProfile {
+    /**
+     * The name of the column.
+     */
+    column?: string | null;
+    /**
+     * If it's been determined this column can be identified as a single type, this will be set. Otherwise the column either has unidentifiable content or mixed types.
+     */
+    columnInfoType?: Schema$GooglePrivacyDlpV2InfoTypeSummary;
+    /**
+     * The data type of a given column.
+     */
+    columnType?: string | null;
+    /**
+     * The data risk level for this column.
+     */
+    dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
+    /**
+     * The BigQuery dataset ID.
+     */
+    datasetId?: string | null;
+    /**
+     * The BigQuery location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     */
+    datasetLocation?: string | null;
+    /**
+     * The Google Cloud project ID that owns the BigQuery dataset.
+     */
+    datasetProjectId?: string | null;
+    /**
+     * Approximate percentage of entries being null in the column.
+     */
+    estimatedNullPercentage?: string | null;
+    /**
+     * Approximate uniqueness of the column.
+     */
+    estimatedUniquenessScore?: string | null;
+    /**
+     * The likelihood that this column contains free-form text. A value close to 1 may indicate the column is likely to contain free-form or natural language text. Range in 0-1.
+     */
+    freeTextScore?: number | null;
+    /**
+     * The name of the profile.
+     */
+    name?: string | null;
+    /**
+     * Other types found within this column. List will be un-ordered.
+     */
+    otherMatches?: Schema$GooglePrivacyDlpV2OtherInfoTypeSummary[];
+    /**
+     * Indicates if a policy tag has been applied to the column.
+     */
+    policyState?: string | null;
+    /**
+     * The last time the profile was generated.
+     */
+    profileLastGenerated?: string | null;
+    /**
+     * Success or error status from the most recent profile generation attempt. May be empty if the profile is still being generated.
+     */
+    profileStatus?: Schema$GooglePrivacyDlpV2ProfileStatus;
+    /**
+     * The sensitivity of this column.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
+     * State of a profile.
+     */
+    state?: string | null;
+    /**
+     * The resource name to the table data profile.
+     */
+    tableDataProfile?: string | null;
+    /**
+     * The resource name of the table this column is within.
+     */
+    tableFullResource?: string | null;
+    /**
+     * The BigQuery table ID.
+     */
+    tableId?: string | null;
+  }
+  /**
    * The field type of `value` and `field` do not need to match to be considered equal, but not all comparisons are possible. EQUAL_TO and NOT_EQUAL_TO attempt to compare even with incompatible types, but all other comparisons are invalid with incompatible types. A `value` of type: - `string` can be compared against all other types - `boolean` can only be compared against other booleans - `integer` can be compared against doubles or a string if the string value can be parsed as an integer. - `double` can be compared against integers or a string if the string can be parsed as a double. - `Timestamp` can be compared against strings in RFC 3339 date string format. - `TimeOfDay` can be compared against timestamps and strings in the format of 'HH:mm:ss'. If we fail to compare do to type mismatch, a warning will be given and the condition will evaluate to false.
    */
   export interface Schema$GooglePrivacyDlpV2Condition {
@@ -830,6 +915,10 @@ export namespace dlp_v2 {
      */
     regex?: Schema$GooglePrivacyDlpV2Regex;
     /**
+     * Sensitivity for this CustomInfoType. If this CustomInfoType extends an existing InfoType, the sensitivity here will take precedent over that of the original InfoType. If unset for a CustomInfoType, it will default to HIGH. This only applies to data profiling.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
      * Load an existing `StoredInfoType` resource for use in `InspectDataSource`. Not currently supported in `InspectContent`.
      */
     storedType?: Schema$GooglePrivacyDlpV2StoredType;
@@ -850,6 +939,19 @@ export namespace dlp_v2 {
      * Publish a message into the Pub/Sub topic.
      */
     pubSubNotification?: Schema$GooglePrivacyDlpV2PubSubNotification;
+  }
+  /**
+   * The schema of data to be saved to the BigQuery when the `DataProfileAction` is enabled.
+   */
+  export interface Schema$GooglePrivacyDlpV2DataProfileBigQueryRowSchema {
+    /**
+     * Column data profile column
+     */
+    columnProfile?: Schema$GooglePrivacyDlpV2ColumnDataProfile;
+    /**
+     * Table data profile column
+     */
+    tableProfile?: Schema$GooglePrivacyDlpV2TableDataProfile;
   }
   /**
    * Snapshot of the configurations used to generate the profile.
@@ -1078,11 +1180,11 @@ export namespace dlp_v2 {
     overview?: Schema$GooglePrivacyDlpV2TransformationOverview;
   }
   /**
-   * The results of a Deidentify action from an Inspect job.
+   * The results of a Deidentify action from an inspect job.
    */
   export interface Schema$GooglePrivacyDlpV2DeidentifyDataSourceDetails {
     /**
-     * Stats about de-identification.
+     * Stats about the de-identification operation.
      */
     deidentifyStats?: Schema$GooglePrivacyDlpV2DeidentifyDataSourceStats;
     /**
@@ -1685,6 +1787,10 @@ export namespace dlp_v2 {
      * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64\}`.
      */
     name?: string | null;
+    /**
+     * Optional custom sensitivity for this InfoType. This only applies to data profiling.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
     /**
      * Optional version name for this InfoType.
      */
@@ -2436,6 +2542,10 @@ export namespace dlp_v2 {
      */
     estimatedPrevalence?: number | null;
     /**
+     * Whether this infoType was excluded from sensitivity and risk analysis due to factors such as low prevalence (subject to change).
+     */
+    excludedFromAnalysis?: boolean | null;
+    /**
      * The other infoType.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
@@ -2567,7 +2677,7 @@ export namespace dlp_v2 {
   }
   export interface Schema$GooglePrivacyDlpV2ProfileStatus {
     /**
-     * Profiling status code and optional message
+     * Profiling status code and optional message. The `status.code` value is 0 (default value) for OK.
      */
     status?: Schema$GoogleRpcStatus;
     /**
@@ -2926,15 +3036,15 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2RequestedDeidentifyOptions {
     /**
-     * Snapshot of the state of the DeidentifyTemplate from the Deidentify action at the time this job was run.
+     * Snapshot of the state of the `DeidentifyTemplate` from the Deidentify action at the time this job was run.
      */
     snapshotDeidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
     /**
-     * Snapshot of the state of the image redact DeidentifyTemplate from the Deidentify action at the time this job was run.
+     * Snapshot of the state of the image transformation `DeidentifyTemplate` from the `Deidentify` action at the time this job was run.
      */
     snapshotImageRedactTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
     /**
-     * Snapshot of the state of the structured DeidentifyTemplate from the Deidentify action at the time this job was run.
+     * Snapshot of the state of the structured `DeidentifyTemplate` from the `Deidentify` action at the time this job was run.
      */
     snapshotStructuredDeidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
   }
@@ -3035,11 +3145,11 @@ export namespace dlp_v2 {
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
   }
   /**
-   * Score is a summary of all elements in the data profile. A higher number means more sensitive.
+   * Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.
    */
   export interface Schema$GooglePrivacyDlpV2SensitivityScore {
     /**
-     * The score applied to the resource.
+     * The sensitivity score applied to the resource.
      */
     score?: string | null;
   }
@@ -3236,7 +3346,7 @@ export namespace dlp_v2 {
      */
     datasetLocation?: string | null;
     /**
-     * The GCP project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the BigQuery dataset.
      */
     datasetProjectId?: string | null;
     /**

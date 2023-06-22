@@ -114,8 +114,10 @@ export namespace recommender_v1beta1 {
     context: APIRequestContext;
     billingAccounts: Resource$Billingaccounts;
     folders: Resource$Folders;
+    insightTypes: Resource$Insighttypes;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
+    recommenders: Resource$Recommenders;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,8 +127,10 @@ export namespace recommender_v1beta1 {
 
       this.billingAccounts = new Resource$Billingaccounts(this.context);
       this.folders = new Resource$Folders(this.context);
+      this.insightTypes = new Resource$Insighttypes(this.context);
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
+      this.recommenders = new Resource$Recommenders(this.context);
     }
   }
 
@@ -244,6 +248,15 @@ export namespace recommender_v1beta1 {
     stateMetadata?: {[key: string]: string} | null;
   }
   /**
+   * The type of insight. See google3/googledata/devsite/site-cloud/en/recommender/docs/insights/insight-types.md for more info.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1InsightType {
+    /**
+     * The insight_type’s name in format insightTypes/{insight_type\} eg: insightTypes/google.iam.policy.Insight
+     */
+    name?: string | null;
+  }
+  /**
    * Configuration for an InsightType.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1InsightTypeConfig {
@@ -299,6 +312,19 @@ export namespace recommender_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response for the `ListInsightTypes` method. Next ID: 3
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse {
+    /**
+     * The set of recommenders available
+     */
+    insightTypes?: Schema$GoogleCloudRecommenderV1beta1InsightType[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response to the `ListRecommendations` method.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse {
@@ -310,6 +336,19 @@ export namespace recommender_v1beta1 {
      * The set of recommendations for the `parent` resource.
      */
     recommendations?: Schema$GoogleCloudRecommenderV1beta1Recommendation[];
+  }
+  /**
+   * Response for the `ListRecommender` method. Next ID: 3
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The set of recommenders available
+     */
+    recommenders?: Schema$GoogleCloudRecommenderV1beta1RecommenderType[];
   }
   /**
    * Request for the `MarkInsightAccepted` method.
@@ -557,6 +596,15 @@ export namespace recommender_v1beta1 {
      * Parameters for this RecommenderGenerationConfig. These configs can be used by or are applied to all subtypes.
      */
     params?: {[key: string]: any} | null;
+  }
+  /**
+   * The type of a recommender. See google3/googledata/devsite/site-cloud/en/recommender/docs/recommenders.md for more info.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1RecommenderType {
+    /**
+     * The recommender's name in format RecommenderTypes/{recommender_type\} eg: recommenderTypes/google.iam.policy.Recommender
+     */
+    name?: string | null;
   }
   /**
    * Contains information on the impact of a reliability recommendation.
@@ -4435,6 +4483,166 @@ export namespace recommender_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest;
+  }
+
+  export class Resource$Insighttypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists available InsightTypes. No IAM permissions are required.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.insightTypes.list({
+     *     // Optional. The number of InsightTypes to return per page. The service may return fewer than this value.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insightTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Insighttypes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Insighttypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>;
+    list(
+      params: Params$Resource$Insighttypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Insighttypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Insighttypes$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Insighttypes$List
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Insighttypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Insighttypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/insightTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListInsightTypesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Insighttypes$List
+    extends StandardParameters {
+    /**
+     * Optional. The number of InsightTypes to return per page. The service may return fewer than this value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Organizations {
@@ -8908,5 +9116,165 @@ export namespace recommender_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest;
+  }
+
+  export class Resource$Recommenders {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all available Recommenders. No IAM permissions are required.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.recommenders.list({
+     *     // Optional. The number of RecommenderTypes to return per page. The service may return fewer than this value.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "recommenders": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Recommenders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Recommenders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>;
+    list(
+      params: Params$Resource$Recommenders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Recommenders$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Recommenders$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Recommenders$List
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recommenders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recommenders$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/recommenders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListRecommendersResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Recommenders$List
+    extends StandardParameters {
+    /**
+     * Optional. The number of RecommenderTypes to return per page. The service may return fewer than this value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
   }
 }

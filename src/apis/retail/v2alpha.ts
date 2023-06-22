@@ -440,7 +440,7 @@ export namespace retail_v2alpha {
      */
     displayName?: string | null;
     /**
-     * The Merchant Center linking configuration. Once a link is added, the data stream from Merchant Center to Cloud Retail will be enabled automatically. The requester must have access to the merchant center account in order to make changes to this field.
+     * The Merchant Center linking configuration. After a link is added, the data stream from Merchant Center to Cloud Retail will be enabled automatically. The requester must have access to the Merchant Center account in order to make changes to this field.
      */
     merchantCenterLinkingConfig?: Schema$GoogleCloudRetailV2alphaMerchantCenterLinkingConfig;
     /**
@@ -465,15 +465,7 @@ export namespace retail_v2alpha {
      */
     exactSearchableOption?: string | null;
     /**
-     * Set manually for numerical attributes only. If the facet SearchResponse.FacetSpec.intervals are not set by the customer for a numerical attribute, then a weekly pipeline will calculate some intervals using some percentiles on the distribution of all its product numerical attribute values. The latter computed intervals might not be ideal for the use case of that attribute. For this reason, the customer can set them manually. As another option, for any numerical attribute that is passed as a facet key in the request along with some given intervals, then these given intervals will be the facet intervals returned in the response.
-     */
-    facetIntervals?: Schema$GoogleCloudRetailV2alphaInterval[];
-    /**
-     * Each instance represents a list of attribute values to ignore as facet values for a specific time range.
-     */
-    ignoredFacetValues?: Schema$GoogleCloudRetailV2alphaCatalogAttributeIgnoredFacetValues[];
-    /**
-     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search. Must be specified, otherwise throws INVALID_FORMAT error.
+     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search. Must be specified when AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      */
     indexableOption?: string | null;
     /**
@@ -493,30 +485,13 @@ export namespace retail_v2alpha {
      */
     retrievableOption?: string | null;
     /**
-     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes. Must be specified, otherwise throws INVALID_FORMAT error.
+     * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if SEARCHABLE_ENABLED, attribute values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but attribute type is numerical, attribute values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical attributes. Must be specified, when AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      */
     searchableOption?: string | null;
     /**
      * Output only. The type of this attribute. This is derived from the attribute in Product.attributes.
      */
     type?: string | null;
-  }
-  /**
-   * Facet values to ignore on facets during the specified time range for the given SearchResponse.Facet.key attribute.
-   */
-  export interface Schema$GoogleCloudRetailV2alphaCatalogAttributeIgnoredFacetValues {
-    /**
-     * If start time is empty and end time is not empty, then ignore these facet values before end time.
-     */
-    endTime?: string | null;
-    /**
-     * Time range for the current list of facet values to ignore. If multiple time ranges are specified for an facet value for the current attribute, consider all of them. If both are empty, ignore always. If start time and end time are set, then start time must be before end time. If start time is not empty and end time is empty, then will ignore these facet values after the start time.
-     */
-    startTime?: string | null;
-    /**
-     * List of facet values to ignore for the following time range. The facet values are the same as the attribute values.
-     */
-    values?: string[] | null;
   }
   /**
    * The color information of a Product.
@@ -552,7 +527,7 @@ export namespace retail_v2alpha {
      */
     completionResults?: Schema$GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult[];
     /**
-     * Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. If you want to enable it, contact Retail Search support. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.
+     * Deprecated. Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. If you want to enable it, contact Retail Search support. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.
      */
     recentSearchResults?: Schema$GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult[];
   }
@@ -1201,11 +1176,11 @@ export namespace retail_v2alpha {
     priceInfo?: Schema$GoogleCloudRetailV2alphaPriceInfo;
   }
   /**
-   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch.
+   * Represents a link between a Merchant Center account and a branch. After a link is established, products from the linked Merchant Center account are streamed to the linked branch.
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLink {
     /**
-     * Required. The branch id (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch id can only have one linked merchant center account id.
+     * Required. The branch ID (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked Merchant Center account ID.
      */
     branchId?: string | null;
     /**
@@ -1236,6 +1211,10 @@ export namespace retail_v2alpha {
      * Output only. Google Cloud project ID.
      */
     projectId?: string | null;
+    /**
+     * Optional. An optional arbitrary string that could be used as a tag for tracking link source.
+     */
+    source?: string | null;
     /**
      * Output only. Represents the state of the link.
      */
@@ -1268,11 +1247,11 @@ export namespace retail_v2alpha {
     primaryFeedName?: string | null;
   }
   /**
-   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch.
+   * Represents a link between a Merchant Center account and a branch. After a link is established, products from the linked Merchant Center account are streamed to the linked branch.
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterLink {
     /**
-     * The branch ID (e.g. 0/1/2) within this catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked merchant center account ID.
+     * The branch ID (e.g. 0/1/2) within this catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked Merchant Center account ID.
      */
     branchId?: string | null;
     /**
@@ -1288,7 +1267,7 @@ export namespace retail_v2alpha {
      */
     languageCode?: string | null;
     /**
-     * Required. The linked [Merchant center account ID](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
+     * Required. The linked [Merchant Center account ID](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
      */
     merchantCenterAccountId?: string | null;
     /**
@@ -1375,11 +1354,11 @@ export namespace retail_v2alpha {
     updateTime?: string | null;
   }
   /**
-   * More configs of the frequently-bought-together model type.
+   * Additional configs for the frequently-bought-together model type.
    */
   export interface Schema$GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig {
     /**
-     * Optional. Specifies the context of the model when used in predict requests. Only settable for the `frequently-bought-together` type. Will default to MULTI_CONTEXT if not specified.
+     * Optional. Specifies the context of the model when it is used in predict requests. Can only be set for the `frequently-bought-together` type. If it isn't specified, it defaults to MULTIPLE_CONTEXT_PRODUCTS.
      */
     contextProductsType?: string | null;
   }
@@ -3001,11 +2980,11 @@ export namespace retail_v2alpha {
     importSummary?: Schema$GoogleCloudRetailV2betaUserEventImportSummary;
   }
   /**
-   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch.
+   * Represents a link between a Merchant Center account and a branch. After a link is established, products from the linked Merchant Center account are streamed to the linked branch.
    */
   export interface Schema$GoogleCloudRetailV2betaMerchantCenterAccountLink {
     /**
-     * Required. The branch id (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch id can only have one linked merchant center account id.
+     * Required. The branch ID (e.g. 0/1/2) within the catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch ID can only have one linked Merchant Center account ID.
      */
     branchId?: string | null;
     /**
@@ -3036,6 +3015,10 @@ export namespace retail_v2alpha {
      * Output only. Google Cloud project ID.
      */
     projectId?: string | null;
+    /**
+     * Optional. An optional arbitrary string that could be used as a tag for tracking link source.
+     */
+    source?: string | null;
     /**
      * Output only. Represents the state of the link.
      */
@@ -3120,11 +3103,11 @@ export namespace retail_v2alpha {
     updateTime?: string | null;
   }
   /**
-   * More configs of the frequently-bought-together model type.
+   * Additional configs for the frequently-bought-together model type.
    */
   export interface Schema$GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig {
     /**
-     * Optional. Specifies the context of the model when used in predict requests. Only settable for the `frequently-bought-together` type. Will default to MULTI_CONTEXT if not specified.
+     * Optional. Specifies the context of the model when it is used in predict requests. Can only be set for the `frequently-bought-together` type. If it isn't specified, it defaults to MULTIPLE_CONTEXT_PRODUCTS.
      */
     contextProductsType?: string | null;
   }
@@ -3163,6 +3146,40 @@ export namespace retail_v2alpha {
    * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudRetailV2betaPurgeMetadata {}
+  /**
+   * Metadata related to the progress of the PurgeProducts operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudRetailV2betaPurgeProductsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of entries that encountered errors while processing.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of entries that were deleted successfully.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the PurgeProductsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudRetailV2betaPurgeProductsResponse {
+    /**
+     * The total count of products purged as a result of the operation.
+     */
+    purgeCount?: string | null;
+    /**
+     * A sample of the product names that will be deleted. Only populated if `force` is set to false. A max of 100 names will be returned and the names are chosen at random.
+     */
+    purgeSample?: string[] | null;
+  }
   /**
    * Response of the PurgeUserEventsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
    */
@@ -3387,11 +3404,11 @@ export namespace retail_v2alpha {
     updateTime?: string | null;
   }
   /**
-   * More configs of the frequently-bought-together model type.
+   * Additional configs for the frequently-bought-together model type.
    */
   export interface Schema$GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig {
     /**
-     * Optional. Specifies the context of the model when used in predict requests. Only settable for the `frequently-bought-together` type. Will default to MULTI_CONTEXT if not specified.
+     * Optional. Specifies the context of the model when it is used in predict requests. Can only be set for the `frequently-bought-together` type. If it isn't specified, it defaults to MULTIPLE_CONTEXT_PRODUCTS.
      */
     contextProductsType?: string | null;
   }
@@ -3417,6 +3434,40 @@ export namespace retail_v2alpha {
    * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudRetailV2PurgeMetadata {}
+  /**
+   * Metadata related to the progress of the PurgeProducts operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudRetailV2PurgeProductsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of entries that encountered errors while processing.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of entries that were deleted successfully.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the PurgeProductsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudRetailV2PurgeProductsResponse {
+    /**
+     * The total count of products purged as a result of the operation.
+     */
+    purgeCount?: string | null;
+    /**
+     * A sample of the product names that will be deleted. Only populated if `force` is set to false. A max of 100 names will be returned and the names are chosen at random.
+     */
+    purgeSample?: string[] | null;
+  }
   /**
    * Response of the PurgeUserEventsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
    */
@@ -9264,7 +9315,7 @@ export namespace retail_v2alpha {
      *   // Do the magic
      *   const res =
      *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.create({
-     *       // Required. The branch resource where this MerchantCenterAccountLink will be created. Format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}\}
+     *       // Required. The branch resource where this MerchantCenterAccountLink will be created. Format: `projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}`
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *
      *       // Request body metadata
@@ -9279,6 +9330,7 @@ export namespace retail_v2alpha {
      *         //   "merchantCenterAccountId": "my_merchantCenterAccountId",
      *         //   "name": "my_name",
      *         //   "projectId": "my_projectId",
+     *         //   "source": "my_source",
      *         //   "state": "my_state"
      *         // }
      *       },
@@ -9421,7 +9473,7 @@ export namespace retail_v2alpha {
      *   // Do the magic
      *   const res =
      *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.delete({
-     *       // Required. Full resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/merchantCenterAccountLinks/{merchant_center_account_link_id\}
+     *       // Required. Full resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/merchantCenterAccountLinks/{merchant_center_account_link_id\}`
      *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/merchantCenterAccountLinks/my-merchantCenterAccountLink',
      *     });
      *   console.log(res.data);
@@ -9550,7 +9602,7 @@ export namespace retail_v2alpha {
      *   // Do the magic
      *   const res =
      *     await retail.projects.locations.catalogs.merchantCenterAccountLinks.list({
-     *       // Required. The parent Catalog of the resource. It must match this format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}
+     *       // Required. The parent Catalog of the resource. It must match this format: `projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}`
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *     });
      *   console.log(res.data);
@@ -9665,7 +9717,7 @@ export namespace retail_v2alpha {
   export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create
     extends StandardParameters {
     /**
-     * Required. The branch resource where this MerchantCenterAccountLink will be created. Format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}\}
+     * Required. The branch resource where this MerchantCenterAccountLink will be created. Format: `projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}`
      */
     parent?: string;
 
@@ -9677,14 +9729,14 @@ export namespace retail_v2alpha {
   export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Delete
     extends StandardParameters {
     /**
-     * Required. Full resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/merchantCenterAccountLinks/{merchant_center_account_link_id\}
+     * Required. Full resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/merchantCenterAccountLinks/{merchant_center_account_link_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$List
     extends StandardParameters {
     /**
-     * Required. The parent Catalog of the resource. It must match this format: projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}
+     * Required. The parent Catalog of the resource. It must match this format: `projects/{PROJECT_NUMBER\}/locations/global/catalogs/{CATALOG_ID\}`
      */
     parent?: string;
   }

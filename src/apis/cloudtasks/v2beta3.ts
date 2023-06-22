@@ -218,7 +218,7 @@ export namespace cloudtasks_v2beta3 {
     role?: string | null;
   }
   /**
-   * LINT.IfChange Request message for BufferTask.
+   * Request message for BufferTask.
    */
   export interface Schema$BufferTaskRequest {
     /**
@@ -372,6 +372,14 @@ export namespace cloudtasks_v2beta3 {
      */
     httpMethod?: string | null;
     /**
+     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as the `Authorization` header in the HTTP request. This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+     */
+    oauthToken?: Schema$OAuthToken;
+    /**
+     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request. This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
      * URI override. When specified, overrides the execution URI for all the tasks in the queue.
      */
     uriOverride?: Schema$UriOverride;
@@ -416,7 +424,7 @@ export namespace cloudtasks_v2beta3 {
     tasks?: Schema$Task[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**

@@ -146,6 +146,16 @@
               "location": "query",
               "type": "string"
             },
+            "location": {
+              "description": "Location where the lookup should be performed. Required to lookup entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system` using its `fully_qualified_name`. Ignored in other cases.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project where the lookup should be performed. Required to lookup entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system` using its `fully_qualified_name`. Ignored in other cases.",
+              "location": "query",
+              "type": "string"
+            },
             "sqlResource": {
               "description": "The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.topic.{PROJECT_ID}.{TOPIC_ID}` * `pubsub.topic.{PROJECT_ID}.`\\``{TOPIC.ID.SEPARATED.WITH.DOTS}`\\` * `bigquery.table.{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}` * `bigquery.dataset.{PROJECT_ID}.{DATASET_ID}` * `datacatalog.entry.{PROJECT_ID}.{LOCATION_ID}.{ENTRY_GROUP_ID}.{ENTRY_ID}` Identifiers (`*_ID`) should comply with the [Lexical structure in Standard SQL] (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).",
               "location": "query",
@@ -2134,7 +2144,7 @@
       }
     }
   },
-  "revision": "20230421",
+  "revision": "20230526",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3141,6 +3151,10 @@
       "properties": {
         "gcsBucketPath": {
           "description": "Path to a Cloud Storage bucket that contains a dump ready for ingestion.",
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Optional. (Optional) Dataplex task job id, if specified will be used as part of ImportEntries LRO ID",
           "type": "string"
         }
       },

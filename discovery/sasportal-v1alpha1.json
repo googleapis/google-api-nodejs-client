@@ -2582,7 +2582,7 @@
       }
     }
   },
-  "revision": "20230309",
+  "revision": "20230612",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -3401,6 +3401,11 @@
         },
         "newOrganizationDisplayName": {
           "description": "Optional. If this field is set, and a new SAS Portal Organization needs to be created, its display name will be set to the value of this field.",
+          "type": "string"
+        },
+        "organizationId": {
+          "description": "Optional. If this field is set then a new deployment will be created under the organization specified by this id.",
+          "format": "int64",
           "type": "string"
         }
       },

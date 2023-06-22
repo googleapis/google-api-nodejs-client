@@ -122,7 +122,7 @@
               ],
               "parameters": {
                 "bucket": {
-                  "description": "Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number}/buckets/{bucket_id}`.",
+                  "description": "Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number}/buckets/{bucket_id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/buckets/[^/]+$",
                   "required": true,
@@ -151,7 +151,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number}/buckets/{bucket_id}`.",
+                  "description": "Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number}/buckets/{bucket_id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/buckets/[^/]+$",
                   "required": true,
@@ -188,7 +188,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Resource name of the parent Firebase project, `projects/{project_number}`.",
+                  "description": "Required. Resource name of the parent Firebase project, `projects/{project_id_or_number}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -214,7 +214,7 @@
               ],
               "parameters": {
                 "bucket": {
-                  "description": "Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number}/buckets/{bucket_id}`.",
+                  "description": "Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_id_or_number}/buckets/{bucket_id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/buckets/[^/]+$",
                   "required": true,
@@ -238,7 +238,7 @@
       }
     }
   },
-  "revision": "20221014",
+  "revision": "20230605",
   "rootUrl": "https://firebasestorage.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {

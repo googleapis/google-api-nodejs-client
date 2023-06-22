@@ -790,6 +790,10 @@ export namespace datacatalog_v1 {
      * Path to a Cloud Storage bucket that contains a dump ready for ingestion.
      */
     gcsBucketPath?: string | null;
+    /**
+     * Optional. (Optional) Dataplex task job id, if specified will be used as part of ImportEntries LRO ID
+     */
+    jobId?: string | null;
   }
   /**
    * Response message for long-running operation returned by the ImportEntries.
@@ -1963,6 +1967,10 @@ export namespace datacatalog_v1 {
      *     fullyQualifiedName: 'placeholder-value',
      *     // The full name of the Google Cloud Platform resource the Data Catalog entry represents. For more information, see [Full Resource Name] (https://cloud.google.com/apis/design/resource_names#full_resource_name). Full names are case-sensitive. For example: * `//bigquery.googleapis.com/projects/{PROJECT_ID\}/datasets/{DATASET_ID\}/tables/{TABLE_ID\}` * `//pubsub.googleapis.com/projects/{PROJECT_ID\}/topics/{TOPIC_ID\}`
      *     linkedResource: 'placeholder-value',
+     *     // Location where the lookup should be performed. Required to lookup entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system` using its `fully_qualified_name`. Ignored in other cases.
+     *     location: 'placeholder-value',
+     *     // Project where the lookup should be performed. Required to lookup entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system` using its `fully_qualified_name`. Ignored in other cases.
+     *     project: 'placeholder-value',
      *     // The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.topic.{PROJECT_ID\}.{TOPIC_ID\}` * `pubsub.topic.{PROJECT_ID\}.`\``{TOPIC.ID.SEPARATED.WITH.DOTS\}`\` * `bigquery.table.{PROJECT_ID\}.{DATASET_ID\}.{TABLE_ID\}` * `bigquery.dataset.{PROJECT_ID\}.{DATASET_ID\}` * `datacatalog.entry.{PROJECT_ID\}.{LOCATION_ID\}.{ENTRY_GROUP_ID\}.{ENTRY_ID\}` Identifiers (`*_ID`) should comply with the [Lexical structure in Standard SQL] (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
      *     sqlResource: 'placeholder-value',
      *   });
@@ -2106,6 +2114,14 @@ export namespace datacatalog_v1 {
      * The full name of the Google Cloud Platform resource the Data Catalog entry represents. For more information, see [Full Resource Name] (https://cloud.google.com/apis/design/resource_names#full_resource_name). Full names are case-sensitive. For example: * `//bigquery.googleapis.com/projects/{PROJECT_ID\}/datasets/{DATASET_ID\}/tables/{TABLE_ID\}` * `//pubsub.googleapis.com/projects/{PROJECT_ID\}/topics/{TOPIC_ID\}`
      */
     linkedResource?: string;
+    /**
+     * Location where the lookup should be performed. Required to lookup entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system` using its `fully_qualified_name`. Ignored in other cases.
+     */
+    location?: string;
+    /**
+     * Project where the lookup should be performed. Required to lookup entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system` using its `fully_qualified_name`. Ignored in other cases.
+     */
+    project?: string;
     /**
      * The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.topic.{PROJECT_ID\}.{TOPIC_ID\}` * `pubsub.topic.{PROJECT_ID\}.`\``{TOPIC.ID.SEPARATED.WITH.DOTS\}`\` * `bigquery.table.{PROJECT_ID\}.{DATASET_ID\}.{TABLE_ID\}` * `bigquery.dataset.{PROJECT_ID\}.{DATASET_ID\}` * `datacatalog.entry.{PROJECT_ID\}.{LOCATION_ID\}.{ENTRY_GROUP_ID\}.{ENTRY_ID\}` Identifiers (`*_ID`) should comply with the [Lexical structure in Standard SQL] (https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical).
      */
@@ -4084,7 +4100,8 @@ export namespace datacatalog_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "gcsBucketPath": "my_gcsBucketPath"
+     *       //   "gcsBucketPath": "my_gcsBucketPath",
+     *       //   "jobId": "my_jobId"
      *       // }
      *     },
      *   });

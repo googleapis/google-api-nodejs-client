@@ -584,7 +584,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230608",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1126,7 +1126,7 @@
             "MEMCACHE_1_5"
           ],
           "enumDescriptions": [
-            "",
+            "Memcache version is not specified by customer",
             "Memcached 1.5 version."
           ],
           "type": "string"

@@ -1679,6 +1679,151 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
+                },
+                "repair": {
+                  "description": "Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B\"name\"%3A\"projects%2F-%2FserviceAccounts%2Funique_id\"%2C\"resource\"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:repair",
+                  "httpMethod": "POST",
+                  "id": "appengine.projects.locations.applications.repair",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId",
+                    "applicationsId"
+                  ],
+                  "parameters": {
+                    "applicationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. Name of the application to repair. Example: apps/myapp",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:repair",
+                  "request": {
+                    "$ref": "RepairApplicationRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "services": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the current configuration of the specified service.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
+                      "httpMethod": "GET",
+                      "id": "appengine.projects.locations.applications.services.get",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "servicesId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "servicesId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
+                      "response": {
+                        "$ref": "Service"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/appengine.admin",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the services in the application.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services",
+                      "httpMethod": "GET",
+                      "id": "appengine.projects.locations.applications.services.list",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Maximum results to return per page.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Continuation token for fetching the next page of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services",
+                      "response": {
+                        "$ref": "ListServicesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/appengine.admin",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1687,7 +1832,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230609",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {

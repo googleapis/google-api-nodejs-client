@@ -519,6 +519,10 @@ export namespace tpu_v2alpha1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
+     * Output only. Whether the Node belongs to a Multislice group.
+     */
+    multisliceNode?: boolean | null;
+    /**
      * Output only. Immutable. The name of the TPU.
      */
     name?: string | null;
@@ -1729,6 +1733,7 @@ export namespace tpu_v2alpha1 {
      *       //   "id": "my_id",
      *       //   "labels": {},
      *       //   "metadata": {},
+     *       //   "multisliceNode": false,
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "networkEndpoints": [],
@@ -2024,6 +2029,7 @@ export namespace tpu_v2alpha1 {
      *   //   "id": "my_id",
      *   //   "labels": {},
      *   //   "metadata": {},
+     *   //   "multisliceNode": false,
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
      *   //   "networkEndpoints": [],
@@ -2458,6 +2464,7 @@ export namespace tpu_v2alpha1 {
      *       //   "id": "my_id",
      *       //   "labels": {},
      *       //   "metadata": {},
+     *       //   "multisliceNode": false,
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "networkEndpoints": [],
@@ -3867,6 +3874,8 @@ export namespace tpu_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.queuedResources.delete({
+     *     // If set to true, all running nodes belonging to this queued resource will be deleted first and then the queued resource will be deleted. Otherwise (i.e. force=false), the queued resource will only be deleted if its nodes have already been deleted or the queued resource is in the ACCEPTED, FAILED, or SUSPENDED state.
+     *     force: 'placeholder-value',
      *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/queuedResources/my-queuedResource',
      *     // Idempotent request UUID.
@@ -4270,6 +4279,10 @@ export namespace tpu_v2alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Queuedresources$Delete
     extends StandardParameters {
+    /**
+     * If set to true, all running nodes belonging to this queued resource will be deleted first and then the queued resource will be deleted. Otherwise (i.e. force=false), the queued resource will only be deleted if its nodes have already been deleted or the queued resource is in the ACCEPTED, FAILED, or SUSPENDED state.
+     */
+    force?: boolean;
     /**
      * Required. The resource name.
      */

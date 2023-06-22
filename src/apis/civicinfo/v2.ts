@@ -470,48 +470,6 @@ export namespace civicinfo_v2 {
     scope?: string | null;
   }
   /**
-   * A globally unique identifier associated with each feature. We use 128-bit identifiers so that we have lots of bits available to distinguish between features. The feature id currently consists of a 64-bit "cell id" that **sometimes** corresponds to the approximate centroid of the feature, plus a 64-bit fingerprint of other identifying information. See more on each respective field in its comments. Feature ids are first assigned when the data is created in MapFacts. After initial creation of the feature, they are immutable. This means that the only properties that you should rely on are that they are unique, and that cell_ids often - but not always - preserve spatial locality. The degree of locality varies as the feature undergoes geometry changes, and should not in general be considered a firm guarantee of the location of any particular feature. In fact, some locationless features have randomized cell IDs! Consumers of FeatureProtos from Mapfacts are guaranteed that fprints in the id field of features will be globally unique. Using the fprint allows consumers who don't need the spatial benefit of cell ids to uniquely identify features in a 64-bit address space. This property is not guaranteed for other sources of FeatureProtos.
-   */
-  export interface Schema$FeatureIdProto {
-    /**
-     * The S2CellId corresponding to the approximate location of this feature as of when it was first created. This can be of variable accuracy, ranging from the exact centroid of the feature at creation, a very large S2 Cell, or even being completely randomized for locationless features. Cell ids have the nice property that they follow a space-filling curve over the surface of the earth. (See s2cellid.h for details.) WARNING: Clients should only use cell IDs to perform spatial locality optimizations. There is no strict guarantee that the cell ID of a feature is related to the current geometry of the feature in any way.
-     */
-    cellId?: string | null;
-    /**
-     * A 64-bit fingerprint used to identify features. Most clients should rely on MapFacts or OneRing to choose fingerprints. If creating new fprints, the strategy should be chosen so that the chance of collision is remote or non-existent, and the distribution should be reasonably uniform. For example, if the source data assigns unique ids to features, then a fingerprint of the provider name, version, and source id is sufficient.
-     */
-    fprint?: string | null;
-    /**
-     * A place for clients to attach arbitrary data to a feature ID. Never set in MapFacts.
-     */
-    temporaryData?: Schema$MessageSet;
-  }
-  /**
-   * Detailed summary of the result from geocoding an address
-   */
-  export interface Schema$GeocodingSummary {
-    /**
-     * Represents the best estimate of whether or not the input address was fully understood and the address is correctly componentized. Mirrors the same-name field in geostore.staging.AddressLinkupScoringProto.
-     */
-    addressUnderstood?: boolean | null;
-    /**
-     * The ID of the FeatureProto returned by the geocoder
-     */
-    featureId?: Schema$FeatureIdProto;
-    /**
-     * The feature type for the FeatureProto returned by the geocoder
-     */
-    featureType?: string | null;
-    /**
-     * Precision of the center point (lat/long) of the geocoded FeatureProto
-     */
-    positionPrecisionMeters?: number | null;
-    /**
-     * The query sent to the geocoder
-     */
-    queryString?: string | null;
-  }
-  /**
    * Describes a political geography.
    */
   export interface Schema$GeographicDivision {
@@ -528,10 +486,6 @@ export namespace civicinfo_v2 {
      */
     officeIndices?: number[] | null;
   }
-  /**
-   * This is proto2's version of MessageSet.
-   */
-  export interface Schema$MessageSet {}
   /**
    * Information about an Office held by one or more Officials.
    */
@@ -577,10 +531,6 @@ export namespace civicinfo_v2 {
      * The direct email addresses for the official.
      */
     emails?: string[] | null;
-    /**
-     * Detailed summary about the official's address's geocoding
-     */
-    geocodingSummaries?: Schema$GeocodingSummary[];
     /**
      * The official's name.
      */

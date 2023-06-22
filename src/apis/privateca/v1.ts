@@ -1084,6 +1084,10 @@ export namespace privateca_v1 {
    */
   export interface Schema$PublishingOptions {
     /**
+     * Optional. Specifies the encoding format of each CertificateAuthority's CA certificate and CRLs. If this is omitted, CA certificates and CRLs will be published in PEM.
+     */
+    encodingFormat?: string | null;
+    /**
      * Optional. When true, publishes each CertificateAuthority's CA certificate and includes its URL in the "Authority Information Access" X.509 extension in all issued Certificates. If this is false, the CA certificate will not be published and the corresponding X.509 extension will not be written in issued certificates.
      */
     publishCaCert?: boolean | null;

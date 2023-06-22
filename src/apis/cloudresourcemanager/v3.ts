@@ -312,7 +312,7 @@ export namespace cloudresourcemanager_v3 {
      */
     tagKey?: string | null;
     /**
-     * The parent name of the tag key. Must be in the format `organizations/{organization_id\}`.
+     * The parent name of the tag key. Must be in the format `organizations/{organization_id\}` or `projects/{project_number\}`
      */
     tagKeyParentName?: string | null;
     /**

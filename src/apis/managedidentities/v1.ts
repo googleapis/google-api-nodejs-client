@@ -269,6 +269,10 @@ export namespace managedidentities_v1 {
     trust?: Schema$Trust;
   }
   /**
+   * DisableMigrationRequest is the request message for DisableMigration method.
+   */
+  export interface Schema$DisableMigrationRequest {}
+  /**
    * Represents a managed Microsoft Active Directory domain. If the domain is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state.
    */
   export interface Schema$Domain {
@@ -355,6 +359,15 @@ export namespace managedidentities_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * EnableMigrationRequest is the request message for EnableMigration method.
+   */
+  export interface Schema$EnableMigrationRequest {
+    /**
+     * Required. List of the on-prem domains to be migrated.
+     */
+    migratingDomains?: Schema$OnPremDomainDetails[];
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -809,7 +822,7 @@ export namespace managedidentities_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -878,6 +891,19 @@ export namespace managedidentities_v1 {
      * Weekly cycle.
      */
     weeklyCycle?: Schema$WeeklyCycle;
+  }
+  /**
+   * OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated.
+   */
+  export interface Schema$OnPremDomainDetails {
+    /**
+     * Optional. Option to disable SID filtering.
+     */
+    disableSidFiltering?: boolean | null;
+    /**
+     * Required. FQDN of the on-prem domain being migrated.
+     */
+    domainName?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2146,6 +2172,148 @@ export namespace managedidentities_v1 {
     }
 
     /**
+     * Disable Domain Migration
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.disableMigration({
+     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     *       domain: 'projects/my-project/locations/global/domains/my-domain',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disableMigration(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    disableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Disablemigration,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disableMigration(callback: BodyResponseCallback<Schema$Operation>): void;
+    disableMigration(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Disablemigration
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Disablemigration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Disablemigration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+domain}:disableMigration').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['domain'],
+        pathParams: ['domain'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * DomainJoinMachine API joins a Compute Engine VM to the domain
      * @example
      * ```js
@@ -2293,6 +2461,150 @@ export namespace managedidentities_v1 {
         );
       } else {
         return createAPIRequest<Schema$DomainJoinMachineResponse>(parameters);
+      }
+    }
+
+    /**
+     * Enable Domain Migration
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.enableMigration({
+     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     *       domain: 'projects/my-project/locations/global/domains/my-domain',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "migratingDomains": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enableMigration(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    enableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableMigration(
+      params: Params$Resource$Projects$Locations$Global$Domains$Enablemigration,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enableMigration(callback: BodyResponseCallback<Schema$Operation>): void;
+    enableMigration(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Enablemigration
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Enablemigration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Enablemigration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+domain}:enableMigration').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['domain'],
+        pathParams: ['domain'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -4225,6 +4537,18 @@ export namespace managedidentities_v1 {
      */
     requestBody?: Schema$DetachTrustRequest;
   }
+  export interface Params$Resource$Projects$Locations$Global$Domains$Disablemigration
+    extends StandardParameters {
+    /**
+     * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     */
+    domain?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisableMigrationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Global$Domains$Domainjoinmachine
     extends StandardParameters {
     /**
@@ -4236,6 +4560,18 @@ export namespace managedidentities_v1 {
      * Request body metadata
      */
     requestBody?: Schema$DomainJoinMachineRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Domains$Enablemigration
+    extends StandardParameters {
+    /**
+     * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     */
+    domain?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableMigrationRequest;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Extendschema
     extends StandardParameters {

@@ -185,6 +185,14 @@ export namespace composer_v1 {
     machineType?: string | null;
   }
   /**
+   * Request to trigger database failover (only for highly resilient environments).
+   */
+  export interface Schema$DatabaseFailoverRequest {}
+  /**
+   * Response for DatabaseFailoverRequest.
+   */
+  export interface Schema$DatabaseFailoverResponse {}
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -304,6 +312,10 @@ export namespace composer_v1 {
      */
     recoveryConfig?: Schema$RecoveryConfig;
     /**
+     * Optional. Resilience mode of the Cloud Composer Environment. This field is supported for Cloud Composer environments in versions composer-2.2.0-airflow-*.*.* and newer.
+     */
+    resilienceMode?: string | null;
+    /**
      * The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
@@ -319,6 +331,74 @@ export namespace composer_v1 {
      * Optional. The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web server and workers workloads. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
      */
     workloadsConfig?: Schema$WorkloadsConfig;
+  }
+  /**
+   * Execute Airflow Command request.
+   */
+  export interface Schema$ExecuteAirflowCommandRequest {
+    /**
+     * Airflow command.
+     */
+    command?: string | null;
+    /**
+     * Parameters for the Airflow command/subcommand as an array of arguments. It may contain positional arguments like `["my-dag-id"]`, key-value parameters like `["--foo=bar"]` or `["--foo","bar"]`, or other flags like `["-f"]`.
+     */
+    parameters?: string[] | null;
+    /**
+     * Airflow subcommand.
+     */
+    subcommand?: string | null;
+  }
+  /**
+   * Response to ExecuteAirflowCommandRequest.
+   */
+  export interface Schema$ExecuteAirflowCommandResponse {
+    /**
+     * Error message. Empty if there was no error.
+     */
+    error?: string | null;
+    /**
+     * The unique ID of the command execution for polling.
+     */
+    executionId?: string | null;
+    /**
+     * The name of the pod where the command is executed.
+     */
+    pod?: string | null;
+    /**
+     * The namespace of the pod where the command is executed.
+     */
+    podNamespace?: string | null;
+  }
+  /**
+   * Information about how a command ended.
+   */
+  export interface Schema$ExitInfo {
+    /**
+     * Error message. Empty if there was no error.
+     */
+    error?: string | null;
+    /**
+     * The exit code from the command execution.
+     */
+    exitCode?: number | null;
+  }
+  /**
+   * Response for FetchDatabasePropertiesRequest.
+   */
+  export interface Schema$FetchDatabasePropertiesResponse {
+    /**
+     * The availability status of the failover replica. A false status indicates that the failover replica is out of sync. The primary instance can only fail over to the failover replica when the status is true.
+     */
+    isFailoverReplicaAvailable?: boolean | null;
+    /**
+     * The Compute Engine zone that the instance is currently serving from.
+     */
+    primaryGceZone?: string | null;
+    /**
+     * The Compute Engine zone that the failover instance is currently serving from for a regional Cloud SQL instance.
+     */
+    secondaryGceZone?: string | null;
   }
   /**
    * ImageVersion information
@@ -373,6 +453,19 @@ export namespace composer_v1 {
      * Optional. Whether or not to enable Alias IPs in the GKE cluster. If `true`, a VPC-native cluster is created. This field is only supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. Environments in newer versions always use VPC-native GKE clusters.
      */
     useIpAliases?: boolean | null;
+  }
+  /**
+   * Contains information about a single line from logs.
+   */
+  export interface Schema$Line {
+    /**
+     * Text content of the log line.
+     */
+    content?: string | null;
+    /**
+     * Number of the line.
+     */
+    lineNumber?: number | null;
   }
   /**
    * The environments in a project and location.
@@ -581,6 +674,44 @@ export namespace composer_v1 {
     state?: string | null;
   }
   /**
+   * Poll Airflow Command request.
+   */
+  export interface Schema$PollAirflowCommandRequest {
+    /**
+     * The unique ID of the command execution.
+     */
+    executionId?: string | null;
+    /**
+     * Line number from which new logs should be fetched.
+     */
+    nextLineNumber?: number | null;
+    /**
+     * The name of the pod where the command is executed.
+     */
+    pod?: string | null;
+    /**
+     * The namespace of the pod where the command is executed.
+     */
+    podNamespace?: string | null;
+  }
+  /**
+   * Response to PollAirflowCommandRequest.
+   */
+  export interface Schema$PollAirflowCommandResponse {
+    /**
+     * The result exit status of the command.
+     */
+    exitInfo?: Schema$ExitInfo;
+    /**
+     * Output from the command execution. It may not contain the full output and the caller may need to poll for more lines.
+     */
+    output?: Schema$Line[];
+    /**
+     * Whether the command execution has finished and there is no more output.
+     */
+    outputEnd?: boolean | null;
+  }
+  /**
    * Configuration options for the private GKE cluster in a Cloud Composer environment.
    */
   export interface Schema$PrivateClusterConfig {
@@ -756,6 +887,40 @@ export namespace composer_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Stop Airflow Command request.
+   */
+  export interface Schema$StopAirflowCommandRequest {
+    /**
+     * The unique ID of the command execution.
+     */
+    executionId?: string | null;
+    /**
+     * If true, the execution is terminated forcefully (SIGKILL). If false, the execution is stopped gracefully, giving it time for cleanup.
+     */
+    force?: boolean | null;
+    /**
+     * The name of the pod where the command is executed.
+     */
+    pod?: string | null;
+    /**
+     * The namespace of the pod where the command is executed.
+     */
+    podNamespace?: string | null;
+  }
+  /**
+   * Response to StopAirflowCommandRequest.
+   */
+  export interface Schema$StopAirflowCommandResponse {
+    /**
+     * Whether the execution is still running.
+     */
+    isDone?: boolean | null;
+    /**
+     * Output message from stopping execution request.
+     */
+    output?: string[] | null;
   }
   /**
    * The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*
@@ -1017,6 +1182,147 @@ export namespace composer_v1 {
     }
 
     /**
+     * Triggers database failover (only for highly resilient environments).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.databaseFailover({
+     *     // Target environment: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *     environment:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    databaseFailover(
+      params: Params$Resource$Projects$Locations$Environments$Databasefailover,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    databaseFailover(
+      params?: Params$Resource$Projects$Locations$Environments$Databasefailover,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    databaseFailover(
+      params: Params$Resource$Projects$Locations$Environments$Databasefailover,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    databaseFailover(
+      params: Params$Resource$Projects$Locations$Environments$Databasefailover,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    databaseFailover(
+      params: Params$Resource$Projects$Locations$Environments$Databasefailover,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    databaseFailover(callback: BodyResponseCallback<Schema$Operation>): void;
+    databaseFailover(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Databasefailover
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Databasefailover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Databasefailover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:databaseFailover').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Delete an environment.
      * @example
      * ```js
@@ -1143,6 +1449,302 @@ export namespace composer_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Executes Airflow CLI command.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await composer.projects.locations.environments.executeAirflowCommand({
+     *       // The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}".
+     *       environment:
+     *         'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "command": "my_command",
+     *         //   "parameters": [],
+     *         //   "subcommand": "my_subcommand"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "error": "my_error",
+     *   //   "executionId": "my_executionId",
+     *   //   "pod": "my_pod",
+     *   //   "podNamespace": "my_podNamespace"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    executeAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Executeairflowcommand,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    executeAirflowCommand(
+      params?: Params$Resource$Projects$Locations$Environments$Executeairflowcommand,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExecuteAirflowCommandResponse>;
+    executeAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Executeairflowcommand,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    executeAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Executeairflowcommand,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExecuteAirflowCommandResponse>,
+      callback: BodyResponseCallback<Schema$ExecuteAirflowCommandResponse>
+    ): void;
+    executeAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Executeairflowcommand,
+      callback: BodyResponseCallback<Schema$ExecuteAirflowCommandResponse>
+    ): void;
+    executeAirflowCommand(
+      callback: BodyResponseCallback<Schema$ExecuteAirflowCommandResponse>
+    ): void;
+    executeAirflowCommand(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Executeairflowcommand
+        | BodyResponseCallback<Schema$ExecuteAirflowCommandResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExecuteAirflowCommandResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExecuteAirflowCommandResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExecuteAirflowCommandResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Executeairflowcommand;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Executeairflowcommand;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:executeAirflowCommand').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExecuteAirflowCommandResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExecuteAirflowCommandResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Fetches database properties.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await composer.projects.locations.environments.fetchDatabaseProperties({
+     *       // Required. The resource name of the environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *       environment:
+     *         'projects/my-project/locations/my-location/environments/my-environment',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isFailoverReplicaAvailable": false,
+     *   //   "primaryGceZone": "my_primaryGceZone",
+     *   //   "secondaryGceZone": "my_secondaryGceZone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchDatabaseProperties(
+      params: Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchDatabaseProperties(
+      params?: Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchDatabasePropertiesResponse>;
+    fetchDatabaseProperties(
+      params: Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchDatabaseProperties(
+      params: Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchDatabasePropertiesResponse>,
+      callback: BodyResponseCallback<Schema$FetchDatabasePropertiesResponse>
+    ): void;
+    fetchDatabaseProperties(
+      params: Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties,
+      callback: BodyResponseCallback<Schema$FetchDatabasePropertiesResponse>
+    ): void;
+    fetchDatabaseProperties(
+      callback: BodyResponseCallback<Schema$FetchDatabasePropertiesResponse>
+    ): void;
+    fetchDatabaseProperties(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties
+        | BodyResponseCallback<Schema$FetchDatabasePropertiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchDatabasePropertiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchDatabasePropertiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchDatabasePropertiesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+environment}:fetchDatabaseProperties'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchDatabasePropertiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchDatabasePropertiesResponse>(
+          parameters
+        );
       }
     }
 
@@ -1711,6 +2313,159 @@ export namespace composer_v1 {
     }
 
     /**
+     * Polls Airflow CLI command execution and fetches logs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.pollAirflowCommand(
+     *     {
+     *       // The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *       environment:
+     *         'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "executionId": "my_executionId",
+     *         //   "nextLineNumber": 0,
+     *         //   "pod": "my_pod",
+     *         //   "podNamespace": "my_podNamespace"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exitInfo": {},
+     *   //   "output": [],
+     *   //   "outputEnd": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pollAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Pollairflowcommand,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pollAirflowCommand(
+      params?: Params$Resource$Projects$Locations$Environments$Pollairflowcommand,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PollAirflowCommandResponse>;
+    pollAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Pollairflowcommand,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pollAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Pollairflowcommand,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PollAirflowCommandResponse>,
+      callback: BodyResponseCallback<Schema$PollAirflowCommandResponse>
+    ): void;
+    pollAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Pollairflowcommand,
+      callback: BodyResponseCallback<Schema$PollAirflowCommandResponse>
+    ): void;
+    pollAirflowCommand(
+      callback: BodyResponseCallback<Schema$PollAirflowCommandResponse>
+    ): void;
+    pollAirflowCommand(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Pollairflowcommand
+        | BodyResponseCallback<Schema$PollAirflowCommandResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PollAirflowCommandResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PollAirflowCommandResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PollAirflowCommandResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Pollairflowcommand;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Pollairflowcommand;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:pollAirflowCommand').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PollAirflowCommandResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PollAirflowCommandResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest.
      * @example
      * ```js
@@ -1852,6 +2607,158 @@ export namespace composer_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Stops Airflow CLI command execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.stopAirflowCommand(
+     *     {
+     *       // The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}".
+     *       environment:
+     *         'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "executionId": "my_executionId",
+     *         //   "force": false,
+     *         //   "pod": "my_pod",
+     *         //   "podNamespace": "my_podNamespace"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isDone": false,
+     *   //   "output": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stopAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Stopairflowcommand,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stopAirflowCommand(
+      params?: Params$Resource$Projects$Locations$Environments$Stopairflowcommand,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StopAirflowCommandResponse>;
+    stopAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Stopairflowcommand,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stopAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Stopairflowcommand,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$StopAirflowCommandResponse>,
+      callback: BodyResponseCallback<Schema$StopAirflowCommandResponse>
+    ): void;
+    stopAirflowCommand(
+      params: Params$Resource$Projects$Locations$Environments$Stopairflowcommand,
+      callback: BodyResponseCallback<Schema$StopAirflowCommandResponse>
+    ): void;
+    stopAirflowCommand(
+      callback: BodyResponseCallback<Schema$StopAirflowCommandResponse>
+    ): void;
+    stopAirflowCommand(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Stopairflowcommand
+        | BodyResponseCallback<Schema$StopAirflowCommandResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StopAirflowCommandResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StopAirflowCommandResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$StopAirflowCommandResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Stopairflowcommand;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Stopairflowcommand;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+environment}:stopAirflowCommand').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StopAirflowCommandResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StopAirflowCommandResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Environments$Create
@@ -1866,12 +2773,43 @@ export namespace composer_v1 {
      */
     requestBody?: Schema$Environment;
   }
+  export interface Params$Resource$Projects$Locations$Environments$Databasefailover
+    extends StandardParameters {
+    /**
+     * Target environment: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DatabaseFailoverRequest;
+  }
   export interface Params$Resource$Projects$Locations$Environments$Delete
     extends StandardParameters {
     /**
      * The environment to delete, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Executeairflowcommand
+    extends StandardParameters {
+    /**
+     * The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}".
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExecuteAirflowCommandRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
   }
   export interface Params$Resource$Projects$Locations$Environments$Get
     extends StandardParameters {
@@ -1923,6 +2861,18 @@ export namespace composer_v1 {
      */
     requestBody?: Schema$Environment;
   }
+  export interface Params$Resource$Projects$Locations$Environments$Pollairflowcommand
+    extends StandardParameters {
+    /**
+     * The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PollAirflowCommandRequest;
+  }
   export interface Params$Resource$Projects$Locations$Environments$Savesnapshot
     extends StandardParameters {
     /**
@@ -1934,6 +2884,18 @@ export namespace composer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SaveSnapshotRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Environments$Stopairflowcommand
+    extends StandardParameters {
+    /**
+     * The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}".
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopAirflowCommandRequest;
   }
 
   export class Resource$Projects$Locations$Imageversions {

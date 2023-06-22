@@ -446,7 +446,7 @@ export namespace apigateway_v1beta {
     operations?: Schema$ApigatewayOperation[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$ApigatewayLocation {
     /**

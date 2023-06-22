@@ -1083,7 +1083,7 @@
       }
     }
   },
-  "revision": "20230308",
+  "revision": "20230607",
   "rootUrl": "https://apigateway.googleapis.com/",
   "schemas": {
     "ApigatewayApi": {
@@ -1555,7 +1555,7 @@
       "type": "object"
     },
     "ApigatewayLocation": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "ApigatewayLocation",
       "properties": {
         "displayName": {

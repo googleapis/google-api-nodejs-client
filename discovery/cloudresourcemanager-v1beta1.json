@@ -127,6 +127,7 @@
               "type": "string"
             },
             "organizationId": {
+              "deprecated": true,
               "description": "The id of the Organization resource to fetch. This field is deprecated and will be removed in v1. Use name instead.",
               "location": "query",
               "type": "string"
@@ -567,7 +568,7 @@
       }
     }
   },
-  "revision": "20230409",
+  "revision": "20230528",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {

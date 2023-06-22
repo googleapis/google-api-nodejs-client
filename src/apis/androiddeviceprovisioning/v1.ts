@@ -261,6 +261,10 @@ export namespace androiddeviceprovisioning_v1 {
      */
     dpcResourcePath?: string | null;
     /**
+     * Optional. The timeout before forcing factory reset the device if the device doesn't go through provisioning in the setup wizard, usually due to lack of network connectivity during setup wizard. Ranges from 0-6 hours, with 2 hours being the default if unset.
+     */
+    forcedResetTime?: string | null;
+    /**
      * Required. Whether this is the default configuration that zero-touch enrollment applies to any new devices the organization purchases in the future. Only one customer configuration can be the default. Setting this value to `true`, changes the previous default configuration's `isDefault` value to `false`.
      */
     isDefault?: boolean | null;
@@ -1083,6 +1087,7 @@ export namespace androiddeviceprovisioning_v1 {
      *       //   "customMessage": "my_customMessage",
      *       //   "dpcExtras": "my_dpcExtras",
      *       //   "dpcResourcePath": "my_dpcResourcePath",
+     *       //   "forcedResetTime": "my_forcedResetTime",
      *       //   "isDefault": false,
      *       //   "name": "my_name"
      *       // }
@@ -1100,6 +1105,7 @@ export namespace androiddeviceprovisioning_v1 {
      *   //   "customMessage": "my_customMessage",
      *   //   "dpcExtras": "my_dpcExtras",
      *   //   "dpcResourcePath": "my_dpcResourcePath",
+     *   //   "forcedResetTime": "my_forcedResetTime",
      *   //   "isDefault": false,
      *   //   "name": "my_name"
      *   // }
@@ -1364,6 +1370,7 @@ export namespace androiddeviceprovisioning_v1 {
      *   //   "customMessage": "my_customMessage",
      *   //   "dpcExtras": "my_dpcExtras",
      *   //   "dpcResourcePath": "my_dpcResourcePath",
+     *   //   "forcedResetTime": "my_forcedResetTime",
      *   //   "isDefault": false,
      *   //   "name": "my_name"
      *   // }
@@ -1641,6 +1648,7 @@ export namespace androiddeviceprovisioning_v1 {
      *       //   "customMessage": "my_customMessage",
      *       //   "dpcExtras": "my_dpcExtras",
      *       //   "dpcResourcePath": "my_dpcResourcePath",
+     *       //   "forcedResetTime": "my_forcedResetTime",
      *       //   "isDefault": false,
      *       //   "name": "my_name"
      *       // }
@@ -1658,6 +1666,7 @@ export namespace androiddeviceprovisioning_v1 {
      *   //   "customMessage": "my_customMessage",
      *   //   "dpcExtras": "my_dpcExtras",
      *   //   "dpcResourcePath": "my_dpcResourcePath",
+     *   //   "forcedResetTime": "my_forcedResetTime",
      *   //   "isDefault": false,
      *   //   "name": "my_name"
      *   // }

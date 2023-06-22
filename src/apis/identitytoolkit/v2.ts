@@ -285,6 +285,10 @@ export namespace identitytoolkit_v2 {
      */
     notification?: Schema$GoogleCloudIdentitytoolkitAdminV2NotificationConfig;
     /**
+     * The project level password policy configuration.
+     */
+    passwordPolicyConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig;
+    /**
      * Configuration related to quotas.
      */
     quota?: Schema$GoogleCloudIdentitytoolkitAdminV2QuotaConfig;
@@ -304,6 +308,35 @@ export namespace identitytoolkit_v2 {
      * Output only. The subtype of this config.
      */
     subtype?: string | null;
+  }
+  /**
+   * Custom strength options to enforce on user passwords.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2CustomStrengthOptions {
+    /**
+     * The password must contain a lower case character.
+     */
+    containsLowercaseCharacter?: boolean | null;
+    /**
+     * The password must contain a non alpha numeric character.
+     */
+    containsNonAlphanumericCharacter?: boolean | null;
+    /**
+     * The password must contain a number.
+     */
+    containsNumericCharacter?: boolean | null;
+    /**
+     * The password must contain an upper case character.
+     */
+    containsUppercaseCharacter?: boolean | null;
+    /**
+     * Maximum password length. No default max length
+     */
+    maxPasswordLength?: number | null;
+    /**
+     * Minimum password length. Range from 6 to 30
+     */
+    minPasswordLength?: number | null;
   }
   /**
    * Standard Identity Toolkit-trusted IDPs.
@@ -709,6 +742,40 @@ export namespace identitytoolkit_v2 {
     token?: boolean | null;
   }
   /**
+   * The configuration for the password policy on the project.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig {
+    /**
+     * Users must have a password compliant with the password policy to sign-in.
+     */
+    forceUpgradeOnSignin?: boolean | null;
+    /**
+     * Output only. The last time the password policy on the project was updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * Which enforcement mode to use for the password policy.
+     */
+    passwordPolicyEnforcementState?: string | null;
+    /**
+     * Must be of length 1. Contains the strength attributes for the password policy.
+     */
+    passwordPolicyVersions?: Schema$GoogleCloudIdentitytoolkitAdminV2PasswordPolicyVersion[];
+  }
+  /**
+   * The strength attributes for the password policy on the project.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2PasswordPolicyVersion {
+    /**
+     * The custom strength options enforced by the password policy.
+     */
+    customStrengthOptions?: Schema$GoogleCloudIdentitytoolkitAdminV2CustomStrengthOptions;
+    /**
+     * Output only. schema version number for the password policy
+     */
+    schemaVersion?: number | null;
+  }
+  /**
    * Configuration related to restricting a user's ability to affect their account.
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2Permissions {
@@ -1046,6 +1113,10 @@ export namespace identitytoolkit_v2 {
      */
     name?: string | null;
     /**
+     * The tenant-level password policy config
+     */
+    passwordPolicyConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig;
+    /**
      * The tenant-level reCAPTCHA config.
      */
     recaptchaConfig?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig;
@@ -1081,95 +1152,6 @@ export namespace identitytoolkit_v2 {
     updateTime?: string | null;
   }
   /**
-   * Authentication response from a FIDO authenticator.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2AuthenticatorAssertionResponse {
-    /**
-     * The AuthenticatorData from the authenticator.
-     */
-    authenticatorData?: string | null;
-    /**
-     * The CollectedClientData object from the authenticator.
-     */
-    clientDataJson?: string | null;
-    /**
-     * The signature from the authenticator.
-     */
-    signature?: string | null;
-    /**
-     * The user handle.
-     */
-    userHandle?: string | null;
-  }
-  /**
-   * Attestation response from a FIDO authenticator.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2AuthenticatorAttestationResponse {
-    /**
-     * The attestation object from the authenticator.
-     */
-    attestationObject?: string | null;
-    /**
-     * The CollectedClientData object from the authenticator.
-     */
-    clientDataJson?: string | null;
-    /**
-     * Authenticator transports that are supported by the authenticator.
-     */
-    transports?: string[] | null;
-  }
-  /**
-   * Authenticator response to authenticate the user with an existing FIDO key.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2AuthenticatorAuthenticationResponse {
-    /**
-     * Authentication assertion from the authenticator.
-     */
-    authenticatorAssertionResponse?: Schema$GoogleCloudIdentitytoolkitV2AuthenticatorAssertionResponse;
-    /**
-     * Identifier for the authentication credential.
-     */
-    credentialId?: string | null;
-    /**
-     * The type of public key.
-     */
-    credentialType?: string | null;
-  }
-  /**
-   * Authenticator response to register a new FIDO key.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2AuthenticatorRegistrationResponse {
-    /**
-     * The attestation response object as described in the spec.
-     */
-    authenticatorAttestationResponse?: Schema$GoogleCloudIdentitytoolkitV2AuthenticatorAttestationResponse;
-    /**
-     * Identifier for the registered credential.
-     */
-    credentialId?: string | null;
-    /**
-     * The type of credential.
-     */
-    credentialType?: string | null;
-  }
-  /**
-   * Criteria for the authenticator to create a registered FIDO key.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2AuthenticatorSelectionCriteria {
-    /**
-     * The preferred authenticator attachment modality.
-     */
-    authenticatorAttachment?: string | null;
-    /**
-     * Whether resident key is required.
-     */
-    requireResidentKey?: boolean | null;
-    /**
-     * The Relying Party's user verification requirements.
-     */
-    userVerification?: string | null;
-  }
-  /**
    * The information required to auto-retrieve an SMS.
    */
   export interface Schema$GoogleCloudIdentitytoolkitV2AutoRetrievalInfo {
@@ -1177,6 +1159,35 @@ export namespace identitytoolkit_v2 {
      * The Android app's signature hash for Google Play Service's SMS Retriever API.
      */
     appSignatureHash?: string | null;
+  }
+  /**
+   * Custom strength options to enforce on user passwords.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitV2CustomStrengthOptions {
+    /**
+     * The password must contain a lower case character.
+     */
+    containsLowercaseCharacter?: boolean | null;
+    /**
+     * The password must contain a non alpha numeric character.
+     */
+    containsNonAlphanumericCharacter?: boolean | null;
+    /**
+     * The password must contain a number.
+     */
+    containsNumericCharacter?: boolean | null;
+    /**
+     * The password must contain an upper case character.
+     */
+    containsUppercaseCharacter?: boolean | null;
+    /**
+     * Maximum password length. No default max length
+     */
+    maxPasswordLength?: number | null;
+    /**
+     * Minimum password length. Range from 6 to 30
+     */
+    minPasswordLength?: number | null;
   }
   /**
    * Finishes enrolling a second factor for the user.
@@ -1322,66 +1333,6 @@ export namespace identitytoolkit_v2 {
    */
   export interface Schema$GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo {}
   /**
-   * FinalizePasskeyEnrollment request. Registers passkey as a first factor for the user.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentRequest {
-    /**
-     * Optional. The registration object from the authenticator.
-     */
-    authenticatorRegistrationResponse?: Schema$GoogleCloudIdentitytoolkitV2AuthenticatorRegistrationResponse;
-    /**
-     * Required. The GCIP ID token of the signed-in user
-     */
-    idToken?: string | null;
-    /**
-     * Optional. The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.
-     */
-    tenantId?: string | null;
-  }
-  /**
-   * FinalizePasskeyEnrollment response.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse {
-    /**
-     * ID token for the authenticated user.
-     */
-    idToken?: string | null;
-    /**
-     * Refresh token for the authenticated user.
-     */
-    refreshToken?: string | null;
-  }
-  /**
-   * Request to finalize a passkey sign-in.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInRequest {
-    /**
-     * Required. The authentication response object from the authenticator.
-     */
-    authenticatorAuthenticationResponse?: Schema$GoogleCloudIdentitytoolkitV2AuthenticatorAuthenticationResponse;
-    /**
-     * Optional. The session ID that was passed into StartPasskeySignIn, if any.
-     */
-    sessionId?: string | null;
-    /**
-     * Optional. The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.
-     */
-    tenantId?: string | null;
-  }
-  /**
-   * Response for FinalizePasskeySignIn.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse {
-    /**
-     * ID token for the authenticated user.
-     */
-    idToken?: string | null;
-    /**
-     * Refresh token for the authenticated user.
-     */
-    refreshToken?: string | null;
-  }
-  /**
    * TOTP verification info for FinalizeMfaSignInRequest.
    */
   export interface Schema$GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo {
@@ -1391,80 +1342,21 @@ export namespace identitytoolkit_v2 {
     verificationCode?: string | null;
   }
   /**
-   * Parameters for creating a FIDO key.
+   * Configuration for password policy.
    */
-  export interface Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialCreationOptions {
+  export interface Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy {
     /**
-     * Criteria for the authenticator to create a credential.
+     * Output only. Allowed characters which satisfy the non_alphanumeric requirement.
      */
-    authenticatorSelection?: Schema$GoogleCloudIdentitytoolkitV2AuthenticatorSelectionCriteria;
+    allowedNonAlphanumericCharacters?: string[] | null;
     /**
-     * The FIDO challenge.
+     * The custom strength options enforced by the password policy.
      */
-    challenge?: string | null;
+    customStrengthOptions?: Schema$GoogleCloudIdentitytoolkitV2CustomStrengthOptions;
     /**
-     * Credentials already mapped to this user.
+     * Output only. schema version number for the password policy
      */
-    excludeCredentials?: Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialDescriptor[];
-    /**
-     * Lists the supported key types and signature algorithms.
-     */
-    pubKeyCredParams?: Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialParameters[];
-    /**
-     * The relying party attributes for creating a new credential.
-     */
-    rp?: Schema$GoogleCloudIdentitytoolkitV2RpEntity;
-    /**
-     * The user attributes for creating a new credential.
-     */
-    user?: Schema$GoogleCloudIdentitytoolkitV2UserEntity;
-  }
-  /**
-   * Descriptor for a public key credential.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialDescriptor {
-    /**
-     * The identifier for the credential.
-     */
-    credentialId?: string | null;
-    /**
-     * The type of public key.
-     */
-    credentialType?: string | null;
-    /**
-     * Authenticator transports that are supported by the authenticator.
-     */
-    transports?: string[] | null;
-  }
-  /**
-   * Parameters to create a public credential.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialParameters {
-    /**
-     * The COSE registry number of the cryptographic signature algorithm.
-     */
-    alg?: string | null;
-    /**
-     * The type of public key to be created.
-     */
-    credentialType?: string | null;
-  }
-  /**
-   * Parameters for signing a challenge with a FIDO key.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialRequestOptions {
-    /**
-     * The FIDO challenge.
-     */
-    challenge?: string | null;
-    /**
-     * The relying party identifier.
-     */
-    rpId?: string | null;
-    /**
-     * The requirements regarding user verification.
-     */
-    userVerification?: string | null;
+    schemaVersion?: number | null;
   }
   /**
    * Configuration for reCAPTCHA
@@ -1475,7 +1367,7 @@ export namespace identitytoolkit_v2 {
      */
     recaptchaEnforcementState?: Schema$GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState[];
     /**
-     * The reCAPTCHA Enterprise key resource name, e.g. "projects/{project\}/keys/{key\}".
+     * The reCAPTCHA Enterprise key resource name, e.g. "projects/{project\}/keys/{key\}". This will only be returned when the reCAPTCHA enforcement state is AUDIT or ENFORCE on at least one of the reCAPTCHA providers.
      */
     recaptchaKey?: string | null;
   }
@@ -1505,7 +1397,7 @@ export namespace identitytoolkit_v2 {
      */
     providerId?: string | null;
     /**
-     * The redirect URI provided in the initial authorization request made by the client to the IDP. The URI must use the HTTPS protocol, include a domain name, and can’t contain an IP address or localhost. Required if token_type is CODE.
+     * The redirect URI provided in the initial authorization request made by the client to the IDP. The URI must use the HTTPS protocol, include a domain name, and can't contain an IP address or localhost. Required if token_type is CODE.
      */
     redirectUri?: string | null;
     /**
@@ -1525,15 +1417,6 @@ export namespace identitytoolkit_v2 {
    * Response message for RevokeToken. Empty for now.
    */
   export interface Schema$GoogleCloudIdentitytoolkitV2RevokeTokenResponse {}
-  /**
-   * The entity object for the Relying Party.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2RpEntity {
-    /**
-     * The RP ID of the FIDO Relying Party.
-     */
-    id?: string | null;
-  }
   /**
    * Sends MFA enrollment verification SMS for a user.
    */
@@ -1672,59 +1555,6 @@ export namespace identitytoolkit_v2 {
      * The length of the verification code that needs to be generated.
      */
     verificationCodeLength?: number | null;
-  }
-  /**
-   * Starts passkey enrollment for passkey as a first factor by returning the FIDO challenge.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentRequest {
-    /**
-     * Required. The GCIP ID token of the signed-in user
-     */
-    idToken?: string | null;
-    /**
-     * Optional. The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.
-     */
-    tenantId?: string | null;
-  }
-  /**
-   * StartPasskeyEnrollment response.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse {
-    /**
-     * Parameters specified for the authenticator to create a public key.
-     */
-    credentialCreationOptions?: Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialCreationOptions;
-  }
-  /**
-   * Starts passkey sign-in by returning the FIDO challenge.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInRequest {
-    /**
-     * Optional. The developer can bind their own concept of a user session to this flow.
-     */
-    sessionId?: string | null;
-    /**
-     * Optional. The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.
-     */
-    tenantId?: string | null;
-  }
-  /**
-   * Response for StartPasskeySignIn.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse {
-    /**
-     * Parameters specified for the authenticator to sign a challenge.
-     */
-    credentialRequestOptions?: Schema$GoogleCloudIdentitytoolkitV2PublicKeyCredentialRequestOptions;
-  }
-  /**
-   * The entity object for the user.
-   */
-  export interface Schema$GoogleCloudIdentitytoolkitV2UserEntity {
-    /**
-     * The user ID.
-     */
-    id?: string | null;
   }
   /**
    * Withdraws MFA.
@@ -1899,16 +1729,10 @@ export namespace identitytoolkit_v2 {
     context: APIRequestContext;
     mfaEnrollment: Resource$Accounts$Mfaenrollment;
     mfaSignIn: Resource$Accounts$Mfasignin;
-    passkeyEnrollment: Resource$Accounts$Passkeyenrollment;
-    passkeySignIn: Resource$Accounts$Passkeysignin;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.mfaEnrollment = new Resource$Accounts$Mfaenrollment(this.context);
       this.mfaSignIn = new Resource$Accounts$Mfasignin(this.context);
-      this.passkeyEnrollment = new Resource$Accounts$Passkeyenrollment(
-        this.context
-      );
-      this.passkeySignIn = new Resource$Accounts$Passkeysignin(this.context);
     }
 
     /**
@@ -2861,634 +2685,6 @@ export namespace identitytoolkit_v2 {
     requestBody?: Schema$GoogleCloudIdentitytoolkitV2StartMfaSignInRequest;
   }
 
-  export class Resource$Accounts$Passkeyenrollment {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Finishes enrolling a passkey credential for the user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.passkeyEnrollment.finalize({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authenticatorRegistrationResponse": {},
-     *       //   "idToken": "my_idToken",
-     *       //   "tenantId": "my_tenantId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "idToken": "my_idToken",
-     *   //   "refreshToken": "my_refreshToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    finalize(
-      params: Params$Resource$Accounts$Passkeyenrollment$Finalize,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    finalize(
-      params?: Params$Resource$Accounts$Passkeyenrollment$Finalize,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>;
-    finalize(
-      params: Params$Resource$Accounts$Passkeyenrollment$Finalize,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    finalize(
-      params: Params$Resource$Accounts$Passkeyenrollment$Finalize,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>
-    ): void;
-    finalize(
-      params: Params$Resource$Accounts$Passkeyenrollment$Finalize,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>
-    ): void;
-    finalize(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>
-    ): void;
-    finalize(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Passkeyenrollment$Finalize
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Passkeyenrollment$Finalize;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Passkeyenrollment$Finalize;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/accounts/passkeyEnrollment:finalize').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Step one of the passkey enrollment process. Returns a challenge and parameters for creation of the passkey credential.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.passkeyEnrollment.start({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "idToken": "my_idToken",
-     *       //   "tenantId": "my_tenantId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "credentialCreationOptions": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    start(
-      params: Params$Resource$Accounts$Passkeyenrollment$Start,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    start(
-      params?: Params$Resource$Accounts$Passkeyenrollment$Start,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>;
-    start(
-      params: Params$Resource$Accounts$Passkeyenrollment$Start,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    start(
-      params: Params$Resource$Accounts$Passkeyenrollment$Start,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>
-    ): void;
-    start(
-      params: Params$Resource$Accounts$Passkeyenrollment$Start,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>
-    ): void;
-    start(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>
-    ): void;
-    start(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Passkeyenrollment$Start
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Passkeyenrollment$Start;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Passkeyenrollment$Start;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/accounts/passkeyEnrollment:start').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Accounts$Passkeyenrollment$Finalize
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeyEnrollmentRequest;
-  }
-  export interface Params$Resource$Accounts$Passkeyenrollment$Start
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIdentitytoolkitV2StartPasskeyEnrollmentRequest;
-  }
-
-  export class Resource$Accounts$Passkeysignin {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Verifies the passkey assertion and signs the user in.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.passkeySignIn.finalize({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authenticatorAuthenticationResponse": {},
-     *       //   "sessionId": "my_sessionId",
-     *       //   "tenantId": "my_tenantId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "idToken": "my_idToken",
-     *   //   "refreshToken": "my_refreshToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    finalize(
-      params: Params$Resource$Accounts$Passkeysignin$Finalize,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    finalize(
-      params?: Params$Resource$Accounts$Passkeysignin$Finalize,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>;
-    finalize(
-      params: Params$Resource$Accounts$Passkeysignin$Finalize,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    finalize(
-      params: Params$Resource$Accounts$Passkeysignin$Finalize,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>
-    ): void;
-    finalize(
-      params: Params$Resource$Accounts$Passkeysignin$Finalize,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>
-    ): void;
-    finalize(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>
-    ): void;
-    finalize(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Passkeysignin$Finalize
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Passkeysignin$Finalize;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Passkeysignin$Finalize;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/accounts/passkeySignIn:finalize').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Creates and returns the passkey challenge
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const identitytoolkit = google.identitytoolkit('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await identitytoolkit.accounts.passkeySignIn.start({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "sessionId": "my_sessionId",
-     *       //   "tenantId": "my_tenantId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "credentialRequestOptions": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    start(
-      params: Params$Resource$Accounts$Passkeysignin$Start,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    start(
-      params?: Params$Resource$Accounts$Passkeysignin$Start,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>;
-    start(
-      params: Params$Resource$Accounts$Passkeysignin$Start,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    start(
-      params: Params$Resource$Accounts$Passkeysignin$Start,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>
-    ): void;
-    start(
-      params: Params$Resource$Accounts$Passkeysignin$Start,
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>
-    ): void;
-    start(
-      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>
-    ): void;
-    start(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Passkeysignin$Start
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Passkeysignin$Start;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Passkeysignin$Start;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/accounts/passkeySignIn:start').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Accounts$Passkeysignin$Finalize
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIdentitytoolkitV2FinalizePasskeySignInRequest;
-  }
-  export interface Params$Resource$Accounts$Passkeysignin$Start
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIdentitytoolkitV2StartPasskeySignInRequest;
-  }
-
   export class Resource$Defaultsupportedidps {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3720,6 +2916,7 @@ export namespace identitytoolkit_v2 {
      *   //   "multiTenant": {},
      *   //   "name": "my_name",
      *   //   "notification": {},
+     *   //   "passwordPolicyConfig": {},
      *   //   "quota": {},
      *   //   "recaptchaConfig": {},
      *   //   "signIn": {},
@@ -3875,6 +3072,7 @@ export namespace identitytoolkit_v2 {
      *       //   "multiTenant": {},
      *       //   "name": "my_name",
      *       //   "notification": {},
+     *       //   "passwordPolicyConfig": {},
      *       //   "quota": {},
      *       //   "recaptchaConfig": {},
      *       //   "signIn": {},
@@ -3897,6 +3095,7 @@ export namespace identitytoolkit_v2 {
      *   //   "multiTenant": {},
      *   //   "name": "my_name",
      *   //   "notification": {},
+     *   //   "passwordPolicyConfig": {},
      *   //   "quota": {},
      *   //   "recaptchaConfig": {},
      *   //   "signIn": {},
@@ -6690,6 +5889,7 @@ export namespace identitytoolkit_v2 {
      *       //   "mfaConfig": {},
      *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "passwordPolicyConfig": {},
      *       //   "recaptchaConfig": {},
      *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
@@ -6713,6 +5913,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "passwordPolicyConfig": {},
      *   //   "recaptchaConfig": {},
      *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
@@ -7001,6 +6202,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "passwordPolicyConfig": {},
      *   //   "recaptchaConfig": {},
      *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
@@ -7453,6 +6655,7 @@ export namespace identitytoolkit_v2 {
      *       //   "mfaConfig": {},
      *       //   "monitoring": {},
      *       //   "name": "my_name",
+     *       //   "passwordPolicyConfig": {},
      *       //   "recaptchaConfig": {},
      *       //   "smsRegionConfig": {},
      *       //   "testPhoneNumbers": {}
@@ -7476,6 +6679,7 @@ export namespace identitytoolkit_v2 {
      *   //   "mfaConfig": {},
      *   //   "monitoring": {},
      *   //   "name": "my_name",
+     *   //   "passwordPolicyConfig": {},
      *   //   "recaptchaConfig": {},
      *   //   "smsRegionConfig": {},
      *   //   "testPhoneNumbers": {}
@@ -10426,6 +9630,144 @@ export namespace identitytoolkit_v2 {
     }
 
     /**
+     * Gets password policy config set on the project or tenant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const identitytoolkit = google.identitytoolkit('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await identitytoolkit.getPasswordPolicy({
+     *     // The id of a tenant.
+     *     tenantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedNonAlphanumericCharacters": [],
+     *   //   "customStrengthOptions": {},
+     *   //   "schemaVersion": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getPasswordPolicy(
+      params: Params$Resource$V2$Getpasswordpolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getPasswordPolicy(
+      params?: Params$Resource$V2$Getpasswordpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>;
+    getPasswordPolicy(
+      params: Params$Resource$V2$Getpasswordpolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getPasswordPolicy(
+      params: Params$Resource$V2$Getpasswordpolicy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+    ): void;
+    getPasswordPolicy(
+      params: Params$Resource$V2$Getpasswordpolicy,
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+    ): void;
+    getPasswordPolicy(
+      callback: BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+    ): void;
+    getPasswordPolicy(
+      paramsOrCallback?:
+        | Params$Resource$V2$Getpasswordpolicy
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V2$Getpasswordpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V2$Getpasswordpolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://identitytoolkit.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/passwordPolicy').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIdentitytoolkitV2PasswordPolicy>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets parameters needed for reCAPTCHA analysis.
      * @example
      * ```js
@@ -10570,6 +9912,13 @@ export namespace identitytoolkit_v2 {
     }
   }
 
+  export interface Params$Resource$V2$Getpasswordpolicy
+    extends StandardParameters {
+    /**
+     * The id of a tenant.
+     */
+    tenantId?: string;
+  }
   export interface Params$Resource$V2$Getrecaptchaconfig
     extends StandardParameters {
     /**

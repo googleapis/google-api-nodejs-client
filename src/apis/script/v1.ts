@@ -404,6 +404,10 @@ export namespace script_v1 {
      */
     projectName?: string | null;
     /**
+     * Which version of maestro to use to execute the script.
+     */
+    runtimeVersion?: string | null;
+    /**
      * Time the execution started.
      */
     startTime?: string | null;

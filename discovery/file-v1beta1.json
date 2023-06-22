@@ -1041,7 +1041,7 @@
       }
     }
   },
-  "revision": "20230422",
+  "revision": "20230614",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1108,7 +1108,8 @@
             "BASIC_HDD",
             "BASIC_SSD",
             "HIGH_SCALE_SSD",
-            "ENTERPRISE"
+            "ENTERPRISE",
+            "ZONAL"
           ],
           "enumDescriptions": [
             "Not set.",
@@ -1117,7 +1118,8 @@
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
             "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities.",
-            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads."
+            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads.",
+            "ZONAL instances offer expanded capacity and performance scaling capabilities."
           ],
           "readOnly": true,
           "type": "string"
@@ -1211,6 +1213,17 @@
         "time": {
           "$ref": "TimeOfDay",
           "description": "Time in UTC when the Blackout period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC"
+        }
+      },
+      "type": "object"
+    },
+    "DirectoryServicesConfig": {
+      "description": "Directory Services configuration for Kerberos-based authentication.",
+      "id": "DirectoryServicesConfig",
+      "properties": {
+        "managedActiveDirectory": {
+          "$ref": "ManagedActiveDirectoryConfig",
+          "description": "Configuration for Managed Service for Microsoft Active Directory."
         }
       },
       "type": "object"
@@ -1547,6 +1560,10 @@
           "description": "The description of the instance (2048 characters or less).",
           "type": "string"
         },
+        "directoryServices": {
+          "$ref": "DirectoryServicesConfig",
+          "description": "Directory Services configuration for Kerberos-based authentication. Should only be set if protocol is \"NFS_V4_1\"."
+        },
         "etag": {
           "description": "Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.",
           "type": "string"
@@ -1676,7 +1693,8 @@
             "BASIC_HDD",
             "BASIC_SSD",
             "HIGH_SCALE_SSD",
-            "ENTERPRISE"
+            "ENTERPRISE",
+            "ZONAL"
           ],
           "enumDescriptions": [
             "Not set.",
@@ -1685,7 +1703,8 @@
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
             "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities.",
-            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads."
+            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads.",
+            "ZONAL instances offer expanded capacity and performance scaling capabilities."
           ],
           "type": "string"
         }
@@ -1920,6 +1939,21 @@
       },
       "type": "object"
     },
+    "ManagedActiveDirectoryConfig": {
+      "description": "ManagedActiveDirectoryConfig contains all the parameters for connecting to Managed Active Directory.",
+      "id": "ManagedActiveDirectoryConfig",
+      "properties": {
+        "computer": {
+          "description": "The computer name is used as a prefix to the mount remote target. Example: if the computer_name is `my-computer`, the mount command will look like: `$mount -o vers=4,sec=krb5 my-computer.filestore.:`.",
+          "type": "string"
+        },
+        "domain": {
+          "description": "Fully qualified domain name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkConfig": {
       "description": "Network configuration for the instance.",
       "id": "NetworkConfig",
@@ -2003,6 +2037,27 @@
         "ipRanges": {
           "description": "List of either an IPv4 addresses in the format `{octet1}.{octet2}.{octet3}.{octet4}` or CIDR ranges in the format `{octet1}.{octet2}.{octet3}.{octet4}/{mask size}` which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.",
           "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "securityFlavors": {
+          "description": "The security flavors allowed for mount operations. The default is AUTH_SYS.",
+          "items": {
+            "enum": [
+              "SECURITY_FLAVOR_UNSPECIFIED",
+              "AUTH_SYS",
+              "KRB5",
+              "KRB5I",
+              "KRB5P"
+            ],
+            "enumDescriptions": [
+              "SecurityFlavor not set.",
+              "The user's UNIX user-id and group-ids are transferred \"in the clear\" (not encrypted) on the network, unauthenticated by the NFS server (default).",
+              "End-user authentication through Kerberos V5.",
+              "krb5 plus integrity protection (data packets are tamper proof).",
+              "krb5i plus privacy protection (data packets are tamper proof and encrypted)."
+            ],
             "type": "string"
           },
           "type": "array"

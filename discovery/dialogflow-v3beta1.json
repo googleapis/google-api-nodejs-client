@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20230427",
+  "revision": "20230618",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -4830,7 +4830,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3QueryInput": {
-      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. ",
+      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.",
       "id": "GoogleCloudDialogflowCxV3QueryInput",
       "properties": {
         "audio": {
@@ -5271,7 +5271,7 @@
       "id": "GoogleCloudDialogflowCxV3TestRunDifference",
       "properties": {
         "description": {
-          "description": "A description of the diff, showing the actual output vs expected output.",
+          "description": "A human readable description of the diff, showing the actual output vs expected output.",
           "type": "string"
         },
         "type": {
@@ -5281,14 +5281,16 @@
             "INTENT",
             "PAGE",
             "PARAMETERS",
-            "UTTERANCE"
+            "UTTERANCE",
+            "FLOW"
           ],
           "enumDescriptions": [
             "Should never be used.",
             "The intent.",
             "The page.",
             "The parameters.",
-            "The message utterance."
+            "The message utterance.",
+            "The flow."
           ],
           "type": "string"
         }
@@ -5379,6 +5381,16 @@
           "description": "Whether turn resulted in End Session page.",
           "type": "boolean"
         },
+        "sentimentMagnitude": {
+          "description": "Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.",
+          "format": "float",
+          "type": "number"
+        },
+        "sentimentScore": {
+          "description": "Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.",
+          "format": "float",
+          "type": "number"
+        },
         "userEscalated": {
           "description": "Whether user was specifically asking for a live agent.",
           "type": "boolean"
@@ -5448,8 +5460,43 @@
           },
           "type": "array"
         },
+        "httpMethod": {
+          "description": "Optional. HTTP method for the flexible webhook calls. Standard webhook always uses POST.",
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ],
+          "enumDescriptions": [
+            "HTTP method not specified.",
+            "HTTP POST Method.",
+            "HTTP GET Method.",
+            "HTTP HEAD Method.",
+            "HTTP PUT Method.",
+            "HTTP DELETE Method.",
+            "HTTP PATCH Method.",
+            "HTTP OPTIONS Method."
+          ],
+          "type": "string"
+        },
+        "parameterMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response",
+          "type": "object"
+        },
         "password": {
           "description": "The password for HTTP Basic authentication.",
+          "type": "string"
+        },
+        "requestBody": {
+          "description": "Optional. Defines a custom JSON object as request body to send to flexible webhook.",
           "type": "string"
         },
         "requestHeaders": {
@@ -5465,6 +5512,20 @@
         },
         "username": {
           "description": "The user name for HTTP Basic authentication.",
+          "type": "string"
+        },
+        "webhookType": {
+          "description": "Optional. Type of the webhook.",
+          "enum": [
+            "WEBHOOK_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "FLEXIBLE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Represents a standard webhook.",
+            "Represents a flexible webhook."
+          ],
           "type": "string"
         }
       },
@@ -7189,7 +7250,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1GcsDestination",
       "properties": {
         "uri": {
-          "description": "Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: gs://bucket/object-name-or-prefix Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.",
+          "description": "Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.",
           "type": "string"
         }
       },
@@ -7473,7 +7534,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1IntentCoverageIntent",
       "properties": {
         "covered": {
-          "description": "Whether or not the intent is covered by at least one of the agent's test cases.",
+          "description": "Whether the intent is covered by at least one of the agent's test cases.",
           "type": "boolean"
         },
         "intent": {
@@ -8068,7 +8129,7 @@
         },
         "synthesizeSpeechConfig": {
           "$ref": "GoogleCloudDialogflowCxV3beta1SynthesizeSpeechConfig",
-          "description": "Optional. Configuration of how speech should be synthesized."
+          "description": "Optional. Configuration of how speech should be synthesized. If not specified, Agent.text_to_speech_settings is applied."
         }
       },
       "type": "object"
@@ -8190,7 +8251,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1QueryInput": {
-      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. ",
+      "description": "Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.",
       "id": "GoogleCloudDialogflowCxV3beta1QueryInput",
       "properties": {
         "audio": {
@@ -9144,7 +9205,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1TestRunDifference",
       "properties": {
         "description": {
-          "description": "A description of the diff, showing the actual output vs expected output.",
+          "description": "A human readable description of the diff, showing the actual output vs expected output.",
           "type": "string"
         },
         "type": {
@@ -9154,14 +9215,16 @@
             "INTENT",
             "PAGE",
             "PARAMETERS",
-            "UTTERANCE"
+            "UTTERANCE",
+            "FLOW"
           ],
           "enumDescriptions": [
             "Should never be used.",
             "The intent.",
             "The page.",
             "The parameters.",
-            "The message utterance."
+            "The message utterance.",
+            "The flow."
           ],
           "type": "string"
         }
@@ -9180,14 +9243,14 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1TextToSpeechSettings": {
-      "description": "Settings related to speech generating.",
+      "description": "Settings related to speech synthesizing.",
       "id": "GoogleCloudDialogflowCxV3beta1TextToSpeechSettings",
       "properties": {
         "synthesizeSpeechConfigs": {
           "additionalProperties": {
             "$ref": "GoogleCloudDialogflowCxV3beta1SynthesizeSpeechConfig"
           },
-          "description": "Configuration of how speech should be synthesized, mapping from language (https://dialogflow.com/docs/reference/language) to SynthesizeSpeechConfig.",
+          "description": "Configuration of how speech should be synthesized, mapping from language (https://cloud.google.com/dialogflow/cx/docs/reference/language) to SynthesizeSpeechConfig. These settings affect: - The [phone gateway](https://cloud.google.com/dialogflow/cx/docs/concept/integration/phone-gateway) synthesize configuration set via Agent.text_to_speech_settings. - How speech is synthesized when invoking session APIs. Agent.text_to_speech_settings only applies if OutputAudioConfig.synthesize_speech_config is not specified.",
           "type": "object"
         }
       },
@@ -9223,7 +9286,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1TransitionCoverageTransition",
       "properties": {
         "covered": {
-          "description": "Whether or not the transition is covered by at least one of the agent's test cases.",
+          "description": "Whether the transition is covered by at least one of the agent's test cases.",
           "type": "boolean"
         },
         "eventHandler": {
@@ -9366,7 +9429,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverageCoverageTransition",
       "properties": {
         "covered": {
-          "description": "Whether or not the transition route is covered by at least one of the agent's test cases.",
+          "description": "Whether the transition route is covered by at least one of the agent's test cases.",
           "type": "boolean"
         },
         "transitionRoute": {
@@ -9416,6 +9479,16 @@
         "reachedEndPage": {
           "description": "Whether turn resulted in End Session page.",
           "type": "boolean"
+        },
+        "sentimentMagnitude": {
+          "description": "Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.",
+          "format": "float",
+          "type": "number"
+        },
+        "sentimentScore": {
+          "description": "Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.",
+          "format": "float",
+          "type": "number"
         },
         "userEscalated": {
           "description": "Whether user was specifically asking for a live agent.",
@@ -9709,8 +9782,43 @@
           },
           "type": "array"
         },
+        "httpMethod": {
+          "description": "Optional. HTTP method for the flexible webhook calls. Standard webhook always uses POST.",
+          "enum": [
+            "HTTP_METHOD_UNSPECIFIED",
+            "POST",
+            "GET",
+            "HEAD",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "OPTIONS"
+          ],
+          "enumDescriptions": [
+            "HTTP method not specified.",
+            "HTTP POST Method.",
+            "HTTP GET Method.",
+            "HTTP HEAD Method.",
+            "HTTP PUT Method.",
+            "HTTP DELETE Method.",
+            "HTTP PATCH Method.",
+            "HTTP OPTIONS Method."
+          ],
+          "type": "string"
+        },
+        "parameterMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response",
+          "type": "object"
+        },
         "password": {
           "description": "The password for HTTP Basic authentication.",
+          "type": "string"
+        },
+        "requestBody": {
+          "description": "Optional. Defines a custom JSON object as request body to send to flexible webhook.",
           "type": "string"
         },
         "requestHeaders": {
@@ -9726,6 +9834,20 @@
         },
         "username": {
           "description": "The user name for HTTP Basic authentication.",
+          "type": "string"
+        },
+        "webhookType": {
+          "description": "Optional. Type of the webhook.",
+          "enum": [
+            "WEBHOOK_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "FLEXIBLE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Represents a standard webhook.",
+            "Represents a flexible webhook."
+          ],
           "type": "string"
         }
       },
@@ -12195,6 +12317,7 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
+            "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
@@ -12202,6 +12325,7 @@
             "Run article suggestion model for chat.",
             "Run FAQ model.",
             "Run smart reply model for chat.",
+            "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat."
           ],
           "type": "string"
@@ -12268,6 +12392,25 @@
             "Unrecoverable error during a telephone call. In general non-recoverable errors only occur if something was misconfigured in the ConversationProfile corresponding to the call. After a non-recoverable error, Dialogflow may stop responding. We don't fire this event: * in an API call because we can directly return the error, or, * when we can recover from an error."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1DialogflowAssistAnswer": {
+      "description": "Represents a Dialogflow assist answer.",
+      "id": "GoogleCloudDialogflowV2beta1DialogflowAssistAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of answer record, in the format of \"projects//locations//answerRecords/\"",
+          "type": "string"
+        },
+        "intentSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2beta1IntentSuggestion",
+          "description": "An intent suggestion generated from conversation."
+        },
+        "queryResult": {
+          "$ref": "GoogleCloudDialogflowV2beta1QueryResult",
+          "description": "Result from v2 agent."
         }
       },
       "type": "object"
@@ -13622,6 +13765,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1IntentSuggestion": {
+      "description": "Represents an intent suggestion.",
+      "id": "GoogleCloudDialogflowV2beta1IntentSuggestion",
+      "properties": {
+        "description": {
+          "description": "Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the intent.",
+          "type": "string"
+        },
+        "intentV2": {
+          "description": "The unique identifier of this intent. Format: `projects//locations//agent/intents/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1IntentTrainingPhrase": {
       "description": "Represents an example that the agent is trained on.",
       "id": "GoogleCloudDialogflowV2beta1IntentTrainingPhrase",
@@ -14062,6 +14224,7 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
+            "DIALOGFLOW_ASSIST",
             "CONVERSATION_SUMMARIZATION"
           ],
           "enumDescriptions": [
@@ -14069,6 +14232,7 @@
             "Run article suggestion model for chat.",
             "Run FAQ model.",
             "Run smart reply model for chat.",
+            "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
             "Run conversation summarization model for chat."
           ],
           "type": "string"
@@ -14114,6 +14278,29 @@
         },
         "latestMessage": {
           "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse": {
+      "description": "The response message for Participants.SuggestDialogflowAssists.",
+      "id": "GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestDialogflowAssistsRequest.context_size field in the request if there aren't that many messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "dialogflowAssistAnswers": {
+          "description": "Output only. Multiple reply options provided by Dialogflow assist service. The order is based on the rank of the model prediction.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1DialogflowAssistAnswer"
+          },
+          "type": "array"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used to suggest answer. Format: `projects//locations//conversations//messages/`.",
           "type": "string"
         }
       },
@@ -14176,6 +14363,14 @@
         "suggestArticlesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestArticlesResponse",
           "description": "SuggestArticlesResponse if request is for ARTICLE_SUGGESTION."
+        },
+        "suggestDialogflowAssistsResponse": {
+          "$ref": "GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse",
+          "description": "SuggestDialogflowAssistsResponse if request is for DIALOGFLOW_ASSIST."
+        },
+        "suggestEntityExtractionResponse": {
+          "$ref": "GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse",
+          "description": "SuggestDialogflowAssistsResponse if request is for ENTITY_EXTRACTION."
         },
         "suggestFaqAnswersResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse",
@@ -14408,6 +14603,16 @@
           "description": "Whether turn resulted in End Session page.",
           "type": "boolean"
         },
+        "sentimentMagnitude": {
+          "description": "Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.",
+          "format": "float",
+          "type": "number"
+        },
+        "sentimentScore": {
+          "description": "Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.",
+          "format": "float",
+          "type": "number"
+        },
         "triggeredAbandonmentEvent": {
           "description": "Whether agent has triggered the event corresponding to user abandoning the conversation.",
           "type": "boolean"
@@ -14456,7 +14661,7 @@
       "type": "object"
     },
     "GoogleCloudLocationLocation": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "GoogleCloudLocationLocation",
       "properties": {
         "displayName": {

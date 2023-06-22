@@ -874,7 +874,7 @@
       }
     }
   },
-  "revision": "20230422",
+  "revision": "20230614",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -941,7 +941,8 @@
             "BASIC_HDD",
             "BASIC_SSD",
             "HIGH_SCALE_SSD",
-            "ENTERPRISE"
+            "ENTERPRISE",
+            "ZONAL"
           ],
           "enumDescriptions": [
             "Not set.",
@@ -950,7 +951,8 @@
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
             "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities.",
-            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads."
+            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads.",
+            "ZONAL instances offer expanded capacity and performance scaling capabilities."
           ],
           "readOnly": true,
           "type": "string"
@@ -1469,7 +1471,8 @@
             "BASIC_HDD",
             "BASIC_SSD",
             "HIGH_SCALE_SSD",
-            "ENTERPRISE"
+            "ENTERPRISE",
+            "ZONAL"
           ],
           "enumDescriptions": [
             "Not set.",
@@ -1478,7 +1481,8 @@
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
             "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
             "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities.",
-            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads."
+            "ENTERPRISE instances offer the features and availability needed for mission-critical workloads.",
+            "ZONAL instances offer expanded capacity and performance scaling capabilities."
           ],
           "type": "string"
         }

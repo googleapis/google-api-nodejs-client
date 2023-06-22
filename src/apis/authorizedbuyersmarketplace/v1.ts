@@ -847,7 +847,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     fixedPrice?: Schema$Price;
     /**
-     * Count of guaranteed looks.
+     * Count of guaranteed looks. For CPD deals, buyer changes to guaranteed_looks will be ignored.
      */
     guaranteedLooks?: string | null;
     /**
@@ -855,7 +855,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     impressionCap?: string | null;
     /**
-     * Daily minimum looks for CPD deal types.
+     * Daily minimum looks for CPD deal types. For CPD deals, buyer should negotiate on this field instead of guaranteed_looks.
      */
     minimumDailyLooks?: string | null;
     /**
@@ -1279,7 +1279,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *
      *   // Do the magic
      *   const res = await authorizedbuyersmarketplace.bidders.finalizedDeals.list({
-     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
+     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
      *     filter: 'placeholder-value',
      *     // An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth Example: 'deal.displayName, deal.updateTime desc'
      *     orderBy: 'placeholder-value',
@@ -1403,7 +1403,7 @@ export namespace authorizedbuyersmarketplace_v1 {
   export interface Params$Resource$Bidders$Finalizeddeals$List
     extends StandardParameters {
     /**
-     * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
+     * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
      */
     filter?: string;
     /**
@@ -2986,7 +2986,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *
      *   // Do the magic
      *   const res = await authorizedbuyersmarketplace.buyers.clients.list({
-     *     // Query string using the [Filtering Syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported fields for filtering are: * partnerClientId Use this field to filter the clients by the partnerClientId. For example, if the partnerClientId of the client is "1234", the value of this field should be `partnerClientId = "1234"`, in order to get only the client whose partnerClientId is "1234" in the response.
+     *     // Query string using the [Filtering Syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported fields for filtering are: * partnerClientId Use this field to filter the clients by the partnerClientId. For example, if the partnerClientId of the client is "1234", the value of this field should be `partnerClientId = "1234"`, in order to get only the client whose partnerClientId is "1234" in the response.
      *     filter: 'placeholder-value',
      *     // Requested page size. If left blank, a default page size of 500 will be applied.
      *     pageSize: 'placeholder-value',
@@ -3295,7 +3295,7 @@ export namespace authorizedbuyersmarketplace_v1 {
   export interface Params$Resource$Buyers$Clients$List
     extends StandardParameters {
     /**
-     * Query string using the [Filtering Syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported fields for filtering are: * partnerClientId Use this field to filter the clients by the partnerClientId. For example, if the partnerClientId of the client is "1234", the value of this field should be `partnerClientId = "1234"`, in order to get only the client whose partnerClientId is "1234" in the response.
+     * Query string using the [Filtering Syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported fields for filtering are: * partnerClientId Use this field to filter the clients by the partnerClientId. For example, if the partnerClientId of the client is "1234", the value of this field should be `partnerClientId = "1234"`, in order to get only the client whose partnerClientId is "1234" in the response.
      */
     filter?: string;
     /**
@@ -4532,7 +4532,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *
      *   // Do the magic
      *   const res = await authorizedbuyersmarketplace.buyers.finalizedDeals.list({
-     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
+     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
      *     filter: 'placeholder-value',
      *     // An optional query string to sort finalized deals using the [Cloud API sorting syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order). If no sort order is specified, results will be returned in an arbitrary order. Supported columns for sorting are: * deal.displayName * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth Example: 'deal.displayName, deal.updateTime desc'
      *     orderBy: 'placeholder-value',
@@ -5098,7 +5098,7 @@ export namespace authorizedbuyersmarketplace_v1 {
   export interface Params$Resource$Buyers$Finalizeddeals$List
     extends StandardParameters {
     /**
-     * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
+     * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * deal.displayName * deal.dealType * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime * dealServingStatus
      */
     filter?: string;
     /**
@@ -5631,7 +5631,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * Gets a proposal using its name. The proposal is returned at most recent revision. revision.
+     * Gets a proposal using its resource name. The proposal is returned at the latest revision.
      * @example
      * ```js
      * // Before running the sample:
@@ -5777,7 +5777,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * Lists proposals. A filter expression (list filter syntax) may be specified to filter the results. This will not list finalized versions of proposals that are being renegotiated; to retrieve these use the finalizedProposals resource.
+     * Lists proposals. A filter expression using [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) may be specified to filter the results.
      * @example
      * ```js
      * // Before running the sample:
@@ -5803,7 +5803,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *
      *   // Do the magic
      *   const res = await authorizedbuyersmarketplace.buyers.proposals.list({
-     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported columns for filtering are: * displayName * dealType * updateTime * state
+     *     // Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * displayName * dealType * updateTime * state
      *     filter: 'placeholder-value',
      *     // Requested page size. The server may return fewer results than requested. If unspecified, the server will put a size of 500.
      *     pageSize: 'placeholder-value',
@@ -5920,7 +5920,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     }
 
     /**
-     * Updates the proposal at the given revision number. If the revision number in the request is behind the latest from the server, an error message will be returned. See FieldMask for how to use FieldMask. Only fields specified in the UpdateProposalRequest.update_mask will be updated; Fields noted as 'Immutable' or 'Output only' yet specified in the UpdateProposalRequest.update_mask will be ignored and left unchanged. Updating a private auction proposal is not allowed and will result in an error.
+     * Updates the proposal at the given revision number. If the revision number in the request is behind the latest one kept in the server, an error message will be returned. See FieldMask for how to use FieldMask. Only fields specified in the UpdateProposalRequest.update_mask will be updated; Fields noted as 'Immutable' or 'Output only' yet specified in the UpdateProposalRequest.update_mask will be ignored and left unchanged. Updating a private auction proposal is not allowed and will result in an error.
      * @example
      * ```js
      * // Before running the sample:
@@ -6308,7 +6308,7 @@ export namespace authorizedbuyersmarketplace_v1 {
   export interface Params$Resource$Buyers$Proposals$List
     extends StandardParameters {
     /**
-     * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) Supported columns for filtering are: * displayName * dealType * updateTime * state
+     * Optional query string using the [Cloud API list filtering syntax](https://developers.google.com/authorized-buyers/apis/guides/list-filters) Supported columns for filtering are: * displayName * dealType * updateTime * state
      */
     filter?: string;
     /**
@@ -7198,7 +7198,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      *
      *   // Do the magic
      *   const res = await authorizedbuyersmarketplace.buyers.publisherProfiles.list({
-     *     // Optional query string using the [Cloud API list filtering] (https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) syntax.
+     *     // Optional query string using the [Cloud API list filtering] (https://developers.google.com/authorized-buyers/apis/guides/list-filters) syntax.
      *     filter: 'placeholder-value',
      *     // Requested page size. The server may return fewer results than requested. If requested more than 500, the server will return 500 results per page. If unspecified, the server will pick a default page size of 100.
      *     pageSize: 'placeholder-value',
@@ -7329,7 +7329,7 @@ export namespace authorizedbuyersmarketplace_v1 {
   export interface Params$Resource$Buyers$Publisherprofiles$List
     extends StandardParameters {
     /**
-     * Optional query string using the [Cloud API list filtering] (https://developers.google.com/authorized-buyers/apis/guides/v2/list-filters) syntax.
+     * Optional query string using the [Cloud API list filtering] (https://developers.google.com/authorized-buyers/apis/guides/list-filters) syntax.
      */
     filter?: string;
     /**
