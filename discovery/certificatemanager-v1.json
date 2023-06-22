@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20230407",
+  "revision": "20230517",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1323,7 +1323,7 @@
           ],
           "enumDescriptions": [
             "State is unspecified.",
-            "Certificate provisioning for this domain is under way. GCP will attempt to authorize the domain.",
+            "Certificate provisioning for this domain is under way. Google Cloud will attempt to authorize the domain.",
             "A managed certificate can be provisioned, no issues for this domain.",
             "Attempt to authorize the domain failed. This prevents the Managed Certificate from being issued. See `failure_reason` and `details` fields for more information."
           ],
@@ -1395,7 +1395,7 @@
           ],
           "enumDescriptions": [
             "Certificates with default scope are served from core Google data centers. If unsure, choose this option.",
-            "Certificates with scope EDGE_CACHE are special-purposed certificates, served from non-core Google data centers."
+            "Certificates with scope EDGE_CACHE are special-purposed certificates, served from Edge Points of Presence. See https://cloud.google.com/vpc/docs/edge-locations."
           ],
           "type": "string"
         },
@@ -1925,7 +1925,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
