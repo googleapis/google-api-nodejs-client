@@ -201,7 +201,7 @@ export namespace cloudbuild_v1 {
      */
     fileHash?: Schema$FileHashes[];
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the generation number. For example, `gs://mybucket/path/to/output.jar#generation`.
+     * The path of an artifact in a Cloud Storage bucket, with the generation number. For example, `gs://mybucket/path/to/output.jar#generation`.
      */
     location?: string | null;
   }
@@ -491,7 +491,7 @@ export namespace cloudbuild_v1 {
      */
     images?: string[] | null;
     /**
-     * Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
+     * Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
      */
     logsBucket?: string | null;
     /**
@@ -622,7 +622,7 @@ export namespace cloudbuild_v1 {
      */
     logging?: string | null;
     /**
-     * Option to define build log streaming behavior to Google Cloud Storage.
+     * Option to define build log streaming behavior to Cloud Storage.
      */
     logStreamingOption?: string | null;
     /**
@@ -1087,7 +1087,7 @@ export namespace cloudbuild_v1 {
      */
     path?: string | null;
     /**
-     * The fully qualified resource name of the Repo API repository. Either uri or repository can be specified. If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.
+     * The fully qualified resource name of the Repos API repository. Either URI or repository can be specified. If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.
      */
     repository?: string | null;
     /**
@@ -1378,7 +1378,7 @@ export namespace cloudbuild_v1 {
      */
     ref?: string | null;
     /**
-     * The qualified resource name of the Repo API repository Either uri or repository can be specified and is required.
+     * The connected repository resource name, in the format `projects/x/locations/x/connections/x/repositories/x`. Either `uri` or `repository` can be specified and is required.
      */
     repository?: string | null;
     /**
@@ -1386,7 +1386,7 @@ export namespace cloudbuild_v1 {
      */
     repoType?: string | null;
     /**
-     * The URI of the repo. Either uri or repository can be specified and is required.
+     * The URI of the repo (e.g. https://github.com/user/repo.git). Either `uri` or `repository` can be specified and is required.
      */
     uri?: string | null;
   }
@@ -1986,11 +1986,11 @@ export namespace cloudbuild_v1 {
      */
     repoSource?: Schema$RepoSource;
     /**
-     * If provided, get the source from this location in Google Cloud Storage.
+     * If provided, get the source from this location in Cloud Storage.
      */
     storageSource?: Schema$StorageSource;
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+     * If provided, get the source from this manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      */
     storageSourceManifest?: Schema$StorageSourceManifest;
   }
@@ -2033,36 +2033,36 @@ export namespace cloudbuild_v1 {
     message?: string | null;
   }
   /**
-   * Location of the source in an archive file in Google Cloud Storage.
+   * Location of the source in an archive file in Cloud Storage.
    */
   export interface Schema$StorageSource {
     /**
-     * Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
+     * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
   }
   /**
-   * Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+   * Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
    */
   export interface Schema$StorageSourceManifest {
     /**
-     * Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source manifest. This object must be a JSON file.
+     * Cloud Storage object containing the source manifest. This object must be a JSON file.
      */
     object?: string | null;
   }
@@ -3706,7 +3706,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Google Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
+     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -6851,7 +6851,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Google Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
+     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -10101,6 +10101,8 @@ export namespace cloudbuild_v1 {
      *       'projects/my-project/locations/my-location/triggers/my-trigger',
      *     // Required. ID of the `BuildTrigger` to update.
      *     triggerId: 'placeholder-value',
+     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10633,6 +10635,10 @@ export namespace cloudbuild_v1 {
      * Required. ID of the `BuildTrigger` to update.
      */
     triggerId?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -12139,6 +12145,8 @@ export namespace cloudbuild_v1 {
      *     projectId: 'placeholder-value',
      *     // Required. ID of the `BuildTrigger` to update.
      *     triggerId: 'placeholder-value',
+     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -12676,6 +12684,10 @@ export namespace cloudbuild_v1 {
      * Required. ID of the `BuildTrigger` to update.
      */
     triggerId?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
