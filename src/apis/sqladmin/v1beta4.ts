@@ -214,7 +214,7 @@ export namespace sqladmin_v1beta4 {
      */
     location?: string | null;
     /**
-     * (Postgres only) Whether point in time recovery is enabled.
+     * Whether point in time recovery is enabled.
      */
     pointInTimeRecoveryEnabled?: boolean | null;
     /**
@@ -242,6 +242,19 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#backupContext`.
      */
     kind?: string | null;
+  }
+  /**
+   * Backup Reencryption Config
+   */
+  export interface Schema$BackupReencryptionConfig {
+    /**
+     * Backup re-encryption limit
+     */
+    backupLimit?: number | null;
+    /**
+     * Type of backups users want to re-encrypt.
+     */
+    backupType?: string | null;
   }
   /**
    * We currently only support backup retention by specifying the number of backups we will retain.
@@ -408,6 +421,10 @@ export namespace sqladmin_v1beta4 {
      * The database engine type and version. The `databaseVersion` field cannot be changed after instance creation. MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default), or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`, `POSTGRES_11` or `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`. SQL Server instances: `SQLSERVER_2017_STANDARD` (default), `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`, `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`, `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or `SQLSERVER_2019_WEB`.
      */
     databaseVersion?: string | null;
+    /**
+     * The dns name of the instance.
+     */
+    dnsName?: string | null;
     /**
      * The assigned IP addresses for the instance.
      */
@@ -749,13 +766,23 @@ export namespace sqladmin_v1beta4 {
     kmsKeyVersionName?: string | null;
   }
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
+  /**
    * Database instance export context.
    */
   export interface Schema$ExportContext {
     /**
      * Options for exporting BAK files (SQL Server-only)
      */
-    bakExportOptions?: {stripeCount?: number; striped?: boolean} | null;
+    bakExportOptions?: {
+      bakType?: string;
+      copyOnly?: boolean;
+      differentialBase?: boolean;
+      stripeCount?: number;
+      striped?: boolean;
+    } | null;
     /**
      * Options for exporting data as CSV. `MySQL` and `PostgreSQL` instances only.
      */
@@ -904,11 +931,14 @@ export namespace sqladmin_v1beta4 {
      * Import parameters specific to SQL Server .BAK files
      */
     bakImportOptions?: {
+      bakType?: string;
       encryptionOptions?: {
         certPath?: string;
         pvkPassword?: string;
         pvkPath?: string;
       };
+      noRecovery?: boolean;
+      recoveryOnly?: boolean;
       striped?: boolean;
     } | null;
     /**
@@ -1064,6 +1094,15 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#instancesListServerCas`.
      */
     kind?: string | null;
+  }
+  /**
+   * Database Instance reencrypt request.
+   */
+  export interface Schema$InstancesReencryptRequest {
+    /**
+     * Configuration specific to backup re-encryption
+     */
+    backupReencryptionConfig?: Schema$BackupReencryptionConfig;
   }
   /**
    * Database instance restore backup request.
@@ -1701,6 +1740,10 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
+     * Additional message to customers.
+     */
+    message?: string | null;
+    /**
      * The minimum size to which a disk can be shrunk in GigaBytes.
      */
     minimalTargetSizeGb?: string | null;
@@ -1731,6 +1774,10 @@ export namespace sqladmin_v1beta4 {
      * External sync mode.
      */
     syncMode?: string | null;
+    /**
+     * Optional. Parallel level for initial data sync. Currently only applicable for MySQL.
+     */
+    syncParallelLevel?: string | null;
   }
   export interface Schema$SqlInstancesVerifyExternalSyncSettingsRequest {
     /**
@@ -3001,6 +3048,7 @@ export namespace sqladmin_v1beta4 {
      *   // {
      *   //   "backendType": "my_backendType",
      *   //   "databaseVersion": "my_databaseVersion",
+     *   //   "dnsName": "my_dnsName",
      *   //   "ipAddresses": [],
      *   //   "kind": "my_kind",
      *   //   "region": "my_region",
@@ -3430,7 +3478,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Inserts a resource containing information about a database inside a Cloud SQL instance.
+     * Inserts a resource containing information about a database inside a Cloud SQL instance. **Note:** You can't modify the default character set and collation.
      * @example
      * ```js
      * // Before running the sample:
@@ -6365,6 +6413,163 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
+     * Reencrypt CMEK instance with latest key version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.reencrypt({
+     *     // Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupReencryptionConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reencrypt(
+      params: Params$Resource$Instances$Reencrypt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reencrypt(
+      params?: Params$Resource$Instances$Reencrypt,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    reencrypt(
+      params: Params$Resource$Instances$Reencrypt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reencrypt(
+      params: Params$Resource$Instances$Reencrypt,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reencrypt(
+      params: Params$Resource$Instances$Reencrypt,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reencrypt(callback: BodyResponseCallback<Schema$Operation>): void;
+    reencrypt(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Reencrypt
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Reencrypt;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Reencrypt;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/reencrypt'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Deletes all client certificates and generates a new server SSL certificate for the instance.
      * @example
      * ```js
@@ -7796,6 +8001,22 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
   }
+  export interface Params$Resource$Instances$Reencrypt
+    extends StandardParameters {
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesReencryptRequest;
+  }
   export interface Params$Resource$Instances$Resetsslconfig
     extends StandardParameters {
     /**
@@ -7908,6 +8129,138 @@ export namespace sqladmin_v1beta4 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Cancels an instance operation that has been performed on an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.operations.cancel({
+     *     // Instance operation ID.
+     *     operation: 'placeholder-value',
+     *     // Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/operations/{operation}/cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'operation'],
+        pathParams: ['operation', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
     /**
@@ -8201,6 +8554,17 @@ export namespace sqladmin_v1beta4 {
     }
   }
 
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * Instance operation ID.
+     */
+    operation?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Instance operation ID.
@@ -8285,6 +8649,7 @@ export namespace sqladmin_v1beta4 {
      *   // Example response
      *   // {
      *   //   "kind": "my_kind",
+     *   //   "message": "my_message",
      *   //   "minimalTargetSizeGb": "my_minimalTargetSizeGb"
      *   // }
      * }
@@ -8901,7 +9266,8 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "mysqlSyncConfig": {},
      *       //   "skipVerification": false,
-     *       //   "syncMode": "my_syncMode"
+     *       //   "syncMode": "my_syncMode",
+     *       //   "syncParallelLevel": "my_syncParallelLevel"
      *       // }
      *     },
      *   });
