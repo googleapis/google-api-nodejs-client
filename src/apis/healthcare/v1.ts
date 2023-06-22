@@ -163,7 +163,7 @@ export namespace healthcare_v1 {
      */
     entities?: Schema$Entity[];
     /**
-     * entity_mentions contains all the annotated medical entities that were mentioned in the provided document.
+     * The `entity_mentions` field contains all the annotated medical entities that were mentioned in the provided document.
      */
     entityMentions?: Schema$EntityMention[];
     /**
@@ -513,6 +513,10 @@ export namespace healthcare_v1 {
      * Configures de-identification of text wherever it is found in the source_dataset.
      */
     text?: Schema$TextConfig;
+    /**
+     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.
+     */
+    useRegionalDataProcessing?: boolean | null;
   }
   /**
    * Redacts identifying information from the specified dataset.
@@ -878,7 +882,7 @@ export namespace healthcare_v1 {
      */
     sendFullResource?: boolean | null;
     /**
-     * Whether to send full FHIR resource to this pubsub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
+     * Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
      */
     sendPreviousResourceOnDelete?: boolean | null;
   }
@@ -1515,7 +1519,7 @@ export namespace healthcare_v1 {
     userDataMappings?: Schema$UserDataMapping[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -2019,6 +2023,14 @@ export namespace healthcare_v1 {
     permissions?: string[] | null;
   }
   export interface Schema$TextConfig {
+    /**
+     * Transformations to apply to the detected data, overridden by `exclude_info_types`.
+     */
+    additionalTransformations?: Schema$InfoTypeTransformation[];
+    /**
+     * InfoTypes to skip transforming, overriding `additional_transformations`.
+     */
+    excludeInfoTypes?: string[] | null;
     /**
      * The transformations to apply to the detected data. Deprecated. Use `additional_transformations` instead.
      */
