@@ -289,7 +289,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: string | null;
     /**
-     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For GCP billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.
+     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For Google Cloud billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.
      */
     parameters?: Schema$GoogleCloudChannelV1alpha1Parameter[];
     /**
@@ -378,7 +378,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount."
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud, this is the Billing Account ID of the billing subaccount."
      */
     provisioningId?: string | null;
     /**
@@ -420,7 +420,7 @@ export namespace cloudchannel_v1 {
     scheduledRenewalOffer?: string | null;
   }
   /**
-   * The ID and description of a report that was used to generate report data. For example, "GCP Daily Spend", "Google Workspace License Activity", etc.
+   * The ID and description of a report that was used to generate report data. For example, "Google Cloud Daily Spend", "Google Workspace License Activity", etc.
    */
   export interface Schema$GoogleCloudChannelV1alpha1Report {
     /**
@@ -578,6 +578,61 @@ export namespace cloudchannel_v1 {
     baseEntitlement?: string | null;
   }
   /**
+   * Represents the Billable SKU information.
+   */
+  export interface Schema$GoogleCloudChannelV1BillableSku {
+    /**
+     * Resource name of Service which contains Repricing SKU. Format: services/{service\}. Example: "services/B7D9-FDCB-15D8".
+     */
+    service?: string | null;
+    /**
+     * Unique human readable name for the Service.
+     */
+    serviceDisplayName?: string | null;
+    /**
+     * Resource name of Billable SKU. Format: billableSkus/{sku\}. Example: billableSkus/6E1B-6634-470F".
+     */
+    sku?: string | null;
+    /**
+     * Unique human readable name for the SKU.
+     */
+    skuDisplayName?: string | null;
+  }
+  /**
+   * Represents a billing account.
+   */
+  export interface Schema$GoogleCloudChannelV1BillingAccount {
+    /**
+     * Output only. The time when this billing account was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The 3-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Display name of the billing account.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Resource name of the billing account. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. The CLDR region code.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Represents a billing account that can be used to make a purchase.
+   */
+  export interface Schema$GoogleCloudChannelV1BillingAccountPurchaseInfo {
+    /**
+     * The billing account resource.
+     */
+    billingAccount?: Schema$GoogleCloudChannelV1BillingAccount;
+  }
+  /**
    * Request message for CloudChannelService.CancelEntitlement.
    */
   export interface Schema$GoogleCloudChannelV1CancelEntitlementRequest {
@@ -590,6 +645,10 @@ export namespace cloudchannel_v1 {
    * Request message for CloudChannelService.ChangeOffer.
    */
   export interface Schema$GoogleCloudChannelV1ChangeOfferRequest {
+    /**
+     * Optional. The billing account resource name that is used to pay for this entitlement when setting up billing on a trial subscription. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
+     */
+    billingAccount?: string | null;
     /**
      * Required. New Offer. Format: accounts/{account_id\}/offers/{offer_id\}.
      */
@@ -1040,7 +1099,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: string | null;
     /**
-     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For GCP billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.
+     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For Google Cloud billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.
      */
     parameters?: Schema$GoogleCloudChannelV1Parameter[];
     /**
@@ -1341,6 +1400,32 @@ export namespace cloudchannel_v1 {
     reports?: Schema$GoogleCloudChannelV1Report[];
   }
   /**
+   * Response message for ListSkuGroupBillableSkus.
+   */
+  export interface Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse {
+    /**
+     * The list of billable SKUs in the requested SKU group.
+     */
+    billableSkus?: Schema$GoogleCloudChannelV1BillableSku[];
+    /**
+     * A token to retrieve the next page of results. Pass to ListSkuGroupBillableSkus.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListSkuGroups.
+   */
+  export interface Schema$GoogleCloudChannelV1ListSkuGroupsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass to ListSkuGroups.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SKU groups requested.
+     */
+    skuGroups?: Schema$GoogleCloudChannelV1SkuGroup[];
+  }
+  /**
    * Response message for ListSkus.
    */
   export interface Schema$GoogleCloudChannelV1ListSkusResponse {
@@ -1374,6 +1459,10 @@ export namespace cloudchannel_v1 {
    * Request message for CloudChannelService.ListTransferableOffers
    */
   export interface Schema$GoogleCloudChannelV1ListTransferableOffersRequest {
+    /**
+     * Optional. The Billing Account to look up Offers for. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
+     */
+    billingAccount?: string | null;
     /**
      * Customer's Cloud Identity ID
      */
@@ -1615,7 +1704,7 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1Plan {
     /**
-     * Reseller Billing account to charge after an offer transaction. Only present for Google Cloud Platform offers.
+     * Reseller Billing account to charge after an offer transaction. Only present for Google Cloud offers.
      */
     billingAccount?: string | null;
     /**
@@ -1754,7 +1843,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount."
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud, this is the Billing Account ID of the billing subaccount."
      */
     provisioningId?: string | null;
     /**
@@ -1779,6 +1868,15 @@ export namespace cloudchannel_v1 {
      * SKU
      */
     sku?: Schema$GoogleCloudChannelV1Sku;
+  }
+  /**
+   * Response message for QueryEligibleBillingAccounts.
+   */
+  export interface Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse {
+    /**
+     * List of SKU purchase groups where each group represents a set of SKUs that must be purchased using the same billing account. Each SKU from [QueryEligibleBillingAccountsRequest.skus] will appear in exactly one SKU group.
+     */
+    skuPurchaseGroups?: Schema$GoogleCloudChannelV1SkuPurchaseGroup[];
   }
   /**
    * Request Message for RegisterSubscriber.
@@ -1820,7 +1918,7 @@ export namespace cloudchannel_v1 {
     resizeUnitCount?: boolean | null;
   }
   /**
-   * The ID and description of a report that was used to generate report data. For example, "GCP Daily Spend", "Google Workspace License Activity", etc.
+   * The ID and description of a report that was used to generate report data. For example, "Google Cloud Daily Spend", "Google Workspace License Activity", etc.
    */
   export interface Schema$GoogleCloudChannelV1Report {
     /**
@@ -2041,6 +2139,19 @@ export namespace cloudchannel_v1 {
     product?: Schema$GoogleCloudChannelV1Product;
   }
   /**
+   * Represents the SKU group information.
+   */
+  export interface Schema$GoogleCloudChannelV1SkuGroup {
+    /**
+     * Unique human readable identifier for the SKU group.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name of SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}. Example: "accounts/C01234/skuGroups/3d50fd57-3157-4577-a5a9-a219b8490041".
+     */
+    name?: string | null;
+  }
+  /**
    * A condition that applies the override if a line item SKU is found in the SKU group.
    */
   export interface Schema$GoogleCloudChannelV1SkuGroupCondition {
@@ -2048,6 +2159,19 @@ export namespace cloudchannel_v1 {
      * Specifies a SKU group (https://cloud.google.com/skus/sku-groups). Resource name of SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}. Example: "accounts/C01234/skuGroups/3d50fd57-3157-4577-a5a9-a219b8490041".
      */
     skuGroup?: string | null;
+  }
+  /**
+   * Represents a set of SKUs that must be purchased using the same billing account.
+   */
+  export interface Schema$GoogleCloudChannelV1SkuPurchaseGroup {
+    /**
+     * List of billing accounts that are eligible to purhcase these SKUs.
+     */
+    billingAccountPurchaseInfos?: Schema$GoogleCloudChannelV1BillingAccountPurchaseInfo[];
+    /**
+     * Resource names of the SKUs included in this group. Format: products/{product_id\}/skus/{sku_id\}.
+     */
+    skus?: string[] | null;
   }
   /**
    * Request message for CloudChannelService.StartPaidService.
@@ -2448,6 +2572,7 @@ export namespace cloudchannel_v1 {
     offers: Resource$Accounts$Offers;
     reportJobs: Resource$Accounts$Reportjobs;
     reports: Resource$Accounts$Reports;
+    skuGroups: Resource$Accounts$Skugroups;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.channelPartnerLinks = new Resource$Accounts$Channelpartnerlinks(
@@ -2457,6 +2582,7 @@ export namespace cloudchannel_v1 {
       this.offers = new Resource$Accounts$Offers(this.context);
       this.reportJobs = new Resource$Accounts$Reportjobs(this.context);
       this.reports = new Resource$Accounts$Reports(this.context);
+      this.skuGroups = new Resource$Accounts$Skugroups(this.context);
     }
 
     /**
@@ -2782,6 +2908,7 @@ export namespace cloudchannel_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "billingAccount": "my_billingAccount",
      *       //   "cloudIdentityId": "my_cloudIdentityId",
      *       //   "customerName": "my_customerName",
      *       //   "languageCode": "my_languageCode",
@@ -6681,10 +6808,14 @@ export namespace cloudchannel_v1 {
      *
      *   // Do the magic
      *   const res = await cloudchannel.accounts.customers.listPurchasableOffers({
+     *     // Optional. Resource name of the new target Billing Account. Provide this Billing Account when setting up billing for a trial subscription. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
+     *     'changeOfferPurchase.billingAccount': 'placeholder-value',
      *     // Required. Resource name of the entitlement. Format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      *     'changeOfferPurchase.entitlement': 'placeholder-value',
      *     // Optional. Resource name of the new target SKU. Provide this SKU when upgrading or downgrading an entitlement. Format: products/{product_id\}/skus/{sku_id\}
      *     'changeOfferPurchase.newSku': 'placeholder-value',
+     *     // Optional. Billing account that the result should be restricted to. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}.
+     *     'createEntitlementPurchase.billingAccount': 'placeholder-value',
      *     // Required. SKU that the result should be restricted to. Format: products/{product_id\}/skus/{sku_id\}.
      *     'createEntitlementPurchase.sku': 'placeholder-value',
      *     // Required. The resource name of the customer to list Offers for. Format: accounts/{account_id\}/customers/{customer_id\}.
@@ -7277,6 +7408,147 @@ export namespace cloudchannel_v1 {
     }
 
     /**
+     * Lists the billing accounts that are eligible to purchase particular SKUs for a given customer. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: Based on the provided list of SKUs, returns a list of SKU groups that must be purchased using the same billing account and the billing accounts eligible to purchase each SKU group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudchannel.accounts.customers.queryEligibleBillingAccounts({
+     *       // Required. The resource name of the customer to list eligible billing accounts for. Format: accounts/{account_id\}/customers/{customer_id\}.
+     *       customer: 'accounts/my-account/customers/my-customer',
+     *       // Required. List of SKUs to list eligible billing accounts for. At least one SKU is required. Format: products/{product_id\}/skus/{sku_id\}.
+     *       skus: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "skuPurchaseGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryEligibleBillingAccounts(
+      params?: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>;
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+    ): void;
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+    ): void;
+    queryEligibleBillingAccounts(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+    ): void;
+    queryEligibleBillingAccounts(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}:queryEligibleBillingAccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Transfers customer entitlements to new reseller. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: The SKU was already transferred for the customer. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The SKU requires domain verification to transfer, but the domain is not verified. * An Add-On SKU (example, Vault or Drive) is missing the pre-requisite SKU (example, G Suite Basic). * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * Specify all transferring entitlements. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
      * @example
      * ```js
@@ -7637,6 +7909,10 @@ export namespace cloudchannel_v1 {
   export interface Params$Resource$Accounts$Customers$Listpurchasableoffers
     extends StandardParameters {
     /**
+     * Optional. Resource name of the new target Billing Account. Provide this Billing Account when setting up billing for a trial subscription. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
+     */
+    'changeOfferPurchase.billingAccount'?: string;
+    /**
      * Required. Resource name of the entitlement. Format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
     'changeOfferPurchase.entitlement'?: string;
@@ -7644,6 +7920,10 @@ export namespace cloudchannel_v1 {
      * Optional. Resource name of the new target SKU. Provide this SKU when upgrading or downgrading an entitlement. Format: products/{product_id\}/skus/{sku_id\}
      */
     'changeOfferPurchase.newSku'?: string;
+    /**
+     * Optional. Billing account that the result should be restricted to. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}.
+     */
+    'createEntitlementPurchase.billingAccount'?: string;
     /**
      * Required. SKU that the result should be restricted to. Format: products/{product_id\}/skus/{sku_id\}.
      */
@@ -7723,6 +8003,17 @@ export namespace cloudchannel_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudChannelV1ProvisionCloudIdentityRequest;
+  }
+  export interface Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the customer to list eligible billing accounts for. Format: accounts/{account_id\}/customers/{customer_id\}.
+     */
+    customer?: string;
+    /**
+     * Required. List of SKUs to list eligible billing accounts for. At least one SKU is required. Format: products/{product_id\}/skus/{sku_id\}.
+     */
+    skus?: string[];
   }
   export interface Params$Resource$Accounts$Customers$Transferentitlements
     extends StandardParameters {
@@ -8863,6 +9154,7 @@ export namespace cloudchannel_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "billingAccount": "my_billingAccount",
      *       //   "offer": "my_offer",
      *       //   "parameters": [],
      *       //   "purchaseOrderId": "my_purchaseOrderId",
@@ -11145,6 +11437,342 @@ export namespace cloudchannel_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudChannelV1RunReportJobRequest;
+  }
+
+  export class Resource$Accounts$Skugroups {
+    context: APIRequestContext;
+    billableSkus: Resource$Accounts$Skugroups$Billableskus;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.billableSkus = new Resource$Accounts$Skugroups$Billableskus(
+        this.context
+      );
+    }
+
+    /**
+     * Lists the Rebilling supported SKU groups the account is authorized to sell. Reference: https://cloud.google.com/skus/sku-groups Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different, or the account doesn't exist. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the SkuGroup resources. The data for each resource is displayed in the alphabetical order of SKU group display name. The data for each resource is displayed in the ascending order of SkuGroup.display_name If unsuccessful, returns an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.skuGroups.list({
+     *     // Optional. The maximum number of SKU groups to return. The service may return fewer than this value. If unspecified, returns a maximum of 1000 SKU groups. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroups.next_page_token of the previous CloudChannelService.ListSkuGroups call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the account from which to list SKU groups. Parent uses the format: accounts/{account\}.
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "skuGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Skugroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>;
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Skugroups$List
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Skugroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Skugroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/skuGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Skugroups$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of SKU groups to return. The service may return fewer than this value. If unspecified, returns a maximum of 1000 SKU groups. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroups.next_page_token of the previous CloudChannelService.ListSkuGroups call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the account from which to list SKU groups. Parent uses the format: accounts/{account\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Accounts$Skugroups$Billableskus {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the Billable SKUs in a given SKU group. Possible error codes: PERMISSION_DENIED: If the account making the request and the account being queried for are different, or the account doesn't exist. INVALID_ARGUMENT: Missing or invalid required parameters in the request. INTERNAL: Any non-user error related to technical issue in the backend. In this case, contact cloud channel support. Return Value: If successful, the BillableSku resources. The data for each resource is displayed in the ascending order of: * BillableSku.service_display_name * BillableSku.sku_display_name If unsuccessful, returns an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.skuGroups.billableSkus.list({
+     *     // Optional. The maximum number of SKUs to return. The service may return fewer than this value. If unspecified, returns a maximum of 100000 SKUs. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroupBillableSkus.next_page_token of the previous CloudChannelService.ListSkuGroupBillableSkus call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}.
+     *     parent: 'accounts/my-account/skuGroups/my-skuGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billableSkus": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>;
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Skugroups$Billableskus$List
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Skugroups$Billableskus$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Skugroups$Billableskus$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/billableSkus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Skugroups$Billableskus$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of SKUs to return. The service may return fewer than this value. If unspecified, returns a maximum of 100000 SKUs. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroupBillableSkus.next_page_token of the previous CloudChannelService.ListSkuGroupBillableSkus call.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}.
+     */
+    parent?: string;
   }
 
   export class Resource$Operations {
