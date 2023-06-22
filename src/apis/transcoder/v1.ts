@@ -332,6 +332,15 @@ export namespace transcoder_v1 {
     topPixels?: number | null;
   }
   /**
+   * `DASH` manifest configuration.
+   */
+  export interface Schema$DashConfig {
+    /**
+     * The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`
+     */
+    segmentReferenceScheme?: string | null;
+  }
+  /**
    * Deblock preprocessing configuration. **Note:** This configuration is not supported.
    */
   export interface Schema$Deblock {
@@ -773,6 +782,10 @@ export namespace transcoder_v1 {
    * Manifest configuration.
    */
   export interface Schema$Manifest {
+    /**
+     * `DASH` manifest configuration.
+     */
+    dash?: Schema$DashConfig;
     /**
      * The name of the generated file. The default is `manifest` with the extension suffix corresponding to the `Manifest.type`.
      */

@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20230426",
+  "revision": "20230607",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -649,6 +649,27 @@
           "description": "The number of pixels to crop from the top. The default is 0.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DashConfig": {
+      "description": "`DASH` manifest configuration.",
+      "id": "DashConfig",
+      "properties": {
+        "segmentReferenceScheme": {
+          "description": "The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`",
+          "enum": [
+            "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED",
+            "SEGMENT_LIST",
+            "SEGMENT_TEMPLATE_NUMBER"
+          ],
+          "enumDescriptions": [
+            "The segment reference scheme is not specified.",
+            "Lists the URLs of media files for each segment.",
+            "Lists each segment from a template with $Number$ variable."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1230,6 +1251,10 @@
       "description": "Manifest configuration.",
       "id": "Manifest",
       "properties": {
+        "dash": {
+          "$ref": "DashConfig",
+          "description": "`DASH` manifest configuration."
+        },
         "fileName": {
           "description": "The name of the generated file. The default is `manifest` with the extension suffix corresponding to the `Manifest.type`.",
           "type": "string"
