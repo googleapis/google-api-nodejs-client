@@ -1778,6 +1778,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "datamigration.projects.locations.privateConnections.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/privateConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Retrieves a list of private connections in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections",
@@ -1823,6 +1854,62 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "datamigration.projects.locations.privateConnections.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/privateConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "datamigration.projects.locations.privateConnections.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/privateConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -1831,7 +1918,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230610",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2174,7 +2261,8 @@
             "MYSQL_8_0",
             "POSTGRES_12",
             "POSTGRES_13",
-            "POSTGRES_14"
+            "POSTGRES_14",
+            "POSTGRES_15"
           ],
           "enumDescriptions": [
             "Unspecified version.",
@@ -2186,7 +2274,8 @@
             "MySQL 8.0.",
             "PostgreSQL 12.",
             "PostgreSQL 13.",
-            "PostgreSQL 14."
+            "PostgreSQL 14.",
+            "PostgreSQL 15."
           ],
           "type": "string"
         },
@@ -3395,6 +3484,10 @@
       "description": "Represents a Database Migration Service migration job object.",
       "id": "MigrationJob",
       "properties": {
+        "cmekKeyName": {
+          "description": "The CMEK (customer-managed encryption key) fully qualified key name used for the migration job. This field supports all migration jobs types except for: * Mysql to Mysql (use the cmek field in the cloudsql connection profile instead). * PostrgeSQL to PostgreSQL (use the cmek field in the cloudsql connection profile instead). * PostgreSQL to AlloyDB (use the kms_key_name field in the alloydb connection profile instead). Each Cloud CMEK key has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]",
+          "type": "string"
+        },
         "conversionWorkspace": {
           "$ref": "ConversionWorkspaceInfo",
           "description": "The conversion workspace used by the migration."
@@ -3591,7 +3684,8 @@
             "TABLES_WITH_LIMITED_SUPPORT",
             "UNSUPPORTED_DATABASE_LOCALE",
             "UNSUPPORTED_DATABASE_FDW_CONFIG",
-            "ERROR_RDBMS"
+            "ERROR_RDBMS",
+            "SOURCE_SIZE_EXCEEDS_THRESHOLD"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -3617,7 +3711,8 @@
             "The source has tables with limited support. E.g. PostgreSQL tables without primary keys.",
             "The source uses an unsupported locale.",
             "The source uses an unsupported Foreign Data Wrapper configuration.",
-            "There was an underlying RDBMS error."
+            "There was an underlying RDBMS error.",
+            "The source DB size in Bytes exceeds a certain threshold. The migration might require an increase of quota, or might not be supported."
           ],
           "readOnly": true,
           "type": "string"
@@ -3740,6 +3835,10 @@
         "privateConnectivity": {
           "$ref": "PrivateConnectivity",
           "description": "Private connectivity."
+        },
+        "ssl": {
+          "$ref": "SslConfig",
+          "description": "SSL configuration for the connection to the source Oracle database. * Only `SERVER_ONLY` configuration is supported for Oracle SSL. * SSL is supported for Oracle versions 12 and above."
         },
         "staticServiceIpConnectivity": {
           "$ref": "StaticServiceIpConnectivity",
@@ -3978,7 +4077,7 @@
       "type": "object"
     },
     "PrivateServiceConnectConnectivity": {
-      "description": "Private Service Connect connectivity (https://cloud.google.com/vpc/docs/private-service-connect#benefits-services)",
+      "description": "Private Service Connect connectivity (https://cloud.google.com/vpc/docs/private-service-connect#service-attachments)",
       "id": "PrivateServiceConnectConnectivity",
       "properties": {
         "serviceAttachment": {
