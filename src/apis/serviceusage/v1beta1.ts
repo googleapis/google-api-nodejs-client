@@ -127,6 +127,23 @@ export namespace serviceusage_v1beta1 {
   }
 
   /**
+   * Metadata for the `AddEnableRules` method.
+   */
+  export interface Schema$AddEnableRulesMetadata {}
+  /**
+   * The response message of "AddEnableRules" method.
+   */
+  export interface Schema$AddEnableRulesResponse {
+    /**
+     * The values added to the parent consumer policy.
+     */
+    addedValues?: string[] | null;
+    /**
+     * The parent consumer policy. It can be `projects/12345/consumerPolicies/default`, or `folders/12345/consumerPolicies/default`, or `organizations/12345/consumerPolicies/default`.
+     */
+    parent?: string | null;
+  }
+  /**
    * Quota policy created by quota administrator.
    */
   export interface Schema$AdminQuotaPolicy {
@@ -135,7 +152,7 @@ export namespace serviceusage_v1beta1 {
      */
     container?: string | null;
     /**
-     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, an policy on a limit with the unit `1/{project\}/{region\}` could contain an entry with the key `region` and the value `us-east-1`; the policy is only applied to quota consumed in that region. This map has the following restrictions: * If `region` appears as a key, its value must be a valid Cloud region. * If `zone` appears as a key, its value must be a valid Cloud zone. * Keys other than `region` or `zone` are not valid.
+     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, a policy on a limit with the unit `1/{project\}/{region\}` could contain an entry with the key `region` and the value `us-east-1`; the policy is only applied to quota consumed in that region. This map has the following restrictions: * If `region` appears as a key, its value must be a valid Cloud region. * If `zone` appears as a key, its value must be a valid Cloud zone. * Keys other than `region` or `zone` are not valid.
      */
     dimensions?: {[key: string]: string} | null;
     /**
@@ -456,7 +473,7 @@ export namespace serviceusage_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Output only. The resource name of the policy. For example, `projects/12345/consumerPolicy`, `folders/12345/consumerPolicy`, `organizations/12345/consumerPolicy`.
+     * Output only. The resource name of the policy. For example, We only allow consumer policy name as "default" for now: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`. Legacy format: `projects/12345/consumerPoly`
      */
     name?: string | null;
     /**
@@ -639,7 +656,7 @@ export namespace serviceusage_v1beta1 {
     service?: Schema$GoogleApiServiceusageV1Service;
   }
   /**
-   * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages; - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
+   * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
    */
   export interface Schema$Documentation {
     /**
@@ -658,6 +675,10 @@ export namespace serviceusage_v1beta1 {
      * A list of documentation rules that apply to individual API elements. **NOTE:** All service configuration rules follow "last one wins" order.
      */
     rules?: Schema$DocumentationRule[];
+    /**
+     * Specifies section and content to override boilerplate content provided by go/api-docgen. Currently overrides following sections: 1. rest.service.client_libraries
+     */
+    sectionOverrides?: Schema$Page[];
     /**
      * Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to.
      */
@@ -1907,6 +1928,23 @@ export namespace serviceusage_v1beta1 {
     unit?: string | null;
   }
   /**
+   * Metadata for the `RemoveEnableRules` method.
+   */
+  export interface Schema$RemoveEnableRulesMetadata {}
+  /**
+   * The response message of "RemoveEnableRules" method.
+   */
+  export interface Schema$RemoveEnableRulesResponse {
+    /**
+     * The parent consumer policy. It can be `projects/12345/consumerPolicies/default`, or `folders/12345/consumerPolicies/default`, or `organizations/12345/consumerPolicies/default`.
+     */
+    parent?: string | null;
+    /**
+     * The values removed from the parent consumer policy.
+     */
+    removedValues?: string[] | null;
+  }
+  /**
    * Settings for Ruby client libraries.
    */
   export interface Schema$RubySettings {
@@ -2917,7 +2955,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Do the magic
      *   const res = await serviceusage.services.generateServiceIdentity({
-     *     // Name of the consumer and service to generate an identity for. The `GenerateServiceIdentity` methods currently only support projects. An example name would be: `projects/123/services/example.googleapis.com` where `123` is the project number.
+     *     // Name of the consumer and service to generate an identity for. The `GenerateServiceIdentity` methods currently support projects, folders, organizations. Example parents would be: `projects/123/services/example.googleapis.com` `folders/123/services/example.googleapis.com` `organizations/123/services/example.googleapis.com`
      *     parent: '[^/]+/[^/]+/services/my-service',
      *   });
      *   console.log(res.data);
@@ -3336,7 +3374,7 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Generateserviceidentity
     extends StandardParameters {
     /**
-     * Name of the consumer and service to generate an identity for. The `GenerateServiceIdentity` methods currently only support projects. An example name would be: `projects/123/services/example.googleapis.com` where `123` is the project number.
+     * Name of the consumer and service to generate an identity for. The `GenerateServiceIdentity` methods currently support projects, folders, organizations. Example parents would be: `projects/123/services/example.googleapis.com` `folders/123/services/example.googleapis.com` `organizations/123/services/example.googleapis.com`
      */
     parent?: string;
   }
