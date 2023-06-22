@@ -254,7 +254,7 @@ export namespace documentai_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * The long-running operation metadata for CreateLabelerPool.
+   * The long-running operation metadata for the CreateLabelerPool method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
     /**
@@ -272,7 +272,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long-running operation metadata for delete processor method.
+   * The long-running operation metadata for the DeleteProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata {
     /**
@@ -281,7 +281,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long-running operation metadata for delete processor version method.
+   * The long-running operation metadata for the DeleteProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata {
     /**
@@ -290,7 +290,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * The long-running operation metadata for deploy processor version method.
+   * The long-running operation metadata for the DeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata {
     /**
@@ -299,11 +299,11 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the deploy processor version method.
+   * Response message for the DeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse {}
   /**
-   * The long-running operation metadata for disable processor method.
+   * The long-running operation metadata for the DisableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata {
     /**
@@ -312,21 +312,28 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   * Response message for the DisableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DisableProcessorResponse {}
   /**
    * Document Identifier.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentId {
+    /**
+     * A document id within user-managed Cloud Storage.
+     */
     gcsManagedDocId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId;
     /**
      * Points to a specific revision of the document if set.
      */
     revisionRef?: Schema$GoogleCloudDocumentaiUiv1beta3RevisionRef;
+    /**
+     * A document id within unmanaged dataset.
+     */
+    unmanagedDocId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId;
   }
   /**
-   * Identifies a document uniquely within the scope of a dataset in the Cloud Storage option.
+   * Identifies a document uniquely within the scope of a dataset in the user-managed Cloud Storage option.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId {
     /**
@@ -334,12 +341,21 @@ export namespace documentai_v1beta2 {
      */
     cwDocId?: string | null;
     /**
-     * Required. The Cloud Storage uri where the actual document is stored.
+     * Required. The Cloud Storage URI where the actual document is stored.
      */
     gcsUri?: string | null;
   }
   /**
-   * The long-running operation metadata for enable processor method.
+   * Identifies a document uniquely within the scope of a dataset in unmanaged option.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId {
+    /**
+     * Required. The id of the document.
+     */
+    docId?: string | null;
+  }
+  /**
+   * The long-running operation metadata for the EnableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata {
     /**
@@ -348,7 +364,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   * Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse {}
   /**
@@ -580,7 +596,31 @@ export namespace documentai_v1beta2 {
     revisionId?: string | null;
   }
   /**
-   * The long-running operation metadata for set default processor version method.
+   * Metadata of the sample documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response of the sample documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponse {
+    /**
+     * The result of the sampling process.
+     */
+    selectedDocuments?: Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument[];
+  }
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument {
+    /**
+     * An internal identifier for document.
+     */
+    documentId?: string | null;
+  }
+  /**
+   * The long-running operation metadata for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata {
     /**
@@ -589,7 +629,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for set default processor version method.
+   * Response message for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionResponse {}
   /**
@@ -640,7 +680,7 @@ export namespace documentai_v1beta2 {
     processorVersion?: string | null;
   }
   /**
-   * The long-running operation metadata for the undeploy processor version method.
+   * The long-running operation metadata for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata {
     /**
@@ -649,7 +689,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the undeploy processor version method.
+   * Response message for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse {}
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateDatasetOperationMetadata {
@@ -710,11 +750,11 @@ export namespace documentai_v1beta2 {
      */
     humanReviewStatus?: Schema$GoogleCloudDocumentaiV1HumanReviewStatus;
     /**
-     * The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.
+     * The source of the document, same as the input_gcs_source field in the request when the batch process started.
      */
     inputGcsSource?: string | null;
     /**
-     * The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.
+     * The Cloud Storage output destination (in the request as DocumentOutputConfig.GcsOutputConfig.gcs_uri) of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
     /**
@@ -786,7 +826,7 @@ export namespace documentai_v1beta2 {
      */
     error?: Schema$GoogleRpcStatus;
     /**
-     * An IANA published MIME type (also referred to as media type). For more information, see https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      */
     mimeType?: string | null;
     /**
@@ -814,7 +854,7 @@ export namespace documentai_v1beta2 {
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta1DocumentStyle[];
     /**
-     * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
+     * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
   }
@@ -950,7 +990,7 @@ export namespace documentai_v1beta2 {
      */
     image?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageImage;
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      */
     imageQualityScores?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScores;
     /**
@@ -1067,7 +1107,7 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The [BCP-47 language code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier), such as `en-US` or `sr-Latn`.
      */
     languageCode?: string | null;
   }
@@ -1138,7 +1178,7 @@ export namespace documentai_v1beta2 {
      */
     height?: number | null;
     /**
-     * Encoding mime type for the image.
+     * Encoding [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml) for the image.
      */
     mimeType?: string | null;
     /**
@@ -1147,7 +1187,7 @@ export namespace documentai_v1beta2 {
     width?: number | null;
   }
   /**
-   * Image Quality Scores for the page image
+   * Image quality scores for the page image.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScores {
     /**
@@ -1155,7 +1195,7 @@ export namespace documentai_v1beta2 {
      */
     detectedDefects?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScoresDetectedDefect[];
     /**
-     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where `1` is perfect quality.
      */
     qualityScore?: number | null;
   }
@@ -1164,7 +1204,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScoresDetectedDefect {
     /**
-     * Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where `1` indicates strong confidence that the defect exists.
      */
     confidence?: number | null;
     /**
@@ -1359,11 +1399,11 @@ export namespace documentai_v1beta2 {
      */
     backgroundColor?: Schema$GoogleTypeColor;
     /**
-     * Whether the text is bold (equivalent to font weight \>= 700).
+     * Whether the text is bold (equivalent to font_weight is at least `700`).
      */
     bold?: boolean | null;
     /**
-     * Font size in points (1 point is 1/72").
+     * Font size in points (`1` point is `¹⁄₇₂` inches).
      */
     fontSize?: number | null;
     /**
@@ -1371,7 +1411,7 @@ export namespace documentai_v1beta2 {
      */
     fontType?: string | null;
     /**
-     * TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.
+     * TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy). Normal is `400`, bold is `700`.
      */
     fontWeight?: number | null;
     /**
@@ -1387,11 +1427,11 @@ export namespace documentai_v1beta2 {
      */
     letterSpacing?: number | null;
     /**
-     * Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.
+     * Font size in pixels, equal to _unrounded font_size_ * _resolution_ ÷ `72.0`.
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text are small caps.
+     * Whether the text is in small caps.
      */
     smallcaps?: boolean | null;
     /**
@@ -1554,7 +1594,7 @@ export namespace documentai_v1beta2 {
      */
     fontSize?: Schema$GoogleCloudDocumentaiV1beta1DocumentStyleFontSize;
     /**
-     * Font weight. Possible values are normal, bold, bolder, and lighter. https://www.w3schools.com/cssref/pr_font_weight.asp
+     * [Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp). Possible values are `normal`, `bold`, `bolder`, and `lighter`.
      */
     fontWeight?: string | null;
     /**
@@ -1562,11 +1602,11 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
-     * Text decoration. Follows CSS standard. https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     * [Text decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp). Follows CSS standard.
      */
     textDecoration?: string | null;
     /**
-     * Text style. Possible values are normal, italic, and oblique. https://www.w3schools.com/cssref/pr_font_font-style.asp
+     * [Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp). Possible values are `normal`, `italic`, and `oblique`.
      */
     textStyle?: string | null;
   }
@@ -1579,7 +1619,7 @@ export namespace documentai_v1beta2 {
      */
     size?: number | null;
     /**
-     * Unit for the font size. Follows CSS naming (in, px, pt, etc.).
+     * Unit for the font size. Follows CSS naming (such as `in`, `px`, and `pt`).
      */
     unit?: string | null;
   }
@@ -1806,7 +1846,7 @@ export namespace documentai_v1beta2 {
      */
     labels?: Schema$GoogleCloudDocumentaiV1beta2DocumentLabel[];
     /**
-     * An IANA published MIME type (also referred to as media type). For more information, see https://www.iana.org/assignments/media-types/media-types.xhtml.
+     * An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      */
     mimeType?: string | null;
     /**
@@ -1834,7 +1874,7 @@ export namespace documentai_v1beta2 {
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta2DocumentStyle[];
     /**
-     * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
+     * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
   }
@@ -1987,7 +2027,7 @@ export namespace documentai_v1beta2 {
      */
     image?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageImage;
     /**
-     * Image Quality Scores.
+     * Image quality scores.
      */
     imageQualityScores?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores;
     /**
@@ -2104,7 +2144,7 @@ export namespace documentai_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The [BCP-47 language code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier), such as `en-US` or `sr-Latn`.
      */
     languageCode?: string | null;
   }
@@ -2175,7 +2215,7 @@ export namespace documentai_v1beta2 {
      */
     height?: number | null;
     /**
-     * Encoding mime type for the image.
+     * Encoding [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml) for the image.
      */
     mimeType?: string | null;
     /**
@@ -2184,7 +2224,7 @@ export namespace documentai_v1beta2 {
     width?: number | null;
   }
   /**
-   * Image Quality Scores for the page image
+   * Image quality scores for the page image.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores {
     /**
@@ -2192,7 +2232,7 @@ export namespace documentai_v1beta2 {
      */
     detectedDefects?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScoresDetectedDefect[];
     /**
-     * The overall quality score. Range `[0, 1]` where 1 is perfect quality.
+     * The overall quality score. Range `[0, 1]` where `1` is perfect quality.
      */
     qualityScore?: number | null;
   }
@@ -2201,7 +2241,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScoresDetectedDefect {
     /**
-     * Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.
+     * Confidence of detected defect. Range `[0, 1]` where `1` indicates strong confidence that the defect exists.
      */
     confidence?: number | null;
     /**
@@ -2396,11 +2436,11 @@ export namespace documentai_v1beta2 {
      */
     backgroundColor?: Schema$GoogleTypeColor;
     /**
-     * Whether the text is bold (equivalent to font weight \>= 700).
+     * Whether the text is bold (equivalent to font_weight is at least `700`).
      */
     bold?: boolean | null;
     /**
-     * Font size in points (1 point is 1/72").
+     * Font size in points (`1` point is `¹⁄₇₂` inches).
      */
     fontSize?: number | null;
     /**
@@ -2408,7 +2448,7 @@ export namespace documentai_v1beta2 {
      */
     fontType?: string | null;
     /**
-     * TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.
+     * TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy). Normal is `400`, bold is `700`.
      */
     fontWeight?: number | null;
     /**
@@ -2424,11 +2464,11 @@ export namespace documentai_v1beta2 {
      */
     letterSpacing?: number | null;
     /**
-     * Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.
+     * Font size in pixels, equal to _unrounded font_size_ * _resolution_ ÷ `72.0`.
      */
     pixelFontSize?: number | null;
     /**
-     * Whether the text are small caps.
+     * Whether the text is in small caps.
      */
     smallcaps?: boolean | null;
     /**
@@ -2591,7 +2631,7 @@ export namespace documentai_v1beta2 {
      */
     fontSize?: Schema$GoogleCloudDocumentaiV1beta2DocumentStyleFontSize;
     /**
-     * Font weight. Possible values are normal, bold, bolder, and lighter. https://www.w3schools.com/cssref/pr_font_weight.asp
+     * [Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp). Possible values are `normal`, `bold`, `bolder`, and `lighter`.
      */
     fontWeight?: string | null;
     /**
@@ -2599,11 +2639,11 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
-     * Text decoration. Follows CSS standard. https://www.w3schools.com/cssref/pr_text_text-decoration.asp
+     * [Text decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp). Follows CSS standard.
      */
     textDecoration?: string | null;
     /**
-     * Text style. Possible values are normal, italic, and oblique. https://www.w3schools.com/cssref/pr_font_font-style.asp
+     * [Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp). Possible values are `normal`, `italic`, and `oblique`.
      */
     textStyle?: string | null;
   }
@@ -2616,7 +2656,7 @@ export namespace documentai_v1beta2 {
      */
     size?: number | null;
     /**
-     * Unit for the font size. Follows CSS naming (in, px, pt, etc.).
+     * Unit for the font size. Follows CSS naming (such as `in`, `px`, and `pt`).
      */
     unit?: string | null;
   }
@@ -2922,7 +2962,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus {
     /**
-     * The name of the operation triggered by the processed document. If the human review process isn't triggered, this field will be empty. It has the same response type and metadata as the long-running operation returned by ReviewDocument method.
+     * The name of the operation triggered by the processed document. If the human review process isn't triggered, this field will be empty. It has the same response type and metadata as the long-running operation returned by the ReviewDocument method.
      */
     humanReviewOperation?: string | null;
     /**
@@ -2930,11 +2970,11 @@ export namespace documentai_v1beta2 {
      */
     humanReviewStatus?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus;
     /**
-     * The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.
+     * The source of the document, same as the input_gcs_source field in the request when the batch process started.
      */
     inputGcsSource?: string | null;
     /**
-     * The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.
+     * The Cloud Storage output destination (in the request as DocumentOutputConfig.GcsOutputConfig.gcs_uri) of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
     /**
@@ -2972,7 +3012,7 @@ export namespace documentai_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * The long-running operation metadata for delete processor method.
+   * The long-running operation metadata for the DeleteProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata {
     /**
@@ -2981,7 +3021,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * The long-running operation metadata for delete processor version method.
+   * The long-running operation metadata for the DeleteProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata {
     /**
@@ -2990,7 +3030,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * The long-running operation metadata for deploy processor version method.
+   * The long-running operation metadata for the DeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata {
     /**
@@ -2999,11 +3039,11 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the deploy processor version method.
+   * Response message for the DeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse {}
   /**
-   * The long-running operation metadata for disable processor method.
+   * The long-running operation metadata for the DisableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorMetadata {
     /**
@@ -3012,11 +3052,11 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   * Response message for the DisableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorResponse {}
   /**
-   * The long-running operation metadata for enable processor method.
+   * The long-running operation metadata for the EnableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorMetadata {
     /**
@@ -3025,7 +3065,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   * Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorResponse {}
   /**
@@ -3082,7 +3122,7 @@ export namespace documentai_v1beta2 {
     processorVersion?: string | null;
   }
   /**
-   * The long-running operation metadata for review document method.
+   * The long-running operation metadata for the ReviewDocument method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata {
     /**
@@ -3111,7 +3151,7 @@ export namespace documentai_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * Response message for review document method.
+   * Response message for the ReviewDocument method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentResponse {
     /**
@@ -3128,7 +3168,7 @@ export namespace documentai_v1beta2 {
     state?: string | null;
   }
   /**
-   * The long-running operation metadata for set default processor version method.
+   * The long-running operation metadata for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata {
     /**
@@ -3137,7 +3177,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for set default processor version method.
+   * Response message for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse {}
   /**
@@ -3188,7 +3228,7 @@ export namespace documentai_v1beta2 {
     processorVersion?: string | null;
   }
   /**
-   * The long-running operation metadata for the undeploy processor version method.
+   * The long-running operation metadata for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata {
     /**
@@ -3197,7 +3237,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * Response message for the undeploy processor version method.
+   * Response message for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
   /**
@@ -3226,7 +3266,7 @@ export namespace documentai_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * The long-running operation metadata for delete processor method.
+   * The long-running operation metadata for the DeleteProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorMetadata {
     /**
@@ -3235,7 +3275,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * The long-running operation metadata for delete processor version method.
+   * The long-running operation metadata for the DeleteProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata {
     /**
@@ -3244,7 +3284,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * The long-running operation metadata for deploy processor version method.
+   * The long-running operation metadata for the DeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionMetadata {
     /**
@@ -3253,11 +3293,11 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * Response message for the deploy processor version method.
+   * Response message for the DeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionResponse {}
   /**
-   * The long-running operation metadata for disable processor method.
+   * The long-running operation metadata for the DisableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1DisableProcessorMetadata {
     /**
@@ -3266,11 +3306,11 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   * Response message for the DisableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiV1DisableProcessorResponse {}
   /**
-   * The long-running operation metadata for enable processor method.
+   * The long-running operation metadata for the EnableProcessor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1EnableProcessorMetadata {
     /**
@@ -3279,7 +3319,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   * Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiV1EnableProcessorResponse {}
   /**
@@ -3318,7 +3358,7 @@ export namespace documentai_v1beta2 {
     stateMessage?: string | null;
   }
   /**
-   * The long-running operation metadata for review document method.
+   * The long-running operation metadata for the ReviewDocument method.
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata {
     /**
@@ -3331,7 +3371,7 @@ export namespace documentai_v1beta2 {
     questionId?: string | null;
   }
   /**
-   * Response message for review document method.
+   * Response message for the ReviewDocument method.
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentResponse {
     /**
@@ -3348,7 +3388,7 @@ export namespace documentai_v1beta2 {
     state?: string | null;
   }
   /**
-   * The long-running operation metadata for set default processor version method.
+   * The long-running operation metadata for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata {
     /**
@@ -3357,7 +3397,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * Response message for set default processor version method.
+   * Response message for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse {}
   /**
@@ -3408,7 +3448,7 @@ export namespace documentai_v1beta2 {
     processorVersion?: string | null;
   }
   /**
-   * The long-running operation metadata for the undeploy processor version method.
+   * The long-running operation metadata for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata {
     /**
@@ -3417,7 +3457,7 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * Response message for the undeploy processor version method.
+   * Response message for the UndeployProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionResponse {}
   /**
@@ -3467,7 +3507,7 @@ export namespace documentai_v1beta2 {
     message?: string | null;
   }
   /**
-   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$GoogleTypeColor {
     /**

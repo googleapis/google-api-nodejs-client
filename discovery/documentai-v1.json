@@ -148,7 +148,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The project of processor type to list. The available processor types may depend on the allow-listing on projects. Format: `projects/{project}/locations/{location}`",
+                  "description": "Required. The location of processor types to list. Format: `projects/{project}/locations/{location}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+$",
                   "required": true,
@@ -363,7 +363,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of processor types to return. If unspecified, at most 100 processor types will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                      "description": "The maximum number of processor types to return. If unspecified, at most `100` processor types will be returned. The maximum value is `500`. Values above `500` will be coerced to `500`.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -374,7 +374,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location of processor type to list. The available processor types may depend on the allow-listing on projects. Format: `projects/{project}/locations/{location}`",
+                      "description": "Required. The location of processor types to list. Format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -422,7 +422,7 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates a processor from the type processor that the user chose. The processor will be at \"ENABLED\" state by default after its creation.",
+                  "description": "Creates a processor from the ProcessorType provided. The processor will be at `ENABLED` state by default after its creation.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/processors",
                   "httpMethod": "POST",
                   "id": "documentai.projects.locations.processors.create",
@@ -565,7 +565,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of processors to return. If unspecified, at most 50 processors will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "description": "The maximum number of processors to return. If unspecified, at most `50` processors will be returned. The maximum value is `100`. Values above `100` will be coerced to `100`.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -827,7 +827,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of processor versions to return. If unspecified, at most 10 processor versions will be returned. The maximum value is 20; values above 20 will be coerced to 20.",
+                          "description": "The maximum number of processor versions to return. If unspecified, at most `10` processor versions will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -882,7 +882,7 @@
                       ]
                     },
                     "train": {
-                      "description": "Trains a new processor version. Operation metadata is returned as cloud_documentai_core.TrainProcessorVersionMetadata.",
+                      "description": "Trains a new processor version. Operation metadata is returned as TrainProcessorVersionMetadata.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions:train",
                       "httpMethod": "POST",
                       "id": "documentai.projects.locations.processors.processorVersions.train",
@@ -976,7 +976,7 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "The standard list page size. If unspecified, at most `5` evaluations will be returned. The maximum value is `100`; values above `100` will be coerced to `100`.",
+                              "description": "The standard list page size. If unspecified, at most `5` evaluations are returned. The maximum value is `100`. Values above `100` are coerced to `100`.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230619",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -1253,7 +1253,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata": {
-      "description": "The long-running operation metadata for CreateLabelerPool.",
+      "description": "The long-running operation metadata for the CreateLabelerPool method.",
       "id": "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata",
       "properties": {
         "commonMetadata": {
@@ -1275,7 +1275,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata": {
-      "description": "The long-running operation metadata for delete processor method.",
+      "description": "The long-running operation metadata for the DeleteProcessor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -1286,7 +1286,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for delete processor version method.",
+      "description": "The long-running operation metadata for the DeleteProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -1297,7 +1297,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for deploy processor version method.",
+      "description": "The long-running operation metadata for the DeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -1308,13 +1308,13 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse": {
-      "description": "Response message for the deploy processor version method.",
+      "description": "Response message for the DeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata": {
-      "description": "The long-running operation metadata for disable processor method.",
+      "description": "The long-running operation metadata for the DisableProcessor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -1325,7 +1325,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DisableProcessorResponse": {
-      "description": "Response message for the disable processor method. Intentionally empty proto for adding fields in future.",
+      "description": "Response message for the DisableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiUiv1beta3DisableProcessorResponse",
       "properties": {},
       "type": "object"
@@ -1335,17 +1335,22 @@
       "id": "GoogleCloudDocumentaiUiv1beta3DocumentId",
       "properties": {
         "gcsManagedDocId": {
-          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId"
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId",
+          "description": "A document id within user-managed Cloud Storage."
         },
         "revisionRef": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3RevisionRef",
           "description": "Points to a specific revision of the document if set."
+        },
+        "unmanagedDocId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId",
+          "description": "A document id within unmanaged dataset."
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId": {
-      "description": "Identifies a document uniquely within the scope of a dataset in the Cloud Storage option.",
+      "description": "Identifies a document uniquely within the scope of a dataset in the user-managed Cloud Storage option.",
       "id": "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId",
       "properties": {
         "cwDocId": {
@@ -1353,14 +1358,25 @@
           "type": "string"
         },
         "gcsUri": {
-          "description": "Required. The Cloud Storage uri where the actual document is stored.",
+          "description": "Required. The Cloud Storage URI where the actual document is stored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId": {
+      "description": "Identifies a document uniquely within the scope of a dataset in unmanaged option.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId",
+      "properties": {
+        "docId": {
+          "description": "Required. The id of the document.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata": {
-      "description": "The long-running operation metadata for enable processor method.",
+      "description": "The long-running operation metadata for the EnableProcessor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -1371,7 +1387,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse": {
-      "description": "Response message for the enable processor method. Intentionally empty proto for adding fields in future.",
+      "description": "Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse",
       "properties": {},
       "type": "object"
@@ -1706,8 +1722,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiUiv1beta3SampleDocumentsMetadata": {
+      "description": "Metadata of the sample documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3SampleDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponse": {
+      "description": "Response of the sample documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponse",
+      "properties": {
+        "selectedDocuments": {
+          "description": "The result of the sampling process.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument": {
+      "id": "GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument",
+      "properties": {
+        "documentId": {
+          "description": "An internal identifier for document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for set default processor version method.",
+      "description": "The long-running operation metadata for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -1718,7 +1769,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionResponse": {
-      "description": "Response message for set default processor version method.",
+      "description": "Response message for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionResponse",
       "properties": {},
       "type": "object"
@@ -1785,7 +1836,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for the undeploy processor version method.",
+      "description": "The long-running operation metadata for the UndeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -1796,7 +1847,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse": {
-      "description": "Response message for the undeploy processor version method.",
+      "description": "Response message for the UndeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse",
       "properties": {},
       "type": "object"
@@ -1926,11 +1977,11 @@
           "description": "The status of human review on the processed document."
         },
         "inputGcsSource": {
-          "description": "The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.",
+          "description": "The source of the document, same as the input_gcs_source field in the request when the batch process started.",
           "type": "string"
         },
         "outputGcsDestination": {
-          "description": "The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.",
+          "description": "The Cloud Storage output destination (in the request as DocumentOutputConfig.GcsOutputConfig.gcs_uri) of the processed document if it was successful, otherwise empty.",
           "type": "string"
         },
         "status": {
@@ -1946,14 +1997,14 @@
       "properties": {
         "documentOutputConfig": {
           "$ref": "GoogleCloudDocumentaiV1DocumentOutputConfig",
-          "description": "The overall output config for batch process."
+          "description": "The output configuration for the BatchProcessDocuments method."
         },
         "inputDocuments": {
           "$ref": "GoogleCloudDocumentaiV1BatchDocumentsInputConfig",
-          "description": "The input documents for batch process."
+          "description": "The input documents for the BatchProcessDocuments method."
         },
         "skipHumanReview": {
-          "description": "Whether Human Review feature should be skipped for this request. Default to false.",
+          "description": "Whether human review should be skipped for this request. Default to `false`.",
           "type": "boolean"
         }
       },
@@ -2032,7 +2083,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeleteProcessorMetadata": {
-      "description": "The long-running operation metadata for delete processor method.",
+      "description": "The long-running operation metadata for the DeleteProcessor method.",
       "id": "GoogleCloudDocumentaiV1DeleteProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -2043,7 +2094,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for delete processor version method.",
+      "description": "The long-running operation metadata for the DeleteProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -2054,7 +2105,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeployProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for deploy processor version method.",
+      "description": "The long-running operation metadata for the DeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1DeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -2065,19 +2116,19 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeployProcessorVersionRequest": {
-      "description": "Request message for the deploy processor version method.",
+      "description": "Request message for the DeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1DeployProcessorVersionRequest",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DeployProcessorVersionResponse": {
-      "description": "Response message for the deploy processor version method.",
+      "description": "Response message for the DeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1DeployProcessorVersionResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DisableProcessorMetadata": {
-      "description": "The long-running operation metadata for disable processor method.",
+      "description": "The long-running operation metadata for the DisableProcessor method.",
       "id": "GoogleCloudDocumentaiV1DisableProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -2088,13 +2139,13 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DisableProcessorRequest": {
-      "description": "Request message for the disable processor method.",
+      "description": "Request message for the DisableProcessor method.",
       "id": "GoogleCloudDocumentaiV1DisableProcessorRequest",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DisableProcessorResponse": {
-      "description": "Response message for the disable processor method. Intentionally empty proto for adding fields in future.",
+      "description": "Response message for the DisableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiV1DisableProcessorResponse",
       "properties": {},
       "type": "object"
@@ -2127,7 +2178,7 @@
           "description": "Any error that occurred while processing this document."
         },
         "mimeType": {
-          "description": "An IANA published MIME type (also referred to as media type). For more information, see https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "description": "An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).",
           "type": "string"
         },
         "pages": {
@@ -2167,7 +2218,7 @@
           "type": "array"
         },
         "uri": {
-          "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.",
+          "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
           "type": "string"
         }
       },
@@ -2378,7 +2429,7 @@
         },
         "imageQualityScores": {
           "$ref": "GoogleCloudDocumentaiV1DocumentPageImageQualityScores",
-          "description": "Image Quality Scores."
+          "description": "Image quality scores."
         },
         "layout": {
           "$ref": "GoogleCloudDocumentaiV1DocumentPageLayout",
@@ -2555,7 +2606,7 @@
           "type": "number"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The [BCP-47 language code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier), such as `en-US` or `sr-Latn`.",
           "type": "string"
         }
       },
@@ -2642,7 +2693,7 @@
           "type": "integer"
         },
         "mimeType": {
-          "description": "Encoding mime type for the image.",
+          "description": "Encoding [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml) for the image.",
           "type": "string"
         },
         "width": {
@@ -2654,7 +2705,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DocumentPageImageQualityScores": {
-      "description": "Image Quality Scores for the page image",
+      "description": "Image quality scores for the page image.",
       "id": "GoogleCloudDocumentaiV1DocumentPageImageQualityScores",
       "properties": {
         "detectedDefects": {
@@ -2665,7 +2716,7 @@
           "type": "array"
         },
         "qualityScore": {
-          "description": "The overall quality score. Range `[0, 1]` where 1 is perfect quality.",
+          "description": "The overall quality score. Range `[0, 1]` where `1` is perfect quality.",
           "format": "float",
           "type": "number"
         }
@@ -2677,7 +2728,7 @@
       "id": "GoogleCloudDocumentaiV1DocumentPageImageQualityScoresDetectedDefect",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.",
+          "description": "Confidence of detected defect. Range `[0, 1]` where `1` indicates strong confidence that the defect exists.",
           "format": "float",
           "type": "number"
         },
@@ -2955,11 +3006,11 @@
           "description": "Color of the background."
         },
         "bold": {
-          "description": "Whether the text is bold (equivalent to font weight >= 700).",
+          "description": "Whether the text is bold (equivalent to font_weight is at least `700`).",
           "type": "boolean"
         },
         "fontSize": {
-          "description": "Font size in points (1 point is 1/72\").",
+          "description": "Font size in points (`1` point is `¹⁄₇₂` inches).",
           "format": "int32",
           "type": "integer"
         },
@@ -2968,7 +3019,7 @@
           "type": "string"
         },
         "fontWeight": {
-          "description": "TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.",
+          "description": "TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy). Normal is `400`, bold is `700`.",
           "format": "int32",
           "type": "integer"
         },
@@ -2986,12 +3037,12 @@
           "type": "number"
         },
         "pixelFontSize": {
-          "description": "Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.",
+          "description": "Font size in pixels, equal to _unrounded font_size_ * _resolution_ ÷ `72.0`.",
           "format": "double",
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text are small caps.",
+          "description": "Whether the text is in small caps.",
           "type": "boolean"
         },
         "strikeout": {
@@ -3213,7 +3264,7 @@
           "description": "If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is >10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file."
         },
         "name": {
-          "description": "Name of the type. It must be unique within the schema file and cannot be a 'Common Type'. Besides that we use the following naming conventions: - *use `snake_casing`* - name matching is case-sensitive - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
+          "description": "Name of the type. It must be unique within the schema file and cannot be a \"Common Type\". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.",
           "type": "string"
         },
         "properties": {
@@ -3282,7 +3333,7 @@
           "type": "boolean"
         },
         "documentSplitter": {
-          "description": "If true, a `document` entity type can be applied to subdocument ( splitting). Otherwise, it can only be applied to the entire document (classification).",
+          "description": "If true, a `document` entity type can be applied to subdocument (splitting). Otherwise, it can only be applied to the entire document (classification).",
           "type": "boolean"
         },
         "prefixedNamingOnProperties": {
@@ -3339,7 +3390,7 @@
           "description": "Font size."
         },
         "fontWeight": {
-          "description": "Font weight. Possible values are normal, bold, bolder, and lighter. https://www.w3schools.com/cssref/pr_font_weight.asp",
+          "description": "[Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp). Possible values are `normal`, `bold`, `bolder`, and `lighter`.",
           "type": "string"
         },
         "textAnchor": {
@@ -3347,11 +3398,11 @@
           "description": "Text anchor indexing into the Document.text."
         },
         "textDecoration": {
-          "description": "Text decoration. Follows CSS standard. https://www.w3schools.com/cssref/pr_text_text-decoration.asp",
+          "description": "[Text decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp). Follows CSS standard. ",
           "type": "string"
         },
         "textStyle": {
-          "description": "Text style. Possible values are normal, italic, and oblique. https://www.w3schools.com/cssref/pr_font_font-style.asp",
+          "description": "[Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp). Possible values are `normal`, `italic`, and `oblique`.",
           "type": "string"
         }
       },
@@ -3367,7 +3418,7 @@
           "type": "number"
         },
         "unit": {
-          "description": "Unit for the font size. Follows CSS naming (in, px, pt, etc.).",
+          "description": "Unit for the font size. Follows CSS naming (such as `in`, `px`, and `pt`).",
           "type": "string"
         }
       },
@@ -3431,7 +3482,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1EnableProcessorMetadata": {
-      "description": "The long-running operation metadata for enable processor method.",
+      "description": "The long-running operation metadata for the EnableProcessor method.",
       "id": "GoogleCloudDocumentaiV1EnableProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -3442,13 +3493,13 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1EnableProcessorRequest": {
-      "description": "Request message for the enable processor method.",
+      "description": "Request message for the EnableProcessor method.",
       "id": "GoogleCloudDocumentaiV1EnableProcessorRequest",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1EnableProcessorResponse": {
-      "description": "Response message for the enable processor method. Intentionally empty proto for adding fields in future.",
+      "description": "Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiV1EnableProcessorResponse",
       "properties": {},
       "type": "object"
@@ -3707,7 +3758,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1FetchProcessorTypesResponse": {
-      "description": "Response message for fetch processor types.",
+      "description": "Response message for the FetchProcessorTypes method.",
       "id": "GoogleCloudDocumentaiV1FetchProcessorTypesResponse",
       "properties": {
         "processorTypes": {
@@ -3812,7 +3863,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ListProcessorTypesResponse": {
-      "description": "Response message for list processor types.",
+      "description": "Response message for the ListProcessorTypes method.",
       "id": "GoogleCloudDocumentaiV1ListProcessorTypesResponse",
       "properties": {
         "nextPageToken": {
@@ -3830,7 +3881,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ListProcessorVersionsResponse": {
-      "description": "Response message for list processors.",
+      "description": "Response message for the ListProcessorVersions method.",
       "id": "GoogleCloudDocumentaiV1ListProcessorVersionsResponse",
       "properties": {
         "nextPageToken": {
@@ -3848,7 +3899,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ListProcessorsResponse": {
-      "description": "Response message for list processors.",
+      "description": "Response message for the ListProcessors method.",
       "id": "GoogleCloudDocumentaiV1ListProcessorsResponse",
       "properties": {
         "nextPageToken": {
@@ -3883,11 +3934,11 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ProcessRequest": {
-      "description": "Request message for the process document method.",
+      "description": "Request message for the ProcessDocument method.",
       "id": "GoogleCloudDocumentaiV1ProcessRequest",
       "properties": {
         "fieldMask": {
-          "description": "Specifies which fields to include in the `ProcessResponse` Document. Only supports top level document and pages field so it must be in the form of `{document_field_name}` or `pages.{page_field_name}`.",
+          "description": "Specifies which fields to include in the ProcessResponse.document output. Only supports top-level document and pages field, so it must be in the form of `{document_field_name}` or `pages.{page_field_name}`.",
           "format": "google-fieldmask",
           "type": "string"
         },
@@ -3900,14 +3951,14 @@
           "description": "A raw document content (bytes)."
         },
         "skipHumanReview": {
-          "description": "Whether Human Review feature should be skipped for this request. Default to false.",
+          "description": "Whether human review should be skipped for this request. Default to `false`.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ProcessResponse": {
-      "description": "Response message for the process document method.",
+      "description": "Response message for the ProcessDocument method.",
       "id": "GoogleCloudDocumentaiV1ProcessResponse",
       "properties": {
         "document": {
@@ -3939,7 +3990,7 @@
           "type": "string"
         },
         "kmsKeyName": {
-          "description": "The KMS key used for encryption/decryption in CMEK scenarios. See https://cloud.google.com/security-key-management.",
+          "description": "The [KMS key](https://cloud.google.com/security-key-management) used for encryption and decryption in CMEK scenarios.",
           "type": "string"
         },
         "name": {
@@ -4050,14 +4101,14 @@
       "id": "GoogleCloudDocumentaiV1ProcessorTypeLocationInfo",
       "properties": {
         "locationId": {
-          "description": "The location id, currently must be one of [us, eu].",
+          "description": "The location ID. For supported locations, refer to [regional and multi-regional support](/document-ai/docs/regions).",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ProcessorVersion": {
-      "description": "A processor version is an implementation of a processor. Each processor can have multiple versions, pre-trained by Google internally or up-trained by the customer. At a time, a processor can only have one default version version. So the processor's behavior (when processing documents) is defined by a default version",
+      "description": "A processor version is an implementation of a processor. Each processor can have multiple versions, pretrained by Google internally or uptrained by the customer. A processor can only have one default version at a time. Its document-processing behavior is defined by that version.",
       "id": "GoogleCloudDocumentaiV1ProcessorVersion",
       "properties": {
         "createTime": {
@@ -4078,7 +4129,7 @@
           "description": "The schema of the processor version. Describes the output."
         },
         "googleManaged": {
-          "description": "Denotes that this ProcessorVersion is managed by google.",
+          "description": "Denotes that this `ProcessorVersion` is managed by Google.",
           "type": "boolean"
         },
         "kmsKeyName": {
@@ -4159,7 +4210,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata": {
-      "description": "The long-running operation metadata for review document method.",
+      "description": "The long-running operation metadata for the ReviewDocument method.",
       "id": "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata",
       "properties": {
         "commonMetadata": {
@@ -4174,7 +4225,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ReviewDocumentRequest": {
-      "description": "Request message for review document method.",
+      "description": "Request message for the ReviewDocument method.",
       "id": "GoogleCloudDocumentaiV1ReviewDocumentRequest",
       "properties": {
         "documentSchema": {
@@ -4205,7 +4256,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ReviewDocumentResponse": {
-      "description": "Response message for review document method.",
+      "description": "Response message for the ReviewDocument method.",
       "id": "GoogleCloudDocumentaiV1ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
@@ -4234,7 +4285,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for set default processor version method.",
+      "description": "The long-running operation metadata for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -4245,7 +4296,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1SetDefaultProcessorVersionRequest": {
-      "description": "Request message for the set default processor version method.",
+      "description": "Request message for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1SetDefaultProcessorVersionRequest",
       "properties": {
         "defaultProcessorVersion": {
@@ -4256,7 +4307,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse": {
-      "description": "Response message for set default processor version method.",
+      "description": "Response message for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse",
       "properties": {},
       "type": "object"
@@ -4312,12 +4363,16 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1TrainProcessorVersionRequest": {
-      "description": "Request message for the create processor version method.",
+      "description": "Request message for the TrainProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1TrainProcessorVersionRequest",
       "properties": {
         "baseProcessorVersion": {
           "description": "Optional. The processor version to use as a base for training. This processor version must be a child of `parent`. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.",
           "type": "string"
+        },
+        "customDocumentExtractionOptions": {
+          "$ref": "GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptions",
+          "description": "Options to control Custom Document Extraction (CDE) Processor."
         },
         "documentSchema": {
           "$ref": "GoogleCloudDocumentaiV1DocumentSchema",
@@ -4325,7 +4380,7 @@
         },
         "inputData": {
           "$ref": "GoogleCloudDocumentaiV1TrainProcessorVersionRequestInputData",
-          "description": "Optional. The input data used to train the `ProcessorVersion`."
+          "description": "Optional. The input data used to train the ProcessorVersion."
         },
         "processorVersion": {
           "$ref": "GoogleCloudDocumentaiV1ProcessorVersion",
@@ -4334,8 +4389,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptions": {
+      "description": "Options to control the training of the Custom Document Extraction (CDE) Processor.",
+      "id": "GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptions",
+      "properties": {
+        "trainingMethod": {
+          "description": "Training method to use for CDE training.",
+          "enum": [
+            "TRAINING_METHOD_UNSPECIFIED",
+            "MODEL_BASED",
+            "TEMPLATE_BASED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1TrainProcessorVersionRequestInputData": {
-      "description": "The input data used to train a new `ProcessorVersion`.",
+      "description": "The input data used to train a new ProcessorVersion.",
       "id": "GoogleCloudDocumentaiV1TrainProcessorVersionRequestInputData",
       "properties": {
         "testDocuments": {
@@ -4361,7 +4437,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for the undeploy processor version method.",
+      "description": "The long-running operation metadata for the UndeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -4372,13 +4448,13 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1UndeployProcessorVersionRequest": {
-      "description": "Request message for the undeploy processor version method.",
+      "description": "Request message for the UndeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionRequest",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1UndeployProcessorVersionResponse": {
-      "description": "Response message for the undeploy processor version method.",
+      "description": "Response message for the UndeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionResponse",
       "properties": {},
       "type": "object"
@@ -4482,7 +4558,7 @@
           "description": "Any error that occurred while processing this document."
         },
         "mimeType": {
-          "description": "An IANA published MIME type (also referred to as media type). For more information, see https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "description": "An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).",
           "type": "string"
         },
         "pages": {
@@ -4522,7 +4598,7 @@
           "type": "array"
         },
         "uri": {
-          "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.",
+          "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
           "type": "string"
         }
       },
@@ -4685,7 +4761,7 @@
         },
         "imageQualityScores": {
           "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScores",
-          "description": "Image Quality Scores."
+          "description": "Image quality scores."
         },
         "layout": {
           "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
@@ -4862,7 +4938,7 @@
           "type": "number"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The [BCP-47 language code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier), such as `en-US` or `sr-Latn`.",
           "type": "string"
         }
       },
@@ -4949,7 +5025,7 @@
           "type": "integer"
         },
         "mimeType": {
-          "description": "Encoding mime type for the image.",
+          "description": "Encoding [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml) for the image.",
           "type": "string"
         },
         "width": {
@@ -4961,7 +5037,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScores": {
-      "description": "Image Quality Scores for the page image",
+      "description": "Image quality scores for the page image.",
       "id": "GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScores",
       "properties": {
         "detectedDefects": {
@@ -4972,7 +5048,7 @@
           "type": "array"
         },
         "qualityScore": {
-          "description": "The overall quality score. Range `[0, 1]` where 1 is perfect quality.",
+          "description": "The overall quality score. Range `[0, 1]` where `1` is perfect quality.",
           "format": "float",
           "type": "number"
         }
@@ -4984,7 +5060,7 @@
       "id": "GoogleCloudDocumentaiV1beta1DocumentPageImageQualityScoresDetectedDefect",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.",
+          "description": "Confidence of detected defect. Range `[0, 1]` where `1` indicates strong confidence that the defect exists.",
           "format": "float",
           "type": "number"
         },
@@ -5262,11 +5338,11 @@
           "description": "Color of the background."
         },
         "bold": {
-          "description": "Whether the text is bold (equivalent to font weight >= 700).",
+          "description": "Whether the text is bold (equivalent to font_weight is at least `700`).",
           "type": "boolean"
         },
         "fontSize": {
-          "description": "Font size in points (1 point is 1/72\").",
+          "description": "Font size in points (`1` point is `¹⁄₇₂` inches).",
           "format": "int32",
           "type": "integer"
         },
@@ -5275,7 +5351,7 @@
           "type": "string"
         },
         "fontWeight": {
-          "description": "TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.",
+          "description": "TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy). Normal is `400`, bold is `700`.",
           "format": "int32",
           "type": "integer"
         },
@@ -5293,12 +5369,12 @@
           "type": "number"
         },
         "pixelFontSize": {
-          "description": "Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.",
+          "description": "Font size in pixels, equal to _unrounded font_size_ * _resolution_ ÷ `72.0`.",
           "format": "double",
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text are small caps.",
+          "description": "Whether the text is in small caps.",
           "type": "boolean"
         },
         "strikeout": {
@@ -5517,7 +5593,7 @@
           "description": "Font size."
         },
         "fontWeight": {
-          "description": "Font weight. Possible values are normal, bold, bolder, and lighter. https://www.w3schools.com/cssref/pr_font_weight.asp",
+          "description": "[Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp). Possible values are `normal`, `bold`, `bolder`, and `lighter`.",
           "type": "string"
         },
         "textAnchor": {
@@ -5525,11 +5601,11 @@
           "description": "Text anchor indexing into the Document.text."
         },
         "textDecoration": {
-          "description": "Text decoration. Follows CSS standard. https://www.w3schools.com/cssref/pr_text_text-decoration.asp",
+          "description": "[Text decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp). Follows CSS standard. ",
           "type": "string"
         },
         "textStyle": {
-          "description": "Text style. Possible values are normal, italic, and oblique. https://www.w3schools.com/cssref/pr_font_font-style.asp",
+          "description": "[Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp). Possible values are `normal`, `italic`, and `oblique`.",
           "type": "string"
         }
       },
@@ -5545,7 +5621,7 @@
           "type": "number"
         },
         "unit": {
-          "description": "Unit for the font size. Follows CSS naming (in, px, pt, etc.).",
+          "description": "Unit for the font size. Follows CSS naming (such as `in`, `px`, and `pt`).",
           "type": "string"
         }
       },
@@ -5840,7 +5916,7 @@
           "type": "array"
         },
         "mimeType": {
-          "description": "An IANA published MIME type (also referred to as media type). For more information, see https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "description": "An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).",
           "type": "string"
         },
         "pages": {
@@ -5880,7 +5956,7 @@
           "type": "array"
         },
         "uri": {
-          "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.",
+          "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
           "type": "string"
         }
       },
@@ -6063,7 +6139,7 @@
         },
         "imageQualityScores": {
           "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores",
-          "description": "Image Quality Scores."
+          "description": "Image quality scores."
         },
         "layout": {
           "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
@@ -6240,7 +6316,7 @@
           "type": "number"
         },
         "languageCode": {
-          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "description": "The [BCP-47 language code](https://www.unicode.org/reports/tr35/#Unicode_locale_identifier), such as `en-US` or `sr-Latn`.",
           "type": "string"
         }
       },
@@ -6327,7 +6403,7 @@
           "type": "integer"
         },
         "mimeType": {
-          "description": "Encoding mime type for the image.",
+          "description": "Encoding [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml) for the image.",
           "type": "string"
         },
         "width": {
@@ -6339,7 +6415,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores": {
-      "description": "Image Quality Scores for the page image",
+      "description": "Image quality scores for the page image.",
       "id": "GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScores",
       "properties": {
         "detectedDefects": {
@@ -6350,7 +6426,7 @@
           "type": "array"
         },
         "qualityScore": {
-          "description": "The overall quality score. Range `[0, 1]` where 1 is perfect quality.",
+          "description": "The overall quality score. Range `[0, 1]` where `1` is perfect quality.",
           "format": "float",
           "type": "number"
         }
@@ -6362,7 +6438,7 @@
       "id": "GoogleCloudDocumentaiV1beta2DocumentPageImageQualityScoresDetectedDefect",
       "properties": {
         "confidence": {
-          "description": "Confidence of detected defect. Range `[0, 1]` where 1 indicates strong confidence of that the defect exists.",
+          "description": "Confidence of detected defect. Range `[0, 1]` where `1` indicates strong confidence that the defect exists.",
           "format": "float",
           "type": "number"
         },
@@ -6640,11 +6716,11 @@
           "description": "Color of the background."
         },
         "bold": {
-          "description": "Whether the text is bold (equivalent to font weight >= 700).",
+          "description": "Whether the text is bold (equivalent to font_weight is at least `700`).",
           "type": "boolean"
         },
         "fontSize": {
-          "description": "Font size in points (1 point is 1/72\").",
+          "description": "Font size in points (`1` point is `¹⁄₇₂` inches).",
           "format": "int32",
           "type": "integer"
         },
@@ -6653,7 +6729,7 @@
           "type": "string"
         },
         "fontWeight": {
-          "description": "TrueType weight on a scale 100 (Thin) to 1000 (Ultra-heavy). Normal is 400, Bold is 700.",
+          "description": "TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy). Normal is `400`, bold is `700`.",
           "format": "int32",
           "type": "integer"
         },
@@ -6671,12 +6747,12 @@
           "type": "number"
         },
         "pixelFontSize": {
-          "description": "Font size in pixels, equal to unrounded_fontsize * resolution / 72.0.",
+          "description": "Font size in pixels, equal to _unrounded font_size_ * _resolution_ ÷ `72.0`.",
           "format": "double",
           "type": "number"
         },
         "smallcaps": {
-          "description": "Whether the text are small caps.",
+          "description": "Whether the text is in small caps.",
           "type": "boolean"
         },
         "strikeout": {
@@ -6895,7 +6971,7 @@
           "description": "Font size."
         },
         "fontWeight": {
-          "description": "Font weight. Possible values are normal, bold, bolder, and lighter. https://www.w3schools.com/cssref/pr_font_weight.asp",
+          "description": "[Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp). Possible values are `normal`, `bold`, `bolder`, and `lighter`.",
           "type": "string"
         },
         "textAnchor": {
@@ -6903,11 +6979,11 @@
           "description": "Text anchor indexing into the Document.text."
         },
         "textDecoration": {
-          "description": "Text decoration. Follows CSS standard. https://www.w3schools.com/cssref/pr_text_text-decoration.asp",
+          "description": "[Text decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp). Follows CSS standard. ",
           "type": "string"
         },
         "textStyle": {
-          "description": "Text style. Possible values are normal, italic, and oblique. https://www.w3schools.com/cssref/pr_font_font-style.asp",
+          "description": "[Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp). Possible values are `normal`, `italic`, and `oblique`.",
           "type": "string"
         }
       },
@@ -6923,7 +6999,7 @@
           "type": "number"
         },
         "unit": {
-          "description": "Unit for the font size. Follows CSS naming (in, px, pt, etc.).",
+          "description": "Unit for the font size. Follows CSS naming (such as `in`, `px`, and `pt`).",
           "type": "string"
         }
       },
@@ -7189,7 +7265,7 @@
       "id": "GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus",
       "properties": {
         "humanReviewOperation": {
-          "description": "The name of the operation triggered by the processed document. If the human review process isn't triggered, this field will be empty. It has the same response type and metadata as the long-running operation returned by ReviewDocument method.",
+          "description": "The name of the operation triggered by the processed document. If the human review process isn't triggered, this field will be empty. It has the same response type and metadata as the long-running operation returned by the ReviewDocument method.",
           "type": "string"
         },
         "humanReviewStatus": {
@@ -7197,11 +7273,11 @@
           "description": "The status of human review on the processed document."
         },
         "inputGcsSource": {
-          "description": "The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.",
+          "description": "The source of the document, same as the input_gcs_source field in the request when the batch process started.",
           "type": "string"
         },
         "outputGcsDestination": {
-          "description": "The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.",
+          "description": "The Cloud Storage output destination (in the request as DocumentOutputConfig.GcsOutputConfig.gcs_uri) of the processed document if it was successful, otherwise empty.",
           "type": "string"
         },
         "status": {
@@ -7263,7 +7339,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata": {
-      "description": "The long-running operation metadata for delete processor method.",
+      "description": "The long-running operation metadata for the DeleteProcessor method.",
       "id": "GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -7274,7 +7350,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for delete processor version method.",
+      "description": "The long-running operation metadata for the DeleteProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -7285,7 +7361,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for deploy processor version method.",
+      "description": "The long-running operation metadata for the DeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -7296,13 +7372,13 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse": {
-      "description": "Response message for the deploy processor version method.",
+      "description": "Response message for the DeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata": {
-      "description": "The long-running operation metadata for disable processor method.",
+      "description": "The long-running operation metadata for the DisableProcessor method.",
       "id": "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -7313,13 +7389,13 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3DisableProcessorResponse": {
-      "description": "Response message for the disable processor method. Intentionally empty proto for adding fields in future.",
+      "description": "Response message for the DisableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiV1beta3DisableProcessorResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata": {
-      "description": "The long-running operation metadata for enable processor method.",
+      "description": "The long-running operation metadata for the EnableProcessor method.",
       "id": "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata",
       "properties": {
         "commonMetadata": {
@@ -7330,7 +7406,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3EnableProcessorResponse": {
-      "description": "Response message for the enable processor method. Intentionally empty proto for adding fields in future.",
+      "description": "Response message for the EnableProcessor method. Intentionally empty proto for adding fields in future.",
       "id": "GoogleCloudDocumentaiV1beta3EnableProcessorResponse",
       "properties": {},
       "type": "object"
@@ -7413,7 +7489,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata": {
-      "description": "The long-running operation metadata for review document method.",
+      "description": "The long-running operation metadata for the ReviewDocument method.",
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata",
       "properties": {
         "commonMetadata": {
@@ -7462,7 +7538,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ReviewDocumentResponse": {
-      "description": "Response message for review document method.",
+      "description": "Response message for the ReviewDocument method.",
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentResponse",
       "properties": {
         "gcsDestination": {
@@ -7491,7 +7567,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for set default processor version method.",
+      "description": "The long-running operation metadata for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -7502,7 +7578,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse": {
-      "description": "Response message for set default processor version method.",
+      "description": "Response message for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse",
       "properties": {},
       "type": "object"
@@ -7569,7 +7645,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata": {
-      "description": "The long-running operation metadata for the undeploy processor version method.",
+      "description": "The long-running operation metadata for the UndeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata",
       "properties": {
         "commonMetadata": {
@@ -7580,7 +7656,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse": {
-      "description": "Response message for the undeploy processor version method.",
+      "description": "Response message for the UndeployProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse",
       "properties": {},
       "type": "object"
@@ -7724,7 +7800,7 @@
       "type": "object"
     },
     "GoogleTypeColor": {
-      "description": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ...",
+      "description": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ...",
       "id": "GoogleTypeColor",
       "properties": {
         "alpha": {
