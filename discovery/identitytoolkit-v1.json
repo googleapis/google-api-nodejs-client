@@ -559,6 +559,7 @@
               ],
               "parameters": {
                 "delegatedProjectNumber": {
+                  "deprecated": true,
                   "format": "int64",
                   "location": "query",
                   "type": "string"
@@ -872,7 +873,7 @@
                       "type": "string"
                     },
                     "tenantId": {
-                      "description": "If the accounts belong to an Identity Platform tenant, the ID of the tenant. If the accounts belong to an default Identity Platform project, the field is not needed.",
+                      "description": "If the accounts belong to an Identity Platform tenant, the ID of the tenant. If the accounts belong to a default Identity Platform project, the field is not needed.",
                       "location": "path",
                       "pattern": "^[^/]+$",
                       "required": true,
@@ -902,6 +903,7 @@
                   ],
                   "parameters": {
                     "delegatedProjectNumber": {
+                      "deprecated": true,
                       "format": "int64",
                       "location": "query",
                       "type": "string"
@@ -1237,7 +1239,7 @@
       }
     }
   },
-  "revision": "20230429",
+  "revision": "20230613",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -1329,7 +1331,7 @@
           "type": "array"
         },
         "tenantId": {
-          "description": "If the accounts belong to an Identity Platform tenant, the ID of the tenant. If the accounts belong to an default Identity Platform project, the field is not needed.",
+          "description": "If the accounts belong to an Identity Platform tenant, the ID of the tenant. If the accounts belong to a default Identity Platform project, the field is not needed.",
           "type": "string"
         }
       },
@@ -2888,7 +2890,7 @@
           "type": "string"
         },
         "postBody": {
-          "description": "If the user is signing in with an authorization response obtained via a previous CreateAuthUri authorization request, this is the body of the HTTP POST callback from the IdP, if present. Otherwise, if the user is signing in with a manually provided IdP credential, this should be a URL-encoded form that contains the credential (e.g. an ID token or access token for OAuth 2.0 IdPs) and the provider ID of the IdP that issued the credential. For example, if the user is signing in to the Google provider using a Google ID token, this should be set to `id_token=[GOOGLE_ID_TOKEN]&providerId=google.com`, where `[GOOGLE_ID_TOKEN]` should be replaced with the Google ID token. If the user is signing in to the Facebook provider using a Facebook authentication token, this should be set to `id_token=[FACEBOOK_AUTHENTICATION_TOKEN]&providerId=facebook.com&nonce= [NONCE]`, where `[FACEBOOK_AUTHENTICATION_TOKEN]` should be replaced with the Facebook authentication token. Nonce is required for validating the token. The request will fail if no nonce is provided. If the user is signing in to the Facebook provider using a Facebook access token, this should be set to `access_token=[FACEBOOK_ACCESS_TOKEN]&providerId=facebook.com`, where `[FACEBOOK_ACCESS_TOKEN]` should be replaced with the Facebook access token. If the user is signing in to the Twitter provider using a Twitter OAuth 1.0 credential, this should be set to `access_token=[TWITTER_ACCESS_TOKEN]&oauth_token_secret=[TWITTER_TOKEN_SECRET]&providerId=twitter.com`, where `[TWITTER_ACCESS_TOKEN]` and `[TWITTER_TOKEN_SECRET]` should be replaced with the Twitter OAuth access token and Twitter OAuth token secret respectively.",
+          "description": "If the user is signing in with an authorization response obtained via a previous CreateAuthUri authorization request, this is the body of the HTTP POST callback from the IdP, if present. Otherwise, if the user is signing in with a manually provided IdP credential, this should be a URL-encoded form that contains the credential (e.g. an ID token or access token for OAuth 2.0 IdPs) and the provider ID of the IdP that issued the credential. For example, if the user is signing in to the Google provider using a Google ID token, this should be set to id_token`=[GOOGLE_ID_TOKEN]&providerId=google.com`, where `[GOOGLE_ID_TOKEN]` should be replaced with the Google ID token. If the user is signing in to the Facebook provider using a Facebook authentication token, this should be set to id_token`=[FACEBOOK_AUTHENTICATION_TOKEN]&providerId=facebook. com&nonce= [NONCE]`, where `[FACEBOOK_AUTHENTICATION_TOKEN]` should be replaced with the Facebook authentication token. Nonce is required for validating the token. The request will fail if no nonce is provided. If the user is signing in to the Facebook provider using a Facebook access token, this should be set to access_token`=[FACEBOOK_ACCESS_TOKEN]&providerId=facebook. com`, where `[FACEBOOK_ACCESS_TOKEN]` should be replaced with the Facebook access token. If the user is signing in to the Twitter provider using a Twitter OAuth 1.0 credential, this should be set to access_token`=[TWITTER_ACCESS_TOKEN]&oauth_token_secret= [TWITTER_TOKEN_SECRET]&providerId=twitter.com`, where `[TWITTER_ACCESS_TOKEN]` and `[TWITTER_TOKEN_SECRET]` should be replaced with the Twitter OAuth access token and Twitter OAuth token secret respectively.",
           "type": "string"
         },
         "requestUri": {
@@ -3219,6 +3221,13 @@
         "registered": {
           "description": "Whether the email is for an existing account. Always true.",
           "type": "boolean"
+        },
+        "userNotifications": {
+          "description": "Warning notifications for the user.",
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitV1UserNotification"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3721,6 +3730,39 @@
           "description": "The version of the account's password. Only accessible by requests bearing a Google OAuth2 credential with proper permissions.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV1UserNotification": {
+      "description": "Warning notifications for the user.",
+      "id": "GoogleCloudIdentitytoolkitV1UserNotification",
+      "properties": {
+        "notificationCode": {
+          "description": "Warning notification enum. Can be used for localization.",
+          "enum": [
+            "NOTIFICATION_CODE_UNSPECIFIED",
+            "MISSING_LOWERCASE_CHARACTER",
+            "MISSING_UPPERCASE_CHARACTER",
+            "MISSING_NUMERIC_CHARACTER",
+            "MISSING_NON_ALPHANUMERIC_CHARACTER",
+            "MINIMUM_PASSWORD_LENGTH",
+            "MAXIMUM_PASSWORD_LENGTH"
+          ],
+          "enumDescriptions": [
+            "No notification specified.",
+            "Password missing lowercase character.",
+            "Password missing uppercase character.",
+            "Password missing numeric character.",
+            "Password missing non alphanumeric character.",
+            "Password less than minimum required length.",
+            "Password greater than maximum required length."
+          ],
+          "type": "string"
+        },
+        "notificationMessage": {
+          "description": "Warning notification string. Can be used as fallback.",
+          "type": "string"
         }
       },
       "type": "object"
