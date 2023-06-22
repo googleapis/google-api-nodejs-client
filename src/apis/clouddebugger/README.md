@@ -2,7 +2,7 @@
 
 # clouddebugger
 
-> Examines the call stack and variables of a running application without stopping or slowing it down.
+> Examines the call stack and variables of a running application without stopping or slowing it down. (Deprecated)
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
