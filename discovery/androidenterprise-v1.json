@@ -2649,7 +2649,7 @@
       }
     }
   },
-  "revision": "20230219",
+  "revision": "20230619",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -4173,6 +4173,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "fullDescription": {
+          "description": "The localized full app store description, if available.",
+          "type": "string"
         },
         "iconUrl": {
           "description": "A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.",
