@@ -195,6 +195,15 @@ export namespace playintegrity_v1 {
     deviceRecognitionVerdict?: string[] | null;
   }
   /**
+   * Contains guidance details about the Integrity API response, providing additional context to the integrity verdicts.
+   */
+  export interface Schema$GuidanceDetails {
+    /**
+     * This shows when there is an issue with at least one of the integrity verdicts, and provides user remediation guidance.
+     */
+    userRemediation?: string[] | null;
+  }
+  /**
    * Contains the integrity request information.
    */
   export interface Schema$RequestDetails {
@@ -240,6 +249,10 @@ export namespace playintegrity_v1 {
      * Required. Details about the device integrity.
      */
     deviceIntegrity?: Schema$DeviceIntegrity;
+    /**
+     * Additional guidance related to the integrity API response.
+     */
+    guidanceDetails?: Schema$GuidanceDetails;
     /**
      * Required. Details about the integrity request.
      */
