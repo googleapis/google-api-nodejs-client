@@ -190,7 +190,7 @@ export namespace workflowexecutions_v1 {
      */
     state?: string | null;
     /**
-     * Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the Execution data is unavailable due to revoked KMS key permissions.
+     * Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the execution data is unavailable due to revoked KMS key permissions.
      */
     stateError?: Schema$StateError;
     /**
@@ -323,6 +323,10 @@ export namespace workflowexecutions_v1 {
    */
   export interface Schema$TriggerPubsubExecutionRequest {
     /**
+     * The number of attempts that have been made to deliver this message. This is set by Pub/Sub for subscriptions that have the "dead letter" feature enabled, and hence provided here for compatibility, but is ignored by Workflows.
+     */
+    deliveryAttempt?: number | null;
+    /**
      * Required. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.
      */
     GCPCloudEventsMode?: string | null;
@@ -402,6 +406,7 @@ export namespace workflowexecutions_v1 {
      *           // request body parameters
      *           // {
      *           //   "GCPCloudEventsMode": "my_GCPCloudEventsMode",
+     *           //   "deliveryAttempt": 0,
      *           //   "message": {},
      *           //   "subscription": "my_subscription"
      *           // }
