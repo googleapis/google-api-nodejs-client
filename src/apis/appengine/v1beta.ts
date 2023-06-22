@@ -8438,8 +8438,12 @@ export namespace appengine_v1beta {
 
   export class Resource$Projects$Locations$Applications {
     context: APIRequestContext;
+    services: Resource$Projects$Locations$Applications$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.services = new Resource$Projects$Locations$Applications$Services(
+        this.context
+      );
     }
 
     /**
@@ -8944,6 +8948,358 @@ export namespace appengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$RepairApplicationRequest;
+  }
+
+  export class Resource$Projects$Locations$Applications$Services {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the current configuration of the specified service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.projects.locations.applications.services.get({
+     *     // Part of `name`. See documentation of `projectsId`.
+     *     applicationsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `projectsId`.
+     *     locationsId: 'placeholder-value',
+     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     *     projectsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `projectsId`.
+     *     servicesId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "networkSettings": {},
+     *   //   "split": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Applications$Services$Get,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Service>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Get
+        | BodyResponseCallback<Schema$Service>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Service>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Service>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Service> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectsId',
+          'locationsId',
+          'applicationsId',
+          'servicesId',
+        ],
+        pathParams: [
+          'applicationsId',
+          'locationsId',
+          'projectsId',
+          'servicesId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Service>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Service>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the services in the application.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/appengine.admin',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.projects.locations.applications.services.list({
+     *     // Part of `parent`. See documentation of `projectsId`.
+     *     applicationsId: 'placeholder-value',
+     *     // Part of `parent`. See documentation of `projectsId`.
+     *     locationsId: 'placeholder-value',
+     *     // Maximum results to return per page.
+     *     pageSize: 'placeholder-value',
+     *     // Continuation token for fetching the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     projectsId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "services": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Applications$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Applications$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListServicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListServicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectsId', 'locationsId', 'applicationsId'],
+        pathParams: ['applicationsId', 'locationsId', 'projectsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListServicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListServicesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Services$Get
+    extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     */
+    projectsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    servicesId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$List
+    extends StandardParameters {
+    /**
+     * Part of `parent`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `parent`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     */
+    projectsId?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
