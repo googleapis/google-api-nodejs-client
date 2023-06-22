@@ -133,13 +133,17 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Message describing Evaluation object
+   * LINT.IfChange Message describing Evaluation object
    */
   export interface Schema$Evaluation {
     /**
      * Output only. [Output only] Create time stamp
      */
     createTime?: string | null;
+    /**
+     * The Cloud Storage bucket name for custom rules.
+     */
+    customRulesBucket?: string | null;
     /**
      * Description of the Evaluation
      */
@@ -169,7 +173,7 @@ export namespace workloadmanager_v1 {
      */
     ruleVersions?: string[] | null;
     /**
-     * crontab format schedule for scheduled evaluation, example: 0 x/3 * * *
+     * crontab format schedule for scheduled evaluation, currently only support the following schedule: "0 x/1 * * *", "0 x/6 * * *", "0 x/12 * * *", "0 0 x/1 * *", "0 0 x/7 * *",
      */
     schedule?: string | null;
     /**
@@ -257,6 +261,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$Insight {
     /**
+     * Required. The instance id where the insight is generated from
+     */
+    instanceId?: string | null;
+    /**
      * The insights data for sap system discovery. This is a copy of SAP System proto and should get updated whenever that one changes.
      */
     sapDiscovery?: Schema$SapDiscovery;
@@ -268,6 +276,10 @@ export namespace workloadmanager_v1 {
      * Output only. [Output only] Create time stamp
      */
     sentTime?: string | null;
+    /**
+     * The insights data for the sqlserver workload validation.
+     */
+    sqlserverValidation?: Schema$SqlserverValidation;
   }
   /**
    * Message for response to listing Evaluations
@@ -369,7 +381,7 @@ export namespace workloadmanager_v1 {
     scannedResources?: Schema$ScannedResource[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -494,7 +506,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$ResourceStatus {
     /**
-     * the new version of rule id if exists
+     * Historical: Used before 2023-05-22 the new version of rule id if exists
      */
     rulesNewerVersions?: string[] | null;
     /**
@@ -565,7 +577,7 @@ export namespace workloadmanager_v1 {
     requestId?: string | null;
   }
   /**
-   * The schema of SAP system discovery data.
+   * LINT.IfChange The schema of SAP system discovery data.
    */
   export interface Schema$SapDiscovery {
     /**
@@ -648,10 +660,6 @@ export namespace workloadmanager_v1 {
      */
     resourceKind?: string | null;
     /**
-     * Indicates whether this is a new, updated, or missing resource.
-     */
-    resourceState?: string | null;
-    /**
      * The type of this resource.
      */
     resourceType?: string | null;
@@ -694,6 +702,32 @@ export namespace workloadmanager_v1 {
      * resource name
      */
     resource?: string | null;
+  }
+  /**
+   * A presentation of SQLServer workload insight. The schema of SqlServer workloads validation related data.
+   */
+  export interface Schema$SqlserverValidation {
+    /**
+     * The agent version collected this data point
+     */
+    agentVersion?: string | null;
+    /**
+     * A list of SqlServer validation metrics data.
+     */
+    validationDetails?: Schema$SqlserverValidationValidationDetail[];
+  }
+  /**
+   * Message describing the Sqlserver validation metrics.
+   */
+  export interface Schema$SqlserverValidationValidationDetail {
+    /**
+     *  pairs of metrics data: column name & column value.
+     */
+    fields?: {[key: string]: string} | null;
+    /**
+     * The Sqlserver system that the validation data is from.
+     */
+    type?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1124,6 +1158,7 @@ export namespace workloadmanager_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "customRulesBucket": "my_customRulesBucket",
      *       //   "description": "my_description",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -1275,6 +1310,7 @@ export namespace workloadmanager_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "customRulesBucket": "my_customRulesBucket",
      *   //   "description": "my_description",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -3210,6 +3246,8 @@ export namespace workloadmanager_v1 {
      *
      *   // Do the magic
      *   const res = await workloadmanager.projects.locations.rules.list({
+     *     // The Cloud Storage bucket name for custom rules.
+     *     customRulesBucket: 'placeholder-value',
      *     // Filter based on primary_category, secondary_category
      *     filter: 'placeholder-value',
      *     // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
@@ -3326,6 +3364,10 @@ export namespace workloadmanager_v1 {
 
   export interface Params$Resource$Projects$Locations$Rules$List
     extends StandardParameters {
+    /**
+     * The Cloud Storage bucket name for custom rules.
+     */
+    customRulesBucket?: string;
     /**
      * Filter based on primary_category, secondary_category
      */
