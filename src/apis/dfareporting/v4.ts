@@ -154,7 +154,6 @@ export namespace dfareporting_v4 {
     mobileCarriers: Resource$Mobilecarriers;
     operatingSystems: Resource$Operatingsystems;
     operatingSystemVersions: Resource$Operatingsystemversions;
-    orderDocuments: Resource$Orderdocuments;
     orders: Resource$Orders;
     placementGroups: Resource$Placementgroups;
     placements: Resource$Placements;
@@ -242,7 +241,6 @@ export namespace dfareporting_v4 {
       this.operatingSystemVersions = new Resource$Operatingsystemversions(
         this.context
       );
-      this.orderDocuments = new Resource$Orderdocuments(this.context);
       this.orders = new Resource$Orders(this.context);
       this.placementGroups = new Resource$Placementgroups(this.context);
       this.placements = new Resource$Placements(this.context);
@@ -434,7 +432,7 @@ export namespace dfareporting_v4 {
      */
     accountPermissionGroups?: Schema$AccountPermissionGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountPermissionGroupsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountPermissionGroupGroupsListResponse".
      */
     kind?: string | null;
   }
@@ -1719,9 +1717,6 @@ export namespace dfareporting_v4 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Organizes placements according to the contents of their associated webpages.
-   */
   export interface Schema$ContentCategory {
     /**
      * Account ID of this content category. This is a read-only field that can be left blank.
@@ -1805,7 +1800,7 @@ export namespace dfareporting_v4 {
      */
     ordinal?: string | null;
     /**
-     * The quantity of the conversion.
+     * The quantity of the conversion. This is a required field.
      */
     quantity?: string | null;
     /**
@@ -1821,7 +1816,7 @@ export namespace dfareporting_v4 {
      */
     userIdentifiers?: Schema$UserIdentifier[];
     /**
-     * The value of the conversion.
+     * The value of the conversion. This is a required field.
      */
     value?: number | null;
   }
@@ -1990,7 +1985,7 @@ export namespace dfareporting_v4 {
      */
     adTagKeys?: string[] | null;
     /**
-     * Advertiser ID of this creative. This is a required field. Applicable to all creative types.
+     * Required. Advertiser ID of this creative. This is a required field. Applicable to all creative types.
      */
     advertiserId?: string | null;
     /**
@@ -2126,7 +2121,7 @@ export namespace dfareporting_v4 {
      */
     mediaDuration?: number | null;
     /**
-     * Name of the creative. This is a required field and must be less than 256 characters long. Applicable to all creative types.
+     * Required. Name of the creative. This must be less than 256 characters long. Applicable to all creative types.
      */
     name?: string | null;
     /**
@@ -2218,7 +2213,7 @@ export namespace dfareporting_v4 {
      */
     totalFileSize?: string | null;
     /**
-     * Type of this creative. This is a required field. Applicable to all creative types. *Note:* FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
+     * Required. Type of this creative. Applicable to all creative types. *Note:* FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
      */
     type?: string | null;
     /**
@@ -3797,9 +3792,6 @@ export namespace dfareporting_v4 {
      * Whether the exposure-to-conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
      */
     exposureToConversionEnabled?: boolean | null;
-    /**
-     * Day that will be counted as the first day of the week in reports. This is a required field.
-     */
     firstDayOfWeek?: string | null;
     /**
      * ID of this floodlight configuration. This is a read-only, auto-generated field.
@@ -4307,7 +4299,7 @@ export namespace dfareporting_v4 {
   }
   export interface Schema$MeasurementPartnerAdvertiserLink {
     /**
-     * .
+     * Status of the partner link.
      */
     linkStatus?: string | null;
     /**
@@ -4315,7 +4307,7 @@ export namespace dfareporting_v4 {
      */
     measurementPartner?: string | null;
     /**
-     * .
+     * partner Advertiser Id.
      */
     partnerAdvertiserId?: string | null;
   }
@@ -4363,7 +4355,7 @@ export namespace dfareporting_v4 {
      */
     kind?: string | null;
     /**
-     * The metric name, e.g. dfa:impressions
+     * The metric name, e.g. impressions
      */
     name?: string | null;
   }
@@ -4812,90 +4804,6 @@ export namespace dfareporting_v4 {
      * ID of the user profile containing the signature that will be embedded into order documents.
      */
     signatureUserProfileId?: string | null;
-  }
-  /**
-   * Contains properties of a Planning order document.
-   */
-  export interface Schema$OrderDocument {
-    /**
-     * Account ID of this order document.
-     */
-    accountId?: string | null;
-    /**
-     * Advertiser ID of this order document.
-     */
-    advertiserId?: string | null;
-    /**
-     * The amended order document ID of this order document. An order document can be created by optionally amending another order document so that the change history can be preserved.
-     */
-    amendedOrderDocumentId?: string | null;
-    /**
-     * IDs of users who have approved this order document.
-     */
-    approvedByUserProfileIds?: string[] | null;
-    /**
-     * Whether this order document is cancelled.
-     */
-    cancelled?: boolean | null;
-    /**
-     * Information about the creation of this order document.
-     */
-    createdInfo?: Schema$LastModifiedInfo;
-    effectiveDate?: string | null;
-    /**
-     * ID of this order document.
-     */
-    id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#orderDocument".
-     */
-    kind?: string | null;
-    /**
-     * List of email addresses that received the last sent document.
-     */
-    lastSentRecipients?: string[] | null;
-    lastSentTime?: string | null;
-    /**
-     * ID of the order from which this order document is created.
-     */
-    orderId?: string | null;
-    /**
-     * Project ID of this order document.
-     */
-    projectId?: string | null;
-    /**
-     * Whether this order document has been signed.
-     */
-    signed?: boolean | null;
-    /**
-     * Subaccount ID of this order document.
-     */
-    subaccountId?: string | null;
-    /**
-     * Title of this order document.
-     */
-    title?: string | null;
-    /**
-     * Type of this order document
-     */
-    type?: string | null;
-  }
-  /**
-   * Order document List Response
-   */
-  export interface Schema$OrderDocumentsListResponse {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#orderDocumentsListResponse".
-     */
-    kind?: string | null;
-    /**
-     * Pagination token to be used for the next list operation.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Order document collection
-     */
-    orderDocuments?: Schema$OrderDocument[];
   }
   /**
    * Order List Response
@@ -5520,9 +5428,6 @@ export namespace dfareporting_v4 {
      */
     postalCodes?: Schema$PostalCode[];
   }
-  /**
-   * Pricing Information
-   */
   export interface Schema$Pricing {
     /**
      * Cap cost type of this inventory item.
@@ -5581,7 +5486,7 @@ export namespace dfareporting_v4 {
      */
     pricingComment?: string | null;
     /**
-     * Rate or cost of this pricing period in nanos (i.e., multipled by 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
+     * Rate or cost of this pricing period in nanos (i.e., multiplied by 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
      */
     rateOrCostNanos?: string | null;
     startDate?: string | null;
@@ -6555,7 +6460,7 @@ export namespace dfareporting_v4 {
     imageTagEnabled?: boolean | null;
   }
   /**
-   * Contains properties of a targetable remarketing list. Remarketing enables you to create lists of users who have performed specific actions on a site, then target ads to members of those lists. This resource is a read-only view of a remarketing list to be used to faciliate targeting ads to specific lists. Remarketing lists that are owned by your advertisers and those that are shared to your advertisers or account are accessible via this resource. To manage remarketing lists that are owned by your advertisers, use the RemarketingLists resource.
+   * Contains properties of a targetable remarketing list. Remarketing enables you to create lists of users who have performed specific actions on a site, then target ads to members of those lists. This resource is a read-only view of a remarketing list to be used to facilitate targeting ads to specific lists. Remarketing lists that are owned by your advertisers and those that are shared to your advertisers or account are accessible via this resource. To manage remarketing lists that are owned by your advertisers, use the RemarketingLists resource.
    */
   export interface Schema$TargetableRemarketingList {
     /**
@@ -7154,9 +7059,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountActiveAdSummaries.get({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Account ID.
-     *     summaryAccountId: 'placeholder-value',
+     *     summaryAccountId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -7245,7 +7150,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountActiveAdSummaries/{+summaryAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7313,9 +7218,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountPermissionGroups.get({
      *     // Account permission group ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -7402,7 +7307,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountPermissionGroups/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissionGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7451,7 +7356,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountPermissionGroups.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -7539,7 +7444,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountPermissionGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7616,9 +7521,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountPermissions.get({
      *     // Account permission ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -7706,7 +7611,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountPermissions/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissions/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7755,7 +7660,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountPermissions.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -7843,7 +7748,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountPermissions'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7920,9 +7825,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accounts.get({
      *     // Account ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -8019,7 +7924,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accounts/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/accounts/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8076,7 +7981,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -8167,7 +8072,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8215,10 +8120,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.accounts.patch({
-     *     // Account ID.
+     *     // Required. Account ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -8340,7 +8245,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -8389,7 +8294,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accounts.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -8511,7 +8416,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -8579,7 +8484,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
-     * Account ID.
+     * Required. Account ID.
      */
     id?: string;
     /**
@@ -8638,7 +8543,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.get({
      *     // User profile ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
      *     profileId: 'placeholder-value',
      *   });
@@ -8738,7 +8643,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles/{id}'
+              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8787,7 +8692,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -8908,7 +8813,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8965,7 +8870,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -9064,7 +8969,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9088,7 +8993,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing account user profile. This method supports patch semantics.
+     * Updates an existing user role. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -9114,10 +9019,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.patch({
-     *     // AccountUserProfile ID.
+     *     // Required. AccountUserProfile ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -9238,7 +9143,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -9287,7 +9192,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.accountUserProfiles.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -9408,7 +9313,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -9499,7 +9404,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Accountuserprofiles$Patch
     extends StandardParameters {
     /**
-     * AccountUserProfile ID.
+     * Required. AccountUserProfile ID.
      */
     id?: string;
     /**
@@ -9559,9 +9464,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.ads.get({
      *     // Ad ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -9677,7 +9582,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads/{id}'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9726,7 +9631,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.ads.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -9888,7 +9793,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9967,7 +9872,7 @@ export namespace dfareporting_v4 {
      *     // Select only ads with these placement IDs assigned.
      *     placementIds: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Select only ads whose list targeting expression use these remarketing list IDs.
      *     remarketingListIds: 'placeholder-value',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
@@ -10063,7 +9968,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10085,7 +9990,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing ad. This method supports patch semantics.
+     * Updates an existing event tag. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -10111,10 +10016,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.ads.patch({
-     *     // Ad ID.
+     *     // Required. RemarketingList ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10276,7 +10181,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -10325,7 +10230,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.ads.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10487,7 +10392,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -10630,7 +10535,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Ads$Patch extends StandardParameters {
     /**
-     * Ad ID.
+     * Required. RemarketingList ID.
      */
     id?: string;
     /**
@@ -10689,9 +10594,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.delete({
      *     // Advertiser group ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -10764,7 +10669,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -10813,9 +10718,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.get({
      *     // Advertiser group ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -10898,7 +10803,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10947,7 +10852,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -11041,7 +10946,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11096,7 +11001,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -11191,7 +11096,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11241,10 +11146,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.patch({
-     *     // AdvertiserGroup ID.
+     *     // Required. Advertiser Group ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -11338,7 +11243,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -11387,7 +11292,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserGroups.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -11481,7 +11386,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -11571,7 +11476,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Advertisergroups$Patch
     extends StandardParameters {
     /**
-     * AdvertiserGroup ID.
+     * Required. Advertiser Group ID.
      */
     id?: string;
     /**
@@ -11631,7 +11536,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserInvoices.list({
      *     // Advertiser ID of this invoice.
-     *     advertiserId: 'placeholder-value',
+     *     advertiserId: '[^/]+',
      *     // Month for which invoices are needed in the format YYYYMM. Required field
      *     issueMonth: 'placeholder-value',
      *     // Maximum number of results to return.
@@ -11639,7 +11544,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -11728,7 +11633,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertisers/{advertiserId}/invoices'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertisers/{+advertiserId}/invoices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11810,9 +11715,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.get({
      *     // Landing page ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -11898,7 +11803,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11947,7 +11852,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -12047,7 +11952,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12108,7 +12013,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -12205,7 +12110,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12229,7 +12134,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing advertiser landing page. This method supports patch semantics.
+     * Updates an existing advertiser. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -12255,10 +12160,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.patch({
-     *     // LandingPage ID.
+     *     // Required. Landing Page ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -12358,7 +12263,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -12407,7 +12312,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertiserLandingPages.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -12507,7 +12412,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -12602,7 +12507,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Advertiserlandingpages$Patch
     extends StandardParameters {
     /**
-     * LandingPage ID.
+     * Required. Landing Page ID.
      */
     id?: string;
     /**
@@ -12662,9 +12567,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertisers.get({
      *     // Advertiser ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -12758,7 +12663,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/advertisers/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/advertisers/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12807,7 +12712,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertisers.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -12924,7 +12829,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12987,7 +12892,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser" .
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -13082,7 +12987,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13130,10 +13035,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.advertisers.patch({
-     *     // Advertiser ID.
+     *     // Required. Advertiser ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13250,7 +13155,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -13299,7 +13204,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.advertisers.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13416,7 +13321,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/advertisers'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -13517,7 +13422,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Advertisers$Patch
     extends StandardParameters {
     /**
-     * Advertiser ID.
+     * Required. Advertiser ID.
      */
     id?: string;
     /**
@@ -13577,9 +13482,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.billingAssignments.insert({
      *     // Billing profile ID of this billing assignment.
-     *     billingProfileId: 'placeholder-value',
+     *     billingProfileId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13678,7 +13583,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{billingProfileId}/billingAssignments'
+              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13727,9 +13632,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.billingAssignments.list({
      *     // Billing profile ID of this billing assignment.
-     *     billingProfileId: 'placeholder-value',
+     *     billingProfileId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -13817,7 +13722,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{billingProfileId}/billingAssignments'
+              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13903,9 +13808,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.billingProfiles.get({
      *     // Billing Profile ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -13997,7 +13902,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14058,7 +13963,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Field by which to sort the list.
      *     sortField: 'placeholder-value',
      *     // Order of sorted results.
@@ -14155,7 +14060,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles'
+              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14204,7 +14109,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.billingProfiles.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14316,7 +14221,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles'
+              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -14443,9 +14348,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.billingRates.list({
      *     // Billing profile ID of this billing rate.
-     *     billingProfileId: 'placeholder-value',
+     *     billingProfileId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -14532,7 +14437,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/billingProfiles/{billingProfileId}/billingRates'
+              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingRates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14600,7 +14505,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.browsers.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -14684,7 +14589,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/browsers'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/browsers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14747,9 +14652,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.campaignCreativeAssociations.insert({
      *     // Campaign ID in this association.
-     *     campaignId: 'placeholder-value',
+     *     campaignId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14846,7 +14751,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v4/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14895,13 +14800,13 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.campaignCreativeAssociations.list({
      *     // Campaign ID in this association.
-     *     campaignId: 'placeholder-value',
+     *     campaignId: '[^/]+',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Order of sorted results.
      *     sortOrder: 'placeholder-value',
      *   });
@@ -14992,7 +14897,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v4/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15090,9 +14995,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.campaigns.get({
      *     // Campaign ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -15197,7 +15102,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/campaigns/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/campaigns/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15246,7 +15151,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.campaigns.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -15384,7 +15289,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15451,7 +15356,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -15544,7 +15449,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15566,7 +15471,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing campaign. This method supports patch semantics.
+     * Updates an existing creative. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -15592,10 +15497,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.campaigns.patch({
-     *     // Campaign ID.
+     *     // Required. Campaign ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -15733,7 +15638,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -15782,7 +15687,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.campaigns.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -15920,7 +15825,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -16023,7 +15928,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Campaigns$Patch extends StandardParameters {
     /**
-     * Campaign ID.
+     * Required. Campaign ID.
      */
     id?: string;
     /**
@@ -16082,9 +15987,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.changeLogs.get({
      *     // Change log ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -16176,7 +16081,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/changeLogs/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/changeLogs/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16241,7 +16146,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Select only change logs whose object ID, user name, old or new values match the search string.
      *     searchString: 'placeholder-value',
      *     // Select only change logs with these user profile IDs.
@@ -16330,7 +16235,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/changeLogs'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/changeLogs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16449,7 +16354,7 @@ export namespace dfareporting_v4 {
      *     // Select only cities with names starting with this prefix.
      *     namePrefix: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Select only cities from these regions.
      *     regionDartIds: 'placeholder-value',
      *   });
@@ -16533,7 +16438,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/cities'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/cities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16612,9 +16517,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.connectionTypes.get({
      *     // Connection type ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -16696,7 +16601,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/connectionTypes/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/connectionTypes/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16745,7 +16650,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.connectionTypes.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -16833,7 +16738,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/connectionTypes'
+              '/dfareporting/v4/userprofiles/{+profileId}/connectionTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16908,9 +16813,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.delete({
      *     // Content category ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -16983,7 +16888,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/contentCategories/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -17032,9 +16937,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.get({
      *     // Content category ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -17117,7 +17022,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/contentCategories/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17166,7 +17071,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -17260,7 +17165,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -17315,7 +17220,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -17410,7 +17315,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17460,10 +17365,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.patch({
-     *     // ContentCategory ID.
+     *     // Required. ContentCategory ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -17557,7 +17462,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -17606,7 +17511,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.contentCategories.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -17700,7 +17605,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -17790,7 +17695,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Contentcategories$Patch
     extends StandardParameters {
     /**
-     * ContentCategory ID.
+     * Required. ContentCategory ID.
      */
     id?: string;
     /**
@@ -18182,9 +18087,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.countries.get({
      *     // Country DART ID.
-     *     dartId: 'placeholder-value',
+     *     dartId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -18267,7 +18172,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/countries/{dartId}'
+              '/dfareporting/v4/userprofiles/{+profileId}/countries/{+dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18316,7 +18221,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.countries.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -18400,7 +18305,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/countries'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/countries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18473,9 +18378,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeAssets.insert({
      *     // Advertiser ID of this creative. This is a required field.
-     *     advertiserId: 'placeholder-value',
+     *     advertiserId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -18592,7 +18497,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -18601,7 +18506,7 @@ export namespace dfareporting_v4 {
         params,
         mediaUrl: (
           rootUrl +
-          '/upload/dfareporting/v4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+          '/upload/dfareporting/v4/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
         ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
@@ -18684,9 +18589,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.delete({
      *     // Creative Field ID
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -18759,7 +18664,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -18808,9 +18713,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.get({
      *     // Creative Field ID
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -18896,7 +18801,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18945,7 +18850,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -19045,7 +18950,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -19102,7 +19007,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -19197,7 +19102,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19248,7 +19153,7 @@ export namespace dfareporting_v4 {
      *     // CreativeField ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -19348,7 +19253,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -19397,7 +19302,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFields.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -19497,7 +19402,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -19651,11 +19556,11 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.delete({
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: 'placeholder-value',
+     *     creativeFieldId: '[^/]+',
      *     // Creative Field Value ID
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -19728,7 +19633,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -19777,11 +19682,11 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.get({
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: 'placeholder-value',
+     *     creativeFieldId: '[^/]+',
      *     // Creative Field Value ID
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -19866,7 +19771,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19915,9 +19820,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.insert({
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: 'placeholder-value',
+     *     creativeFieldId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -20012,7 +19917,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20061,7 +19966,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.list({
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: 'placeholder-value',
+     *     creativeFieldId: '[^/]+',
      *     // Select only creative field values with these IDs.
      *     ids: 'placeholder-value',
      *     // Maximum number of results to return.
@@ -20069,7 +19974,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -20164,7 +20069,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20215,11 +20120,11 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.patch({
      *     // CreativeField ID.
-     *     creativeFieldId: 'placeholder-value',
+     *     creativeFieldId: '[^/]+',
      *     // CreativeFieldValue ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -20314,7 +20219,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -20363,9 +20268,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeFieldValues.update({
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: 'placeholder-value',
+     *     creativeFieldId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -20460,7 +20365,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -20634,9 +20539,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.get({
      *     // Creative group ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -20723,7 +20628,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20772,7 +20677,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -20874,7 +20779,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20933,7 +20838,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -21028,7 +20933,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21076,10 +20981,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.patch({
-     *     // CreativeGroup ID.
+     *     // Required. Creative Group ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -21181,7 +21086,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -21230,7 +21135,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creativeGroups.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -21332,7 +21237,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -21419,7 +21324,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Creativegroups$Patch
     extends StandardParameters {
     /**
-     * CreativeGroup ID.
+     * Required. Creative Group ID.
      */
     id?: string;
     /**
@@ -21479,9 +21384,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creatives.get({
      *     // Creative ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -21624,7 +21529,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/creatives/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/creatives/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21673,7 +21578,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creatives.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -21887,7 +21792,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -21954,7 +21859,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Select only creatives with these rendering IDs.
      *     renderingIds: 'placeholder-value',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
@@ -22053,7 +21958,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22101,10 +22006,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.creatives.patch({
-     *     // Creative ID.
+     *     // Required. Creative ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -22318,7 +22223,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -22367,7 +22272,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.creatives.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -22581,7 +22486,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -22696,7 +22601,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Creatives$Patch extends StandardParameters {
     /**
-     * Creative ID.
+     * Required. Creative ID.
      */
     id?: string;
     /**
@@ -22934,9 +22839,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.directorySites.get({
      *     // Directory site ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -23023,7 +22928,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/directorySites/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/directorySites/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23072,7 +22977,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.directorySites.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -23174,7 +23079,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/directorySites'
+              '/dfareporting/v4/userprofiles/{+profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23239,7 +23144,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -23334,7 +23239,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/directorySites'
+              '/dfareporting/v4/userprofiles/{+profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23464,14 +23369,14 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.delete({
-     *     // Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+     *     // Required. Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
      *     name: 'placeholder-value',
      *     // ID of the object of this dynamic targeting key. This is a required field.
-     *     objectId: 'placeholder-value',
-     *     // Type of the object of this dynamic targeting key. This is a required field.
+     *     objectId: '[^/]+',
+     *     // Required. Type of the object of this dynamic targeting key. This is a required field.
      *     objectType: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -23544,7 +23449,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}'
+              '/dfareporting/v4/userprofiles/{+profileId}/dynamicTargetingKeys/{+objectId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -23593,7 +23498,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.dynamicTargetingKeys.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -23690,7 +23595,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/dynamicTargetingKeys'
+              '/dfareporting/v4/userprofiles/{+profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23747,7 +23652,7 @@ export namespace dfareporting_v4 {
      *     // Select only dynamic targeting keys with this object type.
      *     objectType: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -23835,7 +23740,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/dynamicTargetingKeys'
+              '/dfareporting/v4/userprofiles/{+profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23862,7 +23767,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Dynamictargetingkeys$Delete
     extends StandardParameters {
     /**
-     * Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+     * Required. Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
      */
     name?: string;
     /**
@@ -23870,7 +23775,7 @@ export namespace dfareporting_v4 {
      */
     objectId?: string;
     /**
-     * Type of the object of this dynamic targeting key. This is a required field.
+     * Required. Type of the object of this dynamic targeting key. This is a required field.
      */
     objectType?: string;
     /**
@@ -23948,9 +23853,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.eventTags.delete({
      *     // Event tag ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -24022,7 +23927,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/eventTags/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/eventTags/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -24071,9 +23976,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.eventTags.get({
      *     // Event tag ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -24169,7 +24074,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/eventTags/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/eventTags/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24218,7 +24123,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.eventTags.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -24338,7 +24243,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -24401,7 +24306,7 @@ export namespace dfareporting_v4 {
      *     // Select only event tags with these IDs.
      *     ids: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -24491,7 +24396,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24539,10 +24444,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.eventTags.patch({
-     *     // EventTag ID.
+     *     // Required. EventTag ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -24662,7 +24567,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -24711,7 +24616,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.eventTags.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -24831,7 +24736,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -24932,7 +24837,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Eventtags$Patch extends StandardParameters {
     /**
-     * EventTag ID.
+     * Required. EventTag ID.
      */
     id?: string;
     /**
@@ -25313,9 +25218,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.delete({
      *     // Floodlight activity ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -25388,7 +25293,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -25439,7 +25344,7 @@ export namespace dfareporting_v4 {
      *     // Floodlight activity ID for which we want to generate a tag.
      *     floodlightActivityId: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -25528,7 +25433,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities/generatetag'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities/generatetag'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -25579,9 +25484,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.get({
      *     // Floodlight activity ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -25692,7 +25597,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25741,7 +25646,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -25888,7 +25793,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -25955,7 +25860,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -26052,7 +25957,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26076,7 +25981,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing floodlight activity. This method supports patch semantics.
+     * Updates an existing event tag. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -26102,10 +26007,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.patch({
-     *     // FloodlightActivity ID.
+     *     // Required. EventTag ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -26252,7 +26157,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -26301,7 +26206,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivities.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -26448,7 +26353,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -26577,7 +26482,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Floodlightactivities$Patch
     extends StandardParameters {
     /**
-     * FloodlightActivity ID.
+     * Required. EventTag ID.
      */
     id?: string;
     /**
@@ -26637,9 +26542,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.get({
      *     // Floodlight activity Group ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -26735,7 +26640,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26784,7 +26689,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -26901,7 +26806,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -26960,7 +26865,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -27057,7 +26962,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27081,7 +26986,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing floodlight activity group. This method supports patch semantics.
+     * Updates an existing event tag. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -27107,10 +27012,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.patch({
-     *     // FloodlightActivityGroup ID.
+     *     // Required. EventTag ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -27225,7 +27130,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -27274,7 +27179,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightActivityGroups.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -27391,7 +27296,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -27482,7 +27387,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Floodlightactivitygroups$Patch
     extends StandardParameters {
     /**
-     * FloodlightActivityGroup ID.
+     * Required. EventTag ID.
      */
     id?: string;
     /**
@@ -27542,9 +27447,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.get({
      *     // Floodlight configuration ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -27646,7 +27551,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27697,7 +27602,7 @@ export namespace dfareporting_v4 {
      *     // Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
      *     ids: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -27785,7 +27690,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27809,7 +27714,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing floodlight configuration. This method supports patch semantics.
+     * Updates an existing event tag. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -27835,10 +27740,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.patch({
-     *     // FloodlightConfiguration ID.
+     *     // Required. EventTag ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -27965,7 +27870,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -28014,7 +27919,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.floodlightConfigurations.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -28143,7 +28048,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -28190,7 +28095,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Floodlightconfigurations$Patch
     extends StandardParameters {
     /**
-     * FloodlightConfiguration ID.
+     * Required. EventTag ID.
      */
     id?: string;
     /**
@@ -28250,9 +28155,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.inventoryItems.get({
      *     // Inventory item ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Project ID for order documents.
      *     projectId: 'placeholder-value',
      *   });
@@ -28353,7 +28258,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/inventoryItems/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28412,7 +28317,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Project ID for order documents.
      *     projectId: 'placeholder-value',
      *     // Select only inventory items that are associated with these sites.
@@ -28511,7 +28416,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/inventoryItems'
+              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/inventoryItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28630,7 +28535,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.languages.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -28714,7 +28619,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/languages'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/languages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28777,7 +28682,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.metros.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -28859,7 +28764,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/metros'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/metros'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -28922,9 +28827,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.mobileApps.get({
      *     // Mobile app ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -29007,7 +28912,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/mobileApps/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/mobileApps/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29064,7 +28969,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "app*2015" will return objects with names like "app Jan 2018", "app Jan 2018", or simply "app 2018". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "app" will match objects with name "my app", "app 2018", or simply "app".
      *     searchString: 'placeholder-value',
      *   });
@@ -29151,7 +29056,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/mobileApps'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/mobileApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29244,9 +29149,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.mobileCarriers.get({
      *     // Mobile carrier ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -29330,7 +29235,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/mobileCarriers/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/mobileCarriers/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29379,7 +29284,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.mobileCarriers.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -29467,7 +29372,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/mobileCarriers'
+              '/dfareporting/v4/userprofiles/{+profileId}/mobileCarriers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29542,9 +29447,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.operatingSystems.get({
      *     // Operating system DART ID.
-     *     dartId: 'placeholder-value',
+     *     dartId: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -29628,7 +29533,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/operatingSystems/{dartId}'
+              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystems/{+dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29677,7 +29582,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.operatingSystems.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -29765,7 +29670,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/operatingSystems'
+              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29842,9 +29747,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.operatingSystemVersions.get({
      *     // Operating system version ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -29934,7 +29839,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/operatingSystemVersions/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystemVersions/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -29983,7 +29888,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.operatingSystemVersions.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -30071,7 +29976,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/operatingSystemVersions'
+              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystemVersions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -30114,383 +30019,6 @@ export namespace dfareporting_v4 {
     profileId?: string;
   }
 
-  export class Resource$Orderdocuments {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets one order document by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.orderDocuments.get({
-     *     // Order document ID.
-     *     id: 'placeholder-value',
-     *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
-     *     // Project ID for order documents.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "amendedOrderDocumentId": "my_amendedOrderDocumentId",
-     *   //   "approvedByUserProfileIds": [],
-     *   //   "cancelled": false,
-     *   //   "createdInfo": {},
-     *   //   "effectiveDate": "my_effectiveDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lastSentRecipients": [],
-     *   //   "lastSentTime": "my_lastSentTime",
-     *   //   "orderId": "my_orderId",
-     *   //   "projectId": "my_projectId",
-     *   //   "signed": false,
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "title": "my_title",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Orderdocuments$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Orderdocuments$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OrderDocument>;
-    get(
-      params: Params$Resource$Orderdocuments$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Orderdocuments$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$OrderDocument>,
-      callback: BodyResponseCallback<Schema$OrderDocument>
-    ): void;
-    get(
-      params: Params$Resource$Orderdocuments$Get,
-      callback: BodyResponseCallback<Schema$OrderDocument>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$OrderDocument>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Orderdocuments$Get
-        | BodyResponseCallback<Schema$OrderDocument>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$OrderDocument>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$OrderDocument>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OrderDocument> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Orderdocuments$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderdocuments$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'projectId', 'id'],
-        pathParams: ['id', 'profileId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderDocument>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$OrderDocument>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves a list of order documents, possibly filtered. This method supports paging.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.orderDocuments.list({
-     *     // Select only order documents that have been approved by at least one user.
-     *     approved: 'placeholder-value',
-     *     // Select only order documents with these IDs.
-     *     ids: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // Select only order documents for specified orders.
-     *     orderId: 'placeholder-value',
-     *     // Value of the nextPageToken from the previous result page.
-     *     pageToken: 'placeholder-value',
-     *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
-     *     // Project ID for order documents.
-     *     projectId: 'placeholder-value',
-     *     // Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
-     *     searchString: 'placeholder-value',
-     *     // Select only order documents that are associated with these sites.
-     *     siteId: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     sortField: 'placeholder-value',
-     *     // Order of sorted results.
-     *     sortOrder: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "orderDocuments": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Orderdocuments$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Orderdocuments$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OrderDocumentsListResponse>;
-    list(
-      params: Params$Resource$Orderdocuments$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Orderdocuments$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderDocumentsListResponse>,
-      callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Orderdocuments$List,
-      callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$OrderDocumentsListResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Orderdocuments$List
-        | BodyResponseCallback<Schema$OrderDocumentsListResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$OrderDocumentsListResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$OrderDocumentsListResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$OrderDocumentsListResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Orderdocuments$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderdocuments$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orderDocuments'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'projectId'],
-        pathParams: ['profileId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderDocumentsListResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$OrderDocumentsListResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Orderdocuments$Get
-    extends StandardParameters {
-    /**
-     * Order document ID.
-     */
-    id?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-    /**
-     * Project ID for order documents.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Orderdocuments$List
-    extends StandardParameters {
-    /**
-     * Select only order documents that have been approved by at least one user.
-     */
-    approved?: boolean;
-    /**
-     * Select only order documents with these IDs.
-     */
-    ids?: string[];
-    /**
-     * Maximum number of results to return.
-     */
-    maxResults?: number;
-    /**
-     * Select only order documents for specified orders.
-     */
-    orderId?: string[];
-    /**
-     * Value of the nextPageToken from the previous result page.
-     */
-    pageToken?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-    /**
-     * Project ID for order documents.
-     */
-    projectId?: string;
-    /**
-     * Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
-     */
-    searchString?: string;
-    /**
-     * Select only order documents that are associated with these sites.
-     */
-    siteId?: string[];
-    /**
-     * Field by which to sort the list.
-     */
-    sortField?: string;
-    /**
-     * Order of sorted results.
-     */
-    sortOrder?: string;
-  }
-
   export class Resource$Orders {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -30525,9 +30053,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.orders.get({
      *     // Order ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Project ID for orders.
      *     projectId: 'placeholder-value',
      *   });
@@ -30627,7 +30155,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orders/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/orders/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -30682,7 +30210,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Project ID for orders.
      *     projectId: 'placeholder-value',
      *     // Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
@@ -30776,7 +30304,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/projects/{projectId}/orders'
+              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/orders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -30885,9 +30413,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.get({
      *     // Placement group ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -30992,7 +30520,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementGroups/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -31041,7 +30569,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -31179,7 +30707,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -31258,7 +30786,7 @@ export namespace dfareporting_v4 {
      *     // Select only placement groups with these pricing types.
      *     pricingTypes: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
      *     searchString: 'placeholder-value',
      *     // Select only placement groups that are associated with these sites.
@@ -31355,7 +30883,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -31403,10 +30931,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.patch({
-     *     // PlacementGroup ID.
+     *     // Required. Placement ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -31544,7 +31072,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -31593,7 +31121,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placementGroups.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -31731,7 +31259,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -31862,7 +31390,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Placementgroups$Patch
     extends StandardParameters {
     /**
-     * PlacementGroup ID.
+     * Required. Placement ID.
      */
     id?: string;
     /**
@@ -31926,7 +31454,7 @@ export namespace dfareporting_v4 {
      *     // Generate tags for these placements.
      *     placementIds: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Tag formats to generate for these placements. *Note:* PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
      *     tagFormats: 'placeholder-value',
      *   });
@@ -32016,7 +31544,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placements/generatetags'
+              '/dfareporting/v4/userprofiles/{+profileId}/placements/generatetags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -32067,9 +31595,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placements.get({
      *     // Placement ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -32190,7 +31718,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placements/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/placements/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -32239,7 +31767,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placements.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -32410,7 +31938,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -32493,7 +32021,7 @@ export namespace dfareporting_v4 {
      *     // Select only placements with these pricing types.
      *     pricingTypes: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement" .
      *     searchString: 'placeholder-value',
      *     // Select only placements that are associated with these sites.
@@ -32588,7 +32116,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -32636,10 +32164,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.placements.patch({
-     *     // Placement ID.
+     *     // Required. Placement ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -32809,7 +32337,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -32858,7 +32386,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placements.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -33029,7 +32557,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -33188,7 +32716,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Placements$Patch extends StandardParameters {
     /**
-     * Placement ID.
+     * Required. Placement ID.
      */
     id?: string;
     /**
@@ -33248,9 +32776,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.delete({
      *     // Placement strategy ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -33323,7 +32851,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -33372,9 +32900,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.get({
      *     // Placement strategy ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -33460,7 +32988,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33509,7 +33037,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -33606,7 +33134,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -33661,7 +33189,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -33756,7 +33284,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -33806,10 +33334,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.patch({
-     *     // PlacementStrategy ID.
+     *     // Required. PlacementStrategy ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -33906,7 +33434,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -33955,7 +33483,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.placementStrategies.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -34052,7 +33580,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -34142,7 +33670,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Placementstrategies$Patch
     extends StandardParameters {
     /**
-     * PlacementStrategy ID.
+     * Required. PlacementStrategy ID.
      */
     id?: string;
     /**
@@ -34202,9 +33730,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.platformTypes.get({
      *     // Platform type ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -34286,7 +33814,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/platformTypes/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/platformTypes/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -34335,7 +33863,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.platformTypes.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -34423,7 +33951,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/platformTypes'
+              '/dfareporting/v4/userprofiles/{+profileId}/platformTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -34498,9 +34026,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.postalCodes.get({
      *     // Postal code ID.
-     *     code: 'placeholder-value',
+     *     code: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -34583,7 +34111,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/postalCodes/{code}'
+              '/dfareporting/v4/userprofiles/{+profileId}/postalCodes/{+code}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -34632,7 +34160,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.postalCodes.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -34716,7 +34244,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/postalCodes'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/postalCodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -34789,9 +34317,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.projects.get({
      *     // Project ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -34891,7 +34419,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/projects/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/projects/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -34948,7 +34476,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -35039,7 +34567,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/projects'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/projects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -35140,7 +34668,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.regions.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -35222,7 +34750,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/regions'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/regions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -35285,9 +34813,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.get({
      *     // Remarketing list ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -35379,7 +34907,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -35428,7 +34956,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -35540,7 +35068,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -35590,7 +35118,7 @@ export namespace dfareporting_v4 {
      *   const res = await dfareporting.remarketingLists.list({
      *     // Select only active or only inactive remarketing lists.
      *     active: 'placeholder-value',
-     *     // Select only remarketing lists owned by this advertiser.
+     *     // Required. Select only remarketing lists owned by this advertiser.
      *     advertiserId: 'placeholder-value',
      *     // Select only remarketing lists that have this floodlight activity ID.
      *     floodlightActivityId: 'placeholder-value',
@@ -35601,7 +35129,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Field by which to sort the list.
      *     sortField: 'placeholder-value',
      *     // Order of sorted results.
@@ -35694,7 +35222,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -35718,7 +35246,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing remarketing list. This method supports patch semantics.
+     * Updates an existing RemarketingList. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -35744,10 +35272,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.patch({
-     *     // RemarketingList ID.
+     *     // Required. RemarketingList ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -35859,7 +35387,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -35908,7 +35436,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.remarketingLists.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -36020,7 +35548,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -36072,7 +35600,7 @@ export namespace dfareporting_v4 {
      */
     active?: boolean;
     /**
-     * Select only remarketing lists owned by this advertiser.
+     * Required. Select only remarketing lists owned by this advertiser.
      */
     advertiserId?: string;
     /**
@@ -36107,7 +35635,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Remarketinglists$Patch
     extends StandardParameters {
     /**
-     * RemarketingList ID.
+     * Required. RemarketingList ID.
      */
     id?: string;
     /**
@@ -36167,9 +35695,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.get({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Remarketing list ID.
-     *     remarketingListId: 'placeholder-value',
+     *     remarketingListId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -36257,7 +35785,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingListShares/{remarketingListId}'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingListShares/{+remarketingListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -36279,7 +35807,7 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing remarketing list share. This method supports patch semantics.
+     * Updates an existing RemarketingListShare. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -36305,10 +35833,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.patch({
-     *     // RemarketingList ID.
+     *     // Required. RemarketingList ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -36407,7 +35935,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingListShares'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -36456,7 +35984,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.remarketingListShares.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -36555,7 +36083,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/remarketingListShares'
+              '/dfareporting/v4/userprofiles/{+profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -36591,7 +36119,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Remarketinglistshares$Patch
     extends StandardParameters {
     /**
-     * RemarketingList ID.
+     * Required. RemarketingList ID.
      */
     id?: string;
     /**
@@ -38361,9 +37889,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.sites.get({
      *     // Site ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -38453,7 +37981,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites/{id}'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -38502,7 +38030,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.sites.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -38612,7 +38140,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -38681,7 +38209,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -38774,7 +38302,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -38822,10 +38350,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.sites.patch({
-     *     // Site ID.
+     *     // Required. Site ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -38935,7 +38463,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -38984,7 +38512,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.sites.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -39094,7 +38622,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -39205,7 +38733,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Sites$Patch extends StandardParameters {
     /**
-     * Site ID.
+     * Required. Site ID.
      */
     id?: string;
     /**
@@ -39264,9 +38792,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.sizes.get({
      *     // Size ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -39348,7 +38876,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sizes/{id}'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sizes/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -39397,7 +38925,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.sizes.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -39491,7 +39019,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sizes'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -39546,7 +39074,7 @@ export namespace dfareporting_v4 {
      *     // Select only sizes with these IDs.
      *     ids: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Select only sizes with this width.
      *     width: 'placeholder-value',
      *   });
@@ -39630,7 +39158,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/sizes'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -39730,9 +39258,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.get({
      *     // Subaccount ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -39815,7 +39343,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/subaccounts/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/subaccounts/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -39864,7 +39392,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -39959,7 +39487,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -40014,7 +39542,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount" .
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -40105,7 +39633,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -40153,10 +39681,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.patch({
-     *     // Subaccount ID.
+     *     // Required. Subaccount ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -40251,7 +39779,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -40300,7 +39828,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.subaccounts.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -40395,7 +39923,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/subaccounts'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -40472,7 +40000,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Subaccounts$Patch
     extends StandardParameters {
     /**
-     * Subaccount ID.
+     * Required. Subaccount ID.
      */
     id?: string;
     /**
@@ -40532,9 +40060,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.targetableRemarketingLists.get({
      *     // Remarketing list ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -40630,7 +40158,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/targetableRemarketingLists/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/targetableRemarketingLists/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -40680,7 +40208,7 @@ export namespace dfareporting_v4 {
      *   const res = await dfareporting.targetableRemarketingLists.list({
      *     // Select only active or only inactive targetable remarketing lists.
      *     active: 'placeholder-value',
-     *     // Select only targetable remarketing lists targetable by these advertisers.
+     *     // Required. Select only targetable remarketing lists targetable by these advertisers.
      *     advertiserId: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -40689,7 +40217,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Field by which to sort the list.
      *     sortField: 'placeholder-value',
      *     // Order of sorted results.
@@ -40782,7 +40310,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/targetableRemarketingLists'
+              '/dfareporting/v4/userprofiles/{+profileId}/targetableRemarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -40824,7 +40352,7 @@ export namespace dfareporting_v4 {
      */
     active?: boolean;
     /**
-     * Select only targetable remarketing lists targetable by these advertisers.
+     * Required. Select only targetable remarketing lists targetable by these advertisers.
      */
     advertiserId?: string;
     /**
@@ -40887,9 +40415,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.get({
      *     // Targeting template ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -40984,7 +40512,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -41033,7 +40561,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -41148,7 +40676,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -41205,7 +40733,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -41300,7 +40828,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -41350,10 +40878,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.patch({
-     *     // TargetingTemplate ID.
+     *     // Required. RemarketingList ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -41468,7 +40996,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -41517,7 +41045,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.targetingTemplates.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -41632,7 +41160,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -41715,7 +41243,7 @@ export namespace dfareporting_v4 {
   export interface Params$Resource$Targetingtemplates$Patch
     extends StandardParameters {
     /**
-     * TargetingTemplate ID.
+     * Required. RemarketingList ID.
      */
     id?: string;
     /**
@@ -42061,9 +41589,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissionGroups.get({
      *     // User role permission group ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -42150,7 +41678,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissionGroups/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissionGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -42199,7 +41727,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissionGroups.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -42287,7 +41815,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissionGroups'
+              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -42364,9 +41892,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.userRolePermissions.get({
      *     // User role permission ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -42453,7 +41981,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissions/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissions/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -42504,7 +42032,7 @@ export namespace dfareporting_v4 {
      *     // Select only user role permissions with these IDs.
      *     ids: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -42592,7 +42120,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/userRolePermissions'
+              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -42673,9 +42201,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.userRoles.delete({
      *     // User role ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      * }
@@ -42747,7 +42275,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/userRoles/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/userRoles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -42796,9 +42324,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.userRoles.get({
      *     // User role ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -42884,7 +42412,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/userRoles/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/userRoles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -42933,7 +42461,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.userRoles.insert({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -43033,7 +42561,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -43090,7 +42618,7 @@ export namespace dfareporting_v4 {
      *     // Value of the nextPageToken from the previous result page.
      *     pageToken: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *     // Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
      *     searchString: 'placeholder-value',
      *     // Field by which to sort the list.
@@ -43183,7 +42711,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -43231,10 +42759,10 @@ export namespace dfareporting_v4 {
      *
      *   // Do the magic
      *   const res = await dfareporting.userRoles.patch({
-     *     // UserRole ID.
+     *     // Required. UserRole ID.
      *     id: 'placeholder-value',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -43334,7 +42862,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -43383,7 +42911,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.userRoles.update({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -43483,7 +43011,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -43576,7 +43104,7 @@ export namespace dfareporting_v4 {
   }
   export interface Params$Resource$Userroles$Patch extends StandardParameters {
     /**
-     * UserRole ID.
+     * Required. UserRole ID.
      */
     id?: string;
     /**
@@ -43635,9 +43163,9 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.videoFormats.get({
      *     // Video format ID.
-     *     id: 'placeholder-value',
+     *     id: '[^/]+',
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -43720,7 +43248,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/videoFormats/{id}'
+              '/dfareporting/v4/userprofiles/{+profileId}/videoFormats/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -43769,7 +43297,7 @@ export namespace dfareporting_v4 {
      *   // Do the magic
      *   const res = await dfareporting.videoFormats.list({
      *     // User profile ID associated with this request.
-     *     profileId: 'placeholder-value',
+     *     profileId: '[^/]+',
      *   });
      *   console.log(res.data);
      *
@@ -43854,7 +43382,8 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/videoFormats'
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{+profileId}/videoFormats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
