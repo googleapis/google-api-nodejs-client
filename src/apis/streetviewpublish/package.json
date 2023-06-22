@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/streetviewpublish",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "description": "streetviewpublish",
   "main": "build/index.js",
   "types": "build/index.d.ts",

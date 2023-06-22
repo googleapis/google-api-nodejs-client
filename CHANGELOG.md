@@ -4,6 +4,17 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [120.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v119.0.0...googleapis-v120.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [119.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v118.0.0...googleapis-v119.0.0) (2023-05-02)
 
 
