@@ -1693,6 +1693,112 @@
             }
           }
         },
+        "adSenseLinks": {
+          "methods": {
+            "create": {
+              "description": "Creates an AdSenseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.adSenseLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The property for which to create an AdSense Link. Format: properties/{propertyId} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/adSenseLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+              }
+            },
+            "delete": {
+              "description": "Deletes an AdSenseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks/{adSenseLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.adSenseLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Unique identifier for the AdSense Link to be deleted. Format: properties/{propertyId}/adSenseLinks/{linkId} Example: properties/1234/adSenseLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/adSenseLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              }
+            },
+            "get": {
+              "description": "Looks up a single AdSenseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks/{adSenseLinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.adSenseLinks.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Unique identifier for the AdSense Link requested. Format: properties/{propertyId}/adSenseLinks/{linkId} Example: properties/1234/adSenseLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/adSenseLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+              }
+            },
+            "list": {
+              "description": "Lists AdSenseLinks on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.adSenseLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from a previous `ListAdSenseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAdSenseLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the parent property. Format: properties/{propertyId} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/adSenseLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse"
+              }
+            }
+          }
+        },
         "audiences": {
           "methods": {
             "archive": {
@@ -2745,6 +2851,160 @@
             }
           },
           "resources": {
+            "eventCreateRules": {
+              "methods": {
+                "create": {
+                  "description": "Creates an EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules",
+                  "httpMethod": "POST",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventCreateRules",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules/{eventCreateRulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Example format: properties/123/dataStreams/456/eventCreateRules/789",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventCreateRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "get": {
+                  "description": "Lookup for a single EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules/{eventCreateRulesId}",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EventCreateRule to get. Example format: properties/123/dataStreams/456/eventCreateRules/789",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventCreateRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists EventCreateRules on a web data stream.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListEventCreateRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventCreateRules` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventCreateRules",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules/{eventCreateRulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name for this EventCreateRule resource. Format: properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventCreateRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                }
+              }
+            },
             "measurementProtocolSecrets": {
               "methods": {
                 "create": {
@@ -4062,7 +4322,7 @@
       }
     }
   },
-  "revision": "20230429",
+  "revision": "20230621",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -4536,6 +4796,22 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaAdSenseLink": {
+      "description": "A link between a GA4 Property and an AdSense for Content ad client.",
+      "id": "GoogleAnalyticsAdminV1alphaAdSenseLink",
+      "properties": {
+        "adClientCode": {
+          "description": "Immutable. The AdSense ad client code that the GA4 property is linked to. Example format: \"ca-pub-1234567890\"",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name for this AdSense Link resource. Format: properties/{propertyId}/adSenseLinks/{linkId} Example: properties/1234/adSenseLinks/6789",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest": {
       "description": "Request message for ApproveDisplayVideo360AdvertiserLinkProposal RPC.",
       "id": "GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest",
@@ -4589,6 +4865,22 @@
           ],
           "type": "string"
         },
+        "adsWebConversionDataExportScope": {
+          "description": "Required. The Conversion Export Scope for data exported to linked Ads Accounts.",
+          "enum": [
+            "ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED",
+            "NOT_SELECTED_YET",
+            "CROSS_CHANNEL",
+            "ADS_PREFERRED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "No data export scope selected yet. Export scope can never be changed back to this value.",
+            "The Ads Web Conversion Data export scope is Cross Channel.",
+            "The Ads Web Conversion Data export scope is Ads Preferred."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Output only. Resource name of this attribution settings resource. Format: properties/{property_id}/attributionSettings Example: \"properties/1000/attributionSettings\"",
           "readOnly": true,
@@ -4626,10 +4918,10 @@
             "Reporting attribution model unspecified.",
             "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event.",
             "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting.",
-            "Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting.",
-            "Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting.",
-            "Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
-            "Gives more credit to the touchpoints that happened closer in time to the conversion.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320?hl=en#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives more credit to the touchpoints that happened closer in time to the conversion.",
             "Attributes 100% of the conversion value to the last Google Ads channel that the customer clicked through before converting."
           ],
           "type": "string"
@@ -5384,6 +5676,10 @@
           "$ref": "GoogleAnalyticsAdminV1alphaAccount",
           "description": "A snapshot of an Account resource in change history."
         },
+        "adsenseLink": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink",
+          "description": "A snapshot of an AdSenseLink resource in change history."
+        },
         "attributionSettings": {
           "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings",
           "description": "A snapshot of AttributionSettings resource in change history."
@@ -5431,6 +5727,10 @@
         "enhancedMeasurementSettings": {
           "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
           "description": "A snapshot of EnhancedMeasurementSettings resource in change history."
+        },
+        "eventCreateRule": {
+          "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule",
+          "description": "A snapshot of an EventCreateRule resource in change history."
         },
         "expandedDataSet": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
@@ -6035,7 +6335,7 @@
       "id": "GoogleAnalyticsAdminV1alphaDataStreamWebStreamData",
       "properties": {
         "defaultUri": {
-          "description": "Immutable. Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
+          "description": "Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
           "type": "string"
         },
         "firebaseAppId": {
@@ -6044,7 +6344,7 @@
           "type": "string"
         },
         "measurementId": {
-          "description": "Output only. Analytics \"Measurement ID\", without the \"G-\" prefix. Example: \"G-1A2BCD345E\" would just be \"1A2BCD345E\"",
+          "description": "Output only. Analytics Measurement ID. Example: \"G-1A2BCD345E\"",
           "readOnly": true,
           "type": "string"
         }
@@ -6164,7 +6464,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings": {
-      "description": "Singleton resource under a WebDataStream, configuring measurement of additional site interactions and content.",
+      "description": "Singleton resource under a web DataStream, configuring measurement of additional site interactions and content.",
       "id": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
       "properties": {
         "fileDownloadsEnabled": {
@@ -6210,6 +6510,40 @@
         },
         "videoEngagementEnabled": {
           "description": "If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaEventCreateRule": {
+      "description": "An Event Create Rule defines conditions that will trigger the creation of an entirely new event based upon matched criteria of a source event. Additional mutations of the parameters from the source event can be defined. Unlike Event Edit rules, Event Creation Rules have no defined order. They will all be run independently. Event Edit and Event Create rules can't be used to modify an event created from an Event Create rule.",
+      "id": "GoogleAnalyticsAdminV1alphaEventCreateRule",
+      "properties": {
+        "destinationEvent": {
+          "description": "Required. The name of the new event to be created. This value must: * be less than 40 characters * consist only of letters, digits or _ (underscores) * start with a letter",
+          "type": "string"
+        },
+        "eventConditions": {
+          "description": "Required. Must have at least one condition, and can have up to 10 max. Conditions on the source event must match for this rule to be applied.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaMatchingCondition"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Resource name for this EventCreateRule resource. Format: properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parameterMutations": {
+          "description": "Parameter mutations define parameter behavior on the new event, and are applied in order. A maximum of 20 mutations can be applied.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaParameterMutation"
+          },
+          "type": "array"
+        },
+        "sourceCopyParameters": {
+          "description": "If true, the source parameters are copied to the new event. If false, or unset, all non-internal parameters are not copied from the source event. Parameter mutations are applied after the parameters have been copied.",
           "type": "boolean"
         }
       },
@@ -6631,6 +6965,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse": {
+      "description": "Response message for ListAdSenseLinks method.",
+      "id": "GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse",
+      "properties": {
+        "adsenseLinks": {
+          "description": "List of AdSenseLinks.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListAudiencesResponse": {
       "description": "Response message for ListAudiences RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListAudiencesResponse",
@@ -6818,6 +7170,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse": {
+      "description": "Response message for ListEventCreateRules RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse",
+      "properties": {
+        "eventCreateRules": {
+          "description": "List of EventCreateRules. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse": {
       "description": "Response message for ListExpandedDataSets RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse",
@@ -6944,6 +7314,63 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaMatchingCondition": {
+      "description": "Defines a condition for when an Event Edit or Event Creation rule applies to an event.",
+      "id": "GoogleAnalyticsAdminV1alphaMatchingCondition",
+      "properties": {
+        "comparisonType": {
+          "description": "Required. The type of comparison to be applied to the value.",
+          "enum": [
+            "COMPARISON_TYPE_UNSPECIFIED",
+            "EQUALS",
+            "EQUALS_CASE_INSENSITIVE",
+            "CONTAINS",
+            "CONTAINS_CASE_INSENSITIVE",
+            "STARTS_WITH",
+            "STARTS_WITH_CASE_INSENSITIVE",
+            "ENDS_WITH",
+            "ENDS_WITH_CASE_INSENSITIVE",
+            "GREATER_THAN",
+            "GREATER_THAN_OR_EQUAL",
+            "LESS_THAN",
+            "LESS_THAN_OR_EQUAL",
+            "REGULAR_EXPRESSION",
+            "REGULAR_EXPRESSION_CASE_INSENSITIVE"
+          ],
+          "enumDescriptions": [
+            "Unknown",
+            "Equals, case sensitive",
+            "Equals, case insensitive",
+            "Contains, case sensitive",
+            "Contains, case insensitive",
+            "Starts with, case sensitive",
+            "Starts with, case insensitive",
+            "Ends with, case sensitive",
+            "Ends with, case insensitive",
+            "Greater than",
+            "Greater than or equal",
+            "Less than",
+            "Less than or equal",
+            "regular expression. Only supported for web streams.",
+            "regular expression, case insensitive. Only supported for web streams."
+          ],
+          "type": "string"
+        },
+        "field": {
+          "description": "Required. The name of the field that is compared against for the condition. If 'event_name' is specified this condition will apply to the name of the event. Otherwise the condition will apply to a parameter with the specified name. This value cannot contain spaces.",
+          "type": "string"
+        },
+        "negated": {
+          "description": "Whether or not the result of the comparison should be negated. For example, if `negated` is true, then 'equals' comparisons would function as 'not equals'.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Required. The value being compared against for this condition. The runtime implementation may perform type coercion of this value to evaluate this condition based on the type of the parameter value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret": {
       "description": "A secret value used for sending hits to Measurement Protocol.",
       "id": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret",
@@ -6977,6 +7404,21 @@
         "int64Value": {
           "description": "Integer value",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaParameterMutation": {
+      "description": "Defines an event parameter to mutate.",
+      "id": "GoogleAnalyticsAdminV1alphaParameterMutation",
+      "properties": {
+        "parameter": {
+          "description": "Required. The name of the parameter to mutate. This value must: * be less than 40 characters. * be unique across across all mutations within the rule * consist only of letters, digits or _ (underscores) For event edit rules, the name may also be set to 'event_name' to modify the event_name in place.",
+          "type": "string"
+        },
+        "parameterValue": {
+          "description": "Required. The value mutation to perform. * Must be less than 100 characters. * To specify a constant value for the param, use the value's string. * To copy value from another parameter, use syntax like \"[[other_parameter]]\" For more details, see this [help center article](https://support.google.com/analytics/answer/10085872#modify-an-event&zippy=%2Cin-this-article%2Cmodify-parameters).",
           "type": "string"
         }
       },
@@ -7403,7 +7845,9 @@
               "EXPANDED_DATA_SET",
               "CHANNEL_GROUP",
               "ENHANCED_MEASUREMENT_SETTINGS",
-              "AUDIENCE"
+              "ADSENSE_LINK",
+              "AUDIENCE",
+              "EVENT_CREATE_RULE"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -7425,7 +7869,9 @@
               "ExpandedDataSet resource",
               "ChannelGroup resource",
               "EnhancedMeasurementSettings resource",
-              "Audience resource"
+              "AdSenseLink resource",
+              "Audience resource",
+              "EventCreateRule resource"
             ],
             "type": "string"
           },
