@@ -262,6 +262,7 @@
                   ],
                   "parameters": {
                     "connectAgent.name": {
+                      "deprecated": true,
                       "description": "Do not set.",
                       "location": "query",
                       "type": "string"
@@ -711,7 +712,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230609",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "ApplianceCluster": {

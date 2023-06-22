@@ -1150,6 +1150,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "filter": {
+                          "description": "Optional. Lists MembershipBindings that match the filter expression, following the syntax outlined in https://google.aip.dev/160.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
                           "format": "int32",
@@ -1739,6 +1744,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes/{scopesId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.scopes.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists Scopes.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes",
@@ -1808,6 +1844,62 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes/{scopesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.scopes.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/scopes/{scopesId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.scopes.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/scopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -1816,7 +1908,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230609",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2018,6 +2110,260 @@
       },
       "type": "object"
     },
+    "ClusterUpgradeGKEUpgrade": {
+      "description": "GKEUpgrade represents a GKE provided upgrade, e.g., control plane upgrade.",
+      "id": "ClusterUpgradeGKEUpgrade",
+      "properties": {
+        "name": {
+          "description": "Name of the upgrade, e.g., \"k8s_control_plane\". It should be a valid upgrade name. It must not exceet 99 characters.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the upgrade, e.g., \"1.22.1-gke.100\". It should be a valid version. It must not exceet 99 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgradeFeatureCondition": {
+      "description": "GKEUpgradeFeatureCondition describes the condition of the feature for GKE clusters at a certain point of time.",
+      "id": "ClusterUpgradeGKEUpgradeFeatureCondition",
+      "properties": {
+        "reason": {
+          "description": "Reason why the feature is in this status.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the condition, one of True, False, Unknown.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the condition, for example, \"ready\".",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Last timestamp the condition was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgradeFeatureState": {
+      "description": "GKEUpgradeFeatureState contains feature states for GKE clusters in the scope.",
+      "id": "ClusterUpgradeGKEUpgradeFeatureState",
+      "properties": {
+        "conditions": {
+          "description": "Current conditions of the feature.",
+          "items": {
+            "$ref": "ClusterUpgradeGKEUpgradeFeatureCondition"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Scope-level upgrade state.",
+          "items": {
+            "$ref": "ClusterUpgradeScopeGKEUpgradeState"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeGKEUpgradeOverride": {
+      "description": "Properties of a GKE upgrade that can be overridden by the user. For example, a user can skip soaking by overriding the soaking to 0.",
+      "id": "ClusterUpgradeGKEUpgradeOverride",
+      "properties": {
+        "postConditions": {
+          "$ref": "ClusterUpgradePostConditions",
+          "description": "Required. Post conditions to override for the specified upgrade (name + version). Required."
+        },
+        "upgrade": {
+          "$ref": "ClusterUpgradeGKEUpgrade",
+          "description": "Required. Which upgrade to override. Required."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeIgnoredMembership": {
+      "description": "IgnoredMembership represents a membership ignored by the feature. A membership can be ignored because it was manually upgraded to a newer version than RC default.",
+      "id": "ClusterUpgradeIgnoredMembership",
+      "properties": {
+        "ignoredTime": {
+          "description": "Time when the membership was first set to ignored.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Reason why the membership is ignored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeMembershipGKEUpgradeState": {
+      "description": "ScopeGKEUpgradeState is a GKEUpgrade and its state per-membership.",
+      "id": "ClusterUpgradeMembershipGKEUpgradeState",
+      "properties": {
+        "status": {
+          "$ref": "ClusterUpgradeUpgradeStatus",
+          "description": "Status of the upgrade."
+        },
+        "upgrade": {
+          "$ref": "ClusterUpgradeGKEUpgrade",
+          "description": "Which upgrade to track the state."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeMembershipState": {
+      "description": "Per-membership state for this feature.",
+      "id": "ClusterUpgradeMembershipState",
+      "properties": {
+        "ignored": {
+          "$ref": "ClusterUpgradeIgnoredMembership",
+          "description": "Whether this membership is ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel."
+        },
+        "scopes": {
+          "description": "Fully qualified scope names that this clusters is bound to which also have rollout sequencing enabled.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upgrades": {
+          "description": "Actual upgrade state against desired.",
+          "items": {
+            "$ref": "ClusterUpgradeMembershipGKEUpgradeState"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradePostConditions": {
+      "description": "Post conditional checks after an upgrade has been applied on all eligible clusters.",
+      "id": "ClusterUpgradePostConditions",
+      "properties": {
+        "soaking": {
+          "description": "Required. Amount of time to \"soak\" after a rollout has been finished before marking it COMPLETE. Cannot exceed 30 days. Required.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeScopeGKEUpgradeState": {
+      "description": "ScopeGKEUpgradeState is a GKEUpgrade and its state at the scope level.",
+      "id": "ClusterUpgradeScopeGKEUpgradeState",
+      "properties": {
+        "stats": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Number of GKE clusters in each status code.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "ClusterUpgradeUpgradeStatus",
+          "description": "Status of the upgrade."
+        },
+        "upgrade": {
+          "$ref": "ClusterUpgradeGKEUpgrade",
+          "description": "Which upgrade to track the state."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeScopeSpec": {
+      "description": "**ClusterUpgrade**: The configuration for the scope-level ClusterUpgrade feature.",
+      "id": "ClusterUpgradeScopeSpec",
+      "properties": {
+        "gkeUpgradeOverrides": {
+          "description": "Allow users to override some properties of each GKE upgrade.",
+          "items": {
+            "$ref": "ClusterUpgradeGKEUpgradeOverride"
+          },
+          "type": "array"
+        },
+        "postConditions": {
+          "$ref": "ClusterUpgradePostConditions",
+          "description": "Required. Post conditions to evaluate to mark an upgrade COMPLETE. Required."
+        },
+        "upstreamScopes": {
+          "description": "This scope consumes upgrades that have COMPLETE status code in the upstream scopes. See UpgradeStatus.Code for code definitions. The scope name should be in the form: `projects/{p}/locations/global/scopes/{s}` Where {p} is the project, {s} is a valid Scope in this project. {p} WILL match the Feature's project. This is defined as repeated for future proof reasons. Initial implementation will enforce at most one upstream scope.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeScopeState": {
+      "description": "**ClusterUpgrade**: The state for the scope-level ClusterUpgrade feature.",
+      "id": "ClusterUpgradeScopeState",
+      "properties": {
+        "downstreamScopes": {
+          "description": "This scopes whose upstream_scopes contain the current scope. The scope name should be in the form: `projects/{p}/locations/gloobal/scopes/{s}` Where {p} is the project, {s} is a valid Scope in this project. {p} WILL match the Feature's project.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gkeState": {
+          "$ref": "ClusterUpgradeGKEUpgradeFeatureState",
+          "description": "Feature state for GKE clusters."
+        },
+        "ignored": {
+          "additionalProperties": {
+            "$ref": "ClusterUpgradeIgnoredMembership"
+          },
+          "description": "A list of memberships ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel. The membership resource is in the format: `projects/{p}/locations/{l}/membership/{m}`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterUpgradeUpgradeStatus": {
+      "description": "UpgradeStatus provides status information for each upgrade.",
+      "id": "ClusterUpgradeUpgradeStatus",
+      "properties": {
+        "code": {
+          "description": "Status code of the upgrade.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "INELIGIBLE",
+            "PENDING",
+            "IN_PROGRESS",
+            "SOAKING",
+            "FORCED_SOAKING",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Required by https://linter.aip.dev/126/unspecified.",
+            "The upgrade is ineligible. At the scope level, this means the upgrade is ineligible for all the clusters in the scope.",
+            "The upgrade is pending. At the scope level, this means the upgrade is pending for all the clusters in the scope.",
+            "The upgrade is in progress. At the scope level, this means the upgrade is in progress for at least one cluster in the scope.",
+            "The upgrade has finished and is soaking until the soaking time is up. At the scope level, this means at least one cluster is in soaking while the rest are either soaking or complete.",
+            "A cluster will be forced to enter soaking if an upgrade doesn't finish within a certain limit, despite it's actual status.",
+            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status."
+          ],
+          "type": "string"
+        },
+        "reason": {
+          "description": "Reason for this status.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Last timestamp the status was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CommonFeatureSpec": {
       "description": "CommonFeatureSpec contains Hub-wide configuration information",
       "id": "CommonFeatureSpec",
@@ -2142,7 +2488,7 @@
           "type": "boolean"
         },
         "enabled": {
-          "description": "Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of git field.",
+          "description": "Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false and Managed Config Sync is disabled, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. Setting this field to false while enabling Managed Config Sync is invalid. If omitted, ConfigSync resources will be managed if: * the git or oci field is present; or * Managed Config Sync is enabled (i.e., managed.enabled is true).",
           "type": "boolean"
         },
         "git": {
@@ -2152,6 +2498,10 @@
         "managed": {
           "$ref": "ConfigManagementManaged",
           "description": "Configuration for Managed Config Sync."
+        },
+        "metricsGcpServiceAccountEmail": {
+          "description": "The Email of the GCP Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be binded to the GSA. This field is required when Managed Config Sync is enabled.",
+          "type": "string"
         },
         "oci": {
           "$ref": "ConfigManagementOciConfig",
@@ -2287,6 +2637,17 @@
       },
       "type": "object"
     },
+    "ConfigManagementConfigSyncError": {
+      "description": "Errors pertaining to the installation of Config Sync",
+      "id": "ConfigManagementConfigSyncError",
+      "properties": {
+        "errorMessage": {
+          "description": "A string representing the user facing error message",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConfigManagementConfigSyncState": {
       "description": "State information for ConfigSync",
       "id": "ConfigManagementConfigSyncState",
@@ -2294,6 +2655,13 @@
         "deploymentState": {
           "$ref": "ConfigManagementConfigSyncDeploymentState",
           "description": "Information about the deployment of ConfigSync, including the version of the various Pods deployed"
+        },
+        "errors": {
+          "description": "Errors pertaining to the installation of Config Sync.",
+          "items": {
+            "$ref": "ConfigManagementConfigSyncError"
+          },
+          "type": "array"
         },
         "syncState": {
           "$ref": "ConfigManagementSyncState",
@@ -2582,7 +2950,11 @@
       "id": "ConfigManagementManaged",
       "properties": {
         "enabled": {
-          "description": "Set to true to enable Managed Config Sync. Defaults to false which disables Managed Config Sync.",
+          "description": "Set to true to enable Managed Config Sync. Defaults to false which disables Managed Config Sync. Setting this field to true when configSync.enabled is false is invalid.",
+          "type": "boolean"
+        },
+        "stopSyncing": {
+          "description": "Set to true to stop syncing configs for a single cluster. Default to false. If set to true, Managed Config Sync will not upgrade Config Sync.",
           "type": "boolean"
         }
       },
@@ -2595,6 +2967,10 @@
         "binauthz": {
           "$ref": "ConfigManagementBinauthzConfig",
           "description": "Binauthz conifguration for the cluster."
+        },
+        "cluster": {
+          "description": "The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.",
+          "type": "string"
         },
         "configSync": {
           "$ref": "ConfigManagementConfigSync",
@@ -2624,7 +3000,7 @@
           "description": "Binauthz status"
         },
         "clusterName": {
-          "description": "The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed ACM on the cluster manually prior to enabling the ACM hub feature. Unique within a Anthos Config Management installation.",
+          "description": "This field is set to the `cluster_name` field of the Membership Spec if it is not empty. Otherwise, it is set to the cluster's fleet membership name.",
           "type": "string"
         },
         "configSyncState": {
@@ -2751,6 +3127,12 @@
         "templateLibraryInstalled": {
           "description": "Installs the default template library along with Policy Controller.",
           "type": "boolean"
+        },
+        "updateTime": {
+          "description": "Output only. Last time this membership spec was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2759,6 +3141,11 @@
       "description": "State for the migration of PolicyController from ACM -> PoCo Hub.",
       "id": "ConfigManagementPolicyControllerMigration",
       "properties": {
+        "copyTime": {
+          "description": "Last time this membership spec was copied to PoCo feature.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "stage": {
           "description": "Stage of the migration.",
           "enum": [
@@ -3091,12 +3478,16 @@
           "enum": [
             "GOOGLE_CA_PROVISIONING_UNSPECIFIED",
             "DISABLED",
-            "ENABLED"
+            "ENABLED",
+            "ENABLED_WITH_MANAGED_CA",
+            "ENABLED_WITH_DEFAULT_CA"
           ],
           "enumDescriptions": [
             "Disable default Google managed CA.",
             "Disable default Google managed CA.",
-            "Use default Google managed CA."
+            "Use default Google managed CA.",
+            "Workload certificate feature is enabled, and the entire certificate provisioning process is managed by Google with managed CAS which is more secure than the default CA.",
+            "Workload certificate feature is enabled, and the entire certificate provisioning process is using the default CA which is free."
           ],
           "type": "string"
         }
@@ -3217,7 +3608,7 @@
       "type": "object"
     },
     "FleetObservabilityFeatureState": {
-      "description": "**FleetObservability**: An empty state left as an example Hub-wide Feature state.",
+      "description": "**FleetObservability**: Hub-wide Feature for FleetObservability feature. state.",
       "id": "FleetObservabilityFeatureState",
       "properties": {},
       "type": "object"
@@ -3244,7 +3635,7 @@
       "type": "object"
     },
     "FleetObservabilityMembershipState": {
-      "description": "**FleetObservability**: An empty state left as an example membership-specific Feature state.",
+      "description": "**FleetObservability**: Membership-specific Feature state for fleetobservability.",
       "id": "FleetObservabilityMembershipState",
       "properties": {},
       "type": "object"
@@ -3905,7 +4296,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "A Workspace resource name in the format `projects/*/locations/*/scopes/*`.",
+          "description": "A Scope resource name in the format `projects/*/locations/*/scopes/*`.",
           "type": "string"
         },
         "state": {
@@ -3995,7 +4386,7 @@
       "type": "object"
     },
     "MembershipFeatureSpec": {
-      "description": "MembershipFeatureSpec contains configuration information for a single Membership.",
+      "description": "MembershipFeatureSpec contains configuration information for a single Membership. NOTE: Please use snake case in your feature name.",
       "id": "MembershipFeatureSpec",
       "properties": {
         "anthosobservability": {
@@ -4044,6 +4435,10 @@
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureState",
           "description": "Appdevexperience specific state."
+        },
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeMembershipState",
+          "description": "ClusterUpgrade state."
         },
         "configmanagement": {
           "$ref": "ConfigManagementMembershipState",
@@ -4680,6 +5075,10 @@
           "description": "The state of the any bundles included in the chosen version of the manifest",
           "type": "object"
         },
+        "referentialSyncConfigState": {
+          "$ref": "PolicyControllerOnClusterState",
+          "description": "The state of the referential data sync configuration. This could represent the state of either the syncSet object(s) or the config object, depending on the version of PoCo configured by the user."
+        },
         "templateLibraryState": {
           "$ref": "PolicyControllerOnClusterState",
           "description": "The state of the template library"
@@ -4972,13 +5371,22 @@
     "ScopeFeatureSpec": {
       "description": "ScopeFeatureSpec contains feature specs for a fleet scope.",
       "id": "ScopeFeatureSpec",
-      "properties": {},
+      "properties": {
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeScopeSpec",
+          "description": "Spec for the ClusterUpgrade feature at the scope level"
+        }
+      },
       "type": "object"
     },
     "ScopeFeatureState": {
       "description": "ScopeFeatureState contains Scope-wide Feature status information.",
       "id": "ScopeFeatureState",
       "properties": {
+        "clusterupgrade": {
+          "$ref": "ClusterUpgradeScopeState",
+          "description": "State for the ClusterUpgrade feature at the scope level"
+        },
         "state": {
           "$ref": "FeatureState",
           "description": "Output only. The \"running state\" of the Feature in this Scope.",
@@ -5411,8 +5819,8 @@
           ],
           "enumDescriptions": [
             "UNSPECIFIED validator.",
-            "MEMBERSHIP_ID validator validates the membership_id is still available.",
-            "CROSS_PROJECT_PERMISSION validator validates the cross-project P4SA binding is in place."
+            "MEMBERSHIP_ID validator validates that the membership_id is still available.",
+            "CROSS_PROJECT_PERMISSION validator validates that the cross-project role binding for the service agent is in place."
           ],
           "type": "string"
         }
