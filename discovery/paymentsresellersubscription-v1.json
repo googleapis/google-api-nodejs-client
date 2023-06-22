@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230430",
+  "revision": "20230620",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -434,6 +434,7 @@
             "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
             "CANCELLATION_REASON_USER_DELINQUENCY",
             "CANCELLATION_REASON_SYSTEM_ERROR",
+            "CANCELLATION_REASON_SYSTEM_CANCEL",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -446,6 +447,7 @@
             "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Cancellation due to user delinquency",
             "Cancellation due to an unrecoverable system error.",
+            "Cancellation by a system.",
             "Other reason."
           ],
           "type": "string"
@@ -744,7 +746,7 @@
       "properties": {
         "googleOnePayload": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload",
-          "description": "Payload specific to Google One products."
+          "description": "Product-specific payloads. Payload specific to Google One products."
         },
         "youtubePayload": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload",
@@ -1049,6 +1051,7 @@
             "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
             "CANCELLATION_REASON_USER_DELINQUENCY",
             "CANCELLATION_REASON_SYSTEM_ERROR",
+            "CANCELLATION_REASON_SYSTEM_CANCEL",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -1061,6 +1064,7 @@
             "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Cancellation due to user delinquency",
             "Cancellation due to an unrecoverable system error.",
+            "Cancellation by a system.",
             "Other reason."
           ],
           "type": "string"
@@ -1087,6 +1091,12 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "lineItemIndex": {
+          "description": "Output only. A unique index of the subscription line item.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "lineItemPromotionSpecs": {
           "description": "Optional. The promotions applied on the line item. It can be: - a free trial promotion, which overrides the subscription-level free trial promotion. - an introductory pricing promotion. When used as input in Create or Provision API, specify its resource name only.",
@@ -1244,6 +1254,12 @@
       "description": "Payload specific to Youtube products.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload",
       "properties": {
+        "accessEndTime": {
+          "description": "Output only. The access expiration time for this line item.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "partnerEligibilityIds": {
           "description": "The list of eligibility_ids which are applicable for the line item.",
           "items": {
