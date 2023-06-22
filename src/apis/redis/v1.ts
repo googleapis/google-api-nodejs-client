@@ -428,7 +428,7 @@ export namespace redis_v1 {
     operations?: Schema$Operation[];
   }
   /**
-   * A resource that represents Google Cloud location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
