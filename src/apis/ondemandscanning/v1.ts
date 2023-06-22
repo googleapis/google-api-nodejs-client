@@ -238,9 +238,15 @@ export namespace ondemandscanning_v1 {
      */
     signatures?: Schema$Signature[];
   }
-  export interface Schema$Binary {
-    name?: string | null;
-    version?: string | null;
+  export interface Schema$BinarySourceInfo {
+    /**
+     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15.
+     */
+    binaryVersion?: Schema$PackageVersion;
+    /**
+     * The source package. Similar to the above, this is significant when the source is different than the binary itself. Since the top-level package/version fields are based on an if/else, we need a separate field for both binary and source if we want to know definitively where the data is coming from.
+     */
+    sourceVersion?: Schema$PackageVersion;
   }
   export interface Schema$BuilderConfig {
     id?: string | null;
@@ -936,6 +942,10 @@ export namespace ondemandscanning_v1 {
      */
     resourceUri?: string | null;
     /**
+     * Describes a specific SBOM reference occurrences.
+     */
+    sbomReference?: Schema$SBOMReferenceOccurrence;
+    /**
      * Output only. The time this occurrence was last updated.
      */
     updateTime?: string | null;
@@ -979,9 +989,13 @@ export namespace ondemandscanning_v1 {
      */
     architecture?: string | null;
     /**
-     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15.
+     * A bundle containing the binary and source information.
      */
-    binary?: Schema$Binary;
+    binarySourceInfo?: Schema$BinarySourceInfo[];
+    /**
+     * DEPRECATED
+     */
+    binaryVersion?: Schema$PackageVersion;
     /**
      * The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.
      */
@@ -1022,6 +1036,10 @@ export namespace ondemandscanning_v1 {
      * CVEs that this package is no longer vulnerable to go/drydock-dd-custom-binary-scanning
      */
     patchedCve?: string[] | null;
+    /**
+     * DEPRECATED
+     */
+    sourceVersion?: Schema$PackageVersion;
     unused?: string | null;
     /**
      * The version of the package being analysed
@@ -1106,6 +1124,10 @@ export namespace ondemandscanning_v1 {
      */
     version?: Schema$Version;
   }
+  export interface Schema$PackageVersion {
+    name?: string | null;
+    version?: string | null;
+  }
   /**
    * Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.
    */
@@ -1186,6 +1208,65 @@ export namespace ondemandscanning_v1 {
      * A server-assigned, globally unique identifier.
      */
     uid?: string | null;
+  }
+  /**
+   * The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.
+   */
+  export interface Schema$SbomReferenceIntotoPayload {
+    /**
+     * Additional parameters of the Predicate. Includes the actual data about the SBOM.
+     */
+    predicate?: Schema$SbomReferenceIntotoPredicate;
+    /**
+     * URI identifying the type of the Predicate.
+     */
+    predicateType?: string | null;
+    /**
+     * Set of software artifacts that the attestation applies to. Each element represents a single software artifact.
+     */
+    subject?: Schema$Subject[];
+    /**
+     * Identifier for the schema of the Statement.
+     */
+    _type?: string | null;
+  }
+  /**
+   * A predicate which describes the SBOM being referenced.
+   */
+  export interface Schema$SbomReferenceIntotoPredicate {
+    /**
+     * A map of algorithm to digest of the contents of the SBOM.
+     */
+    digest?: {[key: string]: string} | null;
+    /**
+     * The location of the SBOM.
+     */
+    location?: string | null;
+    /**
+     * The mime type of the SBOM.
+     */
+    mimeType?: string | null;
+    /**
+     * The person or system referring this predicate to the consumer.
+     */
+    referrerId?: string | null;
+  }
+  /**
+   * The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.
+   */
+  export interface Schema$SBOMReferenceOccurrence {
+    /**
+     * The actual payload that contains the SBOM reference data.
+     */
+    payload?: Schema$SbomReferenceIntotoPayload;
+    /**
+     * The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'.
+     */
+    payloadType?: string | null;
+    /**
+     * The signatures over the payload.
+     */
+    signatures?: Schema$EnvelopeSignature[];
   }
   /**
    * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be "attached" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any "attached" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
