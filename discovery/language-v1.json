@@ -223,11 +223,30 @@
             "https://www.googleapis.com/auth/cloud-language",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
+        },
+        "moderateText": {
+          "description": "Moderates a document for harmful and sensitive categories.",
+          "flatPath": "v1/documents:moderateText",
+          "httpMethod": "POST",
+          "id": "language.documents.moderateText",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/documents:moderateText",
+          "request": {
+            "$ref": "ModerateTextRequest"
+          },
+          "response": {
+            "$ref": "ModerateTextResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-language",
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
         }
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230616",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -477,6 +496,13 @@
         "language": {
           "description": "The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.",
           "type": "string"
+        },
+        "moderationCategories": {
+          "description": "Harmful and sensitive categories identified in the input document.",
+          "items": {
+            "$ref": "ClassificationCategory"
+          },
+          "type": "array"
         },
         "sentences": {
           "description": "Sentences in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_syntax.",
@@ -898,6 +924,35 @@
         "extractSyntax": {
           "description": "Extract syntax information.",
           "type": "boolean"
+        },
+        "moderateText": {
+          "description": "Moderate the document for harmful and sensitive categories.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ModerateTextRequest": {
+      "description": "The document moderation request message.",
+      "id": "ModerateTextRequest",
+      "properties": {
+        "document": {
+          "$ref": "Document",
+          "description": "Required. Input document."
+        }
+      },
+      "type": "object"
+    },
+    "ModerateTextResponse": {
+      "description": "The document moderation response message.",
+      "id": "ModerateTextResponse",
+      "properties": {
+        "moderationCategories": {
+          "description": "Harmful and sensitive categories representing the input document.",
+          "items": {
+            "$ref": "ClassificationCategory"
+          },
+          "type": "array"
         }
       },
       "type": "object"
