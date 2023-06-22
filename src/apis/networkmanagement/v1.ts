@@ -602,6 +602,19 @@ export namespace networkmanagement_v1 {
     internalIp?: string | null;
   }
   /**
+   * For display only. Details of a Google Service sending packets to a VPC network. Although the source IP might be a publicly routable address, some Google Services use special routes within Google production infrastructure to reach Compute Engine Instances. https://cloud.google.com/vpc/docs/routes#special_return_paths
+   */
+  export interface Schema$GoogleServiceInfo {
+    /**
+     * Recognized type of a Google Service.
+     */
+    googleServiceType?: string | null;
+    /**
+     * Source IP address.
+     */
+    sourceIp?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Compute Engine instance.
    */
   export interface Schema$InstanceInfo {
@@ -1024,6 +1037,10 @@ export namespace networkmanagement_v1 {
      * Display information of a Google Kubernetes Engine cluster master.
      */
     gkeMaster?: Schema$GKEMasterInfo;
+    /**
+     * Display information of a Google service
+     */
+    googleService?: Schema$GoogleServiceInfo;
     /**
      * Display information of a Compute Engine instance.
      */

@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20230419",
+  "revision": "20230607",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -618,7 +618,8 @@
             "MISMATCHED_DESTINATION_NETWORK",
             "UNSUPPORTED",
             "MISMATCHED_IP_VERSION",
-            "GKE_KONNECTIVITY_PROXY_UNSUPPORTED"
+            "GKE_KONNECTIVITY_PROXY_UNSUPPORTED",
+            "RESOURCE_CONFIG_NOT_FOUND"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -638,7 +639,8 @@
             "Aborted because the destination network does not match the destination endpoint.",
             "Aborted because the test scenario is not supported.",
             "Aborted because the source and destination resources have no common IP version.",
-            "Aborted because the connection between the control plane and the node of the source cluster is initiated by the node and managed by the Konnectivity proxy."
+            "Aborted because the connection between the control plane and the node of the source cluster is initiated by the node and managed by the Konnectivity proxy.",
+            "Aborted because expected resource configuration was missing."
           ],
           "type": "string"
         },
@@ -1008,6 +1010,7 @@
             "DROPPED_INSIDE_GKE_SERVICE",
             "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
             "GOOGLE_MANAGED_SERVICE_NO_PEERING",
+            "GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT",
             "GKE_PSC_ENDPOINT_MISSING",
             "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
             "GKE_CONTROL_PLANE_REGION_MISMATCH",
@@ -1021,7 +1024,8 @@
             "VPC_CONNECTOR_NOT_RUNNING",
             "PSC_CONNECTION_NOT_ACCEPTED",
             "CLOUD_RUN_REVISION_NOT_READY",
-            "DROPPED_INSIDE_PSC_SERVICE_PRODUCER"
+            "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
+            "LOAD_BALANCER_HAS_NO_PROXY_SUBNET"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1048,6 +1052,7 @@
             "Packet was dropped inside Google Kubernetes Engine Service.",
             "Packet was dropped inside Cloud SQL Service.",
             "Packet was dropped because there is no peering between the originating network and the Google Managed Services Network.",
+            "Packet was dropped because the Google-managed service uses Private Service Connect (PSC), but the PSC endpoint is not found in the project.",
             "Packet was dropped because the GKE cluster uses Private Service Connect (PSC), but the PSC endpoint is not found in the project.",
             "Packet was dropped because the Cloud SQL instance has neither a private nor a public IP address.",
             "Packet was dropped because a GKE cluster private endpoint is unreachable from a region different from the cluster's region.",
@@ -1061,7 +1066,8 @@
             "Packet could be dropped because the VPC connector is not in a running state.",
             "The Private Service Connect endpoint is in a project that is not approved to connect to the service.",
             "Packet sent from a Cloud Run revision that is not ready.",
-            "Packet was dropped inside Private Service Connect service producer."
+            "Packet was dropped inside Private Service Connect service producer.",
+            "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found."
           ],
           "type": "string"
         },
@@ -1432,6 +1438,33 @@
         },
         "internalIp": {
           "description": "Internal IP address of a GKE cluster master.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleServiceInfo": {
+      "description": "For display only. Details of a Google Service sending packets to a VPC network. Although the source IP might be a publicly routable address, some Google Services use special routes within Google production infrastructure to reach Compute Engine Instances. https://cloud.google.com/vpc/docs/routes#special_return_paths",
+      "id": "GoogleServiceInfo",
+      "properties": {
+        "googleServiceType": {
+          "description": "Recognized type of a Google Service.",
+          "enum": [
+            "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
+            "IAP",
+            "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
+            "CLOUD_DNS"
+          ],
+          "enumDescriptions": [
+            "Unspecified Google Service. Includes most of Google APIs and services.",
+            "Identity aware proxy. https://cloud.google.com/iap/docs/using-tcp-forwarding",
+            "One of two services sharing IP ranges: * Load Balancer proxy * Centralized Health Check prober https://cloud.google.com/load-balancing/docs/firewall-rules",
+            "Connectivity from Cloud DNS to forwarding targets or alternate name servers that use private routing. https://cloud.google.com/dns/docs/zones/forwarding-zones#firewall-rules https://cloud.google.com/dns/docs/policies#firewall-rules"
+          ],
+          "type": "string"
+        },
+        "sourceIp": {
+          "description": "Source IP address.",
           "type": "string"
         }
       },
@@ -2168,6 +2201,10 @@
           "$ref": "GKEMasterInfo",
           "description": "Display information of a Google Kubernetes Engine cluster master."
         },
+        "googleService": {
+          "$ref": "GoogleServiceInfo",
+          "description": "Display information of a Google service"
+        },
         "instance": {
           "$ref": "InstanceInfo",
           "description": "Display information of a Compute Engine instance."
@@ -2194,6 +2231,7 @@
             "STATE_UNSPECIFIED",
             "START_FROM_INSTANCE",
             "START_FROM_INTERNET",
+            "START_FROM_GOOGLE_SERVICE",
             "START_FROM_PRIVATE_NETWORK",
             "START_FROM_GKE_MASTER",
             "START_FROM_CLOUD_SQL_INSTANCE",
@@ -2223,6 +2261,7 @@
             "Unspecified state.",
             "Initial state: packet originating from a Compute Engine instance. An InstanceInfo is populated with starting instance information.",
             "Initial state: packet originating from the internet. The endpoint information is populated.",
+            "Initial state: packet originating from a Google service. Some Google services, such as health check probers or Identity Aware Proxy use special routes, outside VPC routing configuration to reach Compute Engine Instances.",
             "Initial state: packet originating from a VPC or on-premises network with internal source IP. If the source is a VPC network visible to the user, a NetworkInfo is populated with details of the network.",
             "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo is populated with starting instance information.",
