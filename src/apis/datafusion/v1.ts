@@ -345,6 +345,10 @@ export namespace datafusion_v1 {
      */
     privateInstance?: boolean | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. Deprecated. Use tenant_project_id instead to extract the tenant project ID.
      */
     serviceAccount?: string | null;
@@ -451,7 +455,7 @@ export namespace datafusion_v1 {
     operations?: Schema$Operation[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -1040,6 +1044,7 @@ export namespace datafusion_v1 {
      *       //   "options": {},
      *       //   "p4ServiceAccount": "my_p4ServiceAccount",
      *       //   "privateInstance": false,
+     *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceEndpoint": "my_serviceEndpoint",
      *       //   "state": "my_state",
@@ -1340,6 +1345,7 @@ export namespace datafusion_v1 {
      *   //   "options": {},
      *   //   "p4ServiceAccount": "my_p4ServiceAccount",
      *   //   "privateInstance": false,
+     *   //   "satisfiesPzs": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "serviceEndpoint": "my_serviceEndpoint",
      *   //   "state": "my_state",
@@ -1776,6 +1782,7 @@ export namespace datafusion_v1 {
      *       //   "options": {},
      *       //   "p4ServiceAccount": "my_p4ServiceAccount",
      *       //   "privateInstance": false,
+     *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceEndpoint": "my_serviceEndpoint",
      *       //   "state": "my_state",
