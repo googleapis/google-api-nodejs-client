@@ -310,7 +310,7 @@ export namespace androidmanagement_v1 {
     permissionId?: string | null;
   }
   /**
-   * Policy for an individual app.
+   * Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled.
    */
   export interface Schema$ApplicationPolicy {
     /**
@@ -953,6 +953,15 @@ export namespace androidmanagement_v1 {
      * The resource name of the user that owns this device in the form enterprises/{enterpriseId\}/users/{userId\}.
      */
     userName?: string | null;
+  }
+  /**
+   * Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.
+   */
+  export interface Schema$DeviceConnectivityManagement {
+    /**
+     * Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.
+     */
+    usbDataAccess?: string | null;
   }
   /**
    * Information about security related device settings on device.
@@ -2055,6 +2064,10 @@ export namespace androidmanagement_v1 {
      */
     defaultPermissionPolicy?: string | null;
     /**
+     * Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.
+     */
+    deviceConnectivityManagement?: Schema$DeviceConnectivityManagement;
+    /**
      * The device owner information to be shown on the lock screen.
      */
     deviceOwnerLockScreenInfo?: Schema$UserFacingMessage;
@@ -2299,7 +2312,7 @@ export namespace androidmanagement_v1 {
      */
     vpnConfigDisabled?: boolean | null;
     /**
-     * Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
+     * Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
      */
     wifiConfigDisabled?: boolean | null;
     /**
@@ -2308,7 +2321,7 @@ export namespace androidmanagement_v1 {
     wifiConfigsLockdownEnabled?: boolean | null;
   }
   /**
-   * A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName.
+   * A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName. In the case of multiple matching or multiple triggered enforcement rules, a merge will occur with the most severe action being taken. However, all triggered rules are still kept track of: this includes initial trigger time and all associated non-compliance details. In the situation where the most severe enforcement rule is satisfied, the next most appropriate action is applied.
    */
   export interface Schema$PolicyEnforcementRule {
     /**
@@ -6087,6 +6100,7 @@ export namespace androidmanagement_v1 {
      *   //   "dataRoamingDisabled": false,
      *   //   "debuggingFeaturesAllowed": false,
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
+     *   //   "deviceConnectivityManagement": {},
      *   //   "deviceOwnerLockScreenInfo": {},
      *   //   "encryptionPolicy": "my_encryptionPolicy",
      *   //   "ensureVerifyAppsEnabled": false,
@@ -6443,6 +6457,7 @@ export namespace androidmanagement_v1 {
      *       //   "dataRoamingDisabled": false,
      *       //   "debuggingFeaturesAllowed": false,
      *       //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
+     *       //   "deviceConnectivityManagement": {},
      *       //   "deviceOwnerLockScreenInfo": {},
      *       //   "encryptionPolicy": "my_encryptionPolicy",
      *       //   "ensureVerifyAppsEnabled": false,
@@ -6538,6 +6553,7 @@ export namespace androidmanagement_v1 {
      *   //   "dataRoamingDisabled": false,
      *   //   "debuggingFeaturesAllowed": false,
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
+     *   //   "deviceConnectivityManagement": {},
      *   //   "deviceOwnerLockScreenInfo": {},
      *   //   "encryptionPolicy": "my_encryptionPolicy",
      *   //   "ensureVerifyAppsEnabled": false,
