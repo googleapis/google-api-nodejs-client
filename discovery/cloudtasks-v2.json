@@ -685,7 +685,7 @@
       }
     }
   },
-  "revision": "20230201",
+  "revision": "20230526",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpRequest": {
@@ -997,7 +997,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
