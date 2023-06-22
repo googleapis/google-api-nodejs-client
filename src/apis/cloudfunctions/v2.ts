@@ -331,6 +331,10 @@ export namespace cloudfunctions_v2 {
      * Output only. The last update timestamp of a Cloud Function.
      */
     updateTime?: string | null;
+    /**
+     * Output only. The deployed url for the function.
+     */
+    url?: string | null;
   }
   /**
    * Request of `GenerateDownloadUrl` method.
@@ -368,6 +372,15 @@ export namespace cloudfunctions_v2 {
     uploadUrl?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2alphaLocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2alphaOperationMetadata {
@@ -376,7 +389,7 @@ export namespace cloudfunctions_v2 {
      */
     apiVersion?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -455,6 +468,15 @@ export namespace cloudfunctions_v2 {
     type?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2betaLocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2betaOperationMetadata {
@@ -463,7 +485,7 @@ export namespace cloudfunctions_v2 {
      */
     apiVersion?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -542,6 +564,15 @@ export namespace cloudfunctions_v2 {
     type?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2LocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2OperationMetadata {
@@ -550,7 +581,7 @@ export namespace cloudfunctions_v2 {
      */
     apiVersion?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -996,6 +1027,10 @@ export namespace cloudfunctions_v2 {
    */
   export interface Schema$Source {
     /**
+     * If provided, get the source from GitHub repository. This option is valid only for GCF 1st Gen function. Example: https://github.com///blob//
+     */
+    gitUri?: string | null;
+    /**
      * If provided, get the source from this location in a Cloud Source Repository.
      */
     repoSource?: Schema$RepoSource;
@@ -1008,6 +1043,10 @@ export namespace cloudfunctions_v2 {
    * Provenance of the source. Ways to find the original source, or verify that some source was used for this build.
    */
   export interface Schema$SourceProvenance {
+    /**
+     * A copy of the build's `source.git_uri`, if exists, with any commits resolved.
+     */
+    gitUri?: string | null;
     /**
      * A copy of the build's `source.repo_source`, if exists, with any revisions resolved.
      */
@@ -1308,7 +1347,8 @@ export namespace cloudfunctions_v2 {
      *       //   "serviceConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessages": [],
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "url": "my_url"
      *       // }
      *     },
      *   });
@@ -1883,7 +1923,8 @@ export namespace cloudfunctions_v2 {
      *   //   "serviceConfig": {},
      *   //   "state": "my_state",
      *   //   "stateMessages": [],
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "url": "my_url"
      *   // }
      * }
      *
@@ -2303,7 +2344,8 @@ export namespace cloudfunctions_v2 {
      *       //   "serviceConfig": {},
      *       //   "state": "my_state",
      *       //   "stateMessages": [],
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "url": "my_url"
      *       // }
      *     },
      *   });
