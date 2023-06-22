@@ -843,7 +843,7 @@
       }
     }
   },
-  "revision": "20230419",
+  "revision": "20230510",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1376,7 +1376,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
