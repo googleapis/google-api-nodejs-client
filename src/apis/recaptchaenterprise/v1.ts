@@ -197,6 +197,23 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse {}
   /**
+   * Contains fields that are required to perform Apple-specific integrity checks.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AppleDeveloperId {
+    /**
+     * Required. The Apple developer key ID (10-character string).
+     */
+    keyId?: string | null;
+    /**
+     * Required. Input only. A private key (downloaded as a text file with a .p8 file extension) generated for your Apple Developer account. Ensure that Apple DeviceCheck is enabled for the private key.
+     */
+    privateKey?: string | null;
+    /**
+     * Required. The Apple team ID (10-character string) owning the provisioning profile used to build your application.
+     */
+    teamId?: string | null;
+  }
+  /**
    * A reCAPTCHA Enterprise assessment resource.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Assessment {
@@ -493,6 +510,10 @@ export namespace recaptchaenterprise_v1 {
      * iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'
      */
     allowedBundleIds?: string[] | null;
+    /**
+     * Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app.
+     */
+    appleDeveloperId?: Schema$GoogleCloudRecaptchaenterpriseV1AppleDeveloperId;
   }
   /**
    * A key used to identify and configure applications (web and/or mobile) that use reCAPTCHA Enterprise.
@@ -715,7 +736,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest {
     /**
-     * Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
+     * Optional. The unique stable hashed user identifier used to search connections. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      */
     hashedAccountId?: string | null;
     /**
@@ -2894,7 +2915,7 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
-     * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Site Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.
+     * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.
      * @example
      * ```js
      * // Before running the sample:
