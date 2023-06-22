@@ -5733,7 +5733,7 @@ export namespace storage_v1 {
      *     entity: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -5865,7 +5865,7 @@ export namespace storage_v1 {
      *     entity: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -6017,7 +6017,7 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -6190,7 +6190,7 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -6336,7 +6336,7 @@ export namespace storage_v1 {
      *     entity: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -6510,7 +6510,7 @@ export namespace storage_v1 {
      *     entity: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -6664,7 +6664,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6687,7 +6687,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6706,7 +6706,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6730,7 +6730,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6753,7 +6753,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6781,7 +6781,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6834,7 +6834,7 @@ export namespace storage_v1 {
      *   const res = await storage.objects.compose({
      *     // Name of the bucket containing the source objects. The destination object is stored in this bucket.
      *     destinationBucket: 'placeholder-value',
-     *     // Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the new object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     destinationObject: 'placeholder-value',
      *     // Apply a predefined set of access controls to the destination object.
      *     destinationPredefinedAcl: 'placeholder-value',
@@ -7017,7 +7017,7 @@ export namespace storage_v1 {
      *
      *   // Do the magic
      *   const res = await storage.objects.copy({
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     destinationBucket: 'placeholder-value',
      *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      *     destinationKmsKeyName: 'placeholder-value',
@@ -7047,7 +7047,7 @@ export namespace storage_v1 {
      *     sourceBucket: 'placeholder-value',
      *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      *     sourceGeneration: 'placeholder-value',
-     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     sourceObject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -7273,7 +7273,7 @@ export namespace storage_v1 {
      *     ifMetagenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
      *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -7414,7 +7414,7 @@ export namespace storage_v1 {
      *     ifMetagenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
      *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // Set of properties to return. Defaults to noAcl.
      *     projection: 'placeholder-value',
@@ -7587,7 +7587,7 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -7740,7 +7740,7 @@ export namespace storage_v1 {
      *     ifMetagenerationNotMatch: 'placeholder-value',
      *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      *     kmsKeyName: 'placeholder-value',
-     *     // Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     name: 'placeholder-value',
      *     // Apply a predefined set of access controls to this object.
      *     predefinedAcl: 'placeholder-value',
@@ -8126,7 +8126,7 @@ export namespace storage_v1 {
      *     ifMetagenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
      *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // Apply a predefined set of access controls to this object.
      *     predefinedAcl: 'placeholder-value',
@@ -8338,7 +8338,7 @@ export namespace storage_v1 {
      *     destinationBucket: 'placeholder-value',
      *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      *     destinationKmsKeyName: 'placeholder-value',
-     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     destinationObject: 'placeholder-value',
      *     // Apply a predefined set of access controls to the destination object.
      *     destinationPredefinedAcl: 'placeholder-value',
@@ -8368,7 +8368,7 @@ export namespace storage_v1 {
      *     sourceBucket: 'placeholder-value',
      *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      *     sourceGeneration: 'placeholder-value',
-     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     sourceObject: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -8560,7 +8560,7 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // The project to be billed for this request. Required for Requester Pays buckets.
      *     userProject: 'placeholder-value',
@@ -8717,7 +8717,7 @@ export namespace storage_v1 {
      *     bucket: 'placeholder-value',
      *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
      *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // Permissions to test.
      *     permissions: 'placeholder-value',
@@ -8872,7 +8872,7 @@ export namespace storage_v1 {
      *     ifMetagenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
      *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     *     // Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      *     object: 'placeholder-value',
      *     // Apply a predefined set of access controls to this object.
      *     predefinedAcl: 'placeholder-value',
@@ -9236,7 +9236,7 @@ export namespace storage_v1 {
      */
     destinationBucket?: string;
     /**
-     * Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the new object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     destinationObject?: string;
     /**
@@ -9267,7 +9267,7 @@ export namespace storage_v1 {
   }
   export interface Params$Resource$Objects$Copy extends StandardParameters {
     /**
-     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     destinationBucket?: string;
     /**
@@ -9327,7 +9327,7 @@ export namespace storage_v1 {
      */
     sourceGeneration?: string;
     /**
-     * Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     sourceObject?: string;
     /**
@@ -9366,7 +9366,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9400,7 +9400,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9423,7 +9423,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9461,7 +9461,7 @@ export namespace storage_v1 {
      */
     kmsKeyName?: string;
     /**
-     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     name?: string;
     /**
@@ -9573,7 +9573,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9604,7 +9604,7 @@ export namespace storage_v1 {
      */
     destinationKmsKeyName?: string;
     /**
-     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     destinationObject?: string;
     /**
@@ -9664,7 +9664,7 @@ export namespace storage_v1 {
      */
     sourceGeneration?: string;
     /**
-     * Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     sourceObject?: string;
     /**
@@ -9688,7 +9688,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9712,7 +9712,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9750,7 +9750,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](http://cloud/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
