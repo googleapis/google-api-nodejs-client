@@ -829,6 +829,37 @@
         }
       }
     },
+    "insightTypes": {
+      "methods": {
+        "list": {
+          "description": "Lists available InsightTypes. No IAM permissions are required.",
+          "flatPath": "v1beta1/insightTypes",
+          "httpMethod": "GET",
+          "id": "recommender.insightTypes.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The number of InsightTypes to return per page. The service may return fewer than this value.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/insightTypes",
+          "response": {
+            "$ref": "GoogleCloudRecommenderV1beta1ListInsightTypesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "organizations": {
       "resources": {
         "locations": {
@@ -1684,9 +1715,40 @@
           }
         }
       }
+    },
+    "recommenders": {
+      "methods": {
+        "list": {
+          "description": "Lists all available Recommenders. No IAM permissions are required.",
+          "flatPath": "v1beta1/recommenders",
+          "httpMethod": "GET",
+          "id": "recommender.recommenders.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The number of RecommenderTypes to return per page. The service may return fewer than this value.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/recommenders",
+          "response": {
+            "$ref": "GoogleCloudRecommenderV1beta1ListRecommendersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
     }
   },
-  "revision": "20230122",
+  "revision": "20230612",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1890,6 +1952,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecommenderV1beta1InsightType": {
+      "description": "The type of insight. See google3/googledata/devsite/site-cloud/en/recommender/docs/insights/insight-types.md for more info.",
+      "id": "GoogleCloudRecommenderV1beta1InsightType",
+      "properties": {
+        "name": {
+          "description": "The insight_type’s name in format insightTypes/{insight_type} eg: insightTypes/google.iam.policy.Insight",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecommenderV1beta1InsightTypeConfig": {
       "description": "Configuration for an InsightType.",
       "id": "GoogleCloudRecommenderV1beta1InsightTypeConfig",
@@ -1945,6 +2018,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecommenderV1beta1ListInsightTypesResponse": {
+      "description": "Response for the `ListInsightTypes` method. Next ID: 3",
+      "id": "GoogleCloudRecommenderV1beta1ListInsightTypesResponse",
+      "properties": {
+        "insightTypes": {
+          "description": "The set of recommenders available",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1beta1InsightType"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecommenderV1beta1ListInsightsResponse": {
       "description": "Response to the `ListInsights` method.",
       "id": "GoogleCloudRecommenderV1beta1ListInsightsResponse",
@@ -1975,6 +2066,24 @@
           "description": "The set of recommendations for the `parent` resource.",
           "items": {
             "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1ListRecommendersResponse": {
+      "description": "Response for the `ListRecommender` method. Next ID: 3",
+      "id": "GoogleCloudRecommenderV1beta1ListRecommendersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "recommenders": {
+          "description": "The set of recommenders available",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1beta1RecommenderType"
           },
           "type": "array"
         }
@@ -2325,6 +2434,17 @@
           },
           "description": "Parameters for this RecommenderGenerationConfig. These configs can be used by or are applied to all subtypes.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1RecommenderType": {
+      "description": "The type of a recommender. See google3/googledata/devsite/site-cloud/en/recommender/docs/recommenders.md for more info.",
+      "id": "GoogleCloudRecommenderV1beta1RecommenderType",
+      "properties": {
+        "name": {
+          "description": "The recommender's name in format RecommenderTypes/{recommender_type} eg: recommenderTypes/google.iam.policy.Recommender",
+          "type": "string"
         }
       },
       "type": "object"
