@@ -207,34 +207,6 @@
             },
             "instances": {
               "methods": {
-                "create": {
-                  "description": "Create an Instance.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances",
-                  "httpMethod": "POST",
-                  "id": "baremetalsolution.projects.locations.instances.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent project and location.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+parent}/instances",
-                  "request": {
-                    "$ref": "Instance"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "detachLun": {
                   "description": "Detach LUN from Instance.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:detachLun",
@@ -1605,7 +1577,7 @@
       }
     }
   },
-  "revision": "20230426",
+  "revision": "20230612",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1969,6 +1941,13 @@
         "privateNetwork": {
           "$ref": "NetworkAddress",
           "description": "Private network address, if any. Filled if InstanceConfig.multivlan_config is false."
+        },
+        "sshKeyNames": {
+          "description": "List of names of ssh keys used to provision the instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "userNote": {
           "description": "User note field, it can be used by customers to add additional information for the BMS Ops team .",
@@ -3117,6 +3096,12 @@
       "properties": {},
       "type": "object"
     },
+    "ResetInstanceResponse": {
+      "description": "Response message from resetting a server.",
+      "id": "ResetInstanceResponse",
+      "properties": {},
+      "type": "object"
+    },
     "ResizeVolumeRequest": {
       "description": "Request for emergency resize Volume.",
       "id": "ResizeVolumeRequest",
@@ -3210,6 +3195,12 @@
       "properties": {},
       "type": "object"
     },
+    "StartInstanceResponse": {
+      "description": "Response message from starting a server.",
+      "id": "StartInstanceResponse",
+      "properties": {},
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3240,6 +3231,12 @@
     "StopInstanceRequest": {
       "description": "Message requesting to stop a server.",
       "id": "StopInstanceRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "StopInstanceResponse": {
+      "description": "Response message from stopping a server.",
+      "id": "StopInstanceResponse",
       "properties": {},
       "type": "object"
     },

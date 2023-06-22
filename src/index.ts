@@ -95,6 +95,7 @@ export {businessprofileperformance_v1} from './apis/businessprofileperformance/v
 export {calendar_v3} from './apis/calendar/v3';
 export {certificatemanager_v1} from './apis/certificatemanager/v1';
 export {chat_v1} from './apis/chat/v1';
+export {checks_v1alpha} from './apis/checks/v1alpha';
 export {chromemanagement_v1} from './apis/chromemanagement/v1';
 export {chromepolicy_v1} from './apis/chromepolicy/v1';
 export {chromeuxreport_v1} from './apis/chromeuxreport/v1';

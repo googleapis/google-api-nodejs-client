@@ -147,6 +147,7 @@ import {
   certificatemanager,
 } from './certificatemanager';
 import {VERSIONS as chatVersions, chat} from './chat';
+import {VERSIONS as checksVersions, checks} from './checks';
 import {
   VERSIONS as chromemanagementVersions,
   chromemanagement,
@@ -703,6 +704,7 @@ export const APIS: APIList = {
   calendar: calendarVersions,
   certificatemanager: certificatemanagerVersions,
   chat: chatVersions,
+  checks: checksVersions,
   chromemanagement: chromemanagementVersions,
   chromepolicy: chromepolicyVersions,
   chromeuxreport: chromeuxreportVersions,
@@ -976,6 +978,7 @@ export class GeneratedAPIs {
   calendar = calendar;
   certificatemanager = certificatemanager;
   chat = chat;
+  checks = checks;
   chromemanagement = chromemanagement;
   chromepolicy = chromepolicy;
   chromeuxreport = chromeuxreport;
