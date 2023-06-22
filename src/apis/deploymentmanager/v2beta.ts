@@ -1156,7 +1156,7 @@ export namespace deploymentmanager_v2beta {
      *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -1317,7 +1317,7 @@ export namespace deploymentmanager_v2beta {
      *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -1459,7 +1459,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.compositeTypes.insert({
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1642,7 +1642,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -1786,7 +1786,7 @@ export namespace deploymentmanager_v2beta {
      *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1961,7 +1961,7 @@ export namespace deploymentmanager_v2beta {
      *     compositeType: '[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2233,7 +2233,7 @@ export namespace deploymentmanager_v2beta {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2402,7 +2402,7 @@ export namespace deploymentmanager_v2beta {
      *     deployment: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -2563,7 +2563,7 @@ export namespace deploymentmanager_v2beta {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -2709,7 +2709,7 @@ export namespace deploymentmanager_v2beta {
      *     optionsRequestedPolicyVersion: 'placeholder-value',
      *     // Project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name or id of the resource for this request.
      *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *   });
@@ -2852,7 +2852,7 @@ export namespace deploymentmanager_v2beta {
      *     preview: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3038,7 +3038,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -3185,7 +3185,7 @@ export namespace deploymentmanager_v2beta {
      *     preview: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3361,7 +3361,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.deployments.setIamPolicy({
      *     // Project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name or id of the resource for this request.
      *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *
@@ -3512,7 +3512,7 @@ export namespace deploymentmanager_v2beta {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3676,7 +3676,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.deployments.testIamPermissions({
      *     // Project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name or id of the resource for this request.
      *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *
@@ -3835,7 +3835,7 @@ export namespace deploymentmanager_v2beta {
      *     preview: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4226,7 +4226,7 @@ export namespace deploymentmanager_v2beta {
      *     manifest: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -4380,7 +4380,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -4571,7 +4571,7 @@ export namespace deploymentmanager_v2beta {
      *     operation: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -4737,7 +4737,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -4920,7 +4920,7 @@ export namespace deploymentmanager_v2beta {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the resource for this request.
      *     resource: 'placeholder-value',
      *   });
@@ -5078,7 +5078,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -5265,7 +5265,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.typeProviders.delete({
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the type provider for this request.
      *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -5426,7 +5426,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.typeProviders.get({
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the type provider for this request.
      *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -5575,7 +5575,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.typeProviders.getType({
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the type provider type for this request.
      *     type: 'placeholder-value',
      *     // The name of the type provider for this request.
@@ -5719,7 +5719,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.typeProviders.insert({
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5905,7 +5905,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -6057,7 +6057,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the type provider for this request.
      *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -6203,7 +6203,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.typeProviders.patch({
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the type provider for this request.
      *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *
@@ -6381,7 +6381,7 @@ export namespace deploymentmanager_v2beta {
      *   const res = await deploymentmanager.typeProviders.update({
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the type provider for this request.
      *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *
@@ -6708,7 +6708,7 @@ export namespace deploymentmanager_v2beta {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *

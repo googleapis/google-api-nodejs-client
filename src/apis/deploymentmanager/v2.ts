@@ -742,7 +742,7 @@ export namespace deploymentmanager_v2 {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -911,7 +911,7 @@ export namespace deploymentmanager_v2 {
      *     deployment: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -1072,7 +1072,7 @@ export namespace deploymentmanager_v2 {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -1218,7 +1218,7 @@ export namespace deploymentmanager_v2 {
      *     optionsRequestedPolicyVersion: 'placeholder-value',
      *     // Project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name or id of the resource for this request.
      *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *   });
@@ -1361,7 +1361,7 @@ export namespace deploymentmanager_v2 {
      *     preview: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1547,7 +1547,7 @@ export namespace deploymentmanager_v2 {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -1694,7 +1694,7 @@ export namespace deploymentmanager_v2 {
      *     preview: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1870,7 +1870,7 @@ export namespace deploymentmanager_v2 {
      *   const res = await deploymentmanager.deployments.setIamPolicy({
      *     // Project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name or id of the resource for this request.
      *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *
@@ -2021,7 +2021,7 @@ export namespace deploymentmanager_v2 {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2185,7 +2185,7 @@ export namespace deploymentmanager_v2 {
      *   const res = await deploymentmanager.deployments.testIamPermissions({
      *     // Project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name or id of the resource for this request.
      *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *
@@ -2344,7 +2344,7 @@ export namespace deploymentmanager_v2 {
      *     preview: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2735,7 +2735,7 @@ export namespace deploymentmanager_v2 {
      *     manifest: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -2889,7 +2889,7 @@ export namespace deploymentmanager_v2 {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -3080,7 +3080,7 @@ export namespace deploymentmanager_v2 {
      *     operation: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -3246,7 +3246,7 @@ export namespace deploymentmanager_v2 {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -3429,7 +3429,7 @@ export namespace deploymentmanager_v2 {
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the resource for this request.
      *     resource: 'placeholder-value',
      *   });
@@ -3587,7 +3587,7 @@ export namespace deploymentmanager_v2 {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *
@@ -3784,7 +3784,7 @@ export namespace deploymentmanager_v2 {
      *     pageToken: 'placeholder-value',
      *     // The project ID for this request.
      *     project:
-     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *   });
      *   console.log(res.data);
      *

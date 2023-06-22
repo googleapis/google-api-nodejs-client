@@ -988,7 +988,7 @@
       }
     }
   },
-  "revision": "20230202",
+  "revision": "20230608",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1511,7 +1511,8 @@
                   "PARTIAL_SUCCESS",
                   "LARGE_DEPLOYMENT_WARNING",
                   "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
-                  "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB"
+                  "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                  "LIST_OVERHEAD_QUOTA_EXCEED"
                 ],
                 "enumDescriptions": [
                   "A link to a deprecated resource was created.",
@@ -1540,7 +1541,8 @@
                   "Success is reported, but some results may be missing due to errors",
                   "When deploying a deployment with a exceedingly large number of resources",
                   "The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.",
-                  "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2."
+                  "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.",
+                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter."
                 ],
                 "type": "string"
               },
@@ -1706,7 +1708,8 @@
                   "PARTIAL_SUCCESS",
                   "LARGE_DEPLOYMENT_WARNING",
                   "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
-                  "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB"
+                  "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                  "LIST_OVERHEAD_QUOTA_EXCEED"
                 ],
                 "enumDescriptions": [
                   "A link to a deprecated resource was created.",
@@ -1735,7 +1738,8 @@
                   "Success is reported, but some results may be missing due to errors",
                   "When deploying a deployment with a exceedingly large number of resources",
                   "The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.",
-                  "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2."
+                  "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.",
+                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter."
                 ],
                 "type": "string"
               },
@@ -1896,7 +1900,8 @@
                   "PARTIAL_SUCCESS",
                   "LARGE_DEPLOYMENT_WARNING",
                   "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
-                  "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB"
+                  "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                  "LIST_OVERHEAD_QUOTA_EXCEED"
                 ],
                 "enumDescriptions": [
                   "A link to a deprecated resource was created.",
@@ -1925,7 +1930,8 @@
                   "Success is reported, but some results may be missing due to errors",
                   "When deploying a deployment with a exceedingly large number of resources",
                   "The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.",
-                  "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2."
+                  "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.",
+                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter."
                 ],
                 "type": "string"
               },
