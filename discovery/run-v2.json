@@ -1087,7 +1087,7 @@
       }
     }
   },
-  "revision": "20230423",
+  "revision": "20230611",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1264,7 +1264,7 @@
       "type": "object"
     },
     "GoogleCloudRunV2Container": {
-      "description": "A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments may be supplied by the system to the container at runtime.",
+      "description": "A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments can be supplied by the system to the container at runtime.",
       "id": "GoogleCloudRunV2Container",
       "properties": {
         "args": {
@@ -1276,6 +1276,13 @@
         },
         "command": {
           "description": "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dependsOn": {
+          "description": "Container names which must start before this container.",
           "items": {
             "type": "string"
           },
@@ -1345,12 +1352,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2EmptyDirVolumeSource": {
+      "description": "Ephemeral storage which can be backed by real disks (HD, SSD), network storage or memory (i.e. tmpfs). For now only in memory (tmpfs) is supported. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
+      "id": "GoogleCloudRunV2EmptyDirVolumeSource",
+      "properties": {
+        "medium": {
+          "description": "The medium on which the data is stored. Acceptable values today is only MEMORY or none. When none, the default will currently be backed by memory but could change over time. +optional",
+          "enum": [
+            "MEDIUM_UNSPECIFIED",
+            "MEMORY"
+          ],
+          "enumDescriptions": [
+            "When not specified, falls back to the default implementation which is currently in memory (this may change over time).",
+            "Explicitly set the EmptyDir to be in memory. Uses tmpfs."
+          ],
+          "type": "string"
+        },
+        "sizeLimit": {
+          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. This field's values are of the 'Quantity' k8s type: https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2EnvVar": {
       "description": "EnvVar represents an environment variable present in a Container.",
       "id": "GoogleCloudRunV2EnvVar",
       "properties": {
         "name": {
-          "description": "Required. Name of the environment variable. Must be a C_IDENTIFIER, and mnay not exceed 32768 characters.",
+          "description": "Required. Name of the environment variable. Must be a C_IDENTIFIER, and must not exceed 32768 characters.",
           "type": "string"
         },
         "value": {
@@ -2374,6 +2404,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "customAudiences": {
+          "description": "Custom audiences that can be used in the audience field of ID token for authenticated requests.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "deleteTime": {
           "description": "Output only. The deletion time.",
           "format": "google-datetime",
@@ -2900,6 +2937,10 @@
         "cloudSqlInstance": {
           "$ref": "GoogleCloudRunV2CloudSqlInstance",
           "description": "For Cloud SQL volumes, contains the specific instances that should be mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run."
+        },
+        "emptyDir": {
+          "$ref": "GoogleCloudRunV2EmptyDirVolumeSource",
+          "description": "Ephemeral storage used as a shared volume."
         },
         "name": {
           "description": "Required. Volume's name.",

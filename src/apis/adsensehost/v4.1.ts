@@ -2206,7 +2206,7 @@ export namespace adsensehost_v4_1 {
      *     dimension: '[a-zA-Z_]+',
      *     // End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      *     endDate:
-     *       '&#92;d{4}-&#92;d{2}-&#92;d{2}|(today|startOfMonth|startOfYear)(([&#92;-&#92;+]&#92;d+[dwmy]){0,3}?)',
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)',
      *     // Filters to be run on the report.
      *     filter: '[a-zA-Z_]+(==|=@).+',
      *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
@@ -2216,10 +2216,10 @@ export namespace adsensehost_v4_1 {
      *     // Numeric columns to include in the report.
      *     metric: '[a-zA-Z_]+',
      *     // The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     *     sort: '(&#92;+|-)?[a-zA-Z_]+',
+     *     sort: '(+|-)?[a-zA-Z_]+',
      *     // Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      *     startDate:
-     *       '&#92;d{4}-&#92;d{2}-&#92;d{2}|(today|startOfMonth|startOfYear)(([&#92;-&#92;+]&#92;d+[dwmy]){0,3}?)',
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)',
      *     // Index of the first row of report data to return.
      *     startIndex: 'placeholder-value',
      *   });
@@ -3942,7 +3942,7 @@ export namespace adsensehost_v4_1 {
      *     dimension: '[a-zA-Z_]+',
      *     // End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      *     endDate:
-     *       '&#92;d{4}-&#92;d{2}-&#92;d{2}|(today|startOfMonth|startOfYear)(([&#92;-&#92;+]&#92;d+[dwmy]){0,3}?)',
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)',
      *     // Filters to be run on the report.
      *     filter: '[a-zA-Z_]+(==|=@).+',
      *     // Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
@@ -3952,10 +3952,10 @@ export namespace adsensehost_v4_1 {
      *     // Numeric columns to include in the report.
      *     metric: '[a-zA-Z_]+',
      *     // The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     *     sort: '(&#92;+|-)?[a-zA-Z_]+',
+     *     sort: '(+|-)?[a-zA-Z_]+',
      *     // Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      *     startDate:
-     *       '&#92;d{4}-&#92;d{2}-&#92;d{2}|(today|startOfMonth|startOfYear)(([&#92;-&#92;+]&#92;d+[dwmy]){0,3}?)',
+     *       'd{4}-d{2}-d{2}|(today|startOfMonth|startOfYear)(([-+]d+[dwmy]){0,3}?)',
      *     // Index of the first row of report data to return.
      *     startIndex: 'placeholder-value',
      *   });

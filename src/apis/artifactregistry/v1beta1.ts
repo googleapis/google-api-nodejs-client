@@ -287,7 +287,7 @@ export namespace artifactregistry_v1beta1 {
     versions?: Schema$Version[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -349,7 +349,7 @@ export namespace artifactregistry_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The name of the package, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1". If the package ID part contains slashes, the slashes are escaped.
+     * The name of the package, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`. If the package ID part contains slashes, the slashes are escaped.
      */
     name?: string | null;
     /**
@@ -3469,7 +3469,7 @@ export namespace artifactregistry_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the parent resource whose tags will be listed.
+     *       // The name of the parent package whose tags will be listed. Example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
      *     });
@@ -3762,7 +3762,7 @@ export namespace artifactregistry_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the parent resource whose tags will be listed.
+     * The name of the parent package whose tags will be listed. Example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1
      */
     parent?: string;
   }

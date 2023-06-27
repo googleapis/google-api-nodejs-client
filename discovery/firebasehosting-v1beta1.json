@@ -964,6 +964,7 @@
                       "type": "string"
                     },
                     "versionId": {
+                      "deprecated": true,
                       "description": "A unique id for the new version. This is was only specified for legacy version creations, and should be blank.",
                       "location": "query",
                       "type": "string"
@@ -1863,6 +1864,7 @@
                   "type": "string"
                 },
                 "versionId": {
+                  "deprecated": true,
                   "description": "A unique id for the new version. This is was only specified for legacy version creations, and should be blank.",
                   "location": "query",
                   "type": "string"
@@ -2107,7 +2109,7 @@
       }
     }
   },
-  "revision": "20230207",
+  "revision": "20230620",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2242,6 +2244,10 @@
         },
         "serviceId": {
           "description": "Required. User-defined ID of the Cloud Run service.",
+          "type": "string"
+        },
+        "tag": {
+          "description": "Optional. User-provided TrafficConfig tag to send traffic to. When omitted, traffic is sent to the service-wide URI",
           "type": "string"
         }
       },

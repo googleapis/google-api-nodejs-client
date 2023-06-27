@@ -1093,6 +1093,10 @@ export namespace androidenterprise_v1 {
      */
     features?: string[] | null;
     /**
+     * The localized full app store description, if available.
+     */
+    fullDescription?: string | null;
+    /**
      * A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.
      */
     iconUrl?: string | null;
@@ -8346,6 +8350,7 @@ export namespace androidenterprise_v1 {
      *   //   "detailsUrl": "my_detailsUrl",
      *   //   "distributionChannel": "my_distributionChannel",
      *   //   "features": [],
+     *   //   "fullDescription": "my_fullDescription",
      *   //   "iconUrl": "my_iconUrl",
      *   //   "lastUpdatedTimestampMillis": "my_lastUpdatedTimestampMillis",
      *   //   "minAndroidSdkVersion": 0,

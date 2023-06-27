@@ -2208,7 +2208,7 @@ export namespace osconfig_v1alpha {
     }
 
     /**
-     * Get the OS policy asssignment report for the specified Compute Engine VM instance.
+     * Get the OS policy assignment report for the specified Compute Engine VM instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -2348,7 +2348,7 @@ export namespace osconfig_v1alpha {
     }
 
     /**
-     * List OS policy asssignment reports for all Compute Engine VM instances in the specified zone.
+     * List OS policy assignment reports for all Compute Engine VM instances in the specified zone.
      * @example
      * ```js
      * // Before running the sample:

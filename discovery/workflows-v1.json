@@ -349,7 +349,7 @@
                       "type": "string"
                     },
                     "revisionId": {
-                      "description": "Optional. Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is \"000001-a4d\", where the first 6 characters define the zero-padded decimal revision number. They are followed by a hyphen and 3 hexadecimal characters. (go/wf_adr_clh_1)",
+                      "description": "Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is \"000001-a4d\", where the first six characters define the zero-padded decimal revision number. They are followed by a hyphen and three hexadecimal characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20230419",
+  "revision": "20230607",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -719,7 +719,7 @@
           "type": "string"
         },
         "revisionId": {
-          "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters.",
+          "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first six characters define the zero-padded revision ordinal number. They are followed by a hyphen and three hexadecimal random characters.",
           "readOnly": true,
           "type": "string"
         },

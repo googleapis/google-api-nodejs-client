@@ -102,7 +102,7 @@ export namespace workstations_v1beta {
   /**
    * Cloud Workstations API
    *
-   *
+   * Allows administrators to create managed developer environments in the cloud.
    *
    * @example
    * ```js
@@ -124,6 +124,19 @@ export namespace workstations_v1beta {
     }
   }
 
+  /**
+   * An accelerator card attached to the instance.
+   */
+  export interface Schema$Accelerator {
+    /**
+     * Number of accelerator cards exposed to the instance.
+     */
+    count?: number | null;
+    /**
+     * Type of accelerator resource to attach to the instance, for example, "nvidia-tesla-p100".
+     */
+    type?: string | null;
+  }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
@@ -188,7 +201,7 @@ export namespace workstations_v1beta {
      */
     env?: {[key: string]: string} | null;
     /**
-     * Docker image defining the container. This image must be accessible by the service account specified in the workstation configuration.
+     * A Docker container image that defines a custom environment. Cloud Workstations provides a number of [preconfigured images](https://cloud.google.com/workstations/docs/preconfigured-base-images), but you can create your own [custom container images](https://cloud.google.com/workstations/docs/custom-container-images). If using a private image, the `host.gceInstance.serviceAccount` field must be specified in the workstation configuration and must have permission to pull the specified image. Otherwise, the image must be publicly accessible.s
      */
     image?: string | null;
     /**
@@ -201,11 +214,11 @@ export namespace workstations_v1beta {
     workingDir?: string | null;
   }
   /**
-   * A customer-managed encryption key for the Compute Engine resources of this workstation configuration.
+   * A customer-managed encryption key (CMEK) for the Compute Engine resources of the associated workstation configuration. Specify the name of your Cloud KMS encryption key and the default service account. We recommend that you use a separate service account and follow [Cloud KMS best practices](https://cloud.google.com/kms/docs/separation-of-duties).
    */
   export interface Schema$CustomerEncryptionKey {
     /**
-     * Immutable. The name of the Google Cloud KMS encryption key. For example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`.
+     * Immutable. The name of the Google Cloud KMS encryption key. For example, `projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME`. The key must be in the same region as the workstation configuration.
      */
     kmsKey?: string | null;
     /**
@@ -248,7 +261,11 @@ export namespace workstations_v1beta {
    */
   export interface Schema$GceInstance {
     /**
-     * Size of the boot disk in GB. Defaults to 50.
+     * A list of the type and count of accelerator cards attached to the instance.
+     */
+    accelerators?: Schema$Accelerator[];
+    /**
+     * The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.
      */
     bootDiskSizeGb?: number | null;
     /**
@@ -256,11 +273,11 @@ export namespace workstations_v1beta {
      */
     confidentialInstanceConfig?: Schema$GceConfidentialInstanceConfig;
     /**
-     * Whether instances have no public IP address.
+     * When set to true, disables public IP addresses for VMs. If you disable public IP addresses, you must set up Private Google Access or Cloud NAT on your network. If you use Private Google Access and you use `private.googleapis.com` or `restricted.googleapis.com` for Container Registry and Artifact Registry, make sure that you set up DNS records for domains `*.gcr.io` and `*.pkg.dev`. Defaults to false (VMs have public IP addresses).
      */
     disablePublicIpAddresses?: boolean | null;
     /**
-     * The name of a Compute Engine machine type.
+     * The type of machine to use for VM instances—for example, `e2-standard-4`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types).
      */
     machineType?: string | null;
     /**
@@ -268,11 +285,11 @@ export namespace workstations_v1beta {
      */
     pooledInstances?: number | null;
     /**
-     * Number of instances to pool for faster workstation startup.
+     * The number of VMs that the system should keep idle so that new workstations can be started quickly for new users. Defaults to `0` in the API.
      */
     poolSize?: number | null;
     /**
-     * Email address of the service account used on VM instances used to support this configuration. If not set, VMs run with a Google-managed service account. This service account must have permission to pull the specified container image; otherwise, the image must be publicly accessible.
+     * The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logginglogEntries.create` permission on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have permissions to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible.
      */
     serviceAccount?: string | null;
     /**
@@ -280,28 +297,28 @@ export namespace workstations_v1beta {
      */
     shieldedInstanceConfig?: Schema$GceShieldedInstanceConfig;
     /**
-     * Network tags to add to the Compute Engine machines backing the Workstations.
+     * Network tags to add to the Compute Engine machines backing the workstations. This option applies [network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags) to VMs created with this configuration. These network tags enable the creation of [firewall rules](https://cloud.google.com/workstations/docs/configure-firewall-rules).
      */
     tags?: string[] | null;
   }
   /**
-   * A PersistentDirectory backed by a Compute Engine regional persistent disk.
+   * A PersistentDirectory backed by a Compute Engine regional persistent disk. The `persistentDirectories[]` field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory.
    */
   export interface Schema$GceRegionalPersistentDisk {
     /**
-     * Type of the disk to use. Defaults to pd-standard.
+     * The [type of the persistent disk](https://cloud.google.com/compute/docs/disks#disk-types) for the home directory. Defaults to `pd-standard`.
      */
     diskType?: string | null;
     /**
-     * Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to ext4.
+     * Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `ext4`.
      */
     fsType?: string | null;
     /**
-     * What should happen to the disk after the workstation is deleted. Defaults to DELETE.
+     * Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.
      */
     reclaimPolicy?: string | null;
     /**
-     * Size of the disk in GB. Must be empty if source_snapshot is set. Defaults to 200.
+     * The GB capacity of a persistent home directory for each workstation created with this configuration. Must be empty if `source_snapshot` is set. Valid values are `10`, `50`, `100`, `200`, `500`, or `1000`. Defaults to `200`. If less than `200` GB, the `diskType` must be `pd-balanced` or `pd-ssd`.
      */
     sizeGb?: number | null;
     /**
@@ -712,7 +729,7 @@ export namespace workstations_v1beta {
      */
     state?: string | null;
     /**
-     * Output only. A system-assigned unique identified for this resource.
+     * Output only. A system-assigned unique identifier for this resource.
      */
     uid?: string | null;
     /**
@@ -781,7 +798,7 @@ export namespace workstations_v1beta {
      */
     subnetwork?: string | null;
     /**
-     * Output only. A system-assigned unique identified for this resource.
+     * Output only. A system-assigned unique identifier for this resource.
      */
     uid?: string | null;
     /**
@@ -790,7 +807,7 @@ export namespace workstations_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A set of configuration options describing how a workstation will be run. Workstation configurations are intended to be shared across multiple workstations.
+   * A set of configuration options that describe how a workstation runs. Workstation configurations are intended to be shared across multiple workstations.
    */
   export interface Schema$WorkstationConfig {
     /**
@@ -802,7 +819,7 @@ export namespace workstations_v1beta {
      */
     conditions?: Schema$Status[];
     /**
-     * Container that will be run for each workstation using this configuration when that workstation is started.
+     * Container that runs upon startup for each workstation using this workstation configuration.
      */
     container?: Schema$Container;
     /**
@@ -822,11 +839,11 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
-     * Whether to enable linux auditd logging on the workstation. When enabled, a service account must also be specified that has logging.buckets.write permission on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging).
+     * Whether to enable Linux `auditd` logging on the workstation. When enabled, a service account must also be specified that has `logging.buckets.write` permission on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging).
      */
     enableAuditAgent?: boolean | null;
     /**
-     * Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key. If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk will be lost. If the encryption key is revoked, the workstation session will automatically be stopped within 7 hours. Immutable after the workstation configuration is created.
+     * Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key (CMEK). If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk might be lost. If the encryption key is revoked, the workstation session automatically stops within 7 hours. Immutable after the workstation configuration is created.
      */
     encryptionKey?: Schema$CustomerEncryptionKey;
     /**
@@ -838,7 +855,7 @@ export namespace workstations_v1beta {
      */
     host?: Schema$Host;
     /**
-     * How long to wait before automatically stopping an instance that hasn't received any user traffic. A value of 0 indicates that this instance should never time out due to idleness. Defaults to 20 minutes.
+     * Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `0s` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `7200s` (2 hours). The default is `1200s` (20 minutes).
      */
     idleTimeout?: string | null;
     /**
@@ -862,11 +879,11 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
-     * How long to wait before automatically stopping a workstation after it started. A value of 0 indicates that workstations using this configuration should never time out. Must be greater than 0 and less than 24 hours if encryption_key is set. Defaults to 12 hours.
+     * Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The `idleTimeout` and `runningTimeout` parameters are independent of each other. Note that the `runningTimeout` parameter shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `54000s` (15 hours). Defaults to `43200s` (12 hours). A value of `0` indicates that workstations using this configuration should never time out. If `encryption_key` is set, it must be greater than `0` and less than `86400s` (24 hours). Warning: A value of `0s` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
      */
     runningTimeout?: string | null;
     /**
-     * Output only. A system-assigned unique identified for this resource.
+     * Output only. A system-assigned unique identifier for this resource.
      */
     uid?: string | null;
     /**

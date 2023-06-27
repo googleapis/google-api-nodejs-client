@@ -1022,7 +1022,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     guaranteedImpressions?: string | null;
     /**
-     * Count of guaranteed looks. Required for deal, optional for product.
+     * Count of guaranteed looks. Required for deal, optional for product. For CPD deals, buyer changes to guaranteed_looks will be ignored.
      */
     guaranteedLooks?: string | null;
     /**
@@ -1030,7 +1030,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     impressionCap?: string | null;
     /**
-     * Daily minimum looks for CPD deal types.
+     * Daily minimum looks for CPD deal types. For CPD deals, buyer should negotiate on this field instead of guaranteed_looks.
      */
     minimumDailyLooks?: string | null;
     /**

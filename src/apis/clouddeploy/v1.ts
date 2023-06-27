@@ -479,6 +479,19 @@ export namespace clouddeploy_v1 {
     type?: string | null;
   }
   /**
+   * The artifacts produced by a deploy operation.
+   */
+  export interface Schema$DeployArtifact {
+    /**
+     * Output only. URI of a directory containing the artifacts. All paths are relative to this location.
+     */
+    artifactUri?: string | null;
+    /**
+     * Output only. File paths of the manifests applied during the deploy operation relative to the URI.
+     */
+    manifestPaths?: string[] | null;
+  }
+  /**
    * A deploy Job.
    */
   export interface Schema$DeployJob {}
@@ -486,6 +499,10 @@ export namespace clouddeploy_v1 {
    * DeployJobRun contains information specific to a deploy `JobRun`.
    */
   export interface Schema$DeployJobRun {
+    /**
+     * Output only. The artifact of a deploy job run, if available.
+     */
+    artifact?: Schema$DeployArtifact;
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is used to deploy. Format is projects/{project\}/locations/{location\}/builds/{build\}.
      */
@@ -524,6 +541,19 @@ export namespace clouddeploy_v1 {
      * Output only. The verify Job. Runs after a deploy if the deploy succeeds.
      */
     verifyJob?: Schema$Job;
+  }
+  /**
+   * DeployParameters contains deploy parameters information.
+   */
+  export interface Schema$DeployParameters {
+    /**
+     * Optional. Deploy parameters are applied to targets with match labels. If unspecified, deploy parameters are applied to all targets (including child targets of a multi-target).
+     */
+    matchTargetLabels?: {[key: string]: string} | null;
+    /**
+     * Required. Values are deploy parameters in key-value pairs.
+     */
+    values?: {[key: string]: string} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -882,7 +912,7 @@ export namespace clouddeploy_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -1012,6 +1042,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$PhaseArtifact {
     /**
+     * Output only. File path of the directory of rendered job manifests relative to the URI. This is only set if it is applicable.
+     */
+    jobManifestsPath?: string | null;
+    /**
      * Output only. File path of the rendered manifest relative to the URI.
      */
     manifestPath?: string | null;
@@ -1137,6 +1171,10 @@ export namespace clouddeploy_v1 {
      * Output only. Snapshot of the parent pipeline taken at release creation time.
      */
     deliveryPipelineSnapshot?: Schema$DeliveryPipeline;
+    /**
+     * Optional. The deploy parameters to use for all targets in this release.
+     */
+    deployParameters?: {[key: string]: string} | null;
     /**
      * Description of the `Release`. Max length is 255 characters.
      */
@@ -1417,6 +1455,10 @@ export namespace clouddeploy_v1 {
      */
     deployment?: string | null;
     /**
+     * Optional. Whether to disable Pod overprovisioning. If Pod overprovisioning is disabled then Cloud Deploy will limit the number of total Pods used for the deployment strategy to the number of Pods the Deployment has on the cluster.
+     */
+    disablePodOverprovisioning?: boolean | null;
+    /**
      * Required. Name of the Kubernetes Service.
      */
     service?: string | null;
@@ -1480,6 +1522,10 @@ export namespace clouddeploy_v1 {
    * Stage specifies a location to which to deploy.
    */
   export interface Schema$Stage {
+    /**
+     * Optional. The deploy parameters to use for the target in this stage.
+     */
+    deployParameters?: Schema$DeployParameters[];
     /**
      * Skaffold profiles to use when rendering the manifest for this stage's `Target`.
      */
@@ -1548,6 +1594,10 @@ export namespace clouddeploy_v1 {
      * Output only. Time at which the `Target` was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The deploy parameters to use for this target.
+     */
+    deployParameters?: {[key: string]: string} | null;
     /**
      * Optional. Description of the `Target`. Max length is 255 characters.
      */
@@ -3731,6 +3781,7 @@ export namespace clouddeploy_v1 {
      *         //   "condition": {},
      *         //   "createTime": "my_createTime",
      *         //   "deliveryPipelineSnapshot": {},
+     *         //   "deployParameters": {},
      *         //   "description": "my_description",
      *         //   "etag": "my_etag",
      *         //   "labels": {},
@@ -3893,6 +3944,7 @@ export namespace clouddeploy_v1 {
      *   //   "condition": {},
      *   //   "createTime": "my_createTime",
      *   //   "deliveryPipelineSnapshot": {},
+     *   //   "deployParameters": {},
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
@@ -6642,6 +6694,7 @@ export namespace clouddeploy_v1 {
      *       //   "annotations": {},
      *       //   "anthosCluster": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deployParameters": {},
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "executionConfigs": [],
@@ -6787,7 +6840,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.targets.delete({
-     *     // Optional. If set to true, then deleting an already deleted or non-existing DeliveryPipeline will succeed.
+     *     // Optional. If set to true, then deleting an already deleted or non-existing `Target` will succeed.
      *     allowMissing: 'placeholder-value',
      *     // Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      *     etag: 'placeholder-value',
@@ -6935,6 +6988,7 @@ export namespace clouddeploy_v1 {
      *   //   "annotations": {},
      *   //   "anthosCluster": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deployParameters": {},
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "executionConfigs": [],
@@ -7359,6 +7413,7 @@ export namespace clouddeploy_v1 {
      *       //   "annotations": {},
      *       //   "anthosCluster": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deployParameters": {},
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "executionConfigs": [],
@@ -7788,7 +7843,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$Delete
     extends StandardParameters {
     /**
-     * Optional. If set to true, then deleting an already deleted or non-existing DeliveryPipeline will succeed.
+     * Optional. If set to true, then deleting an already deleted or non-existing `Target` will succeed.
      */
     allowMissing?: boolean;
     /**

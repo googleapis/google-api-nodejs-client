@@ -125,7 +125,7 @@ export namespace notebooks_v1 {
   }
 
   /**
-   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.
+   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.
    */
   export interface Schema$AcceleratorConfig {
     /**
@@ -585,7 +585,7 @@ export namespace notebooks_v1 {
      */
     noProxyAccess?: boolean | null;
     /**
-     * If true, no public IP will be assigned to this instance.
+     * If true, no external IP will be assigned to this instance.
      */
     noPublicIp?: boolean | null;
     /**
@@ -1171,7 +1171,7 @@ export namespace notebooks_v1 {
     systemMetrics?: {[key: string]: string} | null;
   }
   /**
-   * A set of Shielded Instance options. Check [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
+   * A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
    */
   export interface Schema$RuntimeShieldedInstanceConfig {
     /**
@@ -1287,7 +1287,7 @@ export namespace notebooks_v1 {
     updateTime?: string | null;
   }
   /**
-   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus) to find a valid combination. TPUs are not supported.
+   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus) to find a valid combination. TPUs are not supported.
    */
   export interface Schema$SchedulerAcceleratorConfig {
     /**
@@ -1313,7 +1313,7 @@ export namespace notebooks_v1 {
    */
   export interface Schema$SetInstanceAcceleratorRequest {
     /**
-     * Required. Count of cores of this accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.
+     * Required. Count of cores of this accelerator. Note that not all combinations of `type` and `core_count` are valid. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.
      */
     coreCount?: string | null;
     /**
@@ -1340,7 +1340,7 @@ export namespace notebooks_v1 {
     machineType?: string | null;
   }
   /**
-   * A set of Shielded Instance options. Check [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
+   * A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
    */
   export interface Schema$ShieldedInstanceConfig {
     /**
@@ -3978,7 +3978,7 @@ export namespace notebooks_v1 {
     }
 
     /**
-     * Check if a notebook instance is healthy.
+     * Checks whether a notebook instance is healthy.
      * @example
      * ```js
      * // Before running the sample:
@@ -4116,7 +4116,7 @@ export namespace notebooks_v1 {
     }
 
     /**
-     * Check if a notebook instance is upgradable.
+     * Checks whether a notebook instance is upgradable.
      * @example
      * ```js
      * // Before running the sample:
@@ -8812,7 +8812,7 @@ export namespace notebooks_v1 {
     }
 
     /**
-     * Report and process a runtime event.
+     * Reports and processes a runtime event.
      * @example
      * ```js
      * // Before running the sample:

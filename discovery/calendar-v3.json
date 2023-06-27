@@ -1088,7 +1088,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value will be the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.",
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value is the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these four event types will be made available in later releases. Developer Preview.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1491,7 +1491,7 @@
               "type": "string"
             },
             "eventTypes": {
-              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value will be the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these 4 event types will be made available in later releases. Developer Preview.",
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value is the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these four event types will be made available in later releases. Developer Preview.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1735,7 +1735,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230616",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2626,7 +2626,7 @@
         },
         "workingLocationProperties": {
           "$ref": "EventWorkingLocationProperties",
-          "description": "Developer Preview: Working Location event data. Read-only."
+          "description": "Working Location event data. Read-only. Developer Preview."
         }
       },
       "type": "object"
@@ -2785,6 +2785,10 @@
             }
           },
           "type": "object"
+        },
+        "type": {
+          "description": "Indicates what kind of location this is. Any details are specified in a sub-field of the specified name (but which may be missing if empty). Any other fields are ignored.",
+          "type": "string"
         }
       },
       "type": "object"

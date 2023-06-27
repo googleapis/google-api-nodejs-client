@@ -102,7 +102,7 @@ export namespace migrationcenter_v1alpha1 {
   /**
    * Migration Center API
    *
-   *
+   * A unified platform that helps you accelerate your end-to-end cloud journey from your current on-premises or cloud environments to Google Cloud.
    *
    * @example
    * ```js
@@ -321,7 +321,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Asset performance data samples.
+     * Asset performance data samples. Samples that are older than 40 days are ignored.
      */
     performanceSamples?: Schema$PerformanceSample[];
     /**
@@ -351,7 +351,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AssetPerformanceData {
     /**
-     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days.
+     * Daily resource usage aggregations. Contains all of the data available for an asset, up to the last 420 days. Aggregations are sorted from oldest to most recent.
      */
     dailyResourceUsageAggregations?: Schema$DailyResourceUsageAggregation[];
   }
@@ -394,7 +394,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     allowMissing?: boolean | null;
     /**
-     * Required. The IDs of the assets to delete. A maximum of 10 assets can be deleted in a batch. format: projects/{project\}/locations/{location\}/asset/{name\}.
+     * Required. The IDs of the assets to delete. A maximum of 1000 assets can be deleted in a batch. Format: projects/{project\}/locations/{location\}/assets/{name\}.
      */
     names?: string[] | null;
   }
@@ -1752,7 +1752,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     network?: Schema$NetworkUsageSample;
     /**
-     * Time the sample was collected.
+     * Required. Time the sample was collected.
      */
     sampleTime?: string | null;
   }
@@ -2098,9 +2098,17 @@ export namespace migrationcenter_v1alpha1 {
      */
     pricingTrack?: string | null;
     /**
+     * A set of findings that applies to Stole-Tenant machines in the input.
+     */
+    soleTenantFinding?: Schema$ReportSummarySoleTenantFinding;
+    /**
      * Text describing the business priority specified for this Preference Set
      */
     topPriority?: string | null;
+    /**
+     * A set of findings that applies to VMWare machines in the input.
+     */
+    vmwareEngineFinding?: Schema$ReportSummaryVMWareEngineFinding;
   }
   /**
    * A Histogram Chart shows a distribution of values into buckets, showing a count of values which fall into a bucket.
@@ -2163,6 +2171,40 @@ export namespace migrationcenter_v1alpha1 {
     machineSeries?: Schema$MachineSeries;
   }
   /**
+   * A set of findings that applies to assets destined for Sole-Tenant nodes.
+   */
+  export interface Schema$ReportSummarySoleTenantFinding {
+    /**
+     * Count of assets which are allocated
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * Set of regions in which the assets are allocated
+     */
+    allocatedRegions?: string[] | null;
+    /**
+     * Set of per-nodetype allocation records
+     */
+    nodeAllocations?: Schema$ReportSummarySoleTenantNodeAllocation[];
+  }
+  /**
+   * Represents the assets allocated to a specific Sole-Tenant node type.
+   */
+  export interface Schema$ReportSummarySoleTenantNodeAllocation {
+    /**
+     * Count of assets allocated to these nodes
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * Sole Tenant node type, e.g. "m3-node-128-3904"
+     */
+    node?: Schema$SoleTenantNodeType;
+    /**
+     * Count of this node type to be provisioned
+     */
+    nodeCount?: string | null;
+  }
+  /**
    * Utilization Chart is a specific type of visualization which displays a metric classified into "Used" and "Free" buckets.
    */
   export interface Schema$ReportSummaryUtilizationChartData {
@@ -2174,6 +2216,49 @@ export namespace migrationcenter_v1alpha1 {
      * Aggregate value which falls into the "Used" bucket.
      */
     used?: string | null;
+  }
+  /**
+   * A set of findings that applies to assets destined for VMWare Engine.
+   */
+  export interface Schema$ReportSummaryVMWareEngineFinding {
+    /**
+     * Count of assets which are allocated
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * Set of regions in which the assets were allocated
+     */
+    allocatedRegions?: string[] | null;
+    /**
+     * Set of per-nodetype allocation records
+     */
+    nodeAllocations?: Schema$ReportSummaryVMWareNodeAllocation[];
+  }
+  /**
+   * A VMWare Engine Node
+   */
+  export interface Schema$ReportSummaryVMWareNode {
+    /**
+     * Code to identify VMware Engine node series, e.g. "ve1-standard-72". Based on the displayName of cloud.google.com/vmware-engine/docs/reference/rest/v1/projects.locations.nodeTypes
+     */
+    code?: string | null;
+  }
+  /**
+   * Represents assets allocated to a specific VMWare Node type.
+   */
+  export interface Schema$ReportSummaryVMWareNodeAllocation {
+    /**
+     * Count of assets allocated to these nodes
+     */
+    allocatedAssetCount?: string | null;
+    /**
+     * Count of this node type to be provisioned
+     */
+    nodeCount?: string | null;
+    /**
+     * VMWare node type, e.g. "ve1-standard-72"
+     */
+    vmwareNode?: Schema$ReportSummaryVMWareNode;
   }
   /**
    * A request to run an import job.
@@ -2304,6 +2389,36 @@ export namespace migrationcenter_v1alpha1 {
     preferenceSet?: string | null;
   }
   /**
+   * Preferences concerning Sole Tenancy nodes and VMs.
+   */
+  export interface Schema$SoleTenancyPreferences {
+    /**
+     * Commitment plan to consider when calculating costs for virtual machine insights and recommendations. If you are unsure which value to set, a 3 year commitment plan is often a good value to start with.
+     */
+    commitmentPlan?: string | null;
+    /**
+     * CPU overcommit ratio. Acceptable values are between 1.0 and 2.0 inclusive.
+     */
+    cpuOvercommitRatio?: number | null;
+    /**
+     * Sole Tenancy nodes maintenance policy.
+     */
+    hostMaintenancePolicy?: string | null;
+    /**
+     * A list of sole tenant node types. An empty list means that all possible node types will be considered.
+     */
+    nodeTypes?: Schema$SoleTenantNodeType[];
+  }
+  /**
+   * A Sole Tenant node type.
+   */
+  export interface Schema$SoleTenantNodeType {
+    /**
+     * Name of the Sole Tenant node. Consult https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes
+     */
+    nodeName?: string | null;
+  }
+  /**
    * Source represents an object from which asset information is streamed to Migration Center.
    */
   export interface Schema$Source {
@@ -2411,10 +2526,6 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Upload URI for the file.
      */
     signedUri?: string | null;
-    /**
-     * Output only. Upload URI for the file.
-     */
-    uri?: string | null;
     /**
      * Output only. Expiration time of the upload URI.
      */
@@ -2622,6 +2733,18 @@ export namespace migrationcenter_v1alpha1 {
      * Sizing optimization strategy specifies the preferred strategy used when extrapolating usage data to calculate insights and recommendations for a virtual machine. If you are unsure which value to set, a moderate sizing optimization strategy is often a good value to start with.
      */
     sizingOptimizationStrategy?: string | null;
+    /**
+     * Preferences concerning Sole Tenant nodes and virtual machines.
+     */
+    soleTenancyPreferences?: Schema$SoleTenancyPreferences;
+    /**
+     * Target product for assets using this preference set. Specify either target product or business goal, but not both.
+     */
+    targetProduct?: string | null;
+    /**
+     * Preferences concerning insights and recommendations for Google Cloud VMware Engine.
+     */
+    vmwareEnginePreferences?: Schema$VmwareEnginePreferences;
   }
   /**
    * VMware disk config details.
@@ -2648,6 +2771,27 @@ export namespace migrationcenter_v1alpha1 {
    * VMWare engine migration target.
    */
   export interface Schema$VmwareEngineMigrationTarget {}
+  /**
+   * The user preferences relating to Google Cloud VMware Engine target platform.
+   */
+  export interface Schema$VmwareEnginePreferences {
+    /**
+     * Commitment plan to consider when calculating costs for virtual machine insights and recommendations. If you are unsure which value to set, a 3 year commitment plan is often a good value to start with.
+     */
+    commitmentPlan?: string | null;
+    /**
+     * CPU overcommit ratio. Acceptable values are between 1.0 and 8.0, with 0.1 increment.
+     */
+    cpuOvercommitRatio?: number | null;
+    /**
+     * Memory overcommit ratio. Acceptable values are 1.0, 1.25, 1.5, 1.75 and 2.0.
+     */
+    memoryOvercommitRatio?: number | null;
+    /**
+     * The Deduplication and Compression ratio is based on the logical (Used Before) space required to store data before applying deduplication and compression, in relation to the physical (Used After) space required after applying deduplication and compression. Specifically, the ratio is the Used Before space divided by the Used After space. For example, if the Used Before space is 3 GB, but the physical Used After space is 1 GB, the deduplication and compression ratio is 3x. Acceptable values are between 1.0 and 4.0.
+     */
+    storageDeduplicationCompressionRatio?: number | null;
+  }
   /**
    * VMware specific details.
    */
@@ -3740,6 +3884,133 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
+     * Deletes an asset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.assets.delete({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/assets/my-asset',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Assets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Assets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Assets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets the details of an asset.
      * @example
      * ```js
@@ -4023,6 +4294,163 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
+     * Updates the parameters of an asset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.assets.patch({
+     *     // Output only. The full name of the asset.
+     *     name: 'projects/my-project/locations/my-location/assets/my-asset',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Field mask is used to specify the fields to be overwritten in the `Asset` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assignedGroups": [],
+     *       //   "attributes": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "insightList": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "performanceData": {},
+     *       //   "sources": [],
+     *       //   "updateTime": "my_updateTime",
+     *       //   "virtualMachineDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedGroups": [],
+     *   //   "attributes": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "insightList": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "performanceData": {},
+     *   //   "sources": [],
+     *   //   "updateTime": "my_updateTime",
+     *   //   "virtualMachineDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Assets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Assets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Asset>;
+    patch(
+      params: Params$Resource$Projects$Locations$Assets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Assets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Asset>,
+      callback: BodyResponseCallback<Schema$Asset>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Assets$Patch,
+      callback: BodyResponseCallback<Schema$Asset>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Asset>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assets$Patch
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Asset>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Asset> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Asset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Asset>(parameters);
+      }
+    }
+
+    /**
      * Reports a set of frames.
      * @example
      * ```js
@@ -4206,6 +4634,17 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$BatchUpdateAssetsRequest;
   }
+  export interface Params$Resource$Projects$Locations$Assets$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
   export interface Params$Resource$Projects$Locations$Assets$Get
     extends StandardParameters {
     /**
@@ -4243,6 +4682,26 @@ export namespace migrationcenter_v1alpha1 {
      * View of the assets. Defaults to BASIC.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assets$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The full name of the asset.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the `Asset` resource by the update. The values specified in the `update_mask` field are relative to the resource, not the full request. A field will be overwritten if it is in the mask. A single * value in the mask lets you to overwrite all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Asset;
   }
   export interface Params$Resource$Projects$Locations$Assets$Reportassetframes
     extends StandardParameters {

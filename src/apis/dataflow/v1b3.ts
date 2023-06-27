@@ -1257,6 +1257,10 @@ export namespace dataflow_v1b3 {
      */
     requestedState?: string | null;
     /**
+     * This field may ONLY be modified at runtime using the projects.jobs.update method to adjust job behavior. This field has no effect when specified at job creation.
+     */
+    runtimeUpdatableParams?: Schema$RuntimeUpdatableParams;
+    /**
      * Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.
      */
     satisfiesPzs?: boolean | null;
@@ -2035,6 +2039,10 @@ export namespace dataflow_v1b3 {
      */
     dropLateData?: boolean | null;
     /**
+     * If true, then this location represents dynamic topics.
+     */
+    dynamicDestinations?: boolean | null;
+    /**
      * If set, contains a pubsub label from which to extract record ids. If left empty, record deduplication will be strictly best effort.
      */
     idLabel?: string | null;
@@ -2238,6 +2246,19 @@ export namespace dataflow_v1b3 {
      * SDK Info for the template.
      */
     sdkInfo?: Schema$SDKInfo;
+  }
+  /**
+   * Additional job parameters that can only be updated during runtime using the projects.jobs.update method. These fields have no effect when specified during job creation.
+   */
+  export interface Schema$RuntimeUpdatableParams {
+    /**
+     * The maximum number of workers to cap autoscaling at. This field is currently only supported for Streaming Engine jobs.
+     */
+    maxNumWorkers?: number | null;
+    /**
+     * The minimum number of workers to scale down to. This field is currently only supported for Streaming Engine jobs.
+     */
+    minNumWorkers?: number | null;
   }
   /**
    * Defines an SDK harness container for executing Dataflow pipelines.
@@ -4105,7 +4126,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * List the jobs of a project across all regions.
+     * List the jobs of a project across all regions. **Note:** This method doesn't support filtering the list of jobs by name.
      * @example
      * ```js
      * // Before running the sample:
@@ -4140,7 +4161,7 @@ export namespace dataflow_v1b3 {
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
-     *     // Optional. The job name. Optional.
+     *     // Optional. The job name.
      *     name: 'placeholder-value',
      *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      *     pageSize: 'placeholder-value',
@@ -4313,6 +4334,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "runtimeUpdatableParams": {},
      *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
@@ -4345,6 +4367,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
@@ -4509,6 +4532,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
@@ -4752,7 +4776,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.
      * @example
      * ```js
      * // Before running the sample:
@@ -4787,7 +4811,7 @@ export namespace dataflow_v1b3 {
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
-     *     // Optional. The job name. Optional.
+     *     // Optional. The job name.
      *     name: 'placeholder-value',
      *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      *     pageSize: 'placeholder-value',
@@ -5116,6 +5140,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "runtimeUpdatableParams": {},
      *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
@@ -5148,6 +5173,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
@@ -5262,7 +5288,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string;
     /**
-     * Optional. The job name. Optional.
+     * Optional. The job name.
      */
     name?: string;
     /**
@@ -5355,7 +5381,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string;
     /**
-     * Optional. The job name. Optional.
+     * Optional. The job name.
      */
     name?: string;
     /**
@@ -6759,6 +6785,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "runtimeUpdatableParams": {},
      *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
@@ -6791,6 +6818,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
@@ -6954,6 +6982,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
@@ -7347,7 +7376,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, as you can only get the list of jobs that are running in `us-central1`.
+     * List the jobs of a project. To list the jobs of a project in a region, we recommend using `projects.locations.jobs.list` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list the all jobs across all regions, use `projects.jobs.aggregated`. Using `projects.jobs.list` is not recommended, because you can only get the list of jobs that are running in `us-central1`. `projects.locations.jobs.list` and `projects.jobs.list` support filtering the list of jobs by name. Filtering by name isn't supported by `projects.jobs.aggregated`.
      * @example
      * ```js
      * // Before running the sample:
@@ -7382,7 +7411,7 @@ export namespace dataflow_v1b3 {
      *     filter: 'placeholder-value',
      *     // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      *     location: 'placeholder-value',
-     *     // Optional. The job name. Optional.
+     *     // Optional. The job name.
      *     name: 'placeholder-value',
      *     // If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      *     pageSize: 'placeholder-value',
@@ -7713,6 +7742,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "runtimeUpdatableParams": {},
      *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
@@ -7745,6 +7775,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
@@ -7944,7 +7975,7 @@ export namespace dataflow_v1b3 {
      */
     location?: string;
     /**
-     * Optional. The job name. Optional.
+     * Optional. The job name.
      */
     name?: string;
     /**
@@ -9861,6 +9892,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
@@ -10740,6 +10772,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "runtimeUpdatableParams": {},
      *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",

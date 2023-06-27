@@ -372,6 +372,10 @@ export namespace tagmanager_v2 {
      */
     supportTemplates?: boolean | null;
     /**
+     * Whether this Container supports transformations.
+     */
+    supportTransformations?: boolean | null;
+    /**
      * Whether this Container supports triggers.
      */
     supportTriggers?: boolean | null;
@@ -464,6 +468,10 @@ export namespace tagmanager_v2 {
      * Auto generated link to the tag manager UI
      */
     tagManagerUrl?: string | null;
+    /**
+     * The transformations in the container that this version was taken from.
+     */
+    transformation?: Schema$Transformation[];
     /**
      * The triggers in the container that this version was taken from.
      */
@@ -688,6 +696,10 @@ export namespace tagmanager_v2 {
      * The tag being represented by the entity.
      */
     tag?: Schema$Tag;
+    /**
+     * The transformation being represented by the entity.
+     */
+    transformation?: Schema$Transformation;
     /**
      * The trigger being represented by the entity.
      */
@@ -1044,6 +1056,16 @@ export namespace tagmanager_v2 {
      */
     template?: Schema$CustomTemplate[];
   }
+  export interface Schema$ListTransformationsResponse {
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * All GTM Transformations of a GTM Container.
+     */
+    transformation?: Schema$Transformation[];
+  }
   /**
    * List triggers response.
    */
@@ -1218,6 +1240,15 @@ export namespace tagmanager_v2 {
      * Template as it appears in the latest container version since the last workspace synchronization operation. If no template is present, that means the template was deleted in the latest container version.
      */
     template?: Schema$CustomTemplate;
+  }
+  /**
+   * The result of reverting a transformation in a workspace.
+   */
+  export interface Schema$RevertTransformationResponse {
+    /**
+     * Transformation as it appears in the latest container version since the last workspace synchronization operation. If no transformation is present, that means the transformation was deleted in the latest container version.
+     */
+    transformation?: Schema$Transformation;
   }
   /**
    * The result of reverting a trigger in a workspace.
@@ -1420,6 +1451,59 @@ export namespace tagmanager_v2 {
      * The name of the teardown tag.
      */
     tagName?: string | null;
+  }
+  /**
+   * Represents a Google Tag Manager Transformation.
+   */
+  export interface Schema$Transformation {
+    /**
+     * GTM Account ID.
+     */
+    accountId?: string | null;
+    /**
+     * GTM Container ID.
+     */
+    containerId?: string | null;
+    /**
+     * The fingerprint of the GTM Transformation as computed at storage time. This value is recomputed whenever the transformation is modified.
+     */
+    fingerprint?: string | null;
+    /**
+     * Transformation display name. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     */
+    name?: string | null;
+    /**
+     * User notes on how to apply this transformation in the container. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     */
+    notes?: string | null;
+    /**
+     * The transformation's parameters. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     */
+    parameter?: Schema$Parameter[];
+    /**
+     * Parent folder id.
+     */
+    parentFolderId?: string | null;
+    /**
+     * GTM transformation's API relative path.
+     */
+    path?: string | null;
+    /**
+     * Auto generated link to the tag manager UI
+     */
+    tagManagerUrl?: string | null;
+    /**
+     * The Transformation ID uniquely identifies the GTM transformation.
+     */
+    transformationId?: string | null;
+    /**
+     * Transformation type. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     */
+    type?: string | null;
+    /**
+     * GTM Workspace ID.
+     */
+    workspaceId?: string | null;
   }
   /**
    * Represents a Google Tag Manager Trigger
@@ -5350,6 +5434,7 @@ export namespace tagmanager_v2 {
      *   //   "path": "my_path",
      *   //   "tag": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformation": [],
      *   //   "trigger": [],
      *   //   "variable": [],
      *   //   "zone": []
@@ -5500,6 +5585,7 @@ export namespace tagmanager_v2 {
      *   //   "path": "my_path",
      *   //   "tag": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformation": [],
      *   //   "trigger": [],
      *   //   "variable": [],
      *   //   "zone": []
@@ -5788,6 +5874,7 @@ export namespace tagmanager_v2 {
      *   //   "path": "my_path",
      *   //   "tag": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformation": [],
      *   //   "trigger": [],
      *   //   "variable": [],
      *   //   "zone": []
@@ -5937,6 +6024,7 @@ export namespace tagmanager_v2 {
      *   //   "path": "my_path",
      *   //   "tag": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformation": [],
      *   //   "trigger": [],
      *   //   "variable": [],
      *   //   "zone": []
@@ -6088,6 +6176,7 @@ export namespace tagmanager_v2 {
      *       //   "path": "my_path",
      *       //   "tag": [],
      *       //   "tagManagerUrl": "my_tagManagerUrl",
+     *       //   "transformation": [],
      *       //   "trigger": [],
      *       //   "variable": [],
      *       //   "zone": []
@@ -6114,6 +6203,7 @@ export namespace tagmanager_v2 {
      *   //   "path": "my_path",
      *   //   "tag": [],
      *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformation": [],
      *   //   "trigger": [],
      *   //   "variable": [],
      *   //   "zone": []
@@ -6616,6 +6706,7 @@ export namespace tagmanager_v2 {
     gtag_config: Resource$Accounts$Containers$Workspaces$Gtag_config;
     tags: Resource$Accounts$Containers$Workspaces$Tags;
     templates: Resource$Accounts$Containers$Workspaces$Templates;
+    transformations: Resource$Accounts$Containers$Workspaces$Transformations;
     triggers: Resource$Accounts$Containers$Workspaces$Triggers;
     variables: Resource$Accounts$Containers$Workspaces$Variables;
     zones: Resource$Accounts$Containers$Workspaces$Zones;
@@ -6639,6 +6730,10 @@ export namespace tagmanager_v2 {
       this.templates = new Resource$Accounts$Containers$Workspaces$Templates(
         this.context
       );
+      this.transformations =
+        new Resource$Accounts$Containers$Workspaces$Transformations(
+          this.context
+        );
       this.triggers = new Resource$Accounts$Containers$Workspaces$Triggers(
         this.context
       );
@@ -7676,6 +7771,7 @@ export namespace tagmanager_v2 {
      *       //   "client": {},
      *       //   "folder": {},
      *       //   "tag": {},
+     *       //   "transformation": {},
      *       //   "trigger": {},
      *       //   "variable": {}
      *       // }
@@ -13678,6 +13774,959 @@ export namespace tagmanager_v2 {
      * Request body metadata
      */
     requestBody?: Schema$CustomTemplate;
+  }
+
+  export class Resource$Accounts$Containers$Workspaces$Transformations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a GTM Transformation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.transformations.create({
+     *       // GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     *       parent:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accountId": "my_accountId",
+     *         //   "containerId": "my_containerId",
+     *         //   "fingerprint": "my_fingerprint",
+     *         //   "name": "my_name",
+     *         //   "notes": "my_notes",
+     *         //   "parameter": [],
+     *         //   "parentFolderId": "my_parentFolderId",
+     *         //   "path": "my_path",
+     *         //   "tagManagerUrl": "my_tagManagerUrl",
+     *         //   "transformationId": "my_transformationId",
+     *         //   "type": "my_type",
+     *         //   "workspaceId": "my_workspaceId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformationId": "my_transformationId",
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Transformations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Transformation>;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Transformation>,
+      callback: BodyResponseCallback<Schema$Transformation>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Create,
+      callback: BodyResponseCallback<Schema$Transformation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Transformation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Transformations$Create
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Transformation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Transformations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Transformations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/transformations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Transformation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Transformation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a GTM Transformation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.transformations.delete({
+     *       // GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     *       path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/transformations/my-transformation',
+     *     });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Gets a GTM Transformation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.transformations.get({
+     *       // GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     *       path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/transformations/my-transformation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformationId": "my_transformationId",
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Transformations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Transformation>;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Transformation>,
+      callback: BodyResponseCallback<Schema$Transformation>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Get,
+      callback: BodyResponseCallback<Schema$Transformation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Transformation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Transformations$Get
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Transformation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Transformations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Transformations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Transformation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Transformation>(parameters);
+      }
+    }
+
+    /**
+     * Lists all GTM Transformations of a GTM container workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
+     *       'https://www.googleapis.com/auth/tagmanager.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.transformations.list({
+     *       // Continuation token for fetching the next page of results.
+     *       pageToken: 'placeholder-value',
+     *       // GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     *       parent:
+     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transformation": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Transformations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTransformationsResponse>;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransformationsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransformationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$List,
+      callback: BodyResponseCallback<Schema$ListTransformationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTransformationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Transformations$List
+        | BodyResponseCallback<Schema$ListTransformationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransformationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransformationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTransformationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Transformations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Transformations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+parent}/transformations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTransformationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTransformationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Reverts changes to a GTM Transformation in a GTM Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.transformations.revert({
+     *       // When provided, this fingerprint must match the fingerprint of the transformation in storage.
+     *       fingerprint: 'placeholder-value',
+     *       // GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     *       path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/transformations/my-transformation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "transformation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    revert(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RevertTransformationResponse>;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RevertTransformationResponse>,
+      callback: BodyResponseCallback<Schema$RevertTransformationResponse>
+    ): void;
+    revert(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert,
+      callback: BodyResponseCallback<Schema$RevertTransformationResponse>
+    ): void;
+    revert(
+      callback: BodyResponseCallback<Schema$RevertTransformationResponse>
+    ): void;
+    revert(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert
+        | BodyResponseCallback<Schema$RevertTransformationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RevertTransformationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RevertTransformationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RevertTransformationResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RevertTransformationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RevertTransformationResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a GTM Transformation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const tagmanager = google.tagmanager('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.transformations.update({
+     *       // When provided, this fingerprint must match the fingerprint of the transformation in storage.
+     *       fingerprint: 'placeholder-value',
+     *       // GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     *       path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/transformations/my-transformation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accountId": "my_accountId",
+     *         //   "containerId": "my_containerId",
+     *         //   "fingerprint": "my_fingerprint",
+     *         //   "name": "my_name",
+     *         //   "notes": "my_notes",
+     *         //   "parameter": [],
+     *         //   "parentFolderId": "my_parentFolderId",
+     *         //   "path": "my_path",
+     *         //   "tagManagerUrl": "my_tagManagerUrl",
+     *         //   "transformationId": "my_transformationId",
+     *         //   "type": "my_type",
+     *         //   "workspaceId": "my_workspaceId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "containerId": "my_containerId",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "name": "my_name",
+     *   //   "notes": "my_notes",
+     *   //   "parameter": [],
+     *   //   "parentFolderId": "my_parentFolderId",
+     *   //   "path": "my_path",
+     *   //   "tagManagerUrl": "my_tagManagerUrl",
+     *   //   "transformationId": "my_transformationId",
+     *   //   "type": "my_type",
+     *   //   "workspaceId": "my_workspaceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Accounts$Containers$Workspaces$Transformations$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Transformation>;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Transformation>,
+      callback: BodyResponseCallback<Schema$Transformation>
+    ): void;
+    update(
+      params: Params$Resource$Accounts$Containers$Workspaces$Transformations$Update,
+      callback: BodyResponseCallback<Schema$Transformation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Transformation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Containers$Workspaces$Transformations$Update
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Transformation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Transformation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Containers$Workspaces$Transformations$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Transformations$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tagmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v2/{+path}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Transformation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Transformation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Create
+    extends StandardParameters {
+    /**
+     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Transformation;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Delete
+    extends StandardParameters {
+    /**
+     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Get
+    extends StandardParameters {
+    /**
+     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$List
+    extends StandardParameters {
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Revert
+    extends StandardParameters {
+    /**
+     * When provided, this fingerprint must match the fingerprint of the transformation in storage.
+     */
+    fingerprint?: string;
+    /**
+     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Transformations$Update
+    extends StandardParameters {
+    /**
+     * When provided, this fingerprint must match the fingerprint of the transformation in storage.
+     */
+    fingerprint?: string;
+    /**
+     * GTM Transformation's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/transformations/{transformation_id\}
+     */
+    path?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Transformation;
   }
 
   export class Resource$Accounts$Containers$Workspaces$Triggers {

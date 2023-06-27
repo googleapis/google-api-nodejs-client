@@ -151,6 +151,48 @@ export namespace batch_v1 {
     exitCodes?: number[] | null;
   }
   /**
+   * Container runnable representation on the agent side.
+   */
+  export interface Schema$AgentContainer {
+    /**
+     * Overrides the `CMD` specified in the container. If there is an ENTRYPOINT (either in the container image or with the entrypoint field below) then commands are appended as arguments to the ENTRYPOINT.
+     */
+    commands?: string[] | null;
+    /**
+     * Overrides the `ENTRYPOINT` specified in the container.
+     */
+    entrypoint?: string | null;
+    /**
+     * The URI to pull the container image from.
+     */
+    imageUri?: string | null;
+    /**
+     * Arbitrary additional options to include in the "docker run" command when running this container, e.g. "--network host".
+     */
+    options?: string | null;
+    /**
+     * Volumes to mount (bind mount) from the host machine files or directories into the container, formatted to match docker run's --volume option, e.g. /foo:/bar, or /foo:/bar:ro
+     */
+    volumes?: string[] | null;
+  }
+  /**
+   * AgentEnvironment is the Environment representation between Agent and CLH communication. The environment is used in both task level and agent level.
+   */
+  export interface Schema$AgentEnvironment {
+    /**
+     * An encrypted JSON dictionary where the key/value pairs correspond to environment variable names and their values.
+     */
+    encryptedVariables?: Schema$AgentKMSEnvMap;
+    /**
+     * A map of environment variable names to Secret Manager secret names. The VM will access the named secrets to set the value of each environment variable.
+     */
+    secretVariables?: {[key: string]: string} | null;
+    /**
+     * A map of environment variable names to values.
+     */
+    variables?: {[key: string]: string} | null;
+  }
+  /**
    * VM Agent Info.
    */
   export interface Schema$AgentInfo {
@@ -174,6 +216,19 @@ export namespace batch_v1 {
      * Task Info.
      */
     tasks?: Schema$AgentTaskInfo[];
+  }
+  /**
+   * AgentKMSEnvMap contains the encrypted key/value pair to be used in the environment on the Agent side.
+   */
+  export interface Schema$AgentKMSEnvMap {
+    /**
+     * The value of the cipherText response from the `encrypt` method.
+     */
+    cipherText?: string | null;
+    /**
+     * The name of the KMS key that will be used to decrypt the cipher text.
+     */
+    keyName?: string | null;
   }
   /**
    * VM Agent Metadata.
@@ -217,9 +272,26 @@ export namespace batch_v1 {
     zone?: string | null;
   }
   /**
+   * Script runnable representation on the agent side.
+   */
+  export interface Schema$AgentScript {
+    /**
+     * Script file path on the host VM. To specify an interpreter, please add a `#!`(also known as [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix))) as the first line of the file.(For example, to execute the script using bash, `#!/bin/bash` should be the first line of the file. To execute the script using`Python3`, `#!/usr/bin/env python3` should be the first line of the file.) Otherwise, the file will by default be excuted by `/bin/sh`.
+     */
+    path?: string | null;
+    /**
+     * Shell script text. To specify an interpreter, please add a `#!\n` at the beginning of the text.(For example, to execute the script using bash, `#!/bin/bash\n` should be added. To execute the script using`Python3`, `#!/usr/bin/env python3\n` should be added.) Otherwise, the script will by default be excuted by `/bin/sh`.
+     */
+    text?: string | null;
+  }
+  /**
    * TODO(b/182501497) The message needs to be redefined when the Agent API server updates data in storage per the backend design.
    */
   export interface Schema$AgentTask {
+    /**
+     * AgentTaskSpec is the taskSpec representation between Agent and CLH communication. This field will replace the TaskSpec field above in future to have a better separation between user-facaing API and internal API.
+     */
+    agentTaskSpec?: Schema$AgentTaskSpec;
     /**
      * The intended state of the task.
      */
@@ -229,7 +301,7 @@ export namespace batch_v1 {
      */
     reachedBarrier?: string | null;
     /**
-     * Task Spec.
+     * Task Spec. This field will be replaced by agent_task_spec below in future.
      */
     spec?: Schema$TaskSpec;
     /**
@@ -261,6 +333,56 @@ export namespace batch_v1 {
      * The status of the Task. If we need agent specific fields we should fork the public TaskStatus into an agent specific one. Or add them below.
      */
     taskStatus?: Schema$TaskStatus;
+  }
+  /**
+   * AgentTaskRunnable is the Runnable representation between Agent and CLH communication.
+   */
+  export interface Schema$AgentTaskRunnable {
+    /**
+     * By default, after a Runnable fails, no further Runnable are executed. This flag indicates that this Runnable must be run even if the Task has already failed. This is useful for Runnables that copy output files off of the VM or for debugging. The always_run flag does not override the Task's overall max_run_duration. If the max_run_duration has expired then no further Runnables will execute, not even always_run Runnables.
+     */
+    alwaysRun?: boolean | null;
+    /**
+     * This flag allows a Runnable to continue running in the background while the Task executes subsequent Runnables. This is useful to provide services to other Runnables (or to provide debugging support tools like SSH servers).
+     */
+    background?: boolean | null;
+    /**
+     * Container runnable.
+     */
+    container?: Schema$AgentContainer;
+    /**
+     * Environment variables for this Runnable (overrides variables set for the whole Task or TaskGroup).
+     */
+    environment?: Schema$AgentEnvironment;
+    /**
+     * Normally, a non-zero exit status causes the Task to fail. This flag allows execution of other Runnables to continue instead.
+     */
+    ignoreExitStatus?: boolean | null;
+    /**
+     * Script runnable.
+     */
+    script?: Schema$AgentScript;
+    /**
+     * Timeout for this Runnable.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * AgentTaskSpec is the user's TaskSpec representation between Agent and CLH communication.
+   */
+  export interface Schema$AgentTaskSpec {
+    /**
+     * Environment variables to set before running the Task.
+     */
+    environment?: Schema$AgentEnvironment;
+    /**
+     * Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit.
+     */
+    maxRunDuration?: string | null;
+    /**
+     * AgentTaskRunnable is runanbles that will be executed on the agent.
+     */
+    runnables?: Schema$AgentTaskRunnable[];
   }
   /**
    * VM timing information
@@ -398,7 +520,7 @@ export namespace batch_v1 {
      */
     diskInterface?: string | null;
     /**
-     * Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project\}/global/images/family/{image_family\} * Specify the image version: projects/{project\}/global/images/{image_version\} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * "batch-debian": use Batch Debian images. * "batch-centos": use Batch CentOS images. * "batch-cos": use Batch Container-Optimized images.
+     * Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project\}/global/images/family/{image_family\} * Specify the image version: projects/{project\}/global/images/{image_version\} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * "batch-debian": use Batch Debian images. * "batch-centos": use Batch CentOS images. * "batch-cos": use Batch Container-Optimized images. * "batch-hpc-centos": use Batch HPC CentOS images.
      */
     image?: string | null;
     /**
@@ -465,7 +587,7 @@ export namespace batch_v1 {
      */
     machineType?: string | null;
     /**
-     * The minimum CPU platform. See https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform. Not yet implemented.
+     * The minimum CPU platform. See https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      */
     minCpuPlatform?: string | null;
     /**
@@ -678,7 +800,7 @@ export namespace batch_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -1014,7 +1136,7 @@ export namespace batch_v1 {
     exitCode?: number | null;
   }
   /**
-   * A TaskGroup contains one or multiple Tasks that share the same Runnable but with different runtime parameters.
+   * A TaskGroup defines one or more Tasks that all share the same TaskSpec.
    */
   export interface Schema$TaskGroup {
     /**
@@ -1034,6 +1156,10 @@ export namespace batch_v1 {
      */
     requireHostsFile?: boolean | null;
     /**
+     * Scheduling policy for Tasks in the TaskGroup. The default value is AS_SOON_AS_POSSIBLE.
+     */
+    schedulingPolicy?: string | null;
+    /**
      * Number of Tasks in the TaskGroup. Default is 1.
      */
     taskCount?: string | null;
@@ -1042,7 +1168,7 @@ export namespace batch_v1 {
      */
     taskCountPerNode?: string | null;
     /**
-     * An array of environment variable mappings, which are passed to Tasks with matching indices. If task_environments is used then task_count should not be specified in the request (and will be ignored). Task count will be the length of task_environments. Tasks get a BATCH_TASK_INDEX and BATCH_TASK_COUNT environment variable, in addition to any environment variables set in task_environments, specifying the number of Tasks in the Task's parent TaskGroup, and the specific Task's index in the TaskGroup (0 through BATCH_TASK_COUNT - 1). task_environments supports up to 200 entries.
+     * An array of environment variable mappings, which are passed to Tasks with matching indices. If task_environments is used then task_count should not be specified in the request (and will be ignored). Task count will be the length of task_environments. Tasks get a BATCH_TASK_INDEX and BATCH_TASK_COUNT environment variable, in addition to any environment variables set in task_environments, specifying the number of Tasks in the Task's parent TaskGroup, and the specific Task's index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).
      */
     taskEnvironments?: Schema$Environment[];
     /**

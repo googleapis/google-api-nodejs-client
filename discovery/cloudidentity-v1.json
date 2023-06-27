@@ -1501,7 +1501,12 @@
               "path": "v1/{+parent}/memberships:searchDirectGroups",
               "response": {
                 "$ref": "SearchDirectGroupsResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.groups",
+                "https://www.googleapis.com/auth/cloud-identity.groups.readonly",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             },
             "searchTransitiveGroups": {
               "description": "Search transitive groups of a member. **Note:** This feature is only available to Google Workspace Enterprise Standard, Enterprise Plus, and Enterprise for Education; and Cloud Identity Premium accounts. If the account of the member is not one of these, a 403 (PERMISSION_DENIED) HTTP status code will be returned. A transitive group is any group that has a direct or indirect membership to the member. Actor must have view permissions all transitive groups.",
@@ -1985,7 +1990,7 @@
       }
     }
   },
-  "revision": "20230328",
+  "revision": "20230619",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2216,8 +2221,16 @@
       "description": "Resource representing the Android specific attributes of a Device.",
       "id": "GoogleAppsCloudidentityDevicesV1AndroidAttributes",
       "properties": {
+        "ctsProfileMatch": {
+          "description": "Whether the device passes Android CTS compliance.",
+          "type": "boolean"
+        },
         "enabledUnknownSources": {
           "description": "Whether applications from unknown sources can be installed on device.",
+          "type": "boolean"
+        },
+        "hasPotentiallyHarmfulApps": {
+          "description": "Whether any potentially harmful apps were detected on the device.",
           "type": "boolean"
         },
         "ownerProfileAccount": {
@@ -2242,6 +2255,14 @@
         },
         "supportsWorkProfile": {
           "description": "Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the \"Enforce Work Profile\" policy.",
+          "type": "boolean"
+        },
+        "verifiedBoot": {
+          "description": "Whether Android verified boot status is GREEN.",
+          "type": "boolean"
+        },
+        "verifyAppsEnabled": {
+          "description": "Whether Google Play Protect Verify Apps is enabled.",
           "type": "boolean"
         }
       },

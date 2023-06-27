@@ -648,11 +648,41 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ]
+        },
+        "validateAttributeExpression": {
+          "description": "Validates a given CEL expression conforms to IAP restrictions.",
+          "flatPath": "v1/{v1Id}:validateAttributeExpression",
+          "httpMethod": "POST",
+          "id": "iap.validateAttributeExpression",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "expression": {
+              "description": "Required. User input string expression. Should be of the form 'attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name}', '{attribute_name}'])'",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The resource name of the IAP protected resource.",
+              "location": "path",
+              "pattern": "^.*$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:validateAttributeExpression",
+          "response": {
+            "$ref": "ValidateIapAttributeExpressionResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
         }
       }
     }
   },
-  "revision": "20230407",
+  "revision": "20230612",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -1223,6 +1253,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ValidateIapAttributeExpressionResponse": {
+      "description": "API requires a return message, but currently all response strings will fit in the status and public message. In the future, this response can hold AST validation info.",
+      "id": "ValidateIapAttributeExpressionResponse",
+      "properties": {},
       "type": "object"
     }
   },

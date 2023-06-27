@@ -137,6 +137,10 @@ export namespace container_v1 {
      */
     acceleratorType?: string | null;
     /**
+     * The configuration for auto installation of GPU driver.
+     */
+    gpuDriverInstallationConfig?: Schema$GPUDriverInstallationConfig;
+    /**
      * Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
      */
     gpuPartitionSize?: string | null;
@@ -229,6 +233,39 @@ export namespace container_v1 {
      * Enable Autopilot
      */
     enabled?: boolean | null;
+    /**
+     * Workload policy configuration for Autopilot.
+     */
+    workloadPolicyConfig?: Schema$WorkloadPolicyConfig;
+  }
+  /**
+   * AutopilotCompatibilityIssue contains information about a specific compatibility issue with Autopilot mode.
+   */
+  export interface Schema$AutopilotCompatibilityIssue {
+    /**
+     * The constraint type of the issue.
+     */
+    constraintType?: string | null;
+    /**
+     * The description of the issue.
+     */
+    description?: string | null;
+    /**
+     * A URL to a public documnetation, which addresses resolving this issue.
+     */
+    documentationUrl?: string | null;
+    /**
+     * The incompatibility type of this issue.
+     */
+    incompatibilityType?: string | null;
+    /**
+     * The last time when this issue was observed.
+     */
+    lastObservation?: string | null;
+    /**
+     * The name of the resources which are subject to this issue.
+     */
+    subjects?: string[] | null;
   }
   /**
    * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
@@ -287,6 +324,19 @@ export namespace container_v1 {
      * [Output only] This field is set when upgrades are about to commence with the description of the upgrade.
      */
     description?: string | null;
+  }
+  /**
+   * Best effort provisioning.
+   */
+  export interface Schema$BestEffortProvisioning {
+    /**
+     * When this is enabled, cluster/node pool creations will ignore non-fatal errors like stockout to best provision as many nodes as possible right now and eventually bring up all target number of nodes
+     */
+    enabled?: boolean | null;
+    /**
+     * Minimum number of nodes to be provisioned to be considered as succeeded, and the rest of nodes will be provisioned gradually and eventually when stockout issue has been resolved.
+     */
+    minProvisionNodes?: number | null;
   }
   /**
    * Parameters for using BigQuery as the destination of resource usage export.
@@ -368,6 +418,19 @@ export namespace container_v1 {
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * CheckAutopilotCompatibilityResponse has a list of compatibility issues.
+   */
+  export interface Schema$CheckAutopilotCompatibilityResponse {
+    /**
+     * The list of issues for the given operation.
+     */
+    issues?: Schema$AutopilotCompatibilityIssue[];
+    /**
+     * The summary of the autopilot compatibility response.
+     */
+    summary?: string | null;
   }
   /**
    * CidrBlock contains an optional name and one CIDR block.
@@ -472,6 +535,10 @@ export namespace container_v1 {
      * An optional description of this cluster.
      */
     description?: string | null;
+    /**
+     * Beta APIs Config
+     */
+    enableK8sBetaApis?: Schema$K8sBetaAPIConfig;
     /**
      * Kubernetes alpha features are enabled on this cluster. This includes alpha API groups (e.g. v1alpha1) and features that may not be production ready in the kubernetes version of the master and nodes. The cluster has no SLA for uptime and master/node upgrades are disabled. Alpha enabled clusters are automatically deleted thirty days after creation.
      */
@@ -613,7 +680,7 @@ export namespace container_v1 {
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
-     * Release channel configuration.
+     * Release channel configuration. If left unspecified on cluster creation and a version is specified, the cluster is enrolled in the most mature release channel where the version is available (first checking STABLE, then REGULAR, and finally RAPID). Otherwise, if no release channel configuration and no version is specified, the cluster is enrolled in the REGULAR channel with its default version.
      */
     releaseChannel?: Schema$ReleaseChannel;
     /**
@@ -624,6 +691,10 @@ export namespace container_v1 {
      * Configuration for exporting resource usages. Resource usage export is disabled when this config is unspecified.
      */
     resourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
+     * Enable/Disable Security Posture API features for the cluster.
+     */
+    securityPostureConfig?: Schema$SecurityPostureConfig;
     /**
      * [Output only] Server-defined URL for the resource.
      */
@@ -707,6 +778,10 @@ export namespace container_v1 {
      */
     desiredAuthenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
     /**
+     * The desired workload policy configuration for the autopilot cluster.
+     */
+    desiredAutopilotWorkloadPolicyConfig?: Schema$WorkloadPolicyConfig;
+    /**
      * The desired configuration options for the Binary Authorization feature.
      */
     desiredBinaryAuthorization?: Schema$BinaryAuthorization;
@@ -735,9 +810,17 @@ export namespace container_v1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
+     * Enable/Disable FQDN Network Policy for the cluster.
+     */
+    desiredEnableFqdnNetworkPolicy?: boolean | null;
+    /**
      * Enable/Disable private endpoint for the cluster's master.
      */
     desiredEnablePrivateEndpoint?: boolean | null;
+    /**
+     * The desired fleet configuration for the cluster.
+     */
+    desiredFleet?: Schema$Fleet;
     /**
      * The desired config of Gateway API on this cluster.
      */
@@ -758,6 +841,10 @@ export namespace container_v1 {
      * The desired config of Intra-node visibility.
      */
     desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
+    /**
+     * Desired Beta APIs to be enabled for cluster.
+     */
+    desiredK8sBetaApis?: Schema$K8sBetaAPIConfig;
     /**
      * The desired L4 Internal Load Balancer Subsetting configuration.
      */
@@ -835,6 +922,10 @@ export namespace container_v1 {
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * Enable/Disable Security Posture API features for the cluster.
+     */
+    desiredSecurityPostureConfig?: Schema$SecurityPostureConfig;
+    /**
      * ServiceExternalIPsConfig specifies the config for the use of Services with ExternalIPs field.
      */
     desiredServiceExternalIpsConfig?: Schema$ServiceExternalIPsConfig;
@@ -854,6 +945,10 @@ export namespace container_v1 {
      * Configuration for Workload Identity.
      */
     desiredWorkloadIdentityConfig?: Schema$WorkloadIdentityConfig;
+    /**
+     * Kubernetes open source beta apis enabled on the cluster. Only beta apis
+     */
+    enableK8sBetaApis?: Schema$K8sBetaAPIConfig;
     /**
      * The current etag of the cluster. If an etag is provided and does not match the current etag of the cluster, update will be blocked and an ABORTED error will be returned.
      */
@@ -1175,6 +1270,15 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.
+   */
+  export interface Schema$GPUDriverInstallationConfig {
+    /**
+     * Mode for how the GPU driver is installed.
+     */
+    gpuDriverVersion?: string | null;
+  }
+  /**
    * GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators.
    */
   export interface Schema$GPUSharingConfig {
@@ -1370,6 +1474,15 @@ export namespace container_v1 {
      * Used for ECDSA keys.
      */
     y?: string | null;
+  }
+  /**
+   * K8sBetaAPIConfig , configuration for beta APIs
+   */
+  export interface Schema$K8sBetaAPIConfig {
+    /**
+     * Enabled k8s beta APIs.
+     */
+    enabledApis?: string[] | null;
   }
   /**
    * Configuration for the Kubernetes Dashboard.
@@ -1658,6 +1771,10 @@ export namespace container_v1 {
      */
     dnsConfig?: Schema$DNSConfig;
     /**
+     * Whether FQDN Network Policy is enabled on this cluster.
+     */
+    enableFqdnNetworkPolicy?: boolean | null;
+    /**
      * Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
      */
     enableIntraNodeVisibility?: boolean | null;
@@ -1725,6 +1842,23 @@ export namespace container_v1 {
      * List of network tags.
      */
     tags?: string[] | null;
+  }
+  /**
+   * Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity).
+   */
+  export interface Schema$NodeAffinity {
+    /**
+     * Key for NodeAffinity.
+     */
+    key?: string | null;
+    /**
+     * Operator for NodeAffinity.
+     */
+    operator?: string | null;
+    /**
+     * Values for NodeAffinity.
+     */
+    values?: string[] | null;
   }
   /**
    * Parameters that describe the nodes in a cluster. GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
@@ -1843,6 +1977,10 @@ export namespace container_v1 {
      */
     shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
+     * Parameters for node pools to be backed by shared sole tenant node groups.
+     */
+    soleTenantConfig?: Schema$SoleTenantConfig;
+    /**
      * Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.
      */
     spot?: boolean | null;
@@ -1960,6 +2098,10 @@ export namespace container_v1 {
      * Autoscaler configuration for this NodePool. Autoscaler is enabled only if a valid configuration is present.
      */
     autoscaling?: Schema$NodePoolAutoscaling;
+    /**
+     * Enable best effort provisioning for nodes
+     */
+    bestEffortProvisioning?: Schema$BestEffortProvisioning;
     /**
      * Which conditions caused the current node pool state.
      */
@@ -2185,7 +2327,7 @@ export namespace container_v1 {
      */
     statusMessage?: string | null;
     /**
-     * Server-defined URI for the target of the operation. The format of this is a URI to the resource being modified (such as a cluster, node pool, or node). For node pool repairs, there may be multiple nodes being repaired, but only one will be the target. Examples: - `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster` - `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np` - `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
+     * Server-defined URI for the target of the operation. The format of this is a URI to the resource being modified (such as a cluster, node pool, or node). For node pool repairs, there may be multiple nodes being repaired, but only one will be the target. Examples: - ## `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster` ## `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np` `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`
      */
     targetLink?: string | null;
     /**
@@ -2476,6 +2618,19 @@ export namespace container_v1 {
      * This represents a version selected from the patched_versions field that the cluster receiving this notification should most likely want to upgrade to based on its current version. Note that if this notification is being received by a given cluster, it means that this version is currently available as an upgrade target in that cluster's location.
      */
     suggestedUpgradeTarget?: string | null;
+  }
+  /**
+   * SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API.
+   */
+  export interface Schema$SecurityPostureConfig {
+    /**
+     * Sets which mode to use for Security Posture features.
+     */
+    mode?: string | null;
+    /**
+     * Sets which mode to use for vulnerability scanning.
+     */
+    vulnerabilityMode?: string | null;
   }
   /**
    * Kubernetes Engine service configuration.
@@ -2856,6 +3011,15 @@ export namespace container_v1 {
      * Whether Shielded Nodes features are enabled on all nodes in this cluster.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.
+   */
+  export interface Schema$SoleTenantConfig {
+    /**
+     * NodeAffinities used to match to a shared sole tenant node group.
+     */
+    nodeAffinities?: Schema$NodeAffinity[];
   }
   /**
    * Standard rollout policy is the default policy for blue-green.
@@ -3268,6 +3432,15 @@ export namespace container_v1 {
      */
     mode?: string | null;
   }
+  /**
+   * WorkloadPolicyConfig is the configuration of workload policy for autopilot clusters.
+   */
+  export interface Schema$WorkloadPolicyConfig {
+    /**
+     * If true, workloads can use NET_ADMIN capability.
+     */
+    allowNetAdmin?: boolean | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -3643,6 +3816,147 @@ export namespace container_v1 {
       this.wellKnown = new Resource$Projects$Locations$Clusters$WellKnown(
         this.context
       );
+    }
+
+    /**
+     * Checks the cluster compatibility with Autopilot mode, and returns a list of compatibility issues.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.checkAutopilotCompatibility({
+     *       // The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "issues": [],
+     *   //   "summary": "my_summary"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkAutopilotCompatibility(
+      params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkAutopilotCompatibility(
+      params?: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckAutopilotCompatibilityResponse>;
+    checkAutopilotCompatibility(
+      params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkAutopilotCompatibility(
+      params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckAutopilotCompatibilityResponse>,
+      callback: BodyResponseCallback<Schema$CheckAutopilotCompatibilityResponse>
+    ): void;
+    checkAutopilotCompatibility(
+      params: Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility,
+      callback: BodyResponseCallback<Schema$CheckAutopilotCompatibilityResponse>
+    ): void;
+    checkAutopilotCompatibility(
+      callback: BodyResponseCallback<Schema$CheckAutopilotCompatibilityResponse>
+    ): void;
+    checkAutopilotCompatibility(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility
+        | BodyResponseCallback<Schema$CheckAutopilotCompatibilityResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckAutopilotCompatibilityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckAutopilotCompatibilityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckAutopilotCompatibilityResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:checkAutopilotCompatibility').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckAutopilotCompatibilityResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckAutopilotCompatibilityResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -4156,6 +4470,7 @@ export namespace container_v1 {
      *   //   "databaseEncryption": {},
      *   //   "defaultMaxPodsConstraint": {},
      *   //   "description": "my_description",
+     *   //   "enableK8sBetaApis": {},
      *   //   "enableKubernetesAlpha": false,
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
@@ -4194,6 +4509,7 @@ export namespace container_v1 {
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
+     *   //   "securityPostureConfig": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
      *   //   "shieldedNodes": {},
@@ -6437,6 +6753,13 @@ export namespace container_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility
+    extends StandardParameters {
+    /**
+     * The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation
     extends StandardParameters {
     /**
@@ -7155,6 +7478,7 @@ export namespace container_v1 {
      *   // Example response
      *   // {
      *   //   "autoscaling": {},
+     *   //   "bestEffortProvisioning": {},
      *   //   "conditions": [],
      *   //   "config": {},
      *   //   "etag": "my_etag",
@@ -9846,6 +10170,7 @@ export namespace container_v1 {
      *   //   "databaseEncryption": {},
      *   //   "defaultMaxPodsConstraint": {},
      *   //   "description": "my_description",
+     *   //   "enableK8sBetaApis": {},
      *   //   "enableKubernetesAlpha": false,
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
@@ -9884,6 +10209,7 @@ export namespace container_v1 {
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
+     *   //   "securityPostureConfig": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
      *   //   "shieldedNodes": {},
@@ -12733,6 +13059,7 @@ export namespace container_v1 {
      *   // Example response
      *   // {
      *   //   "autoscaling": {},
+     *   //   "bestEffortProvisioning": {},
      *   //   "conditions": [],
      *   //   "config": {},
      *   //   "etag": "my_etag",

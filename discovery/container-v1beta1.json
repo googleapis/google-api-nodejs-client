@@ -175,11 +175,13 @@
                   "type": "string"
                 },
                 "projectId": {
+                  "deprecated": true,
                   "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
                   "location": "query",
                   "type": "string"
                 },
                 "zone": {
+                  "deprecated": true,
                   "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.",
                   "location": "query",
                   "type": "string"
@@ -222,6 +224,31 @@
           "resources": {
             "clusters": {
               "methods": {
+                "checkAutopilotCompatibility": {
+                  "description": "Checks the cluster compatibility with Autopilot mode, and returns a list of compatibility issues.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:checkAutopilotCompatibility",
+                  "httpMethod": "GET",
+                  "id": "container.projects.locations.clusters.checkAutopilotCompatibility",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/*/locations/*/clusters/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:checkAutopilotCompatibility",
+                  "response": {
+                    "$ref": "CheckAutopilotCompatibilityResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "completeIpRotation": {
                   "description": "Completes master IP rotation.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:completeIpRotation",
@@ -288,6 +315,7 @@
                   ],
                   "parameters": {
                     "clusterId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
@@ -300,11 +328,13 @@
                       "type": "string"
                     },
                     "projectId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
                     },
                     "zone": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
@@ -328,6 +358,7 @@
                   ],
                   "parameters": {
                     "clusterId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
@@ -340,11 +371,13 @@
                       "type": "string"
                     },
                     "projectId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
                     },
                     "zone": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
@@ -397,11 +430,13 @@
                       "type": "string"
                     },
                     "projectId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.",
                       "location": "query",
                       "type": "string"
                     },
                     "zone": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or \"-\" for all zones. This field has been deprecated and replaced by the parent field.",
                       "location": "query",
                       "type": "string"
@@ -472,6 +507,7 @@
                   ]
                 },
                 "setLocations": {
+                  "deprecated": true,
                   "description": "Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:setLocations",
                   "httpMethod": "POST",
@@ -821,6 +857,7 @@
                       ],
                       "parameters": {
                         "clusterId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
@@ -833,16 +870,19 @@
                           "type": "string"
                         },
                         "nodePoolId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
                         },
                         "projectId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
                         },
                         "zone": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
@@ -866,6 +906,7 @@
                       ],
                       "parameters": {
                         "clusterId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
@@ -878,16 +919,19 @@
                           "type": "string"
                         },
                         "nodePoolId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
                         },
                         "projectId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
                         },
                         "zone": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
                           "location": "query",
                           "type": "string"
@@ -911,6 +955,7 @@
                       ],
                       "parameters": {
                         "clusterId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.",
                           "location": "query",
                           "type": "string"
@@ -923,11 +968,13 @@
                           "type": "string"
                         },
                         "projectId": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.",
                           "location": "query",
                           "type": "string"
                         },
                         "zone": {
+                          "deprecated": true,
                           "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.",
                           "location": "query",
                           "type": "string"
@@ -1158,16 +1205,19 @@
                       "type": "string"
                     },
                     "operationId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
                     },
                     "projectId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
                     },
                     "zone": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
                       "location": "query",
                       "type": "string"
@@ -1198,11 +1248,13 @@
                       "type": "string"
                     },
                     "projectId": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.",
                       "location": "query",
                       "type": "string"
                     },
                     "zone": {
+                      "deprecated": true,
                       "description": "Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.",
                       "location": "query",
                       "type": "string"
@@ -1542,6 +1594,7 @@
                   ]
                 },
                 "locations": {
+                  "deprecated": true,
                   "description": "Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.",
                   "flatPath": "v1beta1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/locations",
                   "httpMethod": "POST",
@@ -2512,7 +2565,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230524",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2527,6 +2580,10 @@
         "acceleratorType": {
           "description": "The accelerator type resource name. List of supported accelerators [here](https://cloud.google.com/compute/docs/gpus)",
           "type": "string"
+        },
+        "gpuDriverInstallationConfig": {
+          "$ref": "GPUDriverInstallationConfig",
+          "description": "The configuration for auto installation of GPU driver."
         },
         "gpuPartitionSize": {
           "description": "Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).",
@@ -2666,6 +2723,57 @@
         "enabled": {
           "description": "Enable Autopilot",
           "type": "boolean"
+        },
+        "workloadPolicyConfig": {
+          "$ref": "WorkloadPolicyConfig",
+          "description": "Workload policy configuration for Autopilot."
+        }
+      },
+      "type": "object"
+    },
+    "AutopilotCompatibilityIssue": {
+      "description": "AutopilotCompatibilityIssue contains information about a specific compatibility issue with Autopilot mode.",
+      "id": "AutopilotCompatibilityIssue",
+      "properties": {
+        "constraintType": {
+          "description": "The constraint type of the issue.",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the issue.",
+          "type": "string"
+        },
+        "documentationUrl": {
+          "description": "A URL to a public documnetation, which addresses resolving this issue.",
+          "type": "string"
+        },
+        "incompatibilityType": {
+          "description": "The incompatibility type of this issue.",
+          "enum": [
+            "UNSPECIFIED",
+            "INCOMPATIBILITY",
+            "ADDITIONAL_CONFIG_REQUIRED",
+            "PASSED_WITH_OPTIONAL_CONFIG"
+          ],
+          "enumDescriptions": [
+            "Default value, should not be used.",
+            "Indicates that the issue is a known incompatibility between the cluster and Autopilot mode.",
+            "Indicates the issue is an incompatibility if customers take no further action to resolve.",
+            "Indicates the issue is not an incompatibility, but depending on the workloads business logic, there is a potential that they won't work on Autopilot."
+          ],
+          "type": "string"
+        },
+        "lastObservation": {
+          "description": "The last time when this issue was observed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "subjects": {
+          "description": "The name of the resources which are subject to this issue.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2732,6 +2840,22 @@
         "version": {
           "description": "Kubernetes version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BestEffortProvisioning": {
+      "description": "Best effort provisioning.",
+      "id": "BestEffortProvisioning",
+      "properties": {
+        "enabled": {
+          "description": "When this is enabled, cluster/node pool creations will ignore non-fatal errors like stockout to best provision as many nodes as possible right now and eventually bring up all target number of nodes",
+          "type": "boolean"
+        },
+        "minProvisionNodes": {
+          "description": "Minimum number of nodes to be provisioned to be considered as succeeded, and the rest of nodes will be provisioned gradually and eventually when stockout issue has been resolved.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2864,6 +2988,24 @@
       },
       "type": "object"
     },
+    "CheckAutopilotCompatibilityResponse": {
+      "description": "CheckAutopilotCompatibilityResponse has a list of compatibility issues.",
+      "id": "CheckAutopilotCompatibilityResponse",
+      "properties": {
+        "issues": {
+          "description": "The list of issues for the given operation.",
+          "items": {
+            "$ref": "AutopilotCompatibilityIssue"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "description": "The summary of the autopilot compatibility response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CidrBlock": {
       "description": "CidrBlock contains an optional name and one CIDR block.",
       "id": "CidrBlock",
@@ -2990,6 +3132,10 @@
         "description": {
           "description": "An optional description of this cluster.",
           "type": "string"
+        },
+        "enableK8sBetaApis": {
+          "$ref": "K8sBetaAPIConfig",
+          "description": "Kubernetes open source beta apis enabled on the cluster. Only beta apis."
         },
         "enableKubernetesAlpha": {
           "description": "Kubernetes alpha features are enabled on this cluster. This includes alpha API groups (e.g. v1beta1) and features that may not be production ready in the kubernetes version of the master and nodes. The cluster has no SLA for uptime and master/node upgrades are disabled. Alpha enabled clusters are automatically deleted thirty days after creation.",
@@ -3165,7 +3311,7 @@
         },
         "releaseChannel": {
           "$ref": "ReleaseChannel",
-          "description": "Release channel configuration."
+          "description": "Release channel configuration. If left unspecified on cluster creation and a version is specified, the cluster is enrolled in the most mature release channel where the version is available (first checking STABLE, then REGULAR, and finally RAPID). Otherwise, if no release channel configuration and no version is specified, the cluster is enrolled in the REGULAR channel with its default version."
         },
         "resourceLabels": {
           "additionalProperties": {
@@ -3177,6 +3323,10 @@
         "resourceUsageExportConfig": {
           "$ref": "ResourceUsageExportConfig",
           "description": "Configuration for exporting resource usages. Resource usage export is disabled when this config unspecified."
+        },
+        "securityPostureConfig": {
+          "$ref": "SecurityPostureConfig",
+          "description": "Enable/Disable Security Posture API features for the cluster."
         },
         "selfLink": {
           "description": "[Output only] Server-defined URL for the resource.",
@@ -3333,6 +3483,10 @@
           "$ref": "AuthenticatorGroupsConfig",
           "description": "AuthenticatorGroupsConfig specifies the config for the cluster security groups settings."
         },
+        "desiredAutopilotWorkloadPolicyConfig": {
+          "$ref": "WorkloadPolicyConfig",
+          "description": "The desired workload policy configuration for the autopilot cluster."
+        },
         "desiredBinaryAuthorization": {
           "$ref": "BinaryAuthorization",
           "description": "The desired configuration options for the Binary Authorization feature."
@@ -3375,9 +3529,17 @@
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
         },
+        "desiredEnableFqdnNetworkPolicy": {
+          "description": "Enable/Disable FQDN Network Policy for the cluster.",
+          "type": "boolean"
+        },
         "desiredEnablePrivateEndpoint": {
           "description": "Enable/Disable private endpoint for the cluster's master.",
           "type": "boolean"
+        },
+        "desiredFleet": {
+          "$ref": "Fleet",
+          "description": "The desired fleet configuration for the cluster."
         },
         "desiredGatewayApiConfig": {
           "$ref": "GatewayAPIConfig",
@@ -3398,6 +3560,10 @@
         "desiredIntraNodeVisibilityConfig": {
           "$ref": "IntraNodeVisibilityConfig",
           "description": "The desired config of Intra-node visibility."
+        },
+        "desiredK8sBetaApis": {
+          "$ref": "K8sBetaAPIConfig",
+          "description": "Beta APIs enabled for cluster."
         },
         "desiredL4ilbSubsettingConfig": {
           "$ref": "ILBSubsettingConfig",
@@ -3502,6 +3668,10 @@
           "$ref": "ResourceUsageExportConfig",
           "description": "The desired configuration for exporting resource usage."
         },
+        "desiredSecurityPostureConfig": {
+          "$ref": "SecurityPostureConfig",
+          "description": "Enable/Disable Security Posture API features for the cluster."
+        },
         "desiredServiceExternalIpsConfig": {
           "$ref": "ServiceExternalIPsConfig",
           "description": "ServiceExternalIPsConfig specifies the config for the use of Services with ExternalIPs field."
@@ -3543,6 +3713,10 @@
         "desiredWorkloadIdentityConfig": {
           "$ref": "WorkloadIdentityConfig",
           "description": "Configuration for Workload Identity."
+        },
+        "enableK8sBetaApis": {
+          "$ref": "K8sBetaAPIConfig",
+          "description": "Kubernetes open source beta apis enabled on the cluster. Only beta apis"
         },
         "etag": {
           "description": "The current etag of the cluster. If an etag is provided and does not match the current etag of the cluster, update will be blocked and an ABORTED error will be returned.",
@@ -3882,6 +4056,29 @@
         },
         "project": {
           "description": "The Fleet host project(project ID or project number) where this cluster will be registered to. This field cannot be changed after the cluster has been registered.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GPUDriverInstallationConfig": {
+      "description": "GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.",
+      "id": "GPUDriverInstallationConfig",
+      "properties": {
+        "gpuDriverVersion": {
+          "description": "Mode for how the GPU driver is installed.",
+          "enum": [
+            "GPU_DRIVER_VERSION_UNSPECIFIED",
+            "INSTALLATION_DISABLED",
+            "DEFAULT",
+            "LATEST"
+          ],
+          "enumDescriptions": [
+            "Default value is to not install any GPU driver.",
+            "Disable GPU driver auto installation and needs manual installation",
+            "\"Default\" GPU driver in COS and Ubuntu.",
+            "\"Latest\" GPU driver in COS."
+          ],
           "type": "string"
         }
       },
@@ -4308,6 +4505,20 @@
         "y": {
           "description": "Used for ECDSA keys.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "K8sBetaAPIConfig": {
+      "description": "Kubernetes open source beta apis enabled on the cluster.",
+      "id": "K8sBetaAPIConfig",
+      "properties": {
+        "enabledApis": {
+          "description": "api name, e.g. storage.k8s.io/v1beta1/csistoragecapacities.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4814,6 +5025,10 @@
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
         },
+        "enableFqdnNetworkPolicy": {
+          "description": "Whether FQDN Network Policy is enabled on this cluster.",
+          "type": "boolean"
+        },
         "enableIntraNodeVisibility": {
           "description": "Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.",
           "type": "boolean"
@@ -4928,6 +5143,38 @@
       "properties": {
         "tags": {
           "description": "List of network tags.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NodeAffinity": {
+      "description": "Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity).",
+      "id": "NodeAffinity",
+      "properties": {
+        "key": {
+          "description": "Key for NodeAffinity.",
+          "type": "string"
+        },
+        "operator": {
+          "description": "Operator for NodeAffinity.",
+          "enum": [
+            "OPERATOR_UNSPECIFIED",
+            "IN",
+            "NOT_IN"
+          ],
+          "enumDescriptions": [
+            "Invalid or unspecified affinity operator.",
+            "Affinity operator.",
+            "Anti-affinity operator."
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "Values for NodeAffinity.",
           "items": {
             "type": "string"
           },
@@ -5073,6 +5320,10 @@
           "$ref": "ShieldedInstanceConfig",
           "description": "Shielded Instance options."
         },
+        "soleTenantConfig": {
+          "$ref": "SoleTenantConfig",
+          "description": "Parameters for node pools to be backed by shared sole tenant node groups."
+        },
         "spot": {
           "description": "Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.",
           "type": "boolean"
@@ -5212,6 +5463,10 @@
         "autoscaling": {
           "$ref": "NodePoolAutoscaling",
           "description": "Autoscaler configuration for this NodePool. Autoscaler is enabled only if a valid configuration is present."
+        },
+        "bestEffortProvisioning": {
+          "$ref": "BestEffortProvisioning",
+          "description": "Enable best effort provisioning for nodes"
         },
         "conditions": {
           "description": "Which conditions caused the current node pool state.",
@@ -5575,7 +5830,7 @@
           "type": "string"
         },
         "targetLink": {
-          "description": "Server-defined URI for the target of the operation. The format of this is a URI to the resource being modified (such as a cluster, node pool, or node). For node pool repairs, there may be multiple nodes being repaired, but only one will be the target. Examples: - `https://container.googleapis.com/v1beta1/projects/123/locations/us-central1/clusters/my-cluster` - `https://container.googleapis.com/v1beta1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np` - `https://container.googleapis.com/v1beta1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`",
+          "description": "Server-defined URI for the target of the operation. The format of this is a URI to the resource being modified (such as a cluster, node pool, or node). For node pool repairs, there may be multiple nodes being repaired, but only one will be the target. Examples: - ## `https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster` ## `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np` `https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node`",
           "type": "string"
         },
         "zone": {
@@ -6040,6 +6295,41 @@
       },
       "type": "object"
     },
+    "SecurityPostureConfig": {
+      "description": "SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API.",
+      "id": "SecurityPostureConfig",
+      "properties": {
+        "mode": {
+          "description": "Sets which mode to use for Security Posture features.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables Security Posture features on the cluster.",
+            "Applies Security Posture features on the cluster."
+          ],
+          "type": "string"
+        },
+        "vulnerabilityMode": {
+          "description": "Sets which mode to use for vulnerability scanning.",
+          "enum": [
+            "VULNERABILITY_MODE_UNSPECIFIED",
+            "VULNERABILITY_DISABLED",
+            "VULNERABILITY_BASIC"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables vulnerability scanning on the cluster.",
+            "Applies basic vulnerability scanning on the cluster."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServerConfig": {
       "description": "Kubernetes Engine service configuration.",
       "id": "ServerConfig",
@@ -6486,6 +6776,20 @@
         "enabled": {
           "description": "Whether Shielded Nodes features are enabled on all nodes in this cluster.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SoleTenantConfig": {
+      "description": "SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.",
+      "id": "SoleTenantConfig",
+      "properties": {
+        "nodeAffinities": {
+          "description": "NodeAffinities used to match to a shared sole tenant node group.",
+          "items": {
+            "$ref": "NodeAffinity"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7204,6 +7508,17 @@
             "Run the GKE Metadata Server on this node. The GKE Metadata Server exposes a metadata API to workloads that is compatible with the V1 Compute Metadata APIs exposed by the Compute Engine and App Engine Metadata Servers. This feature can only be enabled if Workload Identity is enabled at the cluster level."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadPolicyConfig": {
+      "description": "WorkloadPolicyConfig is the configuration of workload policy for autopilot clusters.",
+      "id": "WorkloadPolicyConfig",
+      "properties": {
+        "allowNetAdmin": {
+          "description": "If true, workloads can use NET_ADMIN capability.",
+          "type": "boolean"
         }
       },
       "type": "object"

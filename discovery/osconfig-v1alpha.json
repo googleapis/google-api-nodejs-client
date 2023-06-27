@@ -110,6 +110,7 @@
         "locations": {
           "resources": {
             "instanceOSPoliciesCompliances": {
+              "deprecated": true,
               "methods": {
                 "get": {
                   "deprecated": true,
@@ -288,7 +289,7 @@
                     "reports": {
                       "methods": {
                         "get": {
-                          "description": "Get the OS policy asssignment report for the specified Compute Engine VM instance.",
+                          "description": "Get the OS policy assignment report for the specified Compute Engine VM instance.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/report",
                           "httpMethod": "GET",
                           "id": "osconfig.projects.locations.instances.osPolicyAssignments.reports.get",
@@ -313,7 +314,7 @@
                           ]
                         },
                         "list": {
-                          "description": "List OS policy asssignment reports for all Compute Engine VM instances in the specified zone.",
+                          "description": "List OS policy assignment reports for all Compute Engine VM instances in the specified zone.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/reports",
                           "httpMethod": "GET",
                           "id": "osconfig.projects.locations.instances.osPolicyAssignments.reports.list",
@@ -686,7 +687,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230618",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {

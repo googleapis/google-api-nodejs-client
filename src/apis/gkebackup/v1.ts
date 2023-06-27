@@ -341,6 +341,14 @@ export namespace gkebackup_v1 {
      */
     retentionPolicy?: Schema$RetentionPolicy;
     /**
+     * Output only. State of the BackupPlan. This State field reflects the various stages a BackupPlan can be in during the Create operation. It will be set to "DEACTIVATED" if the BackupPlan is deactivated on an Update
+     */
+    state?: string | null;
+    /**
+     * Output only. Human-readable description of why BackupPlan is in the current `state`
+     */
+    stateReason?: string | null;
+    /**
      * Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
      */
     uid?: string | null;
@@ -395,6 +403,18 @@ export namespace gkebackup_v1 {
    * Defines the scope of cluster-scoped resources to restore. Some group kinds are not reasonable choices for a restore, and will cause an error if selected here. Any scope selection that would restore "all valid" resources automatically excludes these group kinds. - gkebackup.gke.io/BackupJob - gkebackup.gke.io/RestoreJob - metrics.k8s.io/NodeMetrics - migration.k8s.io/StorageState - migration.k8s.io/StorageVersionMigration - Node - snapshot.storage.k8s.io/VolumeSnapshotContent - storage.k8s.io/CSINode Some group kinds are driven by restore configuration elsewhere, and will cause an error if selected here. - Namespace - PersistentVolume
    */
   export interface Schema$ClusterResourceRestoreScope {
+    /**
+     * If True, all valid cluster-scoped resources will be restored. Mutually exclusive to any other field in the message.
+     */
+    allGroupKinds?: boolean | null;
+    /**
+     * A list of cluster-scoped resource group kinds to NOT restore from the backup. If specified, all valid cluster-scoped resources will be restored except for those specified in the list. Mutually exclusive to any other field in the message.
+     */
+    excludedGroupKinds?: Schema$GroupKind[];
+    /**
+     * If True, no cluster-scoped resources will be restored. This has the same restore scope as if the message is not defined. Mutually exclusive to any other field in the message.
+     */
+    noGroupKinds?: boolean | null;
     /**
      * A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the message.
      */
@@ -610,7 +630,7 @@ export namespace gkebackup_v1 {
     volumeRestores?: Schema$VolumeRestore[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -720,6 +740,23 @@ export namespace gkebackup_v1 {
     version?: number | null;
   }
   /**
+   * ResourceFilter specifies matching criteria to limit the scope of a change to a specific set of kubernetes resources that are selected for restoration from a backup.
+   */
+  export interface Schema$ResourceFilter {
+    /**
+     * (Filtering parameter) Any resource subject to transformation must belong to one of the listed "types". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for transformation).
+     */
+    groupKinds?: Schema$GroupKind[];
+    /**
+     * This is a [JSONPath] (https://github.com/json-path/JsonPath/blob/master/README.md) expression that matches specific fields of candidate resources and it operates as a filtering parameter (resources that are not matched with this expression will not be candidates for transformation).
+     */
+    jsonPath?: string | null;
+    /**
+     * (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string ("") as one of the target namespaces.
+     */
+    namespaces?: string[] | null;
+  }
+  /**
    * Represents both a request to Restore some portion of a Backup into a target GKE cluster and a record of the restore operation itself. Next id: 18
    */
   export interface Schema$Restore {
@@ -809,9 +846,17 @@ export namespace gkebackup_v1 {
      */
     clusterResourceRestoreScope?: Schema$ClusterResourceRestoreScope;
     /**
+     * A list of selected namespaces excluded from restoration. All namespaces except those in this list will be restored.
+     */
+    excludedNamespaces?: Schema$Namespaces;
+    /**
      * Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
      */
     namespacedResourceRestoreMode?: string | null;
+    /**
+     * Do not restore any namespaced resources if set to "True". Specifying this field to "False" is not allowed.
+     */
+    noNamespaces?: boolean | null;
     /**
      * A list of selected ProtectedApplications to restore. The listed ProtectedApplications and all the resources to which they refer will be restored.
      */
@@ -824,6 +869,10 @@ export namespace gkebackup_v1 {
      * A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no substitution will occur.
      */
     substitutionRules?: Schema$SubstitutionRule[];
+    /**
+     * A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no transformation will occur.
+     */
+    transformationRules?: Schema$TransformationRule[];
     /**
      * Specifies the mechanism to be used to restore volume data. Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as NO_VOLUME_DATA_RESTORATION).
      */
@@ -866,6 +915,14 @@ export namespace gkebackup_v1 {
      */
     restoreConfig?: Schema$RestoreConfig;
     /**
+     * Output only. State of the RestorePlan. This State field reflects the various stages a RestorePlan can be in during the Create operation.
+     */
+    state?: string | null;
+    /**
+     * Output only. Human-readable description of why RestorePlan is in the current `state`
+     */
+    stateReason?: string | null;
+    /**
      * Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
      */
     uid?: string | null;
@@ -892,11 +949,11 @@ export namespace gkebackup_v1 {
     locked?: boolean | null;
   }
   /**
-   * Schedule defines scheduling parameters for automatically creating Backups via this BackupPlan.
+   * Defines scheduling parameters for automatically creating Backups via this BackupPlan.
    */
   export interface Schema$Schedule {
     /**
-     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.
+     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a repeating schedule for creating Backups via this BackupPlan. This is mutually exclusive with the rpo_config field since at most one schedule can be defined for a BackupPlan. If this is defined, then backup_retain_days must also be defined. Default (empty): no automatic backup creation will occur.
      */
     cronSchedule?: string | null;
     /**
@@ -959,6 +1016,44 @@ export namespace gkebackup_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * A transformation rule to be applied against Kubernetes resources as they are selected for restoration from a Backup. A rule contains both filtering logic (which resources are subject to transform) and transformation logic.
+   */
+  export interface Schema$TransformationRule {
+    /**
+     * The description is a user specified string description of the transformation rule.
+     */
+    description?: string | null;
+    /**
+     * Required. A list of transformation rule actions to take against candidate resources. Actions are executed in order defined - this order matters, as they could potentially interfere with each other and the first operation could affect the outcome of the second operation.
+     */
+    fieldActions?: Schema$TransformationRuleAction[];
+    /**
+     * This field is used to specify a set of fields that should be used to determine which resources in backup should be acted upon by the supplied transformation rule actions, and this will ensure that only specific resources are affected by transformation rule actions.
+     */
+    resourceFilter?: Schema$ResourceFilter;
+  }
+  /**
+   * TransformationRuleAction defines a TransformationRule action based on the JSON Patch RFC (https://www.rfc-editor.org/rfc/rfc6902)
+   */
+  export interface Schema$TransformationRuleAction {
+    /**
+     * A string containing a JSON Pointer value that references the location in the target document to move the value from.
+     */
+    fromPath?: string | null;
+    /**
+     * Required. op specifies the operation to perform.
+     */
+    op?: string | null;
+    /**
+     * A string containing a JSON-Pointer value that references a location within the target document where the operation is performed.
+     */
+    path?: string | null;
+    /**
+     * A string that specifies the desired value in string format to use for transformation.
+     */
+    value?: string | null;
   }
   /**
    * Represents the backup of a specific persistent volume as a component of a Backup - both the record of the operation and a pointer to the underlying storage-specific artifacts. Next id: 14
@@ -1588,6 +1683,8 @@ export namespace gkebackup_v1 {
      *       //   "name": "my_name",
      *       //   "protectedPodCount": 0,
      *       //   "retentionPolicy": {},
+     *       //   "state": "my_state",
+     *       //   "stateReason": "my_stateReason",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -1887,6 +1984,8 @@ export namespace gkebackup_v1 {
      *   //   "name": "my_name",
      *   //   "protectedPodCount": 0,
      *   //   "retentionPolicy": {},
+     *   //   "state": "my_state",
+     *   //   "stateReason": "my_stateReason",
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2307,6 +2406,8 @@ export namespace gkebackup_v1 {
      *       //   "name": "my_name",
      *       //   "protectedPodCount": 0,
      *       //   "retentionPolicy": {},
+     *       //   "state": "my_state",
+     *       //   "stateReason": "my_stateReason",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -5470,6 +5571,8 @@ export namespace gkebackup_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "restoreConfig": {},
+     *       //   "state": "my_state",
+     *       //   "stateReason": "my_stateReason",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -5768,6 +5871,8 @@ export namespace gkebackup_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "restoreConfig": {},
+     *   //   "state": "my_state",
+     *   //   "stateReason": "my_stateReason",
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -6185,6 +6290,8 @@ export namespace gkebackup_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "restoreConfig": {},
+     *       //   "state": "my_state",
+     *       //   "stateReason": "my_stateReason",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }

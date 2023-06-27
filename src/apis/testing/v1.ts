@@ -480,6 +480,10 @@ export namespace testing_v1 {
      */
     packageName?: string | null;
     /**
+     * Services contained in the tag.
+     */
+    services?: Schema$Service[];
+    /**
      * Specifies the API Level on which the application is designed to run.
      */
     targetSdkVersion?: number | null;
@@ -983,6 +987,10 @@ export namespace testing_v1 {
     configurations?: Schema$NetworkConfiguration[];
   }
   /**
+   * Skips the starting activity
+   */
+  export interface Schema$NoActivityIntent {}
+  /**
    * An opaque binary blob file to install on the device before the test starts.
    */
   export interface Schema$ObbFile {
@@ -1111,6 +1119,10 @@ export namespace testing_v1 {
      */
     launcherActivity?: Schema$LauncherActivityIntent;
     /**
+     * Skips the starting activity
+     */
+    noActivity?: Schema$NoActivityIntent;
+    /**
      * An intent that starts an activity with specific details.
      */
     startActivity?: Schema$StartActivityIntent;
@@ -1120,9 +1132,26 @@ export namespace testing_v1 {
     timeout?: string | null;
   }
   /**
+   * The section of an tag. https://developer.android.com/guide/topics/manifest/service-element
+   */
+  export interface Schema$Service {
+    /**
+     * Intent filters in the service
+     */
+    intentFilter?: Schema$IntentFilter[];
+    /**
+     * The android:name value
+     */
+    name?: string | null;
+  }
+  /**
    * Output only. Details about the shard.
    */
   export interface Schema$Shard {
+    /**
+     * Output only. The estimated shard duration based on previous test case timing records, if available.
+     */
+    estimatedShardDuration?: string | null;
     /**
      * Output only. The total number of shards.
      */
@@ -1145,9 +1174,22 @@ export namespace testing_v1 {
      */
     manualSharding?: Schema$ManualSharding;
     /**
+     * Shards test based on previous test case timing records.
+     */
+    smartSharding?: Schema$SmartSharding;
+    /**
      * Uniformly shards test cases given a total number of shards.
      */
     uniformSharding?: Schema$UniformSharding;
+  }
+  /**
+   * Shards test based on previous test case timing records.
+   */
+  export interface Schema$SmartSharding {
+    /**
+     * The amount of time tests within a shard should take. Default: 300 seconds (5 minutes). The minimum allowed: 120 seconds (2 minutes). The shard count is dynamically set based on time, up to the maximum shard limit (described below). To guarantee at least one test case for each shard, the number of shards will not exceed the number of test cases. Shard duration will be exceeded if: - The maximum shard limit is reached and there is more calculated test time remaining to allocate into shards. - Any individual test is estimated to be longer than the targeted shard duration. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. The rules for finding the test case timing records are: - If the service has processed a test case in the last 30 days, the record of the latest successful test case will be used. - For new test cases, the average duration of other known test cases will be used. - If there are no previous test case timing records available, the default test case duration is 15 seconds. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout (45 minutes for physical devices and 60 minutes for virtual), or that you use the custom test timeout value that you set. This approach avoids cancelling the shard before all tests can finish. Note that there is a limit for maximum number of shards. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500. To guarantee at least one test case for per shard, the number of shards will not exceed the number of test cases. Each shard created counts toward daily test quota.
+     */
+    targetedShardDuration?: string | null;
   }
   /**
    * A starting intent specified by an action, uri, and categories.
@@ -1824,7 +1866,7 @@ export namespace testing_v1 {
     }
 
     /**
-     * Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. The returned matrix will not yet contain the executions that will be created for this matrix. That happens later on and will require a call to GetTestMatrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.
+     * Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. The returned matrix will not yet contain the executions that will be created for this matrix. Execution creation happens later on and will require a call to GetTestMatrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.
      * @example
      * ```js
      * // Before running the sample:
@@ -1987,7 +2029,7 @@ export namespace testing_v1 {
     }
 
     /**
-     * Checks the status of a test matrix and the executions once they are created. The test matrix will contain the list of test executions to run if and only if the resultStorage.toolResultsExecution fields have been populated. Note: Flaky test executions may still be added to the matrix at a later stage. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * Checks the status of a test matrix and the executions once they are created. The test matrix will contain the list of test executions to run if and only if the resultStorage.toolResultsExecution fields have been populated. Note: Flaky test executions may be added to the matrix at a later stage. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
      * @example
      * ```js
      * // Before running the sample:

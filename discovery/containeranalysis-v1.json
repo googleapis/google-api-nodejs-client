@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230421",
+  "revision": "20230612",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1961,7 +1961,7 @@
           "type": "string"
         },
         "logsBucket": {
-          "description": "Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.",
+          "description": "Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.",
           "type": "string"
         },
         "name": {
@@ -2195,7 +2195,7 @@
           "type": "array"
         },
         "logStreamingOption": {
-          "description": "Option to define build log streaming behavior to Google Cloud Storage.",
+          "description": "Option to define build log streaming behavior to Cloud Storage.",
           "enum": [
             "STREAM_DEFAULT",
             "STREAM_ON",
@@ -2203,8 +2203,8 @@
           ],
           "enumDescriptions": [
             "Service may automatically determine build log streaming behavior.",
-            "Build logs should be streamed to Google Cloud Storage.",
-            "Build logs should not be streamed to Google Cloud Storage; they will be written when the build is completed."
+            "Build logs should be streamed to Cloud Storage.",
+            "Build logs should not be streamed to Cloud Storage; they will be written when the build is completed."
           ],
           "type": "string"
         },
@@ -2750,11 +2750,11 @@
         },
         "storageSource": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource",
-          "description": "If provided, get the source from this location in Google Cloud Storage."
+          "description": "If provided, get the source from this location in Cloud Storage."
         },
         "storageSourceManifest": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest",
-          "description": "If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher)."
+          "description": "If provided, get the source from this manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher)."
         }
       },
       "type": "object"
@@ -2787,40 +2787,40 @@
       "type": "object"
     },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource": {
-      "description": "Location of the source in an archive file in Google Cloud Storage.",
+      "description": "Location of the source in an archive file in Cloud Storage.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource",
       "properties": {
         "bucket": {
-          "description": "Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
+          "description": "Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
           "type": "string"
         },
         "generation": {
-          "description": "Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
           "format": "int64",
           "type": "string"
         },
         "object": {
-          "description": "Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
+          "description": "Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest": {
-      "description": "Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).",
+      "description": "Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest",
       "properties": {
         "bucket": {
-          "description": "Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
+          "description": "Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
           "type": "string"
         },
         "generation": {
-          "description": "Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
           "format": "int64",
           "type": "string"
         },
         "object": {
-          "description": "Google Cloud Storage object containing the source manifest. This object must be a JSON file.",
+          "description": "Cloud Storage object containing the source manifest. This object must be a JSON file.",
           "type": "string"
         }
       },
@@ -3117,7 +3117,8 @@
             "UPGRADE",
             "COMPLIANCE",
             "DSSE_ATTESTATION",
-            "VULNERABILITY_ASSESSMENT"
+            "VULNERABILITY_ASSESSMENT",
+            "SBOM_REFERENCE"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -3131,7 +3132,8 @@
             "This represents an available package upgrade.",
             "This represents a Compliance Note",
             "This represents a DSSE attestation Note",
-            "This represents a Vulnerability Assessment."
+            "This represents a Vulnerability Assessment.",
+            "This represents an SBOM Reference."
           ],
           "type": "string"
         }
@@ -4004,7 +4006,8 @@
             "UPGRADE",
             "COMPLIANCE",
             "DSSE_ATTESTATION",
-            "VULNERABILITY_ASSESSMENT"
+            "VULNERABILITY_ASSESSMENT",
+            "SBOM_REFERENCE"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -4018,7 +4021,8 @@
             "This represents an available package upgrade.",
             "This represents a Compliance Note",
             "This represents a DSSE attestation Note",
-            "This represents a Vulnerability Assessment."
+            "This represents a Vulnerability Assessment.",
+            "This represents an SBOM Reference."
           ],
           "type": "string"
         },
@@ -4047,6 +4051,10 @@
             "$ref": "RelatedUrl"
           },
           "type": "array"
+        },
+        "sbomReference": {
+          "$ref": "SBOMReferenceNote",
+          "description": "A note describing an SBOM reference."
         },
         "shortDescription": {
           "description": "A one sentence description of this note.",
@@ -4127,7 +4135,8 @@
             "UPGRADE",
             "COMPLIANCE",
             "DSSE_ATTESTATION",
-            "VULNERABILITY_ASSESSMENT"
+            "VULNERABILITY_ASSESSMENT",
+            "SBOM_REFERENCE"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -4141,7 +4150,8 @@
             "This represents an available package upgrade.",
             "This represents a Compliance Note",
             "This represents a DSSE attestation Note",
-            "This represents a Vulnerability Assessment."
+            "This represents a Vulnerability Assessment.",
+            "This represents an SBOM Reference."
           ],
           "type": "string"
         },
@@ -4164,6 +4174,10 @@
         "resourceUri": {
           "description": "Required. Immutable. A URI that represents the resource for which the occurrence applies. For example, `https://gcr.io/project/image@sha256:123abc` for a Docker image.",
           "type": "string"
+        },
+        "sbomReference": {
+          "$ref": "SBOMReferenceOccurrence",
+          "description": "Describes a specific SBOM reference occurrences."
         },
         "updateTime": {
           "description": "Output only. The time this occurrence was last updated.",
@@ -4547,6 +4561,95 @@
         },
         "uid": {
           "description": "A server-assigned, globally unique identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMReferenceNote": {
+      "description": "The note representing an SBOM reference.",
+      "id": "SBOMReferenceNote",
+      "properties": {
+        "format": {
+          "description": "The format that SBOM takes. E.g. may be spdx, cyclonedx, etc...",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the format that the SBOM takes. E.g. if the format is spdx, the version may be 2.3.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMReferenceOccurrence": {
+      "description": "The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.",
+      "id": "SBOMReferenceOccurrence",
+      "properties": {
+        "payload": {
+          "$ref": "SbomReferenceIntotoPayload",
+          "description": "The actual payload that contains the SBOM reference data."
+        },
+        "payloadType": {
+          "description": "The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'.",
+          "type": "string"
+        },
+        "signatures": {
+          "description": "The signatures over the payload.",
+          "items": {
+            "$ref": "EnvelopeSignature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SbomReferenceIntotoPayload": {
+      "description": "The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.",
+      "id": "SbomReferenceIntotoPayload",
+      "properties": {
+        "_type": {
+          "description": "Identifier for the schema of the Statement.",
+          "type": "string"
+        },
+        "predicate": {
+          "$ref": "SbomReferenceIntotoPredicate",
+          "description": "Additional parameters of the Predicate. Includes the actual data about the SBOM."
+        },
+        "predicateType": {
+          "description": "URI identifying the type of the Predicate.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Set of software artifacts that the attestation applies to. Each element represents a single software artifact.",
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SbomReferenceIntotoPredicate": {
+      "description": "A predicate which describes the SBOM being referenced.",
+      "id": "SbomReferenceIntotoPredicate",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of algorithm to digest of the contents of the SBOM.",
+          "type": "object"
+        },
+        "location": {
+          "description": "The location of the SBOM.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the SBOM.",
+          "type": "string"
+        },
+        "referrerId": {
+          "description": "The person or system referring this predicate to the consumer.",
           "type": "string"
         }
       },

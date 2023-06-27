@@ -414,56 +414,6 @@
     },
     "locations": {
       "methods": {
-        "associate": {
-          "description": "Associates a location to a place ID. Any previous association is overwritten. This operation is only valid if the location is unverified. The association must be valid, that is, it appears in the list of `SearchGoogleLocations`.",
-          "flatPath": "v1/locations/{locationsId}:associate",
-          "httpMethod": "POST",
-          "id": "mybusinessbusinessinformation.locations.associate",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the location to associate.",
-              "location": "path",
-              "pattern": "^locations/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}:associate",
-          "request": {
-            "$ref": "AssociateLocationRequest"
-          },
-          "response": {
-            "$ref": "Empty"
-          }
-        },
-        "clearLocationAssociation": {
-          "description": "Clears an association between a location and its place ID. This operation is only valid if the location is unverified.",
-          "flatPath": "v1/locations/{locationsId}:clearLocationAssociation",
-          "httpMethod": "POST",
-          "id": "mybusinessbusinessinformation.locations.clearLocationAssociation",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the location to disassociate.",
-              "location": "path",
-              "pattern": "^locations/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}:clearLocationAssociation",
-          "request": {
-            "$ref": "ClearLocationAssociationRequest"
-          },
-          "response": {
-            "$ref": "Empty"
-          }
-        },
         "delete": {
           "description": "Deletes a location. If this location cannot be deleted using the API and it is marked so in the `google.mybusiness.businessinformation.v1.LocationState`, use the [Google Business Profile](https://business.google.com/manage/) website.",
           "flatPath": "v1/locations/{locationsId}",
@@ -662,7 +612,7 @@
       }
     }
   },
-  "revision": "20221213",
+  "revision": "20230620",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -671,17 +621,6 @@
       "properties": {
         "adPhone": {
           "description": "Required. An alternate phone number to display on AdWords location extensions instead of the location's primary phone number.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AssociateLocationRequest": {
-      "description": "Request message for Locations.AssociateLocationRequest.",
-      "id": "AssociateLocationRequest",
-      "properties": {
-        "placeId": {
-          "description": "The association to establish. If not set, it indicates no match.",
           "type": "string"
         }
       },
@@ -952,12 +891,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "ClearLocationAssociationRequest": {
-      "description": "Request message for Locations.ClearLocationAssociationRequest.",
-      "id": "ClearLocationAssociationRequest",
-      "properties": {},
       "type": "object"
     },
     "Date": {

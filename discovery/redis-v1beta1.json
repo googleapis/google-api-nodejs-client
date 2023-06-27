@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20230418",
+  "revision": "20230608",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -1099,7 +1099,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

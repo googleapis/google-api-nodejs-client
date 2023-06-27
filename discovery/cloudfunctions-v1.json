@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230608",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -702,7 +702,7 @@
           "type": "string"
         },
         "entryPoint": {
-          "description": "The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix, if not specified. For backward compatibility, if function with given name is not found, then the system will try to use function named \"function\". For Node.js this is name of a function exported by the module specified in `source_location`.",
+          "description": "The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix (ID of the function), if not specified.",
           "type": "string"
         },
         "environmentVariables": {
@@ -964,6 +964,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudFunctionsV2LocationMetadata": {
+      "description": "Extra GCF specific location information.",
+      "id": "GoogleCloudFunctionsV2LocationMetadata",
+      "properties": {
+        "environments": {
+          "description": "The Cloud Function environments this location supports.",
+          "items": {
+            "enum": [
+              "ENVIRONMENT_UNSPECIFIED",
+              "GEN_1",
+              "GEN_2"
+            ],
+            "enumDescriptions": [
+              "Unspecified",
+              "Gen 1",
+              "Gen 2"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudFunctionsV2OperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudFunctionsV2OperationMetadata",
@@ -973,7 +997,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "createTime": {
@@ -1111,6 +1135,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudFunctionsV2alphaLocationMetadata": {
+      "description": "Extra GCF specific location information.",
+      "id": "GoogleCloudFunctionsV2alphaLocationMetadata",
+      "properties": {
+        "environments": {
+          "description": "The Cloud Function environments this location supports.",
+          "items": {
+            "enum": [
+              "ENVIRONMENT_UNSPECIFIED",
+              "GEN_1",
+              "GEN_2"
+            ],
+            "enumDescriptions": [
+              "Unspecified",
+              "Gen 1",
+              "Gen 2"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudFunctionsV2alphaOperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudFunctionsV2alphaOperationMetadata",
@@ -1120,7 +1168,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "createTime": {
@@ -1258,6 +1306,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudFunctionsV2betaLocationMetadata": {
+      "description": "Extra GCF specific location information.",
+      "id": "GoogleCloudFunctionsV2betaLocationMetadata",
+      "properties": {
+        "environments": {
+          "description": "The Cloud Function environments this location supports.",
+          "items": {
+            "enum": [
+              "ENVIRONMENT_UNSPECIFIED",
+              "GEN_1",
+              "GEN_2"
+            ],
+            "enumDescriptions": [
+              "Unspecified",
+              "Gen 1",
+              "Gen 2"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudFunctionsV2betaOperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "GoogleCloudFunctionsV2betaOperationMetadata",
@@ -1267,7 +1339,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "createTime": {
@@ -1687,7 +1759,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Version of the secret (version number or the string 'latest'). It is preferrable to use `latest` version with secret volumes as secret value changes are reflected immediately.",
+          "description": "Version of the secret (version number or the string 'latest'). It is preferable to use `latest` version with secret volumes as secret value changes are reflected immediately.",
           "type": "string"
         }
       },

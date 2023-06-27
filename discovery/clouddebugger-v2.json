@@ -15,7 +15,7 @@
   "baseUrl": "https://clouddebugger.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud Debugger",
-  "description": "Examines the call stack and variables of a running application without stopping or slowing it down. ",
+  "description": "Examines the call stack and variables of a running application without stopping or slowing it down. (Deprecated) ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/debugger",
   "fullyEncodeReservedExpansion": true,
@@ -374,6 +374,7 @@
                       "type": "boolean"
                     },
                     "stripResults": {
+                      "deprecated": true,
                       "description": "This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.",
                       "location": "query",
                       "type": "boolean"
@@ -448,7 +449,7 @@
       }
     }
   },
-  "revision": "20220318",
+  "revision": "20230613",
   "rootUrl": "https://clouddebugger.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1120,7 +1121,7 @@
     }
   },
   "servicePath": "",
-  "title": "Cloud Debugger API",
+  "title": "Cloud Debugger API (Deprecated)",
   "version": "v2",
   "version_module": true
 }

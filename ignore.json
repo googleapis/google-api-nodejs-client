@@ -5,6 +5,7 @@
     "monitoring:v1",
     "identitytoolkit:v1",
     "integrations:v1",
+    "integrations:v1alpha",
     "baremetalsolution:v2"
   ]
 }

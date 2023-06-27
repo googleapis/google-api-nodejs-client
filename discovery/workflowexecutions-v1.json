@@ -309,7 +309,7 @@
       }
     }
   },
-  "revision": "20230328",
+  "revision": "20230607",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -424,7 +424,7 @@
         },
         "stateError": {
           "$ref": "StateError",
-          "description": "Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the Execution data is unavailable due to revoked KMS key permissions.",
+          "description": "Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the execution data is unavailable due to revoked KMS key permissions.",
           "readOnly": true
         },
         "status": {
@@ -604,6 +604,11 @@
         "GCPCloudEventsMode": {
           "description": "Required. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.",
           "type": "string"
+        },
+        "deliveryAttempt": {
+          "description": "The number of attempts that have been made to deliver this message. This is set by Pub/Sub for subscriptions that have the \"dead letter\" feature enabled, and hence provided here for compatibility, but is ignored by Workflows.",
+          "format": "int32",
+          "type": "integer"
         },
         "message": {
           "$ref": "PubsubMessage",

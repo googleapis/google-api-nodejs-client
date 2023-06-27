@@ -946,6 +946,10 @@ export namespace networkservices_v1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response returned by the ListGrpcRoutes method.
@@ -1089,7 +1093,7 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
-     * Optional. If set to a valid TCP port (1-65535), instructs the SIDECAR proxy to listen on the specified port of localhost (127.0.0.1) address. The SIDECAR proxy will expect all traffic to be redirected to this port regardless of its actual ip:port destination. If unset, a port '15001' is used as the interception port. This will is applicable only for sidecar proxy deployments.
+     * Optional. If set to a valid TCP port (1-65535), instructs the SIDECAR proxy to listen on the specified port of localhost (127.0.0.1) address. The SIDECAR proxy will expect all traffic to be redirected to this port regardless of its actual ip:port destination. If unset, a port '15001' is used as the interception port. This is applicable only for sidecar proxy deployments.
      */
     interceptionPort?: number | null;
     /**
@@ -5103,7 +5107,8 @@ export namespace networkservices_v1 {
      *   // Example response
      *   // {
      *   //   "gateways": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
      *   // }
      * }
      *

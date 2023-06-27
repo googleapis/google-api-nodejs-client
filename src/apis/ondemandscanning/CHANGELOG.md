@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v7.0.0...ondemandscanning-v8.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v6.2.0...ondemandscanning-v7.0.0) (2023-04-08)
 
 

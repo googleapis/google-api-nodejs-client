@@ -292,15 +292,15 @@ export namespace texttospeech_v1 {
      */
     audioConfig?: Schema$AudioConfig;
     /**
-     * Required. The Synthesizer requires either plain text or SSML as input.
+     * Required. The Synthesizer requires either plain text or SSML as input. While Long Audio is in preview, SSML is temporarily unsupported.
      */
     input?: Schema$SynthesisInput;
     /**
-     * Specifies a Cloud Storage URI for the synthesis results. Must be specified in the format: `gs://bucket_name/object_name`, and the bucket must already exist.
+     * Required. Specifies a Cloud Storage URI for the synthesis results. Must be specified in the format: `gs://bucket_name/object_name`, and the bucket must already exist.
      */
     outputGcsUri?: string | null;
     /**
-     * The desired voice of the synthesized audio.
+     * Required. The desired voice of the synthesized audio.
      */
     voice?: Schema$VoiceSelectionParams;
   }

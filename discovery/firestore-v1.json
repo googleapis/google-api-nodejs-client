@@ -331,9 +331,184 @@
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/datastore"
               ]
+            },
+            "restore": {
+              "description": "Create a new database by restore from an existing backup. The new database must be in the same cloud region or multi-region location as the existing backup. This behaves similar to FirestoreAdmin.CreateDatabase except instead of creating a new empty database, a new database is created with the database type, index configuration, and documents from an existing backup. The long-running operation can be used to track the progress of the restore, with the Operation's metadata field type being the RestoreDatabaseMetadata. The response type is the Database if the restore was successful. The new database is not readable or writeable until the LRO has completed. Cancelling the returned operation will stop the restore and delete the in-progress database, if the restore is still active.",
+              "flatPath": "v1/projects/{projectsId}/databases:restore",
+              "httpMethod": "POST",
+              "id": "firestore.projects.databases.restore",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The project to restore the database in. Format is `projects/{project_id}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/databases:restore",
+              "request": {
+                "$ref": "GoogleFirestoreAdminV1RestoreDatabaseRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/datastore"
+              ]
             }
           },
           "resources": {
+            "backupSchedules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a backup schedule on a database. At most two backup schedules can be configured on a database, one daily backup schedule with retention up to 7 days and one weekly backup schedule with retention up to 14 weeks.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/backupSchedules",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.backupSchedules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent database. Format `projects/{project}/databases/{database}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backupSchedules",
+                  "request": {
+                    "$ref": "GoogleFirestoreAdminV1BackupSchedule"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1BackupSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a backup schedule.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "firestore.projects.databases.backupSchedules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of backup schedule. Format `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about a backup schedule.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}",
+                  "httpMethod": "GET",
+                  "id": "firestore.projects.databases.backupSchedules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the backup schedule. Format `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1BackupSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "list": {
+                  "description": "List backup schedules.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/backupSchedules",
+                  "httpMethod": "GET",
+                  "id": "firestore.projects.databases.backupSchedules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent database. Format is `projects/{project}/databases/{database}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backupSchedules",
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1ListBackupSchedulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a backup schedule.",
+                  "flatPath": "v1/projects/{projectsId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "firestore.projects.databases.backupSchedules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleFirestoreAdminV1BackupSchedule"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1BackupSchedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                }
+              }
+            },
             "collectionGroups": {
               "resources": {
                 "fields": {
@@ -1418,12 +1593,96 @@
                 "https://www.googleapis.com/auth/datastore"
               ]
             }
+          },
+          "resources": {
+            "backups": {
+              "methods": {
+                "delete": {
+                  "description": "Deletes a backup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups/{backupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "firestore.projects.locations.backups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the backup to delete. format is `projects/{project}/locations/{location}/backups/{backup}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "get": {
+                  "description": "Gets information about a backup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups/{backupsId}",
+                  "httpMethod": "GET",
+                  "id": "firestore.projects.locations.backups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the backup to fetch. Format is `projects/{project}/locations/{location}/backups/{backup}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1Backup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the backups.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups",
+                  "httpMethod": "GET",
+                  "id": "firestore.projects.locations.backups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location to list backups from. Format is `projects/{project}/locations/{location}`. Use `{location} = '-'` to list backups from all locations for the given project. This allows listing backups from a single location or from all locations.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backups",
+                  "response": {
+                    "$ref": "GoogleFirestoreAdminV1ListBackupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  "revision": "20230421",
+  "revision": "20230605",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1587,6 +1846,39 @@
           "description": "The transaction that was started.",
           "format": "byte",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BitSequence": {
+      "description": "A sequence of bits, encoded in a byte array. Each byte in the `bitmap` byte array stores 8 bits of the sequence. The only exception is the last byte, which may store 8 _or fewer_ bits. The `padding` defines the number of bits of the last byte to be ignored as \"padding\". The values of these \"padding\" bits are unspecified and must be ignored. To retrieve the first bit, bit 0, calculate: `(bitmap[0] & 0x01) != 0`. To retrieve the second bit, bit 1, calculate: `(bitmap[0] & 0x02) != 0`. To retrieve the third bit, bit 2, calculate: `(bitmap[0] & 0x04) != 0`. To retrieve the fourth bit, bit 3, calculate: `(bitmap[0] & 0x08) != 0`. To retrieve bit n, calculate: `(bitmap[n / 8] & (0x01 << (n % 8))) != 0`. The \"size\" of a `BitSequence` (the number of bits it contains) is calculated by this formula: `(bitmap.length * 8) - padding`.",
+      "id": "BitSequence",
+      "properties": {
+        "bitmap": {
+          "description": "The bytes that encode the bit sequence. May have a length of zero.",
+          "format": "byte",
+          "type": "string"
+        },
+        "padding": {
+          "description": "The number of bits of the last byte in `bitmap` to ignore as \"padding\". If the length of `bitmap` is zero, then this value must be `0`. Otherwise, this value must be between 0 and 7, inclusive.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BloomFilter": {
+      "description": "A bloom filter (https://en.wikipedia.org/wiki/Bloom_filter). The bloom filter hashes the entries with MD5 and treats the resulting 128-bit hash as 2 distinct 64-bit hash values, interpreted as unsigned integers using 2's complement encoding. These two hash values, named `h1` and `h2`, are then used to compute the `hash_count` hash values using the formula, starting at `i=0`: h(i) = h1 + (i * h2) These resulting values are then taken modulo the number of bits in the bloom filter to get the bits of the bloom filter to test for the given entry.",
+      "id": "BloomFilter",
+      "properties": {
+        "bits": {
+          "$ref": "BitSequence",
+          "description": "The bloom filter data."
+        },
+        "hashCount": {
+          "description": "The number of hashes used by the algorithm.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1870,6 +2162,10 @@
           "description": "The target ID to which this filter applies.",
           "format": "int32",
           "type": "integer"
+        },
+        "unchangedNames": {
+          "$ref": "BloomFilter",
+          "description": "A bloom filter that contains the UTF-8 byte encodings of the resource names of the documents that match target_id, in the form `projects/{project_id}/databases/{database_id}/documents/{document_path}` that have NOT changed since the query results indicated by the resume token or timestamp given in `Target.resume_type`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync."
         }
       },
       "type": "object"
@@ -1992,6 +2288,105 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1Backup": {
+      "description": "A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at specific point in time.",
+      "id": "GoogleFirestoreAdminV1Backup",
+      "properties": {
+        "database": {
+          "description": "Output only. Name of the Firestore database that the backup is from. Format is `projects/{project}/databases/{database}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "databaseUid": {
+          "description": "Output only. The system-generated UUID4 for the Firestore database that the backup is from.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The timestamp at which this backup expires.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The unique resource name of the Backup. Format is `projects/{project}/locations/{location}/backups/{backup}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "snapshotTime": {
+          "description": "Output only. The backup contains an externally consistent copy of the database at this time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "NOT_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The pending backup is still being created. Operations on the backup will be rejected in this state.",
+            "The backup is complete and ready to use.",
+            "The backup is not available at this moment."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "GoogleFirestoreAdminV1Stats",
+          "description": "Output only. Statistics about the backup. This data only becomes available after the backup is fully materialized to secondary storage. This field will be empty till then.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1BackupSchedule": {
+      "description": "A backup schedule for a Cloud Firestore Database. This resource is owned by the database it is backing up, and is deleted along with the database. The actual backups are not though.",
+      "id": "GoogleFirestoreAdminV1BackupSchedule",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp at which this backup schedule was created and effective since. No backups will be created for this schedule before this time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dailyRecurrence": {
+          "$ref": "GoogleFirestoreAdminV1DailyRecurrence",
+          "description": "For a schedule that runs daily at a specified time."
+        },
+        "name": {
+          "description": "Output only. The unique backup schedule identifier across all locations and databases for the given project. This will be auto-assigned. Format is `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "retention": {
+          "description": "At what relative time in the future, compared to the creation time of the backup should the backup be deleted, i.e. keep backups for 7 days.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp at which this backup schedule was most recently updated. When a backup schedule is first created, this is the same as create_time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "weeklyRecurrence": {
+          "$ref": "GoogleFirestoreAdminV1WeeklyRecurrence",
+          "description": "For a schedule that runs weekly on a specific day and time."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1DailyRecurrence": {
+      "description": "Represent a recurring schedule that runs at a specific time every day. The time zone is UTC.",
+      "id": "GoogleFirestoreAdminV1DailyRecurrence",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1Database": {
       "description": "A Cloud Firestore Database. Currently only one database is allowed per cloud project; this database must have a `database_id` of '(default)'.",
       "id": "GoogleFirestoreAdminV1Database",
@@ -2046,6 +2441,12 @@
           ],
           "type": "string"
         },
+        "earliestVersionTime": {
+          "description": "Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "etag": {
           "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
@@ -2061,6 +2462,20 @@
         },
         "name": {
           "description": "The resource name of the Database. Format: `projects/{project}/databases/{database}`",
+          "type": "string"
+        },
+        "pointInTimeRecoveryEnablement": {
+          "description": "Whether to enable the PITR feature on this database.",
+          "enum": [
+            "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED",
+            "POINT_IN_TIME_RECOVERY_ENABLED",
+            "POINT_IN_TIME_RECOVERY_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Reads are supported on selected versions of the data from within the past 7 days: * Reads against any timestamp within the past hour * Reads against 1-minute snapshots beyond 1 hour and within 7 days `version_retention_period` and `earliest_version_time` can be used to determine the supported versions.",
+            "Reads are supported on any version of the data from within the past 1 hour."
+          ],
           "type": "string"
         },
         "type": {
@@ -2085,6 +2500,12 @@
         "updateTime": {
           "description": "Output only. The timestamp at which this database was most recently updated. Note this only includes updates to the database resource and not data contained by the database.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "versionRetentionPeriod": {
+          "description": "Output only. The period during which past versions of data are retained in the database. Any read or query can specify a `read_time` within this window, and will read the state of the database at that time. If the PITR feature is enabled, the retention period is 7 days. Otherwise, the retention period is 1 hour.",
+          "format": "google-duration",
           "readOnly": true,
           "type": "string"
         }
@@ -2178,6 +2599,11 @@
         },
         "outputUriPrefix": {
           "description": "The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time.",
+          "type": "string"
+        },
+        "snapshotTime": {
+          "description": "The timestamp that corresponds to the version of the database to be exported. The timestamp must be rounded to the minute, in the past, and not older than 1 hour. If specified, then the exported documents will represent a consistent view of the database at the provided time. Otherwise, there are no guarantees about the consistency of the exported documents.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2380,7 +2806,7 @@
             "DATASTORE_MODE_API"
           ],
           "enumDescriptions": [
-            "The index can be used by both Firestore Native and Firestore in Datastore Mode query API. This is the default.",
+            "The index can only be used by the Firestore Native query API. This is the default.",
             "The index can only be used by the Firestore in Datastore Mode query API."
           ],
           "type": "string"
@@ -2572,6 +2998,41 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1ListBackupSchedulesResponse": {
+      "description": "The response for FirestoreAdmin.ListBackupSchedules.",
+      "id": "GoogleFirestoreAdminV1ListBackupSchedulesResponse",
+      "properties": {
+        "backupSchedules": {
+          "description": "List of all backup schedules.",
+          "items": {
+            "$ref": "GoogleFirestoreAdminV1BackupSchedule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1ListBackupsResponse": {
+      "description": "The response for FirestoreAdmin.ListBackups.",
+      "id": "GoogleFirestoreAdminV1ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "List of all backups for the project. Ordered by `location ASC, create_time DESC, name ASC`.",
+          "items": {
+            "$ref": "GoogleFirestoreAdminV1Backup"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "List of locations that existing backups were not able to be fetched from. Instead of failing the entire requests when a single location is unreachable, this response returns a partial result set and list of locations unable to be reached here. The request can be retried against a single location to get a concrete error.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1ListDatabasesResponse": {
       "description": "The list of databases for a project.",
       "id": "GoogleFirestoreAdminV1ListDatabasesResponse",
@@ -2645,6 +3106,46 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1RestoreDatabaseRequest": {
+      "description": "The request message for FirestoreAdmin.RestoreDatabase.",
+      "id": "GoogleFirestoreAdminV1RestoreDatabaseRequest",
+      "properties": {
+        "backup": {
+          "description": "Required. Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
+          "type": "string"
+        },
+        "databaseId": {
+          "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This database id must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database id is also valid.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1Stats": {
+      "description": "Backup specific statistics.",
+      "id": "GoogleFirestoreAdminV1Stats",
+      "properties": {
+        "documentCount": {
+          "description": "Output only. The total number of documents contained in the backup.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "indexCount": {
+          "description": "Output only. The total number of index entries contained in the backup.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. Summation of the size of all documents and index entries in the backup, measured in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1TtlConfig": {
       "description": "The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.",
       "id": "GoogleFirestoreAdminV1TtlConfig",
@@ -2670,7 +3171,7 @@
       "type": "object"
     },
     "GoogleFirestoreAdminV1TtlConfigDelta": {
-      "description": "Information about an TTL configuration change.",
+      "description": "Information about a TTL configuration change.",
       "id": "GoogleFirestoreAdminV1TtlConfigDelta",
       "properties": {
         "changeType": {
@@ -2694,6 +3195,37 @@
       "description": "Metadata related to the update database operation.",
       "id": "GoogleFirestoreAdminV1UpdateDatabaseMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1WeeklyRecurrence": {
+      "description": "Represents a recurring schedule that runs on a specified day of the week. The time zone is UTC.",
+      "id": "GoogleFirestoreAdminV1WeeklyRecurrence",
+      "properties": {
+        "day": {
+          "description": "The day of week to run. DAY_OF_WEEK_UNSPECIFIED is not allowed.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleLongrunningCancelOperationRequest": {
@@ -3299,6 +3831,11 @@
         "documents": {
           "$ref": "DocumentsTarget",
           "description": "A target specified by a set of document names."
+        },
+        "expectedCount": {
+          "description": "The number of documents that last matched the query at the resume token or read time. This value is only relevant when a `resume_type` is provided. This value being present and greater than zero signals that the client wants `ExistenceFilter.unchanged_names` to be included in the response.",
+          "format": "int32",
+          "type": "integer"
         },
         "once": {
           "description": "If the target should be removed once it is current and consistent.",

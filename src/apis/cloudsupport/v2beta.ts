@@ -240,7 +240,7 @@ export namespace cloudsupport_v2beta {
      */
     name?: string | null;
     /**
-     * The priority of this case. If this is set, do not set severity.
+     * The priority of this case.
      */
     priority?: string | null;
     /**
@@ -273,11 +273,11 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$CaseClassification {
     /**
-     * The display name of the classification.
+     * A display name for the classification. The display name is not static and can change. To uniquely and consistently identify classifications, use the `CaseClassification.id` field.
      */
     displayName?: string | null;
     /**
-     * The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`.
+     * The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.
      */
     id?: string | null;
   }
@@ -523,11 +523,11 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$ListCasesResponse {
     /**
-     * The list of cases associated with the cloud resource, after any filters have been applied.
+     * The list of cases associated with the Google Cloud Resource, after any filters have been applied.
      */
     cases?: Schema$Case[];
     /**
-     * A token to retrieve the next page of results. This should be set in the `page_token` field of subsequent `ListCasesRequest` message that is issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. This should be set in the `page_token` field of the subsequent `ListCasesRequest` message that is issued. If unspecified, there are no more results to retrieve.
      */
     nextPageToken?: string | null;
   }
@@ -704,7 +704,7 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$SearchCasesResponse {
     /**
-     * The list of Case associated with the cloud resource, after any filters have been applied.
+     * The list of cases associated with the Google Cloud Resource, after any filters have been applied.
      */
     cases?: Schema$Case[];
     /**
@@ -737,7 +737,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Retrieve valid classifications to be used when creating a support case. The classications are hierarchical, with each classification containing all levels of the hierarchy, separated by " \> ". For example "Technical Issue \> Compute \> Compute Engine".
+     * Retrieve valid classifications to be used when creating a support case. The classications are hierarchical, with each classification containing all levels of the hierarchy, separated by `" \> "`. For example `"Technical Issue \> Compute \> Compute Engine"`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.
      * @example
      * ```js
      * // Before running the sample:
@@ -767,7 +767,7 @@ export namespace cloudsupport_v2beta {
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
      *     pageToken: 'placeholder-value',
-     *     // An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out.
+     *     // An expression written in the Google Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out.
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -891,7 +891,7 @@ export namespace cloudsupport_v2beta {
      */
     pageToken?: string;
     /**
-     * An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out.
+     * An expression written in the Google Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out.
      */
     query?: string;
   }
@@ -1056,7 +1056,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a new case and associate it with the given Cloud resource. The case object must have the following fields set: display_name, description, classification, and severity.
+     * Create a new case and associate it with the given Google Cloud Resource. The case object must have the following fields set: `display_name`, `description`, `classification`, and `priority`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1082,7 +1082,7 @@ export namespace cloudsupport_v2beta {
      *
      *   // Do the magic
      *   const res = await cloudsupport.cases.create({
-     *     // Required. The name of the Cloud resource under which the case should be created.
+     *     // Required. The name of the Google Cloud Resource under which the case should be created.
      *     parent: '[^/]+/[^/]+',
      *
      *     // Request body metadata
@@ -1222,7 +1222,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Escalate a case. Escalating a case will initiate the Cloud Support escalation management process. This operation is only available to certain Customer Care tiers. Go to https://cloud.google.com/support and look for 'Technical support escalations' in the feature list to find out which tiers are able to perform escalations.
+     * Escalate a case. Escalating a case will initiate the Google Cloud Support escalation management process. This operation is only available to certain Customer Care tiers. Go to https://cloud.google.com/support and look for 'Technical support escalations' in the feature list to find out which tiers are able to perform escalations.
      * @example
      * ```js
      * // Before running the sample:
@@ -1539,7 +1539,7 @@ export namespace cloudsupport_v2beta {
      *
      *   // Do the magic
      *   const res = await cloudsupport.cases.list({
-     *     // An expression written in filter language. If non-empty, the query returns the cases that match the filter. Else, the query doesn't filter the cases. Filter expressions use the following fields with the operators equals (`=`) and `AND`: - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. Examples: - `state=CLOSED` - `state=OPEN AND creator.email="tester@example.com"` - `state=OPEN AND (priority=P0 OR priority=P1)`
+     *     // An expression written in filter language. If non-empty, the query returns the cases that match the filter. Else, the query doesn't filter the cases. Filter expressions use the following fields with the operators equals (`=`) and `AND`: - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - `creator.email`: The email address of the case creator. Examples: - `state=CLOSED` - `state=OPEN AND creator.email="tester@example.com"` - `state=OPEN AND (priority=P0 OR priority=P1)`
      *     filter: 'placeholder-value',
      *     // The maximum number of cases fetched with each request. Defaults to 10.
      *     pageSize: 'placeholder-value',
@@ -1679,7 +1679,7 @@ export namespace cloudsupport_v2beta {
      *   const res = await cloudsupport.cases.patch({
      *     // The resource name for the case.
      *     name: '[^/]+/[^/]+/cases/my-case',
-     *     // A list of attributes of the case object that should be updated as part of this request. Supported values are severity, display_name, and subscriber_email_addresses. If no fields are specified, all supported fields are updated. WARNING: If you do not provide a field mask, then you may accidentally clear some fields. For example, if you leave field mask empty and do not provide a value for subscriber_email_addresses, then subscriber_email_addresses is updated to empty.
+     *     // A list of attributes of the case object that should be updated as part of this request. Supported values are `priority`, `display_name`, and `subscriber_email_addresses`. If no fields are specified, all supported fields are updated. WARNING: If you do not provide a field mask, then you might accidentally clear some fields. For example, if you leave the field mask empty and do not provide a value for `subscriber_email_addresses`, then `subscriber_email_addresses` is updated to empty.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1846,7 +1846,7 @@ export namespace cloudsupport_v2beta {
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
      *     pageToken: 'placeholder-value',
-     *     // An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
+     *     // An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify either `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` restricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1965,7 +1965,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Cases$Create extends StandardParameters {
     /**
-     * Required. The name of the Cloud resource under which the case should be created.
+     * Required. The name of the Google Cloud Resource under which the case should be created.
      */
     parent?: string;
 
@@ -1993,7 +1993,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Cases$List extends StandardParameters {
     /**
-     * An expression written in filter language. If non-empty, the query returns the cases that match the filter. Else, the query doesn't filter the cases. Filter expressions use the following fields with the operators equals (`=`) and `AND`: - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. Examples: - `state=CLOSED` - `state=OPEN AND creator.email="tester@example.com"` - `state=OPEN AND (priority=P0 OR priority=P1)`
+     * An expression written in filter language. If non-empty, the query returns the cases that match the filter. Else, the query doesn't filter the cases. Filter expressions use the following fields with the operators equals (`=`) and `AND`: - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - `creator.email`: The email address of the case creator. Examples: - `state=CLOSED` - `state=OPEN AND creator.email="tester@example.com"` - `state=OPEN AND (priority=P0 OR priority=P1)`
      */
     filter?: string;
     /**
@@ -2015,7 +2015,7 @@ export namespace cloudsupport_v2beta {
      */
     name?: string;
     /**
-     * A list of attributes of the case object that should be updated as part of this request. Supported values are severity, display_name, and subscriber_email_addresses. If no fields are specified, all supported fields are updated. WARNING: If you do not provide a field mask, then you may accidentally clear some fields. For example, if you leave field mask empty and do not provide a value for subscriber_email_addresses, then subscriber_email_addresses is updated to empty.
+     * A list of attributes of the case object that should be updated as part of this request. Supported values are `priority`, `display_name`, and `subscriber_email_addresses`. If no fields are specified, all supported fields are updated. WARNING: If you do not provide a field mask, then you might accidentally clear some fields. For example, if you leave the field mask empty and do not provide a value for `subscriber_email_addresses`, then `subscriber_email_addresses` is updated to empty.
      */
     updateMask?: string;
 
@@ -2034,7 +2034,7 @@ export namespace cloudsupport_v2beta {
      */
     pageToken?: string;
     /**
-     * An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
+     * An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify either `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` restricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      */
     query?: string;
   }

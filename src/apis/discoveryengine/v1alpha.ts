@@ -240,6 +240,15 @@ export namespace discoveryengine_v1alpha {
     functionName?: string | null;
   }
   /**
+   * Response message for SiteSearchEngineService.BatchCreateTargetSites method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse {
+    /**
+     * TargetSites created.
+     */
+    targetSites?: Schema$GoogleCloudDiscoveryengineV1alphaTargetSite[];
+  }
+  /**
    * BigQuery source import data from.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBigQuerySource {
@@ -343,6 +352,10 @@ export namespace discoveryengine_v1alpha {
      * Quantity of the Document associated with the user event. Defaults to 1. For example, this field will be 2 if two quantities of the same Document are involved in a `add-to-cart` event. Required for events of the following event types: * `add-to-cart` * `purchase`
      */
     quantity?: number | null;
+    /**
+     * Required. The Document url - only allowed for DataStores with content_config PUBLIC_WEBSITE.
+     */
+    uri?: string | null;
   }
   /**
    * Cloud Storage location for input content.
@@ -383,6 +396,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportDocumentsRequest {
     /**
+     * Whether to automatically generate IDs for the documents if absent. If set to `true`, Document.ids are automatically generated based on the hash of the payload, where IDs may not be consistent during multiple imports. In which case ReconciliationMode.FULL is highly recommended to avoid duplicate contents. If unset or set to `false`, Document.ids have to be specified using id_field, otherwises, documents without IDs will fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. Otherwise, an INVALID_ARGUMENT error is thrown.
+     */
+    autoGenerateIds?: boolean | null;
+    /**
      * BigQuery input source.
      */
     bigquerySource?: Schema$GoogleCloudDiscoveryengineV1alphaBigQuerySource;
@@ -394,6 +411,10 @@ export namespace discoveryengine_v1alpha {
      * Cloud Storage location for the input content.
      */
     gcsSource?: Schema$GoogleCloudDiscoveryengineV1alphaGcsSource;
+    /**
+     * The field in the Cloud Storage and BigQuery sources that indicates the unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For BigQuerySource it is the column name of the BigQuery table where the unique ids are stored. The values of the JSON field or the BigQuery column will be used as the Document.ids. The JSON field or the BigQuery column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs will fail to be imported. Only set this field when using GcsSource or BigQuerySource, and when GcsSource.data_schema or BigQuerySource.data_schema is `custom`. And only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources.
+     */
+    idField?: string | null;
     /**
      * The Inline source for the input content for documents.
      */
@@ -600,7 +621,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPurgeDocumentsRequest {
     /**
-     * Required. Filter matching documents to purge. Only currently supported value is “*” (all items).
+     * Required. Filter matching documents to purge. Only currently supported value is `*` (all items).
      */
     filter?: string | null;
     /**
@@ -721,6 +742,35 @@ export namespace discoveryengine_v1alpha {
      * The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. At least one of search_query or PageInfo.page_category is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     searchQuery?: string | null;
+  }
+  /**
+   * A target site for the SiteSearchEngine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaTargetSite {
+    /**
+     * Input only. If set to false, an uri_pattern will be generated to include all pages whose address contains the provided_uri_pattern. If set to true, an uri_pattern will be generated to try to be an exact match of the provided_uri_pattern or just the specific page if the provided_uri_pattern is a specific one. provided_uri_pattern will always be normalized to generate the uri pattern to be used by the search engine.
+     */
+    exactMatch?: boolean | null;
+    /**
+     * Output only. This is system-generated based on the provided_uri_pattern.
+     */
+    generatedUriPattern?: string | null;
+    /**
+     * Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
+     */
+    name?: string | null;
+    /**
+     * Required. Input only. The user provided uri pattern from which the `generated_uri_pattern` is generated.
+     */
+    providedUriPattern?: string | null;
+    /**
+     * The type of the target site, e.g. whether the site is to be included or excluded.
+     */
+    type?: string | null;
+    /**
+     * Output only. The target site's last updated time.
+     */
+    updateTime?: string | null;
   }
   /**
    * A transaction represents the entire purchase transaction.
@@ -980,6 +1030,142 @@ export namespace discoveryengine_v1alpha {
     structSchema?: {[key: string]: any} | null;
   }
   /**
+   * Metadata related to the progress of the ImportDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportDocumentsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of entries that encountered errors while processing.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of entries that were processed successfully.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the ImportDocumentsRequest. If the long running operation is done, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportDocumentsResponse {
+    /**
+     * Echoes the destination for the complete errors in the request if set.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1ImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Configuration of destination for Import related errors.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportErrorConfig {
+    /**
+     * Cloud Storage prefix for import errors. This must be an empty, existing Cloud Storage directory. Import errors will be written to sharded files in this directory, one per line, as a JSON-encoded `google.rpc.Status` message.
+     */
+    gcsPrefix?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportUserEventsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of entries that encountered errors while processing.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of entries that were processed successfully.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the ImportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ImportUserEventsResponse {
+    /**
+     * Echoes the destination for the complete errors if this field was set in the request.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1ImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Count of user events imported with complete existing Documents.
+     */
+    joinedEventsCount?: string | null;
+    /**
+     * Count of user events imported, but with Document information not found in the existing Branch.
+     */
+    unjoinedEventsCount?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the PurgeDocuments operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of entries that encountered errors while processing.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of entries that were deleted successfully.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for DocumentService.PurgeDocuments method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1PurgeDocumentsResponse {
+    /**
+     * The total count of documents purged as a result of the operation.
+     */
+    purgeCount?: string | null;
+    /**
+     * A sample of document names that will be deleted. Only populated if `force` is set to false. A max of 100 names will be returned and the names are chosen at random.
+     */
+    purgeSample?: string[] | null;
+  }
+  /**
+   * Defines the structure and layout of a type of document data.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Schema {
+    /**
+     * The JSON representation of the schema.
+     */
+    jsonSchema?: string | null;
+    /**
+     * Immutable. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The structured representation of the schema.
+     */
+    structSchema?: {[key: string]: any} | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {
@@ -1110,6 +1296,7 @@ export namespace discoveryengine_v1alpha {
     branches: Resource$Projects$Locations$Collections$Datastores$Branches;
     models: Resource$Projects$Locations$Collections$Datastores$Models;
     operations: Resource$Projects$Locations$Collections$Datastores$Operations;
+    schemas: Resource$Projects$Locations$Collections$Datastores$Schemas;
     servingConfigs: Resource$Projects$Locations$Collections$Datastores$Servingconfigs;
     userEvents: Resource$Projects$Locations$Collections$Datastores$Userevents;
     constructor(context: APIRequestContext) {
@@ -1124,6 +1311,10 @@ export namespace discoveryengine_v1alpha {
         );
       this.operations =
         new Resource$Projects$Locations$Collections$Datastores$Operations(
+          this.context
+        );
+      this.schemas =
+        new Resource$Projects$Locations$Collections$Datastores$Schemas(
           this.context
         );
       this.servingConfigs =
@@ -1638,9 +1829,11 @@ export namespace discoveryengine_v1alpha {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "autoGenerateIds": false,
      *           //   "bigquerySource": {},
      *           //   "errorConfig": {},
      *           //   "gcsSource": {},
+     *           //   "idField": "my_idField",
      *           //   "inlineSource": {},
      *           //   "reconciliationMode": "my_reconciliationMode"
      *           // }
@@ -2069,7 +2262,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Permanently deletes all selected Documents under a branch. This process is asynchronous. If the request is valid, the removal will be enquired and processed offlines. Depending on the number of Documents, this operation could take hours to complete. Before the operation completes, some Documents may still be returned by DocumentService.GetDocument or DocumentService.ListDocuments. To get a sample of Documents that would be deleted, set PurgeDocumentsRequest.force to false.
+     * Permanently deletes all selected Documents in a branch. This process is asynchronous. Depending on the number of Documents to be deleted, this operation can take hours to complete. Before the delete operation completes, some Documents might still be returned by DocumentService.GetDocument or DocumentService.ListDocuments. To get a list of the Documents to be deleted, set PurgeDocumentsRequest.force to false.
      * @example
      * ```js
      * // Before running the sample:
@@ -3281,6 +3474,344 @@ export namespace discoveryengine_v1alpha {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Datastores$Schemas {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Collections$Datastores$Schemas$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Collections$Datastores$Schemas$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Collections$Datastores$Schemas$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/schemas/my-schema/operations/my-operation',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/schemas/my-schema',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Schemas$Operations$List
     extends StandardParameters {
     /**
      * The standard list filter.
@@ -5205,9 +5736,11 @@ export namespace discoveryengine_v1alpha {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "autoGenerateIds": false,
      *           //   "bigquerySource": {},
      *           //   "errorConfig": {},
      *           //   "gcsSource": {},
+     *           //   "idField": "my_idField",
      *           //   "inlineSource": {},
      *           //   "reconciliationMode": "my_reconciliationMode"
      *           // }
@@ -5636,7 +6169,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Permanently deletes all selected Documents under a branch. This process is asynchronous. If the request is valid, the removal will be enquired and processed offlines. Depending on the number of Documents, this operation could take hours to complete. Before the operation completes, some Documents may still be returned by DocumentService.GetDocument or DocumentService.ListDocuments. To get a sample of Documents that would be deleted, set PurgeDocumentsRequest.force to false.
+     * Permanently deletes all selected Documents in a branch. This process is asynchronous. Depending on the number of Documents to be deleted, this operation can take hours to complete. Before the delete operation completes, some Documents might still be returned by DocumentService.GetDocument or DocumentService.ListDocuments. To get a list of the Documents to be deleted, set PurgeDocumentsRequest.force to false.
      * @example
      * ```js
      * // Before running the sample:

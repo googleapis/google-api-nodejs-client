@@ -284,6 +284,10 @@ export namespace manufacturers_v1 {
      * The videos of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#video.
      */
     videoLink?: string[] | null;
+    /**
+     * Virtual Model (3d) asset link.
+     */
+    virtualModelLink?: string | null;
   }
   /**
    * The capacity of a product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity.
@@ -1951,7 +1955,8 @@ export namespace manufacturers_v1 {
      *       //   "targetClientId": "my_targetClientId",
      *       //   "theme": "my_theme",
      *       //   "title": "my_title",
-     *       //   "videoLink": []
+     *       //   "videoLink": [],
+     *       //   "virtualModelLink": "my_virtualModelLink"
      *       // }
      *     },
      *   });

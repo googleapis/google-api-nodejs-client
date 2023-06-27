@@ -883,7 +883,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230603",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1069,7 +1069,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

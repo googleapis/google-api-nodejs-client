@@ -184,7 +184,7 @@ export namespace run_v2 {
     type?: string | null;
   }
   /**
-   * A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments may be supplied by the system to the container at runtime.
+   * A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments can be supplied by the system to the container at runtime.
    */
   export interface Schema$GoogleCloudRunV2Container {
     /**
@@ -195,6 +195,10 @@ export namespace run_v2 {
      * Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.
      */
     command?: string[] | null;
+    /**
+     * Container names which must start before this container.
+     */
+    dependsOn?: string[] | null;
     /**
      * List of environment variables to set in the container.
      */
@@ -246,11 +250,24 @@ export namespace run_v2 {
     name?: string | null;
   }
   /**
+   * Ephemeral storage which can be backed by real disks (HD, SSD), network storage or memory (i.e. tmpfs). For now only in memory (tmpfs) is supported. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).
+   */
+  export interface Schema$GoogleCloudRunV2EmptyDirVolumeSource {
+    /**
+     * The medium on which the data is stored. Acceptable values today is only MEMORY or none. When none, the default will currently be backed by memory but could change over time. +optional
+     */
+    medium?: string | null;
+    /**
+     * Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. This field's values are of the 'Quantity' k8s type: https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+     */
+    sizeLimit?: string | null;
+  }
+  /**
    * EnvVar represents an environment variable present in a Container.
    */
   export interface Schema$GoogleCloudRunV2EnvVar {
     /**
-     * Required. Name of the environment variable. Must be a C_IDENTIFIER, and mnay not exceed 32768 characters.
+     * Required. Name of the environment variable. Must be a C_IDENTIFIER, and must not exceed 32768 characters.
      */
     name?: string | null;
     /**
@@ -952,6 +969,10 @@ export namespace run_v2 {
      */
     creator?: string | null;
     /**
+     * Custom audiences that can be used in the audience field of ID token for authenticated requests.
+     */
+    customAudiences?: string[] | null;
+    /**
      * Output only. The deletion time.
      */
     deleteTime?: string | null;
@@ -1295,6 +1316,10 @@ export namespace run_v2 {
      * For Cloud SQL volumes, contains the specific instances that should be mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run.
      */
     cloudSqlInstance?: Schema$GoogleCloudRunV2CloudSqlInstance;
+    /**
+     * Ephemeral storage used as a shared volume.
+     */
+    emptyDir?: Schema$GoogleCloudRunV2EmptyDirVolumeSource;
     /**
      * Required. Volume's name.
      */
@@ -4537,6 +4562,7 @@ export namespace run_v2 {
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
+     *       //   "customAudiences": [],
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
@@ -4854,6 +4880,7 @@ export namespace run_v2 {
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
      *   //   "creator": "my_creator",
+     *   //   "customAudiences": [],
      *   //   "deleteTime": "my_deleteTime",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -5301,6 +5328,7 @@ export namespace run_v2 {
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
+     *       //   "customAudiences": [],
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",

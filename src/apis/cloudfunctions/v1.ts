@@ -232,7 +232,7 @@ export namespace cloudfunctions_v1 {
      */
     dockerRepository?: string | null;
     /**
-     * The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix, if not specified. For backward compatibility, if function with given name is not found, then the system will try to use function named "function". For Node.js this is name of a function exported by the module specified in `source_location`.
+     * The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix (ID of the function), if not specified.
      */
     entryPoint?: string | null;
     /**
@@ -420,6 +420,15 @@ export namespace cloudfunctions_v1 {
     uploadUrl?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2alphaLocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2alphaOperationMetadata {
@@ -428,7 +437,7 @@ export namespace cloudfunctions_v1 {
      */
     apiVersion?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -507,6 +516,15 @@ export namespace cloudfunctions_v1 {
     type?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2betaLocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2betaOperationMetadata {
@@ -515,7 +533,7 @@ export namespace cloudfunctions_v1 {
      */
     apiVersion?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -594,6 +612,15 @@ export namespace cloudfunctions_v1 {
     type?: string | null;
   }
   /**
+   * Extra GCF specific location information.
+   */
+  export interface Schema$GoogleCloudFunctionsV2LocationMetadata {
+    /**
+     * The Cloud Function environments this location supports.
+     */
+    environments?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$GoogleCloudFunctionsV2OperationMetadata {
@@ -602,7 +629,7 @@ export namespace cloudfunctions_v1 {
      */
     apiVersion?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -878,7 +905,7 @@ export namespace cloudfunctions_v1 {
      */
     path?: string | null;
     /**
-     * Version of the secret (version number or the string 'latest'). It is preferrable to use `latest` version with secret volumes as secret value changes are reflected immediately.
+     * Version of the secret (version number or the string 'latest'). It is preferable to use `latest` version with secret volumes as secret value changes are reflected immediately.
      */
     version?: string | null;
   }

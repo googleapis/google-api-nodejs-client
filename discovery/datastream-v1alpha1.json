@@ -215,6 +215,7 @@
           },
           "resources": {
             "connectionProfiles": {
+              "deprecated": true,
               "methods": {
                 "create": {
                   "deprecated": true,
@@ -711,6 +712,7 @@
               },
               "resources": {
                 "routes": {
+                  "deprecated": true,
                   "methods": {
                     "create": {
                       "deprecated": true,
@@ -1096,6 +1098,7 @@
               },
               "resources": {
                 "objects": {
+                  "deprecated": true,
                   "methods": {
                     "get": {
                       "deprecated": true,
@@ -1221,7 +1224,7 @@
       }
     }
   },
-  "revision": "20230410",
+  "revision": "20230607",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1797,7 +1800,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

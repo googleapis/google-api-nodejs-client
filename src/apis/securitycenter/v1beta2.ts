@@ -165,6 +165,10 @@ export namespace securitycenter_v1beta2 {
      */
     serviceName?: string | null;
     /**
+     * The caller's user agent string associated with the finding.
+     */
+    userAgent?: string | null;
+    /**
      * Type of user agent associated with the finding. For example, an operating system shell or an embedded or standalone application.
      */
     userAgentFamily?: string | null;
@@ -214,6 +218,10 @@ export namespace securitycenter_v1beta2 {
      * Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.
      */
     dataProfile?: string | null;
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     */
+    parentType?: string | null;
   }
   /**
    * Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.

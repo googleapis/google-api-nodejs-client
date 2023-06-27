@@ -115,6 +115,7 @@
           "parameterOrder": [],
           "parameters": {
             "agreementAccepted": {
+              "deprecated": true,
               "description": "Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Do not set this field for any customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises). Set this to field to true for all EMM-managed enterprises (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).",
               "location": "query",
               "type": "boolean"
@@ -1065,7 +1066,7 @@
       }
     }
   },
-  "revision": "20230418",
+  "revision": "20230612",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1503,7 +1504,7 @@
       "type": "object"
     },
     "ApplicationPolicy": {
-      "description": "Policy for an individual app.",
+      "description": "Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled.",
       "id": "ApplicationPolicy",
       "properties": {
         "accessibleTrackIds": {
@@ -2467,6 +2468,29 @@
         },
         "userName": {
           "description": "The resource name of the user that owns this device in the form enterprises/{enterpriseId}/users/{userId}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceConnectivityManagement": {
+      "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.",
+      "id": "DeviceConnectivityManagement",
+      "properties": {
+        "usbDataAccess": {
+          "description": "Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.",
+          "enum": [
+            "USB_DATA_ACCESS_UNSPECIFIED",
+            "ALLOW_USB_DATA_TRANSFER",
+            "DISALLOW_USB_FILE_TRANSFER",
+            "DISALLOW_USB_DATA_TRANSFER"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_USB_DATA_TRANSFER, unless usbFileTransferDisabled is set to true. If usbFileTransferDisabled is set to true, this is equivalent to DISALLOW_USB_FILE_TRANSFER.",
+            "All types of USB data transfers are allowed. usbFileTransferDisabled is ignored.",
+            "Transferring files over USB is disallowed. Other types of USB data connections, such as mouse and keyboard connection, are allowed. usbFileTransferDisabled is ignored.",
+            "When set, all types of USB data transfers are prohibited. Supported for devices running Android 12 or above with USB HAL 1.3 or above. If the setting is not supported, DISALLOW_USB_FILE_TRANSFER will be set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 12. A nonComplianceDetail with DEVICE_INCOMPATIBLE is reported if the device does not have USB HAL 1.3 or above. usbFileTransferDisabled is ignored."
+          ],
           "type": "string"
         }
       },
@@ -3609,7 +3633,8 @@
             "APP_INSTALLED",
             "PENDING",
             "APP_INCOMPATIBLE",
-            "APP_NOT_UPDATED"
+            "APP_NOT_UPDATED",
+            "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -3622,7 +3647,8 @@
             "A blocked app is installed.",
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
-            "The app is installed, but it hasn't been updated to the minimum version code specified by policy."
+            "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
+            "The device is incompatible with the policy requirements."
           ],
           "type": "string"
         },
@@ -3678,7 +3704,8 @@
             "APP_INSTALLED",
             "PENDING",
             "APP_INCOMPATIBLE",
-            "APP_NOT_UPDATED"
+            "APP_NOT_UPDATED",
+            "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -3691,7 +3718,8 @@
             "A blocked app is installed.",
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
-            "The app is installed, but it hasn't been updated to the minimum version code specified by policy."
+            "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
+            "The device is incompatible with the policy requirements."
           ],
           "type": "string"
         },
@@ -4308,6 +4336,10 @@
           ],
           "type": "string"
         },
+        "deviceConnectivityManagement": {
+          "$ref": "DeviceConnectivityManagement",
+          "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more."
+        },
         "deviceOwnerLockScreenInfo": {
           "$ref": "UserFacingMessage",
           "description": "The device owner information to be shown on the lock screen."
@@ -4687,7 +4719,7 @@
           "type": "boolean"
         },
         "wifiConfigDisabled": {
-          "description": "Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
+          "description": "Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
           "type": "boolean"
         },
         "wifiConfigsLockdownEnabled": {
@@ -4698,7 +4730,7 @@
       "type": "object"
     },
     "PolicyEnforcementRule": {
-      "description": "A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName.",
+      "description": "A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName. In the case of multiple matching or multiple triggered enforcement rules, a merge will occur with the most severe action being taken. However, all triggered rules are still kept track of: this includes initial trigger time and all associated non-compliance details. In the situation where the most severe enforcement rule is satisfied, the next most appropriate action is applied.",
       "id": "PolicyEnforcementRule",
       "properties": {
         "blockAction": {

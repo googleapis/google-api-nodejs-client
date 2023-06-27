@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20230419",
+  "revision": "20230607",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -3010,6 +3010,20 @@
       "description": "Options relating to the publication of each CertificateAuthority's CA certificate and CRLs and their inclusion as extensions in issued Certificates. The options set here apply to certificates issued by any CertificateAuthority in the CaPool.",
       "id": "PublishingOptions",
       "properties": {
+        "encodingFormat": {
+          "description": "Optional. Specifies the encoding format of each CertificateAuthority's CA certificate and CRLs. If this is omitted, CA certificates and CRLs will be published in PEM.",
+          "enum": [
+            "ENCODING_FORMAT_UNSPECIFIED",
+            "PEM",
+            "DER"
+          ],
+          "enumDescriptions": [
+            "Not specified. By default, PEM format will be used.",
+            "The CertificateAuthority's CA certificate and CRLs will be published in PEM format.",
+            "The CertificateAuthority's CA certificate and CRLs will be published in DER format."
+          ],
+          "type": "string"
+        },
         "publishCaCert": {
           "description": "Optional. When true, publishes each CertificateAuthority's CA certificate and includes its URL in the \"Authority Information Access\" X.509 extension in all issued Certificates. If this is false, the CA certificate will not be published and the corresponding X.509 extension will not be written in issued certificates.",
           "type": "boolean"

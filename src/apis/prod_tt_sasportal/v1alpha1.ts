@@ -696,6 +696,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * Optional. If this field is set, and a new SAS Portal Organization needs to be created, its display name will be set to the value of this field.
      */
     newOrganizationDisplayName?: string | null;
+    /**
+     * Optional. If this field is set then a new deployment will be created under the organization specified by this id.
+     */
+    organizationId?: string | null;
   }
   /**
    * Response for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment].
@@ -1277,7 +1281,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "newDeploymentDisplayName": "my_newDeploymentDisplayName",
-     *       //   "newOrganizationDisplayName": "my_newOrganizationDisplayName"
+     *       //   "newOrganizationDisplayName": "my_newOrganizationDisplayName",
+     *       //   "organizationId": "my_organizationId"
      *       // }
      *     },
      *   });

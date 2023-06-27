@@ -635,6 +635,173 @@
                 }
               }
             },
+            "endpointAttachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new EndpointAttachment in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpointAttachments",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.endpointAttachments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "endpointAttachmentId": {
+                      "description": "Required. Identifier to assign to the EndpointAttachment. Must be unique within scope of the parent resource.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource of the EndpointAttachment, of the form: `projects/*/locations/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/endpointAttachments",
+                  "request": {
+                    "$ref": "EndpointAttachment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single EndpointAttachment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpointAttachments/{endpointAttachmentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "connectors.projects.locations.endpointAttachments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the form: `projects/*/locations/*/endpointAttachments/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpointAttachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single EndpointAttachment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpointAttachments/{endpointAttachmentsId}",
+                  "httpMethod": "GET",
+                  "id": "connectors.projects.locations.endpointAttachments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the form: `projects/*/locations/*/endpointAttachments/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpointAttachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "EndpointAttachment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List EndpointAttachments in a given project",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpointAttachments",
+                  "httpMethod": "GET",
+                  "id": "connectors.projects.locations.endpointAttachments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Order by parameters.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource od the EndpointAttachment, of the form: `projects/*/locations/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/endpointAttachments",
+                  "response": {
+                    "$ref": "ListEndpointAttachmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single EndpointAttachment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/endpointAttachments/{endpointAttachmentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "connectors.projects.locations.endpointAttachments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the Endpoint Attachment. Format: projects/{project}/locations/{location}/endpointAttachments/{endpoint_attachment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpointAttachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update. Fields are specified relative to the endpointAttachment. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the endpointAttachment details: * `description` * `labels`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "EndpointAttachment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "global": {
               "methods": {
                 "getSettings": {
@@ -661,6 +828,175 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "managedZones": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new ManagedZone in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/managedZones",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.global.managedZones.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "managedZoneId": {
+                          "description": "Required. Identifier to assign to the ManagedZone. Must be unique within scope of the parent resource.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the ManagedZone, of the form: `projects/*/locations/global`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/managedZones",
+                      "request": {
+                        "$ref": "ManagedZone"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single ManagedZone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/managedZones/{managedZonesId}",
+                      "httpMethod": "DELETE",
+                      "id": "connectors.projects.locations.global.managedZones.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/global/managedZones/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/managedZones/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single ManagedZone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/managedZones/{managedZonesId}",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.global.managedZones.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the form: `projects/*/locations/global/managedZones/*`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/managedZones/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "ManagedZone"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List ManagedZones in a given project",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/managedZones",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.global.managedZones.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filter. https://g3doc.corp.google.com/cloud/control2/g3doc/dev/apihosting/list_filtering.md#filtering.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Order by parameters.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent resource of the Managed Zone, of the form: `projects/*/locations/global`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/managedZones",
+                      "response": {
+                        "$ref": "ListManagedZonesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single ManagedZone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/managedZones/{managedZonesId}",
+                      "httpMethod": "PATCH",
+                      "id": "connectors.projects.locations.global.managedZones.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Resource name of the Managed Zone. Format: projects/{project}/locations/global/managedZones/{managed_zone}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/managedZones/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The list of fields to update. Fields are specified relative to the managedZone. A field will be overwritten if it is in the mask. You can modify only the fields listed below. To update the managedZone details: * `description` * `labels` * `target_project` * `target_network`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "ManagedZone"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -975,6 +1311,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "filter": {
+                          "description": "Filter string.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "Page size.",
                           "format": "int32",
@@ -1108,7 +1449,7 @@
       }
     }
   },
-  "revision": "20230417",
+  "revision": "20230609",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1325,6 +1666,10 @@
           "description": "Value is a bool.",
           "type": "boolean"
         },
+        "encryptionKeyValue": {
+          "$ref": "EncryptionKey",
+          "description": "Value is a Encryption Key."
+        },
         "intValue": {
           "description": "Value is an integer",
           "format": "int64",
@@ -1380,6 +1725,10 @@
           "description": "Flag represents that this `ConfigVariable` must be provided for a connection.",
           "type": "boolean"
         },
+        "requiredCondition": {
+          "$ref": "LogicalExpression",
+          "description": "Condition under which a field would be required. The condition can be represented in the form of a logical expression."
+        },
         "roleGrant": {
           "$ref": "RoleGrant",
           "description": "Role grant configuration for the config variable."
@@ -1411,7 +1760,8 @@
             "BOOL",
             "SECRET",
             "ENUM",
-            "AUTHORIZATION_CODE"
+            "AUTHORIZATION_CODE",
+            "ENCRYPTION_KEY"
           ],
           "enumDescriptions": [
             "Value type is not specified.",
@@ -1420,7 +1770,8 @@
             "Value type is boolean.",
             "Value type is secret.",
             "Value type is enum.",
-            "Value type is authorization code."
+            "Value type is authorization code.",
+            "Encryption Key."
           ],
           "type": "string"
         }
@@ -1442,8 +1793,33 @@
           },
           "type": "array"
         },
+        "connectionRevision": {
+          "description": "Output only. Connection revision. This field is only updated when the connection is created or updated by User.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "connectorVersion": {
           "description": "Required. Connector version on which the connection is created. The format is: projects/*/locations/*/providers/*/connectors/*/versions/* Only global location is supported for ConnectorVersion resource.",
+          "type": "string"
+        },
+        "connectorVersionLaunchStage": {
+          "description": "Output only. Flag to mark the version indicating the launch stage.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "DEPRECATED",
+            "PRIVATE_PREVIEW"
+          ],
+          "enumDescriptions": [
+            "LAUNCH_STAGE_UNSPECIFIED.",
+            "PREVIEW.",
+            "GA.",
+            "DEPRECATED.",
+            "PRIVATE_PREVIEW."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "createTime": {
@@ -1514,6 +1890,21 @@
           "$ref": "ConnectionStatus",
           "description": "Output only. Current status of the connection.",
           "readOnly": true
+        },
+        "subscriptionType": {
+          "description": "Output only. This subscription type enum states the subscription type of the project.",
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "PAY_G",
+            "PAID"
+          ],
+          "enumDescriptions": [
+            "Unspecified subscription type.",
+            "PayG subscription.",
+            "Paid Subscription."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "suspended": {
           "description": "Optional. Suspended indicates if a user has suspended a connection or not.",
@@ -1611,7 +2002,7 @@
             "Connection is being deleted.",
             "Connection is being updated.",
             "Connection is not running due to an error.",
-            "Connection is not running due to an auth error for the Oauth2 Auth Code based connector."
+            "Connection is not running because the authorization configuration is not complete."
           ],
           "type": "string"
         },
@@ -1938,6 +2329,75 @@
       "properties": {},
       "type": "object"
     },
+    "EncryptionKey": {
+      "description": "Encryption Key value.",
+      "id": "EncryptionKey",
+      "properties": {
+        "kmsKeyName": {
+          "description": "The [KMS key name] with which the content of the Operation is encrypted. The expected format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`. Will be empty string if google managed.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_MANAGED",
+            "CUSTOMER_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Value type is not specified.",
+            "Google Managed.",
+            "Customer Managed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndpointAttachment": {
+      "description": "represents the Connector's Endpoint Attachment resource",
+      "id": "EndpointAttachment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the resource.",
+          "type": "string"
+        },
+        "endpointIp": {
+          "description": "Output only. The Private Service Connect connection endpoint ip",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Resource name of the Endpoint Attachment. Format: projects/{project}/locations/{location}/endpointAttachments/{endpoint_attachment}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Required. The path of the service attachment",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EnumOption": {
       "description": "EnumOption definition",
       "id": "EnumOption",
@@ -2138,6 +2598,44 @@
         "readonly": {
           "description": "Specifies if the Field is readonly.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "FieldComparison": {
+      "description": "Field that needs to be compared.",
+      "id": "FieldComparison",
+      "properties": {
+        "boolValue": {
+          "description": "Boolean value",
+          "type": "boolean"
+        },
+        "comparator": {
+          "description": "Comparator to use for comparing the field value.",
+          "enum": [
+            "COMPARATOR_UNSPECIFIED",
+            "EQUALS",
+            "NOT_EQUALS"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "The field value must be equal to the specified value.",
+            "The field value must not be equal to the specified value."
+          ],
+          "type": "string"
+        },
+        "intValue": {
+          "description": "Integer value",
+          "format": "int64",
+          "type": "string"
+        },
+        "key": {
+          "description": "Key of the field.",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "String value",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2357,6 +2855,31 @@
       },
       "type": "object"
     },
+    "ListEndpointAttachmentsResponse": {
+      "description": "Response message for ConnectorsService.ListEndpointAttachments",
+      "id": "ListEndpointAttachmentsResponse",
+      "properties": {
+        "endpointAttachments": {
+          "description": "EndpointAttachments.",
+          "items": {
+            "$ref": "EndpointAttachment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListLocationsResponse": {
       "description": "The response message for Locations.ListLocations.",
       "id": "ListLocationsResponse",
@@ -2370,6 +2893,24 @@
         },
         "nextPageToken": {
           "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListManagedZonesResponse": {
+      "description": "Response message for ConnectorsService.ListManagedZones",
+      "id": "ListManagedZonesResponse",
+      "properties": {
+        "managedZones": {
+          "description": "ManagedZones.",
+          "items": {
+            "$ref": "ManagedZone"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Next page token.",
           "type": "string"
         }
       },
@@ -2455,7 +2996,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2503,6 +3044,88 @@
       },
       "type": "object"
     },
+    "LogicalExpression": {
+      "description": "Struct for representing boolean expressions.",
+      "id": "LogicalExpression",
+      "properties": {
+        "fieldComparisons": {
+          "description": "A list of fields to be compared.",
+          "items": {
+            "$ref": "FieldComparison"
+          },
+          "type": "array"
+        },
+        "logicalExpressions": {
+          "description": "A list of nested conditions to be compared.",
+          "items": {
+            "$ref": "LogicalExpression"
+          },
+          "type": "array"
+        },
+        "logicalOperator": {
+          "description": "The logical operator to use between the fields and conditions.",
+          "enum": [
+            "OPERATOR_UNSPECIFIED",
+            "AND",
+            "OR"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "AND operator; The conditions must all be true.",
+            "OR operator; At least one of the conditions must be true."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ManagedZone": {
+      "description": "represents the Connector's Managed Zone resource",
+      "id": "ManagedZone",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the resource.",
+          "type": "string"
+        },
+        "dns": {
+          "description": "Required. DNS Name of the resource",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Resource name of the Managed Zone. Format: projects/{project}/locations/global/managedZones/{managed_zone}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetProject": {
+          "description": "Required. The name of the Target Project",
+          "type": "string"
+        },
+        "targetVpc": {
+          "description": "Required. The name of the Target Project VPC Network",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeConfig": {
       "description": "Node configuration for the connection.",
       "id": "NodeConfig",
@@ -2526,6 +3149,10 @@
       "properties": {
         "authCode": {
           "description": "Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "authUri": {
+          "description": "Auth URL for Authorization Code Flow",
           "type": "string"
         },
         "clientId": {
@@ -2923,7 +3550,7 @@
       "type": "object"
     },
     "RoleGrant": {
-      "description": "This configuration defines all the Cloud IAM roles that needs to be granted to a particular GCP resource for the selected prinicpal like service account. These configurations will let UI display to customers what IAM roles need to be granted by them. Or these configurations can be used by the UI to render a 'grant' button to do the same on behalf of the user.",
+      "description": "This configuration defines all the Cloud IAM roles that needs to be granted to a particular GCP resource for the selected principal like service account. These configurations will let UI display to customers what IAM roles need to be granted by them. Or these configurations can be used by the UI to render a 'grant' button to do the same on behalf of the user.",
       "id": "RoleGrant",
       "properties": {
         "helperTextTemplate": {
@@ -3119,6 +3746,11 @@
           "description": "Output only. Flag indicates if user is in PayG model",
           "readOnly": true,
           "type": "boolean"
+        },
+        "tenantProjectId": {
+          "description": "Output only. Tenant project id of the consumer project.",
+          "readOnly": true,
+          "type": "string"
         },
         "vpcsc": {
           "description": "Optional. Flag indicates whether vpc-sc is enabled.",

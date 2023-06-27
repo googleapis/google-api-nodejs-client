@@ -4941,7 +4941,7 @@
       }
     }
   },
-  "revision": "20230412",
+  "revision": "20230519",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "Action": {
@@ -5051,7 +5051,7 @@
           "type": "array"
         },
         "entityMentions": {
-          "description": "entity_mentions contains all the annotated medical entities that were mentioned in the provided document.",
+          "description": "The `entity_mentions` field contains all the annotated medical entities that were mentioned in the provided document.",
           "items": {
             "$ref": "EntityMention"
           },
@@ -5759,6 +5759,10 @@
         "text": {
           "$ref": "TextConfig",
           "description": "Configures de-identification of text wherever it is found in the source_dataset."
+        },
+        "useRegionalDataProcessing": {
+          "description": "Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated [`DicomConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.dicom_config) or [`FhirConfig`](google.cloud.healthcare.v1beta1.deidentify.DeidentifyConfig.fhir_config) are used, then `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6013,6 +6017,13 @@
       "description": "An entity mention in the document.",
       "id": "EntityMention",
       "properties": {
+        "additionalInfo": {
+          "description": "Additional information about the entity mention. For example, for an entity mention of type `DATE` this can be its more specific date types from the following list: `ADMISSION_DATE`, `CONSULTATION_DATE`, `DISCHARGE_DATE`, `SERVICE_DATE`, `VISIT_DATE`, `DIAGNOSIS_DATE`, `MED_STARTED_DATE`, `MED_ENDED_DATE`, `NOTE_DATE`, `PROCEDURE_DATE`, `RADIATION_STARTED_DATE`, `RADIATION_ENDED_DATE`, `STAGE_DATE`",
+          "items": {
+            "$ref": "Feature"
+          },
+          "type": "array"
+        },
         "certaintyAssessment": {
           "$ref": "Feature",
           "description": "The certainty assessment of the entity mention. Its value is one of: LIKELY, SOMEWHAT_LIKELY, UNCERTAIN, SOMEWHAT_UNLIKELY, UNLIKELY, CONDITIONAL"
@@ -6236,7 +6247,7 @@
         },
         "gcsDestination": {
           "$ref": "GcsDestination",
-          "description": "Exports to a Cloud Storage destination."
+          "description": "Export to a Cloud Storage destination."
         },
         "startTime": {
           "description": "The start of the range in `send_time` (MSH.7, https://www.hl7.org/documentcenter/public_temp_2E58C1F9-1C23-BA17-0C6126475344DA9D/wg/conf/HL7MSH.htm) to process. If not specified, the UNIX epoch (1970-01-01T00:00:00Z) is used. This value has to come before the `end_time` defined below. Only messages whose `send_time` lies in the range `start_time` (inclusive) to `end_time` (exclusive) are exported.",
@@ -6390,7 +6401,7 @@
           "type": "boolean"
         },
         "sendPreviousResourceOnDelete": {
-          "description": "Whether to send full FHIR resource to this pubsub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the \"payloadType\" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.",
+          "description": "Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the \"payloadType\" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.",
           "type": "boolean"
         }
       },
@@ -7670,7 +7681,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -8163,8 +8174,8 @@
           "enumDescriptions": [
             "No schema type specified. This type is unsupported.",
             "A data-driven schema generated from the fields present in the FHIR data being exported, with no additional simplification. This type cannot be used for streaming to BigQuery.",
-            "Analytics schema defined by the FHIR community. See https://github.com/FHIR/sql-on-fhir/blob/master/sql-on-fhir.md. BigQuery only allows a maximum of 10,000 columns per table. Due to this limitation, the server will not generate schemas for fields of type `Resource`, which can hold any resource type. The affected fields are `Parameters.parameter.resource`, `Bundle.entry.resource`, and `Bundle.entry.response.outcome`.",
-            "Analytics V2, similar to schema defined by the FHIR community, with added support for extensions with one or more occurrences and contained resources in stringified JSON. Analytics V2 uses more space in the destination table than Analytics V1."
+            "Analytics schema defined by the FHIR community. See https://github.com/FHIR/sql-on-fhir/blob/master/sql-on-fhir.md. BigQuery only allows a maximum of 10,000 columns per table. Due to this limitation, the server will not generate schemas for fields of type `Resource`, which can hold any resource type. The affected fields are `Parameters.parameter.resource`, `Bundle.entry.resource`, and `Bundle.entry.response.outcome`. Analytics schema does not gracefully handle extensions with one or more occurrences, anaytics schema also does not handle contained resource.",
+            "Analytics V2, similar to schema defined by the FHIR community, with added support for extensions with one or more occurrences and contained resources in stringified JSON. Analytics V2 uses more space in the destination table than Analytics V1. It is generally recommended to use Analytics V2 over Analytics."
           ],
           "type": "string"
         }

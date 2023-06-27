@@ -416,7 +416,7 @@
       }
     }
   },
-  "revision": "20230209",
+  "revision": "20230602",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -611,6 +611,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "virtualModelLink": {
+          "description": "Virtual Model (3d) asset link.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -1966,7 +1966,7 @@
       }
     }
   },
-  "revision": "20230330",
+  "revision": "20230426",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2995,7 +2995,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {

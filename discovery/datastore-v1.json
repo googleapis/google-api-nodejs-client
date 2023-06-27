@@ -654,7 +654,7 @@
       }
     }
   },
-  "revision": "20230328",
+  "revision": "20230605",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -926,7 +926,7 @@
       "type": "object"
     },
     "Entity": {
-      "description": "A Datastore data object. An entity is limited to 1 megabyte when stored. That _roughly_ corresponds to a limit of 1 megabyte for the serialized form of this message.",
+      "description": "A Datastore data object. Must not exceed 1 MiB - 4 bytes.",
       "id": "Entity",
       "properties": {
         "key": {

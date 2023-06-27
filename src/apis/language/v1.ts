@@ -274,6 +274,10 @@ export namespace language_v1 {
      */
     language?: string | null;
     /**
+     * Harmful and sensitive categories identified in the input document.
+     */
+    moderationCategories?: Schema$ClassificationCategory[];
+    /**
      * Sentences in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_syntax.
      */
     sentences?: Schema$Sentence[];
@@ -438,6 +442,28 @@ export namespace language_v1 {
      * Extract syntax information.
      */
     extractSyntax?: boolean | null;
+    /**
+     * Moderate the document for harmful and sensitive categories.
+     */
+    moderateText?: boolean | null;
+  }
+  /**
+   * The document moderation request message.
+   */
+  export interface Schema$ModerateTextRequest {
+    /**
+     * Required. Input document.
+     */
+    document?: Schema$Document;
+  }
+  /**
+   * The document moderation response message.
+   */
+  export interface Schema$ModerateTextResponse {
+    /**
+     * Harmful and sensitive categories representing the input document.
+     */
+    moderationCategories?: Schema$ClassificationCategory[];
   }
   /**
    * Represents part of speech information for a token. Parts of speech are as defined in http://www.lrec-conf.org/proceedings/lrec2012/pdf/274_Paper.pdf
@@ -1225,6 +1251,7 @@ export namespace language_v1 {
      *   //   "documentSentiment": {},
      *   //   "entities": [],
      *   //   "language": "my_language",
+     *   //   "moderationCategories": [],
      *   //   "sentences": [],
      *   //   "tokens": []
      *   // }
@@ -1472,6 +1499,150 @@ export namespace language_v1 {
         return createAPIRequest<Schema$ClassifyTextResponse>(parameters);
       }
     }
+
+    /**
+     * Moderates a document for harmful and sensitive categories.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/language.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const language = google.language('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-language',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await language.documents.moderateText({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "document": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "moderationCategories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    moderateText(
+      params?: Params$Resource$Documents$Moderatetext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModerateTextResponse>;
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModerateTextResponse>,
+      callback: BodyResponseCallback<Schema$ModerateTextResponse>
+    ): void;
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      callback: BodyResponseCallback<Schema$ModerateTextResponse>
+    ): void;
+    moderateText(
+      callback: BodyResponseCallback<Schema$ModerateTextResponse>
+    ): void;
+    moderateText(
+      paramsOrCallback?:
+        | Params$Resource$Documents$Moderatetext
+        | BodyResponseCallback<Schema$ModerateTextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModerateTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModerateTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModerateTextResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Moderatetext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Documents$Moderatetext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/documents:moderateText').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModerateTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ModerateTextResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Documents$Analyzeentities
@@ -1515,5 +1686,12 @@ export namespace language_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ClassifyTextRequest;
+  }
+  export interface Params$Resource$Documents$Moderatetext
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModerateTextRequest;
   }
 }

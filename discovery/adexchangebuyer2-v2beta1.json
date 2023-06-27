@@ -2568,7 +2568,7 @@
       }
     }
   },
-  "revision": "20230430",
+  "revision": "20230621",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -4441,7 +4441,7 @@
           "type": "string"
         },
         "guaranteedLooks": {
-          "description": "Count of guaranteed looks. Required for deal, optional for product.",
+          "description": "Count of guaranteed looks. Required for deal, optional for product. For CPD deals, buyer changes to guaranteed_looks will be ignored.",
           "format": "int64",
           "type": "string"
         },
@@ -4451,7 +4451,7 @@
           "type": "string"
         },
         "minimumDailyLooks": {
-          "description": "Daily minimum looks for CPD deal types.",
+          "description": "Daily minimum looks for CPD deal types. For CPD deals, buyer should negotiate on this field instead of guaranteed_looks.",
           "format": "int64",
           "type": "string"
         },

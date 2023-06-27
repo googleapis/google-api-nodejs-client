@@ -202,6 +202,23 @@ export namespace vmmigration_v1 {
     newDeployableAppliance?: Schema$ApplianceVersion;
   }
   /**
+   * The details of an AWS instance disk.
+   */
+  export interface Schema$AwsDiskDetails {
+    /**
+     * The ordinal number of the disk.
+     */
+    diskNumber?: number | null;
+    /**
+     * Size in GB.
+     */
+    sizeGb?: string | null;
+    /**
+     * AWS volume ID.
+     */
+    volumeId?: string | null;
+  }
+  /**
    * AwsSecurityGroup describes a security group of an AWS VM.
    */
   export interface Schema$AwsSecurityGroup {
@@ -259,6 +276,10 @@ export namespace vmmigration_v1 {
      * The total size of the disks being migrated in bytes.
      */
     committedStorageBytes?: string | null;
+    /**
+     * The disks attached to the source VM.
+     */
+    disks?: Schema$AwsDiskDetails[];
     /**
      * The firmware type of the source VM.
      */
@@ -1645,6 +1666,10 @@ export namespace vmmigration_v1 {
      * Input only. The credentials password. This is write only and can not be read in a GET operation.
      */
     password?: string | null;
+    /**
+     * The hostname of the vcenter.
+     */
+    resolvedVcenterHost?: string | null;
     /**
      * The thumbprint representing the certificate for the vcenter.
      */

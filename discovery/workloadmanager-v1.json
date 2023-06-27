@@ -663,6 +663,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "customRulesBucket": {
+                      "description": "The Cloud Storage bucket name for custom rules.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "filter": {
                       "description": "Filter based on primary_category, secondary_category",
                       "location": "query",
@@ -702,7 +707,7 @@
       }
     }
   },
-  "revision": "20230406",
+  "revision": "20230605",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -718,13 +723,17 @@
       "type": "object"
     },
     "Evaluation": {
-      "description": "Message describing Evaluation object",
+      "description": "LINT.IfChange Message describing Evaluation object",
       "id": "Evaluation",
       "properties": {
         "createTime": {
           "description": "Output only. [Output only] Create time stamp",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "customRulesBucket": {
+          "description": "The Cloud Storage bucket name for custom rules.",
           "type": "string"
         },
         "description": {
@@ -767,7 +776,7 @@
           "type": "array"
         },
         "schedule": {
-          "description": "crontab format schedule for scheduled evaluation, example: 0 */3 * * *",
+          "description": "crontab format schedule for scheduled evaluation, currently only support the following schedule: \"0 */1 * * *\", \"0 */6 * * *\", \"0 */12 * * *\", \"0 0 */1 * *\", \"0 0 */7 * *\",",
           "type": "string"
         },
         "updateTime": {
@@ -900,6 +909,10 @@
       "description": "A presentation of host resource usage where the workload runs.",
       "id": "Insight",
       "properties": {
+        "instanceId": {
+          "description": "Required. The instance id where the insight is generated from",
+          "type": "string"
+        },
         "sapDiscovery": {
           "$ref": "SapDiscovery",
           "description": "The insights data for sap system discovery. This is a copy of SAP System proto and should get updated whenever that one changes."
@@ -913,6 +926,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "sqlserverValidation": {
+          "$ref": "SqlserverValidation",
+          "description": "The insights data for the sqlserver workload validation."
         }
       },
       "type": "object"
@@ -1058,7 +1075,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -1226,7 +1243,7 @@
       "id": "ResourceStatus",
       "properties": {
         "rulesNewerVersions": {
-          "description": "the new version of rule id if exists",
+          "description": "Historical: Used before 2023-05-22 the new version of rule id if exists",
           "items": {
             "type": "string"
           },
@@ -1319,7 +1336,7 @@
       "type": "object"
     },
     "SapDiscovery": {
-      "description": "The schema of SAP system discovery data.",
+      "description": "LINT.IfChange The schema of SAP system discovery data.",
       "id": "SapDiscovery",
       "properties": {
         "applicationLayer": {
@@ -1414,26 +1431,6 @@
           "description": "ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
           "type": "string"
         },
-        "resourceState": {
-          "description": "Indicates whether this is a new, updated, or missing resource.",
-          "enum": [
-            "RESOURCE_STATE_UNSPECIFIED",
-            "ADDED",
-            "UPDATED",
-            "REMOVED",
-            "REPLACED",
-            "MISSING"
-          ],
-          "enumDescriptions": [
-            "Undefined resource state",
-            "Resource was added this cycle",
-            "Resource already discovered, just updated this cycle",
-            "Resource already discovered, but has been explicitly removed this cycle",
-            "Resource already discovered, but has been replaced by a new resource this cycle",
-            "Resource already discovered, but is missing or unresponsive this cycle"
-          ],
-          "type": "string"
-        },
         "resourceType": {
           "description": "The type of this resource.",
           "enum": [
@@ -1516,6 +1513,64 @@
       "properties": {
         "resource": {
           "description": "resource name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlserverValidation": {
+      "description": "A presentation of SQLServer workload insight. The schema of SqlServer workloads validation related data.",
+      "id": "SqlserverValidation",
+      "properties": {
+        "agentVersion": {
+          "description": "The agent version collected this data point",
+          "type": "string"
+        },
+        "validationDetails": {
+          "description": "A list of SqlServer validation metrics data.",
+          "items": {
+            "$ref": "SqlserverValidationValidationDetail"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SqlserverValidationValidationDetail": {
+      "description": "Message describing the Sqlserver validation metrics.",
+      "id": "SqlserverValidationValidationDetail",
+      "properties": {
+        "fields": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": " pairs of metrics data: column name & column value.",
+          "type": "object"
+        },
+        "type": {
+          "description": "The Sqlserver system that the validation data is from.",
+          "enum": [
+            "SQLSERVER_VALIDATION_TYPE_UNSPECIFIED",
+            "OS",
+            "DB_LOG_DISK_SEPARATION",
+            "DB_MAX_PARALLELISM",
+            "DB_CXPACKET_WAITS",
+            "DB_TRANSACTION_LOG_HANDLING",
+            "DB_VIRTUAL_LOG_FILE_COUNT",
+            "DB_BUFFER_POOL_EXTENSION",
+            "DB_MAX_SERVER_MEMORY"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "The Sqlserver system named OS",
+            "The LOG_DISK_SEPARATION table",
+            "The MAX_PARALLELISM table",
+            "The CXPACKET_WAITS table",
+            "The TRANSACTION_LOG_HANDLING table",
+            "The VIRTUAL_LOG_FILE_COUNT table",
+            "The BUFFER_POOL_EXTENSION table",
+            "The MAX_SERVER_MEMORY table"
+          ],
           "type": "string"
         }
       },

@@ -236,6 +236,10 @@ export namespace firebasehosting_v1beta1 {
      * Required. User-defined ID of the Cloud Run service.
      */
     serviceId?: string | null;
+    /**
+     * Optional. User-provided TrafficConfig tag to send traffic to. When omitted, traffic is sent to the service-wide URI
+     */
+    tag?: string | null;
   }
   /**
    * The intended behavior and status information of a domain.

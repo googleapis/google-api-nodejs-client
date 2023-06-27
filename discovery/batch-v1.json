@@ -556,7 +556,7 @@
       }
     }
   },
-  "revision": "20230416",
+  "revision": "20230607",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -590,6 +590,64 @@
             "type": "integer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AgentContainer": {
+      "description": "Container runnable representation on the agent side.",
+      "id": "AgentContainer",
+      "properties": {
+        "commands": {
+          "description": "Overrides the `CMD` specified in the container. If there is an ENTRYPOINT (either in the container image or with the entrypoint field below) then commands are appended as arguments to the ENTRYPOINT.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entrypoint": {
+          "description": "Overrides the `ENTRYPOINT` specified in the container.",
+          "type": "string"
+        },
+        "imageUri": {
+          "description": "The URI to pull the container image from.",
+          "type": "string"
+        },
+        "options": {
+          "description": "Arbitrary additional options to include in the \"docker run\" command when running this container, e.g. \"--network host\".",
+          "type": "string"
+        },
+        "volumes": {
+          "description": "Volumes to mount (bind mount) from the host machine files or directories into the container, formatted to match docker run's --volume option, e.g. /foo:/bar, or /foo:/bar:ro",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AgentEnvironment": {
+      "description": "AgentEnvironment is the Environment representation between Agent and CLH communication. The environment is used in both task level and agent level.",
+      "id": "AgentEnvironment",
+      "properties": {
+        "encryptedVariables": {
+          "$ref": "AgentKMSEnvMap",
+          "description": "An encrypted JSON dictionary where the key/value pairs correspond to environment variable names and their values."
+        },
+        "secretVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of environment variable names to Secret Manager secret names. The VM will access the named secrets to set the value of each environment variable.",
+          "type": "object"
+        },
+        "variables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of environment variable names to values.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -633,6 +691,21 @@
             "$ref": "AgentTaskInfo"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AgentKMSEnvMap": {
+      "description": "AgentKMSEnvMap contains the encrypted key/value pair to be used in the environment on the Agent side.",
+      "id": "AgentKMSEnvMap",
+      "properties": {
+        "cipherText": {
+          "description": "The value of the cipherText response from the `encrypt` method.",
+          "type": "string"
+        },
+        "keyName": {
+          "description": "The name of the KMS key that will be used to decrypt the cipher text.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -685,10 +758,29 @@
       },
       "type": "object"
     },
+    "AgentScript": {
+      "description": "Script runnable representation on the agent side.",
+      "id": "AgentScript",
+      "properties": {
+        "path": {
+          "description": "Script file path on the host VM. To specify an interpreter, please add a `#!`(also known as [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix))) as the first line of the file.(For example, to execute the script using bash, `#!/bin/bash` should be the first line of the file. To execute the script using`Python3`, `#!/usr/bin/env python3` should be the first line of the file.) Otherwise, the file will by default be excuted by `/bin/sh`.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Shell script text. To specify an interpreter, please add a `#!\\n` at the beginning of the text.(For example, to execute the script using bash, `#!/bin/bash\\n` should be added. To execute the script using`Python3`, `#!/usr/bin/env python3\\n` should be added.) Otherwise, the script will by default be excuted by `/bin/sh`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AgentTask": {
       "description": "TODO(b/182501497) The message needs to be redefined when the Agent API server updates data in storage per the backend design.",
       "id": "AgentTask",
       "properties": {
+        "agentTaskSpec": {
+          "$ref": "AgentTaskSpec",
+          "description": "AgentTaskSpec is the taskSpec representation between Agent and CLH communication. This field will replace the TaskSpec field above in future to have a better separation between user-facaing API and internal API."
+        },
         "intendedState": {
           "description": "The intended state of the task.",
           "enum": [
@@ -712,7 +804,7 @@
         },
         "spec": {
           "$ref": "TaskSpec",
-          "description": "Task Spec."
+          "description": "Task Spec. This field will be replaced by agent_task_spec below in future."
         },
         "status": {
           "$ref": "TaskStatus",
@@ -755,6 +847,65 @@
         "taskStatus": {
           "$ref": "TaskStatus",
           "description": "The status of the Task. If we need agent specific fields we should fork the public TaskStatus into an agent specific one. Or add them below."
+        }
+      },
+      "type": "object"
+    },
+    "AgentTaskRunnable": {
+      "description": "AgentTaskRunnable is the Runnable representation between Agent and CLH communication.",
+      "id": "AgentTaskRunnable",
+      "properties": {
+        "alwaysRun": {
+          "description": "By default, after a Runnable fails, no further Runnable are executed. This flag indicates that this Runnable must be run even if the Task has already failed. This is useful for Runnables that copy output files off of the VM or for debugging. The always_run flag does not override the Task's overall max_run_duration. If the max_run_duration has expired then no further Runnables will execute, not even always_run Runnables.",
+          "type": "boolean"
+        },
+        "background": {
+          "description": "This flag allows a Runnable to continue running in the background while the Task executes subsequent Runnables. This is useful to provide services to other Runnables (or to provide debugging support tools like SSH servers).",
+          "type": "boolean"
+        },
+        "container": {
+          "$ref": "AgentContainer",
+          "description": "Container runnable."
+        },
+        "environment": {
+          "$ref": "AgentEnvironment",
+          "description": "Environment variables for this Runnable (overrides variables set for the whole Task or TaskGroup)."
+        },
+        "ignoreExitStatus": {
+          "description": "Normally, a non-zero exit status causes the Task to fail. This flag allows execution of other Runnables to continue instead.",
+          "type": "boolean"
+        },
+        "script": {
+          "$ref": "AgentScript",
+          "description": "Script runnable."
+        },
+        "timeout": {
+          "description": "Timeout for this Runnable.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentTaskSpec": {
+      "description": "AgentTaskSpec is the user's TaskSpec representation between Agent and CLH communication.",
+      "id": "AgentTaskSpec",
+      "properties": {
+        "environment": {
+          "$ref": "AgentEnvironment",
+          "description": "Environment variables to set before running the Task."
+        },
+        "maxRunDuration": {
+          "description": "Maximum duration the task should run. The task will be killed and marked as FAILED if over this limit.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "runnables": {
+          "description": "AgentTaskRunnable is runanbles that will be executed on the agent.",
+          "items": {
+            "$ref": "AgentTaskRunnable"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -929,7 +1080,7 @@
           "type": "string"
         },
         "image": {
-          "description": "Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project}/global/images/family/{image_family} * Specify the image version: projects/{project}/global/images/{image_version} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * \"batch-debian\": use Batch Debian images. * \"batch-centos\": use Batch CentOS images. * \"batch-cos\": use Batch Container-Optimized images.",
+          "description": "Name of a public or custom image used as the data source. For example, the following are all valid URLs: * Specify the image by its family name: projects/{project}/global/images/family/{image_family} * Specify the image version: projects/{project}/global/images/{image_version} You can also use Batch customized image in short names. The following image values are supported for a boot disk: * \"batch-debian\": use Batch Debian images. * \"batch-centos\": use Batch CentOS images. * \"batch-cos\": use Batch Container-Optimized images. * \"batch-hpc-centos\": use Batch HPC CentOS images.",
           "type": "string"
         },
         "sizeGb": {
@@ -1017,7 +1168,7 @@
           "type": "string"
         },
         "minCpuPlatform": {
-          "description": "The minimum CPU platform. See https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform. Not yet implemented.",
+          "description": "The minimum CPU platform. See https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.",
           "type": "string"
         },
         "provisioningModel": {
@@ -1351,7 +1502,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -1854,7 +2005,7 @@
       "type": "object"
     },
     "TaskGroup": {
-      "description": "A TaskGroup contains one or multiple Tasks that share the same Runnable but with different runtime parameters.",
+      "description": "A TaskGroup defines one or more Tasks that all share the same TaskSpec.",
       "id": "TaskGroup",
       "properties": {
         "name": {
@@ -1875,6 +2026,20 @@
           "description": "When true, Batch will populate a file with a list of all VMs assigned to the TaskGroup and set the BATCH_HOSTS_FILE environment variable to the path of that file. Defaults to false.",
           "type": "boolean"
         },
+        "schedulingPolicy": {
+          "description": "Scheduling policy for Tasks in the TaskGroup. The default value is AS_SOON_AS_POSSIBLE.",
+          "enum": [
+            "SCHEDULING_POLICY_UNSPECIFIED",
+            "AS_SOON_AS_POSSIBLE",
+            "IN_ORDER"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Run Tasks as soon as resources are available. Tasks might be executed in parallel depending on parallelism and task_count values.",
+            "Run Tasks sequentially with increased task index."
+          ],
+          "type": "string"
+        },
         "taskCount": {
           "description": "Number of Tasks in the TaskGroup. Default is 1.",
           "format": "int64",
@@ -1886,7 +2051,7 @@
           "type": "string"
         },
         "taskEnvironments": {
-          "description": "An array of environment variable mappings, which are passed to Tasks with matching indices. If task_environments is used then task_count should not be specified in the request (and will be ignored). Task count will be the length of task_environments. Tasks get a BATCH_TASK_INDEX and BATCH_TASK_COUNT environment variable, in addition to any environment variables set in task_environments, specifying the number of Tasks in the Task's parent TaskGroup, and the specific Task's index in the TaskGroup (0 through BATCH_TASK_COUNT - 1). task_environments supports up to 200 entries.",
+          "description": "An array of environment variable mappings, which are passed to Tasks with matching indices. If task_environments is used then task_count should not be specified in the request (and will be ignored). Task count will be the length of task_environments. Tasks get a BATCH_TASK_INDEX and BATCH_TASK_COUNT environment variable, in addition to any environment variables set in task_environments, specifying the number of Tasks in the Task's parent TaskGroup, and the specific Task's index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).",
           "items": {
             "$ref": "Environment"
           },

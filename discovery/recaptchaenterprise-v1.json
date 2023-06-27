@@ -461,7 +461,7 @@
               ]
             },
             "migrate": {
-              "description": "Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Site Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.",
+              "description": "Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.",
               "flatPath": "v1/projects/{projectsId}/keys/{keysId}:migrate",
               "httpMethod": "POST",
               "id": "recaptchaenterprise.projects.keys.migrate",
@@ -666,7 +666,7 @@
       }
     }
   },
-  "revision": "20230402",
+  "revision": "20230618",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -849,6 +849,25 @@
       "description": "Empty response for AnnotateAssessment.",
       "id": "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AppleDeveloperId": {
+      "description": "Contains fields that are required to perform Apple-specific integrity checks.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AppleDeveloperId",
+      "properties": {
+        "keyId": {
+          "description": "Required. The Apple developer key ID (10-character string).",
+          "type": "string"
+        },
+        "privateKey": {
+          "description": "Required. Input only. A private key (downloaded as a text file with a .p8 file extension) generated for your Apple Developer account. Ensure that Apple DeviceCheck is enabled for the private key.",
+          "type": "string"
+        },
+        "teamId": {
+          "description": "Required. The Apple team ID (10-character string) owning the provisioning profile used to build your application.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1Assessment": {
@@ -1204,6 +1223,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "appleDeveloperId": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1AppleDeveloperId",
+          "description": "Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app."
         }
       },
       "type": "object"
@@ -1524,7 +1547,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest",
       "properties": {
         "hashedAccountId": {
-          "description": "Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
+          "description": "Optional. The unique stable hashed user identifier used to search connections. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call.",
           "format": "byte",
           "type": "string"
         },

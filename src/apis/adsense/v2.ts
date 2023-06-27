@@ -229,7 +229,7 @@ export namespace adsense_v2 {
      */
     reportingDimensionId?: string | null;
     /**
-     * State of the ad unit.
+     * Required. State of the ad unit.
      */
     state?: string | null;
   }

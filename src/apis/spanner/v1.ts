@@ -587,6 +587,23 @@ export namespace spanner_v1 {
     name?: string | null;
   }
   /**
+   * Action information extracted from a DDL statement. This proto is used to display the brief info of the DDL statement for the operation UpdateDatabaseDdl.
+   */
+  export interface Schema$DdlStatementActionInfo {
+    /**
+     * The action for the DDL statement, e.g. CREATE, ALTER, DROP, GRANT, etc. This field is a non-empty string.
+     */
+    action?: string | null;
+    /**
+     * The entity name(s) being operated on the DDL statement. E.g. 1. For statement "CREATE TABLE t1(...)", `entity_names` = ["t1"]. 2. For statement "GRANT ROLE r1, r2 ...", `entity_names` = ["r1", "r2"]. 3. For statement "ANALYZE", `entity_names` = [].
+     */
+    entityNames?: string[] | null;
+    /**
+     * The entity type for the DDL statement, e.g. TABLE, INDEX, VIEW, etc. This field can be empty string for some DDL statement, e.g. for statement "ANALYZE", `entity_type` = "".
+     */
+    entityType?: string | null;
+  }
+  /**
    * Arguments to delete operations.
    */
   export interface Schema$Delete {
@@ -952,7 +969,7 @@ export namespace spanner_v1 {
      */
     replicas?: Schema$ReplicaInfo[];
     /**
-     * Output only. The current instance config state.
+     * Output only. The current instance config state. Applicable only for USER_MANAGED configs.
      */
     state?: string | null;
   }
@@ -2072,6 +2089,10 @@ export namespace spanner_v1 {
    */
   export interface Schema$UpdateDatabaseDdlMetadata {
     /**
+     * The brief action info for the DDL statements. `actions[i]` is the brief info for `statements[i]`.
+     */
+    actions?: Schema$DdlStatementActionInfo[];
+    /**
      * Reports the commit timestamps of all statements that have succeeded so far, where `commit_timestamps[i]` is the commit timestamp for the statement `statements[i]`.
      */
     commitTimestamps?: string[] | null;
@@ -2080,7 +2101,7 @@ export namespace spanner_v1 {
      */
     database?: string | null;
     /**
-     * The progress of the UpdateDatabaseDdl operations. Currently, only index creation statements will have a continuously updating progress. For non-index creation statements, `progress[i]` will have start time and end time populated with commit timestamp of operation, as well as a progress of 100% once the operation has completed. `progress[i]` is the operation progress for `statements[i]`.
+     * The progress of the UpdateDatabaseDdl operations. All DDL statements will have continuously updating progress, and `progress[i]` is the operation progress for `statements[i]`. Also, `progress[i]` will have start time and end time populated with commit timestamp of operation, as well as a progress of 100% once the operation has completed.
      */
     progress?: Schema$OperationProgress[];
     /**

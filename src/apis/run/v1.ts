@@ -159,7 +159,7 @@ export namespace run_v1 {
     logType?: string | null;
   }
   /**
-   * A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via [Webmaster Central](https://www.google.com/webmasters/verification/home).
+   * A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via [Search Console](https://search.google.com/search-console/welcome).
    */
   export interface Schema$AuthorizedDomain {
     /**
@@ -384,9 +384,13 @@ export namespace run_v1 {
    */
   export interface Schema$ContainerOverride {
     /**
-     * Arguments to the entrypoint. Will replace existing args for override.
+     * Arguments to the entrypoint. Will replace existing args for override if present. Must be empty if `clear_args` is set to true.
      */
     args?: string[] | null;
+    /**
+     * Optional. True if the intention is to clear out existing args list.
+     */
+    clearArgs?: boolean | null;
     /**
      * List of environment variables to set in the container. Will be merged with existing env for override.
      */
@@ -479,6 +483,19 @@ export namespace run_v1 {
      * Optional. Not supported by Cloud Run.
      */
     url?: string | null;
+  }
+  /**
+   * Ephemeral storage which can be backed by real disks (HD, SSD), network storage or memory (i.e. tmpfs). For now only in memory (tmpfs) is supported. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).
+   */
+  export interface Schema$EmptyDirVolumeSource {
+    /**
+     * The medium on which the data is stored. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir +optional
+     */
+    medium?: string | null;
+    /**
+     * Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. This field's values are of the 'Quantity' k8s type: https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+     */
+    sizeLimit?: string | null;
   }
   /**
    * Not supported by Cloud Run. EnvFromSource represents the source of a set of ConfigMaps
@@ -1289,7 +1306,7 @@ export namespace run_v1 {
      */
     tcpSocket?: Schema$TCPSocketAction;
     /**
-     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds.
+     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds; if period_seconds is not set, must be less or equal than 10.
      */
     timeoutSeconds?: number | null;
   }
@@ -1480,7 +1497,7 @@ export namespace run_v1 {
    */
   export interface Schema$RunJobRequest {
     /**
-     * Optional. Overrides specification for a given execution of a job. If provided, overrides will be applied to update the execution or task spec.
+     * Optional. Private preview feature. Currently only available by invitation. Overrides specification for a given execution of a job. If provided, overrides will be applied to update the execution or task spec.
      */
     overrides?: Schema$Overrides;
   }
@@ -1888,6 +1905,10 @@ export namespace run_v1 {
      * Not supported in Cloud Run.
      */
     configMap?: Schema$ConfigMapVolumeSource;
+    /**
+     * Ephemeral storage used as a shared volume.
+     */
+    emptyDir?: Schema$EmptyDirVolumeSource;
     /**
      * Volume's name. In Cloud Run Fully Managed, the name 'cloudsql' is reserved.
      */

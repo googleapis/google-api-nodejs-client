@@ -578,7 +578,7 @@
                   ]
                 },
                 "getInstanceHealth": {
-                  "description": "Check if a notebook instance is healthy.",
+                  "description": "Checks whether a notebook instance is healthy.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:getInstanceHealth",
                   "httpMethod": "GET",
                   "id": "notebooks.projects.locations.instances.getInstanceHealth",
@@ -603,7 +603,7 @@
                   ]
                 },
                 "isUpgradeable": {
-                  "description": "Check if a notebook instance is upgradable.",
+                  "description": "Checks whether a notebook instance is upgradable.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:isUpgradeable",
                   "httpMethod": "GET",
                   "id": "notebooks.projects.locations.instances.isUpgradeable",
@@ -1541,7 +1541,7 @@
                   ]
                 },
                 "reportEvent": {
-                  "description": "Report and process a runtime event.",
+                  "description": "Reports and processes a runtime event.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/runtimes/{runtimesId}:reportEvent",
                   "httpMethod": "POST",
                   "id": "notebooks.projects.locations.runtimes.reportEvent",
@@ -1932,11 +1932,11 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230604",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
-      "description": "Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.",
+      "description": "Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.",
       "id": "AcceleratorConfig",
       "properties": {
         "coreCount": {
@@ -2644,7 +2644,7 @@
           "type": "boolean"
         },
         "noPublicIp": {
-          "description": "If true, no public IP will be assigned to this instance.",
+          "description": "If true, no external IP will be assigned to this instance.",
           "type": "boolean"
         },
         "noRemoveDataDisk": {
@@ -3465,7 +3465,7 @@
             "Accelerator type is Nvidia Tesla V100.",
             "Accelerator type is Nvidia Tesla P4.",
             "Accelerator type is Nvidia Tesla T4.",
-            "Accelerator type is Nvidia Tesla A100.",
+            "Accelerator type is Nvidia Tesla A100 - 40GB.",
             "(Coming soon) Accelerator type is TPU V2.",
             "(Coming soon) Accelerator type is TPU V3.",
             "Accelerator type is NVIDIA Tesla T4 Virtual Workstations.",
@@ -3534,7 +3534,7 @@
       "type": "object"
     },
     "RuntimeShieldedInstanceConfig": {
-      "description": "A set of Shielded Instance options. Check [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.",
+      "description": "A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.",
       "id": "RuntimeShieldedInstanceConfig",
       "properties": {
         "enableIntegrityMonitoring": {
@@ -3702,7 +3702,7 @@
       "type": "object"
     },
     "SchedulerAcceleratorConfig": {
-      "description": "Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus) to find a valid combination. TPUs are not supported.",
+      "description": "Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus) to find a valid combination. TPUs are not supported.",
       "id": "SchedulerAcceleratorConfig",
       "properties": {
         "coreCount": {
@@ -3755,7 +3755,7 @@
       "id": "SetInstanceAcceleratorRequest",
       "properties": {
         "coreCount": {
-          "description": "Required. Count of cores of this accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.",
+          "description": "Required. Count of cores of this accelerator. Note that not all combinations of `type` and `core_count` are valid. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. TPUs are not supported.",
           "format": "int64",
           "type": "string"
         },
@@ -3820,7 +3820,7 @@
       "type": "object"
     },
     "ShieldedInstanceConfig": {
-      "description": "A set of Shielded Instance options. Check [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.",
+      "description": "A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.",
       "id": "ShieldedInstanceConfig",
       "properties": {
         "enableIntegrityMonitoring": {

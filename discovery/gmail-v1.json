@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230619",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -3162,7 +3162,7 @@
           "type": "string"
         },
         "primaryKeyPairId": {
-          "description": "If a key pair is associated, the identifier of the key pair, CseKeyPair.",
+          "description": "If a key pair is associated, the ID of the key pair, CseKeyPair.",
           "type": "string"
         }
       },
@@ -4349,6 +4349,18 @@
       "properties": {
         "labelFilterAction": {
           "description": "Filtering behavior of labelIds list specified.",
+          "enum": [
+            "include",
+            "exclude"
+          ],
+          "enumDescriptions": [
+            "Only get push notifications for message changes relating to labelIds specified.",
+            "Get push notifications for all message changes except those relating to labelIds specified."
+          ],
+          "type": "string"
+        },
+        "labelFilterBehavior": {
+          "description": "Filtering behavior of labelIds list specified. This field replaces label_filter_action; if set, label_filter_action is ignored.",
           "enum": [
             "include",
             "exclude"

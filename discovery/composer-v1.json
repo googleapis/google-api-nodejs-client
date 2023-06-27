@@ -139,6 +139,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "databaseFailover": {
+                  "description": "Triggers database failover (only for highly resilient environments).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:databaseFailover",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.databaseFailover",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "Target environment: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+environment}:databaseFailover",
+                  "request": {
+                    "$ref": "DatabaseFailoverRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "delete": {
                   "description": "Delete an environment.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}",
@@ -159,6 +187,59 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "executeAirflowCommand": {
+                  "description": "Executes Airflow CLI command.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:executeAirflowCommand",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.executeAirflowCommand",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "The resource name of the environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+environment}:executeAirflowCommand",
+                  "request": {
+                    "$ref": "ExecuteAirflowCommandRequest"
+                  },
+                  "response": {
+                    "$ref": "ExecuteAirflowCommandResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetchDatabaseProperties": {
+                  "description": "Fetches database properties.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:fetchDatabaseProperties",
+                  "httpMethod": "GET",
+                  "id": "composer.projects.locations.environments.fetchDatabaseProperties",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "Required. The resource name of the environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+environment}:fetchDatabaseProperties",
+                  "response": {
+                    "$ref": "FetchDatabasePropertiesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -287,6 +368,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "pollAirflowCommand": {
+                  "description": "Polls Airflow CLI command execution and fetches logs.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:pollAirflowCommand",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.pollAirflowCommand",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "The resource name of the environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+environment}:pollAirflowCommand",
+                  "request": {
+                    "$ref": "PollAirflowCommandRequest"
+                  },
+                  "response": {
+                    "$ref": "PollAirflowCommandResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "saveSnapshot": {
                   "description": "Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:saveSnapshot",
@@ -310,6 +419,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "stopAirflowCommand": {
+                  "description": "Stops Airflow CLI command execution.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:stopAirflowCommand",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.stopAirflowCommand",
+                  "parameterOrder": [
+                    "environment"
+                  ],
+                  "parameters": {
+                    "environment": {
+                      "description": "The resource name of the environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+environment}:stopAirflowCommand",
+                  "request": {
+                    "$ref": "StopAirflowCommandRequest"
+                  },
+                  "response": {
+                    "$ref": "StopAirflowCommandResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -462,7 +599,7 @@
       }
     }
   },
-  "revision": "20230323",
+  "revision": "20230614",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -547,6 +684,18 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "DatabaseFailoverRequest": {
+      "description": "Request to trigger database failover (only for highly resilient environments).",
+      "id": "DatabaseFailoverRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "DatabaseFailoverResponse": {
+      "description": "Response for DatabaseFailoverRequest.",
+      "id": "DatabaseFailoverResponse",
+      "properties": {},
       "type": "object"
     },
     "Date": {
@@ -714,6 +863,18 @@
           "$ref": "RecoveryConfig",
           "description": "Optional. The Recovery settings configuration of an environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
         },
+        "resilienceMode": {
+          "description": "Optional. Resilience mode of the Cloud Composer Environment. This field is supported for Cloud Composer environments in versions composer-2.2.0-airflow-*.*.* and newer.",
+          "enum": [
+            "RESILIENCE_MODE_UNSPECIFIED",
+            "HIGH_RESILIENCE"
+          ],
+          "enumDescriptions": [
+            "Default mode doesn't change environment parameters.",
+            "Enabled High Resilience mode, including Cloud SQL HA."
+          ],
+          "type": "string"
+        },
         "softwareConfig": {
           "$ref": "SoftwareConfig",
           "description": "The configuration settings for software inside the environment."
@@ -729,6 +890,86 @@
         "workloadsConfig": {
           "$ref": "WorkloadsConfig",
           "description": "Optional. The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web server and workers workloads. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteAirflowCommandRequest": {
+      "description": "Execute Airflow Command request.",
+      "id": "ExecuteAirflowCommandRequest",
+      "properties": {
+        "command": {
+          "description": "Airflow command.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Parameters for the Airflow command/subcommand as an array of arguments. It may contain positional arguments like `[\"my-dag-id\"]`, key-value parameters like `[\"--foo=bar\"]` or `[\"--foo\",\"bar\"]`, or other flags like `[\"-f\"]`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "subcommand": {
+          "description": "Airflow subcommand.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteAirflowCommandResponse": {
+      "description": "Response to ExecuteAirflowCommandRequest.",
+      "id": "ExecuteAirflowCommandResponse",
+      "properties": {
+        "error": {
+          "description": "Error message. Empty if there was no error.",
+          "type": "string"
+        },
+        "executionId": {
+          "description": "The unique ID of the command execution for polling.",
+          "type": "string"
+        },
+        "pod": {
+          "description": "The name of the pod where the command is executed.",
+          "type": "string"
+        },
+        "podNamespace": {
+          "description": "The namespace of the pod where the command is executed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExitInfo": {
+      "description": "Information about how a command ended.",
+      "id": "ExitInfo",
+      "properties": {
+        "error": {
+          "description": "Error message. Empty if there was no error.",
+          "type": "string"
+        },
+        "exitCode": {
+          "description": "The exit code from the command execution.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "FetchDatabasePropertiesResponse": {
+      "description": "Response for FetchDatabasePropertiesRequest.",
+      "id": "FetchDatabasePropertiesResponse",
+      "properties": {
+        "isFailoverReplicaAvailable": {
+          "description": "The availability status of the failover replica. A false status indicates that the failover replica is out of sync. The primary instance can only fail over to the failover replica when the status is true.",
+          "type": "boolean"
+        },
+        "primaryGceZone": {
+          "description": "The Compute Engine zone that the instance is currently serving from.",
+          "type": "string"
+        },
+        "secondaryGceZone": {
+          "description": "The Compute Engine zone that the failover instance is currently serving from for a regional Cloud SQL instance.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -790,6 +1031,22 @@
         "upgradeDisabled": {
           "description": "Whether it is impossible to upgrade an environment running with the image version.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Line": {
+      "description": "Contains information about a single line from logs.",
+      "id": "Line",
+      "properties": {
+        "content": {
+          "description": "Text content of the log line.",
+          "type": "string"
+        },
+        "lineNumber": {
+          "description": "Number of the line.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1053,7 +1310,8 @@
             "UPDATE",
             "CHECK",
             "SAVE_SNAPSHOT",
-            "LOAD_SNAPSHOT"
+            "LOAD_SNAPSHOT",
+            "DATABASE_FAILOVER"
           ],
           "enumDescriptions": [
             "Unused.",
@@ -1062,7 +1320,8 @@
             "A resource update operation.",
             "A resource check operation.",
             "Saves snapshot of the resource operation.",
-            "Loads snapshot of the resource operation."
+            "Loads snapshot of the resource operation.",
+            "Triggers failover of environment's Cloud SQL instance (only for highly resilient environments)."
           ],
           "type": "string"
         },
@@ -1093,6 +1352,52 @@
             "The operation is no longer running but did not succeed."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PollAirflowCommandRequest": {
+      "description": "Poll Airflow Command request.",
+      "id": "PollAirflowCommandRequest",
+      "properties": {
+        "executionId": {
+          "description": "The unique ID of the command execution.",
+          "type": "string"
+        },
+        "nextLineNumber": {
+          "description": "Line number from which new logs should be fetched.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pod": {
+          "description": "The name of the pod where the command is executed.",
+          "type": "string"
+        },
+        "podNamespace": {
+          "description": "The namespace of the pod where the command is executed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PollAirflowCommandResponse": {
+      "description": "Response to PollAirflowCommandRequest.",
+      "id": "PollAirflowCommandResponse",
+      "properties": {
+        "exitInfo": {
+          "$ref": "ExitInfo",
+          "description": "The result exit status of the command."
+        },
+        "output": {
+          "description": "Output from the command execution. It may not contain the full output and the caller may need to poll for more lines.",
+          "items": {
+            "$ref": "Line"
+          },
+          "type": "array"
+        },
+        "outputEnd": {
+          "description": "Whether the command execution has finished and there is no more output.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1313,6 +1618,47 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StopAirflowCommandRequest": {
+      "description": "Stop Airflow Command request.",
+      "id": "StopAirflowCommandRequest",
+      "properties": {
+        "executionId": {
+          "description": "The unique ID of the command execution.",
+          "type": "string"
+        },
+        "force": {
+          "description": "If true, the execution is terminated forcefully (SIGKILL). If false, the execution is stopped gracefully, giving it time for cleanup.",
+          "type": "boolean"
+        },
+        "pod": {
+          "description": "The name of the pod where the command is executed.",
+          "type": "string"
+        },
+        "podNamespace": {
+          "description": "The namespace of the pod where the command is executed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StopAirflowCommandResponse": {
+      "description": "Response to StopAirflowCommandRequest.",
+      "id": "StopAirflowCommandResponse",
+      "properties": {
+        "isDone": {
+          "description": "Whether the execution is still running.",
+          "type": "boolean"
+        },
+        "output": {
+          "description": "Output message from stopping execution request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

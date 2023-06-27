@@ -260,6 +260,23 @@ export namespace artifactregistry_v1 {
     title?: string | null;
   }
   /**
+   * A detailed representation of a GooGet artifact.
+   */
+  export interface Schema$GoogetArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The GooGet package name of the artifact.
+     */
+    packageName?: string | null;
+  }
+  /**
    * Files store content that is potentially associated with Packages or Versions.
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1File {
@@ -358,11 +375,24 @@ export namespace artifactregistry_v1 {
     errors?: Schema$ImportAptArtifactsErrorInfo[];
   }
   /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportGoogetArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportGoogetArtifactsGcsSource;
+  }
+  /**
    * Google Cloud Storage location where the artifacts currently reside.
    */
   export interface Schema$ImportGoogetArtifactsGcsSource {
     /**
-     * Cloud Storage paths URI (e.g., gs://my_bucket/my_object).
+     * Cloud Storage paths URI (e.g., `gs://my_bucket/my_object`).
      */
     uris?: string[] | null;
     /**
@@ -371,6 +401,10 @@ export namespace artifactregistry_v1 {
     useWildcards?: boolean | null;
   }
   /**
+   * The operation metadata for importing artifacts.
+   */
+  export interface Schema$ImportGoogetArtifactsMetadata {}
+  /**
    * The request to import new googet artifacts.
    */
   export interface Schema$ImportGoogetArtifactsRequest {
@@ -378,6 +412,19 @@ export namespace artifactregistry_v1 {
      * Google Cloud Storage location where input content is located.
      */
     gcsSource?: Schema$ImportGoogetArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing artifacts.
+   */
+  export interface Schema$ImportGoogetArtifactsResponse {
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportGoogetArtifactsErrorInfo[];
+    /**
+     * The GooGet artifacts updated.
+     */
+    googetArtifacts?: Schema$GoogetArtifact[];
   }
   /**
    * Error information explaining why a package was not imported.
@@ -575,7 +622,7 @@ export namespace artifactregistry_v1 {
     versions?: Schema$Version[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -734,7 +781,7 @@ export namespace artifactregistry_v1 {
      */
     displayName?: string | null;
     /**
-     * The name of the package, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1". If the package ID part contains slashes, the slashes are escaped.
+     * The name of the package, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`. If the package ID part contains slashes, the slashes are escaped.
      */
     name?: string | null;
     /**
@@ -989,9 +1036,22 @@ export namespace artifactregistry_v1 {
     operation?: Schema$Operation;
   }
   /**
+   * The operation metadata for uploading artifacts.
+   */
+  export interface Schema$UploadGoogetArtifactMetadata {}
+  /**
    * The request to upload an artifact.
    */
   export interface Schema$UploadGoogetArtifactRequest {}
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadGoogetArtifactResponse {
+    /**
+     * The GooGet artifacts updated.
+     */
+    googetArtifacts?: Schema$GoogetArtifact[];
+  }
   /**
    * The response to upload an artifact.
    */
@@ -6600,7 +6660,7 @@ export namespace artifactregistry_v1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the parent resource whose tags will be listed.
+     *       // The name of the parent package whose tags will be listed. Example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
      *     });
@@ -6890,7 +6950,7 @@ export namespace artifactregistry_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the parent resource whose tags will be listed.
+     * The name of the parent package whose tags will be listed. Example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1
      */
     parent?: string;
   }

@@ -100,9 +100,9 @@ export namespace clouddebugger_v2 {
   }
 
   /**
-   * Cloud Debugger API
+   * Cloud Debugger API (Deprecated)
    *
-   * Examines the call stack and variables of a running application without stopping or slowing it down.
+   * Examines the call stack and variables of a running application without stopping or slowing it down. (Deprecated)
    *
    * @example
    * ```js

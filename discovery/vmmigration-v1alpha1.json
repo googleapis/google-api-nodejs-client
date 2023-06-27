@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230608",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2076,6 +2076,27 @@
       },
       "type": "object"
     },
+    "AwsDiskDetails": {
+      "description": "The details of an AWS instance disk.",
+      "id": "AwsDiskDetails",
+      "properties": {
+        "diskNumber": {
+          "description": "The ordinal number of the disk.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sizeGb": {
+          "description": "Size in GB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "AWS volume ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AwsSecurityGroup": {
       "description": "AwsSecurityGroup describes a security group of an AWS VM.",
       "id": "AwsSecurityGroup",
@@ -2162,6 +2183,13 @@
           "description": "The total size of the disks being migrated in bytes.",
           "format": "int64",
           "type": "string"
+        },
+        "disks": {
+          "description": "The disks attached to the source VM.",
+          "items": {
+            "$ref": "AwsDiskDetails"
+          },
+          "type": "array"
         },
         "firmware": {
           "description": "The firmware type of the source VM.",
@@ -4546,6 +4574,10 @@
       "properties": {
         "password": {
           "description": "Input only. The credentials password. This is write only and can not be read in a GET operation.",
+          "type": "string"
+        },
+        "resolvedVcenterHost": {
+          "description": "The hostname of the vcenter.",
           "type": "string"
         },
         "thumbprint": {

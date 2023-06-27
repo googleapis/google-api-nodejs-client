@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20230420",
+  "revision": "20230620",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -936,6 +936,10 @@
         },
         "serviceName": {
           "description": "This is the API service that the service account made a call to, e.g. \"iam.googleapis.com\"",
+          "type": "string"
+        },
+        "userAgent": {
+          "description": "The caller's user agent string associated with the finding.",
           "type": "string"
         },
         "userAgentFamily": {
@@ -1130,6 +1134,20 @@
       "properties": {
         "dataProfile": {
           "description": "Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.",
+          "type": "string"
+        },
+        "parentType": {
+          "description": "The resource hierarchy level at which the data profile was generated.",
+          "enum": [
+            "PARENT_TYPE_UNSPECIFIED",
+            "ORGANIZATION",
+            "PROJECT"
+          ],
+          "enumDescriptions": [
+            "Unspecified parent type.",
+            "Organization-level configurations.",
+            "Project-level configurations."
+          ],
           "type": "string"
         }
       },
@@ -3390,7 +3408,7 @@
           "description": "The configuration used for Asset Discovery runs."
         },
         "enableAssetDiscovery": {
-          "description": "A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false, all historical assets will remain, but discovery of future assets will not occur.",
+          "description": "A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false`, all historical assets will remain, but discovery of future assets will not occur.",
           "type": "boolean"
         },
         "name": {

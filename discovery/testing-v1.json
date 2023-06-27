@@ -164,7 +164,7 @@
               ]
             },
             "create": {
-              "description": "Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. The returned matrix will not yet contain the executions that will be created for this matrix. That happens later on and will require a call to GetTestMatrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.",
+              "description": "Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. The returned matrix will not yet contain the executions that will be created for this matrix. Execution creation happens later on and will require a call to GetTestMatrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.",
               "flatPath": "v1/projects/{projectId}/testMatrices",
               "httpMethod": "POST",
               "id": "testing.projects.testMatrices.create",
@@ -196,7 +196,7 @@
               ]
             },
             "get": {
-              "description": "Checks the status of a test matrix and the executions once they are created. The test matrix will contain the list of test executions to run if and only if the resultStorage.toolResultsExecution fields have been populated. Note: Flaky test executions may still be added to the matrix at a later stage. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist",
+              "description": "Checks the status of a test matrix and the executions once they are created. The test matrix will contain the list of test executions to run if and only if the resultStorage.toolResultsExecution fields have been populated. Note: Flaky test executions may be added to the matrix at a later stage. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist",
               "flatPath": "v1/projects/{projectId}/testMatrices/{testMatrixId}",
               "httpMethod": "GET",
               "id": "testing.projects.testMatrices.get",
@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20230411",
+  "revision": "20230613",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -777,6 +777,13 @@
         "packageName": {
           "description": "Full Java-style package name for this application, e.g. \"com.example.foo\".",
           "type": "string"
+        },
+        "services": {
+          "description": "Services contained in the tag.",
+          "items": {
+            "$ref": "Service"
+          },
+          "type": "array"
         },
         "targetSdkVersion": {
           "description": "Specifies the API Level on which the application is designed to run.",
@@ -1493,6 +1500,12 @@
       },
       "type": "object"
     },
+    "NoActivityIntent": {
+      "description": "Skips the starting activity",
+      "id": "NoActivityIntent",
+      "properties": {},
+      "type": "object"
+    },
     "ObbFile": {
       "description": "An opaque binary blob file to install on the device before the test starts.",
       "id": "ObbFile",
@@ -1680,6 +1693,10 @@
           "$ref": "LauncherActivityIntent",
           "description": "An intent that starts the main launcher activity."
         },
+        "noActivity": {
+          "$ref": "NoActivityIntent",
+          "description": "Skips the starting activity"
+        },
         "startActivity": {
           "$ref": "StartActivityIntent",
           "description": "An intent that starts an activity with specific details."
@@ -1692,23 +1709,50 @@
       },
       "type": "object"
     },
+    "Service": {
+      "description": "The section of an tag. https://developer.android.com/guide/topics/manifest/service-element",
+      "id": "Service",
+      "properties": {
+        "intentFilter": {
+          "description": "Intent filters in the service",
+          "items": {
+            "$ref": "IntentFilter"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The android:name value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Shard": {
       "description": "Output only. Details about the shard.",
       "id": "Shard",
       "properties": {
+        "estimatedShardDuration": {
+          "description": "Output only. The estimated shard duration based on previous test case timing records, if available.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
         "numShards": {
           "description": "Output only. The total number of shards.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "shardIndex": {
           "description": "Output only. The index of the shard among all the shards.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "testTargetsForShard": {
           "$ref": "TestTargetsForShard",
-          "description": "Output only. Test targets for each shard. Only set for manual sharding."
+          "description": "Output only. Test targets for each shard. Only set for manual sharding.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -1721,9 +1765,25 @@
           "$ref": "ManualSharding",
           "description": "Shards test cases into the specified groups of packages, classes, and/or methods."
         },
+        "smartSharding": {
+          "$ref": "SmartSharding",
+          "description": "Shards test based on previous test case timing records."
+        },
         "uniformSharding": {
           "$ref": "UniformSharding",
           "description": "Uniformly shards test cases given a total number of shards."
+        }
+      },
+      "type": "object"
+    },
+    "SmartSharding": {
+      "description": "Shards test based on previous test case timing records.",
+      "id": "SmartSharding",
+      "properties": {
+        "targetedShardDuration": {
+          "description": "The amount of time tests within a shard should take. Default: 300 seconds (5 minutes). The minimum allowed: 120 seconds (2 minutes). The shard count is dynamically set based on time, up to the maximum shard limit (described below). To guarantee at least one test case for each shard, the number of shards will not exceed the number of test cases. Shard duration will be exceeded if: - The maximum shard limit is reached and there is more calculated test time remaining to allocate into shards. - Any individual test is estimated to be longer than the targeted shard duration. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. The rules for finding the test case timing records are: - If the service has processed a test case in the last 30 days, the record of the latest successful test case will be used. - For new test cases, the average duration of other known test cases will be used. - If there are no previous test case timing records available, the default test case duration is 15 seconds. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout (45 minutes for physical devices and 60 minutes for virtual), or that you use the custom test timeout value that you set. This approach avoids cancelling the shard before all tests can finish. Note that there is a limit for maximum number of shards. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500. To guarantee at least one test case for per shard, the number of shards will not exceed the number of test cases. Each shard created counts toward daily test quota.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1956,7 +2016,7 @@
             "The test apk does not declare an instrumentation.",
             "The input app apk does not have a signature.",
             "The test runner class specified by user or in the test APK's manifest file is not compatible with Android Test Orchestrator. Orchestrator is only compatible with AndroidJUnitRunner version 1.1 or higher. Orchestrator can be disabled by using DO_NOT_USE_ORCHESTRATOR OrchestratorOption.",
-            "The test APK does not contain the test runner class specified by user or in the manifest file. This can be caused by either of the following reasons: - the user provided a runner class name that's incorrect, or - the test runner isn't built into the test APK (might be in the app APK instead).",
+            "The test APK does not contain the test runner class specified by the user or in the manifest file. This can be caused by one of the following reasons: - the user provided a runner class name that's incorrect, or - the test runner isn't built into the test APK (might be in the app APK instead).",
             "A main launcher activity could not be found.",
             "The app declares one or more permissions that are not allowed.",
             "There is a conflict in the provided robo_directives.",
@@ -1999,7 +2059,7 @@
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
             "The test matrix run was successful, for instance: - All the test cases passed. - Robo did not detect a crash of the application under test.",
-            "A run failed, for instance: - One or more test case failed. - A test timed out. - The application under test crashed.",
+            "A run failed, for instance: - One or more test cases failed. - A test timed out. - The application under test crashed.",
             "Something unexpected happened. The run should still be considered unsuccessful but this is likely a transient problem and re-running the test might be successful.",
             "All tests were skipped, for instance: - All device configurations were incompatible."
           ],

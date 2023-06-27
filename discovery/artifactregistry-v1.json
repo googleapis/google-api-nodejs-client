@@ -1257,7 +1257,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "The name of the parent resource whose tags will be listed.",
+                              "description": "The name of the parent package whose tags will be listed. Example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+$",
                               "required": true,
@@ -1589,7 +1589,7 @@
       }
     }
   },
-  "revision": "20230427",
+  "revision": "20230615",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1782,6 +1782,28 @@
       },
       "type": "object"
     },
+    "GoogetArtifact": {
+      "description": "A detailed representation of a GooGet artifact.",
+      "id": "GoogetArtifact",
+      "properties": {
+        "architecture": {
+          "description": "Output only. Operating system architecture of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The Artifact Registry resource name of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Output only. The GooGet package name of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsArtifactregistryV1File": {
       "description": "Files store content that is potentially associated with Packages or Versions.",
       "id": "GoogleDevtoolsArtifactregistryV1File",
@@ -1924,12 +1946,27 @@
       },
       "type": "object"
     },
+    "ImportGoogetArtifactsErrorInfo": {
+      "description": "Error information explaining why a package was not imported.",
+      "id": "ImportGoogetArtifactsErrorInfo",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "The detailed error status."
+        },
+        "gcsSource": {
+          "$ref": "ImportGoogetArtifactsGcsSource",
+          "description": "Google Cloud Storage location requested."
+        }
+      },
+      "type": "object"
+    },
     "ImportGoogetArtifactsGcsSource": {
       "description": "Google Cloud Storage location where the artifacts currently reside.",
       "id": "ImportGoogetArtifactsGcsSource",
       "properties": {
         "uris": {
-          "description": "Cloud Storage paths URI (e.g., gs://my_bucket/my_object).",
+          "description": "Cloud Storage paths URI (e.g., `gs://my_bucket/my_object`).",
           "items": {
             "type": "string"
           },
@@ -1942,6 +1979,12 @@
       },
       "type": "object"
     },
+    "ImportGoogetArtifactsMetadata": {
+      "description": "The operation metadata for importing artifacts.",
+      "id": "ImportGoogetArtifactsMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "ImportGoogetArtifactsRequest": {
       "description": "The request to import new googet artifacts.",
       "id": "ImportGoogetArtifactsRequest",
@@ -1949,6 +1992,27 @@
         "gcsSource": {
           "$ref": "ImportGoogetArtifactsGcsSource",
           "description": "Google Cloud Storage location where input content is located."
+        }
+      },
+      "type": "object"
+    },
+    "ImportGoogetArtifactsResponse": {
+      "description": "The response message from importing artifacts.",
+      "id": "ImportGoogetArtifactsResponse",
+      "properties": {
+        "errors": {
+          "description": "Detailed error info for packages that were not imported.",
+          "items": {
+            "$ref": "ImportGoogetArtifactsErrorInfo"
+          },
+          "type": "array"
+        },
+        "googetArtifacts": {
+          "description": "The GooGet artifacts updated.",
+          "items": {
+            "$ref": "GoogetArtifact"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2221,7 +2285,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2449,7 +2513,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the package, for example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1\". If the package ID part contains slashes, the slashes are escaped.",
+          "description": "The name of the package, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`. If the package ID part contains slashes, the slashes are escaped.",
           "type": "string"
         },
         "updateTime": {
@@ -2828,10 +2892,30 @@
       },
       "type": "object"
     },
+    "UploadGoogetArtifactMetadata": {
+      "description": "The operation metadata for uploading artifacts.",
+      "id": "UploadGoogetArtifactMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "UploadGoogetArtifactRequest": {
       "description": "The request to upload an artifact.",
       "id": "UploadGoogetArtifactRequest",
       "properties": {},
+      "type": "object"
+    },
+    "UploadGoogetArtifactResponse": {
+      "description": "The response of the completed artifact upload operation. This response is contained in the Operation and available to users.",
+      "id": "UploadGoogetArtifactResponse",
+      "properties": {
+        "googetArtifacts": {
+          "description": "The GooGet artifacts updated.",
+          "items": {
+            "$ref": "GoogetArtifact"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "UploadKfpArtifactMediaResponse": {

@@ -1282,7 +1282,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1GcsDestination {
     /**
-     * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: gs://bucket/object-name-or-prefix Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
+     * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
      */
     uri?: string | null;
   }
@@ -1458,7 +1458,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1IntentCoverageIntent {
     /**
-     * Whether or not the intent is covered by at least one of the agent's test cases.
+     * Whether the intent is covered by at least one of the agent's test cases.
      */
     covered?: boolean | null;
     /**
@@ -1874,7 +1874,7 @@ export namespace dialogflow_v3beta1 {
      */
     sampleRateHertz?: number | null;
     /**
-     * Optional. Configuration of how speech should be synthesized.
+     * Optional. Configuration of how speech should be synthesized. If not specified, Agent.text_to_speech_settings is applied.
      */
     synthesizeSpeechConfig?: Schema$GoogleCloudDialogflowCxV3beta1SynthesizeSpeechConfig;
   }
@@ -1963,7 +1963,7 @@ export namespace dialogflow_v3beta1 {
     value?: any | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1QueryInput {
     /**
@@ -2662,7 +2662,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TestRunDifference {
     /**
-     * A description of the diff, showing the actual output vs expected output.
+     * A human readable description of the diff, showing the actual output vs expected output.
      */
     description?: string | null;
     /**
@@ -2680,11 +2680,11 @@ export namespace dialogflow_v3beta1 {
     text?: string | null;
   }
   /**
-   * Settings related to speech generating.
+   * Settings related to speech synthesizing.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TextToSpeechSettings {
     /**
-     * Configuration of how speech should be synthesized, mapping from language (https://dialogflow.com/docs/reference/language) to SynthesizeSpeechConfig.
+     * Configuration of how speech should be synthesized, mapping from language (https://cloud.google.com/dialogflow/cx/docs/reference/language) to SynthesizeSpeechConfig. These settings affect: - The [phone gateway](https://cloud.google.com/dialogflow/cx/docs/concept/integration/phone-gateway) synthesize configuration set via Agent.text_to_speech_settings. - How speech is synthesized when invoking session APIs. Agent.text_to_speech_settings only applies if OutputAudioConfig.synthesize_speech_config is not specified.
      */
     synthesizeSpeechConfigs?: {
       [
@@ -2714,7 +2714,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverageTransition {
     /**
-     * Whether or not the transition is covered by at least one of the agent's test cases.
+     * Whether the transition is covered by at least one of the agent's test cases.
      */
     covered?: boolean | null;
     /**
@@ -2832,7 +2832,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverageCoverageTransition {
     /**
-     * Whether or not the transition route is covered by at least one of the agent's test cases.
+     * Whether the transition route is covered by at least one of the agent's test cases.
      */
     covered?: boolean | null;
     /**
@@ -2868,6 +2868,14 @@ export namespace dialogflow_v3beta1 {
      * Whether turn resulted in End Session page.
      */
     reachedEndPage?: boolean | null;
+    /**
+     * Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentMagnitude?: number | null;
+    /**
+     * Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentScore?: number | null;
     /**
      * Whether user was specifically asking for a live agent.
      */
@@ -3048,9 +3056,21 @@ export namespace dialogflow_v3beta1 {
      */
     allowedCaCerts?: string[] | null;
     /**
+     * Optional. HTTP method for the flexible webhook calls. Standard webhook always uses POST.
+     */
+    httpMethod?: string | null;
+    /**
+     * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
+     */
+    parameterMapping?: {[key: string]: string} | null;
+    /**
      * The password for HTTP Basic authentication.
      */
     password?: string | null;
+    /**
+     * Optional. Defines a custom JSON object as request body to send to flexible webhook.
+     */
+    requestBody?: string | null;
     /**
      * The HTTP request headers to send together with webhook requests.
      */
@@ -3063,6 +3083,10 @@ export namespace dialogflow_v3beta1 {
      * The user name for HTTP Basic authentication.
      */
     username?: string | null;
+    /**
+     * Optional. Type of the webhook.
+     */
+    webhookType?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -3945,7 +3969,7 @@ export namespace dialogflow_v3beta1 {
     value?: any | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
    */
   export interface Schema$GoogleCloudDialogflowCxV3QueryInput {
     /**
@@ -4285,7 +4309,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3TestRunDifference {
     /**
-     * A description of the diff, showing the actual output vs expected output.
+     * A human readable description of the diff, showing the actual output vs expected output.
      */
     description?: string | null;
     /**
@@ -4360,6 +4384,14 @@ export namespace dialogflow_v3beta1 {
      */
     reachedEndPage?: boolean | null;
     /**
+     * Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentMagnitude?: number | null;
+    /**
+     * Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentScore?: number | null;
+    /**
      * Whether user was specifically asking for a live agent.
      */
     userEscalated?: boolean | null;
@@ -4415,9 +4447,21 @@ export namespace dialogflow_v3beta1 {
      */
     allowedCaCerts?: string[] | null;
     /**
+     * Optional. HTTP method for the flexible webhook calls. Standard webhook always uses POST.
+     */
+    httpMethod?: string | null;
+    /**
+     * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
+     */
+    parameterMapping?: {[key: string]: string} | null;
+    /**
      * The password for HTTP Basic authentication.
      */
     password?: string | null;
+    /**
+     * Optional. Defines a custom JSON object as request body to send to flexible webhook.
+     */
+    requestBody?: string | null;
     /**
      * The HTTP request headers to send together with webhook requests.
      */
@@ -4430,6 +4474,10 @@ export namespace dialogflow_v3beta1 {
      * The user name for HTTP Basic authentication.
      */
     username?: string | null;
+    /**
+     * Optional. Type of the webhook.
+     */
+    webhookType?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -4798,6 +4846,23 @@ export namespace dialogflow_v3beta1 {
      * Required. The type of the event that this notification refers to.
      */
     type?: string | null;
+  }
+  /**
+   * Represents a Dialogflow assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1DialogflowAssistAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * An intent suggestion generated from conversation.
+     */
+    intentSuggestion?: Schema$GoogleCloudDialogflowV2beta1IntentSuggestion;
+    /**
+     * Result from v2 agent.
+     */
+    queryResult?: Schema$GoogleCloudDialogflowV2beta1QueryResult;
   }
   /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
@@ -5765,6 +5830,23 @@ export namespace dialogflow_v3beta1 {
     value?: string | null;
   }
   /**
+   * Represents an intent suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentSuggestion {
+    /**
+     * Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
+     */
+    description?: string | null;
+    /**
+     * The display name of the intent.
+     */
+    displayName?: string | null;
+    /**
+     * The unique identifier of this intent. Format: `projects//locations//agent/intents/`.
+     */
+    intentV2?: string | null;
+  }
+  /**
    * Represents an example that the agent is trained on.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase {
@@ -6096,6 +6178,23 @@ export namespace dialogflow_v3beta1 {
     latestMessage?: string | null;
   }
   /**
+   * The response message for Participants.SuggestDialogflowAssists.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestDialogflowAssistsRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Multiple reply options provided by Dialogflow assist service. The order is based on the rank of the model prediction.
+     */
+    dialogflowAssistAnswers?: Schema$GoogleCloudDialogflowV2beta1DialogflowAssistAnswer[];
+    /**
+     * The name of the latest conversation message used to suggest answer. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
    * The request message for Participants.SuggestFaqAnswers.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse {
@@ -6124,6 +6223,14 @@ export namespace dialogflow_v3beta1 {
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
+    /**
+     * SuggestDialogflowAssistsResponse if request is for DIALOGFLOW_ASSIST.
+     */
+    suggestDialogflowAssistsResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse;
+    /**
+     * SuggestDialogflowAssistsResponse if request is for ENTITY_EXTRACTION.
+     */
+    suggestEntityExtractionResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse;
     /**
      * SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
      */
@@ -7696,6 +7803,14 @@ export namespace dialogflow_v3beta1 {
      */
     reachedEndPage?: boolean | null;
     /**
+     * Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentMagnitude?: number | null;
+    /**
+     * Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentScore?: number | null;
+    /**
      * Whether agent has triggered the event corresponding to user abandoning the conversation.
      */
     triggeredAbandonmentEvent?: boolean | null;
@@ -7731,7 +7846,7 @@ export namespace dialogflow_v3beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$GoogleCloudLocationLocation {
     /**

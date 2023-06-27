@@ -825,7 +825,7 @@
       }
     }
   },
-  "revision": "20230320",
+  "revision": "20230620",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
@@ -1007,6 +1007,11 @@
         },
         "dpcResourcePath": {
           "description": "Required. The resource name of the selected DPC (device policy controller) in the format `customers/[CUSTOMER_ID]/dpcs/*`. To list the supported DPCs, call `customers.dpcs.list`.",
+          "type": "string"
+        },
+        "forcedResetTime": {
+          "description": "Optional. The timeout before forcing factory reset the device if the device doesn't go through provisioning in the setup wizard, usually due to lack of network connectivity during setup wizard. Ranges from 0-6 hours, with 2 hours being the default if unset.",
+          "format": "google-duration",
           "type": "string"
         },
         "isDefault": {
@@ -1757,7 +1762,8 @@
             "SINGLE_DEVICE_STATUS_INVALID_SECTION_TYPE",
             "SINGLE_DEVICE_STATUS_SECTION_NOT_YOURS",
             "SINGLE_DEVICE_STATUS_INVALID_TOKEN",
-            "SINGLE_DEVICE_STATUS_REVOKED_TOKEN"
+            "SINGLE_DEVICE_STATUS_REVOKED_TOKEN",
+            "SINGLE_DEVICE_STATUS_DEVICE_LIMIT_EXCEEDED"
           ],
           "enumDescriptions": [
             "Invalid code. Shouldn't be used.",
@@ -1769,7 +1775,8 @@
             "Invalid section type.",
             "This section is claimed by another company.",
             "Invalid pre-provisioning token.",
-            "Revoked pre-provisioning token."
+            "Revoked pre-provisioning token.",
+            "Status used to indicate a failure due to a device limit being exceeded"
           ],
           "type": "string"
         }

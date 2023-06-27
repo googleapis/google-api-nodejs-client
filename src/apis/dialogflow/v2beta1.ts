@@ -891,7 +891,7 @@ export namespace dialogflow_v2beta1 {
     value?: any | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1QueryInput {
     /**
@@ -1231,7 +1231,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TestRunDifference {
     /**
-     * A description of the diff, showing the actual output vs expected output.
+     * A human readable description of the diff, showing the actual output vs expected output.
      */
     description?: string | null;
     /**
@@ -1306,6 +1306,14 @@ export namespace dialogflow_v2beta1 {
      */
     reachedEndPage?: boolean | null;
     /**
+     * Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentMagnitude?: number | null;
+    /**
+     * Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentScore?: number | null;
+    /**
      * Whether user was specifically asking for a live agent.
      */
     userEscalated?: boolean | null;
@@ -1361,9 +1369,21 @@ export namespace dialogflow_v2beta1 {
      */
     allowedCaCerts?: string[] | null;
     /**
+     * Optional. HTTP method for the flexible webhook calls. Standard webhook always uses POST.
+     */
+    httpMethod?: string | null;
+    /**
+     * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
+     */
+    parameterMapping?: {[key: string]: string} | null;
+    /**
      * The password for HTTP Basic authentication.
      */
     password?: string | null;
+    /**
+     * Optional. Defines a custom JSON object as request body to send to flexible webhook.
+     */
+    requestBody?: string | null;
     /**
      * The HTTP request headers to send together with webhook requests.
      */
@@ -1376,6 +1396,10 @@ export namespace dialogflow_v2beta1 {
      * The user name for HTTP Basic authentication.
      */
     username?: string | null;
+    /**
+     * Optional. Type of the webhook.
+     */
+    webhookType?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -2258,7 +2282,7 @@ export namespace dialogflow_v2beta1 {
     value?: any | null;
   }
   /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered.
+   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered. 5. DTMF digits to invoke an intent and fill in parameter value.
    */
   export interface Schema$GoogleCloudDialogflowCxV3QueryInput {
     /**
@@ -2598,7 +2622,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3TestRunDifference {
     /**
-     * A description of the diff, showing the actual output vs expected output.
+     * A human readable description of the diff, showing the actual output vs expected output.
      */
     description?: string | null;
     /**
@@ -2673,6 +2697,14 @@ export namespace dialogflow_v2beta1 {
      */
     reachedEndPage?: boolean | null;
     /**
+     * Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentMagnitude?: number | null;
+    /**
+     * Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentScore?: number | null;
+    /**
      * Whether user was specifically asking for a live agent.
      */
     userEscalated?: boolean | null;
@@ -2728,9 +2760,21 @@ export namespace dialogflow_v2beta1 {
      */
     allowedCaCerts?: string[] | null;
     /**
+     * Optional. HTTP method for the flexible webhook calls. Standard webhook always uses POST.
+     */
+    httpMethod?: string | null;
+    /**
+     * Optional. Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response
+     */
+    parameterMapping?: {[key: string]: string} | null;
+    /**
      * The password for HTTP Basic authentication.
      */
     password?: string | null;
+    /**
+     * Optional. Defines a custom JSON object as request body to send to flexible webhook.
+     */
+    requestBody?: string | null;
     /**
      * The HTTP request headers to send together with webhook requests.
      */
@@ -2743,6 +2787,10 @@ export namespace dialogflow_v2beta1 {
      * The user name for HTTP Basic authentication.
      */
     username?: string | null;
+    /**
+     * Optional. Type of the webhook.
+     */
+    webhookType?: string | null;
   }
   /**
    * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases. You may see undocumented fields in an actual request. These fields are used internally by Dialogflow and should be ignored.
@@ -3093,6 +3141,10 @@ export namespace dialogflow_v2beta1 {
      */
     articleSuggestionAnswer?: Schema$GoogleCloudDialogflowV2beta1ArticleAnswer;
     /**
+     * Output only. The Dialogflow assist answer.
+     */
+    dialogflowAssistAnswer?: Schema$GoogleCloudDialogflowV2beta1DialogflowAssistAnswer;
+    /**
      * Output only. The FAQ answer.
      */
     faqAnswer?: Schema$GoogleCloudDialogflowV2beta1FaqAnswer;
@@ -3137,6 +3189,10 @@ export namespace dialogflow_v2beta1 {
      * A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
      */
     requestId?: string | null;
+    /**
+     * An input representing the selection of a suggestion.
+     */
+    suggestionInput?: Schema$GoogleCloudDialogflowV2beta1SuggestionInput;
     /**
      * The natural language text to be processed.
      */
@@ -3201,7 +3257,7 @@ export namespace dialogflow_v2beta1 {
      */
     agentAssistantDetailFeedback?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedback;
     /**
-     * Indicates whether the answer/item was clicked by the human agent or not. Default to false.
+     * Indicates whether the answer/item was clicked by the human agent or not. Default to false. For knowledge search, the answer record is considered to be clicked if the answer was copied or any URI was clicked.
      */
     clicked?: boolean | null;
     /**
@@ -3370,7 +3426,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesRequest {
     /**
-     * Required. A maximum of 1000 Messages can be created in a batch. CreateMessageRequest.message.send_time is required. All created messages will have identical Message.create_time.
+     * Required. A maximum of 300 messages can be created in a batch. CreateMessageRequest.message.send_time is required. All created messages will have identical Message.create_time.
      */
     requests?: Schema$GoogleCloudDialogflowV2beta1CreateMessageRequest[];
   }
@@ -3776,6 +3832,23 @@ export namespace dialogflow_v2beta1 {
     webhookStatus?: Schema$GoogleRpcStatus;
   }
   /**
+   * Represents a Dialogflow assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1DialogflowAssistAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * An intent suggestion generated from conversation.
+     */
+    intentSuggestion?: Schema$GoogleCloudDialogflowV2beta1IntentSuggestion;
+    /**
+     * Result from v2 agent.
+     */
+    queryResult?: Schema$GoogleCloudDialogflowV2beta1QueryResult;
+  }
+  /**
    * A knowledge document to be used by a KnowledgeBase. For more information, see the [knowledge base guide](https://cloud.google.com/dialogflow/docs/how/knowledge-bases). Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Document {
@@ -4128,6 +4201,66 @@ export namespace dialogflow_v2beta1 {
     uris?: string[] | null;
   }
   /**
+   * The request message for Conversations.GenerateStatelessSummary.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequest {
+    /**
+     * Required. A ConversationProfile containing information required for Summary generation. Required fields: {language_code, security_settings\} Optional fields: {agent_assistant_config\}
+     */
+    conversationProfile?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+    /**
+     * The name of the latest conversation message used as context for generating a Summary. If empty, the latest message of the conversation will be used. The format is specific to the user and the names of the messages provided.
+     */
+    latestMessage?: string | null;
+    /**
+     * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
+     */
+    maxContextSize?: number | null;
+    /**
+     * Required. The conversation to suggest a summary for.
+     */
+    statelessConversation?: Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequestMinimalConversation;
+  }
+  /**
+   * The minimum amount of information required to generate a Summary without having a Conversation resource created.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequestMinimalConversation {
+    /**
+     * Required. The messages that the Summary will be generated from. It is expected that this message content is already redacted and does not contain any PII. Required fields: {content, language_code, participant, participant_role\} Optional fields: {send_time\} If send_time is not provided, then the messages must be provided in chronological order.
+     */
+    messages?: Schema$GoogleCloudDialogflowV2beta1Message[];
+  }
+  /**
+   * The response message for Conversations.GenerateStatelessSummary.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse {
+    /**
+     * Number of messages prior to and including last_conversation_message used to compile the suggestion. It may be smaller than the GenerateStatelessSummaryRequest.context_size field in the request if there weren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * The name of the latest conversation message used as context for compiling suggestion. The format is specific to the user and the names of the messages provided.
+     */
+    latestMessage?: string | null;
+    /**
+     * Generated summary.
+     */
+    summary?: Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponseSummary;
+  }
+  /**
+   * Generated summary for a conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponseSummary {
+    /**
+     * The summary content that is concatenated into one string.
+     */
+    text?: string | null;
+    /**
+     * The summary content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.
+     */
+    textSections?: {[key: string]: string} | null;
+  }
+  /**
    * Defines the Human Agent Assistant to connect to a conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig {
@@ -4152,6 +4285,10 @@ export namespace dialogflow_v2beta1 {
    * Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY, CONVERSATION_SUMMARIZATION.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig {
+    /**
+     * Version of current baseline model. It will be ignored if model is set. Valid versions are: Article Suggestion baseline model: - 0.9 - 1.0 (default) Summarization baseline model: - 1.0
+     */
+    baselineModelVersion?: string | null;
     /**
      * Conversation model resource name. Format: `projects//conversationModels/`.
      */
@@ -4226,7 +4363,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig {
     /**
-     * Confidence threshold of query result. Agent Assist gives each suggestion a score in the range [0.0, 1.0], based on the relevance between the suggestion and the current conversation context. A score of 0.0 has no relevance, while a score of 1.0 has high relevance. Only suggestions with a score greater than or equal to the value of this field are included in the results. For a baseline model (the default), the recommended value is in the range [0.05, 0.1]. For a custom model, there is no recommended value. Tune this value by starting from a very low value and slowly increasing until you have desired results. If this field is not set, it is default to 0.0, which means that all suggestions are returned. Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE.
+     * Confidence threshold of query result. Agent Assist gives each suggestion a score in the range [0.0, 1.0], based on the relevance between the suggestion and the current conversation context. A score of 0.0 has no relevance, while a score of 1.0 has high relevance. Only suggestions with a score greater than or equal to the value of this field are included in the results. For a baseline model (the default), the recommended value is in the range [0.05, 0.1]. For a custom model, there is no recommended value. Tune this value by starting from a very low value and slowly increasing until you have desired results. If this field is not set, it is default to 0.0, which means that all suggestions are returned. Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE, KNOWLEDGE_SEARCH, KNOWLEDGE_ASSIST, ENTITY_EXTRACTION.
      */
     confidenceThreshold?: number | null;
     /**
@@ -4273,6 +4410,19 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySource {
     /**
      * Required. The name of a dialogflow virtual agent used for end user side intent detection and suggestion. Format: `projects//locations//agent`. When multiple agents are allowed in the same Dialogflow project.
+     */
+    agent?: string | null;
+    /**
+     * The Dialogflow assist configuration for human agent.
+     */
+    humanAgentSideConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySourceHumanAgentSideConfig;
+  }
+  /**
+   * The configuration used for human agent side Dialogflow assist suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySourceHumanAgentSideConfig {
+    /**
+     * Optional. The name of a dialogflow virtual agent used for intent detection and suggestion triggered by human agent. Format: `projects//locations//agent`.
      */
     agent?: string | null;
   }
@@ -4389,7 +4539,7 @@ export namespace dialogflow_v2beta1 {
      */
     documentTemplate?: Schema$GoogleCloudDialogflowV2beta1ImportDocumentTemplate;
     /**
-     * The Google Cloud Storage location for the documents. The path can include a wildcard. These URIs may have the forms `gs:///`. `gs:////x.`.
+     * Optional. The Google Cloud Storage location for the documents. The path can include a wildcard. These URIs may have the forms `gs:///`. `gs:////x.`.
      */
     gcsSource?: Schema$GoogleCloudDialogflowV2beta1GcsSources;
     /**
@@ -4586,6 +4736,19 @@ export namespace dialogflow_v2beta1 {
      * The unique identifier of the followup intent's parent. Format: `projects//agent/intents/`.
      */
     parentFollowupIntentName?: string | null;
+  }
+  /**
+   * Represents the intent to trigger programmatically rather than as a result of natural language processing. The intent input is only used for V3 agent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentInput {
+    /**
+     * Required. The unique identifier of the intent in V3 agent. Format: `projects//locations//locations//agents//intents/`.
+     */
+    intent?: string | null;
+    /**
+     * Required. The language of this conversational query. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.
+     */
+    languageCode?: string | null;
   }
   /**
    * Corresponds to the `Response` field in the Dialogflow console.
@@ -5306,6 +5469,23 @@ export namespace dialogflow_v2beta1 {
     value?: string | null;
   }
   /**
+   * Represents an intent suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1IntentSuggestion {
+    /**
+     * Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
+     */
+    description?: string | null;
+    /**
+     * The display name of the intent.
+     */
+    displayName?: string | null;
+    /**
+     * The unique identifier of this intent. Format: `projects//locations//agent/intents/`.
+     */
+    intentV2?: string | null;
+  }
+  /**
    * Represents an example that the agent is trained on.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase {
@@ -5733,7 +5913,7 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string | null;
     /**
-     * Optional. Obfuscated user id that should be associated with the created participant. You can specify a user id as follows: 1. If you set this field in CreateParticipantRequest or UpdateParticipantRequest, Dialogflow adds the obfuscated user id with the participant. 2. If you set this field in AnalyzeContent or StreamingAnalyzeContent, Dialogflow will update Participant.obfuscated_external_user_id. Dialogflow uses this user id for following purposes: 1) Billing and measurement. If user with the same obfuscated_external_user_id is created in a later conversation, dialogflow will know it's the same user. 2) Agent assist suggestion personalization. For example, Dialogflow can use it to provide personalized smart reply suggestions for this user. Note: * Please never pass raw user ids to Dialogflow. Always obfuscate your user id first. * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a hash function like SHA-512. * The length of the user id must be <= 256 characters.
+     * Optional. Obfuscated user id that should be associated with the created participant. You can specify a user id as follows: 1. If you set this field in CreateParticipantRequest or UpdateParticipantRequest, Dialogflow adds the obfuscated user id with the participant. 2. If you set this field in AnalyzeContent or StreamingAnalyzeContent, Dialogflow will update Participant.obfuscated_external_user_id. Dialogflow uses this user id for billing and measurement. If a user with the same obfuscated_external_user_id is created in a later conversation, Dialogflow will know it's the same user. Dialogflow also uses this user id for Agent Assist suggestion personalization. For example, Dialogflow can use it to provide personalized smart reply suggestions for this user. Note: * Please never pass raw user ids to Dialogflow. Always obfuscate your user id first. * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a hash function like SHA-512. * The length of the user id must be <= 256 characters.
      */
     obfuscatedExternalUserId?: string | null;
     /**
@@ -6186,10 +6366,6 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest {
     /**
-     * Parameters for a human assist query.
-     */
-    assistQueryParams?: Schema$GoogleCloudDialogflowV2beta1AssistQueryParameters;
-    /**
      * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 500 and at most 1000.
      */
     contextSize?: number | null;
@@ -6231,6 +6407,23 @@ export namespace dialogflow_v2beta1 {
      * The summary content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.
      */
     textSections?: {[key: string]: string} | null;
+  }
+  /**
+   * The response message for Participants.SuggestDialogflowAssists.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestDialogflowAssistsRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Multiple reply options provided by Dialogflow assist service. The order is based on the rank of the model prediction.
+     */
+    dialogflowAssistAnswers?: Schema$GoogleCloudDialogflowV2beta1DialogflowAssistAnswer[];
+    /**
+     * The name of the latest conversation message used to suggest answer. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
   }
   /**
    * The request message for Participants.SuggestFaqAnswers.
@@ -6355,6 +6548,27 @@ export namespace dialogflow_v2beta1 {
     type?: string | null;
   }
   /**
+   * Represents the selection of a suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestionInput {
+    /**
+     * Required. The ID of a suggestion selected by the human agent. The suggestion(s) were generated in a previous call to request Dialogflow assist. The format is: `projects//locations//answerRecords/` where is an alphanumeric string.
+     */
+    answerRecord?: string | null;
+    /**
+     * The intent to be triggered on V3 agent.
+     */
+    intentInput?: Schema$GoogleCloudDialogflowV2beta1IntentInput;
+    /**
+     * In Dialogflow assist for v3, the user can submit a form by sending a SuggestionInput. The form is uniquely determined by the answer_record field, which identifies a v3 QueryResult containing the current page. The form parameters are specified via the parameters field. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     */
+    parameters?: {[key: string]: any} | null;
+    /**
+     * Optional. If the customer edited the suggestion before using it, include the revised text here.
+     */
+    textOverride?: Schema$GoogleCloudDialogflowV2beta1TextInput;
+  }
+  /**
    * One response of different type of suggestion response which is used in the response of Participants.AnalyzeContent and Participants.AnalyzeContent, as well as HumanAgentAssistantEvent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestionResult {
@@ -6366,6 +6580,14 @@ export namespace dialogflow_v2beta1 {
      * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
      */
     suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
+    /**
+     * SuggestDialogflowAssistsResponse if request is for DIALOGFLOW_ASSIST.
+     */
+    suggestDialogflowAssistsResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse;
+    /**
+     * SuggestDialogflowAssistsResponse if request is for ENTITY_EXTRACTION.
+     */
+    suggestEntityExtractionResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse;
     /**
      * SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
      */
@@ -8093,6 +8315,14 @@ export namespace dialogflow_v2beta1 {
      */
     reachedEndPage?: boolean | null;
     /**
+     * Sentiment magnitude of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentMagnitude?: number | null;
+    /**
+     * Sentiment score of the user utterance if [sentiment](https://cloud.google.com/dialogflow/cx/docs/concept/sentiment) was enabled.
+     */
+    sentimentScore?: number | null;
+    /**
      * Whether agent has triggered the event corresponding to user abandoning the conversation.
      */
     triggeredAbandonmentEvent?: boolean | null;
@@ -8128,7 +8358,7 @@ export namespace dialogflow_v2beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$GoogleCloudLocationLocation {
     /**
@@ -8234,6 +8464,7 @@ export namespace dialogflow_v2beta1 {
     knowledgeBases: Resource$Projects$Knowledgebases;
     locations: Resource$Projects$Locations;
     operations: Resource$Projects$Operations;
+    suggestions: Resource$Projects$Suggestions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.agent = new Resource$Projects$Agent(this.context);
@@ -8245,6 +8476,7 @@ export namespace dialogflow_v2beta1 {
       this.knowledgeBases = new Resource$Projects$Knowledgebases(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
       this.operations = new Resource$Projects$Operations(this.context);
+      this.suggestions = new Resource$Projects$Suggestions(this.context);
     }
 
     /**
@@ -23341,6 +23573,7 @@ export namespace dialogflow_v2beta1 {
      *         //   "queryParams": {},
      *         //   "replyAudioConfig": {},
      *         //   "requestId": "my_requestId",
+     *         //   "suggestionInput": {},
      *         //   "textInput": {}
      *         // }
      *       },
@@ -25019,7 +25252,6 @@ export namespace dialogflow_v2beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -27122,6 +27354,7 @@ export namespace dialogflow_v2beta1 {
     conversations: Resource$Projects$Locations$Conversations;
     knowledgeBases: Resource$Projects$Locations$Knowledgebases;
     operations: Resource$Projects$Locations$Operations;
+    suggestions: Resource$Projects$Locations$Suggestions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.agent = new Resource$Projects$Locations$Agent(this.context);
@@ -27137,6 +27370,9 @@ export namespace dialogflow_v2beta1 {
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.suggestions = new Resource$Projects$Locations$Suggestions(
         this.context
       );
     }
@@ -40835,6 +41071,7 @@ export namespace dialogflow_v2beta1 {
      *           //   "queryParams": {},
      *           //   "replyAudioConfig": {},
      *           //   "requestId": "my_requestId",
+     *           //   "suggestionInput": {},
      *           //   "textInput": {}
      *           // }
      *         },
@@ -42186,7 +42423,6 @@ export namespace dialogflow_v2beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -44760,6 +44996,182 @@ export namespace dialogflow_v2beta1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Suggestions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates and returns a summary for a conversation that does not have a resource created for it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.suggestions.generateStatelessSummary({
+     *       // Required. The parent resource to charge for the Summary's generation. Format: `projects//locations/`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "conversationProfile": {},
+     *         //   "latestMessage": "my_latestMessage",
+     *         //   "maxContextSize": 0,
+     *         //   "statelessConversation": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage",
+     *   //   "summary": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateStatelessSummary(
+      params?: Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>;
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+    ): void;
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+    ): void;
+    generateStatelessSummary(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+    ): void;
+    generateStatelessSummary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+parent}/suggestions:generateStatelessSummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary
+    extends StandardParameters {
+    /**
+     * Required. The parent resource to charge for the Summary's generation. Format: `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequest;
+  }
+
   export class Resource$Projects$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -45220,5 +45632,180 @@ export namespace dialogflow_v2beta1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Suggestions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates and returns a summary for a conversation that does not have a resource created for it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.suggestions.generateStatelessSummary({
+     *     // Required. The parent resource to charge for the Summary's generation. Format: `projects//locations/`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversationProfile": {},
+     *       //   "latestMessage": "my_latestMessage",
+     *       //   "maxContextSize": 0,
+     *       //   "statelessConversation": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage",
+     *   //   "summary": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Suggestions$Generatestatelesssummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateStatelessSummary(
+      params?: Params$Resource$Projects$Suggestions$Generatestatelesssummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>;
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Suggestions$Generatestatelesssummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Suggestions$Generatestatelesssummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+    ): void;
+    generateStatelessSummary(
+      params: Params$Resource$Projects$Suggestions$Generatestatelesssummary,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+    ): void;
+    generateStatelessSummary(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+    ): void;
+    generateStatelessSummary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Suggestions$Generatestatelesssummary
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Suggestions$Generatestatelesssummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Suggestions$Generatestatelesssummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+parent}/suggestions:generateStatelessSummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Suggestions$Generatestatelesssummary
+    extends StandardParameters {
+    /**
+     * Required. The parent resource to charge for the Summary's generation. Format: `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequest;
   }
 }
