@@ -1,5 +1,29 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v5.0.0...networkservices-v6.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **networkservices:** update the API ([dee3be1](https://github.com/googleapis/google-api-nodejs-client/commit/dee3be1ffa988b0d37d2657684fe9624688cad21))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3211](https://github.com/googleapis/google-api-nodejs-client/issues/3211)) ([e2d966e](https://github.com/googleapis/google-api-nodejs-client/commit/e2d966e089bf8e743dbfc83af8ef3b37a0f4c83d))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([a415460](https://github.com/googleapis/google-api-nodejs-client/commit/a415460c267199f64f2c7ed2747e240e56e833eb))
+* **networkservices:** update the API ([77405ce](https://github.com/googleapis/google-api-nodejs-client/commit/77405ce81969f68ba56c11583d6cd9978500f3f3))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v4.0.1...networkservices-v5.0.0) (2023-06-22)
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v10.0.0...admin-v11.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **admin:** update the API ([6b8e4b1](https://github.com/googleapis/google-api-nodejs-client/commit/6b8e4b1b7f0e5347cc309c1b5b6cddc7e8ce757f))
+* run the generator ([#3211](https://github.com/googleapis/google-api-nodejs-client/issues/3211)) ([e2d966e](https://github.com/googleapis/google-api-nodejs-client/commit/e2d966e089bf8e743dbfc83af8ef3b37a0f4c83d))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **admin:** update the API ([c0d70d4](https://github.com/googleapis/google-api-nodejs-client/commit/c0d70d434ee0acf901a0060420f544d4f6733464))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v9.0.1...admin-v10.0.0) (2023-06-22)
 
 

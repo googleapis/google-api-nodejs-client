@@ -1,5 +1,24 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v8.0.0...ondemandscanning-v9.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **ondemandscanning:** update the API ([1d01a45](https://github.com/googleapis/google-api-nodejs-client/commit/1d01a45ef43f240cb92981c8bb65e15b6d666171))
+* **ondemandscanning:** update the API ([07b8a6e](https://github.com/googleapis/google-api-nodejs-client/commit/07b8a6e20fc8889a7899487a62a76ba5839abda0))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v7.0.0...ondemandscanning-v8.0.0) (2023-06-22)
 
 

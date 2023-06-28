@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v5.0.0...civicinfo-v6.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **civicinfo:** This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **civicinfo:** update the API ([8f6d8ba](https://github.com/googleapis/google-api-nodejs-client/commit/8f6d8bac7d85c9abe822de9436abdf932ad04bcf))
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v4.0.0...civicinfo-v5.0.0) (2023-06-22)
 
 

@@ -1,5 +1,25 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v4.0.0...cloudsupport-v5.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([9d69ef4](https://github.com/googleapis/google-api-nodejs-client/commit/9d69ef45bb22779a86ad12d9843b21fcf3c6752c))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v3.0.0...cloudsupport-v4.0.0) (2023-06-22)
 
 

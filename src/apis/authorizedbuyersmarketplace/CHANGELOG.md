@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v2.0.0...authorizedbuyersmarketplace-v3.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/authorizedbuyersmarketplace-v1.0.0...authorizedbuyersmarketplace-v2.0.0) (2023-06-22)
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v3.0.0...gmail-v4.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([6ff8ff8](https://github.com/googleapis/google-api-nodejs-client/commit/6ff8ff8eeaac6b0245abf3e1543e891ac96eff86))
+* **gmail:** update the API ([c6fa1dc](https://github.com/googleapis/google-api-nodejs-client/commit/c6fa1dc47d81d49492f7e81a13b816326840340d))
+* **gmail:** update the API ([454caaf](https://github.com/googleapis/google-api-nodejs-client/commit/454caaf1e282d8afb2dd933ec6cf56c1193a27e5))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v2.0.1...gmail-v3.0.0) (2023-06-22)
 
 

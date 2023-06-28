@@ -1,5 +1,32 @@
 # Changelog
 
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v15.0.0...chat-v16.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([736eac5](https://github.com/googleapis/google-api-nodejs-client/commit/736eac5d48549ddb5da6dfd17e78d58fcbed76d0))
+* **chat:** update the API ([c1f8549](https://github.com/googleapis/google-api-nodejs-client/commit/c1f8549520e98e947d09270ce7b2ef298e21aeda))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([59f5617](https://github.com/googleapis/google-api-nodejs-client/commit/59f5617608c425eea6de8f636a7fd545153cf7e2))
+* **chat:** update the API ([c22dd30](https://github.com/googleapis/google-api-nodejs-client/commit/c22dd30af7955937a4bb5bcc625184028b6b4a49))
+* **chat:** update the API ([7e53df7](https://github.com/googleapis/google-api-nodejs-client/commit/7e53df78fd2839237dfa28ffbc1a7e0326efb293))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v14.0.1...chat-v15.0.0) (2023-06-22)
 
 

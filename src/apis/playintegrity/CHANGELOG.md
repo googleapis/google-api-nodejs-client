@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v2.0.0...playintegrity-v3.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **playintegrity:** update the API ([ab8a18a](https://github.com/googleapis/google-api-nodejs-client/commit/ab8a18ae22d36d9b7e6af212626b8c52e7d29c93))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v1.2.0...playintegrity-v2.0.0) (2023-06-22)
 
 

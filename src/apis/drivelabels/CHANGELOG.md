@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v3.0.0...drivelabels-v4.0.0) (2023-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **drivelabels:** update the API ([58a402b](https://github.com/googleapis/google-api-nodejs-client/commit/58a402b73881b1d4dfb2fcefebf89ea3000086a9))
+* **drivelabels:** update the API ([41bc0b6](https://github.com/googleapis/google-api-nodejs-client/commit/41bc0b6653580d5b59f0fe3342a17cbc2f8a82ba))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v2.0.0...drivelabels-v3.0.0) (2023-06-22)
 
 
