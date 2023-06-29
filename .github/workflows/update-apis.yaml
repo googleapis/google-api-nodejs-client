@@ -16,4 +16,4 @@ jobs:
       - run: npm run submit-prs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CODE_BOT_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
+          CODE_BOT_TOKEN: ${{ secrets.APIARY_GEN_SECRET }}
