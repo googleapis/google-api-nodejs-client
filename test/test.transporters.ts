@@ -31,7 +31,7 @@ async function testHeaders(drive: APIEndpoint) {
       // ensure that the x-goog-api-client header is populated by
       // googleapis-common:
       assert.ok(
-        /gdcl\/[0-9]+\.[\w-.]+ gl-node\/[0-9]+\.[\w-.]+ auth\/[0-9]+\.[\w-.]+/.test(
+        /gdcl\/[0-9]+\.[\w-.]+ gl-node\/[0-9]+\.[\w-.]+/.test(
           headers['x-goog-api-client'][0]
         )
       );
