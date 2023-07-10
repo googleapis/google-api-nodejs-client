@@ -260,7 +260,7 @@ export namespace doubleclickbidmanager_v2 {
      */
     options?: Schema$Options;
     /**
-     * The type of the report. The type of the report will dictate what dimesions, filters, and metrics can be used. **Warning:** The `AUDIENCE_COMPOSITION` report type will be deprecated in Display & Video 360 on **June 8, 2023**. Once deprecated, you will no longer be able to create new or retrieve existing Query and Report resources of this type.
+     * The type of the report. The type of the report will dictate what dimesions, filters, and metrics can be used.
      */
     type?: string | null;
   }
